@@ -30,3 +30,4 @@ G:\EzTask\EzTask.Web\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.pdb
 G:\EzTask\EzTask.Web\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.deps.json
 G:\EzTask\EzTask.Web\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
 G:\EzTask\EzTask.Web\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
+G:\EzTask\EzTask.Web\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.csprojResolveAssemblyReference.cache

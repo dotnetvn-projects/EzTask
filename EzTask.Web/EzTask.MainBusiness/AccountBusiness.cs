@@ -36,7 +36,7 @@ namespace EzTask.MainBusiness
             }
             catch(Exception ex)
             {
-                //TODO log
+                account = null;
             }
 
             return account;

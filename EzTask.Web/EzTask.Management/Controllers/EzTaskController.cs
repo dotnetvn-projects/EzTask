@@ -1,5 +1,4 @@
 ﻿using System;
-
 using EzTask.Interfaces;
 using EzTask.MainBusiness;
 using Microsoft.AspNetCore.Mvc;
@@ -20,7 +19,25 @@ namespace EzTask.Management.Controllers
                 {
                     EzTask = service as EzTaskBusiness;
                 }
-            }          
+            }
+        }
+
+        /// <summary>
+        /// Page title
+        /// </summary>
+        protected string PageTitle
+        {
+            get { return "EzTask - "+ ViewData["Title"]?.ToString(); }
+            set { ViewData["Title"] = value; }
+        }
+
+        /// <summary>
+        /// ErrorMessage
+        /// </summary>
+        protected string ErrorMessage
+        {
+            get { return ViewData["error"]?.ToString(); }
+            set { ViewData["error"] = value; }
         }
     }
 }

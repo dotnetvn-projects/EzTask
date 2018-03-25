@@ -30,3 +30,4 @@ G:\EzTask\EzTask.Web\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api
 G:\EzTask\EzTask.Web\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.AssemblyInfo.cs
 G:\EzTask\EzTask.Web\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.dll
 G:\EzTask\EzTask.Web\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.pdb
+G:\EzTask\EzTask.Web\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.csprojResolveAssemblyReference.cache

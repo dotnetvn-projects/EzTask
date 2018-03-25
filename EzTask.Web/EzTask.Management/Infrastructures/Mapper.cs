@@ -1,5 +1,5 @@
 ﻿using EzTask.Entity;
-using EzTask.Management.Models;
+using EzTask.Management.Models.Account;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EzTask.Management.Models
+namespace EzTask.Management.Models.Account
 {
     public class AccountModel
     {
@@ -19,14 +19,9 @@ namespace EzTask.Management.Models
         [Required, StringLength(maximumLength: 50, MinimumLength = 6,
             ErrorMessage = "Email must be a string between 6 and 50 characters")]
         public string Password { get; set; }
+
         public string FullName { get; set; }
+
         public string DisplayName { get; set; }
-
-        public bool RememberMe { get; set; }
-
-        public AccountModel()
-        {
-            RememberMe = true;
-        }
     }
 }

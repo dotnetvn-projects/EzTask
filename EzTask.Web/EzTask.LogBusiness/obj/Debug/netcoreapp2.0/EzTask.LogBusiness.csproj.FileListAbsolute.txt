@@ -24,3 +24,4 @@ G:\EzTask\EzTask.Web\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusine
 G:\EzTask\EzTask.Web\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.AssemblyInfo.cs
 G:\EzTask\EzTask.Web\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.dll
 G:\EzTask\EzTask.Web\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.pdb
+G:\EzTask\EzTask.Web\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.csprojResolveAssemblyReference.cache
