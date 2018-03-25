@@ -20,3 +20,13 @@ C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.AssemblyInfo.cs
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.dll
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.pdb
+G:\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.deps.json
+G:\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.runtimeconfig.json
+G:\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.runtimeconfig.dev.json
+G:\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.dll
+G:\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.pdb
+G:\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.csproj.CoreCompileInputs.cache
+G:\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.AssemblyInfoInputs.cache
+G:\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.AssemblyInfo.cs
+G:\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.dll
+G:\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.pdb

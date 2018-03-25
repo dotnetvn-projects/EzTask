@@ -16,3 +16,11 @@ C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Facebook\obj\De
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.AssemblyInfo.cs
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.dll
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.pdb
+G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\bin\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.deps.json
+G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\bin\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.dll
+G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\bin\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.pdb
+G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.csproj.CoreCompileInputs.cache
+G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.AssemblyInfoInputs.cache
+G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.AssemblyInfo.cs
+G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.dll
+G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.pdb

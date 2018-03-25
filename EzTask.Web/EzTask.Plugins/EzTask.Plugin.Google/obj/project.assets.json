@@ -671,11 +671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Plugins\\EzTask.Plugin.Google\\EzTask.Plugin.Google.csproj",
+      "projectUniqueName": "G:\\EzTask\\EzTask.Web\\EzTask.Plugins\\EzTask.Plugin.Google\\EzTask.Plugin.Google.csproj",
       "projectName": "EzTask.Plugin.Google",
-      "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Plugins\\EzTask.Plugin.Google\\EzTask.Plugin.Google.csproj",
+      "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Plugins\\EzTask.Plugin.Google\\EzTask.Plugin.Google.csproj",
       "packagesPath": "C:\\Users\\duyli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Plugins\\EzTask.Plugin.Google\\obj\\",
+      "outputPath": "G:\\EzTask\\EzTask.Web\\EzTask.Plugins\\EzTask.Plugin.Google\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

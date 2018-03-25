@@ -3429,11 +3429,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.MainBusiness\\EzTask.MainBusiness.csproj",
+      "projectUniqueName": "G:\\EzTask\\EzTask.Web\\EzTask.MainBusiness\\EzTask.MainBusiness.csproj",
       "projectName": "EzTask.MainBusiness",
-      "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.MainBusiness\\EzTask.MainBusiness.csproj",
+      "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.MainBusiness\\EzTask.MainBusiness.csproj",
       "packagesPath": "C:\\Users\\duyli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.MainBusiness\\obj\\",
+      "outputPath": "G:\\EzTask\\EzTask.Web\\EzTask.MainBusiness\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
@@ -3455,20 +3455,20 @@
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.DataAccess\\EzTask.DataAccess.csproj": {
-              "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.DataAccess\\EzTask.DataAccess.csproj"
+            "G:\\EzTask\\EzTask.Web\\EzTask.DataAccess\\EzTask.DataAccess.csproj": {
+              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.DataAccess\\EzTask.DataAccess.csproj"
             },
-            "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Entity\\EzTask.Entity.csproj": {
-              "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Entity\\EzTask.Entity.csproj"
+            "G:\\EzTask\\EzTask.Web\\EzTask.Entity\\EzTask.Entity.csproj": {
+              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Entity\\EzTask.Entity.csproj"
             },
-            "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Framework\\EzTask.Framework.csproj": {
-              "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Framework\\EzTask.Framework.csproj"
+            "G:\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj": {
+              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj"
             },
-            "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Interfaces\\EzTask.Interfaces.csproj": {
-              "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Interfaces\\EzTask.Interfaces.csproj"
+            "G:\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj": {
+              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj"
             },
-            "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.LogBusiness\\EzTask.LogBusiness.csproj": {
-              "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.LogBusiness\\EzTask.LogBusiness.csproj"
+            "G:\\EzTask\\EzTask.Web\\EzTask.LogBusiness\\EzTask.LogBusiness.csproj": {
+              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.LogBusiness\\EzTask.LogBusiness.csproj"
             }
           }
         }

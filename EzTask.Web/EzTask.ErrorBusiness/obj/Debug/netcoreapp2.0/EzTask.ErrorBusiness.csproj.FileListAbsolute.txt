@@ -14,3 +14,11 @@ C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.AssemblyInfo.cs
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.dll
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.pdb
+G:\EzTask\EzTask.Web\EzTask.ErrorBusiness\bin\Debug\netcoreapp2.0\EzTask.ErrorBusiness.deps.json
+G:\EzTask\EzTask.Web\EzTask.ErrorBusiness\bin\Debug\netcoreapp2.0\EzTask.ErrorBusiness.dll
+G:\EzTask\EzTask.Web\EzTask.ErrorBusiness\bin\Debug\netcoreapp2.0\EzTask.ErrorBusiness.pdb
+G:\EzTask\EzTask.Web\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.csproj.CoreCompileInputs.cache
+G:\EzTask\EzTask.Web\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.AssemblyInfoInputs.cache
+G:\EzTask\EzTask.Web\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.AssemblyInfo.cs
+G:\EzTask\EzTask.Web\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.dll
+G:\EzTask\EzTask.Web\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.pdb

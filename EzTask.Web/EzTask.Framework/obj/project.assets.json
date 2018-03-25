@@ -671,11 +671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Framework\\EzTask.Framework.csproj",
+      "projectUniqueName": "G:\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj",
       "projectName": "EzTask.Framework",
-      "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Framework\\EzTask.Framework.csproj",
+      "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj",
       "packagesPath": "C:\\Users\\duyli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Framework\\obj\\",
+      "outputPath": "G:\\EzTask\\EzTask.Web\\EzTask.Framework\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

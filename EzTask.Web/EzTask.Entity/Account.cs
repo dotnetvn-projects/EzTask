@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 
 namespace EzTask.Entity
 {
@@ -13,7 +12,6 @@ namespace EzTask.Entity
         public int AccountStatus { get; set; }
         public string Comment { get; set; }
 
-        [JsonIgnore]
         public AccountInfo AccountInfo { get; set; }
     }
 }

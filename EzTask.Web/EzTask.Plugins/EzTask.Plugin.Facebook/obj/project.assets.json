@@ -671,11 +671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Plugins\\EzTask.Plugin.Facebook\\EzTask.Plugin.Facebook.csproj",
+      "projectUniqueName": "G:\\EzTask\\EzTask.Web\\EzTask.Plugins\\EzTask.Plugin.Facebook\\EzTask.Plugin.Facebook.csproj",
       "projectName": "EzTask.Plugin.Facebook",
-      "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Plugins\\EzTask.Plugin.Facebook\\EzTask.Plugin.Facebook.csproj",
+      "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Plugins\\EzTask.Plugin.Facebook\\EzTask.Plugin.Facebook.csproj",
       "packagesPath": "C:\\Users\\duyli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Plugins\\EzTask.Plugin.Facebook\\obj\\",
+      "outputPath": "G:\\EzTask\\EzTask.Web\\EzTask.Plugins\\EzTask.Plugin.Facebook\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

@@ -3340,11 +3340,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Entity\\EzTask.Entity.csproj",
+      "projectUniqueName": "G:\\EzTask\\EzTask.Web\\EzTask.Entity\\EzTask.Entity.csproj",
       "projectName": "EzTask.Entity",
-      "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Entity\\EzTask.Entity.csproj",
+      "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Entity\\EzTask.Entity.csproj",
       "packagesPath": "C:\\Users\\duyli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.Entity\\obj\\",
+      "outputPath": "G:\\EzTask\\EzTask.Web\\EzTask.Entity\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

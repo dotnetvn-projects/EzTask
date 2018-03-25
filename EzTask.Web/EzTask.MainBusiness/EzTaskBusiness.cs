@@ -18,14 +18,6 @@ namespace EzTask.MainBusiness
         }
 
         /// <summary>
-        /// Track message
-        /// </summary>
-        public void TrackMe()
-        {
-            Debug.Print("I am EzTask and I am good to work now :)");
-        }
-
-        /// <summary>
         /// Create dbcontext
         /// </summary>
         /// <param name="configuration"></param>
@@ -35,6 +27,14 @@ namespace EzTask.MainBusiness
             var optionsBuilder = new DbContextOptionsBuilder<EzTaskDbContext>();
             optionsBuilder.UseSqlServer(configuration.GetConnectionString("EzTask"));
             return new EzTaskDbContext(optionsBuilder.Options);
+        }
+
+        /// <summary>
+        /// Track message
+        /// </summary>
+        public void TrackMe()
+        {
+            Debug.Print("I am EzTask and I am good to work now :)");
         }
     }
 }

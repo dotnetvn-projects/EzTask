@@ -16,3 +16,11 @@ C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\Ez
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.AssemblyInfo.cs
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.dll
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+G:\EzTask\EzTask.Web\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.deps.json
+G:\EzTask\EzTask.Web\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+G:\EzTask\EzTask.Web\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+G:\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.csproj.CoreCompileInputs.cache
+G:\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.AssemblyInfoInputs.cache
+G:\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.AssemblyInfo.cs
+G:\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+G:\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.pdb

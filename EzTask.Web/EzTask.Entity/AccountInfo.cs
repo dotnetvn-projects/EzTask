@@ -1,13 +1,11 @@
-﻿using Newtonsoft.Json;
-using System;
-
+﻿using System;
 
 namespace EzTask.Entity
 {
     public class AccountInfo:BaseEntity<AccountInfo>
     {
         public int AccountId { get; set; }
-        [JsonIgnore]
+
         public Account Account { get; set; }
         public byte[] DisplayImage { get; set; }
         public string FullName { get; set; }

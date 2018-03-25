@@ -16,3 +16,11 @@ C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzT
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.AssemblyInfo.cs
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.dll
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.pdb
+G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Framework.deps.json
+G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Framework.dll
+G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Framework.pdb
+G:\EzTask\EzTask.Web\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.csproj.CoreCompileInputs.cache
+G:\EzTask\EzTask.Web\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.AssemblyInfoInputs.cache
+G:\EzTask\EzTask.Web\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.AssemblyInfo.cs
+G:\EzTask\EzTask.Web\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.dll
+G:\EzTask\EzTask.Web\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.pdb

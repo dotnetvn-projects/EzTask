@@ -671,11 +671,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.LogBusiness\\EzTask.LogBusiness.csproj",
+      "projectUniqueName": "G:\\EzTask\\EzTask.Web\\EzTask.LogBusiness\\EzTask.LogBusiness.csproj",
       "projectName": "EzTask.LogBusiness",
-      "projectPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.LogBusiness\\EzTask.LogBusiness.csproj",
+      "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.LogBusiness\\EzTask.LogBusiness.csproj",
       "packagesPath": "C:\\Users\\duyli\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\duyli\\OneDrive\\Temp\\EzTask\\EzTask.LogBusiness\\obj\\",
+      "outputPath": "G:\\EzTask\\EzTask.Web\\EzTask.LogBusiness\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",

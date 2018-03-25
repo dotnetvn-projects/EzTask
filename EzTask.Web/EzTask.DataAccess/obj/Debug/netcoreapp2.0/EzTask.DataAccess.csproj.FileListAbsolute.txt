@@ -26,3 +26,15 @@ C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.DataAccess\obj\Debug\netcoreapp2.0\Ez
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.csproj.CopyComplete
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.dll
 C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.pdb
+G:\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.DataAccess.deps.json
+G:\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.DataAccess.dll
+G:\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.DataAccess.pdb
+G:\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
+G:\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
+G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.csprojResolveAssemblyReference.cache
+G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.csproj.CoreCompileInputs.cache
+G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.AssemblyInfoInputs.cache
+G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.AssemblyInfo.cs
+G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.csproj.CopyComplete
+G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.dll
+G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.pdb
