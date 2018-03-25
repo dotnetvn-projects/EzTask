@@ -1,0 +1,24 @@
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.deps.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\Newtonsoft.Json.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\Newtonsoft.Json.xml
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.csproj.CoreCompileInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.AssemblyInfoInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.AssemblyInfo.cs
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.csproj.CopyComplete
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.deps.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\Newtonsoft.Json.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\bin\Debug\netcoreapp2.0\Newtonsoft.Json.xml
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.csproj.CoreCompileInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.AssemblyInfoInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.AssemblyInfo.cs
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.csproj.CopyComplete
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.pdb

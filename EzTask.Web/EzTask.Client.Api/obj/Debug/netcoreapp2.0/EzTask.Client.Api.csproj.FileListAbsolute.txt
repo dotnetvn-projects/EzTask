@@ -1,0 +1,22 @@
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.deps.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.runtimeconfig.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.runtimeconfig.dev.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.csproj.CoreCompileInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.AssemblyInfoInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.AssemblyInfo.cs
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.deps.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.runtimeconfig.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.runtimeconfig.dev.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\bin\Debug\netcoreapp2.0\EzTask.Client.Api.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.csproj.CoreCompileInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.AssemblyInfoInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.AssemblyInfo.cs
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Client.Api\obj\Debug\netcoreapp2.0\EzTask.Client.Api.pdb

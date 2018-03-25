@@ -1,0 +1,18 @@
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.LogBusiness\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.deps.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.LogBusiness\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.LogBusiness\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.csproj.CoreCompileInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.AssemblyInfoInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.AssemblyInfo.cs
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.LogBusiness\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.deps.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.LogBusiness\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.LogBusiness\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.csproj.CoreCompileInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.AssemblyInfoInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.AssemblyInfo.cs
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.LogBusiness\obj\Debug\netcoreapp2.0\EzTask.LogBusiness.pdb

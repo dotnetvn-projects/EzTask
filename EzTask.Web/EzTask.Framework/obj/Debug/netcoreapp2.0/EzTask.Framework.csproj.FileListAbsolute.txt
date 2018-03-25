@@ -1,0 +1,18 @@
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Framework.deps.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Framework.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Framework.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.csproj.CoreCompileInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.AssemblyInfoInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.AssemblyInfo.cs
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Framework.deps.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Framework.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Framework.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.csproj.CoreCompileInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.AssemblyInfoInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.AssemblyInfo.cs
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.pdb

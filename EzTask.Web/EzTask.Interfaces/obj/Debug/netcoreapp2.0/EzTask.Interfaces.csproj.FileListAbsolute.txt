@@ -1,0 +1,18 @@
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.deps.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.AssemblyInfoInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.AssemblyInfo.cs
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.deps.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.csproj.CoreCompileInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.AssemblyInfoInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.AssemblyInfo.cs
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.pdb

@@ -1,0 +1,16 @@
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\bin\Debug\netcoreapp2.0\EzTask.ErrorBusiness.deps.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\bin\Debug\netcoreapp2.0\EzTask.ErrorBusiness.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\bin\Debug\netcoreapp2.0\EzTask.ErrorBusiness.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.csproj.CoreCompileInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.AssemblyInfoInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.AssemblyInfo.cs
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\bin\Debug\netcoreapp2.0\EzTask.ErrorBusiness.deps.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\bin\Debug\netcoreapp2.0\EzTask.ErrorBusiness.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\bin\Debug\netcoreapp2.0\EzTask.ErrorBusiness.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.csproj.CoreCompileInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.AssemblyInfoInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.AssemblyInfo.cs
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.ErrorBusiness\obj\Debug\netcoreapp2.0\EzTask.ErrorBusiness.pdb

@@ -1,0 +1,48 @@
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.deps.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.runtimeconfig.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.runtimeconfig.dev.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.DataAccess.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.MainBusiness.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.DataAccess.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.MainBusiness.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.csprojResolveAssemblyReference.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.csproj.CoreCompileInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.AssemblyInfoInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.AssemblyInfo.cs
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.csproj.CopyComplete
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Framework.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Framework.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.deps.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.runtimeconfig.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.runtimeconfig.dev.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Management.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.DataAccess.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Framework.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.MainBusiness.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.DataAccess.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.MainBusiness.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.Framework.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\bin\Debug\netcoreapp2.0\EzTask.LogBusiness.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.csproj.CoreCompileInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.AssemblyInfoInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.AssemblyInfo.cs
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.csproj.CopyComplete
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Management\obj\Debug\netcoreapp2.0\EzTask.Management.pdb

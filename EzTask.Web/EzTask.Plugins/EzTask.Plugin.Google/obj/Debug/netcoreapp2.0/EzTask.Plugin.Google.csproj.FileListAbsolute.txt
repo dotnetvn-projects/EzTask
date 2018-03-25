@@ -1,0 +1,18 @@
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\bin\Debug\netcoreapp2.0\EzTask.Plugin.Google.deps.json
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\bin\Debug\netcoreapp2.0\EzTask.Plugin.Google.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\bin\Debug\netcoreapp2.0\EzTask.Plugin.Google.pdb
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.csprojResolveAssemblyReference.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.csproj.CoreCompileInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.AssemblyInfoInputs.cache
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.AssemblyInfo.cs
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.dll
+C:\Users\Linh Pham\Desktop\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\bin\Debug\netcoreapp2.0\EzTask.Plugin.Google.deps.json
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\bin\Debug\netcoreapp2.0\EzTask.Plugin.Google.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\bin\Debug\netcoreapp2.0\EzTask.Plugin.Google.pdb
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.csprojResolveAssemblyReference.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.csproj.CoreCompileInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.AssemblyInfoInputs.cache
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.AssemblyInfo.cs
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.dll
+C:\Users\duyli\OneDrive\Temp\EzTask\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.pdb
