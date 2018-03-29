@@ -4,9 +4,8 @@ using System.Text;
 
 namespace EzTask.Framework.Enum
 {
-    public enum AccountStatus
+    public enum EzTaskKey
     {
-        Active = 1,
-        Block = -1
+        Account
     }
 }

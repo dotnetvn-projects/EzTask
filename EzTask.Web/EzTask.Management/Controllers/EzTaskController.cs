@@ -1,6 +1,10 @@
 ﻿using System;
+using EzTask.Framework.Enum;
+using EzTask.Framework.Web;
 using EzTask.Interfaces;
 using EzTask.MainBusiness;
+using EzTask.Management.Models.Account;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -8,18 +12,17 @@ namespace EzTask.Management.Controllers
 {
     public class EzTaskController : Controller
     {
+        private SessionManager _sessionManager;
         protected static EzTaskBusiness EzTask { get; private set; }
 
-        public EzTaskController(IServiceProvider serviceProvider)
+        public EzTaskController(IServiceProvider serviceProvider,
+            IHttpContextAccessor httpContext)
         {
             if (EzTask == null)
             {
-                var service = serviceProvider.GetService<IEzTaskBusiness>();
-                if (service != null)
-                {
-                    EzTask = service as EzTaskBusiness;
-                }
+                EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;
             }
+            _sessionManager = new SessionManager(httpContext);
         }
 
         /// <summary>
@@ -38,6 +41,23 @@ namespace EzTask.Management.Controllers
         {
             get { return ViewData["error"]?.ToString(); }
             set { ViewData["error"] = value; }
+        }
+
+        protected AccountModel CurrentAccount
+        {
+            get
+            {
+                return _sessionManager.GetObject<AccountModel>(EzTaskKey.Account.ToString()) as AccountModel;
+            }
+            set
+            {
+                _sessionManager.SetObject(EzTaskKey.Account.ToString(), value);
+            }
+        }
+
+        protected void SuspendAccountSession()
+        {
+            _sessionManager.Suspend(EzTaskKey.Account.ToString());
         }
     }
 }

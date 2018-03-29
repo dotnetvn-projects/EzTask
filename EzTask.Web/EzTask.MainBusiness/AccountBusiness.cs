@@ -6,6 +6,7 @@ using System;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace EzTask.MainBusiness
 {
@@ -20,32 +21,35 @@ namespace EzTask.MainBusiness
         /// <returns></returns>
         public async Task<Account> RegisterNew(Account account)
         {
-            try
-            {
-                if (account.Id < 1)
-                    account.CreatedDate = DateTime.Now;
+            if (account.Id < 1)
+                account.CreatedDate = DateTime.Now;
 
-                account.PasswordHash = Cryptography.GetHashString(account.AccountName);
-                account.Password = Encrypt.EncryptString(account.Password, 
-                    account.PasswordHash);
-                account.UpdatedDate = DateTime.Now;
-                account.AccountStatus = (int)AccountStatus.None;
+            account.PasswordHash = Cryptography.GetHashString(account.AccountName);
+            account.Password = Encrypt.EncryptString(account.Password, 
+                account.PasswordHash);
+            account.UpdatedDate = DateTime.Now;
+            account.AccountStatus = (int)AccountStatus.Active;
 
-                EzTaskDbContext.Accounts.Add(account);
-                await EzTaskDbContext.SaveChangesAsync();
-            }
-            catch(Exception ex)
-            {
-                account = null;
-            }
+            EzTaskDbContext.Accounts.Add(account);
+            await EzTaskDbContext.SaveChangesAsync();
 
             return account;
         }
 
-        //public async Task<Account> UpdateAccount(Account account)
-        //{
-
-        //}
+        /// <summary>
+        /// Update account information
+        /// </summary>
+        /// <param name="account"></param>
+        /// <returns></returns>
+        public async Task<Account> UpdateAccount(Account account)
+        {
+            var updateRecord = await EzTaskDbContext.SaveChangesAsync();
+            if (updateRecord > 0)
+            {
+                return account;
+            }
+            return null;
+        }
 
         /// <summary>
         /// Get account information
@@ -58,14 +62,33 @@ namespace EzTask.MainBusiness
                 FirstOrDefaultAsync(c=>c.AccountId == accountId);
         }
 
+        /// <summary>
+        /// Get account by account name and password
+        /// </summary>
+        /// <param name="accountName"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
         public async Task<Account> GetAccount(string accountName, string password)
         {
-
             //TODO get by account name
             //Calulate password to get hash before comparing
             return await EzTaskDbContext.Accounts.
                 FirstOrDefaultAsync(c => c.AccountName == accountName 
                 && c.Password == password);
+        }
+
+        /// <summary>
+        /// Get list account
+        /// </summary>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="manageUserId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<Account>> GetAccountList(int page, int pageSize,
+            int manageUserId)
+        {
+           return await EzTaskDbContext.Accounts.Where(c=> c.ManageAccountId == manageUserId)
+                .Skip(pageSize * page - pageSize).Take(pageSize).ToListAsync();
         }
     }
 }

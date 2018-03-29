@@ -1,32 +1,19 @@
 ﻿
+using System;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 
 namespace EzTask.Management.Controllers
 {
-    public class HomeController : Controller
+    public class HomeController : EzTaskController
     {
+        public HomeController(IServiceProvider serviceProvider, IHttpContextAccessor httpContext)
+            : base(serviceProvider, httpContext) { }
+
         public IActionResult Index()
         {
-            return View();
-        }
-
-        public IActionResult About()
-        {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
-
-            return View();
-        }
-
-        public IActionResult Error()
-        {
+            PageTitle = "Home";
             return View();
         }
     }
