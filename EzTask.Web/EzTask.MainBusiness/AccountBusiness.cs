@@ -1,12 +1,12 @@
 ﻿using EzTask.DataAccess;
-using EzTask.Entity;
 using EzTask.Framework.Security;
-using EzTask.Framework.Enum;
 using System;
 using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using EzTask.Entity.Data;
+using EzTask.Entity.Framework;
 
 namespace EzTask.MainBusiness
 {

@@ -1,4 +1,4 @@
-﻿using EzTask.Entity;
+﻿using EzTask.Entity.Data;
 using EzTask.Management.Models.Account;
 using System;
 using System.Collections.Generic;

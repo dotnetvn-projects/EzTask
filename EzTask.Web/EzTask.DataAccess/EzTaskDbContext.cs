@@ -1,4 +1,5 @@
 ﻿using EzTask.Entity;
+using EzTask.Entity.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
 

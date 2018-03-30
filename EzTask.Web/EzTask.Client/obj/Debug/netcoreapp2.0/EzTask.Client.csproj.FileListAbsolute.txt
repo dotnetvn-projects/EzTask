@@ -31,3 +31,13 @@ G:\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.Assembl
 G:\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.dll
 G:\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.pdb
 G:\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.csprojResolveAssemblyReference.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.deps.json
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.runtimeconfig.json
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.runtimeconfig.dev.json
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\bin\Debug\netcoreapp2.0\EzTask.Client.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.csproj.CoreCompileInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.AssemblyInfoInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.AssemblyInfo.cs
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.pdb

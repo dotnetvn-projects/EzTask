@@ -25,6 +25,7 @@
         "dependencies": {
           "EzTask.DataAccess": "1.0.0",
           "EzTask.Entity": "1.0.0",
+          "EzTask.Framework": "1.0.0",
           "EzTask.Interfaces": "1.0.0",
           "EzTask.MainBusiness": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.6",
@@ -4085,6 +4086,10 @@
         }
       },
       "EzTask.Framework/1.0.0": {
+        "dependencies": {
+          "EzTask.Interfaces": "1.0.0",
+          "Microsoft.AspNetCore.All": "2.0.6"
+        },
         "runtime": {
           "EzTask.Framework.dll": {}
         },
@@ -4093,6 +4098,9 @@
         }
       },
       "EzTask.Interfaces/1.0.0": {
+        "dependencies": {
+          "EzTask.Entity": "1.0.0"
+        },
         "runtime": {
           "EzTask.Interfaces.dll": {}
         },
@@ -4101,6 +4109,10 @@
         }
       },
       "EzTask.LogBusiness/1.0.0": {
+        "dependencies": {
+          "EzTask.Framework": "1.0.0",
+          "EzTask.Interfaces": "1.0.0"
+        },
         "runtime": {
           "EzTask.LogBusiness.dll": {}
         },

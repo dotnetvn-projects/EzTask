@@ -25,3 +25,15 @@ G:\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces
 G:\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.dll
 G:\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
 G:\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.csprojResolveAssemblyReference.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.deps.json
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.csproj.CoreCompileInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.AssemblyInfoInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.AssemblyInfo.cs
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.csprojResolveAssemblyReference.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Interfaces\obj\Debug\netcoreapp2.0\EzTask.Interfaces.csproj.CopyComplete

@@ -38,3 +38,15 @@ G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess
 G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.csproj.CopyComplete
 G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.dll
 G:\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.DataAccess.deps.json
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.DataAccess.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.DataAccess.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.csprojResolveAssemblyReference.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.csproj.CoreCompileInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.AssemblyInfoInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.AssemblyInfo.cs
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.csproj.CopyComplete
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.pdb

@@ -6,6 +6,7 @@ using EzTask.Management.Models.Account;
 using EzTask.Framework.ErrorMessage;
 using Microsoft.AspNetCore.Http;
 using EzTask.Framework.Enum;
+using EzTask.Entity.Framework;
 
 namespace EzTask.Management.Controllers
 {  
@@ -45,7 +46,7 @@ namespace EzTask.Management.Controllers
 
                 if (account != null)
                 {
-                    if (account.AccountStatus == (int)AccountStatus.Block)
+                    if (account.AccountStatus != (int)AccountStatus.Block)
                     {
                         return RedirectToAction("Index", "Home");
                     }

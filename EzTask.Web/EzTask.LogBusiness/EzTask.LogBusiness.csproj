@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\EzTask.Framework\EzTask.Framework.csproj" />
+    <ProjectReference Include="..\EzTask.Interfaces\EzTask.Interfaces.csproj" />
+  </ItemGroup>
+
 </Project>

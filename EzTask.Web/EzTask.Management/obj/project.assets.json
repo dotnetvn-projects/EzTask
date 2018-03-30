@@ -5063,6 +5063,10 @@
       "EzTask.Framework/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "EzTask.Interfaces": "1.0.0",
+          "Microsoft.AspNetCore.All": "2.0.6"
+        },
         "compile": {
           "bin/placeholder/EzTask.Framework.dll": {}
         },
@@ -5073,6 +5077,9 @@
       "EzTask.Interfaces/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "EzTask.Entity": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/EzTask.Interfaces.dll": {}
         },
@@ -5083,6 +5090,10 @@
       "EzTask.LogBusiness/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v2.0",
+        "dependencies": {
+          "EzTask.Framework": "1.0.0",
+          "EzTask.Interfaces": "1.0.0"
+        },
         "compile": {
           "bin/placeholder/EzTask.LogBusiness.dll": {}
         },
@@ -13229,6 +13240,7 @@
     ".NETCoreApp,Version=v2.0": [
       "EzTask.DataAccess >= 1.0.0",
       "EzTask.Entity >= 1.0.0",
+      "EzTask.Framework >= 1.0.0",
       "EzTask.Interfaces >= 1.0.0",
       "EzTask.MainBusiness >= 1.0.0",
       "Microsoft.AspNetCore.All >= 2.0.6",
@@ -13237,25 +13249,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\duyli\\.nuget\\packages\\": {},
+    "C:\\Users\\Linh Pham\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\EzTask\\EzTask.Web\\EzTask.Management\\EzTask.Management.csproj",
+      "projectUniqueName": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Management\\EzTask.Management.csproj",
       "projectName": "EzTask.Management",
-      "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Management\\EzTask.Management.csproj",
-      "packagesPath": "C:\\Users\\duyli\\.nuget\\packages\\",
-      "outputPath": "G:\\EzTask\\EzTask.Web\\EzTask.Management\\obj\\",
+      "projectPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Management\\EzTask.Management.csproj",
+      "packagesPath": "C:\\Users\\Linh Pham\\.nuget\\packages\\",
+      "outputPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Management\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\duyli\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Linh Pham\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
@@ -13264,23 +13276,27 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "E:\\Local nuget": {},
         "http://nuget.kyers.com/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "G:\\EzTask\\EzTask.Web\\EzTask.DataAccess\\EzTask.DataAccess.csproj": {
-              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.DataAccess\\EzTask.DataAccess.csproj"
+            "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.DataAccess\\EzTask.DataAccess.csproj": {
+              "projectPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.DataAccess\\EzTask.DataAccess.csproj"
             },
-            "G:\\EzTask\\EzTask.Web\\EzTask.Entity\\EzTask.Entity.csproj": {
-              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Entity\\EzTask.Entity.csproj"
+            "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Entity\\EzTask.Entity.csproj": {
+              "projectPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Entity\\EzTask.Entity.csproj"
             },
-            "G:\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj": {
-              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj"
+            "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj": {
+              "projectPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj"
             },
-            "G:\\EzTask\\EzTask.Web\\EzTask.MainBusiness\\EzTask.MainBusiness.csproj": {
-              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.MainBusiness\\EzTask.MainBusiness.csproj"
+            "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj": {
+              "projectPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj"
+            },
+            "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.MainBusiness\\EzTask.MainBusiness.csproj": {
+              "projectPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.MainBusiness\\EzTask.MainBusiness.csproj"
             }
           }
         }

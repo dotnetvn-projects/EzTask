@@ -24,3 +24,11 @@ G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0
 G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.AssemblyInfo.cs
 G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.dll
 G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\bin\Debug\netcoreapp2.0\EzTask.Plugin.Google.deps.json
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\bin\Debug\netcoreapp2.0\EzTask.Plugin.Google.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\bin\Debug\netcoreapp2.0\EzTask.Plugin.Google.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.csproj.CoreCompileInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.AssemblyInfoInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.AssemblyInfo.cs
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.pdb

@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Framework.Web
+namespace EzTask.Framework.Web.HttpContext
 {
     public static class SessionExtensions
     {

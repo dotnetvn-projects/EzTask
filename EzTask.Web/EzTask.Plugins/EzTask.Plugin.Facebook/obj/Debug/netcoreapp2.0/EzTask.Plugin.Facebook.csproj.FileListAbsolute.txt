@@ -24,3 +24,12 @@ G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2
 G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.AssemblyInfo.cs
 G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.dll
 G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\bin\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.deps.json
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\bin\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\bin\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.csproj.CoreCompileInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.AssemblyInfoInputs.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.AssemblyInfo.cs
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.dll
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.csprojResolveAssemblyReference.cache

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace EzTask.Entity
+namespace EzTask.Entity.Data
 {
     public class Account:BaseEntity<Account>
     {
