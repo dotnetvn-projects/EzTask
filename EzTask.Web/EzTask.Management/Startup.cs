@@ -29,8 +29,12 @@ namespace EzTask.Management
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddTransient<IEzTaskBusiness, EzTaskBusiness>();
+            services.AddDbContext<EzTaskDbContext>(options => 
+            options.UseSqlServer(Configuration.GetConnectionString("EzTask")), 
+                ServiceLifetime.Scoped);
+
             services.AddMvc();
-            services.AddDistributedMemoryCache(); // Adds a default in-memory implementation of IDistributedCache
+            services.AddDistributedMemoryCache();
             services.AddSession();
         }                                              
 

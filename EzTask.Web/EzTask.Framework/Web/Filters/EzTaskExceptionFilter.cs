@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Framework.Web.ExceptionFilter
+namespace EzTask.Framework.Web.Filters
 {
     public class EzTaskExceptionFilter : ExceptionFilterAttribute
     {

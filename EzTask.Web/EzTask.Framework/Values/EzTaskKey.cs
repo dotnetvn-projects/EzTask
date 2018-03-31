@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Framework.Enum
+namespace EzTask.Framework.Values
 {
     public enum EzTaskKey
     {

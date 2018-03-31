@@ -70,8 +70,6 @@ namespace EzTask.MainBusiness
         /// <returns></returns>
         public async Task<Account> GetAccount(string accountName, string password)
         {
-            //TODO get by account name
-            //Calulate password to get hash before comparing
             return await EzTaskDbContext.Accounts.
                 FirstOrDefaultAsync(c => c.AccountName == accountName 
                 && c.Password == password);

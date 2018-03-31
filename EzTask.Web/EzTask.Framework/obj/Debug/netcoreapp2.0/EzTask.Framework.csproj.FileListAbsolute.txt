@@ -39,3 +39,8 @@ E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzT
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.csprojResolveAssemblyReference.cache
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.csproj.CopyComplete
+G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
+G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
+G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
+G:\EzTask\EzTask.Web\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.csproj.CopyComplete

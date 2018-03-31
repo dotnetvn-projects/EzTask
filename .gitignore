@@ -259,3 +259,5 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+EzTask.Web/.vs/config/applicationhost.config
+EzTask.Web/.vs/EzTask/v15/.suo

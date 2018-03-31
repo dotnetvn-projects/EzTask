@@ -1,9 +1,9 @@
 ﻿using System;
-using EzTask.Framework.Enum;
+using EzTask.Entity.Framework;
+using EzTask.Framework.Values;
 using EzTask.Framework.Web.HttpContext;
 using EzTask.Interfaces;
 using EzTask.MainBusiness;
-using EzTask.Management.Models.Account;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,16 +13,24 @@ namespace EzTask.Management.Controllers
     public class EzTaskController : Controller
     {
         private SessionManager _sessionManager;
-        protected static EzTaskBusiness EzTask { get; private set; }
+        protected EzTaskBusiness EzTask { get; private set; }
+        protected IHttpContextAccessor HttpContextAccessor;
 
         public EzTaskController(IServiceProvider serviceProvider,
             IHttpContextAccessor httpContext)
         {
-            if (EzTask == null)
-            {
-                EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;
-            }
-            _sessionManager = new SessionManager(httpContext);
+            EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;
+            
+            HttpContextAccessor = httpContext;
+            _sessionManager = new SessionManager(HttpContextAccessor);            
+        }
+
+        /// <summary>
+        /// Account Id
+        /// </summary>
+        protected int AccountId
+        {
+            get { return int.Parse(CurrentAccount.AccountId); }
         }
 
         /// <summary>
@@ -43,21 +51,32 @@ namespace EzTask.Management.Controllers
             set { ViewData["error"] = value; }
         }
 
-        protected AccountModel CurrentAccount
+        /// <summary>
+        /// Current Login Account
+        /// </summary>
+        protected CurrentAccount CurrentAccount
         {
             get
             {
-                return _sessionManager.GetObject<AccountModel>(EzTaskKey.Account.ToString()) as AccountModel;
+                var currentAccount = _sessionManager.GetObject<CurrentAccount>(EzTaskKey.Account);
+                if (currentAccount == null)
+                    currentAccount = new CurrentAccount();
+                return currentAccount;
             }
             set
             {
-                _sessionManager.SetObject(EzTaskKey.Account.ToString(), value);
+                _sessionManager.SetObject(EzTaskKey.Account, value);
             }
         }
 
+        public SessionManager SessionManager { get => _sessionManager; set => _sessionManager = value; }
+
+        /// <summary>
+        /// Suspend session for current login account
+        /// </summary>
         protected void SuspendAccountSession()
         {
-            _sessionManager.Suspend(EzTaskKey.Account.ToString());
+            _sessionManager.Suspend(EzTaskKey.Account);
         }
     }
 }
