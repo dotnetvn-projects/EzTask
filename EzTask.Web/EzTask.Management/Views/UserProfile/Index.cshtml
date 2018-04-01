@@ -1,7 +1,30 @@
 ﻿
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+    string activityTab = "", timelineTab = "", settingTab = "";
+    var activeTab = ViewData["activeTab"];
+    if (activeTab == null || string.IsNullOrEmpty(activeTab.ToString()))
+    {
+        activityTab = "active";
+    }
+    else
+    {
+
+        switch (activeTab)
+        {
+            case "activity":
+                activityTab = "active";
+                break;
+            case "timeline":
+                timelineTab = "active";
+                break;
+            case "setting":
+                settingTab = "active";
+                break;
+        }
+    }
 }
+
 @model EzTask.Management.Models.Account.AccountInfoModel
 @section header{
     <h1>
@@ -72,12 +95,12 @@
     <div class="col-md-9">
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
-                <li class="active"><a href="#activity" data-toggle="tab">Activity</a></li>
-                <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
-                <li><a href="#settings" data-toggle="tab">Settings</a></li>
+                <li class="@activityTab"><a href="#activity" data-toggle="tab">Activity</a></li>
+                <li class="@timelineTab"><a href="#timeline" data-toggle="tab">Timeline</a></li>
+                <li class="@settingTab"><a href="#settings" data-toggle="tab">Settings</a></li>
             </ul>
             <div class="tab-content">
-                <div class="active tab-pane" id="activity">
+                <div class="@activityTab tab-pane" id="activity">
                     <!-- Post -->
                     <div class="post">
                         <div class="user-block">
@@ -194,7 +217,7 @@
                     <!-- /.post -->
                 </div>
                 <!-- /.tab-pane -->
-                <div class="tab-pane" id="timeline">
+                <div class="@timelineTab tab-pane" id="timeline">
                     <!-- The timeline -->
                     <ul class="timeline timeline-inverse">
                         <!-- timeline time label -->
@@ -279,7 +302,7 @@
                     </ul>
                 </div>
                 <!-- /.tab-pane -->
-                <div class="tab-pane" id="settings">
+                <div class="@settingTab tab-pane" id="settings">
                     <form asp-action="UpdateInfo" class="form-horizontal">
                         <input asp-for="AccountInfoId" type="hidden" />
                         <input asp-for="AccountId" type="hidden" />

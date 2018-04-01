@@ -50,6 +50,12 @@ namespace EzTask.Management.Controllers
             set { ViewData["error"] = value; }
         }
 
+        protected string ActiveTab
+        {
+            get { return ViewData["activeTab"]?.ToString(); }
+            set { ViewData["activeTab"] = value; }
+        }
+
         /// <summary>
         /// Current Login Account
         /// </summary>

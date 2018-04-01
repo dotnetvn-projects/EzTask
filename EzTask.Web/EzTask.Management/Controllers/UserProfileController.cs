@@ -30,7 +30,11 @@ namespace EzTask.Management.Controllers
         [Route("profile.html")]
         public async Task<IActionResult> UpdateInfo(AccountInfoModel model)
         {
-            var account = await EzTask.Account.UpdateAccount(model.MapToEntity());
+            if (ModelState.IsValid)
+            {
+                var account = await EzTask.Account.UpdateAccount(model.MapToEntity());
+            }
+            ActiveTab = "setting";
             return View("Index");
         }
 
