@@ -19,8 +19,7 @@ namespace EzTask.Management.Controllers
         public EzTaskController(IServiceProvider serviceProvider,
             IHttpContextAccessor httpContext)
         {
-            EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;
-            
+            EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;          
             HttpContextAccessor = httpContext;
             _sessionManager = new SessionManager(HttpContextAccessor);            
         }
@@ -38,8 +37,8 @@ namespace EzTask.Management.Controllers
         /// </summary>
         protected string PageTitle
         {
-            get { return "EzTask - "+ ViewData["Title"]?.ToString(); }
-            set { ViewData["Title"] = value; }
+            get { return ViewData["Title"]?.ToString(); }
+            set { ViewData["Title"] = "EzTask - " + value; }
         }
 
         /// <summary>

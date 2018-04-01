@@ -41,12 +41,18 @@ namespace EzTask.MainBusiness
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public async Task<Account> UpdateAccount(Account account)
+        public async Task<AccountInfo> UpdateAccount(AccountInfo account)
         {
-            var updateRecord = await EzTaskDbContext.SaveChangesAsync();
-            if (updateRecord > 0)
+            var accountInfo = EzTaskDbContext.AccountInfos.FirstOrDefault(c => c.Id == account.Id);
+            if (accountInfo != null)
             {
-                return account;
+                accountInfo.Update(account);
+                
+                var updateRecord = await EzTaskDbContext.SaveChangesAsync();
+                if (updateRecord > 0)
+                {
+                    return accountInfo;
+                }
             }
             return null;
         }
@@ -58,8 +64,9 @@ namespace EzTask.MainBusiness
         /// <returns></returns>
         public async Task<AccountInfo> GetAccountInfo(int accountId)
         {
-            return await EzTaskDbContext.AccountInfos.
-                FirstOrDefaultAsync(c=>c.AccountId == accountId);
+            return await EzTaskDbContext.AccountInfos.Include(c => c.Account)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(c=>c.AccountId == accountId);
         }
 
         /// <summary>

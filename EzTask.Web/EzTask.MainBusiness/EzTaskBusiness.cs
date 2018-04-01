@@ -2,9 +2,7 @@
 using EzTask.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Diagnostics;
-using System.Linq;
 
 namespace EzTask.MainBusiness
 {

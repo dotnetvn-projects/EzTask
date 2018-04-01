@@ -19,9 +19,7 @@ namespace EzTask.Management.Models.Account
         [Required, StringLength(maximumLength: 50, MinimumLength = 6,
             ErrorMessage = "Email must be a string between 6 and 50 characters")]
         public string Password { get; set; }
-
         public string FullName { get; set; }
-
         public string DisplayName { get; set; }
     }
 }
