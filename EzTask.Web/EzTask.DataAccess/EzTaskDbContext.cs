@@ -20,6 +20,10 @@ namespace EzTask.DataAccess
 
         public DbSet<AccountInfo> AccountInfos { get; set; }
 
+        public DbSet<Project> Projects { get; set; }
+
+        public DbSet<ProjectMember> ProjectMembers { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             _entityMapper = new EntityMapper(modelBuilder);

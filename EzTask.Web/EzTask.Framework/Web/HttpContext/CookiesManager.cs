@@ -7,10 +7,8 @@ namespace EzTask.Framework.Web.HttpContext
 {
     public class CookiesManager
     {
-        private EzTaskHttpContext _ezTaskHttp;
-        public CookiesManager(IHttpContextAccessor httpContext)
+        public CookiesManager()
         {
-            _ezTaskHttp = new EzTaskHttpContext(httpContext);
         }
     }
 }

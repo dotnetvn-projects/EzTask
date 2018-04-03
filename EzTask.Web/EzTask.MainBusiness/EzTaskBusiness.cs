@@ -9,11 +9,13 @@ namespace EzTask.MainBusiness
     public class EzTaskBusiness : IEzTaskBusiness
     {
         public AccountBusiness Account { get; }
+        public ProjectBusiness Project { get; }
 
         public EzTaskBusiness(EzTaskDbContext ezTaskDbContext)
         {
            // var context = CreateContext(configuration);
             Account = new AccountBusiness(ezTaskDbContext);
+            Project = new ProjectBusiness(ezTaskDbContext);
         }
 
         /// <summary>

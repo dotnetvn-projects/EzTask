@@ -53,6 +53,7 @@ namespace EzTask.Management.Infrastructures
             return new AccountInfoModel
             {
                 AccountInfoId = entity.Id,
+                JobTitle = entity.JobTitle,
                 AccountId = entity.AccountId,
                 AccountName = entity.Account.AccountName,
                 Password = entity.Account.Password,
@@ -75,6 +76,7 @@ namespace EzTask.Management.Infrastructures
             return new AccountInfo
             {
                 Id = model.AccountInfoId,
+                JobTitle = model.JobTitle,
                 AccountId = model.AccountId,
                 Address1 = model.Address1,
                 Address2 = model.Address2,

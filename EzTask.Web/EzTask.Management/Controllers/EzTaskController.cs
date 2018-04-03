@@ -12,16 +12,14 @@ namespace EzTask.Management.Controllers
 {
     public class EzTaskController : Controller
     {
-        private SessionManager _sessionManager;
+        protected SessionManager _sessionManager;
         protected EzTaskBusiness EzTask { get; private set; }
         protected IHttpContextAccessor HttpContextAccessor;
 
-        public EzTaskController(IServiceProvider serviceProvider,
-            IHttpContextAccessor httpContext)
+        public EzTaskController(IServiceProvider serviceProvider)
         {
             EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;          
-            HttpContextAccessor = httpContext;
-            _sessionManager = new SessionManager(HttpContextAccessor);            
+           _sessionManager = new SessionManager();            
         }
 
         /// <summary>

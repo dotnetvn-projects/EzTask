@@ -5,22 +5,17 @@ namespace EzTask.Framework.Web.HttpContext
 {
     public class SessionManager
     {
-        private EzTaskHttpContext _ezTaskHttp;
-        public SessionManager(IHttpContextAccessor httpContext)
-        {
-            _ezTaskHttp = new EzTaskHttpContext(httpContext);
-        }
-        
+
         public void Set(EzTaskKey key, string value)
         {
-            _ezTaskHttp.Context.HttpContext.Session.SetString(key.ToString(), value);
+            EzTaskContext.Current.Session.SetString(key.ToString(), value);
         }
 
         public string Get(EzTaskKey key)
         {
             try
             {
-                return _ezTaskHttp.Context.HttpContext.Session.GetString(key.ToString());
+                return EzTaskContext.Current.Session.GetString(key.ToString());
             }
             catch
             {
@@ -30,14 +25,14 @@ namespace EzTask.Framework.Web.HttpContext
 
         public void SetObject(EzTaskKey key, object value)
         {
-            _ezTaskHttp.Context.HttpContext.Session.SetObjectAsJson(key.ToString(), value);
+            EzTaskContext.Current.Session.SetObjectAsJson(key.ToString(), value);
         }
 
         public T GetObject<T>(EzTaskKey key)
         {
             try
             {
-                return _ezTaskHttp.Context.HttpContext.Session.GetObjectFromJson<T>(key.ToString());
+                return EzTaskContext.Current.Session.GetObjectFromJson<T>(key.ToString());
             }
             catch
             {
@@ -47,7 +42,7 @@ namespace EzTask.Framework.Web.HttpContext
 
         public void Suspend(EzTaskKey key)
         {
-            _ezTaskHttp.Context.HttpContext.Session.Remove(key.ToString());
+            EzTaskContext.Current.Session.Remove(key.ToString());
         }
     }
 }

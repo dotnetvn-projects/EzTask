@@ -12,8 +12,8 @@ namespace EzTask.Management.Controllers
 {  
     public class AccountController : EzTaskController
     {
-        public AccountController(IServiceProvider serviceProvider, IHttpContextAccessor httpContext) 
-            : base(serviceProvider, httpContext) { }
+        public AccountController(IServiceProvider serviceProvider) 
+            : base(serviceProvider) { }
 
         #region Manual Login
 
@@ -48,7 +48,12 @@ namespace EzTask.Management.Controllers
                 {
                     if (account.AccountStatus != (int)AccountStatus.Block)
                     {
-                        CurrentAccount = CurrentAccount.Create(account.Id.ToString(), account.AccountName);
+                        CurrentAccount = CurrentAccount.Create(account.Id.ToString(),
+                            account.AccountName,
+                            account.AccountInfo.DisplayName,
+                            account.AccountInfo.JobTitle,
+                            account.CreatedDate);
+
                         return RedirectToAction("Index", "Home");
                     }
                     else
