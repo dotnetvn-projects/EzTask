@@ -36,7 +36,7 @@ namespace EzTask.Management.Controllers
         public async Task<IEnumerable<AccountModel>> GetAccountList(int page=1, int pageSize=20)
         {
             IEnumerable<AccountModel> accountModels = new List<AccountModel>();
-            var data = await EzTask.Account.GetAccountList(page, pageSize, CurrentAccount.AccountId);
+            var data = await EzTask.Account.GetAccountList(page, pageSize, AccountId);
             if(data.Any())
             {
                 accountModels = data.MapToModels();

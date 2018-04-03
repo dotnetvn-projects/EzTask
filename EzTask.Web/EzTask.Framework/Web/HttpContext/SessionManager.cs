@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using EzTask.Framework.Values;
+using Microsoft.AspNetCore.Http;
 
 namespace EzTask.Framework.Web.HttpContext
 {
@@ -10,16 +11,16 @@ namespace EzTask.Framework.Web.HttpContext
             _ezTaskHttp = new EzTaskHttpContext(httpContext);
         }
         
-        public void Set(string key, string value)
+        public void Set(EzTaskKey key, string value)
         {
-            _ezTaskHttp.Context.HttpContext.Session.SetString(key, value);
+            _ezTaskHttp.Context.HttpContext.Session.SetString(key.ToString(), value);
         }
 
-        public string Get(string key)
+        public string Get(EzTaskKey key)
         {
             try
             {
-                return _ezTaskHttp.Context.HttpContext.Session.GetString(key);
+                return _ezTaskHttp.Context.HttpContext.Session.GetString(key.ToString());
             }
             catch
             {
@@ -27,26 +28,26 @@ namespace EzTask.Framework.Web.HttpContext
             }
         }
 
-        public void SetObject(string key, object value)
+        public void SetObject(EzTaskKey key, object value)
         {
-            _ezTaskHttp.Context.HttpContext.Session.SetObjectAsJson(key, value);
+            _ezTaskHttp.Context.HttpContext.Session.SetObjectAsJson(key.ToString(), value);
         }
 
-        public object GetObject<T>(string key)
+        public T GetObject<T>(EzTaskKey key)
         {
             try
             {
-                return _ezTaskHttp.Context.HttpContext.Session.GetObjectFromJson<T>(key);
+                return _ezTaskHttp.Context.HttpContext.Session.GetObjectFromJson<T>(key.ToString());
             }
             catch
             {
-                return null;
+                return default(T);
             }
         }
 
-        public void Suspend(string key)
+        public void Suspend(EzTaskKey key)
         {
-            _ezTaskHttp.Context.HttpContext.Session.Remove(key);
+            _ezTaskHttp.Context.HttpContext.Session.Remove(key.ToString());
         }
     }
 }

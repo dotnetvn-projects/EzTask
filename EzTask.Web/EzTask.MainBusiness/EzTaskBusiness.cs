@@ -2,7 +2,6 @@
 using EzTask.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using System;
 using System.Diagnostics;
 
 namespace EzTask.MainBusiness
@@ -11,10 +10,10 @@ namespace EzTask.MainBusiness
     {
         public AccountBusiness Account { get; }
 
-        public EzTaskBusiness(IConfiguration configuration)
+        public EzTaskBusiness(EzTaskDbContext ezTaskDbContext)
         {
-            var context = CreateContext(configuration);
-            Account = new AccountBusiness(context);
+           // var context = CreateContext(configuration);
+            Account = new AccountBusiness(ezTaskDbContext);
         }
 
         /// <summary>

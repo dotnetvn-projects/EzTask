@@ -20,22 +20,15 @@ namespace EzTask.Entity
         /// <param name="entity"></param>
         public virtual void Update(T entity)
         {
-            Type t = typeof(T);
+            Type t = this.GetType();
             PropertyInfo[] props = t.GetProperties(BindingFlags.Public
                 | BindingFlags.Instance);
 
             foreach (PropertyInfo p in props)
             {
                 if (!p.CanRead || !p.CanWrite) continue;
-
-                object val = p.GetGetMethod().Invoke(entity, null);
-                object defaultVal = p.PropertyType.IsValueType ? 
-                    Activator.CreateInstance(p.PropertyType) : null;
-
-                if (null != defaultVal && !val.Equals(defaultVal))
-                {
-                    p.GetSetMethod().Invoke(this, new[] { val });
-                }
+                object val = entity.GetType().GetProperty(p.Name).GetValue(entity);
+                p.SetValue(this, val , null);             
             }
         }
 

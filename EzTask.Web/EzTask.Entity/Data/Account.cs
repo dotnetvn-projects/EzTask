@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Entity.Data
 {
@@ -10,7 +11,8 @@ namespace EzTask.Entity.Data
         public string PasswordHash { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
-        public int AccountStatus { get; set; }
+
+        public Int16 AccountStatus { get; set; }
         public string Comment { get; set; }
 
         public AccountInfo AccountInfo { get; set; }

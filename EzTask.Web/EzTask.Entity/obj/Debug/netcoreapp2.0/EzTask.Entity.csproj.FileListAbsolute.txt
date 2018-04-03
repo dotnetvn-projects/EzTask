@@ -30,7 +30,6 @@ G:\EzTask\EzTask.Web\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.pdb
 G:\EzTask\EzTask.Web\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.deps.json
 G:\EzTask\EzTask.Web\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
 G:\EzTask\EzTask.Web\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
-G:\EzTask\EzTask.Web\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.csprojResolveAssemblyReference.cache
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.deps.json
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.dll
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Entity\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
@@ -39,3 +38,4 @@ E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.AssemblyInfo.cs
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.dll
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.pdb
+G:\EzTask\EzTask.Web\EzTask.Entity\obj\Debug\netcoreapp2.0\EzTask.Entity.csprojResolveAssemblyReference.cache

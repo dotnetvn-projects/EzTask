@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using EzTask.Management.Models.Account;
 using EzTask.Framework.ErrorMessage;
 using Microsoft.AspNetCore.Http;
-using EzTask.Framework.Enum;
+using EzTask.Framework.Values;
 using EzTask.Entity.Framework;
 
 namespace EzTask.Management.Controllers
@@ -48,6 +48,7 @@ namespace EzTask.Management.Controllers
                 {
                     if (account.AccountStatus != (int)AccountStatus.Block)
                     {
+                        CurrentAccount = CurrentAccount.Create(account.Id.ToString(), account.AccountName);
                         return RedirectToAction("Index", "Home");
                     }
                     else
