@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using EzTask.Management.Infrastructures;
 using System.Threading.Tasks;
 using EzTask.Management.Models.Account;
-using EzTask.Framework.ErrorMessage;
+using EzTask.Framework.Message;
 using Microsoft.AspNetCore.Http;
 using EzTask.Framework.Values;
 using EzTask.Entity.Framework;
@@ -58,17 +58,17 @@ namespace EzTask.Management.Controllers
                     }
                     else
                     {
-                        ErrorMessage = AccountError.AccountBlock;
+                        ErrorMessage = AccountMessage.AccountBlock;
                     }
                 }
                 else 
                 {
-                    ErrorMessage = AccountError.LoginFailed;
+                    ErrorMessage = AccountMessage.LoginFailed;
                 }
             }
             catch
             {
-                ErrorMessage = AccountError.LoginFailed;                
+                ErrorMessage = AccountMessage.LoginFailed;                
             }
 
             return View();
@@ -110,11 +110,11 @@ namespace EzTask.Management.Controllers
                     return RedirectToAction("Login", "Account");                   
                 }
 
-                ErrorMessage = AccountError.CreateFailed;
+                ErrorMessage = AccountMessage.CreateFailed;
             }
             catch
             {
-                ErrorMessage = AccountError.LoginFailed;               
+                ErrorMessage = AccountMessage.LoginFailed;               
             }
 
             return View();

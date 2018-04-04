@@ -17,5 +17,11 @@ namespace EzTask.Management.Controllers
             PageTitle = "Home";
             return View();
         }
+
+        [Route("not-found.html")]
+        public IActionResult PageNotFound()
+        {
+            return View();
+        }
     }
 }
