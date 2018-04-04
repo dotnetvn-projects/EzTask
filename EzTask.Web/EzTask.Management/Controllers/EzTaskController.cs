@@ -40,12 +40,21 @@ namespace EzTask.Management.Controllers
         }
 
         /// <summary>
-        /// ErrorMessage
+        /// Error Message
         /// </summary>
         protected string ErrorMessage
         {
             get { return ViewData["error"]?.ToString(); }
             set { ViewData["error"] = value; }
+        }
+
+        /// <summary>
+        /// Success Message
+        /// </summary>
+        protected string SuccessMessage
+        {
+            get { return ViewData["success"]?.ToString(); }
+            set { ViewData["success"] = value; }
         }
 
         protected string ActiveTab
