@@ -12,4 +12,8 @@
     <ProjectReference Include="..\EzTask.Interfaces\EzTask.Interfaces.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Web\TagHelpers\" />
+  </ItemGroup>
+
 </Project>

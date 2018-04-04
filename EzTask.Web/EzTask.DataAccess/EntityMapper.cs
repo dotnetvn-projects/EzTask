@@ -20,6 +20,8 @@ namespace EzTask.DataAccess
         {
             _modelBuilder.Entity<Account>().ToTable(TableName.Account.ToString());
             _modelBuilder.Entity<AccountInfo>().ToTable(TableName.AccountInfo.ToString());
+            _modelBuilder.Entity<Project>().ToTable(TableName.Project.ToString());
+            _modelBuilder.Entity<ProjectMember>().ToTable(TableName.Project_Member.ToString());
         }
     }
 }

@@ -7,6 +7,8 @@ namespace EzTask.DataAccess
     internal enum TableName
     {
        Account,
-       AccountInfo
+       AccountInfo,
+       Project,
+       Project_Member
     }
 }

@@ -11,8 +11,8 @@ namespace EzTask.Management.Controllers
 {
     public class AccountManagementController : EzTaskController
     {
-        public AccountManagementController(IServiceProvider serviceProvider, IHttpContextAccessor httpContext)
-            : base(serviceProvider, httpContext) { }
+        public AccountManagementController(IServiceProvider serviceProvider)
+            : base(serviceProvider) { }
 
         #region View
 

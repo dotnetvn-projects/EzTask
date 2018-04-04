@@ -16,10 +16,10 @@ namespace EzTask.Framework.Web.AuthorizeFilter
         SessionManager _sessionManager;
         public string ControllerName { get; set; }
 
-        public EzTaskAuthorizeFilter(IHttpContextAccessor _httpContextAccessor)
+        public EzTaskAuthorizeFilter()
         {
             ControllerName = string.Empty;
-            _sessionManager = new SessionManager(_httpContextAccessor);
+            _sessionManager = new SessionManager();
         }
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)

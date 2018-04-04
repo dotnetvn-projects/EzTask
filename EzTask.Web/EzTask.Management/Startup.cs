@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
+using EzTask.Framework.Web.HttpContext;
 using EzTask.Interfaces;
 using EzTask.MainBusiness;
 using Microsoft.AspNetCore.Builder;
@@ -52,6 +53,7 @@ namespace EzTask.Management
             }
             app.UseSession();
             app.UseStaticFiles();
+            app.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
 
             app.UseMvc(routes =>
             {

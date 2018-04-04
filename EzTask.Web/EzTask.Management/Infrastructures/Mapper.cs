@@ -1,9 +1,10 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Management.Models.Account;
+using EzTask.Management.Models.Project;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using EzTask.Framework.Common;
+using EzTask.Entity.Framework;
 
 namespace EzTask.Management.Infrastructures
 {
@@ -53,6 +54,7 @@ namespace EzTask.Management.Infrastructures
             return new AccountInfoModel
             {
                 AccountInfoId = entity.Id,
+                JobTitle = entity.JobTitle,
                 AccountId = entity.AccountId,
                 AccountName = entity.Account.AccountName,
                 Password = entity.Account.Password,
@@ -75,6 +77,7 @@ namespace EzTask.Management.Infrastructures
             return new AccountInfo
             {
                 Id = model.AccountInfoId,
+                JobTitle = model.JobTitle,
                 AccountId = model.AccountId,
                 Address1 = model.Address1,
                 Address2 = model.Address2,
@@ -89,6 +92,66 @@ namespace EzTask.Management.Infrastructures
                 PhoneNumber = model.PhoneNumber
             };
         }
+        #endregion
+
+        #region Project
+
+        public static ProjectModel MapToModel(this Project entity)
+        {
+            if (entity == null)
+                return null;
+
+            var data = new ProjectModel
+            {
+                Comment = entity.Comment,
+                CreatedDate = entity.CreatedDate,
+                Description = entity.Description,
+                MaximumUser = entity.MaximumUser,
+                ProjectCode = entity.ProjectCode,
+                ProjectId = entity.Id,
+                ProjectName = entity.ProjectName,
+                Status = entity.Status.ToEnum<ProjectStatus>(),
+                UpdatedDate = entity.UpdatedDate
+            };
+
+            if(entity.Account !=null)
+            {
+                data.Owner = new AccountModel
+                {
+                  AccountId = entity.Id,
+                  AccountName = entity.Account.AccountName
+                };
+
+                if(entity.Account.AccountInfo !=null)
+                {
+                    data.Owner.DisplayName = entity.Account.AccountInfo.DisplayName;
+                    data.Owner.FullName = entity.Account.AccountInfo.FullName;
+                }
+            }
+
+            return data;
+        }
+
+        public static Project MapToEntity(this ProjectModel model)
+        {
+            if (model == null)
+                return null;
+
+            return new Project
+            {
+                Comment = model.Comment,
+                CreatedDate = model.CreatedDate,
+                Description = model.Description,
+                Id = model.ProjectId,
+                MaximumUser = model.MaximumUser,
+                ProjectCode = model.ProjectCode,
+                ProjectName = model.ProjectName,
+                Status = model.Status.ToInt16<ProjectStatus>(),
+                Owner = model.Owner.AccountId,
+                UpdatedDate = model.UpdatedDate
+            };
+        }
+
         #endregion
     }
 }

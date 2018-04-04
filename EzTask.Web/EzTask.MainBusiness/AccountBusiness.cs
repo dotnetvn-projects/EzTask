@@ -31,9 +31,13 @@ namespace EzTask.MainBusiness
             account.AccountStatus = (int)AccountStatus.Active;
 
             EzTaskDbContext.Accounts.Add(account);
-            await EzTaskDbContext.SaveChangesAsync();
+            var insertedRecord = await EzTaskDbContext.SaveChangesAsync();
 
-            return account;
+            if(insertedRecord > 0)
+            {
+                return account;
+            }
+            return null;
         }
 
         /// <summary>
@@ -77,7 +81,7 @@ namespace EzTask.MainBusiness
         /// <returns></returns>
         public async Task<Account> GetAccount(string accountName, string password)
         {
-            return await EzTaskDbContext.Accounts.
+            return await EzTaskDbContext.Accounts.Include(c=>c.AccountInfo).
                 FirstOrDefaultAsync(c => c.AccountName == accountName 
                 && c.Password == password);
         }

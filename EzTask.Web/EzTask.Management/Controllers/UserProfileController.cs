@@ -13,11 +13,28 @@ namespace EzTask.Management.Controllers
     [TypeFilter(typeof(EzTaskAuthorizeFilter))]
     public class UserProfileController : EzTaskController
     {
-        public UserProfileController(IServiceProvider serviceProvider, IHttpContextAccessor httpContext) :
-            base(serviceProvider, httpContext)
+        public UserProfileController(IServiceProvider serviceProvider) :
+            base(serviceProvider)
         {
         }
 
+        /// <summary>
+        /// Public profile for member
+        /// </summary>
+        /// <param name="accountName"></param>
+        /// <returns></returns>
+        [Route("pubic-profile.html")]
+        public async Task<IActionResult> PublicProfile(string account)
+        {
+            PageTitle = "Profile - "+ account;
+            var profileData = await GetAccountInfo();
+            return View(profileData);
+        }
+
+        /// <summary>
+        /// Profile for current logined user
+        /// </summary>
+        /// <returns></returns>
         [Route("profile.html")]
         public async Task<IActionResult> Index()
         {
@@ -26,6 +43,11 @@ namespace EzTask.Management.Controllers
             return View(profileData);
         }
 
+        /// <summary>
+        /// Update account info for current logined user
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("profile.html")]
         public async Task<IActionResult> UpdateInfo(AccountInfoModel model)
