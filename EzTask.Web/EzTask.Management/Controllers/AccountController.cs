@@ -66,7 +66,7 @@ namespace EzTask.Management.Controllers
                     ErrorMessage = AccountMessage.LoginFailed;
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 ErrorMessage = AccountMessage.LoginFailed;                
             }

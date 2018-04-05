@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace EzTask.Entity.Data
@@ -17,6 +18,7 @@ namespace EzTask.Entity.Data
         public Int16 Status { get; set; }
         public string Comment { get; set; }
 
+        [ForeignKey("Owner")]
         public Account Account { get; set; }
     }
 }

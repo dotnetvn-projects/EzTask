@@ -149,6 +149,7 @@ namespace EzTask.Management.Infrastructures
                 Status = model.Status.ToInt16<ProjectStatus>(),
                 Owner = model.Owner.AccountId,
                 UpdatedDate = model.UpdatedDate
+                
             };
         }
 

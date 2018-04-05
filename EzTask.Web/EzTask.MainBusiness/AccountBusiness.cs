@@ -32,7 +32,6 @@ namespace EzTask.MainBusiness
 
             EzTaskDbContext.Accounts.Add(account);
             var insertedRecord = await EzTaskDbContext.SaveChangesAsync();
-
             if(insertedRecord > 0)
             {
                 return account;

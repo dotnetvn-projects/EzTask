@@ -7,6 +7,7 @@ using EzTask.Management.Infrastructures;
 using EzTask.Framework.Message;
 using EzTask.Entity.Framework;
 using EzTask.Management.Models.Account;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace EzTask.Management.Controllers
 {
@@ -25,13 +26,22 @@ namespace EzTask.Management.Controllers
             return View();
         }
 
-        #region Create 
+        #region Create project 
 
         [Route("project/create-project.html")]
         public IActionResult CreateNew()
         {
-            PageTitle = "Create new task";
+            PageTitle = "Create new project";
             return View(new ProjectModel());
+        }
+
+        [Route("project/create-success.html")]
+        public async Task<IActionResult> CreateSuccess(string projectCode)
+        {
+            PageTitle = "Creating project is successful";
+            var project = await EzTask.Project.GetProjectDetail(projectCode);
+            
+            return View(project.MapToModel());
         }
 
         [HttpPost]
@@ -42,19 +52,34 @@ namespace EzTask.Management.Controllers
             {
                 if (ModelState.IsValid)
                 {
+                    model.ProjectCode = string.Empty;
                     model.Status = ProjectStatus.Pending;
                     model.Owner = new AccountModel
                     {
                         AccountId = AccountId
                     };
+
                     var project = await EzTask.Project.Save(model.MapToEntity());
+                    if(project == null)
+                    {
+                        ErrorMessage = ProjectMessage.ErrorCreateProject;
+                        model.HasError = true;
+                    }
+                    else
+                    {
+                        SuccessMessage = ProjectMessage.CreateProjectSuccess;
+                        return RedirectToAction("CreateSuccess", 
+                            new { projectCode = project.ProjectCode });
+                    }
                 }
             }
             catch
             {
-                ErrorMessage = ProjectMessage.ErrorCreateProject;
+                model.HasError = true;
+                ErrorMessage = ProjectMessage.ErrorCreateProject;              
             }
-            return View();
+            return View(model);
+
         }
         #endregion
 

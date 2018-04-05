@@ -15,12 +15,12 @@ namespace EzTask.Framework.Web.HtmlHelpers
 
         public static IHtmlContent PrintSucessMessage(this IHtmlHelper htmlHelper)
         {
-            return new HtmlString(htmlHelper.ViewData["success"]?.ToString());
+            return new HtmlString(htmlHelper.TempData["success"]?.ToString());
         }
 
         public static IHtmlContent PrintErrorMessage(this IHtmlHelper htmlHelper)
         {
-            return new HtmlString(htmlHelper.ViewData["error"]?.ToString());
+            return new HtmlString(htmlHelper.TempData["error"]?.ToString());
         }
     }
 }

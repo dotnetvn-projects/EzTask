@@ -4,7 +4,7 @@
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
     string activityTab = "", timelineTab = "", settingTab = "";
-    var activeTab = ViewData["activeTab"];
+    var activeTab = TempData["activeTab"];
     if (activeTab == null || string.IsNullOrEmpty(activeTab.ToString()))
     {
         activityTab = "active";

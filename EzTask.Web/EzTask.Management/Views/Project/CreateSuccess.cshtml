@@ -1,0 +1,66 @@
+﻿
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var canDisplay = !string.IsNullOrEmpty(Html.PrintSucessMessage().ToString());
+}
+
+@model EzTask.Management.Models.Project.ProjectModel
+@section header{
+    <h1>
+        Project
+        <small>Create sucess a project on EzTask</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a asp-action="Index" asp-controller="Project">Project</a></li>
+        <li><a asp-action="CreateNew" asp-controller="Project">Create new</a></li>
+        <li class="active">Create success</li>
+    </ol>
+}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        @if (!canDisplay)
+        {
+            <h3><i class="fa fa-frown-o"></i><span class="space-left">Ops! Something's wrong here, we cannot display information right now</span></h3>
+            <span>Click <a asp-action="Index" asp-controller="Project">here</a> to go back project list</span>
+        }
+        else
+        { <i class="fa fa-circle text-green"></i>
+            <h3 class="box-title">@Html.PrintSucessMessage()</h3>
+        }
+    </div>
+    @if (canDisplay)
+    {
+        <div class="box-body">
+            <div class="col-md-8">
+                <form role="form">
+
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="projectName">Project Name</label>
+                            <input asp-for="ProjectName" class="form-control" id="projectName" placeholder="Enter project name" type="text">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea rows="5" asp-for="Description" class="form-control" id="description"></textarea>
+                        </div>
+                    </div>
+                    <!-- /.box-body -->
+                </form>
+            </div>
+            <div class="col-md-4">
+                <div class="callout callout-success">
+                    <h4>Your project information:</h4>
+
+                    <p><i class="fa fa-qrcode"></i><span class="space-left"><b>Project Code</b>: @Model.ProjectCode</span></p>
+                    <p><i class="fa fa-book"></i><span class="space-left"><b>Project Name</b>: @Model.ProjectName</span></p>
+                    <p><i class="fa fa-user-circle"></i><span class="space-left"><b>Owner</b>: @Model.Owner.DisplayName</span></p>
+                    <p><i class="fa fa-bell-slash-o"></i><span class="space-left"><b>Status</b>: @Model.Status</span></p>
+                    <p><i class="fa fa-hand-o-right"></i><span class="space-left"><b>Note</b>: Currently your project is pending now so please go to project detail page and change your project status</span></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+

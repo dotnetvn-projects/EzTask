@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace EzTask.Management.Models.Project
 {
-    public class ProjectModel
+    public class ProjectModel :BaseModel
     {
         public int ProjectId { get; set; }
         public string ProjectCode { get; set; }
         [Required]
+        [Display(Name = "Project Name")]
         public string ProjectName { get; set; }
         [Required]
+        [Display(Name = "Description")]
         public string Description { get; set; }
         public AccountModel Owner { get; set; }
         public DateTime CreatedDate { get; set; }
