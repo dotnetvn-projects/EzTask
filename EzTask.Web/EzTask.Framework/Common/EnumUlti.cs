@@ -13,7 +13,7 @@ namespace EzTask.Framework.Common
 
         public static Int16 ToInt16<T>(this Enum value)
         {
-            return Int16.Parse(value.ToString());
+            return Convert.ToInt16(value);
         }
     }
 }

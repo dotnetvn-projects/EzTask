@@ -1,6 +1,7 @@
 ﻿using EzTask.Entity.Framework;
 using EzTask.Management.Models.Account;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
 
 namespace EzTask.Management.Models.Project
@@ -9,7 +10,9 @@ namespace EzTask.Management.Models.Project
     {
         public int ProjectId { get; set; }
         public string ProjectCode { get; set; }
+        [Required]
         public string ProjectName { get; set; }
+        [Required]
         public string Description { get; set; }
         public AccountModel Owner { get; set; }
         public DateTime CreatedDate { get; set; }

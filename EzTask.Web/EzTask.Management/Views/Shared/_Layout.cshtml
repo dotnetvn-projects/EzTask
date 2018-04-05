@@ -23,6 +23,7 @@
           page. However, you can choose any other skin. Make sure you
           apply the skin class to the body tag so the changes take effect. -->
     <link rel="stylesheet" href="~/themes/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="~/css/site.css">
     @RenderSection("styles", required: false)
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -267,8 +268,8 @@ desired effect
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
-                    <li class="header">TASK MANAGEMENT</li>
                     <li><a href="#"><i class="fa fa-tasks"></i> <span>Task List</span></a></li>
+                    <li><a asp-action="Index" asp-controller="Project"><i class="fa fa-reddit"></i> <span>Project List</span></a></li>
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>

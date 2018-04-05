@@ -4,6 +4,9 @@ using EzTask.Framework.Web.AuthorizeFilter;
 using EzTask.Management.Models.Project;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Management.Infrastructures;
+using EzTask.Framework.Message;
+using EzTask.Entity.Framework;
+using EzTask.Management.Models.Account;
 
 namespace EzTask.Management.Controllers
 {
@@ -15,7 +18,7 @@ namespace EzTask.Management.Controllers
         {
         }
 
-        [Route("projects.html")]
+        [Route("project.html")]
         public IActionResult Index()
         {
             PageTitle = "Projects";
@@ -24,7 +27,7 @@ namespace EzTask.Management.Controllers
 
         #region Create 
 
-        [Route("create-task.html")]
+        [Route("project/create-project.html")]
         public IActionResult CreateNew()
         {
             PageTitle = "Create new task";
@@ -32,18 +35,30 @@ namespace EzTask.Management.Controllers
         }
 
         [HttpPost]
-        [Route("create-task.html")]
+        [Route("project/create-project.html")]
         public async Task<IActionResult> CreateNew(ProjectModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var project = await EzTask.Project.Save(model.MapToEntity());
+                if (ModelState.IsValid)
+                {
+                    model.Status = ProjectStatus.Pending;
+                    model.Owner = new AccountModel
+                    {
+                        AccountId = AccountId
+                    };
+                    var project = await EzTask.Project.Save(model.MapToEntity());
+                }
+            }
+            catch
+            {
+                ErrorMessage = ProjectMessage.ErrorCreateProject;
             }
             return View();
         }
         #endregion
 
-            #region Edit
+        #region Edit
 
         [Route("update-task.html")]
         public async Task<IActionResult> UpdateProject(string projectCode)
