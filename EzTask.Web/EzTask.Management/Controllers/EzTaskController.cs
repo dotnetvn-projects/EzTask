@@ -6,6 +6,7 @@ using EzTask.Interfaces;
 using EzTask.MainBusiness;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Management.Controllers
@@ -19,7 +20,8 @@ namespace EzTask.Management.Controllers
         public EzTaskController(IServiceProvider serviceProvider)
         {
             EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;          
-           _sessionManager = new SessionManager();            
+           _sessionManager = new SessionManager();
+            PageTitle = string.Empty;
         }
 
         /// <summary>
@@ -44,8 +46,8 @@ namespace EzTask.Management.Controllers
         /// </summary>
         protected string ErrorMessage
         {
-            get { return ViewData["error"]?.ToString(); }
-            set { ViewData["error"] = value; }
+            get { return TempData["error"]?.ToString(); }
+            set { TempData["error"] = value; }
         }
 
         /// <summary>
@@ -53,8 +55,8 @@ namespace EzTask.Management.Controllers
         /// </summary>
         protected string SuccessMessage
         {
-            get { return ViewData["success"]?.ToString(); }
-            set { ViewData["success"] = value; }
+            get { return TempData["success"]?.ToString(); }
+            set { TempData["success"] = value; }
         }
 
         protected string ActiveTab
@@ -81,7 +83,7 @@ namespace EzTask.Management.Controllers
             }
         }
 
-        public SessionManager SessionManager { get => _sessionManager; set => _sessionManager = value; }
+        public SessionManager SessionManager { get => _sessionManager; set => _sessionManager = value; }    
 
         /// <summary>
         /// Suspend session for current login account

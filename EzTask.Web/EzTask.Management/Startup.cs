@@ -9,6 +9,7 @@ using EzTask.MainBusiness;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -34,9 +35,10 @@ namespace EzTask.Management
             options.UseSqlServer(Configuration.GetConnectionString("EzTask")), 
                 ServiceLifetime.Scoped);
 
-            services.AddMvc();
+            services.AddMvc().AddSessionStateTempDataProvider(); ;
             services.AddDistributedMemoryCache();
             services.AddSession();
+            services.AddMemoryCache();
         }                                              
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
