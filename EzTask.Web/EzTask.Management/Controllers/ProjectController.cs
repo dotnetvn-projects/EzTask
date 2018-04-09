@@ -22,7 +22,7 @@ namespace EzTask.Management.Controllers
         }
 
         [Route("project.html")]
-        public async Task<IActionResult> Index()
+        public Task<IActionResult> Index()
         {
             PageTitle = "Projects";
             return View();
