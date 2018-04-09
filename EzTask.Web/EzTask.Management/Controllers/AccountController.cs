@@ -13,7 +13,8 @@ namespace EzTask.Management.Controllers
 {
     public class AccountController : EzTaskController
     {
-        public AccountController(IServiceProvider serviceProvider, IMapper mapper) :
+        public AccountController(IServiceProvider serviceProvider, 
+            IMapper mapper) :
             base(serviceProvider, mapper)
         {
         }

@@ -98,7 +98,7 @@ namespace EzTask.Management.Controllers
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
                 model.HasError = true;
                 ErrorMessage = ProjectMessage.ErrorCreateProject;              

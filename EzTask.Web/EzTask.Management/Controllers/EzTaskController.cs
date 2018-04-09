@@ -9,7 +9,6 @@ using EzTask.MainBusiness;
 using EzTask.Management.Infrastructures;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Management.Controllers

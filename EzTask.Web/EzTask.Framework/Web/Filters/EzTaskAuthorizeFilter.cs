@@ -30,7 +30,7 @@ namespace EzTask.Framework.Web.AuthorizeFilter
                 if (currentUser == null 
                     || string.IsNullOrEmpty(currentUser.AccountId))
                 {
-                    context.Result = new RedirectResult("login.html");
+                    context.Result = new RedirectToActionResult("Login","Account", new object { });
                 }
             });                        
         }

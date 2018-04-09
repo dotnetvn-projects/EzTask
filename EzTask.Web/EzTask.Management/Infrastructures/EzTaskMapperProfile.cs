@@ -57,9 +57,10 @@ namespace EzTask.Management.Infrastructures
 
             //Map ProjectModel to Project entity
             CreateMap<ProjectModel, Project>()
-                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<ProjectStatus>()));
-        }
-
-        
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<ProjectStatus>()))
+                .ForMember(c => c.Owner, t => t.MapFrom(z => z.Owner.AccountId))
+                .ForMember(c => c.Id, t => t.Ignore())
+                .ForMember(c => c.Account, t => t.Ignore());
+        }       
     }
 }

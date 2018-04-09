@@ -18,10 +18,5 @@ namespace EzTask.Entity.Data
         public AccountInfo AccountInfo { get; set; }
         public Account ManageAccount { get; set; }
 
-        public Account()
-        {
-            AccountInfo = new AccountInfo();
-            ManageAccount = new Account();
-        }
     }
 }

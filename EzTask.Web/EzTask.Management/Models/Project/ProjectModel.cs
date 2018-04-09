@@ -1,5 +1,6 @@
 ﻿using EzTask.Entity.Framework;
 using EzTask.Management.Models.Account;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Threading.Tasks;
@@ -16,6 +17,7 @@ namespace EzTask.Management.Models.Project
         [Required]
         [Display(Name = "Description")]
         public string Description { get; set; }
+
         public AccountModel Owner { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
@@ -23,9 +25,5 @@ namespace EzTask.Management.Models.Project
         public ProjectStatus Status { get; set; } 
         public string Comment { get; set; }
 
-        public ProjectModel()
-        {
-            Owner = new AccountModel();
-        }
     }
 }

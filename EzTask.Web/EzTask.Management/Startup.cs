@@ -40,6 +40,7 @@ namespace EzTask.Management
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMemoryCache();
+
             services.AddAutoMapper();
         }                                              
 
