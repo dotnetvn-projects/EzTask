@@ -1,16 +1,18 @@
 ﻿using System;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Values;
+using EzTask.Framework.Web.AuthorizeFilter;
 using EzTask.Framework.Web.HttpContext;
 using EzTask.Interfaces;
 using EzTask.MainBusiness;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
+
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Management.Controllers
 {
+    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
     public class EzTaskController : Controller
     {
         protected SessionManager _sessionManager;

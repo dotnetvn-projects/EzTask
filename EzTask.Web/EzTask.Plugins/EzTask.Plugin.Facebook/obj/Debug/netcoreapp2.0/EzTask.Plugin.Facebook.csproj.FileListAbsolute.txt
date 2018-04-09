@@ -32,5 +32,5 @@ E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\De
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.AssemblyInfo.cs
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.dll
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.pdb
-E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.csprojResolveAssemblyReference.cache
 G:\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.csprojResolveAssemblyReference.cache
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Facebook\obj\Debug\netcoreapp2.0\EzTask.Plugin.Facebook.csprojResolveAssemblyReference.cache

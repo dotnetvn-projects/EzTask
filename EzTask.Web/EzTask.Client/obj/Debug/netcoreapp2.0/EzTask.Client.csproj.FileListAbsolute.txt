@@ -41,3 +41,4 @@ E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.AssemblyInfo.cs
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.dll
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Client\obj\Debug\netcoreapp2.0\EzTask.Client.csprojResolveAssemblyReference.cache

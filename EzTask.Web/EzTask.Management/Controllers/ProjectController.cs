@@ -10,8 +10,7 @@ using EzTask.Management.Models.Account;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 
 namespace EzTask.Management.Controllers
-{
-    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
+{  
     public class ProjectController : EzTaskController
     {
         public ProjectController(IServiceProvider serviceProvider) :

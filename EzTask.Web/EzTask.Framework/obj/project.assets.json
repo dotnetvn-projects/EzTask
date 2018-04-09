@@ -12575,25 +12575,25 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\duyli\\.nuget\\packages\\": {},
+    "C:\\Users\\Linh Pham\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\": {},
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj",
+      "projectUniqueName": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj",
       "projectName": "EzTask.Framework",
-      "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj",
-      "packagesPath": "C:\\Users\\duyli\\.nuget\\packages\\",
-      "outputPath": "G:\\EzTask\\EzTask.Web\\EzTask.Framework\\obj\\",
+      "projectPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Framework\\EzTask.Framework.csproj",
+      "packagesPath": "C:\\Users\\Linh Pham\\.nuget\\packages\\",
+      "outputPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Framework\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackagesFallback\\",
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
       ],
       "configFilePaths": [
-        "C:\\Users\\duyli\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Linh Pham\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.Fallback.config"
       ],
@@ -12602,14 +12602,15 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "E:\\Local nuget": {},
         "http://nuget.kyers.com/nuget": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp2.0": {
           "projectReferences": {
-            "G:\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj": {
-              "projectPath": "G:\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj"
+            "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj": {
+              "projectPath": "E:\\Work\\KTSERVICE\\EzTask\\EzTask.Web\\EzTask.Interfaces\\EzTask.Interfaces.csproj"
             }
           }
         }

@@ -1,12 +1,8 @@
-﻿
-using System;
-using Microsoft.AspNetCore.Http;
+﻿using System;
 using Microsoft.AspNetCore.Mvc;
-using EzTask.Framework.Web.AuthorizeFilter;
 
 namespace EzTask.Management.Controllers
 {
-    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
     public class HomeController : EzTaskController
     {
         public HomeController(IServiceProvider serviceProvider)

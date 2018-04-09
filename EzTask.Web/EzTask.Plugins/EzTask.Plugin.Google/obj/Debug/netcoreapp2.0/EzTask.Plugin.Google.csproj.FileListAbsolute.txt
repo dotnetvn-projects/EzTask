@@ -32,3 +32,4 @@ E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debu
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.AssemblyInfo.cs
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.dll
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.pdb
+E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.Plugins\EzTask.Plugin.Google\obj\Debug\netcoreapp2.0\EzTask.Plugin.Google.csprojResolveAssemblyReference.cache

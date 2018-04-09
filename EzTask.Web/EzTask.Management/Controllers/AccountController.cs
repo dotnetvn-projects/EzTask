@@ -4,9 +4,8 @@ using EzTask.Management.Infrastructures;
 using System.Threading.Tasks;
 using EzTask.Management.Models.Account;
 using EzTask.Framework.Message;
-using Microsoft.AspNetCore.Http;
-using EzTask.Framework.Values;
 using EzTask.Entity.Framework;
+using Microsoft.AspNetCore.Authorization;
 
 namespace EzTask.Management.Controllers
 {  
@@ -22,6 +21,7 @@ namespace EzTask.Management.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("login.html")]
+        [AllowAnonymous]
         public IActionResult Login()
         {
             PageTitle = "Login";
@@ -35,6 +35,7 @@ namespace EzTask.Management.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("login.html")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginModel model)
         {
             try
@@ -83,6 +84,7 @@ namespace EzTask.Management.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("register.html")]
+        [AllowAnonymous]
         public IActionResult Register()
         {
             PageTitle = "Register new membership";
@@ -96,6 +98,7 @@ namespace EzTask.Management.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("register.html")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             try
