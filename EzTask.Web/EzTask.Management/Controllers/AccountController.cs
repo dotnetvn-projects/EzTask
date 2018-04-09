@@ -6,13 +6,17 @@ using EzTask.Management.Models.Account;
 using EzTask.Framework.Message;
 using EzTask.Entity.Framework;
 using Microsoft.AspNetCore.Authorization;
+using AutoMapper;
+using EzTask.Framework.Web.AuthorizeFilter;
 
 namespace EzTask.Management.Controllers
-{  
+{
     public class AccountController : EzTaskController
     {
-        public AccountController(IServiceProvider serviceProvider) 
-            : base(serviceProvider) { }
+        public AccountController(IServiceProvider serviceProvider, IMapper mapper) :
+            base(serviceProvider, mapper)
+        {
+        }
 
         #region Manual Login
 
@@ -21,7 +25,6 @@ namespace EzTask.Management.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("login.html")]
-        [AllowAnonymous]
         public IActionResult Login()
         {
             PageTitle = "Login";
@@ -35,7 +38,6 @@ namespace EzTask.Management.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("login.html")]
-        [AllowAnonymous]
         public async Task<IActionResult> Login(LoginModel model)
         {
             try
@@ -84,7 +86,6 @@ namespace EzTask.Management.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("register.html")]
-        [AllowAnonymous]
         public IActionResult Register()
         {
             PageTitle = "Register new membership";
@@ -98,7 +99,6 @@ namespace EzTask.Management.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("register.html")]
-        [AllowAnonymous]
         public async Task<IActionResult> Register(RegisterModel model)
         {
             try

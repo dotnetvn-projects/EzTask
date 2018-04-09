@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using EzTask.Framework.Web.AuthorizeFilter;
 using EzTask.Management.Infrastructures;
 using EzTask.Management.Models.Account;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Management.Controllers
 {
+    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
     public class UserProfileController : EzTaskController
     {
-        public UserProfileController(IServiceProvider serviceProvider) :
-            base(serviceProvider)
+        public UserProfileController(IServiceProvider serviceProvider, IMapper mapper) :
+            base(serviceProvider, mapper)
         {
         }
 

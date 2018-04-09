@@ -22,5 +22,10 @@ namespace EzTask.Management.Models.Project
         public int MaximumUser { get; set; }
         public ProjectStatus Status { get; set; } 
         public string Comment { get; set; }
+
+        public ProjectModel()
+        {
+            Owner = new AccountModel();
+        }
     }
 }

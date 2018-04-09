@@ -1,10 +1,12 @@
 ﻿using System;
+using AutoMapper;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Values;
 using EzTask.Framework.Web.AuthorizeFilter;
 using EzTask.Framework.Web.HttpContext;
 using EzTask.Interfaces;
 using EzTask.MainBusiness;
+using EzTask.Management.Infrastructures;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -12,7 +14,6 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Management.Controllers
 {
-    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
     public class EzTaskController : Controller
     {
         protected SessionManager _sessionManager;
@@ -23,6 +24,14 @@ namespace EzTask.Management.Controllers
         {
             EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;          
            _sessionManager = new SessionManager();
+            PageTitle = string.Empty;
+        }
+
+        public EzTaskController(IServiceProvider serviceProvider, IMapper mapper)
+        {
+            EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;
+            EzTaskMapper.Config(mapper);
+            _sessionManager = new SessionManager();
             PageTitle = string.Empty;
         }
 

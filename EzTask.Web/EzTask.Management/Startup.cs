@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using EzTask.DataAccess;
 using EzTask.Framework.Web.HttpContext;
 using EzTask.Interfaces;
@@ -39,6 +40,7 @@ namespace EzTask.Management
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMemoryCache();
+            services.AddAutoMapper();
         }                                              
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

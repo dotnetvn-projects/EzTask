@@ -1,8 +1,10 @@
 ﻿using System;
+using EzTask.Framework.Web.AuthorizeFilter;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Management.Controllers
 {
+    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
     public class HomeController : EzTaskController
     {
         public HomeController(IServiceProvider serviceProvider)
@@ -17,6 +19,7 @@ namespace EzTask.Management.Controllers
         [Route("not-found.html")]
         public IActionResult PageNotFound()
         {
+            PageTitle = "Page not found";
             return View();
         }
     }

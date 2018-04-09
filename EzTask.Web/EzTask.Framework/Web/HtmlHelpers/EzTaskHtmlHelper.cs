@@ -1,8 +1,6 @@
-﻿using Microsoft.AspNetCore.Html;
+﻿using EzTask.Framework.Message;
+using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Framework.Web.HtmlHelpers
 {
@@ -21,6 +19,11 @@ namespace EzTask.Framework.Web.HtmlHelpers
         public static IHtmlContent PrintErrorMessage(this IHtmlHelper htmlHelper)
         {
             return new HtmlString(htmlHelper.TempData["error"]?.ToString());
+        }
+
+        public static IHtmlContent PrintPageNotFound(this IHtmlHelper htmlHelper)
+        {
+            return new HtmlString(AppMessage.PageNotFound);
         }
     }
 }

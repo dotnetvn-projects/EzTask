@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using EzTask.Framework.Web.AuthorizeFilter;
 using EzTask.Management.Infrastructures;
 using EzTask.Management.Models.Account;
 using Microsoft.AspNetCore.Http;
@@ -9,10 +11,13 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Management.Controllers
 {
+    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
     public class AccountManagementController : EzTaskController
     {
-        public AccountManagementController(IServiceProvider serviceProvider)
-            : base(serviceProvider) { }
+        public AccountManagementController(IServiceProvider serviceProvider, IMapper mapper) :
+            base(serviceProvider, mapper)
+        {
+        }
 
         #region View
 

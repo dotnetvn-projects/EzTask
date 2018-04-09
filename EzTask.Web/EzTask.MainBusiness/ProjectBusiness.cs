@@ -72,6 +72,17 @@ namespace EzTask.MainBusiness
         }
 
         /// <summary>
+        ///  Get project by name
+        /// </summary>
+        /// <param name="projectCode"></param>
+        /// <returns></returns>
+        public async Task<Project> GetProjectByName(string name)
+        {
+            return await EzTaskDbContext.Projects.AsNoTracking()
+                .FirstOrDefaultAsync(c => c.ProjectName.ToLower() == name.ToLower());
+        }
+
+        /// <summary>
         ///  Get project detail
         /// </summary>
         /// <param name="projectCode"></param>
