@@ -1,5 +1,10 @@
 ﻿@using EzTask.Management.Models.Project
-@model IEnumerable<ProjectModel>
+@model IEnumerable<List<ProjectModel>>
+@{ 
+    var nothingToShow = (Model == null || !Model.Any());
+    var boxStyle = nothingToShow?"box":"";
+    
+}
 @section header{
     <h1>
         Project
@@ -11,7 +16,7 @@
     </ol>
 }
 
-<div class="box box-primary">
+<div class="@boxStyle box-primary">
     <div class="box-header">
         <i class="fa fa-bandcamp"></i>
         <h3 class="box-title">You have 9 projects</h3>
@@ -22,32 +27,35 @@
         <div class="project-status">
             <span class="space-right">Status Color: </span>
             <h3 class="box-title bg-primary">Pending</h3>
-            <h3 class="box-title bg-success">Completed</h3>
-            <h3 class="box-title bg-warning">Cancel</h3>
-            <h3 class="box-title bg-danger">Failed</h3>
-            <h3 class="box-title bg-green">Implementing</h3>
+            <h3 class="box-title bg-green">Completed</h3>
+            <h3 class="box-title bg-yellow">Cancel</h3>
+            <h3 class="box-title bg-red">Failed</h3>
+            <h3 class="box-title bg-info-color">Implementing</h3>
         </div>
     </div>
     <div class="box-body">
-        @if (Model == null || !Model.Any())
+        @if (nothingToShow)
         {
             <div class="box-header with-border">
-                <h3><i class="fa fa-frown-o"></i><span class="space-left">Ops! There are nothing to display right now</span></h3>
+                <h3><i class="fa fa-frown-o"></i><span class="space-left">Ops! There is nothing to display right now</span></h3>
                 <span>Click <a asp-action="CreateNew" asp-controller="Project">here</a> to create a new project</span>
             </div>
         }
         else
         {
-            foreach (var item in Model)
-            {
+            foreach (var projects in Model)
+            { 
                 <div class="row">
+                    @foreach (var item in projects)
+                    {
+
                     <div class="col-md-3">
-                        <div class="box box-primary direct-chat direct-chat-primary">
+                        <div class="box box-@item.BoxType direct-chat direct-chat-@item.BoxType">
                             <div class="box-header with-border">
-                                <h3 class="box-title text-primary">EzTask#001</h3>
+                                <h3 class="box-title">@item.ProjectCode</h3>
 
                                 <div class="box-tools pull-right">
-                                    <span data-toggle="tooltip" title="EzTask#001 has 9 tasks" class="badge bg-light-blue" data-original-title="EzTask#001 has 9 tasks">20</span>
+                                    <span data-toggle="tooltip" title="EzTask#001 has 9 tasks" class="badge bg-@item.Color" data-original-title="EzTask#001 has 9 tasks">20</span>
                                     <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                         <i class="fa fa-minus"></i>
                                     </button>
@@ -63,26 +71,26 @@
                                     <div>
                                         <i class="fa fa-book"></i><span class="space-left"><b>Project Name</b>:</span>
                                         <div class="name">
-                                            <span>Bui365 Blog</span>
+                                            <span>@item.ProjectName</span>
                                         </div>
                                     </div>
 
                                     <div>
                                         <i class="fa fa-audio-description"></i><span class="space-left"><b>Project Description</b>:</span>
                                         <div class="description">
-                                            <span>Blog du lịch bụi 365</span>
+                                            <span>@item.Description</span>
                                         </div>
                                     </div>
                                     <div>
                                         <i class="fa fa-user-circle"></i><span class="space-left"><b>Owner</b>:</span>
                                         <div class="description">
-                                            <span>Linh Pham is owner of project</span>
+                                            <span>@item.Owner.DisplayName is owner of project</span>
                                         </div>
                                     </div>
                                     <div>
                                         <i class="fa fa-calendar"></i><span class="space-left"><b>Created date</b>:</span>
                                         <div class="description">
-                                            <span>Project was created at 1/10/2018</span>
+                                            <span>Project was created at @item.CreatedDate.ToString("MM/dd/yyyy")</span>
                                         </div>
                                     </div>
                                 </div>
@@ -106,8 +114,8 @@
                             </div>
                             <!-- /.box-body -->
                             <div class="box-footer" style="">
-                                <i class="fa fa-circle text-primary"></i><span class="space-left">Project is pending</span>
-                                <a class="btn btn-flat btn-primary btn-sm pull-right">
+                                <i class="fa fa-circle text-@item.Color"></i><span class="space-left">@item.Status.ToString()</span>
+                                <a class="btn btn-flat btn-@item.BoxType btn-sm pull-right">
                                     <i class="fa fa-paper-plane-o"></i>
                                     <span class="space-left">View Detail</span>
                                 </a>
@@ -115,279 +123,7 @@
                             <!-- /.box-footer-->
                         </div>
                     </div>
-
-                    @*<div class="col-md-3">
-                            <!-- DIRECT CHAT SUCCESS -->
-                            <div class="box box-success direct-chat direct-chat-success">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Direct Chat</h3>
-
-                                    <div class="box-tools pull-right">
-                                        <span data-toggle="tooltip" title="" class="badge bg-green" data-original-title="3 New Messages">3</span>
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
-                                            <i class="fa fa-comments"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body" style="">
-                                    <!-- Conversations are loaded here -->
-                                    <div class="direct-chat-messages">
-                                        <!-- Message. Default to the left -->
-                                        <div class="direct-chat-msg">
-                                            <div class="direct-chat-info clearfix">
-                                                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                                                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-                                            </div>
-                                            <!-- /.direct-chat-info -->
-                                            <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
-                                            <div class="direct-chat-text">
-                                                Is this template really for free? That's unbelievable!
-                                            </div>
-                                            <!-- /.direct-chat-text -->
-                                        </div>
-                                        <!-- /.direct-chat-msg -->
-                                        <!-- Message to the right -->
-                                        <div class="direct-chat-msg right">
-                                            <div class="direct-chat-info clearfix">
-                                                <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                                                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
-                                            </div>
-                                            <!-- /.direct-chat-info -->
-                                            <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
-                                            <div class="direct-chat-text">
-                                                You better believe it!
-                                            </div>
-                                            <!-- /.direct-chat-text -->
-                                        </div>
-                                        <!-- /.direct-chat-msg -->
-                                    </div>
-                                    <!--/.direct-chat-messages-->
-                                    <!-- Contacts are loaded here -->
-                                    <div class="direct-chat-contacts">
-                                        <ul class="contacts-list">
-                                            <li>
-                                                <a href="#">
-                                                    <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image">
-
-                                                    <div class="contacts-list-info">
-                                                        <span class="contacts-list-name">
-                                                            Count Dracula
-                                                            <small class="contacts-list-date pull-right">2/28/2015</small>
-                                                        </span>
-                                                        <span class="contacts-list-msg">How have you been? I was...</span>
-                                                    </div>
-                                                    <!-- /.contacts-list-info -->
-                                                </a>
-                                            </li>
-                                            <!-- End Contact Item -->
-                                        </ul>
-                                        <!-- /.contatcts-list -->
-                                    </div>
-                                    <!-- /.direct-chat-pane -->
-                                </div>
-                                <!-- /.box-body -->
-                                <div class="box-footer" style="">
-                                    <form action="#" method="post">
-                                        <div class="input-group">
-                                            <input name="message" placeholder="Type Message ..." class="form-control" type="text">
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="btn btn-success btn-flat">Send</button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.box-footer-->
-                            </div>
-                            <!--/.direct-chat -->
-                        </div>
-                        <!-- /.col -->
-
-                        <div class="col-md-3">
-                            <!-- DIRECT CHAT WARNING -->
-                            <div class="box box-warning direct-chat direct-chat-warning">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Direct Chat</h3>
-
-                                    <div class="box-tools pull-right">
-                                        <span data-toggle="tooltip" title="" class="badge bg-yellow" data-original-title="3 New Messages">3</span>
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
-                                            <i class="fa fa-comments"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body" style="">
-                                    <!-- Conversations are loaded here -->
-                                    <div class="direct-chat-messages">
-                                        <!-- Message. Default to the left -->
-                                        <div class="direct-chat-msg">
-                                            <div class="direct-chat-info clearfix">
-                                                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                                                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-                                            </div>
-                                            <!-- /.direct-chat-info -->
-                                            <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
-                                            <div class="direct-chat-text">
-                                                Is this template really for free? That's unbelievable!
-                                            </div>
-                                            <!-- /.direct-chat-text -->
-                                        </div>
-                                        <!-- /.direct-chat-msg -->
-                                        <!-- Message to the right -->
-                                        <div class="direct-chat-msg right">
-                                            <div class="direct-chat-info clearfix">
-                                                <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                                                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
-                                            </div>
-                                            <!-- /.direct-chat-info -->
-                                            <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
-                                            <div class="direct-chat-text">
-                                                You better believe it!
-                                            </div>
-                                            <!-- /.direct-chat-text -->
-                                        </div>
-                                        <!-- /.direct-chat-msg -->
-                                    </div>
-                                    <!--/.direct-chat-messages-->
-                                    <!-- Contacts are loaded here -->
-                                    <div class="direct-chat-contacts">
-                                        <ul class="contacts-list">
-                                            <li>
-                                                <a href="#">
-                                                    <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image">
-
-                                                    <div class="contacts-list-info">
-                                                        <span class="contacts-list-name">
-                                                            Count Dracula
-                                                            <small class="contacts-list-date pull-right">2/28/2015</small>
-                                                        </span>
-                                                        <span class="contacts-list-msg">How have you been? I was...</span>
-                                                    </div>
-                                                    <!-- /.contacts-list-info -->
-                                                </a>
-                                            </li>
-                                            <!-- End Contact Item -->
-                                        </ul>
-                                        <!-- /.contatcts-list -->
-                                    </div>
-                                    <!-- /.direct-chat-pane -->
-                                </div>
-                                <!-- /.box-body -->
-                                <div class="box-footer" style="">
-                                    <form action="#" method="post">
-                                        <div class="input-group">
-                                            <input name="message" placeholder="Type Message ..." class="form-control" type="text">
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="btn btn-warning btn-flat">Send</button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.box-footer-->
-                            </div>
-                            <!--/.direct-chat -->
-                        </div>
-                        <!-- /.col -->
-
-                        <div class="col-md-3">
-                            <!-- DIRECT CHAT DANGER -->
-                            <div class="box box-danger direct-chat direct-chat-danger">
-                                <div class="box-header with-border">
-                                    <h3 class="box-title">Direct Chat</h3>
-
-                                    <div class="box-tools pull-right">
-                                        <span data-toggle="tooltip" title="" class="badge bg-red" data-original-title="3 New Messages">3</span>
-                                        <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                                            <i class="fa fa-minus"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="" data-widget="chat-pane-toggle" data-original-title="Contacts">
-                                            <i class="fa fa-comments"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
-                                    </div>
-                                </div>
-                                <!-- /.box-header -->
-                                <div class="box-body" style="">
-                                    <!-- Conversations are loaded here -->
-                                    <div class="direct-chat-messages">
-                                        <!-- Message. Default to the left -->
-                                        <div class="direct-chat-msg">
-                                            <div class="direct-chat-info clearfix">
-                                                <span class="direct-chat-name pull-left">Alexander Pierce</span>
-                                                <span class="direct-chat-timestamp pull-right">23 Jan 2:00 pm</span>
-                                            </div>
-                                            <!-- /.direct-chat-info -->
-                                            <img class="direct-chat-img" src="../dist/img/user1-128x128.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
-                                            <div class="direct-chat-text">
-                                                Is this template really for free? That's unbelievable!
-                                            </div>
-                                            <!-- /.direct-chat-text -->
-                                        </div>
-                                        <!-- /.direct-chat-msg -->
-                                        <!-- Message to the right -->
-                                        <div class="direct-chat-msg right">
-                                            <div class="direct-chat-info clearfix">
-                                                <span class="direct-chat-name pull-right">Sarah Bullock</span>
-                                                <span class="direct-chat-timestamp pull-left">23 Jan 2:05 pm</span>
-                                            </div>
-                                            <!-- /.direct-chat-info -->
-                                            <img class="direct-chat-img" src="../dist/img/user3-128x128.jpg" alt="Message User Image"><!-- /.direct-chat-img -->
-                                            <div class="direct-chat-text">
-                                                You better believe it!
-                                            </div>
-                                            <!-- /.direct-chat-text -->
-                                        </div>
-                                        <!-- /.direct-chat-msg -->
-                                    </div>
-                                    <!--/.direct-chat-messages-->
-                                    <!-- Contacts are loaded here -->
-                                    <div class="direct-chat-contacts">
-                                        <ul class="contacts-list">
-                                            <li>
-                                                <a href="#">
-                                                    <img class="contacts-list-img" src="../dist/img/user1-128x128.jpg" alt="User Image">
-
-                                                    <div class="contacts-list-info">
-                                                        <span class="contacts-list-name">
-                                                            Count Dracula
-                                                            <small class="contacts-list-date pull-right">2/28/2015</small>
-                                                        </span>
-                                                        <span class="contacts-list-msg">How have you been? I was...</span>
-                                                    </div>
-                                                    <!-- /.contacts-list-info -->
-                                                </a>
-                                            </li>
-                                            <!-- End Contact Item -->
-                                        </ul>
-                                        <!-- /.contatcts-list -->
-                                    </div>
-                                    <!-- /.direct-chat-pane -->
-                                </div>
-                                <!-- /.box-body -->
-                                <div class="box-footer" style="">
-                                    <form action="#" method="post">
-                                        <div class="input-group">
-                                            <input name="message" placeholder="Type Message ..." class="form-control" type="text">
-                                            <span class="input-group-btn">
-                                                <button type="submit" class="btn btn-danger btn-flat">Send</button>
-                                            </span>
-                                        </div>
-                                    </form>
-                                </div>
-                                <!-- /.box-footer-->
-                            </div>
-                            <!--/.direct-chat -->
-                        </div>
-                        <!-- /.col -->*@
+                    }
                 </div>
             }
         }

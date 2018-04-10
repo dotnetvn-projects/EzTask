@@ -6,10 +6,10 @@ namespace EzTask.Entity.Framework
 {
     public enum ProjectStatus
     {
+        Implementing,
+        Pending,
         Completed,
         Failed,
-        Cancel,
-        Pending,
-        Implementing
+        Canceled,
     }
 }

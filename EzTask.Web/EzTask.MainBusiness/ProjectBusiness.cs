@@ -56,7 +56,7 @@ namespace EzTask.MainBusiness
             return await EzTaskDbContext.Projects.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
                 .AsNoTracking()
-                .Where(c => c.Owner == ownerId)
+                .Where(c => c.Owner == ownerId).OrderBy(c=>c.Status)
                 .ToListAsync();
         }
 

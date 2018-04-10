@@ -64,7 +64,37 @@ namespace EzTask.Management.Infrastructures
 
         public static IEnumerable<ProjectModel> MapToModels(this IEnumerable<Project> entity)
         {
-            return _mapper.Map<IEnumerable<ProjectModel>>(entity);
+            var data = _mapper.Map<IEnumerable<ProjectModel>>(entity);
+            if (data == null)
+                return data;
+
+            foreach(var item in data)
+            {
+                switch(item.Status)
+                {
+                    case ProjectStatus.Pending:                       
+                        item.BoxType = "primary";
+                        item.Color = "light-blue";
+                        break;
+                    case ProjectStatus.Completed:
+                        item.BoxType = "success";
+                        item.Color = "green";
+                        break;
+                    case ProjectStatus.Canceled:
+                        item.BoxType = "warning";
+                        item.Color = "yellow";
+                        break;
+                    case ProjectStatus.Failed:
+                        item.BoxType = "danger";
+                        item.Color = "red";
+                        break;
+                    case ProjectStatus.Implementing:
+                        item.BoxType = "info fix-box-info";
+                        item.Color = "info-color";
+                        break;
+                }
+            }
+            return data;
         }
 
         #endregion

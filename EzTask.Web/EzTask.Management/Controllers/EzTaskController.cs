@@ -21,14 +21,14 @@ namespace EzTask.Management.Controllers
 
         public EzTaskController(IServiceProvider serviceProvider)
         {
-            EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;          
+            EzTask = serviceProvider.GetService<EzTaskBusiness>();         
            _sessionManager = new SessionManager();
             PageTitle = string.Empty;
         }
 
         public EzTaskController(IServiceProvider serviceProvider, IMapper mapper)
         {
-            EzTask = serviceProvider.GetService<IEzTaskBusiness>() as EzTaskBusiness;
+            EzTask = serviceProvider.GetService<EzTaskBusiness>();
             EzTaskMapper.Config(mapper);
             _sessionManager = new SessionManager();
             PageTitle = string.Empty;

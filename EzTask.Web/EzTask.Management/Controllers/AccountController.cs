@@ -5,9 +5,7 @@ using System.Threading.Tasks;
 using EzTask.Management.Models.Account;
 using EzTask.Framework.Message;
 using EzTask.Entity.Framework;
-using Microsoft.AspNetCore.Authorization;
 using AutoMapper;
-using EzTask.Framework.Web.AuthorizeFilter;
 
 namespace EzTask.Management.Controllers
 {
@@ -52,11 +50,8 @@ namespace EzTask.Management.Controllers
                 {
                     if (account.AccountStatus != (int)AccountStatus.Block)
                     {
-                        CurrentAccount = CurrentAccount.Create(account.Id.ToString(),
-                            account.AccountName,
-                            account.AccountInfo.DisplayName,
-                            account.AccountInfo.JobTitle,
-                            account.CreatedDate);
+                        CurrentAccount = CurrentAccount.Create(account.Id.ToString(),account.AccountName,
+                            account.AccountInfo.DisplayName,account.AccountInfo.JobTitle, account.CreatedDate);
 
                         return RedirectToAction("Index", "Home");
                     }
@@ -104,21 +99,37 @@ namespace EzTask.Management.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                    return View();
-
-                var account = await EzTask.Account.RegisterNew(model.MapToEntity());
-
-                if (account != null)
+                if (model.Password != model.PasswordTemp)
                 {
-                    return RedirectToAction("Login", "Account");                   
+                    ErrorMessage = AccountMessage.ConfirmPasswordNotMatch;
                 }
+                else
+                {
+                    if (ModelState.IsValid)
+                    {
+                        var existAccount = EzTask.Account.GetAccount(model.AccountName);
+                        if (existAccount == null)
+                        {
+                            model.DisplayName = model.FullName;
+                            var account = await EzTask.Account.RegisterNew(model.MapToEntity());
 
-                ErrorMessage = AccountMessage.CreateFailed;
+                            if (account != null)
+                            {
+                                return RedirectToAction("Login", "Account");
+                            }
+
+                            ErrorMessage = AccountMessage.CreateFailed;
+                        }
+                        else
+                        {
+                            ErrorMessage = AccountMessage.ExistAccount;
+                        }
+                    }
+                }
             }
-            catch
+            catch(Exception ex)
             {
-                ErrorMessage = AccountMessage.LoginFailed;               
+                ErrorMessage = AccountMessage.CreateFailed;               
             }
 
             return View();
@@ -133,7 +144,7 @@ namespace EzTask.Management.Controllers
         public IActionResult LogOff()
         {
             SuspendAccountSession();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
     }
 }

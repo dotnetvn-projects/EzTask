@@ -86,6 +86,17 @@ namespace EzTask.MainBusiness
         }
 
         /// <summary>
+        /// Get account by account name
+        /// </summary>
+        /// <param name="accountName"></param>
+        /// <returns></returns>
+        public async Task<Account> GetAccount(string accountName)
+        {
+            return await EzTaskDbContext.Accounts.
+                FirstOrDefaultAsync(c => c.AccountName == accountName);
+        }
+
+        /// <summary>
         /// Get list account
         /// </summary>
         /// <param name="page"></param>

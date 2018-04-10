@@ -26,12 +26,29 @@
         padding: 5px;
         padding-left: 15px;
 }
-.project-status{
-    margin:5px;
-    margin-top:10px;
+
+
+.bg-info-color {
+    background-color: #00c0ef !important;
+    color:#fff !important
+}
+
+.text-info-color{
+    color: #00c0ef !important;
+}
+
+.fix-box-info {
+    font-size: 14px !important;
+}
+
+.project-status {
+    margin: 5px;
+    margin-top: 10px;
 }
 .project-status > h3 {
     padding: 8px;
     font-size: 12px !important;
 }
+
+
 /*----End Project------*/

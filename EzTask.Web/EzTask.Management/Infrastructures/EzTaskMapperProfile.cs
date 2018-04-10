@@ -12,6 +12,7 @@ namespace EzTask.Management.Infrastructures
         public EzTaskMapperProfile()
         {
             AccountMaper();
+            ProjectMapper();
         }
 
         private void AccountMaper()
@@ -53,13 +54,15 @@ namespace EzTask.Management.Infrastructures
                                         z.Account.AccountInfo.DisplayName : string.Empty))
                 .ForPath(c => c.Owner.FullName, t => t.MapFrom(z =>
                                 (z.Account != null && z.Account.AccountInfo != null) ?
-                                        z.Account.AccountInfo.FullName : string.Empty));
+                                        z.Account.AccountInfo.FullName : string.Empty))
+                .ForMember(c => c.Color, t => t.Ignore())
+                .ForMember(c => c.BoxType, t => t.Ignore());
 
             //Map ProjectModel to Project entity
             CreateMap<ProjectModel, Project>()
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<ProjectStatus>()))
                 .ForMember(c => c.Owner, t => t.MapFrom(z => z.Owner.AccountId))
-                .ForMember(c => c.Id, t => t.Ignore())
+                .ForMember(c => c.Id, t => t.MapFrom(z => z.ProjectId))
                 .ForMember(c => c.Account, t => t.Ignore());
         }       
     }

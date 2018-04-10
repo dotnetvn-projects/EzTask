@@ -1,7 +1,5 @@
 ﻿using EzTask.DataAccess;
 using EzTask.Interfaces;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using System.Diagnostics;
 
 namespace EzTask.MainBusiness
@@ -13,21 +11,8 @@ namespace EzTask.MainBusiness
 
         public EzTaskBusiness(EzTaskDbContext ezTaskDbContext)
         {
-           // var context = CreateContext(configuration);
             Account = new AccountBusiness(ezTaskDbContext);
             Project = new ProjectBusiness(ezTaskDbContext);
-        }
-
-        /// <summary>
-        /// Create dbcontext
-        /// </summary>
-        /// <param name="configuration"></param>
-        /// <returns></returns>
-        public EzTaskDbContext CreateContext(IConfiguration configuration)
-        {
-            var optionsBuilder = new DbContextOptionsBuilder<EzTaskDbContext>();
-            optionsBuilder.UseSqlServer(configuration.GetConnectionString("EzTask"));
-            return new EzTaskDbContext(optionsBuilder.Options);
         }
 
         /// <summary>

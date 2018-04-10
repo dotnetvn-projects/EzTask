@@ -25,5 +25,9 @@ namespace EzTask.Management.Models.Project
         public ProjectStatus Status { get; set; } 
         public string Comment { get; set; }
 
+        #region UI Model
+        public string Color { get; set; }
+        public string BoxType { get; set; }
+        #endregion
     }
 }

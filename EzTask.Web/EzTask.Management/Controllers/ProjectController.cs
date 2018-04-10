@@ -7,9 +7,10 @@ using EzTask.Management.Infrastructures;
 using EzTask.Framework.Message;
 using EzTask.Entity.Framework;
 using EzTask.Management.Models.Account;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using EzTask.Management.Models;
 using AutoMapper;
+using System.Collections.Generic;
+using EzTask.Framework.Common;
+using System.Linq;
 
 namespace EzTask.Management.Controllers
 {
@@ -22,10 +23,11 @@ namespace EzTask.Management.Controllers
         }
 
         [Route("project.html")]
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
             PageTitle = "Projects";
-            return View();
+            var models = await GetProjectList();
+            return View(models);
         }
 
         #region Create project 
@@ -51,7 +53,7 @@ namespace EzTask.Management.Controllers
         {
             PageTitle = "Creating project is successful";
             var project = await EzTask.Project.GetProjectDetail(projectCode);
-            
+
             return View(project.MapToModel());
         }
 
@@ -98,17 +100,17 @@ namespace EzTask.Management.Controllers
                     }
                 }
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 model.HasError = true;
-                ErrorMessage = ProjectMessage.ErrorCreateProject;              
+                ErrorMessage = ProjectMessage.ErrorCreateProject;
             }
             return View(model);
 
         }
         #endregion
 
-        #region Edit
+        #region Edit project
 
         /// <summary>
         /// Update project view
@@ -129,6 +131,25 @@ namespace EzTask.Management.Controllers
             return View(project.MapToModel());
         }
 
+        #endregion
+
+        #region Non action
+        /// <summary>
+        /// Get project list
+        /// </summary>
+        /// <returns></returns>
+        [NonAction]
+        private async Task<IEnumerable<List<ProjectModel>>> GetProjectList()
+        {
+            IEnumerable<List<ProjectModel>> models = new List<List<ProjectModel>>();
+            var data = await EzTask.Project.GetProjects(AccountId);
+            if (data == null)
+            {
+                return models;
+            }
+            models = data.MapToModels().ToList().SplitList(4);
+            return models;
+        }
         #endregion
     }
 }
