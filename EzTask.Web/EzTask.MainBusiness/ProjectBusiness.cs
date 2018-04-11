@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
 using EzTask.Entity.Data;
+using EzTask.Entity.Framework;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.MainBusiness
@@ -44,6 +45,35 @@ namespace EzTask.MainBusiness
             }
 
             return null;
+        }
+
+        public async Task<ActionStatus> Delete(string projectCode)
+        {
+            using (var dbContextTransaction = EzTaskDbContext.Database.BeginTransaction())
+            {
+                try
+                {
+                    var project = await GetProject(projectCode);
+                    if (project != null)
+                    {
+                        var memberList = await EzTaskDbContext.ProjectMembers.Where(c => c.ProjectId == project.Id).ToListAsync();
+                        //remove member list
+                        EzTaskDbContext.ProjectMembers.RemoveRange(memberList);
+                        //remove project
+                        EzTaskDbContext.Projects.Remove(project);
+                        //save changes
+                        await EzTaskDbContext.SaveChangesAsync();
+                    }
+
+                    dbContextTransaction.Commit();
+                    return ActionStatus.Ok;
+                }
+                catch (Exception)
+                {
+                    dbContextTransaction.Rollback();
+                    return ActionStatus.Failed;
+                }
+            }            
         }
 
         /// <summary>

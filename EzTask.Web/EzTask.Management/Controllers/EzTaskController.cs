@@ -2,7 +2,7 @@
 using AutoMapper;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Values;
-using EzTask.Framework.Web.AuthorizeFilter;
+using EzTask.Framework.Web.Filters;
 using EzTask.Framework.Web.HttpContext;
 using EzTask.Interfaces;
 using EzTask.MainBusiness;

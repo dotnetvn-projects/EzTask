@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Routing;
 using System;
 using System.Threading.Tasks;
 
-namespace EzTask.Framework.Web.AuthorizeFilter
+namespace EzTask.Framework.Web.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class EzTaskAuthorizeFilter:Attribute, IAsyncAuthorizationFilter

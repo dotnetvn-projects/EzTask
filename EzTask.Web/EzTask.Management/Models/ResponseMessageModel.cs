@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace EzTask.Management.Models
 {
-    public class ErrorModel
+    public class ResponseMessageModel
     {
         public string Message { get; set; }
     }

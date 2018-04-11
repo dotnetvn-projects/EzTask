@@ -1,5 +1,5 @@
 ﻿using System;
-using EzTask.Framework.Web.AuthorizeFilter;
+using EzTask.Framework.Web.Filters;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Management.Controllers

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
-using EzTask.Framework.Web.AuthorizeFilter;
+using EzTask.Framework.Web.Filters;
 using EzTask.Management.Infrastructures;
 using EzTask.Management.Models.Account;
 using Microsoft.AspNetCore.Http;

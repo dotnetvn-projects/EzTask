@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EzTask.Framework.Web.AuthorizeFilter;
+using EzTask.Framework.Web.Filters;
 using EzTask.Management.Models.Project;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Management.Infrastructures;
@@ -129,6 +129,31 @@ namespace EzTask.Management.Controllers
             }
 
             return View(project.MapToModel());
+        }
+
+        #endregion
+
+        #region Other Action
+
+        /// <summary>
+        /// Remove project
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("project/remove.html")]
+        [EzTaskTokenFilter]
+        public async Task<IActionResult> RemoveProject(string code)
+        {
+            var removeAction = await EzTask.Project.Delete(code);
+            if (removeAction == ActionStatus.Ok)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest();
+            }
         }
 
         #endregion
