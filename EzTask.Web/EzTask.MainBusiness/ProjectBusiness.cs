@@ -47,6 +47,11 @@ namespace EzTask.MainBusiness
             return null;
         }
 
+        /// <summary>
+        /// Remove project
+        /// </summary>
+        /// <param name="projectCode"></param>
+        /// <returns></returns>
         public async Task<ActionStatus> Delete(string projectCode)
         {
             using (var dbContextTransaction = EzTaskDbContext.Database.BeginTransaction())
@@ -56,12 +61,13 @@ namespace EzTask.MainBusiness
                     var project = await GetProject(projectCode);
                     if (project != null)
                     {
-                        var memberList = await EzTaskDbContext.ProjectMembers.Where(c => c.ProjectId == project.Id).ToListAsync();
-                        //remove member list
+                        var memberList = await EzTaskDbContext.ProjectMembers.Where(c => c.ProjectId 
+                        == project.Id).ToListAsync();
+
                         EzTaskDbContext.ProjectMembers.RemoveRange(memberList);
-                        //remove project
+
                         EzTaskDbContext.Projects.Remove(project);
-                        //save changes
+
                         await EzTaskDbContext.SaveChangesAsync();
                     }
 
