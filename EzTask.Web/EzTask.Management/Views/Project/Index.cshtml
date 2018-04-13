@@ -49,7 +49,7 @@
                     @foreach (var item in projects)
                     {
 
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <div class="box box-@item.BoxType direct-chat direct-chat-@item.BoxType">
                                 <div class="box-header with-border">
                                     <h3 class="box-title">@item.ProjectCode</h3>
@@ -62,6 +62,7 @@
                                         <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="member list" data-widget="chat-pane-toggle" data-original-title="Contacts">
                                             <i class="fa fa-user"></i>
                                         </button>
+                                        <a asp-action="Update" asp-controller="Project" asp-route-code="@item.ProjectCode" class="btn btn-box-tool" title="Edit"><i class="fa fa-edit"></i></a>
                                         <button data-code="@item.ProjectCode" type="button" class="btn btn-box-tool remove-project" title="Delete"><i class="fa fa-times"></i></button>
                                     </div>
                                 </div>

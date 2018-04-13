@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = "~/Views/Shared/_Layout.cshtml";
     var canDisplay = !string.IsNullOrEmpty(Html.PrintSucessMessage().ToString());
 }
@@ -8,13 +7,13 @@
 @section header{
     <h1>
         Project
-        <small>Create success a project on EzTask</small>
+        <small>Update success a project on EzTask</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li><a asp-action="Index" asp-controller="Project">Project</a></li>
-        <li><a asp-action="CreateNew" asp-controller="Project">Create new</a></li>
-        <li class="active">Create success</li>
+        <li>Update</li>
+        <li class="active">Update success</li>
     </ol>
 }
 <div class="box box-primary">

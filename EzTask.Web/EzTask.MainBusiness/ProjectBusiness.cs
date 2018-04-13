@@ -29,11 +29,18 @@ namespace EzTask.MainBusiness
                 project.CreatedDate = DateTime.Now;
             }
             project.UpdatedDate = DateTime.Now;
+            if (project.Id < 1)
+            {
+                EzTaskDbContext.Projects.Add(project);
+            }
+            else
+            {
+                EzTaskDbContext.Attach(project);
+                EzTaskDbContext.Entry(project).State = EntityState.Modified;
+            }
+            var records = await EzTaskDbContext.SaveChangesAsync();
 
-            EzTaskDbContext.Projects.Add(project);
-            var insertedRecord = await EzTaskDbContext.SaveChangesAsync();
-
-            if (insertedRecord > 0)
+            if (records > 0)
             {
                 if (string.IsNullOrEmpty(project.ProjectCode))
                 {
@@ -110,13 +117,26 @@ namespace EzTask.MainBusiness
         /// <summary>
         ///  Get project by name
         /// </summary>
-        /// <param name="projectCode"></param>
+        /// <param name="name"></param>
         /// <returns></returns>
         public async Task<Project> GetProjectByName(string name)
         {
             return await EzTaskDbContext.Projects.AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectName.ToLower() == name.ToLower());
         }
+
+        /// <summary>
+        /// Check the project is dupplicated or not
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="id"></param>
+        /// <returns>True if it is, False if it is not</returns>
+        public async Task<bool> IsDupplicated(string name, int id)
+        {
+            return await EzTaskDbContext.Projects.AsNoTracking()
+                .AnyAsync(c => c.ProjectName.ToLower() == name.ToLower() && c.Id != id);
+        }
+
 
         /// <summary>
         ///  Get project detail

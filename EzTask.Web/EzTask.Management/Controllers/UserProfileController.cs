@@ -58,6 +58,7 @@ namespace EzTask.Management.Controllers
             return View("Index");
         }
 
+        #region Non-Action
         /// <summary>
         /// Get account info
         /// </summary>
@@ -69,5 +70,6 @@ namespace EzTask.Management.Controllers
                 return new AccountInfoModel();
             return data.MapToModel();
         }
+        #endregion
     }
 }

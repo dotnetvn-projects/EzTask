@@ -40,7 +40,11 @@ namespace EzTask.Management.Controllers
         public IActionResult CreateNew()
         {
             PageTitle = "Create new project";
-            return View(new ProjectModel());
+            return View(new ProjectModel
+            {
+                ActionType = ActionType.CreateNew,
+                Owner = new AccountModel()
+            });
         }
 
         /// <summary>
@@ -49,10 +53,10 @@ namespace EzTask.Management.Controllers
         /// <param name="projectCode"></param>
         /// <returns></returns>
         [Route("project/create-success.html")]
-        public async Task<IActionResult> CreateSuccess(string projectCode)
+        public async Task<IActionResult> CreateSuccess(string code)
         {
             PageTitle = "Creating project is successful";
-            var project = await EzTask.Project.GetProjectDetail(projectCode);
+            var project = await EzTask.Project.GetProjectDetail(code);
 
             return View(project.MapToModel());
         }
@@ -95,7 +99,7 @@ namespace EzTask.Management.Controllers
                         {
                             SuccessMessage = ProjectMessage.CreateProjectSuccess;
                             return RedirectToAction("CreateSuccess",
-                                new { projectCode = project.ProjectCode });
+                                new { code = project.ProjectCode });
                         }
                     }
                 }
@@ -117,18 +121,89 @@ namespace EzTask.Management.Controllers
         /// </summary>
         /// <param name="projectCode"></param>
         /// <returns></returns>
-        [Route("update-project.html")]
-        public async Task<IActionResult> UpdateProject(string projectCode)
+        [Route("project/update-project.html")]
+        public async Task<IActionResult> Update(string code)
         {
-            PageTitle = $"Update project: {projectCode}";
+            PageTitle = $"Update project: {code}";
 
-            var project = await EzTask.Project.GetProject(projectCode);
+            var project = await EzTask.Project.GetProject(code);
             if (project == null)
             {
                 return RedirectToAction("PageNotFound", "Home");
             }
+            var model = project.MapToModel();
+            model.ActionType = ActionType.Update;
+            return View(model);
+        }
+
+        /// <summary>
+        /// update success project view
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        [Route("project/update-success.html")]
+        public async Task<IActionResult> UpdateSuccess(string code)
+        {
+            PageTitle = "Updating project is successful";
+            var project = await EzTask.Project.GetProjectDetail(code);
 
             return View(project.MapToModel());
+        }
+
+        /// <summary>
+        /// Update project action
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("project/update-project.html")]
+        public async Task<IActionResult> Update(ProjectModel model)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var data = await EzTask.Project.GetProject(model.ProjectCode);
+                    if (data == null)
+                    {
+                        ErrorMessage = ProjectMessage.ErrorUpdateProject;
+                        model.HasError = true;
+                    }
+                    else
+                    {
+                        var isDupplicatedName = await EzTask.Project.GetProjectByName(model.ProjectName);
+
+                        if (isDupplicatedName != null)
+                        {
+                            ErrorMessage = ProjectMessage.ProjectIsDupplicated;
+                        }
+                        else
+                        {
+                            model.Owner = new AccountModel { AccountId = data.Owner };
+   
+                            var project = await EzTask.Project.Save(model.MapToEntity());
+                            if (project == null)
+                            {
+                                ErrorMessage = ProjectMessage.ErrorUpdateProject;
+                                model.HasError = true;
+                            }
+                            else
+                            {
+                                SuccessMessage = ProjectMessage.UpdateProjectSuccess;
+                                return RedirectToAction("UpdateSuccess",
+                                    new { code = project.ProjectCode });
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                model.HasError = true;
+                ErrorMessage = ProjectMessage.ErrorUpdateProject;
+            }
+            return View(model);
+
         }
 
         #endregion
@@ -172,7 +247,7 @@ namespace EzTask.Management.Controllers
             {
                 return models;
             }
-            models = data.MapToModels().ToList().SplitList(4);
+            models = data.MapToModels().ToList().SplitList(3);
             return models;
         }
         #endregion
