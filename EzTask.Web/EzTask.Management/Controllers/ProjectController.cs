@@ -74,9 +74,9 @@ namespace EzTask.Management.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var isDupplicatedName = await EzTask.Project.GetProjectByName(model.ProjectName);
+                    var isDupplicated = await EzTask.Project.IsDupplicated(model.ProjectName, model.ProjectId);
 
-                    if (isDupplicatedName != null)
+                    if (isDupplicated)
                     {
                         ErrorMessage = ProjectMessage.ProjectIsDupplicated;
                     }
@@ -171,9 +171,9 @@ namespace EzTask.Management.Controllers
                     }
                     else
                     {
-                        var isDupplicatedName = await EzTask.Project.GetProjectByName(model.ProjectName);
+                        var isDupplicated = await EzTask.Project.IsDupplicated(model.ProjectName, model.ProjectId);
 
-                        if (isDupplicatedName != null)
+                        if (isDupplicated)
                         {
                             ErrorMessage = ProjectMessage.ProjectIsDupplicated;
                         }

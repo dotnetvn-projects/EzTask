@@ -12,22 +12,22 @@ using Microsoft.AspNetCore.Mvc;
 namespace EzTask.Management.Controllers
 {
     [TypeFilter(typeof(EzTaskAuthorizeFilter))]
-    public class AccountManagementController : EzTaskController
+    public class UserManageController : EzTaskController
     {
-        public AccountManagementController(IServiceProvider serviceProvider, IMapper mapper) :
+        public UserManageController(IServiceProvider serviceProvider, IMapper mapper) :
             base(serviceProvider, mapper)
         {
         }
 
         #region View
 
-        [Route("account/list.html")]
+        [Route("user/list.html")]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Route("account/create.html")]
+        [Route("user/create.html")]
         public IActionResult Create()
         {
             return View();
@@ -37,7 +37,6 @@ namespace EzTask.Management.Controllers
 
         #region Http Action
 
-        [Route("account/account-list.html")]
         public async Task<IEnumerable<AccountModel>> GetAccountList(int page=1, int pageSize=20)
         {
             IEnumerable<AccountModel> accountModels = new List<AccountModel>();
@@ -50,7 +49,7 @@ namespace EzTask.Management.Controllers
         }
 
         [HttpPost]
-        [Route("account/create.html")]
+        [Route("user/create.html")]
         public IActionResult Create(AccountModel model)
         {
             return View();
