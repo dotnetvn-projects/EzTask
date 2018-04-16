@@ -1,9 +1,9 @@
 ﻿$.fn.remove = function () {
     $(this).click(function () {
-        var code = $(".value-delete").val();
+        var code = $('#delete-modal .value-delete').val();
         $.ajax({
             type: 'post',
-            url: 'project/remove.html',
+            url: project_delete_url,
             data: {
                 'code': code
             },
@@ -11,22 +11,37 @@
                 window.location = "/project.html";
             },
             error: function () {
-               
+                $('#delete-modal .error-message').text('Error, EzTask cannot execute deleting data. Try again please !')
             }
         });
     });
 }
 
+function SetDeleteModalValue(project, code) {
+    $('#delete-modal .source-delete').text(project);
+    $('#delete-modal .value-delete').val(code);
+}
+
 $.fn.DeleteConfirm = function (){
     $(this).click(function () {
         var project = $(this).attr('data-source');
-        $(".source-delete").text('project: ' + project)
-        $(".value-delete").val($(this).attr('data-code'));
-        $('#delete-Modal').modal('show');
+        var code = $(this).attr('data-code');
+        SetDeleteModalValue('project: ' + project, code);
+        ShowModal('delete-modal');
     })
 }
 
+$.fn.CancelDelete = function () {
+    $(this).click(function () {
+        SetDeleteModalValue('', '');
+        CloseModal('delete-modal');
+    })
+}
+
+
 $(function () {
-    $(".remove-project").DeleteConfirm();
-    $(".btn-delete").remove();
+    $('.remove-project').DeleteConfirm();
+    $('#delete-modal .btn-delete').remove();
+    $('#delete-modal .close').CancelDelete();
+    ModalCloseTrigger('delete-modal');
 })

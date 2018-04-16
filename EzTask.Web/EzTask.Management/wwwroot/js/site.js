@@ -1,4 +1,20 @@
-﻿ $(function () { 
+﻿var project_delete_url='project/remove.html';
+
+function CloseModal(modalName) {
+    $('#' + modalName).modal('hide');
+    $('.modal-backdrop').hide();
+}
+
+function ShowModal(modalName) {
+    $('#' + modalName).modal('show');
+}
+function ModalCloseTrigger(modalName) {
+    $('#' + modalName).on('hidden.bs.modal', function () {
+        $('.modal-backdrop').hide();
+    });
+}
+
+$(function () { 
     //Date picker
      $('.datepicker').datepicker({
          autoclose: true,

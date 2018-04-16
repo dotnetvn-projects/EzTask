@@ -2,6 +2,7 @@
 @model IEnumerable<List<ProjectModel>>
 @{
     var nothingToShow = (Model == null || !Model.Any());
+    var projectCount = nothingToShow ? 0 : Model.Sum(c => c.Count());
     var boxStyle = nothingToShow ? "box" : "";
 
 }
@@ -19,7 +20,14 @@
 <div class="@boxStyle box-primary">
     <div class="box-header">
         <i class="fa fa-bandcamp"></i>
-        <h3 class="box-title">You have 9 projects</h3>
+        @if (projectCount < 2)
+        {
+            <h3 class="box-title">You have @projectCount project</h3>
+        }
+        else
+        {
+            <h3 class="box-title">You have @projectCount projects</h3>
+        }
         <a asp-action="CreateNew" asp-controller="Project" class="btn bg-orange btn-flat pull-right">
             <i class="fa fa-plus"></i>
             <span class="space-left">Create new</span>
@@ -43,7 +51,7 @@
         }
         else
         {
-            @Html.Partial("_ProjectList",Model)
+            @Html.Partial("_ProjectList", Model)
         }
     </div>
     @Html.Partial("~/Views/Common/_DeleteModal.cshtml")
