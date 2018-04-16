@@ -9,6 +9,8 @@ namespace EzTask.Management.Models.Account
     {
         public bool RememberMe { get; set; }
 
+        public string RedirectUrl { get; set; }
+
         public LoginModel()
         {
             RememberMe = true;

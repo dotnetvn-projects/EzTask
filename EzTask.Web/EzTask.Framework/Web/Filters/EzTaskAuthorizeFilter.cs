@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Routing;
+using Microsoft.AspNetCore.Http.Extensions;
 using System;
 using System.Threading.Tasks;
 
@@ -30,7 +31,9 @@ namespace EzTask.Framework.Web.Filters
                 if (currentUser == null 
                     || string.IsNullOrEmpty(currentUser.AccountId))
                 {
-                    context.Result = new RedirectToActionResult("Login","Account", new object { });
+                    var c = "";
+                    var returnUrl = context.HttpContext.Request.GetEncodedUrl();
+                    context.Result = new RedirectToActionResult("Login","Account", new { redirect = returnUrl });
                 }
             });                        
         }

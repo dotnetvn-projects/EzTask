@@ -24,10 +24,10 @@ namespace EzTask.Management.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("login.html")]
-        public IActionResult Login()
+        public IActionResult Login(string redirect)
         {
             PageTitle = "Login";
-            return View(new LoginModel());
+            return View(new LoginModel { RedirectUrl = redirect });
         }
 
         /// <summary>
@@ -53,7 +53,14 @@ namespace EzTask.Management.Controllers
                         CurrentAccount = CurrentAccount.Create(account.Id.ToString(),account.AccountName,
                             account.AccountInfo.DisplayName,account.AccountInfo.JobTitle, account.CreatedDate);
 
-                        return RedirectToAction("Index", "Home");
+                        if (string.IsNullOrEmpty(model.RedirectUrl))
+                        {
+                            return RedirectToAction("Index", "Home");
+                        }
+                        else
+                        {
+                            return Redirect(model.RedirectUrl);
+                        }
                     }
                     else
                     {

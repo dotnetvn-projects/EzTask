@@ -5,6 +5,7 @@
 <p class="login-box-msg">Sign in to start your session</p>
 
 <form asp-action="Login" method="post">
+    <input type="hidden" asp-for="RedirectUrl" />
     <div class="text-danger"><span>@Html.PrintErrorMessage()</span></div>
     <div class="form-group has-feedback">
         <input asp-for="AccountName" class="form-control" placeholder="Email">
