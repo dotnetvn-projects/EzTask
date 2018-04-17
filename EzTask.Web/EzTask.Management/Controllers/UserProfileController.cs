@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Management.Controllers
 {
-    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
+    [TypeFilter(typeof(AuthorizeFilter))]
     public class UserProfileController : EzTaskController
     {
         public UserProfileController(IServiceProvider serviceProvider, IMapper mapper) :

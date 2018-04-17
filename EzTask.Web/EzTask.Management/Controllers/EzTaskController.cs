@@ -100,7 +100,7 @@ namespace EzTask.Management.Controllers
         /// </summary>
         protected void SuspendAccountSession()
         {
-            _sessionManager.Suspend(EzTaskKey.Account);
+            _sessionManager.Remove(EzTaskKey.Account);
         }
     }
 }

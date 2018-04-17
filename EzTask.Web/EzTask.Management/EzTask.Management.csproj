@@ -1976,6 +1976,7 @@
     <ProjectReference Include="..\EzTask.Framework\EzTask.Framework.csproj" />
     <ProjectReference Include="..\EzTask.Interfaces\EzTask.Interfaces.csproj" />
     <ProjectReference Include="..\EzTask.MainBusiness\EzTask.MainBusiness.csproj" />
+    <ProjectReference Include="..\EzTask.Repository\EzTask.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 namespace EzTask.Framework.Web.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class EzTaskAuthorizeFilter:Attribute, IAsyncAuthorizationFilter
+    public class AuthorizeFilter:Attribute, IAsyncAuthorizationFilter
     {
         SessionManager _sessionManager;
         public string ControllerName { get; set; }
 
-        public EzTaskAuthorizeFilter()
+        public AuthorizeFilter()
         {
             ControllerName = string.Empty;
             _sessionManager = new SessionManager();
@@ -31,7 +31,6 @@ namespace EzTask.Framework.Web.Filters
                 if (currentUser == null 
                     || string.IsNullOrEmpty(currentUser.AccountId))
                 {
-                    var c = "";
                     var returnUrl = context.HttpContext.Request.GetEncodedUrl();
                     context.Result = new RedirectToActionResult("Login","Account", new { redirect = returnUrl });
                 }

@@ -12,6 +12,7 @@ namespace EzTask.MainBusiness
 {
     public class AccountBusiness : BaseBusiness
     {
+
         public AccountBusiness(EzTaskDbContext dbContext):base(dbContext) {}
     
         /// <summary>

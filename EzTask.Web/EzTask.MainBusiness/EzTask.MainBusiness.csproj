@@ -14,6 +14,7 @@
     <ProjectReference Include="..\EzTask.Framework\EzTask.Framework.csproj" />
     <ProjectReference Include="..\EzTask.Interfaces\EzTask.Interfaces.csproj" />
     <ProjectReference Include="..\EzTask.LogBusiness\EzTask.LogBusiness.csproj" />
+    <ProjectReference Include="..\EzTask.Repository\EzTask.Repository.csproj" />
   </ItemGroup>
 
 </Project>

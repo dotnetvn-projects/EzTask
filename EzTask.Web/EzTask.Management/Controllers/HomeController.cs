@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Management.Controllers
 {
-   [TypeFilter(typeof(EzTaskAuthorizeFilter))]
+   [TypeFilter(typeof(AuthorizeFilter))]
     public class HomeController : EzTaskController
     {
         public HomeController(IServiceProvider serviceProvider)

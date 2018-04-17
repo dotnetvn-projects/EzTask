@@ -5,7 +5,7 @@ using System.Text;
 
 namespace EzTask.Framework.Web.Filters
 {
-    public class EzTaskTokenFilter : ActionFilterAttribute
+    public class TokenFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext context)
         {

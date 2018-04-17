@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Management.Controllers
 {
-    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
+    [TypeFilter(typeof(AuthorizeFilter))]
     public class UserManageController : EzTaskController
     {
         public UserManageController(IServiceProvider serviceProvider, IMapper mapper) :

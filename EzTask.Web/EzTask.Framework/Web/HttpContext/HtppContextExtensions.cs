@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Framework.Web.HttpContext
 {
-    public static class SessionExtensions
+    public static class HtppContextExtensions
     {
         public static void SetObjectAsJson(this ISession session, string key, object value)
         {
@@ -16,6 +13,18 @@ namespace EzTask.Framework.Web.HttpContext
         public static T GetObjectFromJson<T>(this ISession session, string key)
         {
             var value = session.GetString(key);
+
+            return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
+        }
+
+        public static void SetObjectAsJson(this HttpResponse response, string key, object value, CookieOptions options)
+        {
+            response.Cookies.Append(key,JsonConvert.SerializeObject(value), options);
+        }
+
+        public static T GetObjectFromJson<T>(this HttpRequest request, string key)
+        {
+            var value = request.Cookies[key];
 
             return value == null ? default(T) : JsonConvert.DeserializeObject<T>(value);
         }

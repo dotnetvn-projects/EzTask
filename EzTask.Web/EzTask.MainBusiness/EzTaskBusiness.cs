@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 namespace EzTask.MainBusiness
 {
-    public class EzTaskBusiness : IEzTaskBusiness
+    public class EzTaskBusiness 
     {
         public AccountBusiness Account { get; }
         public ProjectBusiness Project { get; }

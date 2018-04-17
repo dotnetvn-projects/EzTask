@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
 using EzTask.DataAccess;
+using EzTask.Framework;
 using EzTask.Framework.Web.HttpContext;
 using EzTask.Interfaces;
 using EzTask.MainBusiness;
@@ -31,12 +32,10 @@ namespace EzTask.Management
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.RegisterDbContext(Configuration);
             services.AddTransient<EzTaskBusiness>();
-            services.AddDbContext<EzTaskDbContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("EzTask")), 
-                ServiceLifetime.Scoped);
-
-            services.AddMvc().AddSessionStateTempDataProvider(); ;
+            
+            services.AddMvc().AddSessionStateTempDataProvider();
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMemoryCache();

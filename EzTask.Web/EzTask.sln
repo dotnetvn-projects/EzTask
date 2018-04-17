@@ -37,6 +37,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Plugin.Facebook", "E
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Plugin.Google", "EzTask.Plugins\EzTask.Plugin.Google\EzTask.Plugin.Google.csproj", "{401165D7-E3BC-49C8-A93B-A0273B54905B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EzTask.Repository", "EzTask.Repository\EzTask.Repository.csproj", "{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -87,6 +89,10 @@ Global
 		{401165D7-E3BC-49C8-A93B-A0273B54905B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{401165D7-E3BC-49C8-A93B-A0273B54905B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{401165D7-E3BC-49C8-A93B-A0273B54905B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -103,6 +109,7 @@ Global
 		{DC4F4892-6E79-40E1-81F7-BCD680502A7E} = {2831A897-F971-47EA-8E8A-B062098D9F0E}
 		{4C9D491A-C1BA-481A-9669-84A02DF00D68} = {1CA0114A-B5D8-45AB-A0C1-0F45CD06772D}
 		{401165D7-E3BC-49C8-A93B-A0273B54905B} = {1CA0114A-B5D8-45AB-A0C1-0F45CD06772D}
+		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847} = {2831A897-F971-47EA-8E8A-B062098D9F0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44169026-999E-45D8-8992-829F1A5873B6}

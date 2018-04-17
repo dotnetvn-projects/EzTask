@@ -16,13 +16,13 @@ namespace EzTask.DataAccess
 
         }
 
-        public DbSet<Account> Accounts { get; set; }
+        //public DbSet<Account> Accounts { get; set; }
 
-        public DbSet<AccountInfo> AccountInfos { get; set; }
+        //public DbSet<AccountInfo> AccountInfos { get; set; }
 
-        public DbSet<Project> Projects { get; set; }
+        //public DbSet<Project> Projects { get; set; }
 
-        public DbSet<ProjectMember> ProjectMembers { get; set; }
+        //public DbSet<ProjectMember> ProjectMembers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

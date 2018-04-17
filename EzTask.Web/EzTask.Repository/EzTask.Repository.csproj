@@ -5,12 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="2.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="2.0.2" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.2" />
-  </ItemGroup>
-
-  <ItemGroup>
+    <ProjectReference Include="..\EzTask.DataAccess\EzTask.DataAccess.csproj" />
     <ProjectReference Include="..\EzTask.Entity\EzTask.Entity.csproj" />
     <ProjectReference Include="..\EzTask.Interfaces\EzTask.Interfaces.csproj" />
   </ItemGroup>

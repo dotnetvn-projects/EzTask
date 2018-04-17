@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace EzTask.Framework.Web.HttpContext
 {
-    public static class EzTaskContext
+    public static class Context
     {
         private static IHttpContextAccessor _httpContextAccessor;
     

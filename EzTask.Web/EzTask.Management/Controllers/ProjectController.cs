@@ -14,7 +14,7 @@ using System.Linq;
 
 namespace EzTask.Management.Controllers
 {
-    [TypeFilter(typeof(EzTaskAuthorizeFilter))]
+    [TypeFilter(typeof(AuthorizeFilter))]
     public class ProjectController : EzTaskController
     {
         public ProjectController(IServiceProvider serviceProvider, IMapper mapper) :
@@ -217,7 +217,7 @@ namespace EzTask.Management.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("project/remove.html")]
-        [EzTaskTokenFilter]
+        [TokenFilter]
         public async Task<IActionResult> RemoveProject(string code)
         {
             var removeAction = await EzTask.Project.Delete(code);
