@@ -8,6 +8,7 @@
     ".NETCoreApp,Version=v2.0": {
       "EzTask.Framework/1.0.0": {
         "dependencies": {
+          "EzTask.DataAccess": "1.0.0",
           "EzTask.Interfaces": "1.0.0",
           "Microsoft.AspNetCore.All": "2.0.6"
         },
@@ -3197,6 +3198,18 @@
           "lib/netstandard1.3/Microsoft.WindowsAzure.Storage.dll": {}
         }
       },
+      "EzTask.DataAccess/1.0.0": {
+        "dependencies": {
+          "EzTask.Entity": "1.0.0",
+          "EzTask.Interfaces": "1.0.0",
+          "Microsoft.EntityFrameworkCore": "2.0.2",
+          "Microsoft.EntityFrameworkCore.Relational": "2.0.2",
+          "Microsoft.EntityFrameworkCore.SqlServer": "2.0.2"
+        },
+        "runtime": {
+          "EzTask.DataAccess.dll": {}
+        }
+      },
       "EzTask.Entity/1.0.0": {
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "2.0.2",
@@ -5224,6 +5237,11 @@
       "sha512": "sha512-W6ZZ0/o7+3Qb77mRAQyLjPudHG3OMeeQ4p9yY13PUdJArmRCx2cLMm5F4tpIjJXxzHC0ew0oK7DMDGILMdfCnw==",
       "path": "windowsazure.storage/8.1.4",
       "hashPath": "windowsazure.storage.8.1.4.nupkg.sha512"
+    },
+    "EzTask.DataAccess/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "EzTask.Entity/1.0.0": {
       "type": "project",

@@ -1,5 +1,7 @@
 ﻿using EzTask.DataAccess;
-using EzTask.Repository;
+using EzTask.Framework.Web.HttpContext;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -11,22 +13,20 @@ namespace EzTask.Framework
 {
     public static class Startup
     {
-
-        public static void RegisterDbContext(this IServiceCollection services, IConfiguration configuration)
+        public static void RegisterFrameworkService(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<SessionManager>();
+            services.AddSingleton<CookiesManager>();
+
             services.AddDbContext<EzTaskDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("EzTask")),
                ServiceLifetime.Scoped);
         }
 
-        public static void RegisterRepository(this IServiceCollection services)
+        public static void ConfigureFramework(this IApplicationBuilder app)
         {
-            services.AddTransient<ProjectRepository>();
-        }
-
-        public static void RegisterBusiness(this IServiceCollection services)
-        {
-
+            app.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
         }
     }
 }

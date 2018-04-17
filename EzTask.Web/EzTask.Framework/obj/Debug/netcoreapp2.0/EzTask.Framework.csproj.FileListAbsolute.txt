@@ -44,3 +44,5 @@ G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Interfaces.
 G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
 G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.Entity.pdb
 G:\EzTask\EzTask.Web\EzTask.Framework\obj\Debug\netcoreapp2.0\EzTask.Framework.csproj.CopyComplete
+G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.DataAccess.dll
+G:\EzTask\EzTask.Web\EzTask.Framework\bin\Debug\netcoreapp2.0\EzTask.DataAccess.pdb

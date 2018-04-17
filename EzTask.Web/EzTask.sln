@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2002
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Management", "EzTask.Management\EzTask.Management.csproj", "{0CDE6D65-802E-4D79-BE91-6B08F502C803}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Web", "EzTask.Web\EzTask.Web.csproj", "{0CDE6D65-802E-4D79-BE91-6B08F502C803}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4. Guid", "4. Guid", "{7E2601D8-AE2C-45A2-BBD8-BB89BAFA9967}"
 EndProject
@@ -25,9 +25,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Entity", "EzTask.Ent
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.DataAccess", "EzTask.DataAccess\EzTask.DataAccess.csproj", "{E1C95DF4-86B1-4184-A503-40BD1BF3D883}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.MainBusiness", "EzTask.MainBusiness\EzTask.MainBusiness.csproj", "{646D9B9E-26E2-4728-85E0-E558B31CC8D9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Business", "EzTask.Business\EzTask.Business.csproj", "{646D9B9E-26E2-4728-85E0-E558B31CC8D9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.LogBusiness", "EzTask.LogBusiness\EzTask.LogBusiness.csproj", "{5ECB02FC-995C-4220-9144-07DA62A31C9C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Plugin.Log", "EzTask.Plugins\EzTask.Plugin.Log\EzTask.Plugin.Log.csproj", "{5ECB02FC-995C-4220-9144-07DA62A31C9C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Interfaces", "EzTask.Interfaces\EzTask.Interfaces.csproj", "{64F1D611-B871-4F92-BB76-BA8F443B534B}"
 EndProject
@@ -36,8 +36,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Plugin.Facebook", "EzTask.Plugins\EzTask.Plugin.Facebook\EzTask.Plugin.Facebook.csproj", "{4C9D491A-C1BA-481A-9669-84A02DF00D68}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Plugin.Google", "EzTask.Plugins\EzTask.Plugin.Google\EzTask.Plugin.Google.csproj", "{401165D7-E3BC-49C8-A93B-A0273B54905B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EzTask.Repository", "EzTask.Repository\EzTask.Repository.csproj", "{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,10 +87,6 @@ Global
 		{401165D7-E3BC-49C8-A93B-A0273B54905B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{401165D7-E3BC-49C8-A93B-A0273B54905B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{401165D7-E3BC-49C8-A93B-A0273B54905B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -104,12 +98,11 @@ Global
 		{47795263-213F-415D-AB08-0A25EC5F8E97} = {2831A897-F971-47EA-8E8A-B062098D9F0E}
 		{E1C95DF4-86B1-4184-A503-40BD1BF3D883} = {2831A897-F971-47EA-8E8A-B062098D9F0E}
 		{646D9B9E-26E2-4728-85E0-E558B31CC8D9} = {A58553C4-9600-426C-9A35-DAECBA24FA1B}
-		{5ECB02FC-995C-4220-9144-07DA62A31C9C} = {A58553C4-9600-426C-9A35-DAECBA24FA1B}
+		{5ECB02FC-995C-4220-9144-07DA62A31C9C} = {1CA0114A-B5D8-45AB-A0C1-0F45CD06772D}
 		{64F1D611-B871-4F92-BB76-BA8F443B534B} = {2831A897-F971-47EA-8E8A-B062098D9F0E}
 		{DC4F4892-6E79-40E1-81F7-BCD680502A7E} = {2831A897-F971-47EA-8E8A-B062098D9F0E}
 		{4C9D491A-C1BA-481A-9669-84A02DF00D68} = {1CA0114A-B5D8-45AB-A0C1-0F45CD06772D}
 		{401165D7-E3BC-49C8-A93B-A0273B54905B} = {1CA0114A-B5D8-45AB-A0C1-0F45CD06772D}
-		{3C97955D-D382-4CB0-B0B4-4CAA92CD7847} = {2831A897-F971-47EA-8E8A-B062098D9F0E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {44169026-999E-45D8-8992-829F1A5873B6}

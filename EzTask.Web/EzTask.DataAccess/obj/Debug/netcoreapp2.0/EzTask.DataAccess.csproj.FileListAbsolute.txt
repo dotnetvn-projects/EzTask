@@ -50,3 +50,5 @@ E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\Ez
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.csproj.CopyComplete
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.dll
 E:\Work\KTSERVICE\EzTask\EzTask.Web\EzTask.DataAccess\obj\Debug\netcoreapp2.0\EzTask.DataAccess.pdb
+G:\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.Interfaces.dll
+G:\EzTask\EzTask.Web\EzTask.DataAccess\bin\Debug\netcoreapp2.0\EzTask.Interfaces.pdb
