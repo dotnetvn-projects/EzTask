@@ -12,7 +12,7 @@ namespace EzTask.Business
 {
     public class ProjectBusiness : BaseBusiness
     {
-        public ProjectBusiness(EzTaskDbContext ezTaskDbContext) : 
+        public ProjectBusiness(EzTaskDbContext ezTaskDbContext) :
             base(ezTaskDbContext)
         {
         }
@@ -29,26 +29,28 @@ namespace EzTask.Business
                 project.CreatedDate = DateTime.Now;
             }
             project.UpdatedDate = DateTime.Now;
+
             if (project.Id < 1)
             {
-                EzTaskDbContext.Projects.Add(project);
+                DbContext.Projects.Add(project);
             }
             else
             {
-                EzTaskDbContext.Attach(project);
-                EzTaskDbContext.Entry(project).State = EntityState.Modified;
+                DbContext.Attach(project);
+                DbContext.Entry(project).State = EntityState.Modified;
             }
-            var records = await EzTaskDbContext.SaveChangesAsync();
+
+            var records = await DbContext.SaveChangesAsync();
 
             if (records > 0)
             {
                 if (string.IsNullOrEmpty(project.ProjectCode))
                 {
                     project.ProjectCode = GenerateProjectCode(project.Id);
-                    var updatedRecord = await EzTaskDbContext.SaveChangesAsync();
+                    var updatedRecord = await DbContext.SaveChangesAsync();
                 }
 
-               return project;
+                return project;
             }
 
             return null;
@@ -61,21 +63,20 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ActionStatus> Delete(string projectCode)
         {
-            using (var dbContextTransaction = EzTaskDbContext.Database.BeginTransaction())
+            using (var dbContextTransaction = DbContext.Database.BeginTransaction())
             {
                 try
                 {
                     var project = await GetProject(projectCode);
                     if (project != null)
                     {
-                        var memberList = await EzTaskDbContext.ProjectMembers.Where(c => c.ProjectId 
-                        == project.Id).ToListAsync();
+                        var memberList = await DbContext.ProjectMembers.Where(c => c.ProjectId == project.Id).ToListAsync();
 
-                        EzTaskDbContext.ProjectMembers.RemoveRange(memberList);
+                        DbContext.ProjectMembers.RemoveRange(memberList);
 
-                        EzTaskDbContext.Projects.Remove(project);
+                        DbContext.Projects.Remove(project);
 
-                        await EzTaskDbContext.SaveChangesAsync();
+                        await DbContext.SaveChangesAsync();
                     }
 
                     dbContextTransaction.Commit();
@@ -86,7 +87,7 @@ namespace EzTask.Business
                     dbContextTransaction.Rollback();
                     return ActionStatus.Failed;
                 }
-            }            
+            }
         }
 
         /// <summary>
@@ -96,10 +97,10 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<IEnumerable<Project>> GetProjects(int ownerId)
         {
-            return await EzTaskDbContext.Projects.Include(c => c.Account)
-                .ThenInclude(c => c.AccountInfo)        
+            return await DbContext.Projects.Include(c => c.Account)
+                .ThenInclude(c => c.AccountInfo)
                 .AsNoTracking()
-                .Where(c => c.Owner == ownerId).OrderBy(c=>c.Status)
+                .Where(c => c.Owner == ownerId).OrderBy(c => c.Status)
                 .ToListAsync();
         }
 
@@ -110,7 +111,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<Project> GetProject(string projectCode)
         {
-            return await EzTaskDbContext.Projects.AsNoTracking()
+            return await DbContext.Projects.AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
         }
 
@@ -121,7 +122,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<Project> GetProjectByName(string name)
         {
-            return await EzTaskDbContext.Projects.AsNoTracking()
+            return await DbContext.Projects.AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectName.ToLower() == name.ToLower());
         }
 
@@ -133,7 +134,7 @@ namespace EzTask.Business
         /// <returns>True if it is, False if it is not</returns>
         public async Task<bool> IsDupplicated(string name, int id)
         {
-            return await EzTaskDbContext.Projects.AsNoTracking()
+            return await DbContext.Projects.AsNoTracking()
                 .AnyAsync(c => c.ProjectName.ToLower() == name.ToLower() && c.Id != id);
         }
 
@@ -145,8 +146,8 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<Project> GetProjectDetail(string projectCode)
         {
-            return await EzTaskDbContext.Projects.Include(c=>c.Account)
-                .ThenInclude(c=>c.AccountInfo).AsNoTracking()
+            return await DbContext.Projects.Include(c => c.Account)
+                .ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
         }
 
@@ -157,13 +158,13 @@ namespace EzTask.Business
         /// <returns></returns>
         private string GenerateProjectCode(int id)
         {
-            if(id<100 && id > 9)
+            if (id < 100 && id > 9)
             {
                 return "EzTask#0" + id;
             }
-            else if(id < 10)
+            else if (id < 10)
             {
-               return "EzTask#00" + id;
+                return "EzTask#00" + id;
             }
 
             return "EzTask#" + id;

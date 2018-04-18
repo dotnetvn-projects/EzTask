@@ -1,13 +1,15 @@
 ﻿using EzTask.DataAccess;
+using System;
+using System.Threading.Tasks;
 
 namespace EzTask.Business
 {
     public class BaseBusiness 
     {
-       protected EzTaskDbContext EzTaskDbContext;
+       protected EzTaskDbContext DbContext;
        public BaseBusiness(EzTaskDbContext ezTaskDbContext)
        {
-            EzTaskDbContext = ezTaskDbContext;
+            DbContext = ezTaskDbContext;
        }
     }
 }

@@ -43,8 +43,8 @@ namespace EzTask.Web.Controllers
             {
                 if (!ModelState.IsValid)
                     return View();
-
-                var account = await EzTask.Account.GetAccount(model.AccountName, model.Password);
+                
+                var account = await EzTask.Account.Login(model.AccountName, model.Password);
 
                 if (account != null)
                 {
@@ -114,7 +114,7 @@ namespace EzTask.Web.Controllers
                 {
                     if (ModelState.IsValid)
                     {
-                        var existAccount = EzTask.Account.GetAccount(model.AccountName);
+                        var existAccount = await EzTask.Account.GetAccount(model.AccountName);
                         if (existAccount == null)
                         {
                             model.DisplayName = model.FullName;
