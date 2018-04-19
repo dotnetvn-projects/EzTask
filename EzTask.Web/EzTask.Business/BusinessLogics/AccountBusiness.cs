@@ -7,12 +7,20 @@ using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using EzTask.Entity.Data;
 using EzTask.Entity.Framework;
+using System.IO;
+using ImageStream = EzTask.Framework.IO.Stream;
+using EzTask.Framework.ImageHandler;
 
-namespace EzTask.Business
+namespace EzTask.Business.BusinessLogics
 {
     public class AccountBusiness : BaseBusiness
     {
-        public AccountBusiness(EzTaskDbContext dbContext):base(dbContext) {}
+        private ImageProcessor _imageProcessor;
+        public AccountBusiness(EzTaskDbContext dbContext, 
+            ImageProcessor imageProcessor):base(dbContext)
+        {
+            _imageProcessor = imageProcessor;
+        }
     
         /// <summary>
         /// Register a new account to EzTask
@@ -27,6 +35,7 @@ namespace EzTask.Business
             account.PasswordHash = Cryptography.GetHashString(account.AccountName);
             account.Password = Encrypt.Do(account.Password, 
                 account.PasswordHash);
+
             account.UpdatedDate = DateTime.Now;
             account.AccountStatus = (int)AccountStatus.Active;
 
@@ -58,6 +67,32 @@ namespace EzTask.Business
                 }
             }
             return null;
+        }
+
+
+        /// <summary>
+        /// Update avatar
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<bool> UpdateAvatar(int accountId, Stream stream)
+        {
+            var accountInfo = DbContext.AccountInfos.FirstOrDefault(c => c.AccountId == accountId);
+            if (accountInfo != null)
+            {
+                var bytes = await ImageStream.ConvertStreamToBytes(stream);
+                var imageData = await _imageProcessor.CreateNewSize(bytes, 250, 250);
+                stream.Dispose();
+
+                accountInfo.DisplayImage = imageData;
+
+                var iResult = await DbContext.SaveChangesAsync();
+                if (iResult > 0)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         /// <summary>
@@ -107,6 +142,15 @@ namespace EzTask.Business
         {
             return await DbContext.Accounts.
                 FirstOrDefaultAsync(c => c.AccountName == accountName);
+        }
+
+        public async Task<byte[]> LoadAvatar(int accountId)
+        {
+            var data = await DbContext.AccountInfos
+                     .AsNoTracking()
+                         .FirstOrDefaultAsync(c => c.AccountId == accountId);
+
+            return data.DisplayImage;
         }
 
         /// <summary>

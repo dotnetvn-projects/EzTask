@@ -2,33 +2,24 @@
 using AutoMapper;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Values;
-using EzTask.Framework.Web.Filters;
 using EzTask.Framework.Web.HttpContext;
-using EzTask.Interfaces;
-using EzTask.Business;
 using EzTask.Web.Infrastructures;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
+using EzTask.Framework;
+using EzTask.Business;
 
 namespace EzTask.Web.Controllers
 {
     public class EzTaskController : Controller
     {
-        protected SessionManager _sessionManager;
-        protected EzTaskBusiness EzTask { get; private set; }
-        protected IHttpContextAccessor HttpContextAccessor;
+        protected SessionManager SessionManager;
+        protected CookiesManager CookiesManager;
+        protected EzTaskBusiness EzTask;
 
         public EzTaskController(IServiceProvider serviceProvider)
         {
-            InvokeDefautInstance(serviceProvider);
+            InvokeComponents(serviceProvider);
         }
-
-        public EzTaskController(IServiceProvider serviceProvider, IMapper mapper)
-        {
-            InvokeDefautInstance(serviceProvider);
-            EzTaskMapper.Config(mapper);
-        }     
 
         /// <summary>
         /// Account Id
@@ -65,12 +56,6 @@ namespace EzTask.Web.Controllers
             set { TempData["success"] = value; }
         }
 
-        protected string ActiveTab
-        {
-            get { return ViewData["activeTab"]?.ToString(); }
-            set { ViewData["activeTab"] = value; }
-        }
-
         /// <summary>
         /// Current Login Account
         /// </summary>
@@ -78,32 +63,40 @@ namespace EzTask.Web.Controllers
         {
             get
             {
-                var currentAccount = _sessionManager.GetObject<CurrentAccount>(EzTaskKey.Account);
+                var currentAccount = SessionManager.GetObject<CurrentAccount>(Key.Account);
                 if (currentAccount == null)
                     currentAccount = new CurrentAccount();
                 return currentAccount;
             }
             set
             {
-                _sessionManager.SetObject(EzTaskKey.Account, value);
+                SessionManager.SetObject(Key.Account, value);
             }
         }
-
-        public SessionManager SessionManager { get => _sessionManager; set => _sessionManager = value; }    
+       
+        /// <summary>
+        /// Suspend session
+        /// </summary>
+        protected void SuspendSession(Key key)
+        {
+            SessionManager.Remove(key);
+        }
 
         /// <summary>
-        /// Suspend session for current login account
+        /// Suspend cookie
         /// </summary>
-        protected void SuspendAccountSession()
+        protected void SuspendCookie(Key key)
         {
-            _sessionManager.Remove(EzTaskKey.Account);
+            CookiesManager.Remove(key);
         }
 
         #region Private
-        private void InvokeDefautInstance(IServiceProvider serviceProvider)
+        private void InvokeComponents(IServiceProvider serviceProvider)
         {
-            EzTask = serviceProvider.GetService<EzTaskBusiness>();
-            _sessionManager = new SessionManager();
+            serviceProvider.InvokeComponents(out EzTask);
+            EzTaskMapper.Config(serviceProvider.InvokeComponents<IMapper>());
+            serviceProvider.InvokeComponents(out SessionManager);
+            serviceProvider.InvokeComponents(out CookiesManager);
             PageTitle = string.Empty;
         }
         #endregion

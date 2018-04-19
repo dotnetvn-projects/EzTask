@@ -1,11 +1,9 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using EzTask.Business.BusinessLogics;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Business
 {
-    public static class Startup
+    public static class BusinessInitializer
     {
         public static void RegisterBusiness(this IServiceCollection services)
         { 

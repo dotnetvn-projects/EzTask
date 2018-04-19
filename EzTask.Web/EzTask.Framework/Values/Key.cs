@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EzTask.Framework.Values
 {
-    public enum EzTaskKey
+    public enum Key
     {
         Account
     }

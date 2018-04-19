@@ -5,15 +5,14 @@ using System.Threading.Tasks;
 using EzTask.Web.Models.Account;
 using EzTask.Framework.Message;
 using EzTask.Entity.Framework;
-using AutoMapper;
+using EzTask.Framework.Values;
 
 namespace EzTask.Web.Controllers
 {
     public class AccountController : EzTaskController
     {
-        public AccountController(IServiceProvider serviceProvider, 
-            IMapper mapper) :
-            base(serviceProvider, mapper)
+        public AccountController(IServiceProvider serviceProvider) :
+            base(serviceProvider)
         {
         }
 
@@ -127,10 +126,10 @@ namespace EzTask.Web.Controllers
 
                             ErrorMessage = AccountMessage.CreateFailed;
                         }
-                        else
-                        {
-                            ErrorMessage = AccountMessage.ExistAccount;
-                        }
+                        //else
+                       // {
+                           // ErrorMessage = AccountMessage.ExistAccount;
+                        //}
                     }
                 }
             }
@@ -150,7 +149,7 @@ namespace EzTask.Web.Controllers
         [HttpPost]
         public IActionResult LogOff()
         {
-            SuspendAccountSession();
+            SuspendSession(Key.Account);
             return RedirectToAction("Login", "Account");
         }
     }

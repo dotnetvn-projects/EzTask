@@ -17,8 +17,8 @@ namespace EzTask.Web.Controllers
     [TypeFilter(typeof(AuthorizeFilter))]
     public class ProjectController : EzTaskController
     {
-        public ProjectController(IServiceProvider serviceProvider, IMapper mapper) :
-            base(serviceProvider, mapper)
+        public ProjectController(IServiceProvider serviceProvider) :
+            base(serviceProvider)
         {
         }
 

@@ -1,0 +1,31 @@
+﻿<div class="modal fade" id="upload-avatar-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form id="upload-avatar-form" enctype="multipart/form-data">
+                <div class="modal-header">
+                    <button data-dismiss="modal" type="button" class="close" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title">Update Avatar</h4>
+                </div>
+                <div class="modal-body">
+                    <img class="profile-user-img img-responsive img-circle img-avatar"
+                         src="@Url.Action("LoadAvatar","Common")" alt="User profile picture">
+                    <div class="upload-avatar-button">
+
+                        <label for="image-upload" class="custom-file-upload">
+                            <i class="fa fa-cloud-upload"></i> Upload avatar
+                        </label>
+                        <input accept="image/x-png,image/gif,image/jpeg"
+                               id="image-upload" type="file" />
+
+                    </div>
+                    <p class="text-danger error-message"></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary btn-upload-avatar">Accept</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

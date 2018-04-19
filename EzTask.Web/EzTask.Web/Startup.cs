@@ -1,30 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using EzTask.DataAccess;
+﻿using AutoMapper;
 using EzTask.Framework;
-using EzTask.Framework.Web.HttpContext;
-using EzTask.Interfaces;
-using EzTask.Business;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+using EzTask.Business;
 
 namespace EzTask.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment environment)
         {
             Configuration = configuration;
+            Environment = environment;
         }
+        public IHostingEnvironment Environment { get; }
 
         public IConfiguration Configuration { get; }
 
@@ -33,7 +24,6 @@ namespace EzTask.Web
         {            
             services.RegisterFrameworkService(Configuration);
             services.RegisterBusiness();
-            
             services.AddMvc().AddSessionStateTempDataProvider();
             services.AddDistributedMemoryCache();
             services.AddSession();

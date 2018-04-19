@@ -44,7 +44,7 @@ namespace EzTask.Framework.Web.HtmlHelpers
         private static CurrentAccount GetCurrentAccount()
         {
             SessionManager sessionManager = new SessionManager();
-            var currentAccount = sessionManager.GetObject<CurrentAccount>(EzTaskKey.Account);
+            var currentAccount = sessionManager.GetObject<CurrentAccount>(Key.Account);
             return currentAccount;
         }
         #endregion

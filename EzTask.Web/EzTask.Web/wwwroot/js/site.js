@@ -1,4 +1,5 @@
 ﻿var project_delete_url='project/remove.html';
+var user_upload_avatar = 'upload-avatar.html';
 
 function CloseModal(modalName) {
     $('#' + modalName).modal('hide');

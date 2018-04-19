@@ -27,7 +27,7 @@ namespace EzTask.Framework.Web.Filters
         {
             await Task.Factory.StartNew(() =>
             {
-                var currentUser = _sessionManager.GetObject<CurrentAccount>(EzTaskKey.Account);
+                var currentUser = _sessionManager.GetObject<CurrentAccount>(Key.Account);
                 if (currentUser == null 
                     || string.IsNullOrEmpty(currentUser.AccountId))
                 {

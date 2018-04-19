@@ -1,9 +1,11 @@
 ﻿using System;
+using System.IO;
 using System.Threading.Tasks;
 using AutoMapper;
 using EzTask.Framework.Web.Filters;
 using EzTask.Web.Infrastructures;
 using EzTask.Web.Models.Account;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Web.Controllers
@@ -11,8 +13,8 @@ namespace EzTask.Web.Controllers
     [TypeFilter(typeof(AuthorizeFilter))]
     public class UserProfileController : EzTaskController
     {
-        public UserProfileController(IServiceProvider serviceProvider, IMapper mapper) :
-            base(serviceProvider, mapper)
+        public UserProfileController(IServiceProvider serviceProvider) :
+            base(serviceProvider)
         {
         }
 
@@ -54,8 +56,26 @@ namespace EzTask.Web.Controllers
             {
                 var account = await EzTask.Account.UpdateAccount(model.MapToEntity());
             }
-            ActiveTab = "setting";
-            return View("Index");
+ 
+            return View("Index", model);
+        }
+
+        /// <summary>
+        /// Update avatar
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("upload-avatar.html")]
+        public async Task<IActionResult> UpdateAvatar(IFormFile file)
+        {
+            if (file.Length > 0)
+            {
+                var stream = file.OpenReadStream();
+                var result = await EzTask.Account.UpdateAvatar(AccountId, stream);
+                return Ok();
+            }
+            return BadRequest();
         }
 
         #region Non-Action

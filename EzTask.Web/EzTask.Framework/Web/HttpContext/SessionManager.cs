@@ -10,7 +10,7 @@ namespace EzTask.Framework.Web.HttpContext
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void Set(EzTaskKey key, string value)
+        public void Set(Key key, string value)
         {
             Context.Current.Session.SetString(key.ToString(), value);
         }
@@ -20,7 +20,7 @@ namespace EzTask.Framework.Web.HttpContext
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public string Get(EzTaskKey key)
+        public string Get(Key key)
         {
             try
             {
@@ -37,7 +37,7 @@ namespace EzTask.Framework.Web.HttpContext
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        public void SetObject(EzTaskKey key, object value)
+        public void SetObject(Key key, object value)
         {
             Context.Current.Session.SetObjectAsJson(key.ToString(), value);
         }
@@ -48,7 +48,7 @@ namespace EzTask.Framework.Web.HttpContext
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public T GetObject<T>(EzTaskKey key)
+        public T GetObject<T>(Key key)
         {
             try
             {
@@ -64,7 +64,7 @@ namespace EzTask.Framework.Web.HttpContext
         /// Remove session
         /// </summary>
         /// <param name="key"></param>
-        public void Remove(EzTaskKey key)
+        public void Remove(Key key)
         {
             Context.Current.Session.Remove(key.ToString());
         }

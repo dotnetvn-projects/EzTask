@@ -14,8 +14,8 @@ namespace EzTask.Web.Controllers
     [TypeFilter(typeof(AuthorizeFilter))]
     public class UserManageController : EzTaskController
     {
-        public UserManageController(IServiceProvider serviceProvider, IMapper mapper) :
-            base(serviceProvider, mapper)
+        public UserManageController(IServiceProvider serviceProvider) :
+            base(serviceProvider)
         {
         }
 
