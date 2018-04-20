@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Infrastructures\DataMapper\" />
     <Folder Include="Web\TagHelpers\" />
   </ItemGroup>
 
