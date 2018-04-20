@@ -24,7 +24,7 @@ namespace EzTask.Web.Controllers
         public async Task<IActionResult> LoadAvatar()
         {
             var dataImage = await EzTask.Account.LoadAvatar(AccountId);
-            if(dataImage == null)
+            if(dataImage == null || dataImage.Length == 0)
             {         
                 string no_image = Path.Combine(hostingEnvironment.WebRootPath, "images/no-avatar.jpg");
                 dataImage = await IO.ReadFile(no_image);

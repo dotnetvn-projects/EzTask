@@ -11,7 +11,7 @@ using System.IO;
 using ImageStream = EzTask.Framework.IO.Stream;
 using EzTask.Framework.ImageHandler;
 
-namespace EzTask.Business.BusinessLogics
+namespace EzTask.Business.BusinessAreas
 {
     public class AccountBusiness : BaseBusiness
     {

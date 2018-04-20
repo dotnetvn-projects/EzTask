@@ -18,5 +18,12 @@ namespace EzTask.Entity.Data
         public string Comment { get; set; }
         public string Introduce { get; set; }
         public byte[] Document { get; set; }
+
+        public override void Update(AccountInfo entity)
+        {
+            var displayImage = DisplayImage;
+            base.Update(entity);
+            DisplayImage = displayImage;
+        }
     }
 }

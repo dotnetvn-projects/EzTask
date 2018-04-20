@@ -1,7 +1,7 @@
-﻿using EzTask.Business.BusinessLogics;
+﻿using EzTask.Business.BusinessAreas;
 using System.Diagnostics;
 
-namespace EzTask.Business
+namespace EzTask.Business.BusinessAreas
 {
     public class EzTaskBusiness 
     {

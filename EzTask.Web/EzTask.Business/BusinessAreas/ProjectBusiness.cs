@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using EzTask.Business.BusinessLogics;
+using EzTask.Business.BusinessAreas;
 using EzTask.DataAccess;
 using EzTask.Entity.Data;
 using EzTask.Entity.Framework;
 using Microsoft.EntityFrameworkCore;
 
-namespace EzTask.Business
+namespace EzTask.Business.BusinessAreas
 {
     public class ProjectBusiness : BaseBusiness
     {

@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 
-namespace EzTask.Business.BusinessLogics
+namespace EzTask.Business.BusinessAreas
 {
     public class BaseBusiness 
     {

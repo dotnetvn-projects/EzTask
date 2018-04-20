@@ -1,4 +1,4 @@
-﻿using EzTask.Business.BusinessLogics;
+﻿using EzTask.Business.BusinessAreas;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Business

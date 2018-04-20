@@ -1,6 +1,4 @@
-﻿using System.Drawing;
-using System.IO;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 
 namespace EzTask.Framework.ImageHandler
 {

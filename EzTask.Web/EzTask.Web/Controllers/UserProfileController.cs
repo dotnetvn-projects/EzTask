@@ -56,7 +56,6 @@ namespace EzTask.Web.Controllers
             {
                 var account = await EzTask.Account.UpdateAccount(model.MapToEntity());
             }
- 
             return View("Index", model);
         }
 
