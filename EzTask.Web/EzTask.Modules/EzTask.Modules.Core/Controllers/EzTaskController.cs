@@ -1,17 +1,16 @@
-﻿using System;
-using AutoMapper;
+﻿using AutoMapper;
+using EzTask.Business.BusinessAreas;
 using EzTask.Entity.Framework;
+using EzTask.Framework;
 using EzTask.Framework.Values;
 using EzTask.Framework.Web.HttpContext;
-using EzTask.Web.Infrastructures;
+using EzTask.Modules.Core.Infrastructures;
 using Microsoft.AspNetCore.Mvc;
-using EzTask.Framework;
-using EzTask.Business;
-using EzTask.Business.BusinessAreas;
+using System;
 
-namespace EzTask.Web.Controllers
+namespace EzTask.Modules.Core.Controllers
 {
-    public class EzTaskController : Controller
+    public class EzTaskController: Controller
     {
         protected SessionManager SessionManager;
         protected CookiesManager CookiesManager;
@@ -74,7 +73,7 @@ namespace EzTask.Web.Controllers
                 SessionManager.SetObject(Key.Account, value);
             }
         }
-       
+
         /// <summary>
         /// Suspend session
         /// </summary>

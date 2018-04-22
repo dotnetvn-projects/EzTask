@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Framework.Infrastructures.ModuleHandler
+namespace EzTask.Entity.Framework
 {
-    class ModuleFinder
+    class ModuleInfo
     {
     }
 }

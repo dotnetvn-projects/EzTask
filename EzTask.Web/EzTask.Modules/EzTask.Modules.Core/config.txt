@@ -1,0 +1,2 @@
+﻿Name: EzTask.Modules.Core
+BuildFolder: Views, Bin

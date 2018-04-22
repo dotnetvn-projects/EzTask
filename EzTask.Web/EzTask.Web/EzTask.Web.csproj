@@ -1960,7 +1960,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="AutoMapper" Version="6.2.2" />
+    <PackageReference Include="AutoMapper" Version="7.0.0-alpha-0001" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.6" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
@@ -6809,5 +6809,13 @@
   <ItemGroup>
     <TypeScriptCompile Include="wwwroot\themes\bower_components\moment\moment.d.ts" />
   </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\" />
+  </ItemGroup>
+
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="call &quot;$(SolutionDir)\EzTask.Web\build.bat&quot;" />
+  </Target>
 
 </Project>
