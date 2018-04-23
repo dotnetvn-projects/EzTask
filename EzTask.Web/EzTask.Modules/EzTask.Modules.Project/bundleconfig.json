@@ -1,1 +1,12 @@
-﻿
+[
+  {
+    "outputFileName": "wwwroot/js/project.min.js",
+    "inputFiles": [
+      "wwwroot/js/project.js"
+    ],
+    "minify": {
+      "enabled": true,
+      "renameLocals": true
+    }
+  }
+]

@@ -1,0 +1,2 @@
+﻿Name: EzTask.Modules.Authentication
+BuildFolder: Views, Bin, wwwroot
