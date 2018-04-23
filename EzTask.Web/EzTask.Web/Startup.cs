@@ -5,6 +5,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using EzTask.Business;
+using System.Diagnostics;
+using System.IO;
 
 namespace EzTask.Web
 {
@@ -21,14 +23,12 @@ namespace EzTask.Web
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {            
-            services.RegisterFrameworkService(Configuration);
-            services.RegisterBusiness();
-            services.AddMvc().AddSessionStateTempDataProvider();
+        {
+            services.RegisterFramework(Configuration, Environment);
+            services.RegisterBusiness();           
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMemoryCache();
-
             services.AddAutoMapper();
         }                                              
 

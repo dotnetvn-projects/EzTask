@@ -37,5 +37,6 @@ namespace EzTask.Modules.Core.Controllers
             PageTitle = "Page not found";
             return View();
         }
+
     }
 }

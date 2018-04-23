@@ -19,10 +19,14 @@ namespace EzTask.WebBuilder
             var moduleBuildPath = Path.Combine(workFolder,"EzTask.Web/Modules");
             if (Directory.Exists(moduleBuildPath))
             {
-                Directory.Delete(moduleBuildPath, true);
+                try
+                {                                              
+                    Directory.Delete(moduleBuildPath, true);
+                    Directory.CreateDirectory(moduleBuildPath);
+                }
+                catch { }
             }
-
-            Directory.CreateDirectory(moduleBuildPath);
+           
             var moduleDevPath = Path.Combine(workFolder,"EzTask.Modules");
             var moduleDevFolder = Directory.GetDirectories(moduleDevPath);
 
@@ -39,22 +43,34 @@ namespace EzTask.WebBuilder
                 {
                     var cleanCopyPath = copyPath.Trim();
                     var sourcePath = Path.Combine(devFolder, cleanCopyPath);
-                    if (cleanCopyPath.ToLower() != "bin")
+                    if (!Directory.Exists(sourcePath))
+                        continue;
+                    var desPath = string.Empty;
+                    switch (cleanCopyPath.ToLower())
                     {
-                        var desPath = Path.Combine(modulePath, cleanCopyPath);
-                        DirectoryCopy(sourcePath, desPath, true);
+                        case "bin":
+                            var files = Directory.GetFiles(sourcePath, moduleName + ".dll", SearchOption.AllDirectories);
+                            var binPath = Path.Combine(modulePath, "bin");
+                            Directory.CreateDirectory(binPath);
+
+                            foreach (var item in files)
+                            {
+                                desPath = Path.Combine(binPath, Path.GetFileName(item));
+                                File.Copy(item, desPath);
+                            }
+                            break;
+
+                        case "wwwroot":
+                            desPath = Path.Combine(workFolder, "EzTask.Web/wwwroot");
+                            DirectoryCopy(sourcePath, desPath, true);
+                            break;
+
+                        default:
+                            desPath = Path.Combine(modulePath, cleanCopyPath);
+                            DirectoryCopy(sourcePath, desPath, true);
+                            break;
                     }
-                    else
-                    {
-                        var files = Directory.GetFiles(sourcePath, moduleName+".dll", SearchOption.AllDirectories);
-                        var binPath = Path.Combine(modulePath, "bin");
-                        Directory.CreateDirectory(binPath);
-                        foreach (var item in files)
-                        {
-                            var desPath = Path.Combine(binPath, Path.GetFileName(item));
-                            File.Copy(item, desPath);                         
-                        }
-                    }
+
                 }
             }
         }
@@ -85,7 +101,7 @@ namespace EzTask.WebBuilder
             foreach (FileInfo file in files)
             {
                 string temppath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, false);
+                file.CopyTo(temppath, true);
             }
 
             // If copying subdirectories, copy them and their contents to new location.

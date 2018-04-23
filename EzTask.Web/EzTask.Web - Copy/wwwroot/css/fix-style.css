@@ -1,0 +1,10 @@
+﻿/*Upload Avatar modal*/
+#upload-avatar-modal .img-avatar {
+    width: 250px !important;
+}
+.upload-avatar-button {
+    padding-top:10px;
+    margin: 0 auto;
+    width: 131px;
+}
+/*End upload avatar modal*/

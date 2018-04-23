@@ -1,0 +1,35 @@
+﻿
+@model ProjectModel
+@section header{
+    <h1>
+        Project
+        <small>Create new project on EzTask</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a asp-action="Index" asp-controller="Project">Project</a></li>
+        <li class="active">Create new</li>
+    </ol>
+}
+<div class="box box-primary">
+    <div class="box-header with-border">
+        @if (Model.ProjectId < 1)
+        {
+            if (Model.HasError)
+            {
+                <i class="fa fa-circle text-red"></i>
+                <h3 class="box-title">@Html.PrintErrorMessage()</h3>
+            }
+            else
+            {
+                <i class="fa fa-circle text-yellow"></i>
+                <h3 class="box-title">You're creating a new project</h3>
+            }
+        }
+    </div>
+    <div class="box-body">
+        <div class="col-md-8">
+            @Html.Partial("_CreateOrUpdate", Model)
+        </div>
+    </div>
+</div>
