@@ -32,21 +32,22 @@ namespace EzTask.WebBuilder
 
             foreach (var devFolder in moduleDevFolder)
             {
-                var moduleConfig = File.ReadAllLines(devFolder + "\\config.txt");
+                var moduleConfig = File.ReadAllLines(devFolder + "\\config.cf");
                 var moduleName = moduleConfig[0].Split(":")[1].Trim();
                 var modulePath = Path.Combine(moduleBuildPath, moduleName);
                 Directory.CreateDirectory(modulePath);
 
                 var folderCopy = moduleConfig[1].Split(":")[1].Split(",");
 
-                foreach (var copyPath in folderCopy)
+                foreach (var folder in folderCopy)
                 {
-                    var cleanCopyPath = copyPath.Trim();
-                    var sourcePath = Path.Combine(devFolder, cleanCopyPath);
+                    var copyPath = folder.Trim();
+                    var sourcePath = Path.Combine(devFolder, copyPath);
                     if (!Directory.Exists(sourcePath))
                         continue;
                     var desPath = string.Empty;
-                    switch (cleanCopyPath.ToLower())
+
+                    switch (copyPath.ToLower())
                     {
                         case "bin":
                             var files = Directory.GetFiles(sourcePath, moduleName + ".dll", SearchOption.AllDirectories);
@@ -63,10 +64,10 @@ namespace EzTask.WebBuilder
                         case "wwwroot":
                             desPath = Path.Combine(workFolder, "EzTask.Web/wwwroot");
                             DirectoryCopy(sourcePath, desPath, true);
-                            break;
-
+                            break;    
+                            
                         default:
-                            desPath = Path.Combine(modulePath, cleanCopyPath);
+                            desPath = Path.Combine(modulePath, copyPath);
                             DirectoryCopy(sourcePath, desPath, true);
                             break;
                     }
@@ -74,8 +75,6 @@ namespace EzTask.WebBuilder
                 }
             }
         }
-
-
 
         private static void DirectoryCopy(string sourceDirName, string destDirName, bool copySubDirs)
         {
@@ -113,6 +112,10 @@ namespace EzTask.WebBuilder
                     DirectoryCopy(subdir.FullName, temppath, copySubDirs);
                 }
             }
+        }
+        private static void CopyFile(string source, string des)
+        {
+
         }
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Razor;
+using Microsoft.CodeAnalysis;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +27,7 @@ namespace EzTask.Framework
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
             services.AddScoped<ImageProcessor>();
+
             services.AddDbContext<EzTaskDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("EzTask")),
                ServiceLifetime.Scoped);
@@ -41,14 +43,19 @@ namespace EzTask.Framework
                 {
                     // Register controller from modules
                     mvcBuilder.AddApplicationPart(module.Assembly);
+                    mvcBuilder.AddRazorOptions(o =>
+                    {
+                        o.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(module.Assembly.Location));
+                    });
+                    
                 }
 
                 //Register module view location
                 services.Configure<RazorViewEngineOptions>(options =>
                 {
                     options.ViewLocationExpanders.Add(new ModuleViewLocationExpander());
-                });
-            }
+                });        
+            }          
         }
 
         public static void ConfigureFramework(this IApplicationBuilder app)

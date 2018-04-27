@@ -1,0 +1,32 @@
+﻿@model AccountInfoModel
+@{
+    IEnumerable<List<string>> skills = new List<List<string>>();
+
+    if(Model.Skills != null)
+    {
+        skills = Model.Skills.Split(",").ToList().SplitList(5);
+    }
+}
+<strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+<p>
+    @foreach (var item in skills)
+    {
+        <span class="label label-danger">@item[0].Trim()</span>
+        if (item.Count > 1)
+        {
+        <span class="label label-success">@item[1].Trim()</span>
+        }
+        if (item.Count > 2)
+        {
+        <span class="label label-info">@item[2].Trim()</span>
+        }
+        if (item.Count > 3)
+        {
+        <span class="label label-warning">@item[3].Trim()</span>
+        }
+        if (item.Count > 4)
+        {
+        <span class="label label-primary">@item[4].Trim()</span>
+        }
+    }
+</p>

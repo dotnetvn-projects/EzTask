@@ -1,5 +1,4 @@
-﻿using EzTask.Business.BusinessAreas;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Business
 {
@@ -10,6 +9,7 @@ namespace EzTask.Business
             services.AddTransient<EzTaskBusiness>();
             services.AddTransient<AccountBusiness>();
             services.AddTransient<ProjectBusiness>();
+            services.AddTransient<SkillBusiness>();
         }
     }
 }

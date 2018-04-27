@@ -6,6 +6,7 @@ namespace EzTask.Entity.Data
     {
         public int AccountId { get; set; }
         public string JobTitle { get; set; }
+        public string Education { get; set; }
         public Account Account { get; set; }
         public byte[] DisplayImage { get; set; }
         public string FullName { get; set; }
@@ -18,6 +19,7 @@ namespace EzTask.Entity.Data
         public string Comment { get; set; }
         public string Introduce { get; set; }
         public byte[] Document { get; set; }
+        public bool IsPublished { get; set; }
 
         public override void Update(AccountInfo entity)
         {

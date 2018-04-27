@@ -9,6 +9,8 @@ namespace EzTask.DataAccess
        Account,
        AccountInfo,
        Project,
-       Project_Member
+       Project_Member,
+       Skill,
+       Account_Skill
     }
 }

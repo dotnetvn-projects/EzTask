@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using EzTask.Business.BusinessAreas;
+using EzTask.Business;
 using EzTask.Entity.Framework;
 using EzTask.Framework;
 using EzTask.Framework.Values;
