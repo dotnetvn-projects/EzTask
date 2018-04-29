@@ -93,6 +93,7 @@ namespace EzTask.Modules.Core.Controllers
         #region Private
         private void InvokeComponents(IServiceProvider serviceProvider)
         {
+           // HttpContext.RequestServices.InvokeComponents(out EzTask);
             serviceProvider.InvokeComponents(out EzTask);
             EzTaskMapper.Config(serviceProvider.InvokeComponents<IMapper>());
             serviceProvider.InvokeComponents(out SessionManager);

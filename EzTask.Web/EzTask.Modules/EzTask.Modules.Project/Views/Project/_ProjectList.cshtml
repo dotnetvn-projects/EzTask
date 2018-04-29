@@ -26,26 +26,26 @@
                     <div class="box-body" style="">
                         <div class="project-item">
                             <div>
-                                <i class="fa fa-book"></i><span class="space-left"><b>Project Name</b>:</span>
+                                <i class="fa fa-book"></i><b> Project Name</b>:
                                 <div class="name">
                                     <span>@item.ProjectName</span>
                                 </div>
                             </div>
 
                             <div>
-                                <i class="fa fa-audio-description"></i><span class="space-left"><b>Project Description</b>:</span>
+                                <i class="fa fa-audio-description"></i><b> Project Description</b>:
                                 <div class="description">
                                     <span>@item.Description</span>
                                 </div>
                             </div>
                             <div>
-                                <i class="fa fa-user-circle"></i><span class="space-left"><b>Owner</b>:</span>
+                                <i class="fa fa-user-circle"></i><b> Owner</b>:
                                 <div class="description">
                                     <span>@item.Owner.DisplayName is owner of project</span>
                                 </div>
                             </div>
                             <div>
-                                <i class="fa fa-calendar"></i><span class="space-left"><b>Created date</b>:</span>
+                                <i class="fa fa-calendar"></i><b> Created date</b>:
                                 <div class="description">
                                     <span>Project was created at @item.CreatedDate.ToString("MM/dd/yyyy")</span>
                                 </div>
@@ -71,10 +71,10 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer" style="">
-                        <i class="fa fa-circle text-@item.Color"></i><span class="space-left">@item.Status.ToString()</span>
-                        <a class="btn btn-flat btn-@item.BoxType btn-sm pull-right">
-                            <i class="fa fa-paper-plane-o"></i>
-                            <span class="space-left">View Detail</span>
+                        <i class="fa fa-circle text-@item.Color"></i> @item.Status.ToString()
+                        <a asp-action="Index" asp-controller="ProjectDetail" 
+                           asp-route-code="@item.ProjectCode" class="btn btn-flat btn-@item.BoxType btn-sm pull-right">
+                            <span><i class="fa fa-hand-o-right"></i> View Detail</span>
                         </a>
                     </div>
                     <!-- /.box-footer-->

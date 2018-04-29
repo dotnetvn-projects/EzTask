@@ -160,14 +160,14 @@ namespace EzTask.Business
         {
             if (id < 100 && id > 9)
             {
-                return "EzTask#0" + id;
+                return "EzT0" + id;
             }
             else if (id < 10)
             {
-                return "EzTask#00" + id;
+                return "EzT00" + id;
             }
 
-            return "EzTask#" + id;
+            return "EzT" + id;
         }
     }
 }
