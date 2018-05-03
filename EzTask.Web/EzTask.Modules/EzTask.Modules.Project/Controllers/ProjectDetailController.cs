@@ -9,7 +9,7 @@ using EzTask.Modules.Core.Infrastructures;
 
 namespace EzTask.Modules.Project.Controllers
 {
-    [TypeFilter(typeof(AuthorizeFilter))]
+    [TypeFilter(typeof(Authorize))]
     public class ProjectDetailController : EzTaskController
     {
         public ProjectDetailController(IServiceProvider serviceProvider) :

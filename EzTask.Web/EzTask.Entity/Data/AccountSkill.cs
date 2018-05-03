@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EzTask.Entity.Data
+﻿namespace EzTask.Entity.Data
 {
-    public class AccountSkill: BaseEntity<AccountSkill>
+    public class AccountSkill: Entity<AccountSkill>
     {
         public int AccountId { get; set; }
         public int SkillId { get; set; }

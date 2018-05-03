@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Message;
 using EzTask.Framework.Values;
+using EzTask.Framework.Web.Filters;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Core.Infrastructures;
 using EzTask.Modules.Core.Models.Account;
@@ -27,9 +28,9 @@ namespace EzTask.Modules.Authentication.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("login.html")]
+        [PageTitle("Login")]
         public IActionResult Login(string redirect)
         {
-            PageTitle = "Login";
             return View(new LoginModel { RedirectUrl = redirect });
         }
 
@@ -92,9 +93,9 @@ namespace EzTask.Modules.Authentication.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("register.html")]
+        [PageTitle("Register new membership")]
         public IActionResult Register()
         {
-            PageTitle = "Register new membership";
             return View(new RegisterModel());
         }
 
@@ -130,10 +131,10 @@ namespace EzTask.Modules.Authentication.Controllers
 
                             ErrorMessage = AccountMessage.CreateFailed;
                         }
-                        //else
-                        // {
-                        // ErrorMessage = AccountMessage.ExistAccount;
-                        //}
+                        else
+                        {
+                            ErrorMessage = AccountMessage.ExistAccount;
+                        }
                     }
                 }
             }

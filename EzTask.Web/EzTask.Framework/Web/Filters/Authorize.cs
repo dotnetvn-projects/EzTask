@@ -12,12 +12,12 @@ using System.Threading.Tasks;
 namespace EzTask.Framework.Web.Filters
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class AuthorizeFilter:Attribute, IAsyncAuthorizationFilter
+    public class Authorize:Attribute, IAsyncAuthorizationFilter
     {
         SessionManager _sessionManager;
         public string ControllerName { get; set; }
 
-        public AuthorizeFilter()
+        public Authorize()
         {
             ControllerName = string.Empty;
             _sessionManager = new SessionManager();

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.UserProfile.Controllers
 {
-    [TypeFilter(typeof(AuthorizeFilter))]
+    [TypeFilter(typeof(Authorize))]
     public class UserProfileController : EzTaskController
     {
         public UserProfileController(IServiceProvider serviceProvider) :
@@ -24,9 +24,10 @@ namespace EzTask.Modules.UserProfile.Controllers
         /// <param name="accountName"></param>
         /// <returns></returns>
         [Route("pubic-profile.html")]
+        [PageTitle("Profile - ")]
         public async Task<IActionResult> PublicProfile(string account)
         {
-            PageTitle = "Profile - "+ account;
+            PageTitle.CombineWith(this, account);
             var profileData = await GetAccountInfo();
             return View(profileData);
         }
@@ -36,9 +37,9 @@ namespace EzTask.Modules.UserProfile.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("profile.html")]
+        [PageTitle("Profile")]
         public async Task<IActionResult> Profile()
         {
-            PageTitle = "Profile";
             var profileData = await GetAccountInfo();
             return View(profileData);
         }
@@ -85,10 +86,7 @@ namespace EzTask.Modules.UserProfile.Controllers
         /// <returns></returns>
         private async Task<AccountInfoModel> GetAccountInfo()
         {
-            var data = await EzTask.Account.GetAccountInfo(AccountId);
-            if (data == null)
-                return new AccountInfoModel();
-
+            var data = await EzTask.Account.GetAccountInfo(AccountId);            
             var model = data.MapToModel();
             if(model != null)
             {

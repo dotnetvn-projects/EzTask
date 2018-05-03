@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 using IO = EzTask.Framework.IO.File;
 namespace EzTask.Modules.Core.Controllers
 {
-    [TypeFilter(typeof(AuthorizeFilter))]
+    [TypeFilter(typeof(Authorize))]
     public class CommonController : EzTaskController
     {
         private readonly IHostingEnvironment hostingEnvironment;
@@ -32,9 +32,9 @@ namespace EzTask.Modules.Core.Controllers
         }
 
         [Route("not-found.html")]
+        [PageTitle("Page not found")]
         public IActionResult PageNotFound()
         {
-            PageTitle = "Page not found";
             return View();
         }
 

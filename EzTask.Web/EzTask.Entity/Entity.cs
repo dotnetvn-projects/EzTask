@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EzTask.Entity
 {
-    public class BaseEntity<T>
+    public class Entity<T>
     {
         /// <summary>
         /// Primary key

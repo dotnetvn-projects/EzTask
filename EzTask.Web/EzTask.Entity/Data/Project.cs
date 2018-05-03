@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace EzTask.Entity.Data
 {
-    public class Project:BaseEntity<Project>
+    public class Project : Entity<Project>
     {
         public string ProjectCode { get; set; }
         public string ProjectName { get; set; }
