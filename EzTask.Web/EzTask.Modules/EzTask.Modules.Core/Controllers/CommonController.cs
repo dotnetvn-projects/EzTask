@@ -25,8 +25,8 @@ namespace EzTask.Modules.Core.Controllers
             var dataImage = await EzTask.Account.LoadAvatar(AccountId);
             if (dataImage == null || dataImage.Length == 0)
             {
-                string no_image = Path.Combine(hostingEnvironment.WebRootPath, "images/no-avatar.jpg");
-                dataImage = await IO.ReadFile(no_image);
+                string noAvatar = Path.Combine(hostingEnvironment.WebRootPath, "images/no-avatar.jpg");
+                dataImage = await IO.ReadFile(noAvatar);
             }
             return File(dataImage, "image/jpeg");
         }

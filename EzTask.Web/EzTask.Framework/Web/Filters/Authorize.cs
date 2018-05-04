@@ -15,12 +15,14 @@ namespace EzTask.Framework.Web.Filters
     public class Authorize:Attribute, IAsyncAuthorizationFilter
     {
         SessionManager _sessionManager;
+        CookiesManager _cookiesManager;
         public string ControllerName { get; set; }
 
-        public Authorize()
+        public Authorize(SessionManager session, CookiesManager cookies)
         {
             ControllerName = string.Empty;
-            _sessionManager = new SessionManager();
+            _sessionManager = session;
+            _cookiesManager = cookies;
         }
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
@@ -28,6 +30,14 @@ namespace EzTask.Framework.Web.Filters
             await Task.Factory.StartNew(() =>
             {
                 var currentUser = _sessionManager.GetObject<CurrentAccount>(Key.Account);
+                if(currentUser == null)
+                {
+                    currentUser = _cookiesManager.GetObject<CurrentAccount>(Key.RememberMe);
+                    if(currentUser !=null)
+                    {
+                        _sessionManager.SetObject(Key.Account, currentUser);
+                    }
+                }
                 if (currentUser == null 
                     || string.IsNullOrEmpty(currentUser.AccountId))
                 {

@@ -20,7 +20,7 @@ namespace EzTask.Framework
         public static void RegisterFramework(this IServiceCollection services,
             IConfiguration configuration, IHostingEnvironment env)
         {
-            WebBuilder.Run(env);
+            env.RunWebBuilder();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();

@@ -6,6 +6,7 @@ namespace EzTask.Framework.Values
 {
     public enum Key
     {
-        Account
+        Account,
+        RememberMe
     }
 }

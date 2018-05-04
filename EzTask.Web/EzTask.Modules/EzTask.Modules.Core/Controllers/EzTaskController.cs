@@ -90,6 +90,11 @@ namespace EzTask.Modules.Core.Controllers
             CookiesManager.Remove(key);
         }
 
+        protected void RememberMe()
+        {
+            CookiesManager.SetObject(Key.RememberMe, CurrentAccount, 3000);
+        }
+
         #region Private
         private void InvokeComponents(IServiceProvider serviceProvider)
         {

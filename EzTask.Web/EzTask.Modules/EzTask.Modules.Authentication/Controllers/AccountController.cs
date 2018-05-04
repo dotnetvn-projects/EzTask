@@ -56,7 +56,7 @@ namespace EzTask.Modules.Authentication.Controllers
                     {
                         CurrentAccount = CurrentAccount.Create(account.Id.ToString(), account.AccountName,
                             account.AccountInfo.DisplayName, account.AccountInfo.JobTitle, account.CreatedDate);
-
+                        RememberMe();
                         if (string.IsNullOrEmpty(model.RedirectUrl))
                         {
                             return RedirectToAction("Index", "Home");

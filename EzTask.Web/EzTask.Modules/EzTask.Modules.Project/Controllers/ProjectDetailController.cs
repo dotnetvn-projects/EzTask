@@ -20,7 +20,7 @@ namespace EzTask.Modules.Project.Controllers
         [Route("project/{code}.html")]
         public async Task<IActionResult> Index(string code)
         {
-            var data = await EzTask.Project.GetProject(code);
+            var data = await EzTask.Project.GetProjectDetail(code);
             var model = data.MapToModel();
             return View(model);
         }

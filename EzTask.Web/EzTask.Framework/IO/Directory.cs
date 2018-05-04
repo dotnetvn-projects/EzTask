@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using SysIO = System.IO;
 
-namespace EzTask.Framework.Directory
+namespace EzTask.Framework.IO
 {
     public class Directory
     {
