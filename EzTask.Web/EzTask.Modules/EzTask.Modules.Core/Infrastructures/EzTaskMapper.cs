@@ -34,6 +34,9 @@ namespace EzTask.Modules.Core.Infrastructures
 
         public static AccountInfoModel MapToModel(this AccountInfo entity)
         {
+            if (entity == null)
+                return new AccountInfoModel();
+
             return _mapper.Map<AccountInfoModel>(entity);
         }
 

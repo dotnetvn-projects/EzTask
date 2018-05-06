@@ -28,6 +28,8 @@ namespace EzTask.DataAccess
 
         public DbSet<AccountSkill> AccountSkills { get; set; }
 
+        public DbSet<TaskItem> Tasks { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             _entityMapper = new EntityMapper(modelBuilder);

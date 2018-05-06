@@ -11,8 +11,8 @@ namespace EzTask.Business
 {
     public class SkillBusiness : BaseBusiness
     {
-        public SkillBusiness(EzTaskDbContext ezTaskDbContext) :
-            base(ezTaskDbContext)
+        public SkillBusiness(EzTaskDbContext dbContext) :
+            base(dbContext)
         {
         }
 

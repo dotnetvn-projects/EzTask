@@ -7,7 +7,7 @@ using System.Globalization;
 
 namespace EzTask.Framework.Web.HtmlHelpers
 {
-    public static class AccountHtmlHelper
+    public static class Account
     {
         #region Account
         public static IHtmlContent NickName(this IHtmlHelper htmlHelper)

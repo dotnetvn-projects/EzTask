@@ -1,9 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Entity.Data
 {
-    public class Account:BaseEntity<Account>
+    public class Account : Entity<Account>
     {
         public int? ManageAccountId { get; set; }
         public string AccountName { get; set; }

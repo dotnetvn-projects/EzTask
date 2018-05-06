@@ -11,9 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EzTask.Framework
 {
@@ -22,7 +20,7 @@ namespace EzTask.Framework
         public static void RegisterFramework(this IServiceCollection services,
             IConfiguration configuration, IHostingEnvironment env)
         {
-            WebBuilder.Run(env);
+            env.RunWebBuilder();
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();

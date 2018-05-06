@@ -12,8 +12,8 @@ namespace EzTask.Business
 {
     public class ProjectBusiness : BaseBusiness
     {
-        public ProjectBusiness(EzTaskDbContext ezTaskDbContext) :
-            base(ezTaskDbContext)
+        public ProjectBusiness(EzTaskDbContext dbContext) :
+            base(dbContext)
         {
         }
 
@@ -46,7 +46,7 @@ namespace EzTask.Business
             {
                 if (string.IsNullOrEmpty(project.ProjectCode))
                 {
-                    project.ProjectCode = GenerateProjectCode(project.Id);
+                    project.ProjectCode = CreateCode("EzT", project.Id);
                     var updatedRecord = await DbContext.SaveChangesAsync();
                 }
 
@@ -149,25 +149,6 @@ namespace EzTask.Business
             return await DbContext.Projects.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
-        }
-
-        /// <summary>
-        /// Generate Project code
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        private string GenerateProjectCode(int id)
-        {
-            if (id < 100 && id > 9)
-            {
-                return "EzT0" + id;
-            }
-            else if (id < 10)
-            {
-                return "EzT00" + id;
-            }
-
-            return "EzT" + id;
         }
     }
 }

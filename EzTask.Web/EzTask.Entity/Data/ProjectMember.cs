@@ -2,7 +2,7 @@
 
 namespace EzTask.Entity.Data
 {
-    public class ProjectMember:BaseEntity<ProjectMember>
+    public class ProjectMember : Entity<ProjectMember>
     {
         public int MemberId { get; set; }
         public int ProjectId { get; set; }

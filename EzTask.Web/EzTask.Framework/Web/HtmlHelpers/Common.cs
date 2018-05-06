@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace EzTask.Framework.Web.HtmlHelpers
 {
-    public static class CommonHtmlHelper
+    public static class Common
     {
         public static IHtmlContent PageTitle(this IHtmlHelper htmlHelper)
         {          

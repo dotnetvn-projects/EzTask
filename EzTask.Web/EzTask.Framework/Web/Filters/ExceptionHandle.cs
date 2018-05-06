@@ -6,7 +6,7 @@ using System.Text;
 
 namespace EzTask.Framework.Web.Filters
 {
-    public class ExceptionFilter : ExceptionFilterAttribute
+    public class ExceptionHandle : ExceptionFilterAttribute
     {
         public ILogger Logger { get; set; }
         public override void OnException(ExceptionContext filterContext)

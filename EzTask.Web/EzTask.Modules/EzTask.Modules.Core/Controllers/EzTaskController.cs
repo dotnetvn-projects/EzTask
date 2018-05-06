@@ -32,7 +32,7 @@ namespace EzTask.Modules.Core.Controllers
         /// <summary>
         /// Page title
         /// </summary>
-        protected string PageTitle
+        protected string PageTitle1
         {
             get { return ViewData["Title"]?.ToString(); }
             set { ViewData["Title"] = "EzTask - " + value; }
@@ -90,6 +90,11 @@ namespace EzTask.Modules.Core.Controllers
             CookiesManager.Remove(key);
         }
 
+        protected void RememberMe()
+        {
+            CookiesManager.SetObject(Key.RememberMe, CurrentAccount, 3000);
+        }
+
         #region Private
         private void InvokeComponents(IServiceProvider serviceProvider)
         {
@@ -97,7 +102,6 @@ namespace EzTask.Modules.Core.Controllers
             EzTaskMapper.Config(serviceProvider.InvokeComponents<IMapper>());
             serviceProvider.InvokeComponents(out SessionManager);
             serviceProvider.InvokeComponents(out CookiesManager);
-            PageTitle = string.Empty;
         }
         #endregion
     }

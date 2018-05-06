@@ -10,17 +10,17 @@ using EzTask.Framework.Web.Filters;
 
 namespace EzTask.Modules.Dashboard.Controllers
 {
-    [TypeFilter(typeof(AuthorizeFilter))]
+    [TypeFilter(typeof(Authorize))]
     public class HomeController : EzTaskController
     {
         public HomeController(IServiceProvider serviceProvider) : 
             base(serviceProvider)
-        {
+        {                
         }
 
+        [PageTitle("Home")]
         public IActionResult Index()
         {
-            PageTitle = "Home";
             return View();
         }
     }

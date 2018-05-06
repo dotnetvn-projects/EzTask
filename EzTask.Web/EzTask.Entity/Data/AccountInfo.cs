@@ -2,7 +2,7 @@
 
 namespace EzTask.Entity.Data
 {
-    public class AccountInfo:BaseEntity<AccountInfo>
+    public class AccountInfo : Entity<AccountInfo>
     {
         public int AccountId { get; set; }
         public string JobTitle { get; set; }

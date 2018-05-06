@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.Project.Controllers
 {
-    [TypeFilter(typeof(AuthorizeFilter))]
+    [TypeFilter(typeof(Authorize))]
     public class ProjectController : EzTaskController
     {
         public ProjectController(IServiceProvider serviceProvider) :
@@ -24,9 +24,9 @@ namespace EzTask.Modules.Project.Controllers
         }
 
         [Route("project.html")]
+        [PageTitle("Projects")]
         public async Task<IActionResult> Index()
         {
-            PageTitle = "Projects";
             var models = await GetProjectList();
             return View(models);
         }
@@ -38,9 +38,9 @@ namespace EzTask.Modules.Project.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("project/create-project.html")]
+        [PageTitle("Create new project")]
         public IActionResult CreateNew()
         {
-            PageTitle = "Create new project";
             return View(new ProjectModel
             {
                 ActionType = ActionType.CreateNew,
@@ -54,9 +54,9 @@ namespace EzTask.Modules.Project.Controllers
         /// <param name="projectCode"></param>
         /// <returns></returns>
         [Route("project/create-success.html")]
+        [PageTitle("Creating project is successful")]
         public async Task<IActionResult> CreateSuccess(string code)
         {
-            PageTitle = "Creating project is successful";
             var project = await EzTask.Project.GetProjectDetail(code);
 
             return View(project.MapToModel());
@@ -99,7 +99,7 @@ namespace EzTask.Modules.Project.Controllers
                         else
                         {
                             SuccessMessage = ProjectMessage.CreateProjectSuccess;
-                            return RedirectToAction("CreateSuccess",
+                            return base.RedirectToAction("CreateSuccess",
                                 new { code = project.ProjectCode });
                         }
                     }
@@ -123,9 +123,10 @@ namespace EzTask.Modules.Project.Controllers
         /// <param name="projectCode"></param>
         /// <returns></returns>
         [Route("project/update-project.html")]
+        [PageTitle("Update project: ")]
         public async Task<IActionResult> Update(string code)
         {
-            PageTitle = $"Update project: {code}";
+            PageTitle.CombineWith(this, code);
 
             var project = await EzTask.Project.GetProject(code);
             if (project == null)
@@ -143,9 +144,9 @@ namespace EzTask.Modules.Project.Controllers
         /// <param name="code"></param>
         /// <returns></returns>
         [Route("project/update-success.html")]
+        [PageTitle("Updating project is successful")]
         public async Task<IActionResult> UpdateSuccess(string code)
         {
-            PageTitle = "Updating project is successful";
             var project = await EzTask.Project.GetProjectDetail(code);
 
             return View(project.MapToModel());
@@ -191,7 +192,7 @@ namespace EzTask.Modules.Project.Controllers
                             else
                             {
                                 SuccessMessage = ProjectMessage.UpdateProjectSuccess;
-                                return RedirectToAction("UpdateSuccess",
+                                return base.RedirectToAction("UpdateSuccess",
                                     new { code = project.ProjectCode });
                             }
                         }
@@ -218,7 +219,7 @@ namespace EzTask.Modules.Project.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("project/remove.html")]
-        [TokenFilter]
+        [Token]
         public async Task<IActionResult> RemoveProject(string code)
         {
             var removeAction = await EzTask.Project.Delete(code);
