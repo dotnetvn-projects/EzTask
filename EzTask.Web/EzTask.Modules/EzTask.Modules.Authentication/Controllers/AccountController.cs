@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Message;
 using EzTask.Framework.Values;
-using EzTask.Framework.Web.Filters;
+using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Core.Infrastructures;
 using EzTask.Modules.Core.Models.Account;

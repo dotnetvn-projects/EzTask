@@ -1,6 +1,7 @@
 ﻿using EzTask.DataAccess;
 using EzTask.Framework.ImageHandler;
 using EzTask.Framework.Infrastructures;
+using EzTask.Framework.Web.Filters;
 using EzTask.Framework.Web.HttpContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,7 +31,9 @@ namespace EzTask.Framework
                 options.UseSqlServer(configuration.GetConnectionString("EzTask")),
                ServiceLifetime.Scoped);
 
-            var mvcBuilder = services.AddMvc();
+            var mvcBuilder = services.AddMvc(options => {
+               // options.Filters.Add(typeof(ExceptionFilter));
+            });
             mvcBuilder.AddSessionStateTempDataProvider();
             ModuleFinder moduleFinder = new ModuleFinder(env);
             var modules = moduleFinder.Find();

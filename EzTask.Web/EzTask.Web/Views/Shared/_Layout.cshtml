@@ -260,11 +260,11 @@ desired effect
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active treeview">
-                        <a href="#">
+                        <a asp-action="Index" asp-controller="Home">
                             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
                         </a>
                     </li>
-                    <li><a href="#"><i class="fa fa-tasks"></i> <span>Task</span></a></li>
+                    <li><a asp-action="Index" asp-controller="Task"><i class="fa fa-tasks"></i> <span>Task</span></a></li>
                     <li><a asp-action="Index" asp-controller="Project"><i class="fa fa-reddit"></i> <span>Project</span></a></li>
                 </ul>
                 <!-- /.sidebar-menu -->

@@ -1,15 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using EzTask.Framework.Web.Filters;
+using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Modules.Core.Infrastructures;
 
 namespace EzTask.Modules.Project.Controllers
 {
-    [TypeFilter(typeof(Authorize))]
+    [TypeFilter(typeof(AuthenAttribute))]
     public class ProjectDetailController : EzTaskController
     {
         public ProjectDetailController(IServiceProvider serviceProvider) :

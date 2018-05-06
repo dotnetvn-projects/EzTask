@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Threading.Tasks;
-using EzTask.Framework.Web.Filters;
+using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Core.Infrastructures;
 using EzTask.Modules.Core.Models.Account;
@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.UserProfile.Controllers
 {
-    [TypeFilter(typeof(Authorize))]
+    [TypeFilter(typeof(AuthenAttribute))]
     public class UserProfileController : EzTaskController
     {
         public UserProfileController(IServiceProvider serviceProvider) :
@@ -27,7 +27,7 @@ namespace EzTask.Modules.UserProfile.Controllers
         [PageTitle("Profile - ")]
         public async Task<IActionResult> PublicProfile(string account)
         {
-            PageTitle.CombineWith(this, account);
+            PageTitleAttribute.CombineWith(this, account);
             var profileData = await GetAccountInfo();
             return View(profileData);
         }

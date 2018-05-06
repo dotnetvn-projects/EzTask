@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Common;
 using EzTask.Framework.Message;
-using EzTask.Framework.Web.Filters;
+using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Core.Infrastructures;
 using EzTask.Modules.Core.Models.Account;
@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.Project.Controllers
 {
-    [TypeFilter(typeof(Authorize))]
+    [TypeFilter(typeof(AuthenAttribute))]
     public class ProjectController : EzTaskController
     {
         public ProjectController(IServiceProvider serviceProvider) :
@@ -126,7 +126,7 @@ namespace EzTask.Modules.Project.Controllers
         [PageTitle("Update project: ")]
         public async Task<IActionResult> Update(string code)
         {
-            PageTitle.CombineWith(this, code);
+            PageTitleAttribute.CombineWith(this, code);
 
             var project = await EzTask.Project.GetProject(code);
             if (project == null)
@@ -219,7 +219,7 @@ namespace EzTask.Modules.Project.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("project/remove.html")]
-        [Token]
+        [TokenAttribute]
         public async Task<IActionResult> RemoveProject(string code)
         {
             var removeAction = await EzTask.Project.Delete(code);

@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using EzTask.Framework.Web.Filters;
+using EzTask.Framework.Web.Attributes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using IO = EzTask.Framework.IO.File;
 namespace EzTask.Modules.Core.Controllers
 {
-    [TypeFilter(typeof(Authorize))]
+    [TypeFilter(typeof(AuthenAttribute))]
     public class CommonController : EzTaskController
     {
         private readonly IHostingEnvironment hostingEnvironment;

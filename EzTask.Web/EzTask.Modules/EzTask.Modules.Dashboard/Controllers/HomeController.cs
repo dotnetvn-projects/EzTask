@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Modules.Dashboard;
 using EzTask.Modules.Core.Controllers;
-using EzTask.Framework.Web.Filters;
+using EzTask.Framework.Web.Attributes;
 
 namespace EzTask.Modules.Dashboard.Controllers
 {
-    [TypeFilter(typeof(Authorize))]
+    [TypeFilter(typeof(AuthenAttribute))]
     public class HomeController : EzTaskController
     {
         public HomeController(IServiceProvider serviceProvider) : 
@@ -19,6 +19,7 @@ namespace EzTask.Modules.Dashboard.Controllers
         }
 
         [PageTitle("Home")]
+        [Route("dashboard.html")]
         public IActionResult Index()
         {
             return View();

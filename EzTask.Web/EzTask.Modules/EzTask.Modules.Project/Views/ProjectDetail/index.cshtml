@@ -23,19 +23,19 @@
         </div>
         <div class="box-body">
             <div class="row">
-                <div class="col-xs-6">
-                    <p><i class="fa fa-bandcamp"> Project Code: @Model.ProjectCode</i></p>
-                   <p> <i class="fa fa-bandcamp"> Project Name: @Model.ProjectName</i></p>
-                   <p> <i class="fa fa-bandcamp"> Manager: @Model.Owner.DisplayName</i></p>
+                <div class="col-xs-4">
+                   <p><i class="fa fa-qrcode"> Project Code: @Model.ProjectCode</i></p>
+                   <p> <i class="fa fa-book"> Project Name: @Model.ProjectName</i></p>
+                   <p> <i class="fa fa-user-circle"> Manager: @Model.Owner.DisplayName</i></p>
                 </div>
-                <div class="col-xs-6">
+                <div class="col-xs-8">
                     TWO
                 </div>
             </div>
         </div>
         <!-- /.box-body -->
         <div class="box-footer">
-            Footer a
+           <i class="fa fa-circle"></i><span class="space-left">Status: Project is @Model.Status.ToString().ToLower()</span>
         </div>
         <!-- /.box-footer-->
     </div>

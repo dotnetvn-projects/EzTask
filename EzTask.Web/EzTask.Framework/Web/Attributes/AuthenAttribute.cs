@@ -9,16 +9,16 @@ using Microsoft.AspNetCore.Http.Extensions;
 using System;
 using System.Threading.Tasks;
 
-namespace EzTask.Framework.Web.Filters
+namespace EzTask.Framework.Web.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class Authorize:Attribute, IAsyncAuthorizationFilter
+    public class AuthenAttribute :  Attribute, IAsyncAuthorizationFilter
     {
         SessionManager _sessionManager;
         CookiesManager _cookiesManager;
         public string ControllerName { get; set; }
 
-        public Authorize(SessionManager session, CookiesManager cookies)
+        public AuthenAttribute(SessionManager session, CookiesManager cookies)
         {
             ControllerName = string.Empty;
             _sessionManager = session;
@@ -30,21 +30,21 @@ namespace EzTask.Framework.Web.Filters
             await Task.Factory.StartNew(() =>
             {
                 var currentUser = _sessionManager.GetObject<CurrentAccount>(Key.Account);
-                if(currentUser == null)
+                if (currentUser == null)
                 {
                     currentUser = _cookiesManager.GetObject<CurrentAccount>(Key.RememberMe);
-                    if(currentUser !=null)
+                    if (currentUser != null)
                     {
                         _sessionManager.SetObject(Key.Account, currentUser);
                     }
                 }
-                if (currentUser == null 
+                if (currentUser == null
                     || string.IsNullOrEmpty(currentUser.AccountId))
                 {
                     var returnUrl = context.HttpContext.Request.GetEncodedUrl();
-                    context.Result = new RedirectToActionResult("Login","Account", new { redirect = returnUrl });
+                    context.Result = new RedirectToActionResult("Login", "Account", new { redirect = returnUrl });
                 }
-            });                        
+            });
         }
     }
 }

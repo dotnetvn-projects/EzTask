@@ -3,7 +3,9 @@
     var nothingToShow = (Model == null || !Model.Any());
     var projectCount = nothingToShow ? 0 : Model.Sum(c => c.Count());
     var boxStyle = nothingToShow ? "box" : "";
-
+}
+@section styles{
+    <link rel="stylesheet" href="~/css/project.css">
 }
 @section header{
     <h1>

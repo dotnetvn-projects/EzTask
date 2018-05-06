@@ -1,22 +1,21 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
-using System.Collections.Generic;
-using System.Text;
+
 using System.Threading.Tasks;
 
-namespace EzTask.Framework.Web.Filters
+namespace EzTask.Framework.Web.Attributes
 {
     [AttributeUsage(AttributeTargets.Method)]
-    public class PageTitle : Attribute, IAsyncActionFilter
+    public class PageTitleAttribute : ActionFilterAttribute
     {
         private string _title;
-        public PageTitle(string pageTitle)
+        public PageTitleAttribute(string pageTitle)
         {
             _title = pageTitle;
         }
 
-        public async Task OnActionExecutionAsync(ActionExecutingContext context,
+        public override async Task OnActionExecutionAsync(ActionExecutingContext context,
             ActionExecutionDelegate next)
         {
             var controller = context.Controller as Controller;
