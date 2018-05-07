@@ -12,6 +12,7 @@ namespace EzTask.DataAccess
        Project_Member,
        Skill,
        Account_Skill,
-       TaskItem
+       TaskItem,
+       Phrase
     }
 }

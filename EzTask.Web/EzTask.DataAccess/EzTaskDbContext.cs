@@ -30,6 +30,8 @@ namespace EzTask.DataAccess
 
         public DbSet<TaskItem> Tasks { get; set; }
 
+        public DbSet<Phrase> Phrases { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             _entityMapper = new EntityMapper(modelBuilder);

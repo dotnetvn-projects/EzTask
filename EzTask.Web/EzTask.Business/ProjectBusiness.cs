@@ -24,36 +24,59 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<Project> Save(Project project)
         {
-            if (project.Id < 1)
+            using (var transaction = DbContext.Database.BeginTransaction())
             {
-                project.CreatedDate = DateTime.Now;
-            }
-            project.UpdatedDate = DateTime.Now;
-
-            if (project.Id < 1)
-            {
-                DbContext.Projects.Add(project);
-            }
-            else
-            {
-                DbContext.Attach(project);
-                DbContext.Entry(project).State = EntityState.Modified;
-            }
-
-            var records = await DbContext.SaveChangesAsync();
-
-            if (records > 0)
-            {
-                if (string.IsNullOrEmpty(project.ProjectCode))
+                try
                 {
-                    project.ProjectCode = CreateCode("EzT", project.Id);
-                    var updatedRecord = await DbContext.SaveChangesAsync();
+                    if (project.Id < 1)
+                    {
+                        project.CreatedDate = DateTime.Now;
+                    }
+
+                    project.UpdatedDate = DateTime.Now;
+
+                    if (project.Id < 1)
+                    {
+                        DbContext.Projects.Add(project);
+                    }
+                    else
+                    {
+                        DbContext.Attach(project);
+                        DbContext.Entry(project).State = EntityState.Modified;
+                    }
+
+                    var iResult = await DbContext.SaveChangesAsync();
+
+                    if (iResult > 0)
+                    {
+                        if (string.IsNullOrEmpty(project.ProjectCode))
+                        {
+                            project.ProjectCode = CreateCode("EzT", project.Id);
+                            iResult = await DbContext.SaveChangesAsync();
+                            if (iResult > 0)
+                            {
+                                //create feature in Phrase table as default
+                                var feature = new Phrase
+                                {
+                                    PhraseName = "Features",
+                                    ProjectId = project.Id,
+                                    Status = (int)PhraseStatus.Open
+                                };
+                                DbContext.Phrases.Add(feature);
+                                await DbContext.SaveChangesAsync();
+                            }
+                        }                       
+                    }
+                    transaction.Commit();
+                    return project;
                 }
-
-                return project;
+                catch
+                {
+                    transaction.Rollback();
+                    return null;
+                }
+                
             }
-
-            return null;
         }
 
         /// <summary>
@@ -63,28 +86,33 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ActionStatus> Delete(string projectCode)
         {
-            using (var dbContextTransaction = DbContext.Database.BeginTransaction())
+            using (var transaction = DbContext.Database.BeginTransaction())
             {
                 try
                 {
                     var project = await GetProject(projectCode);
                     if (project != null)
                     {
+                        //Remove member
                         var memberList = await DbContext.ProjectMembers.Where(c => c.ProjectId == project.Id).ToListAsync();
-
                         DbContext.ProjectMembers.RemoveRange(memberList);
 
+                        //remove phrase
+                        var phrases = await DbContext.Phrases.Where(c => c.ProjectId == project.Id).ToListAsync();
+                        DbContext.Phrases.RemoveRange(phrases);
+
+                        //remove project
                         DbContext.Projects.Remove(project);
 
                         await DbContext.SaveChangesAsync();
                     }
 
-                    dbContextTransaction.Commit();
+                    transaction.Commit();
                     return ActionStatus.Ok;
                 }
                 catch (Exception)
                 {
-                    dbContextTransaction.Rollback();
+                    transaction.Rollback();
                     return ActionStatus.Failed;
                 }
             }
