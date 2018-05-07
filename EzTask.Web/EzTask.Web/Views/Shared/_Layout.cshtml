@@ -52,7 +52,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="hold-transition skin-purple  sidebar-mini">
+<body class="hold-transition skin-green-light  sidebar-mini">
     <div class="wrapper">
 
         <!-- Main Header -->
@@ -384,16 +384,22 @@ desired effect
     <!-- bootstrap datepicker -->
     <script src="~/themes/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 
+    <!-- Optionally, you can add Slimscroll and FastClick plugins.
+      Both of these plugins are recommended to enhance the
+      user experience. -->
+    <!-- Slimscroll -->
+    <script src="~/themes/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+
     <script src="~/themes/bower_components/fastclick/lib/fastclick.js"></script>
 
     <script src="~/js/site.js"></script>
     <!-- AdminLTE App -->
     <script src="~/themes/dist/js/adminlte.min.js"></script>
 
-    <!-- Optionally, you can add Slimscroll and FastClick plugins.
-         Both of these plugins are recommended to enhance the
-         user experience. -->
-
     @RenderSection("Scripts", required: false)
+
+    <script src="~/themes/dist/js/demo.js"></script>
+
+
 </body>
 </html>

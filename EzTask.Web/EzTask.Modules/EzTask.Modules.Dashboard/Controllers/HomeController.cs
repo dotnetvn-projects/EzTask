@@ -18,8 +18,7 @@ namespace EzTask.Modules.Dashboard.Controllers
         {                
         }
 
-        [PageTitle("Home")]
-        [Route("dashboard.html")]
+        [PageTitle("Home")]      
         public IActionResult Index()
         {
             return View();
