@@ -16,6 +16,9 @@ function ModalCloseTrigger(modalName) {
 }
 
 $(function () { 
+    //select2
+    $('.select2').select2();
+
     //Date picker
      $('.datepicker').datepicker({
          autoclose: true,

@@ -32,7 +32,7 @@ namespace EzTask.Framework.Web.Attributes
                 var currentUser = _sessionManager.GetObject<CurrentAccount>(Key.Account);
                 if (currentUser == null)
                 {
-                    currentUser = _cookiesManager.GetObject<CurrentAccount>(Key.RememberMe);
+                    currentUser = _cookiesManager.GetObject<CurrentAccount>(Key.EzTaskAuthen);
                     if (currentUser != null)
                     {
                         _sessionManager.SetObject(Key.Account, currentUser);

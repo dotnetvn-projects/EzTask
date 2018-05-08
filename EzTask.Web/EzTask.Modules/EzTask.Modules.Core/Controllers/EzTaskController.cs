@@ -30,15 +30,6 @@ namespace EzTask.Modules.Core.Controllers
         }
 
         /// <summary>
-        /// Page title
-        /// </summary>
-        protected string PageTitle1
-        {
-            get { return ViewData["Title"]?.ToString(); }
-            set { ViewData["Title"] = "EzTask - " + value; }
-        }
-
-        /// <summary>
         /// Error Message
         /// </summary>
         protected string ErrorMessage
@@ -92,7 +83,7 @@ namespace EzTask.Modules.Core.Controllers
 
         protected void RememberMe()
         {
-            CookiesManager.SetObject(Key.RememberMe, CurrentAccount, 3000);
+            CookiesManager.SetObject(Key.EzTaskAuthen, CurrentAccount, 3000);
         }
 
         #region Private
