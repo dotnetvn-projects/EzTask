@@ -1,4 +1,4 @@
-﻿@model TaskViewModel
+﻿@model TaskListModel
 @section styles{
     <link rel="stylesheet" href="~/themes/plugins/iCheck/flat/green.css">
     <link rel="stylesheet" href="~/css/task.css">
@@ -31,35 +31,8 @@
             </div>
         </div>
 
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title">Phrases</h3>
+        @await Component.InvokeAsync("Phrase", new { projectId =int.Parse(Model.ProjectItems.FirstOrDefault(c=>c.Selected).Value)})
 
-                <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="box-body no-padding">
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> Features</a></li>
-                    <li>
-                        <a href="#">
-                            <i class="fa fa-inbox"></i> Phrase 1
-                            <span class="label label-primary pull-right">12</span>
-                        </a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-envelope-o"></i> Phrase 2</a></li>
-                    <li><a href="#"><i class="fa fa-file-text-o"></i> Phrase 3</a></li>
-                    <li>
-                        <a href="#"><i class="fa fa-filter"></i> Phrase 4 <span class="label label-warning pull-right">65</span></a>
-                    </li>
-                    <li><a href="#"><i class="fa fa-trash-o"></i> Phrase 5</a></li>
-                </ul>
-            </div>
-            <!-- /.box-body -->
-        </div>
         <div class="box box-solid">
             <div class="box-header with-border">
                 <h3 class="box-title">Phrase Labels</h3>
@@ -104,7 +77,7 @@
                 <h3 class="box-title">Task List</h3>
                 <div class="box-tools pull-right">
                     <div class="has-feedback">
-                        <input type="text" class="form-control input-sm" placeholder="Search Mail">
+                        <input type="text" class="form-control input-sm" placeholder="Search task">
                         <span class="glyphicon glyphicon-search form-control-feedback"></span>
                     </div>
                 </div>
@@ -118,12 +91,12 @@
                         <i class="fa fa-square-o"></i>
                     </button>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
+                        <button type="button" title="Delete" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                        <button type="button" title="Add new task" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+                        <button type="button" title="" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
                     </div>
                     <!-- /.btn-group -->
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                    <button type="button" title="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                     <div class="pull-right">
                         1-50/200
                         <div class="btn-group">
@@ -301,12 +274,12 @@
                         <i class="fa fa-square-o"></i>
                     </button>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                        <button type="button" class="btn btn-default btn-sm"><i class="fa fa-reply"></i></button>
+                        <button type="button" title="Delete" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
+                        <button type="button" title="Add new task" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
                         <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
                     </div>
                     <!-- /.btn-group -->
-                    <button type="button" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+                    <button type="button" title="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
                     <div class="pull-right">
                         1-50/200
                         <div class="btn-group">

@@ -2,6 +2,7 @@
 using EzTask.Entity.Data;
 using EzTask.Entity.Framework;
 using EzTask.Modules.Core.Models.Account;
+using EzTask.Modules.Core.Models.Phrase;
 using EzTask.Modules.Core.Models.Project;
 using System.Collections.Generic;
 
@@ -99,6 +100,29 @@ namespace EzTask.Modules.Core.Infrastructures
             return data;
         }
 
+        #endregion
+
+        #region Phrase Mapper
+        public static PhraseModel MapToModel(this Phrase entity)
+        {
+            if (entity == null)
+                return null;
+
+            return _mapper.Map<PhraseModel>(entity);
+        }
+
+        public static Phrase MapToEntity(this PhraseModel model)
+        {
+            if (model == null)
+                return null;
+
+            return _mapper.Map<Phrase>(model);
+        }
+
+        public static IEnumerable<PhraseModel> MapToModels(this IEnumerable<Phrase> entity)
+        {
+            return _mapper.Map<IEnumerable<PhraseModel>>(entity);
+        }
         #endregion
     }
 }

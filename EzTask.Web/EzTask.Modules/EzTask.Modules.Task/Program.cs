@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace EzTask.Modules.Task
+namespace EzTask.Modules.Tasks
 {
     public class Program
     {

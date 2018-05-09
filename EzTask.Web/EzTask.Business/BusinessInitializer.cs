@@ -10,6 +10,7 @@ namespace EzTask.Business
             services.AddTransient<AccountBusiness>();
             services.AddTransient<ProjectBusiness>();
             services.AddTransient<SkillBusiness>();
+            services.AddTransient<PhraseBusiness>();
         }
     }
 }

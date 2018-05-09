@@ -7,14 +7,17 @@ namespace EzTask.Business
     {
         public AccountBusiness Account { get; }
         public ProjectBusiness Project { get; }
-        public SkillBusiness Skill { get; set; }
+        public SkillBusiness Skill { get;  }
+        public PhraseBusiness Phrase { get; }
 
         public EzTaskBusiness(AccountBusiness account,
-            ProjectBusiness project, SkillBusiness skill)
+            ProjectBusiness project, SkillBusiness skill,
+            PhraseBusiness phrase)
         {
             Account = account;
             Project = project;
             Skill = skill;
+            Phrase = phrase;
         }
 
         /// <summary>

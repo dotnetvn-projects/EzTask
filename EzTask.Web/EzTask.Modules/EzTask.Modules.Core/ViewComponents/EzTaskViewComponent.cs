@@ -7,20 +7,20 @@ using System.Text;
 
 namespace EzTask.Modules.Core.ViewComponents
 {
-    public class EzTaskViewComponent:ViewComponent
-    {
-        protected EzTaskBusiness EzTask;
+    //public class EzTaskViewComponent //: ViewComponent
+    //{
+    //    protected EzTaskBusiness EzTask;
 
-        public EzTaskViewComponent(IServiceProvider serviceProvider)
-        {
-            InvokeComponents(serviceProvider);
-        }
+    //    public EzTaskViewComponent(IServiceProvider serviceProvider)
+    //    {
+    //        InvokeComponents(serviceProvider);
+    //    }
 
-        #region Private
-        private void InvokeComponents(IServiceProvider serviceProvider)
-        {
-            serviceProvider.InvokeComponents(out EzTask);
-        }
-        #endregion
-    }
+    //    #region Private
+    //    private void InvokeComponents(IServiceProvider serviceProvider)
+    //    {
+    //        serviceProvider.InvokeComponents(out EzTask);
+    //    }
+    //    #endregion
+    //}
 }

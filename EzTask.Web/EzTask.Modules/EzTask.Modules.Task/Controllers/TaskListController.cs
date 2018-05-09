@@ -7,14 +7,14 @@ using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EzTask.Modules.Core.Infrastructures;
-using EzTask.Modules.Core.ViewModels;
+using EzTask.Modules.Tasks.Models;
 
-namespace EzTask.Modules.Task.Controllers
+namespace EzTask.Modules.Tasks.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class TaskController : EzTaskController
+    public class TaskListController : EzTaskController
     {
-        public TaskController(IServiceProvider serviceProvider) :
+        public TaskListController(IServiceProvider serviceProvider) :
             base(serviceProvider)
         {
         }
@@ -22,11 +22,13 @@ namespace EzTask.Modules.Task.Controllers
         [Route("task.html")]
         public async Task<IActionResult> Index()
         {
-            TaskViewModel taskViewModel = new TaskViewModel();
-            taskViewModel.ProjectItems = await CreateProjectSelectList();
+            TaskListModel model = new TaskListModel();
+            model.ProjectItems = await CreateProjectSelectList();
 
-            return View(taskViewModel);
+            return View(model);
         }
+
+        
 
         #region Non Action
 
@@ -45,7 +47,7 @@ namespace EzTask.Modules.Task.Controllers
                     Value = pro.ProjectId.ToString()
                 });
             }
-
+            selectLists[0].Selected = true;
             return selectLists;
         }
 

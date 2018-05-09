@@ -1,0 +1,25 @@
+﻿@using EzTask.Modules.Core.Models.Phrase
+@model IEnumerable<PhraseModel>
+
+<div class="box box-solid">
+    <div class="box-header with-border">
+        <h3 class="box-title">Phrases</h3>
+
+        <div class="box-tools">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <div class="box-body no-padding">
+        <ul class="nav nav-pills nav-stacked">
+            @foreach (var p in Model)
+            {
+                <li>
+                    <a href="#"><i class="fa fa-filter"></i> @p.PhraseName <span class="label label-warning pull-right">65</span></a>
+                </li>               
+            }
+        </ul>
+    </div>
+    <!-- /.box-body -->
+</div>

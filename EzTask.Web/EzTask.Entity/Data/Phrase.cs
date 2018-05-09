@@ -10,7 +10,7 @@ namespace EzTask.Entity.Data
         public string PhraseName { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public int Status { get; set; }
+        public short Status { get; set; }
 
         public Project Project { get; set; }
     }
