@@ -9,15 +9,14 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Tasks.ViewComponents
 {
-    public class PhraseViewComponent : ViewComponent
+    public class PhraseListViewComponent : ViewComponent
     {
         protected EzTaskBusiness EzTask;
 
-        public PhraseViewComponent(EzTaskBusiness serviceProvider)
+        public PhraseListViewComponent(EzTaskBusiness serviceProvider)
         {
             EzTask = serviceProvider;
         }
-
 
         public async Task<IViewComponentResult> InvokeAsync(int projectId)
         {

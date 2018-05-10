@@ -29,7 +29,6 @@ namespace EzTask.Modules.Tasks.Controllers
         }
 
         
-
         #region Non Action
 
         private async Task<List<SelectListItem>> CreateProjectSelectList()

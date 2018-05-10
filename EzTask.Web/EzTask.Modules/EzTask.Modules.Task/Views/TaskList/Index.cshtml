@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        @await Component.InvokeAsync("Phrase", new { projectId =int.Parse(Model.ProjectItems.FirstOrDefault(c=>c.Selected).Value)})
+        @await Component.InvokeAsync("PhraseList", new { projectId = int.Parse(Model.ProjectItems.FirstOrDefault(c=>c.Selected).Value)})
 
         <div class="box box-solid">
             <div class="box-header with-border">
