@@ -23,7 +23,7 @@
                 <div class="box-body no-padding">
                     <div class="project-box">
                         <select asp-items="@Model.ProjectItems" class="form-control select2"></select>
-                        <a class="btn btn-block btn-addnew-phrase">
+                        <a data-toggle="modal" data-target="#phrase-modal" class="btn btn-block btn-addnew-phrase">
                             <i class="fa fa-plus"></i> Add new phrase
                         </a>
                     </div>
@@ -31,7 +31,7 @@
             </div>
         </div>
 
-        @await Component.InvokeAsync("PhraseList", new { projectId = int.Parse(Model.ProjectItems.FirstOrDefault(c=>c.Selected).Value)})
+        @await Component.InvokeAsync("PhraseList", new { projectId = int.Parse(Model.ProjectItems.FirstOrDefault(c => c.Selected).Value) })
 
         <div class="box box-solid">
             <div class="box-header with-border">
@@ -295,7 +295,12 @@
     </div>
 </div>
 
+@Html.Partial("_CreateOrUpdatePhrase", new PhraseModel())
+
 @section Scripts{
     <script src="~/themes/plugins/iCheck/icheck.js"></script>
     <script src="~/js/task.js"></script>
+
+    @Html.Partial("_ValidationScriptsPartial")
+
 }

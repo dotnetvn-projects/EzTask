@@ -13,9 +13,9 @@ namespace EzTask.Modules.Tasks.ViewComponents
     {
         protected EzTaskBusiness EzTask;
 
-        public PhraseListViewComponent(EzTaskBusiness serviceProvider)
+        public PhraseListViewComponent(EzTaskBusiness business)
         {
-            EzTask = serviceProvider;
+            EzTask = business;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(int projectId)
