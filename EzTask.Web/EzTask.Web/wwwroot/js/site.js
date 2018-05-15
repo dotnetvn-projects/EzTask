@@ -1,19 +1,24 @@
 ﻿var project_delete_url='project/remove.html';
 var user_upload_avatar = 'upload-avatar.html';
 
-function CloseModal(modalName) {
-    $('#' + modalName).modal('hide');
+//modal helper
+function CloseModal(modal) {
+    $('#' + modal).modal('hide');
     $('.modal-backdrop').hide();
 }
 
-function ShowModal(modalName) {
-    $('#' + modalName).modal('show');
+function ShowModal(modal) {
+    $('#' + modal).modal('show');
 }
-function ModalCloseTrigger(modalName) {
-    $('#' + modalName).on('hidden.bs.modal', function () {
+function SetModalTitle(modal, title) {
+    $('#' + modal + " .modal-title").text(title);
+}
+function ModalCloseTrigger(modal) {
+    $('#' + modal).on('hidden.bs.modal', function () {
         $('.modal-backdrop').hide();
     });
 }
+//end modal helper
 
 $(function () { 
     //select2

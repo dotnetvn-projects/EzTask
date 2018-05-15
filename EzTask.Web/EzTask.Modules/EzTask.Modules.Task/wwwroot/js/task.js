@@ -41,4 +41,4 @@
         $this.toggleClass("fa-star-o");
       }
     });
-  });
+});

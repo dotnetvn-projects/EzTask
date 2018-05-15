@@ -22,8 +22,8 @@
                 <h3 class="box-title">Project</h3>
                 <div class="box-body no-padding">
                     <div class="project-box">
-                        <select asp-items="@Model.ProjectItems" class="form-control select2"></select>
-                        <a data-toggle="modal" data-target="#phrase-modal" class="btn btn-block btn-addnew-phrase">
+                        <select asp-items="@Model.ProjectItems" class="form-control select2 project-list"></select>
+                        <a data-toggle="modal" class="btn btn-block btn-addnew-phrase">
                             <i class="fa fa-plus"></i> Add new phrase
                         </a>
                     </div>
@@ -300,6 +300,7 @@
 @section Scripts{
     <script src="~/themes/plugins/iCheck/icheck.js"></script>
     <script src="~/js/task.js"></script>
+    <script src="~/js/phrase-modal.js"></script>
 
     @Html.Partial("_ValidationScriptsPartial")
 
