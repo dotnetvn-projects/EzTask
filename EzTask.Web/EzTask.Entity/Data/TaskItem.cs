@@ -11,6 +11,7 @@ namespace EzTask.Entity.Data
         public int? AssigneeId { get; set; }
         public int MemberId { get; set; }
         public int ProjectId { get; set; }
+        public int PhraseId { get; set; }
         public Int16 Priority { get; set; }
         public Int16 Status { get; set; }
         public DateTime? StartDate { get; set; }

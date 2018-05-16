@@ -15,9 +15,29 @@ namespace EzTask.Business
         {
         }
 
+        public async Task<Phrase> Save(Phrase phrase)
+        {
+            if (phrase.Id < 1)
+            {
+                DbContext.Phrases.Add(phrase);
+            }
+            else
+            {
+                DbContext.Attach(phrase);
+                DbContext.Entry(phrase).State = EntityState.Modified;
+            }
+
+            var iResult = await DbContext.SaveChangesAsync();
+            return phrase;
+        }
+
         public async Task<IEnumerable<Phrase>> GetPhrases(int projectId)
         {
-           return await DbContext.Phrases.Where(c => c.ProjectId == projectId).ToListAsync();
+            return await DbContext.Phrases.AsNoTracking()
+                .Where(c => c.ProjectId == projectId)
+                 .ToListAsync();
+
+            //TODO count task item in phrase
         }
     }
 }
