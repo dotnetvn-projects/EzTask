@@ -1,7 +1,6 @@
 ﻿@model PhraseModel
 <div class="modal fade" id="phrase-modal">
-    <input asp-for="ProjectId" class="project-id" type="hidden" />
-    <input asp-for="Id" class="phrase-id" type="hidden" />
+   
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
@@ -10,7 +9,9 @@
                 </button>
                 <h4 class="modal-title"></h4>
             </div>
-            <form class="form-horizontal">
+            <form id="phrase-form" class="form-horizontal">
+                <input asp-for="ProjectId" class="project-id" type="hidden" />
+                <input asp-for="Id" class="phrase-id" type="hidden" />
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="inputName" class="col-sm-3 control-label">Phrase Name</label>
@@ -46,7 +47,7 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary btn-confirm">Submit</button>
                 </div>
-             </form>
+            </form>
         </div>
     </div>
 </div>

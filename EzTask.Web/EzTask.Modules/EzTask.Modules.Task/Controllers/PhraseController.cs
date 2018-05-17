@@ -16,7 +16,7 @@ namespace EzTask.Modules.Task.Controllers
         }
 
         [HttpPost]
-        [Route("phrase-modal-action.html")]
+        [Route("task/phrase-modal-action.html")]
         public async Task<IActionResult> CreateOrUpdatePhrase(PhraseModel model)
         {
             if(!ModelState.IsValid)
@@ -25,6 +25,7 @@ namespace EzTask.Modules.Task.Controllers
             var iResult = await EzTask.Phrase.Save(model.MapToEntity());
             if (iResult != null)
             {
+                HttpContext.Response.StatusCode = 200;
                 return LoadPhraseList(model.ProjectId);
             }
             return BadRequest();
