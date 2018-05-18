@@ -20,7 +20,8 @@ namespace EzTask.Framework.Infrastructures
                     var moduleViewLocations = new string[]
                     {
                        "/Modules/" + module + "/Views/{1}/{0}.cshtml",
-                       "/Modules/" + module + "/Views/Shared/{0}.cshtml"
+                       "/Modules/" + module + "/Views/Shared/{0}.cshtml",
+                       "/Modules/" + module + "/Views/Shared/Components/{0}.cshtml"
                     };
 
                     viewLocations = moduleViewLocations.Concat(viewLocations);

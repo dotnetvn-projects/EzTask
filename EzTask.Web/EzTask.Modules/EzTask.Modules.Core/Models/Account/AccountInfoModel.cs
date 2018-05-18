@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using EzTask.Interfaces.Models;
 using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Modules.Core.Models.Account
 {
-    public class AccountInfoModel : AccountModel
+    public class AccountInfoModel : IAccountInfoModel
     {
         public int AccountInfoId { get; set; }
         public string JobTitle { get; set; }

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EzTask.Business.Infrastructures;
 using EzTask.DataAccess;
 using EzTask.Entity.Data;
+using EzTask.Interfaces.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
@@ -15,28 +17,30 @@ namespace EzTask.Business
         {
         }
 
-        public async Task<Phrase> Save(Phrase phrase)
+        public async Task<IPhraseModel> Save(IPhraseModel phraseModel)
         {
-            if (phrase.Id < 1)
+            var entity = phraseModel.MapToEntity();
+            if (entity.Id < 1)
             {
-                DbContext.Phrases.Add(phrase);
+                DbContext.Phrases.Add(entity);
             }
             else
             {
-                DbContext.Attach(phrase);
-                DbContext.Entry(phrase).State = EntityState.Modified;
+                DbContext.Attach(entity);
+                DbContext.Entry(entity).State = EntityState.Modified;
             }
 
             var iResult = await DbContext.SaveChangesAsync();
-            return phrase;
+
+            return entity.MapToModel();
         }
 
-        public async Task<IEnumerable<Phrase>> GetPhrases(int projectId)
+        public async Task<IEnumerable<IPhraseModel>> GetPhrases(int projectId)
         {
-            return await DbContext.Phrases.AsNoTracking()
-                .Where(c => c.ProjectId == projectId)
-                 .ToListAsync();
+            var data = await DbContext.Phrases.AsNoTracking()
+                .Where(c => c.ProjectId == projectId).ToListAsync();
 
+            return data.MapToModels();
             //TODO count task item in phrase
         }
     }

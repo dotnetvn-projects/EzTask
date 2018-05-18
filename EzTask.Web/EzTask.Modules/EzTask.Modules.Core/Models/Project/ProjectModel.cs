@@ -1,4 +1,5 @@
 ﻿using EzTask.Entity.Framework;
+using EzTask.Interfaces.Models;
 using EzTask.Modules.Core.Models.Account;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Core.Models.Project
 {
-    public class ProjectModel :BaseModel
+    public class ProjectModel :BaseModel, IProjectModel
     {
         public int ProjectId { get; set; }
         public string ProjectCode { get; set; }
@@ -18,7 +19,7 @@ namespace EzTask.Modules.Core.Models.Project
         [Display(Name = "Description")]
         public string Description { get; set; }
 
-        public AccountModel Owner { get; set; }
+        public IAccountModel Owner { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public int MaximumUser { get; set; }
@@ -28,6 +29,7 @@ namespace EzTask.Modules.Core.Models.Project
         #region UI Model
         public string Color { get; set; }
         public string BoxType { get; set; }
+      
         #endregion
     }
 }

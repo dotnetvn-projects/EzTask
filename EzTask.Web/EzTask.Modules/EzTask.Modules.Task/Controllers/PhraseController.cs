@@ -25,15 +25,9 @@ namespace EzTask.Modules.Task.Controllers
             var iResult = await EzTask.Phrase.Save(model.MapToEntity());
             if (iResult != null)
             {
-                HttpContext.Response.StatusCode = 200;
-                return LoadPhraseList(model.ProjectId);
+                return Ok(iResult.MapToModel());
             }
             return BadRequest();
-        }
-
-        public IActionResult LoadPhraseList(int propectId)
-        {
-            return ViewComponent("PhraseList", new { propectId });
         }
     }
 }

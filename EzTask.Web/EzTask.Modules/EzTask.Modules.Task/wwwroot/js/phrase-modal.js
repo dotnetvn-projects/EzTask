@@ -34,7 +34,14 @@
                 url: "task/phrase-modal-action.html",
                 data: $("#phrase-form").serialize(),
                 success: function (response) {
-                    window.location = "/project.html";
+                    $.ajax({
+                        type: 'post',
+                        url: "task/phrase-list.html",
+                        data: $("#phrase-form").serialize(),
+                        success: function (response) {
+                            var c = response;
+                        }
+                    });
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $('#phrase-modal .error-message').text('Error, EzTask cannot execute deleting data. Try again please !')

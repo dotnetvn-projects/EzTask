@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EzTask.Interfaces.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Core.Models.Account
 {
-    public class AccountModel
+    public class AccountModel: IAccountModel
     {
         public int AccountId { get; set; }
 
