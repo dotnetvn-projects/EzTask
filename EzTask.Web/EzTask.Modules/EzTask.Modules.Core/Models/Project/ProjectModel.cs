@@ -1,5 +1,5 @@
 ﻿using EzTask.Entity.Framework;
-using EzTask.Interfaces.Models;
+using EzTask.Interfaces.DataModels;
 using EzTask.Modules.Core.Models.Account;
 using Microsoft.AspNetCore.Mvc;
 using System;

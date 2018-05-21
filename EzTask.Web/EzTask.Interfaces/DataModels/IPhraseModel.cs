@@ -1,7 +1,7 @@
 ﻿using EzTask.Entity.Framework;
 using System;
 
-namespace EzTask.Interfaces.Models
+namespace EzTask.Interfaces.DataModels
 {
     public interface IPhraseModel : IModel
     {

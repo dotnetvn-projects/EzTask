@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using EzTask.Entity.Data;
-using EzTask.Interfaces.Models;
+using EzTask.Interfaces.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Text;

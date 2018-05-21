@@ -9,5 +9,6 @@ namespace EzTask.Modules.Core.Models.Task
         public string TaskCode { get; set; }
         public string TaskTitle { get; set; }
         public string TaskDetail { get; set; }
+        
     }
 }

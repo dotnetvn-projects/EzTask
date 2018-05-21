@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using EzTask.Business.Infrastructures;
 using EzTask.DataAccess;
 using EzTask.Entity.Data;
-using EzTask.Interfaces.Models;
+using EzTask.Interfaces.DataModels;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business

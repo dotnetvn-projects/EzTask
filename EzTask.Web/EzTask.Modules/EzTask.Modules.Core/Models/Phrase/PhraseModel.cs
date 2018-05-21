@@ -1,10 +1,11 @@
 ﻿using EzTask.Entity.Framework;
+using EzTask.Interfaces.DataModels;
 using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Modules.Core.Models.Phrase
 {
-    public class PhraseModel:BaseModel
+    public class PhraseModel : BaseModel, IPhraseModel
     {
         public int Id { get; set; }
 

@@ -2,7 +2,7 @@
 using EzTask.Entity.Data;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Common;
-using EzTask.Interfaces.Models;
+using EzTask.Interfaces.DataModels;
 using System;
 using System.Collections.Generic;
 using System.Text;

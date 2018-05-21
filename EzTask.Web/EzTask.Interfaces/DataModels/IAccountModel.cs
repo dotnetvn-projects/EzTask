@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Interfaces.Models
+namespace EzTask.Interfaces.DataModels
 {
     public interface IAccountModel : IModel
     {
