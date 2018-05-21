@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Core.Infrastructures;
 using EzTask.Modules.Core.Models.Phrase;
+
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.Task.Controllers
@@ -22,10 +23,10 @@ namespace EzTask.Modules.Task.Controllers
             if(!ModelState.IsValid)
                 return BadRequest();
 
-            var iResult = await EzTask.Phrase.Save(model.MapToEntity());
+            var iResult = await EzTask.Phrase.Save(model);
             if (iResult != null)
             {
-                return Ok(iResult.MapToModel());
+                return Ok(iResult);
             }
             return BadRequest();
         }

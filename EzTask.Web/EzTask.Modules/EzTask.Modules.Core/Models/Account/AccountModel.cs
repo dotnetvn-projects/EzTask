@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Core.Models.Account
 {
-    public class AccountModel: IAccountModel
+    public class AccountModel: BaseModel, IAccountModel
     {
         public int AccountId { get; set; }
 
