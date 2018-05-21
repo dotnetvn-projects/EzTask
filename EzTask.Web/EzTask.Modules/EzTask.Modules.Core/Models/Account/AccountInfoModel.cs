@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Modules.Core.Models.Account
 {
-    public class AccountInfoModel : BaseModel, IAccountInfoModel
+    public class AccountInfoModel : AccountModel, IAccountInfoModel
     {
         public int AccountInfoId { get; set; }
         public string JobTitle { get; set; }
