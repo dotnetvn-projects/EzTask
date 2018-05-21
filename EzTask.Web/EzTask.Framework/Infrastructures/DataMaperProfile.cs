@@ -1,16 +1,14 @@
-﻿using EzTask.Entity.Data;
-using EzTask.Framework.Common;
+﻿using AutoMapper;
+using EzTask.Entity.Data;
 using EzTask.Entity.Framework;
-using AutoMapper;
-using EzTask.Modules.Core.Models.Account;
-using EzTask.Modules.Core.Models.Project;
-using EzTask.Modules.Core.Models.Phrase;
+using EzTask.Framework.Common;
+using EzTask.Models;
 
-namespace EzTask.Modules.Core.Infrastructures
+namespace EzTask.Framework.Infrastructures
 {
-    public  class EzTaskMapperProfile :Profile
+    public class DataMaperProfile : Profile
     {
-        public EzTaskMapperProfile()
+        public DataMaperProfile()
         {
             AccountMaper();
             ProjectMapper();
@@ -66,18 +64,17 @@ namespace EzTask.Modules.Core.Infrastructures
                 .ForMember(c => c.Owner, t => t.MapFrom(z => z.Owner.AccountId))
                 .ForMember(c => c.Id, t => t.MapFrom(z => z.ProjectId))
                 .ForMember(c => c.Account, t => t.Ignore());
-        }   
-        
+        }
+
         private void PhraseMapper()
         {
             //Map phrase entity to phrase model
             CreateMap<Phrase, PhraseModel>()
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<PhraseStatus>()));
-            
+
             //Map phrase model to phrase entity
             CreateMap<PhraseModel, Phrase>()
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<PhraseStatus>()));
         }
-
     }
 }

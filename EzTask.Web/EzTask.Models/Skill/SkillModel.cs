@@ -1,11 +1,11 @@
-﻿using EzTask.Interfaces.DataModels;
+﻿using EzTask.Models;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Modules.Core.Models.Skill
+namespace EEzTask.ModelBase
 {
-    public class SkillModel:BaseModel, ISkillModel
+    public class SkillModel : BaseModel
     {
         public int Id { get; set; }
         public string Skills { get; set; }

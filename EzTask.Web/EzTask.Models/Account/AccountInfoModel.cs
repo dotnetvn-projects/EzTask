@@ -1,10 +1,9 @@
 ﻿using System;
-using EzTask.Interfaces.DataModels;
 using System.ComponentModel.DataAnnotations;
 
-namespace EzTask.Modules.Core.Models.Account
+namespace EzTask.Models
 {
-    public class AccountInfoModel : AccountModel, IAccountInfoModel
+    public class AccountInfoModel : AccountModel
     {
         public int AccountInfoId { get; set; }
         public string JobTitle { get; set; }

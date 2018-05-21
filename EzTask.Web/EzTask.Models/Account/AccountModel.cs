@@ -1,15 +1,14 @@
 ﻿using EzTask.Entity.Framework;
-using EzTask.Interfaces.DataModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace EzTask.Modules.Core.Models.Account
+namespace EzTask.Models
 {
-    public class AccountModel: BaseModel, IAccountModel
-    {
+    public class AccountModel: BaseModel
+    { 
         public int AccountId { get; set; }
 
         [Required, StringLength(maximumLength:50, MinimumLength = 6, 

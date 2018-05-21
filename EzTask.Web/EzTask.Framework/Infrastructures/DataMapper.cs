@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using EzTask.Entity.Data;
 using EzTask.Entity.Framework;
-using EzTask.Modules.Core.Models.Account;
-using EzTask.Modules.Core.Models.Phrase;
-using EzTask.Modules.Core.Models.Project;
+using EzTask.Models;
+using System;
 using System.Collections.Generic;
+using System.Text;
 
-namespace EzTask.Modules.Core.Infrastructures
+namespace EzTask
 {
-    public static class EzTaskMapper
+    public static class DataMapper
     {
         private static IMapper _mapper;
         public static void Config(IMapper mapper)
@@ -18,22 +18,22 @@ namespace EzTask.Modules.Core.Infrastructures
 
         #region Account Mapper
 
-        public static Account MapToEntity(this RegisterModel model)
+        public static Account ToEntity(this RegisterModel model)
         {
-           return _mapper.Map<Account>(model);
+            return _mapper.Map<Account>(model);
         }
 
-        public static AccountModel MapToModel(this Account entity)
+        public static AccountModel ToModel(this Account entity)
         {
             return _mapper.Map<AccountModel>(entity);
         }
 
-        public static IEnumerable<AccountModel> MapToModels(this IEnumerable<Account> entity)
+        public static IEnumerable<AccountModel> ToModels(this IEnumerable<Account> entity)
         {
             return _mapper.Map<IEnumerable<AccountModel>>(entity);
         }
 
-        public static AccountInfoModel MapToModel(this AccountInfo entity)
+        public static AccountInfoModel ToModel(this AccountInfo entity)
         {
             if (entity == null)
                 return new AccountInfoModel();
@@ -41,7 +41,7 @@ namespace EzTask.Modules.Core.Infrastructures
             return _mapper.Map<AccountInfoModel>(entity);
         }
 
-        public static AccountInfo MapToEntity(this AccountInfoModel model)
+        public static AccountInfo ToEntity(this AccountInfoModel model)
         {
             return _mapper.Map<AccountInfo>(model);
         }
@@ -49,7 +49,7 @@ namespace EzTask.Modules.Core.Infrastructures
 
         #region Project
 
-        public static ProjectModel MapToModel(this Project entity)
+        public static ProjectModel ToModel(this Project entity)
         {
             if (entity == null)
                 return null;
@@ -57,7 +57,7 @@ namespace EzTask.Modules.Core.Infrastructures
             return _mapper.Map<ProjectModel>(entity);
         }
 
-        public static Project MapToEntity(this ProjectModel model)
+        public static Project ToEntity(this ProjectModel model)
         {
             if (model == null)
                 return null;
@@ -65,17 +65,17 @@ namespace EzTask.Modules.Core.Infrastructures
             return _mapper.Map<Project>(model);
         }
 
-        public static IEnumerable<ProjectModel> MapToModels(this IEnumerable<Project> entity)
+        public static IEnumerable<ProjectModel> ToModels(this IEnumerable<Project> entity)
         {
             var data = _mapper.Map<IEnumerable<ProjectModel>>(entity);
             if (data == null)
                 return data;
 
-            foreach(var item in data)
+            foreach (var item in data)
             {
-                switch(item.Status)
+                switch (item.Status)
                 {
-                    case ProjectStatus.Pending:                       
+                    case ProjectStatus.Pending:
                         item.BoxType = "primary";
                         item.Color = "light-blue";
                         break;
@@ -103,7 +103,7 @@ namespace EzTask.Modules.Core.Infrastructures
         #endregion
 
         #region Phrase Mapper
-        public static PhraseModel MapToModel(this Phrase entity)
+        public static PhraseModel ToModel(this Phrase entity)
         {
             if (entity == null)
                 return null;
@@ -111,7 +111,7 @@ namespace EzTask.Modules.Core.Infrastructures
             return _mapper.Map<PhraseModel>(entity);
         }
 
-        public static Phrase MapToEntity(this PhraseModel model)
+        public static Phrase ToEntity(this PhraseModel model)
         {
             if (model == null)
                 return null;
@@ -119,10 +119,11 @@ namespace EzTask.Modules.Core.Infrastructures
             return _mapper.Map<Phrase>(model);
         }
 
-        public static IEnumerable<PhraseModel> MapToModels(this IEnumerable<Phrase> entity)
+        public static IEnumerable<PhraseModel> ToModels(this IEnumerable<Phrase> entity)
         {
             return _mapper.Map<IEnumerable<PhraseModel>>(entity);
         }
         #endregion
     }
+
 }

@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using EzTask.Business.Infrastructures;
 using EzTask.DataAccess;
-using EzTask.Entity.Data;
-using EzTask.Interfaces.DataModels;
+using EzTask.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
@@ -17,9 +14,9 @@ namespace EzTask.Business
         {
         }
 
-        public async Task<IPhraseModel> Save(IPhraseModel phraseModel)
+        public async Task<PhraseModel> Save(PhraseModel phraseModel)
         {
-            var entity = phraseModel.MapToEntity();
+            var entity = phraseModel.ToEntity();
             if (entity.Id < 1)
             {
                 DbContext.Phrases.Add(entity);
@@ -32,15 +29,15 @@ namespace EzTask.Business
 
             var iResult = await DbContext.SaveChangesAsync();
 
-            return entity.MapToModel();
+            return entity.ToModel();
         }
 
-        public async Task<IEnumerable<IPhraseModel>> GetPhrases(int projectId)
+        public async Task<IEnumerable<PhraseModel>> GetPhrases(int projectId)
         {
             var data = await DbContext.Phrases.AsNoTracking()
                 .Where(c => c.ProjectId == projectId).ToListAsync();
 
-            return data.MapToModels();
+            return data.ToModels();
             //TODO count task item in phrase
         }
     }

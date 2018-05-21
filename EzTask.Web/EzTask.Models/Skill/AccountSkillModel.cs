@@ -1,10 +1,10 @@
-﻿using EzTask.Modules.Core.Models.Account;
+﻿using EzTask.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace EzTask.Modules.Core.Models.Skill
+namespace EEzTask.ModelBase
 {
     public class AccountSkillModel : BaseModel
     {
