@@ -27,8 +27,8 @@ namespace EzTask.Framework.Infrastructures
 
             ///Map Account entity to Account Model
             CreateMap<Account, AccountModel>()
-                .ForMember(c => c.AccountId, t => t.MapFrom(z => z.Id));
-
+                .ForMember(c => c.AccountId, t => t.MapFrom(z => z.Id))
+                .ForMember(c => c.AccountStatus, t => t.MapFrom(z => z.AccountStatus.ToEnum<ProjectStatus>()));
 
             ///Map AccountInfo entity to AccountInfoModel
             CreateMap<AccountInfo, AccountInfoModel>()

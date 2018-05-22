@@ -22,7 +22,7 @@ namespace EzTask.Models
         public string Introduce { get; set; }
         public byte[] Document { get; set; }
         public string Skills { get; set; }
-        public bool IsPublished { get; set; }
+        public bool IsPublished { get; set; }      
 
         public AccountInfoModel()
         {

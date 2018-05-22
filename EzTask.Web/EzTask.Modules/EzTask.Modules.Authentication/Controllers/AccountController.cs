@@ -1,20 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Threading.Tasks;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Message;
 using EzTask.Framework.Values;
 using EzTask.Framework.Web.Attributes;
+using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
-using EzTask.Modules.Core.Infrastructures;
-using EzTask.Modules.Core.Models.Account;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.Authentication.Controllers
 {
-    public class AccountController : EzTaskController
+    public class AccountController : CoreController
     {
         public AccountController(IServiceProvider serviceProvider) :
             base(serviceProvider)
@@ -48,15 +44,18 @@ namespace EzTask.Modules.Authentication.Controllers
                 if (!ModelState.IsValid)
                     return View();
 
-                var account = await EzTask.Account.Login(model.AccountName, model.Password);
+                var account = await EzTask.Account.Login(model);
 
                 if (account != null)
                 {
-                    if (account.AccountStatus != (int)AccountStatus.Block)
+                    if (account.AccountStatus != AccountStatus.Block)
                     {
-                        CurrentAccount = CurrentAccount.Create(account.Id.ToString(), account.AccountName,
-                            account.AccountInfo.DisplayName, account.AccountInfo.JobTitle, account.CreatedDate);
+                        CurrentAccount = CurrentAccount.Create(account.AccountId.ToString(), 
+                            account.AccountName, account.DisplayName, 
+                            account.JobTitle, account.CreatedDate);
+
                         RememberMe();
+
                         if (string.IsNullOrEmpty(model.RedirectUrl))
                         {
                             return RedirectToAction("Index", "Home");
@@ -122,7 +121,7 @@ namespace EzTask.Modules.Authentication.Controllers
                         if (existAccount == null)
                         {
                             model.DisplayName = model.FullName;
-                            var account = await EzTask.Account.RegisterNew(model.MapToEntity());
+                            var account = await EzTask.Account.RegisterNew(model);
 
                             if (account != null)
                             {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
+using EzTask.Framework.Infrastructures;
 using EzTask.Models;
 using Microsoft.EntityFrameworkCore;
 
@@ -14,22 +15,22 @@ namespace EzTask.Business
         {
         }
 
-        public async Task<PhraseModel> Save(PhraseModel phraseModel)
+        public async Task<PhraseModel> Save(PhraseModel model)
         {
-            var entity = phraseModel.ToEntity();
-            if (entity.Id < 1)
+            var phrase = model.ToEntity();
+            if (phrase.Id < 1)
             {
-                DbContext.Phrases.Add(entity);
+                DbContext.Phrases.Add(phrase);
             }
             else
             {
-                DbContext.Attach(entity);
-                DbContext.Entry(entity).State = EntityState.Modified;
+                DbContext.Attach(phrase);
+                DbContext.Entry(phrase).State = EntityState.Modified;
             }
 
             var iResult = await DbContext.SaveChangesAsync();
 
-            return entity.ToModel();
+            return phrase.ToModel();
         }
 
         public async Task<IEnumerable<PhraseModel>> GetPhrases(int projectId)

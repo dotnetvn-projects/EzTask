@@ -10,6 +10,8 @@ using EzTask.Entity.Framework;
 using System.IO;
 using ImageStream = EzTask.Framework.IO.Stream;
 using EzTask.Framework.ImageHandler;
+using EzTask.Models;
+using EzTask.Framework.Infrastructures;
 
 namespace EzTask.Business
 {
@@ -27,8 +29,9 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public async Task<Account> RegisterNew(Account account)
+        public async Task<AccountModel> RegisterNew(RegisterModel model)
         {
+            var account = model.ToEntity();
             if (account.Id < 1)
                 account.CreatedDate = DateTime.Now;
 
@@ -41,9 +44,10 @@ namespace EzTask.Business
 
             DbContext.Accounts.Add(account);
             var insertedRecord = await DbContext.SaveChangesAsync();
+
             if(insertedRecord > 0)
             {
-                return account;
+                return account.ToModel();
             }
             return null;
         }
@@ -51,24 +55,23 @@ namespace EzTask.Business
         /// <summary>
         /// Update account information
         /// </summary>
-        /// <param name="account"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<AccountInfo> UpdateAccount(AccountInfo account)
+        public async Task<AccountInfoModel> UpdateAccount(AccountInfoModel model)
         {
-            var accountInfo = DbContext.AccountInfos.FirstOrDefault(c => c.Id == account.Id);
+            var accountInfo = DbContext.AccountInfos.FirstOrDefault(c => c.Id == model.AccountInfoId);
             if (accountInfo != null)
             {
-                accountInfo.Update(account);
+                accountInfo.Update(accountInfo);
                 
                 var updateRecord = await DbContext.SaveChangesAsync();
                 if (updateRecord > 0)
                 {
-                    return accountInfo;
+                    return accountInfo.ToModel();
                 }
             }
             return null;
         }
-
 
         /// <summary>
         /// Update avatar
@@ -100,11 +103,13 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<AccountInfo> GetAccountInfo(int accountId)
+        public async Task<AccountInfoModel> GetAccountInfo(int accountId)
         {
-            return await DbContext.AccountInfos.Include(c => c.Account)
+            var data = await DbContext.AccountInfos.Include(c => c.Account)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c=>c.AccountId == accountId);
+
+            return data.ToModel();
         }
 
         /// <summary>
@@ -113,24 +118,25 @@ namespace EzTask.Business
         /// <param name="accountName"></param>
         /// <param name="password"></param>
         /// <returns></returns>
-        public async Task<Account> GetAccount(string accountName, string password)
+        public async Task<AccountInfoModel> GetAccount(string accountName, string password)
         {
-            return await DbContext.Accounts.Include(c=>c.AccountInfo).
-                FirstOrDefaultAsync(c => c.AccountName == accountName 
-                && c.Password == password);
+            var accountInfo = await DbContext.AccountInfos.Include(c=>c.Account).
+                FirstOrDefaultAsync(c => c.Account.AccountName == accountName 
+                && c.Account.Password == password);
+            return accountInfo.ToModel();
         }
 
         /// <summary>
-        /// Doing Login
+        /// Login
         /// </summary>
-        /// <param name="accountName"></param>
-        /// <param name="password"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<Account> Login(string accountName, string password)
+        public async Task<AccountInfoModel> Login(LoginModel model)
         {
-            var hash = Cryptography.GetHashString(accountName);
-            password = Encrypt.Do(password, hash);
-            return await GetAccount(accountName, password);
+            var hash = Cryptography.GetHashString(model.AccountName);
+            model.Password = Encrypt.Do(model.Password, hash);
+            var account = await GetAccount(model.AccountName, model.Password);
+            return account;
         }
 
         /// <summary>
@@ -138,10 +144,11 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="accountName"></param>
         /// <returns></returns>
-        public async Task<Account> GetAccount(string accountName)
+        public async Task<AccountModel> GetAccount(string accountName)
         {
-            return await DbContext.Accounts.
+            var data = await DbContext.Accounts.
                 FirstOrDefaultAsync(c => c.AccountName == accountName);
+            return data.ToModel();
         }
 
         public async Task<byte[]> LoadAvatar(int accountId)
@@ -160,11 +167,12 @@ namespace EzTask.Business
         /// <param name="pageSize"></param>
         /// <param name="manageUserId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<Account>> GetAccountList(int page, int pageSize,
+        public async Task<IEnumerable<AccountModel>> GetAccountList(int page, int pageSize,
             int manageUserId)
         {
-           return await DbContext.Accounts.Where(c=> c.ManageAccountId == manageUserId)
+           var data = await DbContext.Accounts.Where(c=> c.ManageAccountId == manageUserId)
                 .Skip(pageSize * page - pageSize).Take(pageSize).ToListAsync();
+            return data.ToModels();
         }
     }
 }

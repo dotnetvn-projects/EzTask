@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.Task.Controllers
 {
-    public class PhraseController : EzTaskController
+    public class PhraseController : CoreController
     {
         public PhraseController(IServiceProvider serviceProvider) : base(serviceProvider)
         {

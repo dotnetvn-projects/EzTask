@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using EzTask.DataAccess;
 using EzTask.Entity.Data;
 using EzTask.Entity.Framework;
+using EzTask.Framework.Infrastructures;
+using EzTask.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
@@ -20,14 +22,16 @@ namespace EzTask.Business
         /// <summary>
         /// Save project
         /// </summary>
-        /// <param name="project"></param>
+        /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<Project> Save(Project project)
+        public async Task<ProjectModel> Save(ProjectModel model)
         {
             using (var transaction = DbContext.Database.BeginTransaction())
             {
                 try
                 {
+                    var project = model.ToEntity();
+
                     if (project.Id < 1)
                     {
                         project.CreatedDate = DateTime.Now;
@@ -68,7 +72,7 @@ namespace EzTask.Business
                         }                       
                     }
                     transaction.Commit();
-                    return project;
+                    return project.ToModel();
                 }
                 catch
                 {
@@ -94,15 +98,15 @@ namespace EzTask.Business
                     if (project != null)
                     {
                         //Remove member
-                        var memberList = await DbContext.ProjectMembers.Where(c => c.ProjectId == project.Id).ToListAsync();
+                        var memberList = await DbContext.ProjectMembers.Where(c => c.ProjectId == project.ProjectId).ToListAsync();
                         DbContext.ProjectMembers.RemoveRange(memberList);
 
                         //remove phrase
-                        var phrases = await DbContext.Phrases.Where(c => c.ProjectId == project.Id).ToListAsync();
+                        var phrases = await DbContext.Phrases.Where(c => c.ProjectId == project.ProjectId).ToListAsync();
                         DbContext.Phrases.RemoveRange(phrases);
 
                         //remove project
-                        DbContext.Projects.Remove(project);
+                        DbContext.Projects.Remove(project.ToEntity());
 
                         await DbContext.SaveChangesAsync();
                     }
@@ -123,13 +127,15 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="ownerId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<Project>> GetProjects(int ownerId)
+        public async Task<IEnumerable<ProjectModel>> GetProjects(int ownerId)
         {
-            return await DbContext.Projects.Include(c => c.Account)
+            var data =  await DbContext.Projects.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
                 .AsNoTracking()
                 .Where(c => c.Owner == ownerId).OrderBy(c => c.Status)
                 .ToListAsync();
+
+            return data.ToModels();
         }
 
         /// <summary>
@@ -137,10 +143,12 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectCode"></param>
         /// <returns></returns>
-        public async Task<Project> GetProject(string projectCode)
+        public async Task<ProjectModel> GetProject(string projectCode)
         {
-            return await DbContext.Projects.AsNoTracking()
+            var data = await DbContext.Projects.AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
+
+            return data.ToModel();
         }
 
         /// <summary>
@@ -148,10 +156,12 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public async Task<Project> GetProjectByName(string name)
+        public async Task<ProjectModel> GetProjectByName(string name)
         {
-            return await DbContext.Projects.AsNoTracking()
+            var data = await DbContext.Projects.AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectName.ToLower() == name.ToLower());
+
+            return data.ToModel();
         }
 
         /// <summary>
@@ -172,11 +182,13 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectCode"></param>
         /// <returns></returns>
-        public async Task<Project> GetProjectDetail(string projectCode)
+        public async Task<ProjectModel> GetProjectDetail(string projectCode)
         {
-            return await DbContext.Projects.Include(c => c.Account)
+            var data = await DbContext.Projects.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
+
+            return data.ToModel();
         }
     }
 }

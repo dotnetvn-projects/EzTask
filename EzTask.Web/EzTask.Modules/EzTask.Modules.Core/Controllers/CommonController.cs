@@ -10,7 +10,7 @@ using IO = EzTask.Framework.IO.File;
 namespace EzTask.Modules.Core.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class CommonController : EzTaskController
+    public class CommonController : CoreController
     {
         private readonly IHostingEnvironment hostingEnvironment;
         public CommonController(IServiceProvider serviceProvider,

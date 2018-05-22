@@ -1,4 +1,5 @@
-﻿using EzTask.DataAccess;
+﻿using AutoMapper;
+using EzTask.DataAccess;
 using EzTask.Framework.ImageHandler;
 using EzTask.Framework.Infrastructures;
 using EzTask.Framework.Web.Filters;
@@ -25,20 +26,20 @@ namespace EzTask.Framework
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
-            services.AddScoped<ImageProcessor>();
-
+            services.AddScoped<ImageProcessor>();        
             services.AddDbContext<EzTaskDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("EzTask")),
-               ServiceLifetime.Scoped);
+                options.UseSqlServer(configuration.GetConnectionString("EzTask")), ServiceLifetime.Scoped);
+            services.AddAutoMapper();
 
-            var mvcBuilder = services.AddMvc(options => {
-               // options.Filters.Add(typeof(ExceptionFilter));
+            var mvcBuilder = services.AddMvc(options =>
+            {
+                // options.Filters.Add(typeof(ExceptionFilter));
             });
             mvcBuilder.AddSessionStateTempDataProvider();
             ModuleFinder moduleFinder = new ModuleFinder(env);
             var modules = moduleFinder.Find();
 
-            if(modules.Any())
+            if (modules.Any())
             {
                 foreach (var module in modules)
                 {
@@ -48,15 +49,14 @@ namespace EzTask.Framework
                     {
                         o.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(module.Assembly.Location));
                     });
-                    
                 }
 
                 //Register module view location
                 services.Configure<RazorViewEngineOptions>(options =>
                 {
                     options.ViewLocationExpanders.Add(new ModuleViewLocationExpander());
-                });        
-            }          
+                });
+            }
         }
 
         public static void ConfigureFramework(this IApplicationBuilder app)
@@ -64,14 +64,16 @@ namespace EzTask.Framework
             app.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
         }
 
-        public static void InvokeComponents<T>(this IServiceProvider services,out T type)
+        public static void InvokeComponents<T>(this IServiceProvider services, out T type)
         {
-            type = services.GetService<T>();          
+            type = services.GetService<T>();
         }
 
         public static T InvokeComponents<T>(this IServiceProvider services)
         {
-           return services.GetService<T>();
+            return services.GetService<T>();
         }
+
+        public static IMapper Mapper => Context.Current.RequestServices.GetService<IMapper>();
     }
 }

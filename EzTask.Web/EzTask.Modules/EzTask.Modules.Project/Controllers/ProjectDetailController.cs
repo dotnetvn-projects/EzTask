@@ -3,12 +3,11 @@ using System.Threading.Tasks;
 using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using EzTask.Modules.Core.Infrastructures;
 
 namespace EzTask.Modules.Project.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class ProjectDetailController : EzTaskController
+    public class ProjectDetailController : CoreController
     {
         public ProjectDetailController(IServiceProvider serviceProvider) :
             base(serviceProvider)
@@ -19,8 +18,7 @@ namespace EzTask.Modules.Project.Controllers
         public async Task<IActionResult> Index(string code)
         {
             var data = await EzTask.Project.GetProjectDetail(code);
-            var model = data.MapToModel();
-            return View(model);
+            return View(data);
         }
 
         #region Non Action

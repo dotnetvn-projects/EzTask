@@ -8,15 +8,13 @@ using EzTask.Framework.Common;
 using EzTask.Framework.Message;
 using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
-using EzTask.Modules.Core.Infrastructures;
-using EzTask.Modules.Core.Models.Account;
-using EzTask.Modules.Core.Models.Project;
+using EzTask.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.Project.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class ProjectController : EzTaskController
+    public class ProjectController : CoreController
     {
         public ProjectController(IServiceProvider serviceProvider) :
             base(serviceProvider)
@@ -59,7 +57,7 @@ namespace EzTask.Modules.Project.Controllers
         {
             var project = await EzTask.Project.GetProjectDetail(code);
 
-            return View(project.MapToModel());
+            return View(project);
         }
 
         /// <summary>
@@ -90,7 +88,7 @@ namespace EzTask.Modules.Project.Controllers
                             AccountId = AccountId
                         };
 
-                        var project = await EzTask.Project.Save(model.MapToEntity());
+                        var project = await EzTask.Project.Save(model);
                         if (project == null)
                         {
                             ErrorMessage = ProjectMessage.ErrorCreateProject;
@@ -133,9 +131,8 @@ namespace EzTask.Modules.Project.Controllers
             {
                 return RedirectToAction("PageNotFound", "Common");
             }
-            var model = project.MapToModel();
-            model.ActionType = ActionType.Update;
-            return View(model);
+            project.ActionType = ActionType.Update;
+            return View(project);
         }
 
         /// <summary>
@@ -147,9 +144,8 @@ namespace EzTask.Modules.Project.Controllers
         [PageTitle("Updating project is successful")]
         public async Task<IActionResult> UpdateSuccess(string code)
         {
-            var project = await EzTask.Project.GetProjectDetail(code);
-
-            return View(project.MapToModel());
+            var project = await EzTask.Project.GetProjectDetail(code);   
+            return View(project);
         }
 
         /// <summary>
@@ -181,9 +177,9 @@ namespace EzTask.Modules.Project.Controllers
                         }
                         else
                         {
-                            model.Owner = new AccountModel { AccountId = data.Owner };
+                            model.Owner = new AccountModel { AccountId = data.Owner.AccountId };
 
-                            var project = await EzTask.Project.Save(model.MapToEntity());
+                            var project = await EzTask.Project.Save(model);
                             if (project == null)
                             {
                                 ErrorMessage = ProjectMessage.ErrorUpdateProject;
@@ -249,7 +245,7 @@ namespace EzTask.Modules.Project.Controllers
             {
                 return models;
             }
-            models = data.MapToModels().ToList().SplitList(3);
+            models = data.ToList().SplitList(3);
             return models;
         }
         #endregion

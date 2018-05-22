@@ -1,18 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using EzTask.Modules.Core.Infrastructures;
 using EzTask.Modules.Tasks.Models;
 
 namespace EzTask.Modules.Tasks.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class TaskListController : EzTaskController
+    public class TaskListController : CoreController
     {
         public TaskListController(IServiceProvider serviceProvider) :
             base(serviceProvider)
@@ -24,7 +22,6 @@ namespace EzTask.Modules.Tasks.Controllers
         {
             TaskListModel model = new TaskListModel();
             model.ProjectItems = await CreateProjectSelectList();
-
             return View(model);
         }
 
@@ -34,11 +31,10 @@ namespace EzTask.Modules.Tasks.Controllers
         private async Task<List<SelectListItem>> CreateProjectSelectList()
         {
             var data = await EzTask.Project.GetProjects(AccountId);
-            var projectModels = data.MapToModels();
 
             List<SelectListItem> selectLists = new List<SelectListItem>();
 
-            foreach (var pro in projectModels)
+            foreach (var pro in data)
             {
                 selectLists.Add(new SelectListItem
                 {

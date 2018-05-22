@@ -2,21 +2,21 @@
 using EzTask.Business;
 using EzTask.Entity.Framework;
 using EzTask.Framework;
+using EzTask.Framework.Infrastructures;
 using EzTask.Framework.Values;
 using EzTask.Framework.Web.HttpContext;
-using EzTask.Modules.Core.Infrastructures;
 using Microsoft.AspNetCore.Mvc;
 using System;
 
 namespace EzTask.Modules.Core.Controllers
 {
-    public class EzTaskController: Controller
+    public class CoreController: Controller
     {
         protected SessionManager SessionManager;
         protected CookiesManager CookiesManager;
         protected EzTaskBusiness EzTask;
 
-        public EzTaskController(IServiceProvider serviceProvider)
+        public CoreController(IServiceProvider serviceProvider)
         {
             InvokeComponents(serviceProvider);
         }
@@ -90,7 +90,6 @@ namespace EzTask.Modules.Core.Controllers
         private void InvokeComponents(IServiceProvider serviceProvider)
         {
             serviceProvider.InvokeComponents(out EzTask);
-            EzTaskMapper.Config(serviceProvider.InvokeComponents<IMapper>());
             serviceProvider.InvokeComponents(out SessionManager);
             serviceProvider.InvokeComponents(out CookiesManager);
         }

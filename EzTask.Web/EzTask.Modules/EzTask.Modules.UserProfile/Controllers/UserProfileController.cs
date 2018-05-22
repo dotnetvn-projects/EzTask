@@ -1,17 +1,15 @@
 ﻿using System;
-using System.IO;
 using System.Threading.Tasks;
 using EzTask.Framework.Web.Attributes;
+using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
-using EzTask.Modules.Core.Infrastructures;
-using EzTask.Modules.Core.Models.Account;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.UserProfile.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class UserProfileController : EzTaskController
+    public class UserProfileController : CoreController
     {
         public UserProfileController(IServiceProvider serviceProvider) :
             base(serviceProvider)
@@ -55,7 +53,7 @@ namespace EzTask.Modules.UserProfile.Controllers
         {
             if (ModelState.IsValid)
             {
-                var account = await EzTask.Account.UpdateAccount(model.MapToEntity());
+                var account = await EzTask.Account.UpdateAccount(model);
                 await EzTask.Skill.SaveAccountSkill(model.Skills, AccountId);
             }
             return View("Profile", model);
@@ -87,12 +85,11 @@ namespace EzTask.Modules.UserProfile.Controllers
         private async Task<AccountInfoModel> GetAccountInfo()
         {
             var data = await EzTask.Account.GetAccountInfo(AccountId);            
-            var model = data.MapToModel();
-            if(model != null)
+            if(data != null)
             {
-                model.Skills = await EzTask.Skill.GetSkill(AccountId);
+                data.Skills = await EzTask.Skill.GetSkill(AccountId);
             }
-            return model;
+            return data;
         }
         #endregion
     }
