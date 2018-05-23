@@ -1,5 +1,4 @@
-﻿
-namespace EzTask.Models
+﻿namespace EzTask.Models
 {
     public class LoginModel : AccountModel
     {

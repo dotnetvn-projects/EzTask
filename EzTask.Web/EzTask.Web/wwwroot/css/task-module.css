@@ -6,3 +6,8 @@
 .project-box .btn-addnew-phrase {
     margin-top: 5px !important;
 }
+
+.phrase-list{
+    height: 500px;
+    overflow: auto;
+}

@@ -12,11 +12,11 @@
         </div>
     </div>
     <div class="box-body no-padding">
-        <ul class="nav nav-pills nav-stacked">
+        <ul style="height:500px; overflow:auto" class="nav nav-pills nav-stacked phrase-list">
             @foreach (var p in Model)
             {
                 <li>
-                    <a href="#"><i class="fa fa-filter"></i> @p.PhraseName <span class="label label-warning pull-right">65</span></a>
+                    <a href="#"><i class="fa fa-building-o"></i> @p.PhraseName <span class="label label-warning pull-right">65</span></a>
                 </li>               
             }
         </ul>

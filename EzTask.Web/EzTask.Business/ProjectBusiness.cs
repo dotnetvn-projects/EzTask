@@ -78,8 +78,7 @@ namespace EzTask.Business
                 {
                     transaction.Rollback();
                     return null;
-                }
-                
+                }             
             }
         }
 
@@ -147,7 +146,6 @@ namespace EzTask.Business
         {
             var data = await DbContext.Projects.AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
-
             return data.ToModel();
         }
 
@@ -160,7 +158,6 @@ namespace EzTask.Business
         {
             var data = await DbContext.Projects.AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectName.ToLower() == name.ToLower());
-
             return data.ToModel();
         }
 

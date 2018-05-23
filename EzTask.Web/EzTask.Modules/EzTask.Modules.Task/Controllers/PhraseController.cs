@@ -22,7 +22,7 @@ namespace EzTask.Modules.Task.Controllers
             var iResult = await EzTask.Phrase.Save(model);
             if (iResult != null)
             {
-                return Ok(iResult);
+                return Json(iResult);
             }
             return BadRequest();
         }

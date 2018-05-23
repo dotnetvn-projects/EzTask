@@ -20,6 +20,19 @@ function ModalCloseTrigger(modal) {
 }
 //end modal helper
 
+function DoAjax(form, callback, errorFunction, format) {
+        $.ajax({
+            url: form.action,
+            type: form.method,
+            dataType: format,
+            data: $(form).serialize(),
+            success: callback,
+            error: function (xhr, textStatus, errorThrown) {
+                errorFunction(xhr, textStatus, errorThrown);
+            }
+        });
+    }
+
 $(function () { 
     //select2
     $('.select2').select2();
