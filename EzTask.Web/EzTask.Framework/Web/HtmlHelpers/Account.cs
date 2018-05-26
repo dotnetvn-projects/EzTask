@@ -1,5 +1,5 @@
 ﻿using EzTask.Entity.Framework;
-using EzTask.Framework.Values;
+using EzTask.Framework.FrameworkObjects;
 using EzTask.Framework.Web.HttpContext;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -44,7 +44,7 @@ namespace EzTask.Framework.Web.HtmlHelpers
         private static CurrentAccount GetCurrentAccount()
         {
             SessionManager sessionManager = new SessionManager();
-            var currentAccount = sessionManager.GetObject<CurrentAccount>(Key.Account);
+            var currentAccount = sessionManager.GetObject<CurrentAccount>(AppKey.Account);
             return currentAccount;
         }
         #endregion

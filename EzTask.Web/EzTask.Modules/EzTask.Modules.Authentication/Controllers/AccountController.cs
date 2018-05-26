@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using EzTask.Entity.Framework;
 using EzTask.Framework.Message;
-using EzTask.Framework.Values;
+using EzTask.Framework.FrameworkObjects;
 using EzTask.Framework.Web.Attributes;
 using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
@@ -153,7 +153,7 @@ namespace EzTask.Modules.Authentication.Controllers
         [HttpPost]
         public IActionResult LogOff()
         {
-            SuspendSession(Key.Account);
+            SuspendSession(AppKey.Account);
             return RedirectToAction("Login", "Account");
         }
     }

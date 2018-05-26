@@ -8,4 +8,8 @@
     <ProjectReference Include="..\EzTask.Entity\EzTask.Entity.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="ModelEnum\" />
+  </ItemGroup>
+
 </Project>

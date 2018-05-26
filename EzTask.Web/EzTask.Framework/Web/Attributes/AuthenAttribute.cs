@@ -1,5 +1,5 @@
 ﻿using EzTask.Entity.Framework;
-using EzTask.Framework.Values;
+using EzTask.Framework.FrameworkObjects;
 using EzTask.Framework.Web.HttpContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -29,13 +29,13 @@ namespace EzTask.Framework.Web.Attributes
         {
             await Task.Factory.StartNew(() =>
             {
-                var currentUser = _sessionManager.GetObject<CurrentAccount>(Key.Account);
+                var currentUser = _sessionManager.GetObject<CurrentAccount>(AppKey.Account);
                 if (currentUser == null)
                 {
-                    currentUser = _cookiesManager.GetObject<CurrentAccount>(Key.EzTaskAuthen);
+                    currentUser = _cookiesManager.GetObject<CurrentAccount>(AppKey.EzTaskAuthen);
                     if (currentUser != null)
                     {
-                        _sessionManager.SetObject(Key.Account, currentUser);
+                        _sessionManager.SetObject(AppKey.Account, currentUser);
                     }
                 }
                 if (currentUser == null

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EzTask.Entity.Framework;
 using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,8 @@ namespace EzTask.Modules.Task.Controllers
 {
     public class PhraseController : CoreController
     {
-        public PhraseController(IServiceProvider serviceProvider) : base(serviceProvider)
+        public PhraseController(IServiceProvider serviceProvider) :
+            base(serviceProvider)
         {
         }
 
@@ -20,10 +22,14 @@ namespace EzTask.Modules.Task.Controllers
                 return BadRequest();
 
             var iResult = await EzTask.Phrase.Save(model);
-            if (iResult != null)
+            if (iResult.Status == ActionStatus.Ok)
             {
-                return Json(iResult);
+                var data = (PhraseModel)iResult.Value;
+                data.StartDate = DateTime.Now;
+                data.EndDate = DateTime.Now.AddDays(1);
+                return Json(data);
             }
+
             return BadRequest();
         }
     }

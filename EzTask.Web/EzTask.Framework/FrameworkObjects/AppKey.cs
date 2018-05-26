@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Framework.Values
+namespace EzTask.Framework.FrameworkObjects
 {
-    public enum Key
+    public enum AppKey
     {
         Account,
         EzTaskAuthen

@@ -5,7 +5,7 @@
     <ApplicationIcon />
     <OutputType>Library</OutputType>
     <StartupObject />
-    <AssemblyName>EzTask.Modules.Tasks</AssemblyName>
+    <AssemblyName>EzTask.Modules.Task</AssemblyName>
   </PropertyGroup>
 
   <ItemGroup>
@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\lib\" />
+    <Folder Include="wwwroot\Task\images\" />
+    <Folder Include="wwwroot\Task\lib\" />
   </ItemGroup>
 
 </Project>

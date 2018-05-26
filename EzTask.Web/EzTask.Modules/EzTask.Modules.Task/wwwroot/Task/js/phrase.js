@@ -4,6 +4,11 @@ function SetDeleteModalValue(projectId, phraseId) {
     $('#phrase-modal .phrase-id').val(phraseId);
 }
 
+function FormatDate(dateString) {
+    var date = new Date(dateString);
+    return (date.getMonth() +1) + "/" + date.getDate() + "/" + date.getFullYear();
+}
+
 $.fn.ShowModal = function () {
     $(this).click(function () {
         var projectId = $('.project-list').val();
@@ -16,10 +21,10 @@ $.fn.ShowModal = function () {
 $.fn.PhraseModalAction = function () {
     $(this).click(function (e) {
         e.preventDefault();
-        var t = $("#phrase-form").validate();
-        var c = t.settings.messages;
+        var form = $("#phrase-form");
         var projectId = $('.project-list').val();
-        if ($("#phrase-form").valid()) {
+        var phraseId = $('.phrase-id').val();
+        if (form.valid()) {
             $.ajax({
                 type: 'post',
                 url: "task/phrase-modal-action.html",
@@ -28,6 +33,10 @@ $.fn.PhraseModalAction = function () {
                     var phrasePanel = $(".phrase-list");
                     var item = '<li><a href="#"><i class="fa fa-building-o"></i> ' + response.phraseName + '<span class="label label-warning pull-right">65</span></a></li>';
                     phrasePanel.append(item);
+                   
+                    $("#inputPhraseName").val('');
+                    $("#inputStartDate").val(FormatDate(response.startDate));
+                    $("#inputEndDate").val(FormatDate(response.endDate));
                     CloseModal('phrase-modal');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {

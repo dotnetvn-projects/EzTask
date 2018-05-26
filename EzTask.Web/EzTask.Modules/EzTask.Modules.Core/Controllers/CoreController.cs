@@ -3,7 +3,7 @@ using EzTask.Business;
 using EzTask.Entity.Framework;
 using EzTask.Framework;
 using EzTask.Framework.Infrastructures;
-using EzTask.Framework.Values;
+using EzTask.Framework.FrameworkObjects;
 using EzTask.Framework.Web.HttpContext;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -54,21 +54,21 @@ namespace EzTask.Modules.Core.Controllers
         {
             get
             {
-                var currentAccount = SessionManager.GetObject<CurrentAccount>(Key.Account);
+                var currentAccount = SessionManager.GetObject<CurrentAccount>(AppKey.Account);
                 if (currentAccount == null)
                     currentAccount = new CurrentAccount();
                 return currentAccount;
             }
             set
             {
-                SessionManager.SetObject(Key.Account, value);
+                SessionManager.SetObject(AppKey.Account, value);
             }
         }
 
         /// <summary>
         /// Suspend session
         /// </summary>
-        protected void SuspendSession(Key key)
+        protected void SuspendSession(AppKey key)
         {
             SessionManager.Remove(key);
         }
@@ -76,14 +76,14 @@ namespace EzTask.Modules.Core.Controllers
         /// <summary>
         /// Suspend cookie
         /// </summary>
-        protected void SuspendCookie(Key key)
+        protected void SuspendCookie(AppKey key)
         {
             CookiesManager.Remove(key);
         }
 
         protected void RememberMe()
         {
-            CookiesManager.SetObject(Key.EzTaskAuthen, CurrentAccount, 3000);
+            CookiesManager.SetObject(AppKey.EzTaskAuthen, CurrentAccount, 3000);
         }
 
         #region Private

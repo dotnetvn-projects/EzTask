@@ -4,7 +4,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Framework.Values
+namespace EzTask.Framework.FrameworkObjects
 {
     public class LogQueue
     {

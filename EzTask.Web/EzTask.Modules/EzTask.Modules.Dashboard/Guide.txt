@@ -1,0 +1,22 @@
+﻿**********PLEASE FOLLOW THE RULE BELOW WHEN YOU DEVELOP A NEW MODULE FOR EZTASK********
+1. Module Structure:
+   wwwroot (if any)
+   Models (if any)
+   Controllers (must be)
+   ViewComponents (if any)
+   Views (must be)
+   bundleconfig.js (must be)
+   config.cf (must be)
+
+2. wwwroot folder:
+   - Create a new folder inside wwwroot with its name is [Your Module Name]
+     Example: you have a module is "EzTask.Modules.Dashboard" so the folder name will be "Dashboard"
+   - Inside the Dashboard folder you need to create css, images, js and lib folder.
+
+   TEMPLATE: [ModuleName]/css, [ModuleName]/images, [ModuleName]/js, [ModuleName]/lib
+	   css: location of your css file.
+	   images: location of your images.
+	   js: location of your javascript file.
+	   lib: libraries which you took somewhere to your module.
+
+NOTE: if your don't follow the rule your module cannot work in EzTask properly.

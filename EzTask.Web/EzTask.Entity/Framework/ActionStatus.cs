@@ -8,6 +8,7 @@ namespace EzTask.Entity.Framework
     {
         Ok,
         Failed,
-        NotFound
+        NotFound,
+        Dupplicate
     }
 }
