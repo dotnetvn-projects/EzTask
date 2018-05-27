@@ -1,0 +1,25 @@
+﻿/*Upload file button*/
+input[type="file"] {
+    display: none;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+/*Upload file button*/
+
+/*Upload Avatar modal*/
+#upload-avatar-modal .img-avatar {
+    width: 250px !important;
+}
+
+.upload-avatar-button {
+    padding-top: 10px;
+    margin: 0 auto;
+    width: 131px;
+}
+/*End upload avatar modal*/

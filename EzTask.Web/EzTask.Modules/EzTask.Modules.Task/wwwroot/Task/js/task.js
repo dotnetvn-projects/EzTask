@@ -1,7 +1,45 @@
 ﻿function Init() {
+
+    //search table
+    $('.search-task').keyup(function () {
+        var input, filter, table, tr, td, i;
+        input = this;
+        filter = input.value.toUpperCase();
+        table = $('.task-table > table')[0];
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 1; j < td.length; j++) {
+                var data = td[j]
+                if (data) {
+                    if (data.innerText.toUpperCase().indexOf(filter) > -1) {
+                        tr[i].style.display = "";
+                        break;
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }
+            }
+        }
+    });
+
+    //load phrase
+    $('.project-list').change(function () {
+        var id = $(this).val();
+        $.ajax({
+            url: "task/phrase-list.html",
+            data: { projectId: id },
+            success: function (response) {
+                var phrasePanel = $(".phrase-list-box");
+                phrasePanel.html('');
+                phrasePanel.html(response);
+            },
+        });
+    });
+
     //Enable iCheck plugin for checkboxes
     //iCheck for checkbox and radio inputs
-    $('.mailbox-messages input[type="checkbox"]').iCheck({
+    $('.task-table input[type="checkbox"]').iCheck({
         checkboxClass: 'icheckbox_flat-green',
         radioClass: 'iradio_flat-green'
     });
@@ -11,18 +49,18 @@
         var clicks = $(this).data('clicks');
         if (clicks) {
             //Uncheck all checkboxes
-            $(".mailbox-messages input[type='checkbox']").iCheck("uncheck");
+            $(".task-table input[type='checkbox']").iCheck("uncheck");
             $(".fa", this).removeClass("fa-check-square-o").addClass('fa-square-o');
         } else {
             //Check all checkboxes
-            $(".mailbox-messages input[type='checkbox']").iCheck("check");
+            $(".task-table input[type='checkbox']").iCheck("check");
             $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
         }
         $(this).data("clicks", !clicks);
     });
 
     //Handle starring for glyphicon and font awesome
-    $(".mailbox-star").click(function (e) {
+    $(".task-star").click(function (e) {
         e.preventDefault();
         //detect type
         var $this = $(this).find("a > i");

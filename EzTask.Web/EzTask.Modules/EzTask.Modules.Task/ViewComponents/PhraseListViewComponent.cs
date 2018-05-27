@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace EzTask.Modules.Tasks.ViewComponents
+namespace EzTask.Modules.Task.ViewComponents
 {
     public class PhraseListViewComponent : ViewComponent
     {

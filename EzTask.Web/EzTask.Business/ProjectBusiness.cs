@@ -62,7 +62,7 @@ namespace EzTask.Business
                                 //create feature in Phrase table as default
                                 var feature = new Phrase
                                 {
-                                    PhraseName = "Features",
+                                    PhraseName = "Open Features",
                                     ProjectId = project.Id,
                                     Status = (int)PhraseStatus.Open
                                 };

@@ -7,7 +7,103 @@
     margin-top: 5px !important;
 }
 
-.phrase-list{
-    height: 500px;
+
+/*****Phrase list*****/
+.phrase-list {
+    max-height: 700px;
     overflow: auto;
 }
+
+.phrase-list .date{
+    padding-top:8px;
+    font-size:12px;
+}
+
+.phrase-list .date :nth-child(2) {
+    padding-left: 2px;
+}
+/*****End Phrase list*****/
+
+
+/*****Task table*****/
+.task-table > .table {
+    margin: 0;
+}
+
+.task-controls {
+    padding: 5px;
+}
+
+.task-controls.with-border {
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.task-read-info {
+    border-bottom: 1px solid #f4f4f4;
+    padding: 10px;
+}
+
+.task-read-info h3 {
+    font-size: 20px;
+    margin: 0;
+}
+
+.task-read-info h5 {
+    margin: 0;
+    padding: 5px 0 0 0;
+}
+
+.task-read-time {
+    color: #999;
+    font-size: 13px;
+}
+
+.task-read-message {
+    padding: 10px;
+}
+
+.task-attachments li {
+    float: left;
+    width: 200px;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.task-attachment-name {
+    font-weight: bold;
+    color: #666;
+}
+
+.task-attachment-icon,
+.task-attachment-info,
+.task-attachment-size {
+    display: block;
+}
+
+.task-attachment-info {
+    padding: 10px;
+    background: #f4f4f4;
+}
+
+.task-attachment-size {
+    color: #999;
+    font-size: 12px;
+}
+
+.task-attachment-icon {
+    text-align: center;
+    font-size: 65px;
+    color: #666;
+    padding: 20px 10px;
+}
+
+.task-attachment-icon.has-img {
+    padding: 0;
+}
+
+.task-attachment-icon.has-img > img {
+    max-width: 100%;
+    height: auto;
+}
+/*****End Task table*****/

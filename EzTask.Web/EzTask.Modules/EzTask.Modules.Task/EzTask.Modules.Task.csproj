@@ -21,8 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Task\images\" />
-    <Folder Include="wwwroot\Task\lib\" />
+    <Folder Include="wwwroot\task\images\" />
+    <Folder Include="wwwroot\task\lib\" />
   </ItemGroup>
 
 </Project>

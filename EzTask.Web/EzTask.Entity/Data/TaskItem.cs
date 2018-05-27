@@ -28,6 +28,9 @@ namespace EzTask.Entity.Data
         [ForeignKey("ProjectId")]
         public Project Project { get; set; }
 
+        [ForeignKey("PhraseId")]
+        public Phrase Phrase { get; set; }
+
         public TaskItem ()
         {
             Assignee = new Account();

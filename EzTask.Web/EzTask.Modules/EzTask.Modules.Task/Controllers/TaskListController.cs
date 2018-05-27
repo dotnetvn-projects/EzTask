@@ -5,9 +5,9 @@ using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using EzTask.Modules.Tasks.Models;
+using EzTask.Modules.Task.Models;
 
-namespace EzTask.Modules.Tasks.Controllers
+namespace EzTask.Modules.Task.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
     public class TaskListController : CoreController

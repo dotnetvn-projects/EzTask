@@ -1,7 +1,7 @@
 ﻿
 @model IEnumerable<PhraseModel>
 
-<div class="box box-solid">
+
     <div class="box-header with-border">
         <h3 class="box-title">Phrases</h3>
 
@@ -14,10 +14,17 @@
     <div class="box-body no-padding">
         <ul class="nav nav-pills nav-stacked phrase-list">
             @foreach (var p in Model)
-            {
-                <li><a href="#"><i class="fa fa-building-o"></i> @p.PhraseName <span class="label label-warning pull-right">65</span></a></li>               
+            { 
+            <li title="65 tasks">
+                <a href="#">
+                    <div><i class="fa fa-book text-success"></i> @p.PhraseName <span title="65 tasks" class="label label-warning pull-right">65</span></div>
+                    @if(p.StartDate.HasValue)
+                    {
+                    <div class="date"><i class="fa fa-calendar"></i> <display-for asp-for="@p.StartDate"></display-for> - <display-for asp-for="@p.EndDate"></display-for></div>
+                    }                   
+                </a>
+            </li>               
             }
         </ul>
     </div>
-    <!-- /.box-body -->
-</div>
+

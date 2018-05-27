@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Modules.Tasks.Models
+namespace EzTask.Modules.Task.Models
 {
     public class TaskListModel
     {

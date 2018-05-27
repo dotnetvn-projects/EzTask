@@ -1,12 +1,14 @@
-﻿[
+[
   {
-    "outputFileName": "wwwroot/js/project.min.js",
+    "outputFileName": "wwwroot/userprofile/css/user-profile.min.css",
     "inputFiles": [
-      "wwwroot/js/project.js"
-    ],
-    "minify": {
-      "enabled": true,
-      "renameLocals": true
-    }
+      "wwwroot/userprofile/css/user-profile.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/userprofile/js/user-profile.min.js",
+    "inputFiles": [
+      "wwwroot/userprofile/js/user-profile.js"
+    ]
   }
 ]

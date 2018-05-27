@@ -32,5 +32,12 @@ namespace EzTask.Modules.Task.Controllers
 
             return BadRequest();
         }
+
+        [HttpGet]
+        [Route("task/phrase-list.html")]
+        public IActionResult LoadPhraseList(int projectId)
+        {
+            return ViewComponent("PhraseList", projectId);
+        }
     }
 }
