@@ -9,5 +9,6 @@ namespace EzTask.Models
     {
         public ActionStatus Status { get; set; }
         public object Value { get; set; }
+
     }
 }

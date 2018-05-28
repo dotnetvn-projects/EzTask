@@ -13,6 +13,7 @@ namespace EzTask.Framework.Infrastructures
             AccountMaper();
             ProjectMapper();
             PhraseMapper();
+            TaskMapper();
         }
 
         private void AccountMaper()
@@ -75,6 +76,21 @@ namespace EzTask.Framework.Infrastructures
             //Map phrase model to phrase entity
             CreateMap<PhraseModel, Phrase>()
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<PhraseStatus>()));
+        }
+
+        private void TaskMapper()
+        {
+            //Map TaskItem entity to TaskItem model
+            CreateMap<TaskItem, TaskItemModel>()
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<TaskStatus>()))
+                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToEnum<TaskStatus>()))
+                .ForMember(c => c.TaskId, t => t.MapFrom(z => z.Id));
+
+            //Map TaskItem model to TaskItem entity
+            CreateMap<TaskItemModel, TaskItem>()
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<TaskStatus>()))
+                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToInt16<TaskStatus>()))
+                .ForMember(c => c.Id, t => t.MapFrom(z => z.TaskId));
         }
     }
 }

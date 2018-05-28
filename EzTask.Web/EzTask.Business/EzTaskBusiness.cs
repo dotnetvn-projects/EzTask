@@ -9,15 +9,17 @@ namespace EzTask.Business
         public ProjectBusiness Project { get; }
         public SkillBusiness Skill { get;  }
         public PhraseBusiness Phrase { get; }
+        public TaskBusiness Task { get; }
 
         public EzTaskBusiness(AccountBusiness account,
             ProjectBusiness project, SkillBusiness skill,
-            PhraseBusiness phrase)
+            PhraseBusiness phrase, TaskBusiness task)
         {
             Account = account;
             Project = project;
             Skill = skill;
             Phrase = phrase;
+            Task = task;
         }
 
         /// <summary>

@@ -25,7 +25,14 @@ namespace EzTask.Modules.Task.Controllers
             return View(model);
         }
 
-        
+        [HttpGet]
+        [Route("task/task-list.html")]
+        public async Task<IActionResult> GetTaskList(int projectId, int page, int pageSize)
+        {
+            var data = await EzTask.Task.GetTasks(projectId, page, pageSize);
+            return View();
+        }
+
         #region Non Action
 
         private async Task<List<SelectListItem>> CreateProjectSelectList()

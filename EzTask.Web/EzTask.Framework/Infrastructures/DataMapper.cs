@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace EzTask.Framework.Infrastructures
 {
     public static class DataMapper
-    {        
+    {
         #region Account Mapper
 
         public static Account ToEntity(this RegisterModel model)
@@ -113,6 +113,29 @@ namespace EzTask.Framework.Infrastructures
         public static IEnumerable<PhraseModel> ToModels(this IEnumerable<Phrase> entity)
         {
             return FrameworkInitializer.Mapper.Map<IEnumerable<PhraseModel>>(entity);
+        }
+        #endregion
+
+        #region Task Mapper
+        public static TaskItemModel ToModel(this TaskItem entity)
+        {
+            if (entity == null)
+                return null;
+
+            return FrameworkInitializer.Mapper.Map<TaskItemModel>(entity);
+        }
+
+        public static TaskItem ToEntity(this TaskItemModel model)
+        {
+            if (model == null)
+                return null;
+
+            return FrameworkInitializer.Mapper.Map<TaskItem>(model);
+        }
+
+        public static IEnumerable<TaskItemModel> ToModels(this IEnumerable<TaskItem> entity)
+        {
+            return FrameworkInitializer.Mapper.Map<IEnumerable<TaskItemModel>>(entity);
         }
         #endregion
     }

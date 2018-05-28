@@ -5,6 +5,9 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
 using EzTask.Entity.Data;
+using EzTask.Entity.Framework;
+using EzTask.Framework.Infrastructures;
+using EzTask.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
@@ -20,20 +23,29 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public async Task<TaskItem> CreateTask(TaskItem item)
+        public async Task<ResultModel> CreateTask(TaskItemModel model)
         {
-            DbContext.Tasks.Add(item);
-            var iResult =  await DbContext.SaveChangesAsync();
+            ResultModel result = new ResultModel();
+
+            var task = model.ToEntity();
+
+            DbContext.Tasks.Add(task);
+            var iResult = await DbContext.SaveChangesAsync();
+
             if (iResult > 0)
             {
-                if (string.IsNullOrEmpty(item.TaskCode))
+                if (string.IsNullOrEmpty(task.TaskCode))
                 {
-                    item.TaskCode = CreateCode("T", item.Id);
+                    task.TaskCode = CreateCode("T", task.Id);
                     var updatedRecord = await DbContext.SaveChangesAsync();
                 }
-                return item;
+
+                result.Status = ActionStatus.Ok;
+                result.Value = task.ToModel();
             }
-            return null;
+
+            result.Status = ActionStatus.Failed;
+            return result;
         }
 
         /// <summary>
@@ -41,18 +53,21 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TaskItem>> GetTasks(int projectId, 
+        public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId,
             int page, int pageSize)
         {
-           
+
             var data = await DbContext.Tasks.Include(c => c.Project)
                                    .Include(c => c.Member)
                                    .Include(c => c.Assignee)
+                                   .Include(c => c.Phrase)
                                    .AsNoTracking()
-                                   .Where(c=>c.ProjectId == projectId)
+                                   .Where(c => c.ProjectId == projectId)
                                    .Skip(pageSize * page - pageSize).Take(pageSize)
                                    .ToListAsync();
-            return data;
+
+            var model = data.ToModels();
+            return model;
         }
     }
 }

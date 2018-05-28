@@ -11,6 +11,7 @@ namespace EzTask.Business
             services.AddTransient<ProjectBusiness>();
             services.AddTransient<SkillBusiness>();
             services.AddTransient<PhraseBusiness>();
+            services.AddTransient<TaskBusiness>();
         }
     }
 }

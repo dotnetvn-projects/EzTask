@@ -133,7 +133,7 @@ namespace EzTask.Business
                 .AsNoTracking()
                 .Where(c => c.Owner == ownerId).OrderBy(c => c.Status)
                 .ToListAsync();
-
+            //TODO get project which related to project-member
             return data.ToModels();
         }
 
