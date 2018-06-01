@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
 using EzTask.Entity.Data;
-using EzTask.Entity.Framework;
 using EzTask.Framework.Common;
 using EzTask.Models;
+using EzTask.Models.Enum;
 
 namespace EzTask.Framework.Infrastructures
 {

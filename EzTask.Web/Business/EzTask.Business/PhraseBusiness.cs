@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
-using EzTask.Entity.Framework;
 using EzTask.Framework.Infrastructures;
 using EzTask.Models;
+using EzTask.Models.Enum;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business

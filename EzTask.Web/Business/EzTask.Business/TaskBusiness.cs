@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
-using EzTask.Entity.Data;
-using EzTask.Entity.Framework;
 using EzTask.Framework.Infrastructures;
 using EzTask.Models;
+using EzTask.Models.Enum;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business

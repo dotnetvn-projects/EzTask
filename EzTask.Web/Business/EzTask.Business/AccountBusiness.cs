@@ -5,13 +5,12 @@ using System.Threading.Tasks;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
-using EzTask.Entity.Data;
-using EzTask.Entity.Framework;
 using System.IO;
 using ImageStream = EzTask.Framework.IO.Stream;
 using EzTask.Framework.ImageHandler;
 using EzTask.Models;
 using EzTask.Framework.Infrastructures;
+using EzTask.Models.Enum;
 
 namespace EzTask.Business
 {

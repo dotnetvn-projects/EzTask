@@ -6815,6 +6815,7 @@
     <ProjectReference Include="..\..\Business\EzTask.Business\EzTask.Business.csproj" />
     <ProjectReference Include="..\..\Libraries\EzTask.Framework\EzTask.Framework.csproj" />
     <ProjectReference Include="..\..\Libraries\EzTask.Interfaces\EzTask.Interfaces.csproj" />
+    <ProjectReference Include="..\EzTask.Web.Framework\EzTask.Web.Framework.csproj" />
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

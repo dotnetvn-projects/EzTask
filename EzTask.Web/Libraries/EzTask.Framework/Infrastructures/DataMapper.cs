@@ -1,6 +1,6 @@
 ﻿using EzTask.Entity.Data;
-using EzTask.Entity.Framework;
 using EzTask.Models;
+using EzTask.Models.Enum;
 using System.Collections.Generic;
 
 namespace EzTask.Framework.Infrastructures
@@ -11,17 +11,17 @@ namespace EzTask.Framework.Infrastructures
 
         public static Account ToEntity(this RegisterModel model)
         {
-            return FrameworkInitializer.Mapper.Map<Account>(model);
+            return FrameworkCore.Mapper.Map<Account>(model);
         }
 
         public static AccountModel ToModel(this Account entity)
         {
-            return FrameworkInitializer.Mapper.Map<AccountModel>(entity);
+            return FrameworkCore.Mapper.Map<AccountModel>(entity);
         }
 
         public static IEnumerable<AccountModel> ToModels(this IEnumerable<Account> entity)
         {
-            return FrameworkInitializer.Mapper.Map<IEnumerable<AccountModel>>(entity);
+            return FrameworkCore.Mapper.Map<IEnumerable<AccountModel>>(entity);
         }
 
         public static AccountInfoModel ToModel(this AccountInfo entity)
@@ -29,12 +29,12 @@ namespace EzTask.Framework.Infrastructures
             if (entity == null)
                 return new AccountInfoModel();
 
-            return FrameworkInitializer.Mapper.Map<AccountInfoModel>(entity);
+            return FrameworkCore.Mapper.Map<AccountInfoModel>(entity);
         }
 
         public static AccountInfo ToEntity(this AccountInfoModel model)
         {
-            return FrameworkInitializer.Mapper.Map<AccountInfo>(model);
+            return FrameworkCore.Mapper.Map<AccountInfo>(model);
         }
         #endregion
 
@@ -45,7 +45,7 @@ namespace EzTask.Framework.Infrastructures
             if (entity == null)
                 return null;
 
-            return FrameworkInitializer.Mapper.Map<ProjectModel>(entity);
+            return FrameworkCore.Mapper.Map<ProjectModel>(entity);
         }
 
         public static Project ToEntity(this ProjectModel model)
@@ -53,12 +53,12 @@ namespace EzTask.Framework.Infrastructures
             if (model == null)
                 return null;
 
-            return FrameworkInitializer.Mapper.Map<Project>(model);
+            return FrameworkCore.Mapper.Map<Project>(model);
         }
 
         public static IEnumerable<ProjectModel> ToModels(this IEnumerable<Project> entity)
         {
-            var data = FrameworkInitializer.Mapper.Map<IEnumerable<ProjectModel>>(entity);
+            var data = FrameworkCore.Mapper.Map<IEnumerable<ProjectModel>>(entity);
             if (data == null)
                 return data;
 
@@ -99,7 +99,7 @@ namespace EzTask.Framework.Infrastructures
             if (entity == null)
                 return null;
 
-            return FrameworkInitializer.Mapper.Map<PhraseModel>(entity);
+            return FrameworkCore.Mapper.Map<PhraseModel>(entity);
         }
 
         public static Phrase ToEntity(this PhraseModel model)
@@ -107,12 +107,12 @@ namespace EzTask.Framework.Infrastructures
             if (model == null)
                 return null;
 
-            return FrameworkInitializer.Mapper.Map<Phrase>(model);
+            return FrameworkCore.Mapper.Map<Phrase>(model);
         }
 
         public static IEnumerable<PhraseModel> ToModels(this IEnumerable<Phrase> entity)
         {
-            return FrameworkInitializer.Mapper.Map<IEnumerable<PhraseModel>>(entity);
+            return FrameworkCore.Mapper.Map<IEnumerable<PhraseModel>>(entity);
         }
         #endregion
 
@@ -122,7 +122,7 @@ namespace EzTask.Framework.Infrastructures
             if (entity == null)
                 return null;
 
-            return FrameworkInitializer.Mapper.Map<TaskItemModel>(entity);
+            return FrameworkCore.Mapper.Map<TaskItemModel>(entity);
         }
 
         public static TaskItem ToEntity(this TaskItemModel model)
@@ -130,12 +130,12 @@ namespace EzTask.Framework.Infrastructures
             if (model == null)
                 return null;
 
-            return FrameworkInitializer.Mapper.Map<TaskItem>(model);
+            return FrameworkCore.Mapper.Map<TaskItem>(model);
         }
 
         public static IEnumerable<TaskItemModel> ToModels(this IEnumerable<TaskItem> entity)
         {
-            return FrameworkInitializer.Mapper.Map<IEnumerable<TaskItemModel>>(entity);
+            return FrameworkCore.Mapper.Map<IEnumerable<TaskItemModel>>(entity);
         }
         #endregion
     }

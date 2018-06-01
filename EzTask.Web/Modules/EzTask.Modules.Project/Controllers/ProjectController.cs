@@ -1,15 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
-using EzTask.Entity.Framework;
 using EzTask.Framework.Common;
 using EzTask.Framework.Message;
-using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Models;
 using Microsoft.AspNetCore.Mvc;
+using EzTask.Web.Framework.Attributes;
+using EzTask.Models.Enum;
 
 namespace EzTask.Modules.Project.Controllers
 {
@@ -218,8 +217,8 @@ namespace EzTask.Modules.Project.Controllers
         [TokenAttribute]
         public async Task<IActionResult> RemoveProject(string code)
         {
-            var removeAction = await EzTask.Project.Delete(code);
-            if (removeAction == ActionStatus.Ok)
+            var iResult = await EzTask.Project.Delete(code);
+            if (iResult.Status == ActionStatus.Ok)
             {
                 return Ok();
             }

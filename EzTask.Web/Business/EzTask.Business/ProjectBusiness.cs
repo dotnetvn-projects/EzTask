@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
 using EzTask.Entity.Data;
-using EzTask.Entity.Framework;
 using EzTask.Framework.Infrastructures;
 using EzTask.Models;
+using EzTask.Models.Enum;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
@@ -87,8 +86,9 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectCode"></param>
         /// <returns></returns>
-        public async Task<ActionStatus> Delete(string projectCode)
+        public async Task<ResultModel> Delete(string projectCode)
         {
+            ResultModel result = new ResultModel();
             using (var transaction = DbContext.Database.BeginTransaction())
             {
                 try
@@ -111,13 +111,15 @@ namespace EzTask.Business
                     }
 
                     transaction.Commit();
-                    return ActionStatus.Ok;
+                    result.Status = ActionStatus.Ok;
                 }
-                catch (Exception)
+                catch (Exception )
                 {
                     transaction.Rollback();
-                    return ActionStatus.Failed;
+                    result.Status = ActionStatus.Failed;
                 }
+
+                return result;
             }
         }
 

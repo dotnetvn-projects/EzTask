@@ -1,7 +1,4 @@
-﻿using EzTask.Entity.Framework;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using EzTask.Models.Enum;
 
 namespace EzTask.Models
 {

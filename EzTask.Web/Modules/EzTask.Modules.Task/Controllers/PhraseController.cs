@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EzTask.Entity.Framework;
 using EzTask.Models;
+using EzTask.Models.Enum;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 

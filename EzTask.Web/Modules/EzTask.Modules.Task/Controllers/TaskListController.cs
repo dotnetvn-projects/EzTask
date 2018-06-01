@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EzTask.Modules.Task.Models;
+using EzTask.Web.Framework.Attributes;
 
 namespace EzTask.Modules.Task.Controllers
 {
@@ -20,8 +20,10 @@ namespace EzTask.Modules.Task.Controllers
         [Route("task.html")]
         public async Task<IActionResult> Index()
         {
-            TaskListModel model = new TaskListModel();
-            model.ProjectItems = await CreateProjectSelectList();
+            TaskListModel model = new TaskListModel
+            {
+                ProjectItems = await CreateProjectSelectList()
+            };
             return View(model);
         }
 

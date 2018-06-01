@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EzTask.Framework.Web.Attributes;
 using EzTask.Modules.Core.Controllers;
+using EzTask.Web.Framework.Attributes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.Project.Controllers

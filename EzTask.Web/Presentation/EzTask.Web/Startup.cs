@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using EzTask.Business;
 using System.Diagnostics;
 using System.IO;
+using EzTask.Web.Framework;
 
 namespace EzTask.Web
 {
@@ -24,7 +25,7 @@ namespace EzTask.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.RegisterFramework(Configuration, Environment);
+            services.Register(Configuration, Environment);
             services.RegisterBusiness();           
             services.AddDistributedMemoryCache();
             services.AddSession();

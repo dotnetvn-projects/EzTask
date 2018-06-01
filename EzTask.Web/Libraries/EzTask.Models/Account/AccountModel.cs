@@ -1,4 +1,4 @@
-﻿using EzTask.Entity.Framework;
+﻿using EzTask.Models.Enum;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;

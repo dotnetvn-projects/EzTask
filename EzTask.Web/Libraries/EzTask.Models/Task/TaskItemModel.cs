@@ -1,4 +1,4 @@
-﻿using EzTask.Entity.Framework;
+﻿using EzTask.Models.Enum;
 
 namespace EzTask.Models
 {

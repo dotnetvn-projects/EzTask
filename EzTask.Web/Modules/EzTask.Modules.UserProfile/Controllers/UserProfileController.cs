@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EzTask.Framework.Web.Attributes;
 using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
+using EzTask.Web.Framework.Attributes;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

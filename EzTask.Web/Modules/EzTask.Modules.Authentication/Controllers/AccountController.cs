@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EzTask.Entity.Framework;
 using EzTask.Framework.Message;
-using EzTask.Framework.FrameworkObjects;
-using EzTask.Framework.Web.Attributes;
+using EzTask.Framework.Data;
 using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
+using EzTask.Web.Framework.Attributes;
+using EzTask.Models.Enum;
 
 namespace EzTask.Modules.Authentication.Controllers
 {

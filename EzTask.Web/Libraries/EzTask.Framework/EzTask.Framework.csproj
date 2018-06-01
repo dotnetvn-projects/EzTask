@@ -13,7 +13,6 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.0-alpha-0001" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
     <PackageReference Include="System.Drawing.Common" Version="4.5.0-preview2-26406-04" />
   </ItemGroup>
 
@@ -21,6 +20,10 @@
     <ProjectReference Include="..\EzTask.DataAccess\EzTask.DataAccess.csproj" />
     <ProjectReference Include="..\EzTask.Interfaces\EzTask.Interfaces.csproj" />
     <ProjectReference Include="..\EzTask.Models\EzTask.Models.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Web\" />
   </ItemGroup>
 
 </Project>
