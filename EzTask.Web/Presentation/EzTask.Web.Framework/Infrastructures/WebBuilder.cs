@@ -60,7 +60,7 @@ namespace EzTask.Web.Framework.Infrastructures
                             foreach (var item in files)
                             {
                                 desPath = Path.Combine(binPath, Path.GetFileName(item));
-                                File.Copy(item, desPath);
+                                File.Copy(item, desPath, true);
                             }
                             break;
 

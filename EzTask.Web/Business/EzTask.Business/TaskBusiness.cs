@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
+using EzTask.Entity.Data;
 using EzTask.Framework.Infrastructures;
+using EzTask.Interfaces;
 using EzTask.Models;
 using EzTask.Models.Enum;
+using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
 {
-    public class TaskBusiness : BaseBusiness
+    public class TaskBusiness : BaseBusiness<EzTaskDbContext>
     {
-        public TaskBusiness(EzTaskDbContext dbContext) : base(dbContext)
+        private readonly IRepository<TaskItem> _taskRepository;
+
+        public TaskBusiness(
+            IRepository<TaskItem> taskRepository)
         {
+            _taskRepository = taskRepository;
         }
 
         /// <summary>
@@ -21,28 +28,33 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public async Task<ResultModel> CreateTask(TaskItemModel model)
+        public async Task<ResultModel<TaskItemModel>> CreateTask(TaskItemModel model)
         {
-            ResultModel result = new ResultModel();
+            ResultModel<TaskItemModel> result = new ResultModel<TaskItemModel>();
 
             var task = model.ToEntity();
+            if(task.Id < 1)
+            {
+                task.CreatedDate = DateTime.Now;
+            }
 
-            DbContext.Tasks.Add(task);
-            var iResult = await DbContext.SaveChangesAsync();
+            task.UpdatedDate = DateTime.Now;
+
+            _taskRepository.Add(task);
+            var iResult = await UnitOfWork.CommitAsync();
 
             if (iResult > 0)
             {
                 if (string.IsNullOrEmpty(task.TaskCode))
                 {
                     task.TaskCode = CreateCode("T", task.Id);
-                    var updatedRecord = await DbContext.SaveChangesAsync();
+                    var updatedRecord = await UnitOfWork.CommitAsync();
                 }
 
                 result.Status = ActionStatus.Ok;
-                result.Value = task.ToModel();
+                result.Data = task.ToModel();
             }
 
-            result.Status = ActionStatus.Failed;
             return result;
         }
 
@@ -55,7 +67,7 @@ namespace EzTask.Business
             int page, int pageSize)
         {
 
-            var data = await DbContext.Tasks.Include(c => c.Project)
+            var data = await _taskRepository.Entity.Include(c => c.Project)
                                    .Include(c => c.Member)
                                    .Include(c => c.Assignee)
                                    .Include(c => c.Phrase)

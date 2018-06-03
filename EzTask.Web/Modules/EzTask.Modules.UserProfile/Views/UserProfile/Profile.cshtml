@@ -17,7 +17,7 @@
     <div class="col-md-3">
         <!-- Profile Image -->
         <div class="box box-primary">
-            <div class="box-body box-profile">               
+            <div class="box-body box-profile">
                 <a href="" data-toggle="modal" data-target="#upload-avatar-modal">
                     <img class="profile-user-img img-responsive img-circle" src="@Url.Action("LoadAvatar","Common")" alt="User profile picture">
                 </a>
@@ -54,7 +54,7 @@
                 <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
                 <p class="text-muted">@Model.Address1</p>
                 <hr>
-                @Html.Partial("_SkillInfo")
+                <partial name="_SkillInfo" />
                 <hr>
                 <strong><i class="fa fa-file-text-o margin-r-5"></i> Summary Info</strong>
                 <p>@Model.Introduce</p>
@@ -71,16 +71,16 @@
             </ul>
             <div class="tab-content">
                 <div class="active actab-pane" id="Information">
-                    @Html.Partial("_UpdateInfo")
+                    <partial name="_UpdateInfo" />
                 </div>
             </div>
         </div>
     </div>
     <!-- /.col -->
 </div>
-@Html.Partial("_UploadAvatarModal")
+<partial name="_UploadAvatarModal" />
 <!-- /.row -->
 @section Scripts{
     <script src="~/userprofile/js/user-profile.js"></script>
-    @Html.Partial("_ValidationScriptsPartial")
+    <partial name="_ValidationScriptsPartial" />
 }

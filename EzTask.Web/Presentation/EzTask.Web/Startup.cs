@@ -18,6 +18,7 @@ namespace EzTask.Web
             Configuration = configuration;
             Environment = environment;
         }
+
         public IHostingEnvironment Environment { get; }
 
         public IConfiguration Configuration { get; }
@@ -25,14 +26,9 @@ namespace EzTask.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.Register(Configuration, Environment);
-            services.RegisterBusiness();           
-            services.AddDistributedMemoryCache();
-            services.AddSession();
-            services.AddMemoryCache();
-           
+            WebFramework.Register(services, Configuration, Environment);                                  
         }
-        //https://www.codeproject.com/Articles/1203410/ASP-NET-Core-MVC-View-Components
+        
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

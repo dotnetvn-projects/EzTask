@@ -2,10 +2,14 @@
 
 namespace EzTask.Models
 {
-    public class ResultModel
+    public class ResultModel<T>
     {
         public ActionStatus Status { get; set; }//move action status to model
-        public object Value { get; set; }
+        public T Data { get; set; }
 
+        public ResultModel()
+        {
+            Status = ActionStatus.Failed;
+        }
     }
 }

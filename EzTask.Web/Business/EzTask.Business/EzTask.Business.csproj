@@ -1,19 +1,16 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.0-alpha-0001" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Libraries\EzTask.DataAccess\EzTask.DataAccess.csproj" />
-    <ProjectReference Include="..\..\Libraries\EzTask.Entity\EzTask.Entity.csproj" />
     <ProjectReference Include="..\..\Libraries\EzTask.Framework\EzTask.Framework.csproj" />
-    <ProjectReference Include="..\..\Libraries\EzTask.Interfaces\EzTask.Interfaces.csproj" />
   </ItemGroup>
 
 </Project>

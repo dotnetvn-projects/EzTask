@@ -1,5 +1,4 @@
-﻿using EzTask.Business;
-using System.Diagnostics;
+﻿using System.Diagnostics;
 
 namespace EzTask.Business
 {

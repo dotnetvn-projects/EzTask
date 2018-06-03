@@ -11,16 +11,26 @@ using EzTask.Framework.ImageHandler;
 using EzTask.Models;
 using EzTask.Framework.Infrastructures;
 using EzTask.Models.Enum;
+using EzTask.Repository;
+using EzTask.Entity.Data;
+using EzTask.Interfaces;
 
 namespace EzTask.Business
 {
-    public class AccountBusiness : BaseBusiness
+    public class AccountBusiness : BaseBusiness<EzTaskDbContext>
     {
-        private ImageProcessor _imageProcessor;
-        public AccountBusiness(EzTaskDbContext dbContext, 
-            ImageProcessor imageProcessor):base(dbContext)
-        {
+        private readonly ImageProcessor _imageProcessor;
+        private readonly IRepository<Account> _accountRepository;
+        private readonly IRepository<AccountInfo> _accountInfoRepository;
+
+        public AccountBusiness(
+           ImageProcessor imageProcessor,
+           IRepository<Account> accountRepository,
+           IRepository<AccountInfo> accountInfoRepository)
+        { 
             _imageProcessor = imageProcessor;
+            _accountRepository = accountRepository;
+            _accountInfoRepository = accountInfoRepository;
         }
     
         /// <summary>
@@ -28,8 +38,13 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public async Task<AccountModel> RegisterNew(RegisterModel model)
+        public async Task<ResultModel<AccountModel>> RegisterNew(RegisterModel model)
         {
+            ResultModel<AccountModel> result = new ResultModel<AccountModel>
+            {
+                Status = ActionStatus.Failed
+            };
+
             var account = model.ToEntity();
             if (account.Id < 1)
                 account.CreatedDate = DateTime.Now;
@@ -41,14 +56,16 @@ namespace EzTask.Business
             account.UpdatedDate = DateTime.Now;
             account.AccountStatus = (int)AccountStatus.Active;
 
-            DbContext.Accounts.Add(account);
-            var insertedRecord = await DbContext.SaveChangesAsync();
+            _accountRepository.Add(account);
+            var insertedRecord = await UnitOfWork.CommitAsync();
 
             if(insertedRecord > 0)
             {
-                return account.ToModel();
+                result.Status = ActionStatus.Ok;
+                result.Data = account.ToModel();
             }
-            return null;
+
+            return result;
         }
 
         /// <summary>
@@ -56,20 +73,26 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<AccountInfoModel> UpdateAccount(AccountInfoModel model)
+        public async Task<ResultModel<AccountInfoModel>> UpdateAccount(AccountInfoModel model)
         {
-            var accountInfo = DbContext.AccountInfos.FirstOrDefault(c => c.Id == model.AccountInfoId);
+            ResultModel<AccountInfoModel> result = new ResultModel<AccountInfoModel>
+            {
+                Status = ActionStatus.NotFound
+            };
+
+            var accountInfo = await _accountInfoRepository.GetAsync(c => c.Id == model.AccountInfoId);
             if (accountInfo != null)
             {
                 accountInfo.Update(accountInfo);
                 
-                var updateRecord = await DbContext.SaveChangesAsync();
+                var updateRecord = await UnitOfWork.CommitAsync();
                 if (updateRecord > 0)
                 {
-                    return accountInfo.ToModel();
+                    result.Status = ActionStatus.Ok;
+                    result.Data = accountInfo.ToModel();
                 }
             }
-            return null;
+            return result;
         }
 
         /// <summary>
@@ -77,9 +100,14 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<bool> UpdateAvatar(int accountId, Stream stream)
+        public async Task<ResultModel<bool>> UpdateAvatar(int accountId, Stream stream)
         {
-            var accountInfo = DbContext.AccountInfos.FirstOrDefault(c => c.AccountId == accountId);
+            ResultModel<bool> result = new ResultModel<bool>
+            {
+                Status = ActionStatus.Failed
+            };
+
+            var accountInfo = await _accountInfoRepository.GetAsync(c => c.AccountId == accountId);
             if (accountInfo != null)
             {
                 var bytes = await ImageStream.ConvertStreamToBytes(stream);
@@ -88,13 +116,18 @@ namespace EzTask.Business
 
                 accountInfo.DisplayImage = imageData;
 
-                var iResult = await DbContext.SaveChangesAsync();
+                var iResult = await UnitOfWork.CommitAsync();
                 if (iResult > 0)
                 {
-                    return true;
+                    result.Status = ActionStatus.Ok;
+                    result.Data = true;
                 }
             }
-            return false;
+            else
+            {
+                result.Status = ActionStatus.NotFound;
+            }
+            return result;
         }
 
         /// <summary>
@@ -104,7 +137,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> GetAccountInfo(int accountId)
         {
-            var data = await DbContext.AccountInfos.Include(c => c.Account)
+            var data = await _accountInfoRepository.Entity.Include(c => c.Account)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c=>c.AccountId == accountId);
 
@@ -119,9 +152,10 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> GetAccount(string accountName, string password)
         {
-            var accountInfo = await DbContext.AccountInfos.Include(c=>c.Account).
+            var accountInfo = await _accountInfoRepository.Entity.Include(c=>c.Account).
                 FirstOrDefaultAsync(c => c.Account.AccountName == accountName 
                 && c.Account.Password == password);
+
             return accountInfo.ToModel();
         }
 
@@ -145,16 +179,14 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountModel> GetAccount(string accountName)
         {
-            var data = await DbContext.Accounts.
-                FirstOrDefaultAsync(c => c.AccountName == accountName);
+            var data = await _accountRepository.GetAsync(c => c.AccountName == accountName);
             return data.ToModel();
         }
 
         public async Task<byte[]> LoadAvatar(int accountId)
         {
-            var data = await DbContext.AccountInfos
-                     .AsNoTracking()
-                         .FirstOrDefaultAsync(c => c.AccountId == accountId);
+            var data = await _accountInfoRepository.GetAsync(c => 
+                    c.AccountId == accountId, allowTracking: false);
 
             return data.DisplayImage;
         }
@@ -169,7 +201,7 @@ namespace EzTask.Business
         public async Task<IEnumerable<AccountModel>> GetAccountList(int page, int pageSize,
             int manageUserId)
         {
-           var data = await DbContext.Accounts.Where(c=> c.ManageAccountId == manageUserId)
+           var data = await _accountRepository.Entity.Where(c=> c.ManageAccountId == manageUserId)
                 .Skip(pageSize * page - pageSize).Take(pageSize).ToListAsync();
             return data.ToModels();
         }

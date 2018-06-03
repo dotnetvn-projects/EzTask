@@ -295,14 +295,12 @@
         </div>
     </div>
 </div>
-
-@Html.Partial("_CreateOrUpdatePhrase", new PhraseModel())
+<partial name="_CreateOrUpdatePhrase" model='new PhraseModel()'/>
 
 @section Scripts{
     <script src="~/themes/plugins/iCheck/icheck.js"></script>
     <script src="~/task/js/task.js"></script>
     <script src="~/task/js/phrase.js"></script>
-
-    @Html.Partial("_ValidationScriptsPartial")
+    <partial name="_ValidationScriptsPartial"/>
 
 }

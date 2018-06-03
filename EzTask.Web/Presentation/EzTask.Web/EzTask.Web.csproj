@@ -1,8 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Modules\**" />
+    <Content Remove="Modules\**" />
+    <EmbeddedResource Remove="Modules\**" />
+    <None Remove="Modules\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <Content Include="wwwroot\themes\bower_components\bootstrap-colorpicker\.bower.json" />
@@ -1962,8 +1969,8 @@
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="7.0.0-alpha-0001" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="3.2.0" />
-    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.8" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.All" Version="2.1.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -6803,7 +6810,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Modules\" />
     <Folder Include="WebBuilder\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
@@ -6812,9 +6818,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Business\EzTask.Business\EzTask.Business.csproj" />
-    <ProjectReference Include="..\..\Libraries\EzTask.Framework\EzTask.Framework.csproj" />
-    <ProjectReference Include="..\..\Libraries\EzTask.Interfaces\EzTask.Interfaces.csproj" />
     <ProjectReference Include="..\EzTask.Web.Framework\EzTask.Web.Framework.csproj" />
   </ItemGroup>
 

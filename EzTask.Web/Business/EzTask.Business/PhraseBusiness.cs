@@ -3,17 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
+using EzTask.Entity.Data;
 using EzTask.Framework.Infrastructures;
+using EzTask.Interfaces;
 using EzTask.Models;
 using EzTask.Models.Enum;
+using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
 {
-    public class PhraseBusiness : BaseBusiness
+    public class PhraseBusiness : BaseBusiness<EzTaskDbContext>
     {
-        public PhraseBusiness(EzTaskDbContext dbContext) : base(dbContext)
+        private readonly IRepository<Phrase> _phraseRepository;
+
+        public PhraseBusiness(
+            IRepository<Phrase> phraseRepository)
         {
+            _phraseRepository = phraseRepository;
         }
 
         /// <summary>
@@ -21,39 +28,33 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns>ResultModel</returns>
-        public async Task<ResultModel> Save(PhraseModel model)
+        public async Task<ResultModel<PhraseModel>> Save(PhraseModel model)
         {
-            ResultModel result = new ResultModel();
-           
+            ResultModel<PhraseModel> result = new ResultModel<PhraseModel>();
+
             var phrase = model.ToEntity();
             if (phrase.Id < 1)
             {
-                DbContext.Phrases.Add(phrase);
+                _phraseRepository.Add(phrase);
             }
             else
             {
-                DbContext.Attach(phrase);
-                DbContext.Entry(phrase).State = EntityState.Modified;
+                _phraseRepository.Update(phrase);
             }
 
-            var iResult = await DbContext.SaveChangesAsync();
+            var iResult = await UnitOfWork.CommitAsync();
 
             if(iResult > 0)
             {
                 result.Status = ActionStatus.Ok;
-                result.Value = phrase.ToModel();
-            }
-            else
-            {
-                result.Status = ActionStatus.Failed;
+                result.Data = phrase.ToModel();
             }
             return result;
         }
 
         public async Task<IEnumerable<PhraseModel>> GetPhrases(int projectId)
         {
-            var data = await DbContext.Phrases.AsNoTracking()
-                .Where(c => c.ProjectId == projectId).ToListAsync();
+            var data = await _phraseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
 
             return data.ToModels();
             //TODO count task item in phrase

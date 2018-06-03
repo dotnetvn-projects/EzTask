@@ -4,16 +4,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.CodeAnalysis;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using EzTask.Web.Framework.Infrastructures;
-using EzTask.Framework.ImageHandler;
-using EzTask.DataAccess;
-using AutoMapper;
 using EzTask.Web.Framework.HttpContext;
-using EzTask.Framework;
+using EzTask.Business;
 
 namespace EzTask.Web.Framework
 {
@@ -21,20 +17,18 @@ namespace EzTask.Web.Framework
     {
         public static void Register(this IServiceCollection services,
            IConfiguration configuration, IHostingEnvironment env)
-        {
+        {         
+            FrameworkCore.Register(services, configuration);
+            BusinessInitializer.Register(services);
+
             env.RunWebBuilder();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
-            services.AddScoped<ImageProcessor>();
-
-            services.AddDbContext<EzTaskDbContext>(options =>
-                options.UseSqlServer(configuration.GetConnectionString("EzTask")), ServiceLifetime.Scoped);
-            services.AddAutoMapper();
-            var serviceProvider = services.BuildServiceProvider();
-
-            FrameworkCore.SetAutoMapper(serviceProvider.GetService<IMapper>());
+            services.AddDistributedMemoryCache();
+            services.AddSession();
+            services.AddMemoryCache();
 
             var mvcBuilder = services.AddMvc(options =>
             {
@@ -42,6 +36,7 @@ namespace EzTask.Web.Framework
             });
 
             mvcBuilder.AddSessionStateTempDataProvider();
+
             ModuleFinder moduleFinder = new ModuleFinder(env);
             var modules = moduleFinder.Find();
 
@@ -68,16 +63,6 @@ namespace EzTask.Web.Framework
         public static void ConfigureFramework(this IApplicationBuilder app)
         {
             app.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
-        }
-
-        public static void InvokeComponents<T>(this IServiceProvider services, out T type)
-        {
-            type = services.GetService<T>();
-        }
-
-        public static T InvokeComponents<T>(this IServiceProvider services)
-        {
-            return services.GetService<T>();
         }
     }
 }

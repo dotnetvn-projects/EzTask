@@ -24,7 +24,7 @@ namespace EzTask.Modules.Task.Controllers
             var iResult = await EzTask.Phrase.Save(model);
             if (iResult.Status == ActionStatus.Ok)
             {
-                var data = (PhraseModel)iResult.Value;
+                var data = iResult.Data;
                 data.StartDate = DateTime.Now;
                 data.EndDate = DateTime.Now.AddDays(1);
                 return Json(data);

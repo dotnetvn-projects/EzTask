@@ -4,14 +4,25 @@ namespace EzTask.Business
 {
     public static class BusinessInitializer
     {
-        public static void RegisterBusiness(this IServiceCollection services)
-        { 
-            services.AddTransient<EzTaskBusiness>();
-            services.AddTransient<AccountBusiness>();
-            services.AddTransient<ProjectBusiness>();
-            services.AddTransient<SkillBusiness>();
-            services.AddTransient<PhraseBusiness>();
-            services.AddTransient<TaskBusiness>();
+        private static IServiceCollection _services;
+
+        public static void Register(IServiceCollection services)
+        {
+            _services = services;
+            _services.AddTransient<EzTaskBusiness>();
+            _services.AddTransient<AccountBusiness>();
+            _services.AddTransient<ProjectBusiness>();
+            _services.AddTransient<SkillBusiness>();
+            _services.AddTransient<PhraseBusiness>();
+            _services.AddTransient<TaskBusiness>();            
+        }
+
+        public static ServiceProvider ServiceProvider
+        {
+            get
+            {
+                return _services.BuildServiceProvider();
+            }
         }
     }
 }

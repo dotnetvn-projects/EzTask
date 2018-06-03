@@ -1,15 +1,22 @@
 ﻿using EzTask.DataAccess;
-using System;
-using System.Threading.Tasks;
+using EzTask.Interfaces;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Business
 {
-    public class BaseBusiness
+    public class BaseBusiness<T>
     {
-        protected EzTaskDbContext DbContext;
-        public BaseBusiness(EzTaskDbContext dbContext)
+        protected IUnitOfWork<T> UnitOfWork
         {
-            DbContext = dbContext;
+            get
+            {
+                return BusinessInitializer.ServiceProvider.GetService<IUnitOfWork<T>>();
+            }
+        }
+
+        public BaseBusiness()
+        {
         }
 
         protected virtual string CreateCode(string prefix, int id)
