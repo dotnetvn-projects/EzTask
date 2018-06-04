@@ -13,14 +13,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
 {
-    public class PhraseBusiness : BaseBusiness<EzTaskDbContext>
+    public class PhraseBusiness : BusinessCore
     {
-        private readonly IRepository<Phrase> _phraseRepository;
-
-        public PhraseBusiness(
-            IRepository<Phrase> phraseRepository)
+        public PhraseBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _phraseRepository = phraseRepository;
         }
 
         /// <summary>
@@ -35,11 +31,11 @@ namespace EzTask.Business
             var phrase = model.ToEntity();
             if (phrase.Id < 1)
             {
-                _phraseRepository.Add(phrase);
+                UnitOfWork.PhraseRepository.Add(phrase);
             }
             else
             {
-                _phraseRepository.Update(phrase);
+                UnitOfWork.PhraseRepository.Update(phrase);
             }
 
             var iResult = await UnitOfWork.CommitAsync();
@@ -54,7 +50,7 @@ namespace EzTask.Business
 
         public async Task<IEnumerable<PhraseModel>> GetPhrases(int projectId)
         {
-            var data = await _phraseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
+            var data = await UnitOfWork.PhraseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
 
             return data.ToModels();
             //TODO count task item in phrase

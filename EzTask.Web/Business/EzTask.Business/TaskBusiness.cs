@@ -13,14 +13,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
 {
-    public class TaskBusiness : BaseBusiness<EzTaskDbContext>
+    public class TaskBusiness : BusinessCore
     {
-        private readonly IRepository<TaskItem> _taskRepository;
 
-        public TaskBusiness(
-            IRepository<TaskItem> taskRepository)
+        public TaskBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _taskRepository = taskRepository;
         }
 
         /// <summary>
@@ -40,7 +37,7 @@ namespace EzTask.Business
 
             task.UpdatedDate = DateTime.Now;
 
-            _taskRepository.Add(task);
+            UnitOfWork.TaskRepository.Add(task);
             var iResult = await UnitOfWork.CommitAsync();
 
             if (iResult > 0)
@@ -67,7 +64,7 @@ namespace EzTask.Business
             int page, int pageSize)
         {
 
-            var data = await _taskRepository.Entity.Include(c => c.Project)
+            var data = await UnitOfWork.TaskRepository.Entity.Include(c => c.Project)
                                    .Include(c => c.Member)
                                    .Include(c => c.Assignee)
                                    .Include(c => c.Phrase)

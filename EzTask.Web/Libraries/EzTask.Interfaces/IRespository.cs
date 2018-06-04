@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -9,8 +10,9 @@ using System.Threading.Tasks;
 namespace EzTask.Interfaces
 {
     public interface IRepository<T> where T : class
-    {      
+    {
         DbSet<T> Entity { get; }
+        DbContext Context { get; set; }
 
         #region Sync Methods
         /// <summary>
@@ -70,6 +72,7 @@ namespace EzTask.Interfaces
         /// </summary>
         /// <param name="entity"></param>
         void Update(T entity);
+
         #endregion
 
         #region Async Methods
@@ -106,6 +109,9 @@ namespace EzTask.Interfaces
         /// <param name="query"></param>
         /// <returns></returns>
         Task<IEnumerable<T>> FromSqlQueryAsync(string sql, bool allowTracking = true);
+
         #endregion
+
+
     }
 }

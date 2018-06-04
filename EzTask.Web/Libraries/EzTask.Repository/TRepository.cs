@@ -17,29 +17,28 @@ namespace EzTask.Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class TRepository<T> : IRepository<T> where T : class
-    {
-        private readonly UnitOfWork _unitOfWork;
-        public TRepository(UnitOfWork unitOfWork)
+    {   
+        public TRepository()
         {
-            _unitOfWork = unitOfWork;
         }
 
         public DbSet<T> Entity
         {
             get
             {
-                return _unitOfWork.Context.Set<T>();
+                return Context.Set<T>();
             }
         }
 
-       
+        public DbContext Context { get; set; }
+
         /// <summary>
         /// Add new entity
         /// </summary>
         /// <param name="entity"></param>
         public void Add(T entity)
         {
-            _unitOfWork.Context.Set<T>().Add(entity);
+            Entity.Add(entity);
         }
 
         /// <summary>
@@ -48,9 +47,9 @@ namespace EzTask.Repository
         /// <param name="entity"></param>
         public void Delete(T entity)
         {
-            T existing = _unitOfWork.Context.Set<T>().Find(entity);
+            T existing = Entity.Find(entity);
             if (existing != null)
-                _unitOfWork.Context.Set<T>().Remove(existing);
+                Entity.Remove(existing);
         }
 
         /// <summary>
@@ -59,7 +58,7 @@ namespace EzTask.Repository
         /// <param name="entities"></param>
         public void DeleteRange(IEnumerable<T> entities)
         {
-           _unitOfWork.Context.Set<T>().RemoveRange(entities);
+            Entity.RemoveRange(entities);
         }
 
         /// <summary>
@@ -69,7 +68,7 @@ namespace EzTask.Repository
         /// <returns></returns>
         public T GetById(int id, bool allowTracking = true)
         {
-            return _unitOfWork.Context.Set<T>().FirstOrDefault(c => 
+            return Entity.FirstOrDefault(c => 
             ((int)c.GetType().GetProperty("Id").GetValue(c) == id));
         }
 
@@ -80,7 +79,7 @@ namespace EzTask.Repository
         /// <returns></returns>
         public T Get(Expression<Func<T, bool>> predicate, bool allowTracking = true)
         {
-            return _unitOfWork.Context.Set<T>().FirstOrDefault(predicate);
+            return Entity.FirstOrDefault(predicate);
         }
 
         /// <summary>
@@ -89,7 +88,7 @@ namespace EzTask.Repository
         /// <returns></returns>
         public IEnumerable<T> GetAll(bool allowTracking = true)
         {
-            return _unitOfWork.Context.Set<T>().AsEnumerable();
+            return Entity.AsEnumerable();
         }
 
         /// <summary>
@@ -99,7 +98,7 @@ namespace EzTask.Repository
         /// <returns></returns>
         public IEnumerable<T> GetMany(Expression<Func<T, bool>> predicate, bool allowTracking = true)
         {
-            return _unitOfWork.Context.Set<T>().Where(predicate).AsEnumerable();
+            return Entity.Where(predicate).AsEnumerable();
         }
 
         /// <summary>
@@ -108,8 +107,8 @@ namespace EzTask.Repository
         /// <param name="entity"></param>
         public void Update(T entity)
         {
-            _unitOfWork.Context.Entry(entity).State = EntityState.Modified;
-            _unitOfWork.Context.Set<T>().Attach(entity);
+            Context.Entry(entity).State = EntityState.Modified;
+            Entity.Attach(entity);
         }
 
         /// <summary>
@@ -121,10 +120,10 @@ namespace EzTask.Repository
         {
             if (allowTracking)
             {
-                return _unitOfWork.Context.Set<T>().FromSql(sql).AsEnumerable();
+                return Entity.FromSql(sql).AsEnumerable();
             }
 
-            return _unitOfWork.Context.Set<T>().AsNoTracking().FromSql(sql).AsEnumerable();
+            return Entity.AsNoTracking().FromSql(sql).AsEnumerable();
         }
 
         /// <summary>
@@ -133,7 +132,7 @@ namespace EzTask.Repository
         /// <returns></returns>
         public async Task<IEnumerable<T>> GetAllAsync(bool allowTracking = true)
         {
-            var data = await _unitOfWork.Context.Set<T>().ToListAsync();
+            var data = await Entity.ToListAsync();
             return data;
         }
 
@@ -145,7 +144,7 @@ namespace EzTask.Repository
         public async Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> predicate,
             bool allowTracking = true)
         {
-            var data = await _unitOfWork.Context.Set<T>().Where(predicate).ToListAsync();
+            var data = await Entity.Where(predicate).ToListAsync();
             return data;
         }
 
@@ -156,7 +155,7 @@ namespace EzTask.Repository
         /// <returns></returns>
         public async Task<T> GetByIdAsync(int id, bool allowTracking = true)
         {
-            var data = await _unitOfWork.Context.Set<T>().FirstOrDefaultAsync(c =>
+            var data = await Entity.FirstOrDefaultAsync(c =>
             ((int)c.GetType().GetProperty("Id").GetValue(c) == id));
 
             return data;

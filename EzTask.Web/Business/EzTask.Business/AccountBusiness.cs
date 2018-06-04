@@ -12,25 +12,17 @@ using EzTask.Models;
 using EzTask.Framework.Infrastructures;
 using EzTask.Models.Enum;
 using EzTask.Repository;
-using EzTask.Entity.Data;
-using EzTask.Interfaces;
 
 namespace EzTask.Business
 {
-    public class AccountBusiness : BaseBusiness<EzTaskDbContext>
+    public class AccountBusiness : BusinessCore
     {
         private readonly ImageProcessor _imageProcessor;
-        private readonly IRepository<Account> _accountRepository;
-        private readonly IRepository<AccountInfo> _accountInfoRepository;
 
-        public AccountBusiness(
-           ImageProcessor imageProcessor,
-           IRepository<Account> accountRepository,
-           IRepository<AccountInfo> accountInfoRepository)
+        public AccountBusiness(ImageProcessor imageProcessor,
+           UnitOfWork unitOfWork):base(unitOfWork)
         { 
             _imageProcessor = imageProcessor;
-            _accountRepository = accountRepository;
-            _accountInfoRepository = accountInfoRepository;
         }
     
         /// <summary>
@@ -56,7 +48,7 @@ namespace EzTask.Business
             account.UpdatedDate = DateTime.Now;
             account.AccountStatus = (int)AccountStatus.Active;
 
-            _accountRepository.Add(account);
+            UnitOfWork.AccountRepository.Add(account);
             var insertedRecord = await UnitOfWork.CommitAsync();
 
             if(insertedRecord > 0)
@@ -80,7 +72,7 @@ namespace EzTask.Business
                 Status = ActionStatus.NotFound
             };
 
-            var accountInfo = await _accountInfoRepository.GetAsync(c => c.Id == model.AccountInfoId);
+            var accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => c.Id == model.AccountInfoId);
             if (accountInfo != null)
             {
                 accountInfo.Update(accountInfo);
@@ -107,7 +99,7 @@ namespace EzTask.Business
                 Status = ActionStatus.Failed
             };
 
-            var accountInfo = await _accountInfoRepository.GetAsync(c => c.AccountId == accountId);
+            var accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => c.AccountId == accountId);
             if (accountInfo != null)
             {
                 var bytes = await ImageStream.ConvertStreamToBytes(stream);
@@ -137,7 +129,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> GetAccountInfo(int accountId)
         {
-            var data = await _accountInfoRepository.Entity.Include(c => c.Account)
+            var data = await UnitOfWork.AccountInfoRepository.Entity.Include(c => c.Account)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c=>c.AccountId == accountId);
 
@@ -152,7 +144,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> GetAccount(string accountName, string password)
         {
-            var accountInfo = await _accountInfoRepository.Entity.Include(c=>c.Account).
+            var accountInfo = await UnitOfWork.AccountInfoRepository.Entity.Include(c=>c.Account).
                 FirstOrDefaultAsync(c => c.Account.AccountName == accountName 
                 && c.Account.Password == password);
 
@@ -168,6 +160,7 @@ namespace EzTask.Business
         {
             var hash = Cryptography.GetHashString(model.AccountName);
             model.Password = Encrypt.Do(model.Password, hash);
+
             var account = await GetAccount(model.AccountName, model.Password);
             return account;
         }
@@ -179,13 +172,13 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountModel> GetAccount(string accountName)
         {
-            var data = await _accountRepository.GetAsync(c => c.AccountName == accountName);
+            var data = await UnitOfWork.AccountRepository.GetAsync(c => c.AccountName == accountName);
             return data.ToModel();
         }
 
         public async Task<byte[]> LoadAvatar(int accountId)
         {
-            var data = await _accountInfoRepository.GetAsync(c => 
+            var data = await UnitOfWork.AccountInfoRepository.GetAsync(c => 
                     c.AccountId == accountId, allowTracking: false);
 
             return data.DisplayImage;
@@ -201,7 +194,7 @@ namespace EzTask.Business
         public async Task<IEnumerable<AccountModel>> GetAccountList(int page, int pageSize,
             int manageUserId)
         {
-           var data = await _accountRepository.Entity.Where(c=> c.ManageAccountId == manageUserId)
+           var data = await UnitOfWork.AccountRepository.Entity.Where(c=> c.ManageAccountId == manageUserId)
                 .Skip(pageSize * page - pageSize).Take(pageSize).ToListAsync();
             return data.ToModels();
         }

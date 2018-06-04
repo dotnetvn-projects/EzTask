@@ -10,17 +10,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
 {
-    public class SkillBusiness : BaseBusiness<EzTaskDbContext>
+    public class SkillBusiness : BusinessCore
     {
-        private readonly IRepository<Skill> _skillRepository;
-        private readonly IRepository<AccountSkill> _accountSkillRepository;
-
-        public SkillBusiness(
-            IRepository<Skill> skillRepository,
-            IRepository<AccountSkill> accountSkillRepository)
+        public SkillBusiness(UnitOfWork unitOfWork):base(unitOfWork)
         {
-            _skillRepository = skillRepository;
-            _accountSkillRepository = accountSkillRepository;
+
         }
 
         /// <summary>
@@ -31,7 +25,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<List<Skill>> SaveAccountSkill(string skill, int accountId)
         {
-            using (var dbContextTransaction = UnitOfWork.Context.Database.BeginTransaction())
+            using (var transaction = UnitOfWork.Context.Database.BeginTransaction())
             {
                 try
                 {
@@ -63,7 +57,7 @@ namespace EzTask.Business
                                 SkillName = skillName
                             };
 
-                            _skillRepository.Add(newSkill);                         
+                            UnitOfWork.SkillRepository.Add(newSkill);                         
                             await UnitOfWork.CommitAsync();
 
                             skills.Add(newSkill);
@@ -71,11 +65,11 @@ namespace EzTask.Business
                             accountSkill.SkillId = newSkill.Id;
                         }
 
-                        _accountSkillRepository.Add(accountSkill);
+                        UnitOfWork.AccountSkillRepository.Add(accountSkill);
                     }
 
                     var iResult = await UnitOfWork.CommitAsync();
-                    dbContextTransaction.Commit();
+                    transaction.Commit();
 
                     if (iResult > 0)
                     {
@@ -85,7 +79,7 @@ namespace EzTask.Business
                 }
                 catch
                 {
-                    dbContextTransaction.Rollback();
+                    transaction.Rollback();
                     return null;
                 }
             }               
@@ -98,7 +92,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<Skill> GetSkill(string skill)
         {
-            return await _skillRepository.GetAsync(c => 
+            return await UnitOfWork.SkillRepository.GetAsync(c => 
                     c.SkillName.ToLower() == skill.ToLower(), allowTracking: false);
         }
 
@@ -109,7 +103,7 @@ namespace EzTask.Business
         /// <returns>string</returns>
         public async Task<string> GetSkill(int accountId)
         {
-            var data = await _accountSkillRepository.Entity.AsNoTracking()
+            var data = await UnitOfWork.AccountSkillRepository.Entity.AsNoTracking()
                 .Include(c => c.Skill)
                 .Where(c => c.AccountId == accountId)
                 .Select(c=>c.Skill.SkillName)
@@ -125,11 +119,11 @@ namespace EzTask.Business
         #region Private
         private async Task DeleteAccountSkill(int accountId)
         {
-            var skills = await _accountSkillRepository.GetManyAsync(c => c.AccountId == accountId);
+            var skills = await UnitOfWork.AccountSkillRepository.GetManyAsync(c => c.AccountId == accountId);
 
             if(skills.Any())
             {
-                _accountSkillRepository.DeleteRange(skills);
+                UnitOfWork.AccountSkillRepository.DeleteRange(skills);
                 await UnitOfWork.CommitAsync();
             }
         }

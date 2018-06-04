@@ -13,20 +13,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
 {
-    public class ProjectBusiness : BaseBusiness<EzTaskDbContext>
+    public class ProjectBusiness : BusinessCore
     {
-        private readonly IRepository<Project> _projectRepository;
-        private readonly IRepository<Phrase> _phraseRepository;
-        private readonly IRepository<ProjectMember> _projectMemberRepository;
-
-        public ProjectBusiness(
-            IRepository<Project> projectRepository,
-            IRepository<Phrase> phraseRepository,
-            IRepository<ProjectMember> projectMemberRepository) 
+        public ProjectBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
         {
-            _projectRepository = projectRepository;
-            _phraseRepository = phraseRepository;
-            _projectMemberRepository = projectMemberRepository;
         }
 
         /// <summary>
@@ -46,11 +36,11 @@ namespace EzTask.Business
                     if (project.Id < 1)
                     {
                         project.CreatedDate = DateTime.Now;
-                        _projectRepository.Add(project);
+                        UnitOfWork.ProjectRepository.Add(project);
                     }
                     else
                     {
-                        _projectRepository.Update(project);
+                        UnitOfWork.ProjectRepository.Update(project);
                     }
 
                     var iResult = await UnitOfWork.CommitAsync();
@@ -72,7 +62,7 @@ namespace EzTask.Business
                                     Status = (int)PhraseStatus.Open
                                 };
 
-                                _phraseRepository.Add(feature);
+                                UnitOfWork.PhraseRepository.Add(feature);
                                 await UnitOfWork.CommitAsync();
                             }
                         }                       
@@ -105,15 +95,16 @@ namespace EzTask.Business
                     if (project != null)
                     {
                         //Remove member
-                        var memberList = await _projectMemberRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
-                        _projectMemberRepository.DeleteRange(memberList);
+                        var memberList = await UnitOfWork.ProjectMemberRepository.GetManyAsync(c => 
+                                c.ProjectId == project.ProjectId);
+                        UnitOfWork.ProjectMemberRepository.DeleteRange(memberList);
 
                         //remove phrase
-                        var phrases = await _phraseRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
-                        _phraseRepository.DeleteRange(phrases);
+                        var phrases = await UnitOfWork.PhraseRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
+                        UnitOfWork.PhraseRepository.DeleteRange(phrases);
 
                         //remove project
-                        _projectRepository.Delete(project.ToEntity());
+                        UnitOfWork.ProjectRepository.Delete(project.ToEntity());
 
                         await UnitOfWork.CommitAsync();
                     }
@@ -139,7 +130,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<IEnumerable<ProjectModel>> GetProjects(int ownerId)
         {
-            var data =  await _projectRepository.Entity.Include(c => c.Account)
+            var data =  await UnitOfWork.ProjectRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
                 .AsNoTracking()
                 .Where(c => c.Owner == ownerId).OrderBy(c => c.Status)
@@ -156,7 +147,9 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ProjectModel> GetProject(string projectCode)
         {
-            var data = await _projectRepository.GetAsync(c => c.ProjectCode == projectCode, allowTracking: false);
+            var data = await UnitOfWork.ProjectRepository.GetAsync(c => 
+                c.ProjectCode == projectCode, allowTracking: false);
+
             return data.ToModel();
         }
 
@@ -167,7 +160,9 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ProjectModel> GetProjectByName(string name)
         {
-            var data = await _projectRepository.GetAsync(c => c.ProjectName.ToLower() == name.ToLower(), allowTracking: false);
+            var data = await UnitOfWork.ProjectRepository.GetAsync(c =>
+                c.ProjectName.ToLower() == name.ToLower(), allowTracking: false);
+
             return data.ToModel();
         }
 
@@ -179,9 +174,9 @@ namespace EzTask.Business
         /// <returns>True if it is, False if it is not</returns>
         public async Task<bool> IsDupplicated(string name, int id)
         {
-            var data = await _projectRepository.GetAsync(c => 
-               c.ProjectName.ToLower() == name.ToLower() 
-               && c.Id != id, allowTracking: false);
+            var data = await UnitOfWork.ProjectRepository.GetAsync(c => 
+                 c.ProjectName.ToLower() == name.ToLower() 
+                 && c.Id != id, allowTracking: false);
 
             return data != null;
         }
@@ -193,7 +188,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ProjectModel> GetProjectDetail(string projectCode)
         {
-            var data = await _projectRepository.Entity.Include(c => c.Account)
+            var data = await UnitOfWork.ProjectRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
 
