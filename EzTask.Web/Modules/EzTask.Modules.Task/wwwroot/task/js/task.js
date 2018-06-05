@@ -30,12 +30,42 @@
             url: "task/phrase-list.html",
             data: { projectId: id },
             success: function (response) {
-                var phrasePanel = $(".phrase-list-box");
+                var phrasePanel = $(".phrase-list-panel");
                 phrasePanel.html('');
                 phrasePanel.html(response);
+                var phrase = $(".phrase-list > li > a").first();
+                var phraseId = phrase.attr('data-id');
+                HandleLoadTask(id, phraseId);           
             },
         });
     });
+
+    //load task
+    $(".phrase-list > li > a").click(function (e) {
+        e.preventDefault();
+        var phraseid = $(this).attr('data-id');
+        var projectId = $('.project-list').val();
+        HandleLoadTask(projectId, phraseid);
+    });
+
+    function HandleLoadTask(projectId, phraseid) {
+        $.ajax({
+            url: "task/task-list.html",
+            data: { projectId: projectId, phraseId: phraseid },
+            success: function (response) {
+                var taskListPanel = $(".task-list-panel");
+                taskListPanel.html('');
+                taskListPanel.html(response);            
+
+                $('.task-table input[type="checkbox"]').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+            },
+        });
+    }
+
+
 
     //Enable iCheck plugin for checkboxes
     //iCheck for checkbox and radio inputs

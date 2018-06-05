@@ -15,7 +15,7 @@ namespace EzTask.Modules.Task.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int projectId)
         {
-            var data = await EzTask.Phrase.GetPhrases(projectId);
+            var data = await EzTask.Phrase.GetPhrase(projectId);
             return View(data);
         }
     }

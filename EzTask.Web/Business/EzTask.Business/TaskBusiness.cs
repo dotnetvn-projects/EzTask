@@ -30,7 +30,7 @@ namespace EzTask.Business
             ResultModel<TaskItemModel> result = new ResultModel<TaskItemModel>();
 
             var task = model.ToEntity();
-            if(task.Id < 1)
+            if (task.Id < 1)
             {
                 task.CreatedDate = DateTime.Now;
             }
@@ -60,8 +60,8 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId,
-            int page, int pageSize)
+        public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId, int phraseId,
+            int page = 1, int pageSize = 1000)
         {
 
             var data = await UnitOfWork.TaskRepository.Entity.Include(c => c.Project)
@@ -69,7 +69,7 @@ namespace EzTask.Business
                                    .Include(c => c.Assignee)
                                    .Include(c => c.Phrase)
                                    .AsNoTracking()
-                                   .Where(c => c.ProjectId == projectId)
+                                   .Where(c => c.ProjectId == projectId && c.PhraseId == phraseId)
                                    .Skip(pageSize * page - pageSize).Take(pageSize)
                                    .ToListAsync();
 

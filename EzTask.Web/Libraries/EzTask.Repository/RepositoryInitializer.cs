@@ -2,9 +2,6 @@
 using EzTask.Entity.Data;
 using EzTask.Interfaces;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Repository
 {

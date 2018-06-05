@@ -30,12 +30,48 @@
             url: "task/phrase-list.html",
             data: { projectId: id },
             success: function (response) {
-                var phrasePanel = $(".phrase-list-box");
+                var phrasePanel = $(".phrase-list-panel");
                 phrasePanel.html('');
                 phrasePanel.html(response);
+                var phrase = $(".phrase-list > li > a").first();
+                var phraseId = phrase.attr('data-id');
+                LoadPhraseList();
+                //HandleLoadTask(id, phraseId);           
             },
         });
     });
+
+    //load task
+    function LoadPhraseList() {
+        $(".phrase-list > li > a").click(function (e) {
+            e.preventDefault();
+            var phraseid = $(this).attr('data-id');
+            var projectId = $('.project-list').val();
+            HandleLoadTask(projectId, phraseid);
+        });
+    }
+    
+
+    function HandleLoadTask(projectId, phraseid) {
+        $.ajax({
+            url: "task/task-list.html",
+            data: { projectId: projectId, phraseId: phraseid },
+            success: function (response) {
+                var taskListPanel = $(".task-list-panel");
+                taskListPanel.html('');
+                taskListPanel.html(response);            
+
+                $('.task-table input[type="checkbox"]').iCheck({
+                    checkboxClass: 'icheckbox_flat-green',
+                    radioClass: 'iradio_flat-green'
+                });
+
+                $(".checkbox-toggle").click(function () {
+                    CheckAll();
+                });
+            },
+        });
+    }
 
     //Enable iCheck plugin for checkboxes
     //iCheck for checkbox and radio inputs
@@ -46,6 +82,10 @@
 
     //Enable check and uncheck all functionality
     $(".checkbox-toggle").click(function () {
+        CheckAll();
+    });
+
+    function CheckAll() {
         var clicks = $(this).data('clicks');
         if (clicks) {
             //Uncheck all checkboxes
@@ -57,7 +97,7 @@
             $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
         }
         $(this).data("clicks", !clicks);
-    });
+    }
 
     //Handle starring for glyphicon and font awesome
     $(".task-star").click(function (e) {

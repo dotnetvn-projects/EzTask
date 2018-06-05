@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EzTask.Framework.Common
 {
-    public static class EnumUlt
+    public static class EnumUtilities
     {
         public static T ToEnum<T>(this Int16 value)
         {

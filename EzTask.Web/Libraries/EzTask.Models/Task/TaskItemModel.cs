@@ -1,4 +1,5 @@
 ﻿using EzTask.Models.Enum;
+using System;
 
 namespace EzTask.Models
 {
@@ -7,7 +8,9 @@ namespace EzTask.Models
         public int TaskId { get; set; }
         public string TaskCode { get; set; }
         public string TaskTitle { get; set; }
-        public string TaskDetail { get; set; }    
+        public string TaskDetail { get; set; }
+        public DateTime CreatedDate { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public TaskPriority Priority { get; set; }
         public TaskStatus Status { get; set; }
         public AccountModel Assignee { get; set; }

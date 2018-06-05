@@ -1,0 +1,87 @@
+﻿@model TaskViewModel
+@section styles{
+    <link rel="stylesheet" href="~/themes/plugins/iCheck/flat/green.css">
+    <link rel="stylesheet" href="~/task/css/task.css">
+}
+
+@section header{
+    <h1>
+        Task
+        <small>your current tasks</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li class="active">Task</li>
+    </ol>
+}
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Project</h3>
+                <div class="box-body no-padding">
+                    <div class="project-box">
+                        <select asp-items="@Model.ProjectItems" class="form-control select2 project-list"></select>
+                        <a data-toggle="modal" class="btn btn-block btn-addnew-phrase">
+                            <i class="fa fa-plus"></i> Add new phrase
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="box box-solid phrase-list-panel">
+            @await Component.InvokeAsync("PhraseList", new { projectId = Model.Project.ProjectId })
+        </div>
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Phrase Labels</h3>
+
+                <div class="box-tools">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body no-padding" style="">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> Open</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Closed</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Failed</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="box box-solid">
+            <div class="box-header with-border">
+                <h3 class="box-title">Task Labels</h3>
+
+                <div class="box-tools">
+                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                        <i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body no-padding" style="">
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> Open</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
+                    <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
+                </ul>
+            </div>
+            <!-- /.box-body -->
+        </div>
+    </div>
+    <div class="col-md-9 task-list-panel">
+        @await Component.InvokeAsync("TaskList", new { projectId = Model.Project.ProjectId, phraseId = Model.Phrase.Id })
+    </div>
+</div>
+
+<partial name="_CreateOrUpdatePhrase" model='Model.Phrase'/>
+
+@section Scripts{
+    <script src="~/themes/plugins/iCheck/icheck.js"></script>
+    <script src="~/task/js/task.js"></script>
+    <script src="~/task/js/phrase.js"></script>
+    <partial name="_ValidationScriptsPartial"/>
+
+}

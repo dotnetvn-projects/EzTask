@@ -48,11 +48,20 @@ namespace EzTask.Business
             return result;
         }
 
-        public async Task<IEnumerable<PhraseModel>> GetPhrases(int projectId)
+        public async Task<IEnumerable<PhraseModel>> GetPhrase(int projectId)
         {
             var data = await UnitOfWork.PhraseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
-
             return data.ToModels();
+            //TODO count task item in phrase
+        }
+
+        public async Task<PhraseModel> GetOpenFeaturePhrase(int projectId)
+        {
+            var data = await UnitOfWork.PhraseRepository.GetAsync(c => 
+            c.ProjectId == projectId && c.PhraseName == "Open Features",
+                allowTracking: false);
+
+            return data.ToModel();
             //TODO count task item in phrase
         }
     }

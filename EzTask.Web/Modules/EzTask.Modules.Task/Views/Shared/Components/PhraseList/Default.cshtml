@@ -16,7 +16,7 @@
             @foreach (var p in Model)
             { 
             <li title="65 tasks">
-                <a href="#">
+                <a data-id="@p.Id" href="#">
                     <div><i class="fa fa-book text-success"></i> @p.PhraseName <span title="65 tasks" class="label label-warning pull-right">65</span></div>
                     @if(p.StartDate.HasValue)
                     {
