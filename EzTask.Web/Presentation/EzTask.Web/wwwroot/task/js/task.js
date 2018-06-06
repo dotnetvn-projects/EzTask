@@ -35,22 +35,18 @@
                 phrasePanel.html(response);
                 var phrase = $(".phrase-list > li > a").first();
                 var phraseId = phrase.attr('data-id');
-                LoadPhraseList();
-                //HandleLoadTask(id, phraseId);           
+                HandleLoadTask(id, phraseId);           
             },
         });
     });
 
     //load task
-    function LoadPhraseList() {
-        $(".phrase-list > li > a").click(function (e) {
-            e.preventDefault();
-            var phraseid = $(this).attr('data-id');
-            var projectId = $('.project-list').val();
-            HandleLoadTask(projectId, phraseid);
-        });
-    }
-    
+    $(".phrase-list > li > a").click(function (e) {
+        e.preventDefault();
+        var phraseid = $(this).attr('data-id');
+        var projectId = $('.project-list').val();
+        HandleLoadTask(projectId, phraseid);
+    });
 
     function HandleLoadTask(projectId, phraseid) {
         $.ajax({
@@ -65,13 +61,11 @@
                     checkboxClass: 'icheckbox_flat-green',
                     radioClass: 'iradio_flat-green'
                 });
-
-                $(".checkbox-toggle").click(function () {
-                    CheckAll();
-                });
             },
         });
     }
+
+
 
     //Enable iCheck plugin for checkboxes
     //iCheck for checkbox and radio inputs
@@ -82,10 +76,6 @@
 
     //Enable check and uncheck all functionality
     $(".checkbox-toggle").click(function () {
-        CheckAll();
-    });
-
-    function CheckAll() {
         var clicks = $(this).data('clicks');
         if (clicks) {
             //Uncheck all checkboxes
@@ -97,7 +87,7 @@
             $(".fa", this).removeClass("fa-square-o").addClass('fa-check-square-o');
         }
         $(this).data("clicks", !clicks);
-    }
+    });
 
     //Handle starring for glyphicon and font awesome
     $(".task-star").click(function (e) {

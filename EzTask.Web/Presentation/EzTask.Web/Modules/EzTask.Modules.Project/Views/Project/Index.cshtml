@@ -52,10 +52,10 @@
         }
         else
         {
-            @Html.Partial("_ProjectList", Model)
+            <partial name="_ProjectList" model='Model'/>
         }
     </div>
-    @Html.Partial("_DeleteModal")
+    <partial name="_DeleteModal"/>
 </div>
 @section Scripts{
     <script src="~/project/js/project.js"></script>

@@ -10,6 +10,7 @@ using System.Linq;
 using EzTask.Web.Framework.Infrastructures;
 using EzTask.Web.Framework.HttpContext;
 using EzTask.Business;
+using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Web.Framework
 {
@@ -30,10 +31,17 @@ namespace EzTask.Web.Framework
             services.AddSession();
             services.AddMemoryCache();
 
+            services.Configure<CookiePolicyOptions>(options =>
+            {
+                // This lambda determines whether user consent for non-essential cookies is needed for a given request.
+                options.CheckConsentNeeded = context => true;
+                options.MinimumSameSitePolicy = SameSiteMode.None;
+            });
+
             var mvcBuilder = services.AddMvc(options =>
             {
                 // options.Filters.Add(typeof(ExceptionFilter));
-            });
+            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             mvcBuilder.AddSessionStateTempDataProvider();
 
