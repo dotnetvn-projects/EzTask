@@ -1,5 +1,6 @@
 ﻿
-function SetDeleteModalValue(projectId, phraseId) {
+function SetPhraseModalValue(projectId, phraseId) {
+    $('#inputPhraseName').val('');
     $('#phrase-modal .project-id').val(projectId);
     $('#phrase-modal .phrase-id').val(phraseId);
 }
@@ -12,7 +13,7 @@ function FormatDate(dateString) {
 $.fn.ShowModal = function () {
     $(this).click(function () {
         var projectId = $('.project-list').val();
-        SetDeleteModalValue(projectId, 0);
+        SetPhraseModalValue(projectId, 0);
         SetModalTitle("phrase-modal", "Add new phrase");
         ShowModal('phrase-modal');
     });
@@ -31,9 +32,9 @@ $.fn.PhraseModalAction = function () {
                 data: $("#phrase-form").serialize(),
                 success: function (response) {
                     var phrasePanel = $(".phrase-list");
-                    var item = '<li><a href="#"><i class="fa fa-building-o"></i> ' + response.phraseName + '<span class="label label-warning pull-right">65</span></a></li>';
-                    phrasePanel.append(item);
-                   
+                    phrasePanel.html('');
+                    phrasePanel.html(response);
+
                     $("#inputPhraseName").val('');
                     $("#inputStartDate").val(FormatDate(response.startDate));
                     $("#inputEndDate").val(FormatDate(response.endDate));

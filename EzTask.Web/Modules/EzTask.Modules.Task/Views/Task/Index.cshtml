@@ -34,41 +34,7 @@
             @await Component.InvokeAsync("PhraseList", new { projectId = Model.Project.ProjectId })
         </div>
         <div class="box box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title">Phrase Labels</h3>
-
-                <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="box-body no-padding" style="">
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> Open</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Closed</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Failed</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="box box-solid">
-            <div class="box-header with-border">
-                <h3 class="box-title">Task Labels</h3>
-
-                <div class="box-tools">
-                    <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                        <i class="fa fa-minus"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="box-body no-padding" style="">
-                <ul class="nav nav-pills nav-stacked">
-                    <li><a href="#"><i class="fa fa-circle-o text-red"></i> Open</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o text-yellow"></i> Promotions</a></li>
-                    <li><a href="#"><i class="fa fa-circle-o text-light-blue"></i> Social</a></li>
-                </ul>
-            </div>
-            <!-- /.box-body -->
+            <partial name="_TaskLabels" />
         </div>
     </div>
     <div class="col-md-9 task-list-panel">
@@ -76,7 +42,7 @@
     </div>
 </div>
 
-<partial name="_CreateOrUpdatePhrase" model='Model.Phrase'/>
+<partial name="_CreateOrUpdatePhrase" model='new PhraseModel()'/>
 
 @section Scripts{
     <script src="~/themes/plugins/iCheck/icheck.js"></script>

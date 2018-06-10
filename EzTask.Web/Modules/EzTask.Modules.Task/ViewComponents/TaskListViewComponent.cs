@@ -26,6 +26,10 @@ namespace EzTask.Modules.Task.ViewComponents
             {
                 viewModel.Phrase = viewModel.TaskList.First().Phrase;
             }
+            else
+            {
+                viewModel.Phrase = await EzTask.Phrase.GetPhraseById(phraseId);
+            }
 
             return View(viewModel);
         }

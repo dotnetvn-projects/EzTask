@@ -1,4 +1,17 @@
 ﻿
+function handleLoadTask(projectId, phraseid) {
+    $.ajax({
+        url: "task/task-list.html",
+        data: { projectId: projectId, phraseId: phraseid },
+        success: function (response) {
+            var taskListPanel = $(".task-list-panel");
+            taskListPanel.html('');
+            taskListPanel.html(response);   
+            jQueryBinding();
+        },
+    });
+}
+
 //search on task table
 $.fn.searchTask = function () {
     $(this).keyup(function () {
@@ -24,44 +37,31 @@ $.fn.searchTask = function () {
     });
 }
 
-//load phrase
-$('.project-list').change(function () {
-    var id = $(this).val();
-    $.ajax({
-        url: "task/phrase-list.html",
-        data: { projectId: id },
-        success: function (response) {
-            var phrasePanel = $(".phrase-list-panel");
-            phrasePanel.html('');
-            phrasePanel.html(response);
-            var phrase = $(".phrase-list > li > a").first();
-            var phraseId = phrase.attr('data-id');
-            HandleLoadTask(id, phraseId);
-        },
-    });
-});
+//load phrase and task list when project list changed
+$.fn.loadPhrase = function () {
+    $(this).change(function () {
+        var id = $(this).val();
+        $.ajax({
+            url: "task/phrase-list.html",
+            data: { projectId: id },
+            success: function (response) {
+                var phrasePanel = $(".phrase-list-panel");
+                phrasePanel.html('');
+                phrasePanel.html(response);
 
-
-function HandleLoadTask(projectId, phraseid) {
-    $.ajax({
-        url: "task/task-list.html",
-        data: { projectId: projectId, phraseId: phraseid },
-        success: function (response) {
-            var taskListPanel = $(".task-list-panel");
-            taskListPanel.html('');
-            taskListPanel.html(response);
-        },
+                var phrase = $(".phrase-list > li > a").first();
+                var phraseId = phrase.attr('data-id');
+                handleLoadTask(id, phraseId);               
+            },
+        });
     });
 }
 
-//handle load task event for li
-$.fn.loadTast = function () {
-    $(this).click(function (e) {
-        e.preventDefault();
-        var phraseid = $(this).attr('data-id');
-        var projectId = $('.project-list').val();
-        HandleLoadTask(projectId, phraseid);
-    });
+//handle load task event when click on item in phrase list
+function loadTask(data) {
+    var phraseid = $(data).attr('data-id');
+    var projectId = $('.project-list').val();
+    handleLoadTask(projectId, phraseid);   
 }
 
 //iCheck for checkbox and radio inputs
@@ -111,14 +111,15 @@ $.fn.taskstar = function () {
     });
 }
 
-function Initial() {
+function jQueryBinding() {
     $('.search-task').searchTask();
     $(".checkbox-toggle").checkboxtoggle();
     $(".task-star").taskstar();
     $('.task-table input[type="checkbox"]').registeriCheck();
-    $(".phrase-list > li > a").loadTast();
 }
 
+
 $(function () {
-    Initial();
+    $('.project-list').loadPhrase();
+    jQueryBinding();
 });

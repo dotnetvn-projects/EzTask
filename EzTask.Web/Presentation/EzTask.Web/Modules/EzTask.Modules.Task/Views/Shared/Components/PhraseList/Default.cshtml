@@ -2,29 +2,43 @@
 @model IEnumerable<PhraseModel>
 
 
-    <div class="box-header with-border">
-        <h3 class="box-title">Phrases</h3>
+<div class="box-header with-border">
+    <h3 class="box-title">Phrases</h3>
 
-        <div class="box-tools">
-            <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                <i class="fa fa-minus"></i>
-            </button>
-        </div>
+    <div class="box-tools">
+        <button type="button" class="btn btn-box-tool" data-widget="collapse">
+            <i class="fa fa-minus"></i>
+        </button>
     </div>
-    <div class="box-body no-padding">
-        <ul class="nav nav-pills nav-stacked phrase-list">
-            @foreach (var p in Model)
-            { 
+</div>
+<div class="box-body no-padding">
+    <ul class="nav nav-pills nav-stacked phrase-list">
+        @foreach (var p in Model)
+        {
             <li title="65 tasks">
-                <a data-id="@p.Id" href="#">
+                <a onclick="loadTask(this)" data-id="@p.Id" href="#">
                     <div><i class="fa fa-book text-success"></i> @p.PhraseName <span title="65 tasks" class="label label-warning pull-right">65</span></div>
-                    @if(p.StartDate.HasValue)
+                    @if (p.StartDate.HasValue)
                     {
-                    <div class="date"><i class="fa fa-calendar"></i> <display-for asp-for="@p.StartDate"></display-for> - <display-for asp-for="@p.EndDate"></display-for></div>
-                    }                   
+                        <div class="date"><i class="fa fa-calendar"></i> <display-for asp-for="@p.StartDate"></display-for> - <display-for asp-for="@p.EndDate"></display-for></div>
+                    }
+                    <div class="status">
+                        @switch (p.Status)
+                        {
+                            case PhraseStatus.Closed:
+                                @:<i class="fa fa-circle-o text-light-blue"></i> Closed
+                                break;
+                            case PhraseStatus.Failed:
+                                @:<i class="fa-circle-o text-red"></i> Failed
+                                break;
+                            case PhraseStatus.Open:
+                                @:<i class="fa fa-circle-o text-yellow"></i> Open
+                                break;
+                        }
+                    </div>
                 </a>
-            </li>               
-            }
-        </ul>
-    </div>
+            </li>
+        }
+    </ul>
+</div>
 

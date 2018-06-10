@@ -7,6 +7,7 @@ namespace EzTask.Models.Enum
     public enum PhraseStatus
     {
         Open,
+        Failed,
         Closed
     }
 }

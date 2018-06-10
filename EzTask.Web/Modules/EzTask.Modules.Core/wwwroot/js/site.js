@@ -18,6 +18,16 @@ function ModalCloseTrigger(modal) {
         $('.modal-backdrop').hide();
     });
 }
+
+function showLoading() {
+    $(".loader-panel").addClass("is-active");
+}
+
+function hideLoading() {
+    $(".loader-panel").removeClass("is-active");
+}
+
+
 //end modal helper
 
 function DoAjax(form, callback, errorFunction, format) {

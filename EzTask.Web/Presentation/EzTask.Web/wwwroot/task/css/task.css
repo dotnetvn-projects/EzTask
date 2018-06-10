@@ -14,12 +14,13 @@
     overflow: auto;
 }
 
-.phrase-list .date{
-    padding-top:8px;
+.phrase-list .date,
+.phrase-list .status {
+    padding-top: 8px;
 }
 
 .phrase-list .date :nth-child(2) {
-    padding-left: 2px;
+        padding-left: 2px;
 }
 /*****End Phrase list*****/
 
@@ -33,8 +34,7 @@
     padding: 5px;
 }
 
-.task-title{
-
+.task-title {
 }
 
 .task-controls.with-border {
@@ -102,11 +102,11 @@
 }
 
 .task-attachment-icon.has-img {
-    padding: 0;
+        padding: 0;
 }
 
 .task-attachment-icon.has-img > img {
-    max-width: 100%;
-    height: auto;
+            max-width: 100%;
+            height: auto;
 }
 /*****End Task table*****/

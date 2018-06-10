@@ -27,7 +27,7 @@ namespace EzTask.Modules.Task.Controllers
                 var data = iResult.Data;
                 data.StartDate = DateTime.Now;
                 data.EndDate = DateTime.Now.AddDays(1);
-                return Json(data);
+                return LoadPhraseList(model.ProjectId);
             }
 
             return BadRequest();

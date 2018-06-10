@@ -1,7 +1,20 @@
-﻿function Init() {
+﻿
+function handleLoadTask(projectId, phraseid) {
+    $.ajax({
+        url: "task/task-list.html",
+        data: { projectId: projectId, phraseId: phraseid },
+        success: function (response) {
+            var taskListPanel = $(".task-list-panel");
+            taskListPanel.html('');
+            taskListPanel.html(response);   
+            jQueryBinding();
+        },
+    });
+}
 
-    //search table
-    $('.search-task').keyup(function () {
+//search on task table
+$.fn.searchTask = function () {
+    $(this).keyup(function () {
         var input, filter, table, tr, td, i;
         input = this;
         filter = input.value.toUpperCase();
@@ -22,9 +35,11 @@
             }
         }
     });
+}
 
-    //load phrase
-    $('.project-list').change(function () {
+//load phrase and task list when project list changed
+$.fn.loadPhrase = function () {
+    $(this).change(function () {
         var id = $(this).val();
         $.ajax({
             url: "task/phrase-list.html",
@@ -33,49 +48,33 @@
                 var phrasePanel = $(".phrase-list-panel");
                 phrasePanel.html('');
                 phrasePanel.html(response);
+
                 var phrase = $(".phrase-list > li > a").first();
                 var phraseId = phrase.attr('data-id');
-                HandleLoadTask(id, phraseId);           
+                handleLoadTask(id, phraseId);               
             },
         });
     });
+}
 
-    //load task
-    $(".phrase-list > li > a").click(function (e) {
-        e.preventDefault();
-        var phraseid = $(this).attr('data-id');
-        var projectId = $('.project-list').val();
-        HandleLoadTask(projectId, phraseid);
-    });
+//handle load task event when click on item in phrase list
+function loadTask(data) {
+    var phraseid = $(data).attr('data-id');
+    var projectId = $('.project-list').val();
+    handleLoadTask(projectId, phraseid);   
+}
 
-    function HandleLoadTask(projectId, phraseid) {
-        $.ajax({
-            url: "task/task-list.html",
-            data: { projectId: projectId, phraseId: phraseid },
-            success: function (response) {
-                var taskListPanel = $(".task-list-panel");
-                taskListPanel.html('');
-                taskListPanel.html(response);            
-
-                $('.task-table input[type="checkbox"]').iCheck({
-                    checkboxClass: 'icheckbox_flat-green',
-                    radioClass: 'iradio_flat-green'
-                });
-            },
-        });
-    }
-
-
-
-    //Enable iCheck plugin for checkboxes
-    //iCheck for checkbox and radio inputs
-    $('.task-table input[type="checkbox"]').iCheck({
+//iCheck for checkbox and radio inputs
+$.fn.registeriCheck = function () {
+    $(this).iCheck({
         checkboxClass: 'icheckbox_flat-green',
         radioClass: 'iradio_flat-green'
     });
+}
 
-    //Enable check and uncheck all functionality
-    $(".checkbox-toggle").click(function () {
+//Enable check and uncheck all functionality
+$.fn.checkboxtoggle = function () {
+    $(this).click(function () {
         var clicks = $(this).data('clicks');
         if (clicks) {
             //Uncheck all checkboxes
@@ -88,9 +87,11 @@
         }
         $(this).data("clicks", !clicks);
     });
+}
 
-    //Handle starring for glyphicon and font awesome
-    $(".task-star").click(function (e) {
+//Handle starring for glyphicon and font awesome
+$.fn.taskstar = function () {
+    $(this).click(function (e) {
         e.preventDefault();
         //detect type
         var $this = $(this).find("a > i");
@@ -110,6 +111,15 @@
     });
 }
 
+function jQueryBinding() {
+    $('.search-task').searchTask();
+    $(".checkbox-toggle").checkboxtoggle();
+    $(".task-star").taskstar();
+    $('.task-table input[type="checkbox"]').registeriCheck();
+}
+
+
 $(function () {
-    Init();
+    $('.project-list').loadPhrase();
+    jQueryBinding();
 });
