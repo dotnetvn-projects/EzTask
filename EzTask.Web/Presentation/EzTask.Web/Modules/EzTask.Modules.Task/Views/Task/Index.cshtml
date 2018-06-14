@@ -33,7 +33,7 @@
         <div class="box box-solid phrase-list-panel">
             @await Component.InvokeAsync("PhraseList", new { projectId = Model.Project.ProjectId })
         </div>
-        <div class="box box-solid">
+        <div class="box box-solid collapsed-box">
             <partial name="_TaskLabels" />
         </div>
     </div>

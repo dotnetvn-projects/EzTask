@@ -31,7 +31,7 @@ $.fn.PhraseModalAction = function () {
                 url: "task/phrase-modal-action.html",
                 data: $("#phrase-form").serialize(),
                 success: function (response) {
-                    var phrasePanel = $(".phrase-list");
+                    var phrasePanel = $(".phrase-list-panel");
                     phrasePanel.html('');
                     phrasePanel.html(response);
 
