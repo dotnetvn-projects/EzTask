@@ -44,7 +44,11 @@
                         {
                             <tr>
                                 <td><input data-id="@task.TaskId" type="checkbox"></td>
-                                <td class="task-star"><a href="#"><i class="fa fa-star text-yellow"></i></a></td>
+                                <td class="task-star">
+                                  <a href="#">
+                                    <task-status status="@task.Status"></task-status>
+                                  </a>
+                                </td>
                                 <td class="task-name"><a href="read-mail.html">@task.TaskCode</a></td>
                                 <td class="task-title">
                                     @task.TaskTitle

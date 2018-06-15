@@ -6,7 +6,7 @@ using System;
 namespace EzTask.Web.Framework.TagHelpers
 {
     [HtmlTargetElement("display-for")]
-    public class DisplayFor : TagHelper
+    public class DisplayForTag : TagHelper
     {
         [HtmlAttributeName("asp-for")]
         public ModelExpression Data { get; set; }

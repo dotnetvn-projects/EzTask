@@ -1,17 +1,16 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
-using System.Collections.Generic;
-using System.Text;
+using EzTask.Web.Framework.Data;
+using EzTask.Models.Enum;
 
 namespace EzTask.Web.Framework.TagHelpers
 {
     [HtmlTargetElement("task-status")]
-    public class TaskSatus: TagHelper
+    public class TaskSatusTag: TagHelper
     {
-        [HtmlAttributeName("status")]
-        public TaskSatus Status { get; set; }
+        [HtmlAttributeName("asp-for")]
+        public TaskStatus Status { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -26,7 +25,8 @@ namespace EzTask.Web.Framework.TagHelpers
             }
          
             var tag = new TagBuilder("span");
-            tag.InnerHtml.AppendHtml(string.Format("", ""));
+         //   var htmlString = StaticResources.TaskStatusUIElement[Status];
+            tag.InnerHtml.AppendHtml("vvvv");
 
             output.Content.SetHtmlContent(tag);
         }
