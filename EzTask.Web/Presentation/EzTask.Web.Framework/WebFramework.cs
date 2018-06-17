@@ -11,6 +11,7 @@ using EzTask.Web.Framework.Infrastructures;
 using EzTask.Web.Framework.HttpContext;
 using EzTask.Business;
 using Microsoft.AspNetCore.Mvc;
+using EzTask.Web.Framework.Data;
 
 namespace EzTask.Web.Framework
 {
@@ -25,6 +26,7 @@ namespace EzTask.Web.Framework
             env.RunWebBuilder();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddSingleton<StaticResources>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
             services.AddDistributedMemoryCache();

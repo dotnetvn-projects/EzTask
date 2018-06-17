@@ -1,4 +1,4 @@
-﻿[
+[
   {
     "outputFileName": "wwwroot/js/project.min.js",
     "inputFiles": [
@@ -8,5 +8,23 @@
       "enabled": true,
       "renameLocals": true
     }
+  },
+  {
+    "outputFileName": "wwwroot/task/js/phrase.min.js",
+    "inputFiles": [
+      "wwwroot/task/js/phrase.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/task/js/task.min.js",
+    "inputFiles": [
+      "wwwroot/task/js/task.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/task/js/task-action.min.js",
+    "inputFiles": [
+      "wwwroot/task/js/task-action.js"
+    ]
   }
 ]

@@ -50,6 +50,6 @@ $.fn.PhraseModalAction = function () {
 
 $(function () {
     $(".btn-addnew-phrase").ShowModal();
-    $(".btn-confirm").PhraseModalAction();
+    $("#phrase-modal .btn-confirm").PhraseModalAction();
     ModalCloseTrigger('phrase-modal');
 })

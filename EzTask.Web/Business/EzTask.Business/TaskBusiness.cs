@@ -74,6 +74,18 @@ namespace EzTask.Business
                                    .ToListAsync();
 
             var model = data.ToModels();
+
+            foreach(var item in model)
+            {
+                if(item.Assignee == null ||
+                    string.IsNullOrEmpty(item.Assignee.DisplayName))
+                {
+                    item.Assignee = new AccountModel
+                    {
+                        DisplayName = "Non Assigned"
+                    };
+                }
+            }
             return model;
         }
     }

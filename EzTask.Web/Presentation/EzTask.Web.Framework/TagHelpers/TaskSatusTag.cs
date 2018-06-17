@@ -3,14 +3,22 @@ using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using EzTask.Web.Framework.Data;
 using EzTask.Models.Enum;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
+using EzTask.Framework.Common;
 
 namespace EzTask.Web.Framework.TagHelpers
 {
     [HtmlTargetElement("task-status")]
     public class TaskSatusTag: TagHelper
     {
+        private StaticResources _resources;
+        public TaskSatusTag(StaticResources resources)
+        {
+            _resources = resources;
+        }
+
         [HtmlAttributeName("asp-for")]
-        public TaskStatus Status { get; set; }
+        public ModelExpression Data { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -24,11 +32,14 @@ namespace EzTask.Web.Framework.TagHelpers
                 throw new ArgumentNullException(nameof(output));
             }
          
-            var tag = new TagBuilder("span");
-         //   var htmlString = StaticResources.TaskStatusUIElement[Status];
-            tag.InnerHtml.AppendHtml("vvvv");
 
-            output.Content.SetHtmlContent(tag);
+            var dataValue = Data.ModelExplorer.GetSimpleDisplayText();
+            var status = dataValue.ToEnum<TaskStatus>();
+
+            var htmlString = _resources.GetTaskStatusUIElement(status);
+        //    tag.InnerHtml.AppendHtml(htmlString);
+
+            output.Content.SetHtmlContent(htmlString);
         }
     }
 }

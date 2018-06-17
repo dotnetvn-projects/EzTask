@@ -1,0 +1,88 @@
+﻿<div class="modal fade" data-backdrop="static" data-keyboard="false"  id="task-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Create new task</h4>
+            </div>
+            <form id="task-form" class="form-horizontal">              
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputTaskTitle" class="col-sm-2 control-label">Task Title</label>
+                        <div class="col-sm-9">
+                            <input class="form-control" id="inputTaskTitle" placeholder="Task title" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTaskPhrase" class="col-sm-2 control-label">Phrase  </label>
+                        <div class="col-sm-9">
+                            <select id="inputTaskPhrase" class="form-control select2">
+                                <option>Chuan bị tai lieu</option>
+                                <option>Close</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTaskStatus" class="col-sm-2 control-label">Status  </label>
+                        <div class="col-sm-9">
+                            <select id="inputTaskStatus" class="form-control select2">
+                                <option>Open</option>
+                                <option>Close</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputTaskAssign" class="col-sm-2 control-label">Assign To</label>
+                        <div class="col-sm-9">
+                            <select id="inputTaskAssign" class="form-control select2">
+                                <option>Non-Assign</option>
+                                <option>Linh Pham</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="nav-tabs-custom">
+                            <ul class="nav nav-tabs">
+                                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Details</a></li>
+                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Attachment</a></li>
+                                <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">History</a></li>            
+                            </ul>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="tab_1">
+                                    <textarea style="height:300px; width:100%;" ></textarea>
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_2">
+                                    The European languages are members of the same family. Their separate existence is a myth.
+                                    For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
+                                    in their grammar, their pronunciation and their most common words. Everyone realizes why a
+                                    new common language would be desirable: one could refuse to pay expensive translators. To
+                                    achieve this, it would be necessary to have uniform grammar, pronunciation and more common
+                                    words. If several languages coalesce, the grammar of the resulting language is more simple
+                                    and regular than that of the individual languages.
+                                </div>
+                                <!-- /.tab-pane -->
+                                <div class="tab-pane" id="tab_3">
+                                    Lorem Ipsum is simply dummy text of the printing and typesetting industry.
+                                    Lorem Ipsum has been the industry's standard dummy text ever since the 1500s,
+                                    when an unknown printer took a galley of type and scrambled it to make a type specimen book.
+                                    It has survived not only five centuries, but also the leap into electronic typesetting,
+                                    remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset
+                                    sheets containing Lorem Ipsum passages, and more recently with desktop publishing software
+                                    like Aldus PageMaker including versions of Lorem Ipsum.
+                                </div>
+                                <!-- /.tab-pane -->
+                            </div>
+                            <!-- /.tab-content -->
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-confirm">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
