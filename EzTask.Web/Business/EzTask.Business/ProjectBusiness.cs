@@ -61,8 +61,16 @@ namespace EzTask.Business
                                     ProjectId = project.Id,
                                     Status = (int)PhraseStatus.Open
                                 };
-
                                 UnitOfWork.PhraseRepository.Add(feature);
+
+                                //add project member
+                                var member = new ProjectMember
+                                {
+                                    MemberId = project.Owner,
+                                    ProjectId = project.Id,
+                                    AddDate = DateTime.Now
+                                };
+                                UnitOfWork.ProjectMemberRepository.Add(member);
                                 await UnitOfWork.CommitAsync();
                             }
                         }                       
@@ -193,6 +201,26 @@ namespace EzTask.Business
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
 
             return data.ToModel();
+        }
+
+        /// <summary>
+        /// Get account list belong to a specific project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<AccountModel>> GetAccountList(int projectId)
+        {
+            var data = await UnitOfWork.ProjectMemberRepository.Entity
+                .Include(c => c.Project)
+                .Include(c => c.Member)
+                .ThenInclude(c => c.AccountInfo).AsNoTracking()
+                .Where(c => c.ProjectId == projectId).Select(t => new AccountModel
+                 {
+                     AccountId = t.MemberId,
+                     DisplayName = t.Member.AccountInfo.DisplayName
+                 }).ToListAsync();
+
+            return data;
         }
     }
 }

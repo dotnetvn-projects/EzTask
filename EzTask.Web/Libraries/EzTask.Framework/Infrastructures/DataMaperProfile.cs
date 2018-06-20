@@ -82,14 +82,14 @@ namespace EzTask.Framework.Infrastructures
         {
             //Map TaskItem entity to TaskItem model
             CreateMap<TaskItem, TaskItemModel>()
-                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<TaskStatus>()))
-                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToEnum<TaskStatus>()))
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<TaskItemStatus>()))
+                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToEnum<TaskItemStatus>()))
                 .ForMember(c => c.TaskId, t => t.MapFrom(z => z.Id));
 
             //Map TaskItem model to TaskItem entity
             CreateMap<TaskItemModel, TaskItem>()
-                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<TaskStatus>()))
-                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToInt16<TaskStatus>()))
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<TaskItemStatus>()))
+                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToInt16<TaskItemStatus>()))
                 .ForMember(c => c.Id, t => t.MapFrom(z => z.TaskId));
         }
     }

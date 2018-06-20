@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EzTask.Models.Enum
 {             
-    public enum TaskStatus
+    public enum TaskItemStatus
     {
         Open,
         Feedback,

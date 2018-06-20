@@ -30,7 +30,7 @@ function hideLoading() {
 
 //end modal helper
 
-function DoAjax(form, callback, errorFunction, format) {
+function DoFormAjax(form, callback, errorFunction, format) {
         $.ajax({
             url: form.action,
             type: form.method,
@@ -41,19 +41,36 @@ function DoAjax(form, callback, errorFunction, format) {
                 errorFunction(xhr, textStatus, errorThrown);
             }
         });
-    }
+}
 
-$(function () { 
+function DoAjax(url, method, data, callback, errorFunction, format) {
+    $.ajax({
+        url: url,
+        type: method,
+        dataType: format,
+        data: data,
+        success: callback,
+        error: function (xhr, textStatus, errorThrown) {
+            errorFunction(xhr, textStatus, errorThrown);
+        }
+    });
+}
+
+function initLib() {
     //select2
     $('.select2').select2();
 
     //Date picker
-     $('.datepicker').datepicker({
-         autoclose: true,
-         todayHighlight: true
-     }).on('show', function (e) {
-         if ($(this).val().length > 0 && $('.datepicker:visible') == false) {
-             $(this).datepicker('update', new Date($(this).val()));
-         }
-     })
+    $('.datepicker').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    }).on('show', function (e) {
+        if ($(this).val().length > 0 && $('.datepicker:visible') == false) {
+            $(this).datepicker('update', new Date($(this).val()));
+        }
+    })
+}
+
+$(function () { 
+    initLib();
   })

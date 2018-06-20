@@ -3,10 +3,12 @@ using System.Threading.Tasks;
 using EzTask.Models;
 using EzTask.Models.Enum;
 using EzTask.Modules.Core.Controllers;
+using EzTask.Web.Framework.Attributes;
 using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.Task.Controllers
 {
+    [TypeFilter(typeof(AuthenAttribute))]
     public class PhraseController : CoreController
     {
         public PhraseController(IServiceProvider serviceProvider) :

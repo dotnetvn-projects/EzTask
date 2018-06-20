@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Linq;
 
 namespace EzTask.Framework.Common
 {
@@ -19,6 +20,12 @@ namespace EzTask.Framework.Common
         public static T ToEnum<T>(this string value)
         {
            return (T)Enum.Parse(typeof(T), value);
+        }
+
+        public static List<string> ToList<T>()
+        {
+            var items = Enum.GetNames(typeof(T));
+            return items.ToList();
         }
     }
 }

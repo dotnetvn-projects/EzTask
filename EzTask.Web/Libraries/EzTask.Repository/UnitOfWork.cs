@@ -46,7 +46,7 @@ namespace EzTask.Repository
             AccountSkillRepository.Context = context;
 
             ProjectMemberRepository = projectMember;
-            AccountSkillRepository.Context = context;
+            ProjectMemberRepository.Context = context;
 
             SkillRepository = skill;
             SkillRepository.Context = context;

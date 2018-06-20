@@ -12,7 +12,7 @@ namespace EzTask.Models
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public TaskPriority Priority { get; set; }
-        public TaskStatus Status { get; set; }
+        public TaskItemStatus Status { get; set; }
         public AccountModel Assignee { get; set; }
         public AccountModel Member { get; set; }
         public ProjectModel Project { get; set; }
