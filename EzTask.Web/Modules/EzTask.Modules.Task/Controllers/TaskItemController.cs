@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EzTask.Framework.Common;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace EzTask.Modules.Task.Controllers
 {
@@ -21,24 +22,104 @@ namespace EzTask.Modules.Task.Controllers
         {
         }
 
-        [Route("taskitem/generate-new-item.html")]
+        [Route("taskitem/generate-view.html")]
         [HttpPost]
-        public async Task<IActionResult> PrepairNewItem(int projectId)
+        public async Task<IActionResult> PrepairTaskViewItem(TaskFormDataModel model)
         {
             var newTask = new TaskItemViewModel();
+            if(model.TaskId == 0)
+            {
+                model.ActionType = ActionType.CreateNew;
+            }
+            newTask.ProjectId = model.ProjectId;
 
-            var phrases = await EzTask.Phrase.GetPhrase(projectId);
+            var phrases = await EzTask.Phrase.GetPhrase(model.ProjectId);
             newTask.PhraseList = BuildPhraseSelectList(phrases);
 
-            var assignees = await EzTask.Project.GetAccountList(projectId);
+            var assignees = await EzTask.Project.GetAccountList(model.ProjectId);
             newTask.AssigneeList = BuildAssigneeSelectList(assignees);
 
             newTask.StatusList = BuildStatusSelectList();
+            newTask.PriorityList = BuildPrioritySelectList();
 
             return PartialView("_CreateOrUpdateTask", newTask);
         }
 
+        [HttpPost]
+        public async Task<IActionResult> CreateNew(TaskItemViewModel viewModel)
+        {
+            var model = CreateTaskItemModel(viewModel);
+            var iResult = await EzTask.Task.CreateTask(model);
+            return Json(iResult);
+        }
+
+        [HttpPost]
+        public IActionResult Update(TaskItemViewModel model)
+        {
+            return Json("OK");
+        }
+
+
         #region Non-Action
+
+        /// <summary>
+        /// Create TaskItemModel from ViewModel
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        private TaskItemModel CreateTaskItemModel(TaskItemViewModel viewModel)
+        {
+            var data = new TaskItemModel();
+            data.Assignee.AccountId = viewModel.Assignee;
+            data.Member.AccountId = AccountId;
+            data.Phrase.Id = viewModel.PhraseId;
+            data.Project.ProjectId = viewModel.ProjectId;
+            data.Priority = viewModel.Priority.ToEnum<TaskPriority>();
+            data.Status = viewModel.Status.ToEnum<TaskItemStatus>();
+            data.TaskDetail = viewModel.TaskDetail;
+            data.TaskCode = viewModel.TaskCode;
+            data.TaskId = viewModel.TaskId;
+            data.TaskTitle = viewModel.TaskTitle;
+
+            return data;
+        }
+
+        /// <summary>
+        /// Build Priority SelectList items
+        /// </summary>
+        /// <returns></returns>
+        private static List<SelectListItem> BuildPrioritySelectList(Int16 selectedId = 0)
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            var dataItems = EnumUtilities.ToList<TaskPriority>();
+            if (dataItems.Any())
+            {
+                foreach (var data in dataItems)
+                {
+                    var selectItem = new SelectListItem
+                    {
+                        Text = data,
+                        Value = ((Int16)data.ToEnum<TaskPriority>()).ToString()
+                    };
+
+                    if (selectedId != 0)
+                    {
+                        var enumData = selectedId.ToEnum<TaskPriority>();
+                        if (data == enumData.ToString())
+                        {
+                            selectItem.Selected = true;
+                        }
+                    }
+                    list.Add(selectItem);
+                }
+            }
+            if (selectedId == 0)
+            {
+                list[0].Selected = true;
+            }
+            return list;
+        }
+
         /// <summary>
         /// Build Phrase SelectList items
         /// </summary>
@@ -125,7 +206,7 @@ namespace EzTask.Modules.Task.Controllers
                     var selectItem = new SelectListItem
                     {
                         Text = status,
-                        Value = ((int)status.ToEnum<TaskItemStatus>()).ToString()
+                        Value = ((Int16)status.ToEnum<TaskItemStatus>()).ToString()
                     };
 
                     if (selectedId != 0)

@@ -17,5 +17,13 @@ namespace EzTask.Models
         public AccountModel Member { get; set; }
         public ProjectModel Project { get; set; }
         public PhraseModel Phrase { get; set; }
+
+        public TaskItemModel()
+        {
+            Assignee = new AccountModel();
+            Member = new AccountModel();
+            Project = new ProjectModel();
+            Phrase = new PhraseModel();
+        }
     }
 }

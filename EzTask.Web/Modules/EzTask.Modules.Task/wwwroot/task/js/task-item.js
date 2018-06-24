@@ -2,23 +2,50 @@
     $(this).click(function () {
         var projectId = $('.project-list').val();
         showLoading();
-        DoAjax('taskitem/generate-new-item.html', 'POST', { projectId: projectId },
+        DoAjax('taskitem/generate-view.html', 'POST', { projectid: projectId },
             function (data) {
                 BuildForm(data);
                 hideLoading();
-                ShowModal('task-modal');
+                ShowModal('task-modal');             
             },
             function (xhr, textStatus, errorThrown) {
                 //handle exception here if any
             }
-        );           
+        );
     });
+}
+
+
+$.fn.Submit = function () {
+    $(this).click(function (e) {
+        e.preventDefault();
+        var form = $("#task-form");
+        if (form.valid()) {
+            showLoading();
+            DoFormAjax(form[0],
+                function (data) {
+                    hideLoading();
+                },
+                function (xhr, textStatus, errorThrown) {
+                    hideLoading();
+                    //handle exception here if any
+                }, 'json'
+            );
+        }
+    });
+}
+
+function DoAction() {
+
 }
 
 function BuildForm(template) {
     $(".task-item-template").html('');
     $(".task-item-template").append(template);
     initLib();
+    var form = $("#task-form");
+    $.validator.unobtrusive.parse(form); 
+    $("#task-modal .btn-confirm").Submit();
 }
 
 $(function () {

@@ -31,6 +31,14 @@ namespace EzTask.Framework.Infrastructures
                 .ForMember(c => c.AccountId, t => t.MapFrom(z => z.Id))
                 .ForMember(c => c.AccountStatus, t => t.MapFrom(z => z.AccountStatus.ToEnum<ProjectStatus>()));
 
+            ///Map Account model to Account entity
+            CreateMap<AccountModel, Account>()
+                .ForMember(c => c.Id, t => t.MapFrom(z => z.AccountId))
+                .ForPath(c => c.AccountInfo.AccountId, t => t.MapFrom(z => z.AccountId))
+                .ForPath(c => c.AccountInfo.Email, t => t.MapFrom(z => z.AccountName))
+                .ForPath(c => c.AccountInfo.FullName, t => t.MapFrom(z => z.FullName))
+                .ForPath(c => c.AccountInfo.DisplayName, t => t.MapFrom(z => z.DisplayName));
+
             ///Map AccountInfo entity to AccountInfoModel
             CreateMap<AccountInfo, AccountInfoModel>()
                 .ForMember(c => c.AccountInfoId, t => t.MapFrom(z => z.Id))
