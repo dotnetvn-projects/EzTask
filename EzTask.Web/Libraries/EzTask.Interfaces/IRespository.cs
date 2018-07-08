@@ -112,6 +112,5 @@ namespace EzTask.Interfaces
 
         #endregion
 
-
     }
 }
