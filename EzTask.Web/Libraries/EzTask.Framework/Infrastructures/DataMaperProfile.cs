@@ -98,7 +98,11 @@ namespace EzTask.Framework.Infrastructures
             CreateMap<TaskItemModel, TaskItem>()
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<TaskItemStatus>()))
                 .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToInt16<TaskItemStatus>()))
-                .ForMember(c => c.Id, t => t.MapFrom(z => z.TaskId));
+                .ForMember(c => c.Id, t => t.MapFrom(z => z.TaskId))
+                .ForMember(c => c.MemberId, t => t.MapFrom(z => z.Member != null ? z.Member.AccountId : 0))
+                .ForMember(c => c.PhraseId, t => t.MapFrom(z => z.Phrase != null ? z.Phrase.Id : 0))
+                .ForMember(c => c.AssigneeId, t => t.MapFrom(z => z.Assignee != null ? z.Assignee.AccountId : 0))
+                .ForMember(c => c.ProjectId, t => t.MapFrom(z => z.Project != null ? z.Project.ProjectId : 0));
         }
     }
 }

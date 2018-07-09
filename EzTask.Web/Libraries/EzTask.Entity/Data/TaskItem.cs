@@ -19,16 +19,12 @@ namespace EzTask.Entity.Data
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
 
-        [ForeignKey("AssigneeId")]
         public Account Assignee { get; set; }
 
-        [ForeignKey("MemberId")]
         public Account Member { get; set; }
 
-        [ForeignKey("ProjectId")]
         public Project Project { get; set; }
 
-        [ForeignKey("PhraseId")]
         public Phrase Phrase { get; set; }
 
         public TaskItem ()

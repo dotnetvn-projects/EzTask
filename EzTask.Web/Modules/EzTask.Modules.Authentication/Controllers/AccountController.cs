@@ -5,7 +5,6 @@ using EzTask.Framework.Data;
 using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
-using EzTask.Web.Framework.Attributes;
 using EzTask.Models.Enum;
 
 namespace EzTask.Modules.Authentication.Controllers
@@ -24,7 +23,6 @@ namespace EzTask.Modules.Authentication.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("login.html")]
-        [PageTitle("Login")]
         public IActionResult Login(string redirect)
         {
             return View(new LoginModel { RedirectUrl = redirect });
@@ -92,7 +90,6 @@ namespace EzTask.Modules.Authentication.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("register.html")]
-        [PageTitle("Register new membership")]
         public IActionResult Register()
         {
             return View(new RegisterModel());

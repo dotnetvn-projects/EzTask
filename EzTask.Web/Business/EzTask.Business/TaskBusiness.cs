@@ -30,8 +30,21 @@ namespace EzTask.Business
             ResultModel<TaskItemModel> result = new ResultModel<TaskItemModel>();
 
             var task = model.ToEntity();
+
+            //reset navigate object
+            task.Phrase = null;
+            task.Project = null;
+            task.Assignee = null;
+            task.Member = null;
+
+            if(task.AssigneeId == 0)
+            {
+                task.AssigneeId = null;
+            }
+
             if (task.Id < 1)
             {
+                task.TaskCode = string.Empty;
                 task.CreatedDate = DateTime.Now;
             }
 

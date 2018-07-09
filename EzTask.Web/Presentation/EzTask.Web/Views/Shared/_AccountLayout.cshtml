@@ -1,6 +1,6 @@
 ﻿@{ 
     string tagCss = "login";
-    if(ViewData["Title"] != null && !ViewData["Title"].ToString().Contains("Login"))
+    if(ViewBag.Title != null && !ViewBag.Title.Contains("Login"))
     {
         tagCss = "register";
     }
