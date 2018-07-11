@@ -53,15 +53,15 @@
                     <div class="form-group">
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab_1" data-toggle="tab" aria-expanded="true">Details</a></li>
-                                <li class=""><a href="#tab_2" data-toggle="tab" aria-expanded="false">Attachment</a></li>
-                                <li class=""><a href="#tab_3" data-toggle="tab" aria-expanded="false">History</a></li>
+                                <li class="active"><a href="#tab_detail" data-toggle="tab" aria-expanded="true">Details</a></li>
+                                <li class=""><a href="#tab_attachment" data-toggle="tab" aria-expanded="false">Attachment</a></li>
+                                <li class=""><a href="#tab_history" data-toggle="tab" aria-expanded="false">History</a></li>
                             </ul>
                             <div class="tab-content">
-                                <div class="tab-pane active" id="tab_1">
+                                <div class="tab-pane active" id="tab_detail">
                                     <textarea asp-for="TaskDetail" style="height:300px; width:100%;"></textarea>
                                 </div>
-                                <div class="tab-pane" id="tab_2">
+                                <div class="tab-pane" id="tab_attachment">
                                     The European languages are members of the same family. Their separate existence is a myth.
                                     For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
                                     in their grammar, their pronunciation and their most common words. Everyone realizes why a
@@ -70,29 +70,23 @@
                                     words. If several languages coalesce, the grammar of the resulting language is more simple
                                     and regular than that of the individual languages.
                                 </div>
-                                <div class="tab-pane" id="tab_3">
-                                    <div class="row">
-                                        <div class="img">
-                                            <img src="@Url.Action("LoadAvatar","Common")" class="img-circle" alt="User Image">
-                                        </div>
-                                        <div class="content-history">
-                                            sdfsdfsdfsdfsdfsfsdfsdfbmsdfsjdfhsdfhsdffsd
+                                <div class="tab-pane" id="tab_history">
+                                    <div class="row history-item">
+                                        <div class="user-img col">
+                                            <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
+											<span>  Update 1 rewtwtwtwrtwrwerwerwerwerwe</span>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="img">
-                                            <img src="@Url.Action("LoadAvatar","Common")" class="img-circle" alt="User Image">
-                                        </div>
-                                        <div class="content-history">
-                                            sdfsdfsdfsdfsdfsfsdfsdfbmsdfsjdfhsdfhsdffsd
+                                     <div class="row history-item">
+                                        <div class="user-img col">
+                                            <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
+											<span>  Update 2 ưerwerwerwerwerwerwerwerwerwe</span>
                                         </div>
                                     </div>
-                                    <div class="row">
-                                        <div class="img">
-                                            <img src="@Url.Action("LoadAvatar","Common")" class="img-circle" alt="User Image">
-                                        </div>
-                                        <div class="content-history">
-                                            sdfsdfsdfsdfsdfsfsdfsdfbmsdfsjdfhsdfhsdffsd
+                                     <div class="row history-item">
+                                        <div class="user-img col">
+                                            <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
+											<span>  Update 2 ưerwerwerwerwerwerwerwerwerwerwrrwerwerwe</span>
                                         </div>
                                     </div>
                                 </div>

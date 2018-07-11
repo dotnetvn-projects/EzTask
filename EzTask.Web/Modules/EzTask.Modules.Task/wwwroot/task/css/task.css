@@ -1,4 +1,5 @@
-﻿.project-box .select2 {
+﻿
+.project-box .select2 {
     margin-top: 10px !important;
     width: 100% !important;
 }
@@ -8,24 +9,24 @@
 }
 
 
-/*****Phrase list*****/
+/***************Phrase list***************/
 .phrase-list {
     max-height: 700px;
     overflow: auto;
 }
 
-.phrase-list .date,
-.phrase-list .status {
-    padding-top: 8px;
-}
+    .phrase-list .date,
+    .phrase-list .status {
+        padding-top: 8px;
+    }
 
-.phrase-list .date :nth-child(2) {
-        padding-left: 2px;
-}
-/*****End Phrase list*****/
+        .phrase-list .date :nth-child(2) {
+            padding-left: 2px;
+        }
+/***************End Phrase list***************/
 
 
-/*****Task table*****/
+/***************Task table***************/
 .task-table > .table {
     margin: 0;
 }
@@ -46,15 +47,15 @@
     padding: 10px;
 }
 
-.task-read-info h3 {
-    font-size: 20px;
-    margin: 0;
-}
+    .task-read-info h3 {
+        font-size: 20px;
+        margin: 0;
+    }
 
-.task-read-info h5 {
-    margin: 0;
-    padding: 5px 0 0 0;
-}
+    .task-read-info h5 {
+        margin: 0;
+        padding: 5px 0 0 0;
+    }
 
 .task-attachments li {
     float: left;
@@ -92,26 +93,40 @@
     padding: 20px 10px;
 }
 
-.task-attachment-icon.has-img {
+    .task-attachment-icon.has-img {
         padding: 0;
-}
+    }
 
-.task-attachment-icon.has-img > img {
+        .task-attachment-icon.has-img > img {
             max-width: 100%;
             height: auto;
-}
-/*****End Task table*****/
+        }
+/***************End Task table***************/
 
 
-/******Task modal*****/
+/****************Task modal***************/
 
 #task-modal .select2-container {
     width: 100% !important;
 }
+
 #task-modal textarea {
     resize: none;
 }
+
 #task-modal .nav-tabs-custom {
     margin-bottom: 0px !important;
 }
-/******End Task modal*****/
+
+#tab_history .history-item {
+    padding-left: 30px;
+    padding-top: 15px;
+    padding-right: 15px;
+    padding-bottom: 15px;
+}
+
+#tab_history .history-item img {
+    width: 60px;
+}
+
+/****************End Task modal***************/

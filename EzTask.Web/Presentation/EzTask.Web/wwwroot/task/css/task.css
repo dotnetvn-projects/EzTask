@@ -1,4 +1,5 @@
-﻿.project-box .select2 {
+﻿
+.project-box .select2 {
     margin-top: 10px !important;
     width: 100% !important;
 }
@@ -8,7 +9,7 @@
 }
 
 
-/*****Phrase list*****/
+/***************Phrase list***************/
 .phrase-list {
     max-height: 700px;
     overflow: auto;
@@ -22,10 +23,10 @@
 .phrase-list .date :nth-child(2) {
         padding-left: 2px;
 }
-/*****End Phrase list*****/
+/***************End Phrase list***************/
 
 
-/*****Task table*****/
+/***************Task table***************/
 .task-table > .table {
     margin: 0;
 }
@@ -100,10 +101,10 @@
             max-width: 100%;
             height: auto;
 }
-/*****End Task table*****/
+/***************End Task table***************/
 
 
-/******Task modal*****/
+/****************Task modal***************/
 
 #task-modal .select2-container {
     width: 100% !important;
@@ -114,4 +115,16 @@
 #task-modal .nav-tabs-custom {
     margin-bottom: 0px !important;
 }
-/******End Task modal*****/
+
+#tab_history .history-item {
+    padding-left:30px;
+	padding-top:15px;
+	padding-right:15px;
+	padding-bottom:15px;
+}
+
+#tab_history .history-item img {
+        width: 60px;
+}
+
+/****************End Task modal***************/
