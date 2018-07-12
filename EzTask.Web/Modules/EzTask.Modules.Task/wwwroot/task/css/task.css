@@ -9,6 +9,9 @@
 }
 
 
+
+
+
 /***************Phrase list***************/
 .phrase-list {
     max-height: 700px;
@@ -24,6 +27,10 @@
             padding-left: 2px;
         }
 /***************End Phrase list***************/
+
+
+
+
 
 
 /***************Task table***************/
@@ -104,6 +111,11 @@
 /***************End Task table***************/
 
 
+
+
+
+
+
 /****************Task modal***************/
 
 #task-modal .select2-container {
@@ -117,38 +129,65 @@
 #task-modal .nav-tabs-custom {
     margin-bottom: 0px !important;
 }
-#tab_history{
-    max-height: 880px;
-}
-#tab_history .history-item {
-    padding-left: 30px;
-    padding-top: 15px;
-    padding-right: 15px;
-    padding-bottom: 15px;
+
+#tab_history {
+    height: 300px;
+    position: relative;
 }
 
-#tab_history .history-item img {
-    width: 60px;
-}
-
-/* width */
-    #tab_history::-webkit-scrollbar {
-        width: 10px;
+    #tab_history .content-container {
+        max-height: 100%;
+        overflow-y: scroll;
+        overflow-x: hidden;
     }
 
-/* Track */
-    #tab_history::-webkit-scrollbar-track {
-        background: #f1f1f1;
+    #tab_history .history-item {
+        padding-left: 30px;
+        padding-top: 15px;
+        padding-right: 15px;
+        padding-bottom: 5px;
     }
 
-/* Handle */
-    #tab_history::-webkit-scrollbar-thumb {
-        background: #888;
-    }
+        #tab_history .history-item .content-item {
+            border-left: 4px solid red;
+            background: #f7f7f9;
+            padding: 5px;
+        }
 
-    /* Handle on hover */
-        #tab_history::-webkit-scrollbar-thumb:hover {
-            background: #555;
+        #tab_history .history-item img {
+            width: 60px;
+            margin-left: 7px;
         }
 
 /****************End Task modal***************/
+
+
+
+/************/
+
+/* width */
+.content-container::-webkit-scrollbar,
+.phrase-list::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+.content-container::-webkit-scrollbar-track,
+.phrase-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+/* Handle */
+.content-container::-webkit-scrollbar-thumb,
+.phrase-list::-webkit-scrollbar-thumb
+{
+    background: #888;
+}
+
+    /* Handle on hover */
+    .content-container::-webkit-scrollbar-thumb:hover,
+    .phrase-list::-webkit-scrollbar-thumb:hover {
+        background: #555;
+    }
+
+/***********/
