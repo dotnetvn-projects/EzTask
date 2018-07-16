@@ -160,6 +160,13 @@
             margin-left: 7px;
         }
 
+        #tab_history .history-item .content-item .description {
+            padding-left:9px;
+        }
+         #tab_history .history-item .content-item .description p{
+             margin-bottom:0px !important;
+         }
+
 /****************End Task modal***************/
 
 
