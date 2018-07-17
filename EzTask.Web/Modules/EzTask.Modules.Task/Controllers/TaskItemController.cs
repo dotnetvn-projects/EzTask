@@ -34,7 +34,7 @@ namespace EzTask.Modules.Task.Controllers
             newTask.ProjectId = model.ProjectId;
 
             var phrases = await EzTask.Phrase.GetPhrase(model.ProjectId);
-            newTask.PhraseList = BuildPhraseSelectList(phrases);
+            newTask.PhraseList = BuildPhraseSelectList(phrases, model.PhraseId);
 
             var assignees = await EzTask.Project.GetAccountList(model.ProjectId);
             newTask.AssigneeList = BuildAssigneeSelectList(assignees);

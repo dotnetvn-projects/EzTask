@@ -20,7 +20,7 @@
             </button>
             <div class="btn-group">
                 <button type="button" title="Delete" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                <button type="button" title="Add new task" class="btn btn-default btn-sm btn-addnew-task"><i class="fa fa-plus"></i></button>
+                <button type="button" onclick="ShowAddNewModal();" title="Add new task" class="btn btn-default btn-sm btn-addnew-task"><i class="fa fa-plus"></i></button>
                 <button type="button" title="" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
             </div>
             <!-- /.btn-group -->
@@ -76,7 +76,7 @@
             </button>
             <div class="btn-group">
                 <button type="button" title="Delete" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                <button type="button" title="Add new task" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+                <button type="button" onclick="ShowAddNewModal();" title="Add new task" class="btn btn-default btn-addnew-task btn-sm"><i class="fa fa-plus"></i></button>
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
             </div>
             <!-- /.btn-group -->
@@ -93,3 +93,4 @@
         </div>
     </div>
 </div>
+<input type="hidden" id="Phrase-Id" asp-for="Phrase.Id"/>

@@ -10,5 +10,6 @@ namespace EzTask.Modules.Task.Models
     {
         public int ProjectId { get; set; }
         public int TaskId { get; set; }
+        public int PhraseId { get; set; }
     }
 }

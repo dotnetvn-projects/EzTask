@@ -131,7 +131,7 @@
 }
 /*tab history*/
 #tab_history,
-#tab_attachment{
+#tab_attachment {
     height: 300px;
     position: relative;
 }
@@ -153,7 +153,7 @@
             border-left: 4px solid red;
             background: #f7f7f9;
             padding: 5px;
-            width:97%;
+            width: 97%;
         }
 
         #tab_history .history-item img {
@@ -162,39 +162,40 @@
         }
 
         #tab_history .history-item .content-item .description {
-            padding-left:9px;
+            padding-left: 9px;
         }
-         #tab_history .history-item .content-item .description p{
-             margin-bottom:0px !important;
-         }
 
-/*tab attachment*/
-    
-	#tab_attachment .attachment-header{
-		background: #f7f7f9;
-	}
-	
-	#tab_attachment .attachment-header div:first-child{
-		padding-top:10px;		
-	}
-	
+            #tab_history .history-item .content-item .description p {
+                margin-bottom: 0px !important;
+            }
+
+    /*tab attachment*/
+
+    #tab_attachment .attachment-header {
+        background: #f7f7f9;
+    }
+
+        #tab_attachment .attachment-header div:first-child {
+            padding-top: 10px;
+        }
+
     #tab_attachment .attachment-header,
     #tab_attachment .attachment-list {
-        margin: 5px;       
+        margin: 5px;
     }
-	
-	#tab_attachment .attachment-header h4,
-	#tab_attachment .attachment-header h5{
-		padding: 0px 10px 0px 10px;
-	}
-	
-	#tab_attachment .attachment-header button{
-		    margin-top: 12px;
-	}
-	
-	#tab_attachment .attachment-list table td a{
-		padding:3px;
-	}
+
+        #tab_attachment .attachment-header h4,
+        #tab_attachment .attachment-header h5 {
+            padding: 0px 10px 0px 10px;
+        }
+
+        #tab_attachment .attachment-header button {
+            margin-top: 12px;
+        }
+
+        #tab_attachment .attachment-list table td a {
+            padding: 3px;
+        }
 
 /****************End Task modal***************/
 
@@ -217,8 +218,7 @@
 
 /* Handle */
 .content-container::-webkit-scrollbar-thumb,
-.phrase-list::-webkit-scrollbar-thumb
-{
+.phrase-list::-webkit-scrollbar-thumb {
     background: #888;
 }
 

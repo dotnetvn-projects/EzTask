@@ -11,11 +11,11 @@
                 </button>
                 @if (Model.ActionType == ActionType.CreateNew)
                 {
-                <h4 class="modal-title">Create new task</h4>
+                    <h4 class="modal-title">Create new task</h4>
                 }
                 else
                 {
-                <h4 class="modal-title">Update task'@Model.TaskTitle'</h4>
+                    <h4 class="modal-title">Update task'@Model.TaskTitle'</h4>
                 }
             </div>
             <form asp-action="@Model.ActionType" method="post" id="task-form" class="form-horizontal">
@@ -70,21 +70,89 @@
                                 </div>
                                 <div class="tab-pane" id="tab_attachment">
                                     <div class="content-container">
-                                        <div class="row attachment-header">Head</div>
-                                        <div class="row attachment-list">Table</div>
-                                    </div>                                   
+                                        <div class="row attachment-header">
+                                            <div class="col-sm-5 col-xs-8">
+                                                <h4 class="text-light-blue">Attachments</h4>
+                                                <h5 class="text-red small">There are 206 attached items</h5>
+                                            </div>
+                                            <div class="col-sm-7 col-xs-4">
+                                                <button class="btn btn-app btn-xs pull-right"><i class="fa fa-cloud-upload"></i> Upload file</button>
+                                            </div>
+                                        </div>
+                                        <div class="row attachment-list">
+                                            <table class="table table-striped">
+                                                <tbody>
+                                                    <tr>
+                                                        <th style="width: 10px">#</th>
+                                                        <th>Files</th>
+                                                        <th style="width: 150px"></th>
+                                                        <th style="width: 130px"></th>
+                                                        <th style="width: 60px"></th>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>1.</td>
+                                                        <td>Update software</td>
+                                                        <td><i class="fa fa-user text-green"></i> Linh pham</td>
+                                                        <td><i class="fa fa-calendar-check-o"></i> 01/01/2019</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <a href="/"><span class="badge bg-red"><i class="fa fa-save"></i></span></a>
+                                                                <a href="/"><span class="badge bg-green"><i class="fa fa-eye"></i></span></a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>2.</td>
+                                                        <td>Clean database</td>
+                                                        <td><i class="fa fa-user text-green"></i> Linh pham</td>
+                                                        <td><i class="fa fa-calendar-check-o"></i> 01/01/2019</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <a href="/"><span class="badge bg-red"><i class="fa fa-save"></i></span></a>
+                                                                <a href="/"><span class="badge bg-green"><i class="fa fa-eye"></i></span></a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>3.</td>
+                                                        <td>Cron job running</td>
+                                                        <td><i class="fa fa-user text-green"></i> Linh pham</td>
+                                                        <td><i class="fa fa-calendar-check-o"></i> 01/01/2019</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <a href="/"><span class="badge bg-red"><i class="fa fa-save"></i></span></a>
+                                                                <a href="/"><span class="badge bg-green"><i class="fa fa-eye"></i></span></a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>4.</td>
+                                                        <td>Fix and squish bugs</td>
+                                                        <td><i class="fa fa-user text-green"></i> Linh pham</td>
+                                                        <td><i class="fa fa-calendar-check-o"></i> 01/01/2019</td>
+                                                        <td>
+                                                            <div class="row">
+                                                                <a href="/"><span class="badge bg-red"><i class="fa fa-save"></i></span></a>
+                                                                <a href="/"><span class="badge bg-green"><i class="fa fa-eye"></i></span></a>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
                                 </div>
                                 <div class="tab-pane" id="tab_history">
                                     <div class="content-container">
                                         <div class="row history-item">
                                             <div class="content-item col-md-12 col-xs-12">
-                                                <div class="pull-left" >
-                                                  <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
+                                                <div class="pull-left">
+                                                    <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
                                                 </div>
-                                                <div class="pull-left description" >
+                                                <div class="pull-left description">
                                                     <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1" on </span>
-                                                    <p>Update on: 12/07/2018 3:00:44</p>
-                                                    <p><i class="fa fa-hand-o-right"></i> <a href="">View details</a></p>
+                                                    <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
+                                                    <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -94,9 +162,9 @@
                                                     <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
                                                 </div>
                                                 <div class="pull-left description">
-                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1" on </span>
-                                                    <p>Update on: 12/07/2018 3:00:44</p>
-                                                    <p><i class="fa fa-hand-o-right"></i> <a href="">View details</a></p>
+                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
+                                                    <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
+                                                    <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -106,9 +174,9 @@
                                                     <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
                                                 </div>
                                                 <div class="pull-left description">
-                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1" on </span>
-                                                    <p>Update on: 12/07/2018 3:00:44</p>
-                                                    <p><i class="fa fa-hand-o-right"></i> <a href="">View details</a></p>
+                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
+                                                    <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
+                                                    <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -118,9 +186,9 @@
                                                     <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
                                                 </div>
                                                 <div class="pull-left description">
-                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1" on </span>
-                                                    <p>Update on: 12/07/2018 3:00:44</p>
-                                                    <p><i class="fa fa-hand-o-right"></i> <a href="">View details</a></p>
+                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
+                                                    <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
+                                                    <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -130,9 +198,9 @@
                                                     <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
                                                 </div>
                                                 <div class="pull-left description">
-                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1" on </span>
-                                                    <p>Update on: 12/07/2018 3:00:44</p>
-                                                    <p><i class="fa fa-hand-o-right"></i> <a href="">View details</a></p>
+                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
+                                                    <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
+                                                    <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
                                                 </div>
                                             </div>
                                         </div>
@@ -142,9 +210,9 @@
                                                     <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
                                                 </div>
                                                 <div class="pull-left description">
-                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1" on </span>
-                                                    <p>Update on: 12/07/2018 3:00:44</p>
-                                                    <p><i class="fa fa-hand-o-right"></i> <a href="">View details</a></p>
+                                                    <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
+                                                    <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
+                                                    <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,18 +1,17 @@
-﻿$.fn.ShowAddNewModal = function () {
-    $(this).click(function () {
-        var projectId = $('.project-list').val();
-        showLoading();
-        DoAjax('taskitem/generate-view.html', 'POST', { projectid: projectId },
-            function (data) {
-                BuildForm(data);
-                hideLoading();
-                ShowModal('task-modal');             
-            },
-            function (xhr, textStatus, errorThrown) {
-                //handle exception here if any
-            }
-        );
-    });
+﻿function ShowAddNewModal() {
+    var projectId = $('.project-list').val();
+    var phraseId = $("#Phrase-Id").val();
+    showLoading();
+    DoAjax('taskitem/generate-view.html', 'POST', { projectid: projectId, phraseId:phraseId },
+        function (data) {
+            BuildForm(data);
+            hideLoading();
+            ShowModal('task-modal');
+        },
+        function (xhr, textStatus, errorThrown) {
+            //handle exception here if any
+        }
+    );
 }
 
 
@@ -35,19 +34,11 @@ $.fn.Submit = function () {
     });
 }
 
-function DoAction() {
-
-}
-
 function BuildForm(template) {
     $(".task-item-template").html('');
     $(".task-item-template").append(template);
     initLib();
     var form = $("#task-form");
-    $.validator.unobtrusive.parse(form); 
+    $.validator.unobtrusive.parse(form);
     $("#task-modal .btn-confirm").Submit();
 }
-
-$(function () {
-    $(".btn-addnew-task").ShowAddNewModal();
-})
