@@ -9,7 +9,14 @@
                 <button type="button" data-dismiss="modal" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
+                @if (Model.ActionType == ActionType.CreateNew)
+                {
                 <h4 class="modal-title">Create new task</h4>
+                }
+                else
+                {
+                <h4 class="modal-title">Update task'@Model.TaskTitle'</h4>
+                }
             </div>
             <form asp-action="@Model.ActionType" method="post" id="task-form" class="form-horizontal">
                 <input type="hidden" asp-for="TaskId" />
@@ -62,13 +69,10 @@
                                     <textarea asp-for="TaskDetail" style="height:300px; width:100%;"></textarea>
                                 </div>
                                 <div class="tab-pane" id="tab_attachment">
-                                    The European languages are members of the same family. Their separate existence is a myth.
-                                    For science, music, sport, etc, Europe uses the same vocabulary. The languages only differ
-                                    in their grammar, their pronunciation and their most common words. Everyone realizes why a
-                                    new common language would be desirable: one could refuse to pay expensive translators. To
-                                    achieve this, it would be necessary to have uniform grammar, pronunciation and more common
-                                    words. If several languages coalesce, the grammar of the resulting language is more simple
-                                    and regular than that of the individual languages.
+                                    <div class="content-container">
+                                        <div class="row attachment-header">Head</div>
+                                        <div class="row attachment-list">Table</div>
+                                    </div>                                   
                                 </div>
                                 <div class="tab-pane" id="tab_history">
                                     <div class="content-container">

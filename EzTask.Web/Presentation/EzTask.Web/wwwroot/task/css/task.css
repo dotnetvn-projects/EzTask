@@ -129,23 +129,24 @@
 #task-modal .nav-tabs-custom {
     margin-bottom: 0px !important;
 }
-
-#tab_history {
+/*tab history*/
+#tab_history,
+#tab_attachment{
     height: 300px;
     position: relative;
 }
 
-    #tab_history .content-container {
+    #tab_history .content-container,
+    #tab_attachment .content-container {
         max-height: 100%;
-        overflow-y: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
     }
 
     #tab_history .history-item {
         padding-left: 30px;
         padding-top: 15px;
-        padding-right: 15px;
-        padding-bottom: 5px;
+        padding-right: 10px;
     }
 
         #tab_history .history-item .content-item {
@@ -157,7 +158,7 @@
 
         #tab_history .history-item img {
             width: 60px;
-            margin-left: 7px;
+            margin-left: 5px;
         }
 
         #tab_history .history-item .content-item .description {
@@ -167,11 +168,40 @@
              margin-bottom:0px !important;
          }
 
+/*tab attachment*/
+    
+	#tab_attachment .attachment-header{
+		background: #f7f7f9;
+	}
+	
+	#tab_attachment .attachment-header div:first-child{
+		padding-top:10px;		
+	}
+	
+    #tab_attachment .attachment-header,
+    #tab_attachment .attachment-list {
+        margin: 5px;       
+    }
+	
+	#tab_attachment .attachment-header h4,
+	#tab_attachment .attachment-header h5{
+		padding: 0px 10px 0px 10px;
+	}
+	
+	#tab_attachment .attachment-header button{
+		    margin-top: 12px;
+	}
+	
+	#tab_attachment .attachment-list table td a{
+		padding:3px;
+	}
+
 /****************End Task modal***************/
 
 
 
-/************/
+
+/******Scroll bar******/
 
 /* width */
 .content-container::-webkit-scrollbar,
@@ -198,4 +228,4 @@
         background: #555;
     }
 
-/***********/
+/*****End Scroll bar******/
