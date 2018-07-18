@@ -24,7 +24,7 @@
                 <button type="button" title="" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
             </div>
             <!-- /.btn-group -->
-            <button type="button" title="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+            <button type="button" onclick="refreshTask();" title="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
                 1-50/200
                 <div class="btn-group">
@@ -80,7 +80,7 @@
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
             </div>
             <!-- /.btn-group -->
-            <button type="button" title="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+            <button type="button" onclick="refreshTask();" title="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
                 1-50/200
                 <div class="btn-group">
@@ -93,4 +93,4 @@
         </div>
     </div>
 </div>
-<input type="hidden" id="Phrase-Id" asp-for="Phrase.Id"/>
+<input type="hidden" id="phrase-id" asp-for="Phrase.Id"/>

@@ -1,6 +1,6 @@
 ﻿function ShowAddNewModal() {
     var projectId = $('.project-list').val();
-    var phraseId = $("#Phrase-Id").val();
+    var phraseId = $("#phrase-id").val();
     showLoading();
     DoAjax('taskitem/generate-view.html', 'POST', { projectid: projectId, phraseId:phraseId },
         function (data) {

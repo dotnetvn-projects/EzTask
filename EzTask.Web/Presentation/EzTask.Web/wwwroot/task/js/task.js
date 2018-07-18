@@ -1,4 +1,4 @@
-﻿
+﻿//execute call ajax to load task list
 function handleLoadTask(projectId, phraseid) {
     $.ajax({
         url: "task/task-list.html",
@@ -62,6 +62,13 @@ function loadTask(data) {
     var phraseid = $(data).attr('data-id');
     var projectId = $('.project-list').val();
     handleLoadTask(projectId, phraseid);   
+}
+
+//refresh task list event
+function refreshTask() {
+    var phraseId = $("#phrase-id").val();
+    var projectId = $('.project-list').val();
+    handleLoadTask(phraseId, phraseId);
 }
 
 //iCheck for checkbox and radio inputs
