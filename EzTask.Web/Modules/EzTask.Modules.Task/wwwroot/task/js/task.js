@@ -129,7 +129,6 @@ function jQueryBinding() {
     $('.task-table input[type="checkbox"]').registeriCheck();
 }
 
-
 $(function () {
     $('.project-list').loadPhrase();
     jQueryBinding();
