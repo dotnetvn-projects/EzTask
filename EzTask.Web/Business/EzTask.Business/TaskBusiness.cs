@@ -68,6 +68,31 @@ namespace EzTask.Business
             return result;
         }
 
+        public async Task<ResultModel<bool>> DeleteTask(int[] ids)
+        {
+            ResultModel<bool> result = new ResultModel<bool>
+            {
+                Data = true
+            };
+
+            var data = await UnitOfWork.TaskRepository.GetManyAsync(c => ids.Contains(c.Id));
+            if(!data.Any())
+            {
+                result.Status = ActionStatus.NotFound;               
+            }
+            else
+            {
+                UnitOfWork.TaskRepository.DeleteRange(data);
+                var iResult = await UnitOfWork.CommitAsync();
+                if (iResult > 0)
+                {
+                    result.Status = ActionStatus.Ok;
+                }
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Get task list
         /// </summary>

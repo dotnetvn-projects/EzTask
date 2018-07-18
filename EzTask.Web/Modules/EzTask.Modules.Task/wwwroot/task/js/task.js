@@ -71,6 +71,33 @@ function refreshTask() {
     handleLoadTask(phraseId, phraseId);
 }
 
+function DeleteTask() {
+    var isChecked = $(".task-table input[type='checkbox']").prop('checked');
+    if (isChecked) {
+        var ids = [];
+        $(".task-table input[type='checkbox']").each(function () {
+            var chk = $(this);
+            if (chk.prop('checked')) {
+                var id = chk.attr("data-id");
+                ids.push(id);
+            }
+        });
+
+        DoAjax('taskitem/generate-view.html', 'POST',
+            { ids: ids },
+            function (data) {
+                refreshTask();
+            },
+            function (xhr, textStatus, errorThrown) {
+                //handle exception here if any
+            }
+        );
+    }
+    else {
+        //display warning
+    }
+}
+
 //iCheck for checkbox and radio inputs
 $.fn.registeriCheck = function () {
     $(this).iCheck({

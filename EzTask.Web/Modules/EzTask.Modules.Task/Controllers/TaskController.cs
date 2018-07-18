@@ -40,6 +40,19 @@ namespace EzTask.Modules.Task.Controllers
             return ViewComponent("TaskList", new { projectId, phraseId });
         }
 
+        /// <summary>
+        /// Delete tasks by id range
+        /// </summary>
+        /// <param name="taskIds"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("task/delete-tast.html")]
+        public async Task<IActionResult> GetTaskList(int[] taskIds)
+        {
+            var iResult = await EzTask.Task.DeleteTask(taskIds);
+            return Json(iResult);
+        }
+
         #endregion
 
         #region Non Action
