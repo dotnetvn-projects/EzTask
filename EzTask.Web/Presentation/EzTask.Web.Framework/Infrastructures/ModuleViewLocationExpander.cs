@@ -21,7 +21,8 @@ namespace EzTask.Web.Framework.Infrastructures
                     {
                        "/Modules/" + module + "/Views/{1}/{0}.cshtml",
                        "/Modules/" + module + "/Views/Shared/{0}.cshtml",
-                       "/Modules/" + module + "/Views/Shared/Components/{0}.cshtml"
+                       "/Modules/" + module + "/Views/Shared/Components/{0}.cshtml" ,
+                       "/Modules/EzTask.Modules.Core/Views/Shared/{0}.cshtml",
                     };
 
                     viewLocations = moduleViewLocations.Concat(viewLocations);
