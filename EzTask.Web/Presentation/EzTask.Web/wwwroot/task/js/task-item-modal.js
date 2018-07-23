@@ -23,6 +23,7 @@ $.fn.Submit = function () {
             DoFormAjax(form[0],
                 function (data) {
                     hideLoading();
+                    $.closeModal("task-modal");
                 },
                 function (xhr, textStatus, errorThrown) {
                     hideLoading();
@@ -36,7 +37,7 @@ $.fn.Submit = function () {
 function BuildForm(template) {
     $(".task-item-template").html('');
     $(".task-item-template").append(template);
-    initLib();
+    $.initCommonLib();
     var form = $("#task-form");
     $.validator.unobtrusive.parse(form);
     $("#task-modal .btn-confirm").Submit();

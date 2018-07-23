@@ -17,7 +17,7 @@ $.fn.uploadAvatar = function () {
         fdata.append("file", file);
         $.ajax({
             type: 'post',
-            url: user_upload_avatar,
+            url: 'upload-avatar.html',
             data: fdata,
             processData: false,
             contentType: false,

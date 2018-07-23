@@ -3,7 +3,7 @@
         var code = $('#delete-modal .value-delete').val();
         $.ajax({
             type: 'post',
-            url: project_delete_url,
+            url: 'project/remove.html',
             data: {
                 'code': code
             },

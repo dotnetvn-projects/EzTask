@@ -21,6 +21,7 @@
     <None Remove="wwwroot\css\site.css" />
     <None Remove="wwwroot\css\site.min.css" />
     <None Remove="wwwroot\images\no-avatar.jpg" />
+    <None Remove="wwwroot\js\common.js" />
     <None Remove="wwwroot\js\site.js" />
     <None Remove="wwwroot\js\site.min.js" />
     <None Remove="wwwroot\lib\bootstrap\.bower.json" />
@@ -77,6 +78,9 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="wwwroot\images\no-avatar.jpg">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="wwwroot\js\common.js">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="wwwroot\js\site.js">

@@ -46,8 +46,8 @@ namespace EzTask.Modules.Task.Controllers
         /// <param name="taskIds"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("task/delete-tast.html")]
-        public async Task<IActionResult> GetTaskList(int[] taskIds)
+        [Route("task/delete-task.html")]
+        public async Task<IActionResult> DeleteTasks(int[] taskIds)
         {
             var iResult = await EzTask.Task.DeleteTask(taskIds);
             return Json(iResult);

@@ -72,7 +72,7 @@ function refreshTask() {
 }
 
 function DeleteTask() {
-    var isChecked = $(".task-table input[type='checkbox']").prop('checked');
+    var isChecked = $(".task-table input:checkbox:checked").length > 0;
     if (isChecked) {
         var ids = [];
         $(".task-table input[type='checkbox']").each(function () {
@@ -83,8 +83,7 @@ function DeleteTask() {
             }
         });
 
-        DoAjax('taskitem/generate-view.html', 'POST',
-            { ids: ids },
+        DoAjax('task/delete-task.html', 'POST', { taskIds: ids },
             function (data) {
                 refreshTask();
             },
@@ -94,7 +93,8 @@ function DeleteTask() {
         );
     }
     else {
-        //display warning
+        ShowModal("modal-warning", "Warning",
+            "No items to delete, please select at least 1 item");
     }
 }
 

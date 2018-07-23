@@ -1,7 +1,4 @@
-﻿var project_delete_url='project/remove.html';
-var user_upload_avatar = 'upload-avatar.html';
-
-//modal helper
+﻿//modal helper
 function CloseModal(modal) {
     $('#' + modal).modal('hide');
     $('.modal-backdrop').hide();
@@ -10,6 +7,13 @@ function CloseModal(modal) {
 function ShowModal(modal) {
     $('#' + modal).modal('show');
 }
+
+function ShowModal(modal, title, content) {
+    $('#' + modal + " .modal-title").text(title);
+    $('#' + modal + " .modal-body").text(content);
+    $('#' + modal).modal('show');
+}
+
 function SetModalTitle(modal, title) {
     $('#' + modal + " .modal-title").text(title);
 }
@@ -26,10 +30,7 @@ function showLoading() {
 function hideLoading() {
     $(".loader-panel").removeClass("is-active");
 }
-
-
 //end modal helper
-
 function DoFormAjax(form, callback, errorFunction, format) {
         $.ajax({
             url: form.action,
@@ -56,21 +57,6 @@ function DoAjax(url, method, data, callback, errorFunction, format) {
     });
 }
 
-function initLib() {
-    //select2
-    $('.select2').select2();
-
-    //Date picker
-    $('.datepicker').datepicker({
-        autoclose: true,
-        todayHighlight: true
-    }).on('show', function (e) {
-        if ($(this).val().length > 0 && $('.datepicker:visible') == false) {
-            $(this).datepicker('update', new Date($(this).val()));
-        }
-    })
-}
-
 $(function () { 
-    initLib();
-  })
+    $.initCommonLib();
+})
