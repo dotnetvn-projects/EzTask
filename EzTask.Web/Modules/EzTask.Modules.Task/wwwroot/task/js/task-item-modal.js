@@ -1,17 +1,17 @@
 ﻿function ShowAddNewModal() {
     var projectId = $('.project-list').val();
     var phraseId = $("#phrase-id").val();
-    showLoading();
-    DoAjax('taskitem/generate-view.html', 'POST', { projectid: projectId, phraseId:phraseId },
-        function (data) {
+    $.showLoading();
+    $.ajax({
+        url: 'taskitem/generate-view.html',
+        type: 'POST',
+        data: { projectid: projectId, phraseId: phraseId },
+        success: function (data) {
             BuildForm(data);
-            hideLoading();
-            ShowModal('task-modal');
-        },
-        function (xhr, textStatus, errorThrown) {
-            //handle exception here if any
+            $.hideLoading();
+            $.showModal('task-modal');
         }
-    );
+    });
 }
 
 $.fn.Submit = function () {
@@ -19,17 +19,19 @@ $.fn.Submit = function () {
         e.preventDefault();
         var form = $("#task-form");
         if (form.valid()) {
-            showLoading();
-            DoFormAjax(form[0],
-                function (data) {
-                    hideLoading();
+            $.showLoading();
+            $.ajax({
+                url: form.action,
+                type: form.method,
+                dataType: 'json',
+                data: $(form).serialize(),
+                success: function (data) {
+                    $.hideLoading();
                     $.closeModal("task-modal");
                 },
-                function (xhr, textStatus, errorThrown) {
-                    hideLoading();
-                    //handle exception here if any
-                }, 'json'
-            );
+                error: function (xhr, textStatus, errorThrown) {
+                }
+            });
         }
     });
 }

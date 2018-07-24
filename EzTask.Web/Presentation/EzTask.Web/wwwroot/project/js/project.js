@@ -27,14 +27,14 @@ $.fn.DeleteConfirm = function (){
         var project = $(this).attr('data-source');
         var code = $(this).attr('data-code');
         SetDeleteModalValue('project: ' + project, code);
-        ShowModal('delete-modal');
+        $.showModal('delete-modal');
     })
 }
 
 $.fn.CancelDelete = function () {
     $(this).click(function () {
         SetDeleteModalValue('', '');
-        CloseModal('delete-modal');
+        $.closeModal('delete-modal');
     })
 }
 
@@ -43,5 +43,5 @@ $(function () {
     $('.remove-project').DeleteConfirm();
     $('#delete-modal .btn-delete').remove();
     $('#delete-modal .close').CancelDelete();
-    ModalCloseTrigger('delete-modal');
+    $.triggerCloseModal('delete-modal');
 })

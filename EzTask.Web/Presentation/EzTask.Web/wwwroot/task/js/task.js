@@ -44,7 +44,7 @@ $.fn.loadPhrase = function () {
         $.ajax({
             url: "task/phrase-list.html",
             data: { projectId: id },
-            success: function (response) {
+            success: function (response){
                 var phrasePanel = $(".phrase-list-panel");
                 phrasePanel.html('');
                 phrasePanel.html(response);
@@ -71,6 +71,7 @@ function refreshTask() {
     handleLoadTask(phraseId, phraseId);
 }
 
+//delete task event
 function DeleteTask() {
     var isChecked = $(".task-table input:checkbox:checked").length > 0;
     if (isChecked) {
@@ -83,18 +84,21 @@ function DeleteTask() {
             }
         });
 
-        DoAjax('task/delete-task.html', 'POST', { taskIds: ids },
-            function (data) {
+        $.ajax({
+            type: 'post',
+            url: 'task/delete-task.html',
+            data: { taskIds: ids },
+            success: function (response) {
                 refreshTask();
             },
-            function (xhr, textStatus, errorThrown) {
-                //handle exception here if any
+            error: function (xhr, ajaxOptions, thrownError) {
+                
             }
-        );
+        });
     }
     else {
-        ShowModal("modal-warning", "Warning",
-            "No items to delete, please select at least 1 item");
+        $.showModal("modal-warning", "Warning",
+            "No items to delete, please select at least 1 item.");
     }
 }
 

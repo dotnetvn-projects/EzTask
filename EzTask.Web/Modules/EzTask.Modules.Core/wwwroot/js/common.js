@@ -20,22 +20,22 @@
     //------modal-------
     $.showModal = function (modalId, title, content) {
         if (title) {
-            $('#' + modal + " .modal-title").text(title);
+            $('#' + modalId + " .modal-title").text(title);
         }
         if (content) {
-            $('#' + modal + " .modal-body").text(content);
+            $('#' + modalId + " .modal-body").text(content);
         }
-        $('#' + modal).modal('show');
+        $('#' + modalId).modal('show');
     };
 
     $.closeModal = function (modalId) {
-        $('#' + modal).modal('hide');
+        $('#' + modalId).modal('hide');
         $('.modal-backdrop').hide();
     }
 
     //hidden backdrop when click outsite
     $.triggerCloseModal = function (modalId) {
-        $('#' + modal).on('hidden.bs.modal', function () {
+        $('#' + modalId).on('hidden.bs.modal', function () {
             $('.modal-backdrop').hide();
         });
     }

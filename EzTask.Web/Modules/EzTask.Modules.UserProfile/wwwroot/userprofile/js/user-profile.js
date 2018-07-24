@@ -34,4 +34,4 @@ $.fn.uploadAvatar = function () {
 $(function () { 
     $("#image-upload").change(readURL);
     $(".btn-upload-avatar").uploadAvatar();
-  })
+})

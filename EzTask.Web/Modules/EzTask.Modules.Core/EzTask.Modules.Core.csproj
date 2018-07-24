@@ -16,6 +16,7 @@
   <ItemGroup>
     <None Remove="Views\Common\PageNotFound.cshtml" />
     <None Remove="Views\Common\_WarningModal.cshtml" />
+    <None Remove="Views\Shared\_ConfirmModal.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
     <None Remove="Views\_ViewStart.cshtml" />
     <None Remove="wwwroot\css\site.css" />
@@ -59,6 +60,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Views\Shared\_ConfirmModal.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="Views\Shared\_WarningModal.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
