@@ -9,7 +9,7 @@
         success: function (data) {
             BuildForm(data);
             $.hideLoading();
-            $.showModal('task-modal');
+            $.showDialog('task-modal');
         }
     });
 }
@@ -27,7 +27,7 @@ $.fn.Submit = function () {
                 data: $(form).serialize(),
                 success: function (data) {
                     $.hideLoading();
-                    $.closeModal("task-modal");
+                    $.closeDialog("task-modal");
                 },
                 error: function (xhr, textStatus, errorThrown) {
                 }

@@ -107,8 +107,8 @@ namespace EzTask.Repository
         /// <param name="entity"></param>
         public void Update(T entity)
         {
-            Context.Entry(entity).State = EntityState.Modified;
             Entity.Attach(entity);
+            Context.Entry(entity).State = EntityState.Modified;         
         }
 
         /// <summary>

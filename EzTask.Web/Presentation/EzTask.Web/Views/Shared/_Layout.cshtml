@@ -412,8 +412,8 @@ desired effect
 
     @RenderSection("Scripts", required: false)
 
-    @*<script src="~/themes/dist/js/demo.js"></script>*@
-
     <div class="loader loader-double loader-panel"></div>
+    <partial name="~/Modules/EzTask.Modules.Core/Views/Shared/_WarningModal.cshtml" />
+    <partial name="~/Modules/EzTask.Modules.Core/Views/Shared/_ConfirmModal.cshtml" />
 </body>
 </html>

@@ -1,4 +1,5 @@
-﻿(function ($) {
+﻿
+(function ($) {
     //----common-----
     $.initCommonLib = function () {
         //select2
@@ -17,29 +18,44 @@
     //------End common------
 
 
-    //------modal-------
-    $.showModal = function (modalId, title, content) {
-        if (title) {
-            $('#' + modalId + " .modal-title").text(title);
-        }
-        if (content) {
-            $('#' + modalId + " .modal-body").text(content);
-        }
-        $('#' + modalId).modal('show');
-    };
+    //------Dialog-------
+    $.showDialog = function (options) {
+        var settings = $.extend({
+            dialogId : 'id1',
+            title: 'Sample title',
+            content: 'sample content',
+            confirmAction: null
+        }, options);
 
-    $.closeModal = function (modalId) {
-        $('#' + modalId).modal('hide');
+        if (settings.title) {
+            $('#' + settings.dialogId + " .modal-title").text(settings.title);
+        }
+        if (settings.content) {
+            $('#' + ettings.dialogId  + " .modal-body").text(content);
+        }
+        
+
+        if (settings.confirmAction) {
+            $('#' + modalId + " .btn-confirm").click(function () {
+                settings.confirmAction();
+            });
+        }
+
+        $('#' + ettings.dialogId ).modal('show');
+    }
+
+    $.closeDialog = function (dialogId) {
+        $('#' + dialogId).modal('hide');
         $('.modal-backdrop').hide();
     }
 
     //hidden backdrop when click outsite
-    $.triggerCloseModal = function (modalId) {
-        $('#' + modalId).on('hidden.bs.modal', function () {
+    $.triggerCloseDialog = function (dialogId) {
+        $('#' + dialogId).on('hidden.bs.modal', function () {
             $('.modal-backdrop').hide();
         });
     }
-    //------End modal----
+    //------End Dialog----
 
 
     //------loading-----

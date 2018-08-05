@@ -14,7 +14,7 @@ $.fn.ShowModal = function () {
     $(this).click(function () {
         var projectId = $('.project-list').val();
         SetPhraseModalValue(projectId, 0);
-        $.showModal('phrase-modal', 'Add new phrase');
+        $.showDialog('phrase-modal', 'Add new phrase');
     });
 }
 
@@ -38,7 +38,7 @@ $.fn.PhraseModalAction = function () {
                     $("#inputPhraseName").val('');
                     $("#inputStartDate").val(FormatDate(response.startDate));
                     $("#inputEndDate").val(FormatDate(response.endDate));
-                    $.closeModal('phrase-modal');
+                    $.closeDialog('phrase-modal');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $('#phrase-modal .error-message').text('Error, EzTask cannot execute deleting data. Try again please !')
@@ -51,5 +51,5 @@ $.fn.PhraseModalAction = function () {
 $(function () {
     $(".btn-addnew-phrase").ShowModal();
     $("#phrase-modal .btn-confirm").PhraseModalAction();
-    $.triggerCloseModal('phrase-modal');
+    $.triggerCloseDialog('phrase-modal');
 })

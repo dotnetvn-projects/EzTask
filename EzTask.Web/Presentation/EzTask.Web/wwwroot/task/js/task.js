@@ -6,7 +6,7 @@ function handleLoadTask(projectId, phraseid) {
         success: function (response) {
             var taskListPanel = $(".task-list-panel");
             taskListPanel.html('');
-            taskListPanel.html(response);   
+            taskListPanel.html(response);
             jQueryBinding();
         },
     });
@@ -44,14 +44,14 @@ $.fn.loadPhrase = function () {
         $.ajax({
             url: "task/phrase-list.html",
             data: { projectId: id },
-            success: function (response){
+            success: function (response) {
                 var phrasePanel = $(".phrase-list-panel");
                 phrasePanel.html('');
                 phrasePanel.html(response);
 
                 var phrase = $(".phrase-list > li > a").first();
                 var phraseId = phrase.attr('data-id');
-                handleLoadTask(id, phraseId);               
+                handleLoadTask(id, phraseId);
             },
         });
     });
@@ -61,7 +61,7 @@ $.fn.loadPhrase = function () {
 function loadTask(data) {
     var phraseid = $(data).attr('data-id');
     var projectId = $('.project-list').val();
-    handleLoadTask(projectId, phraseid);   
+    handleLoadTask(projectId, phraseid);
 }
 
 //refresh task list event
@@ -75,6 +75,8 @@ function refreshTask() {
 function DeleteTask() {
     var isChecked = $(".task-table input:checkbox:checked").length > 0;
     if (isChecked) {
+
+        //get ids
         var ids = [];
         $(".task-table input[type='checkbox']").each(function () {
             var chk = $(this);
@@ -84,20 +86,25 @@ function DeleteTask() {
             }
         });
 
-        $.ajax({
-            type: 'post',
-            url: 'task/delete-task.html',
-            data: { taskIds: ids },
-            success: function (response) {
-                refreshTask();
-            },
-            error: function (xhr, ajaxOptions, thrownError) {
-                
-            }
-        });
+        //ask for delete
+        $.showDialog("modal-confirm", "", "Do you wanna delete ?",
+            function () {
+                $.ajax({
+                    type: 'post',
+                    url: 'task/delete-task.html',
+                    data: { taskIds: ids },
+                    success: function (response) {
+                        refreshTask();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+
+                    }
+                });
+            });
     }
     else {
-        $.showModal("modal-warning", "Warning",
+        //wanring when don't have any items
+        $.showDialog("modal-warning", "",
             "No items to delete, please select at least 1 item.");
     }
 }
