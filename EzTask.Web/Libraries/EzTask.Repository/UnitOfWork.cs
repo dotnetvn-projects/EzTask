@@ -18,6 +18,7 @@ namespace EzTask.Repository
         public IRepository<ProjectMember> ProjectMemberRepository { get; }
         public IRepository<Skill> SkillRepository { get; }
         public IRepository<TaskItem> TaskRepository { get; }
+        public IRepository<Attachment> AttachRepository { get; }
 
         public UnitOfWork(EzTaskDbContext context,
              IRepository<Account> account,
@@ -27,7 +28,8 @@ namespace EzTask.Repository
              IRepository<AccountSkill> accountSkill,
              IRepository<ProjectMember> projectMember,
              IRepository<Skill> skill,
-             IRepository<TaskItem> task)
+             IRepository<TaskItem> task,
+             IRepository<Attachment> attach)
         {
             Context = context;
             AccountRepository = account;
@@ -53,6 +55,9 @@ namespace EzTask.Repository
 
             TaskRepository = task;
             TaskRepository.Context = context;
+
+            AttachRepository = attach;
+            AttachRepository.Context = context;
         }
 
 

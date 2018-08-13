@@ -21,27 +21,27 @@
     //------Dialog-------
     $.showDialog = function (options) {
         var settings = $.extend({
-            dialogId : 'id1',
-            title: 'Sample title',
-            content: 'sample content',
+            dialogId : '',
+            title: '',
+            content: '',
             confirmAction: null
         }, options);
 
-        if (settings.title) {
+        if (settings.title.length > 0) {
             $('#' + settings.dialogId + " .modal-title").text(settings.title);
         }
-        if (settings.content) {
-            $('#' + ettings.dialogId  + " .modal-body").text(content);
+        if (settings.content.length > 0) {
+            $('#' + settings.dialogId + " .modal-body").text(settings.content);
         }
         
 
         if (settings.confirmAction) {
-            $('#' + modalId + " .btn-confirm").click(function () {
+            $('#' + settings.dialogId + " .btn-confirm").click(function () {
                 settings.confirmAction();
             });
         }
 
-        $('#' + ettings.dialogId ).modal('show');
+        $('#' + settings.dialogId ).modal('show');
     }
 
     $.closeDialog = function (dialogId) {

@@ -87,8 +87,10 @@ function DeleteTask() {
         });
 
         //ask for delete
-        $.showDialog("modal-confirm", "", "Do you wanna delete ?",
-            function () {
+        $.showDialog({
+            dialogId: 'modal-confirm',
+            content: 'Do you wanna delete ?',
+            confirmAction : function () {
                 $.ajax({
                     type: 'post',
                     url: 'task/delete-task.html',
@@ -100,12 +102,15 @@ function DeleteTask() {
 
                     }
                 });
-            });
+            }
+        });
     }
     else {
         //wanring when don't have any items
-        $.showDialog("modal-warning", "",
-            "No items to delete, please select at least 1 item.");
+        $.showDialog({
+            dialogId : 'modal-warning',
+            content: 'No items to delete, please select at least 1 item.'
+        });
     }
 }
 

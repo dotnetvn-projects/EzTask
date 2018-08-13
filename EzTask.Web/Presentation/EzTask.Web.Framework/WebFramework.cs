@@ -29,6 +29,7 @@ namespace EzTask.Web.Framework
             services.AddSingleton<StaticResources>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
+            services.AddSingleton<Interfaces.IWebHostEnvironment, WebHost>();
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMemoryCache();

@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using EzTask.Framework.Common;
 using System.Threading.Tasks;
 using System.Threading;
+using Microsoft.AspNetCore.Http;
 
 namespace EzTask.Modules.Task.Controllers
 {
@@ -59,6 +60,31 @@ namespace EzTask.Modules.Task.Controllers
             return Json("OK");
         }
 
+        /// <summary>
+        /// Update file
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("taskitem/upload-attach-file.html")]
+        public IActionResult UpdateAttachFile(IFormFile file, int taskId)
+        {
+            if (file.Length > 0)
+            {
+                var stream = file.OpenReadStream();
+
+              
+
+                AttachmentModel model = new AttachmentModel
+                {
+                    FileName = file.FileName,
+                    
+                };
+
+                return Json(model);
+            }
+            return BadRequest();
+        }
 
         #region Non-Action
 

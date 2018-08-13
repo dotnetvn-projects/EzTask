@@ -14,7 +14,10 @@ $.fn.ShowModal = function () {
     $(this).click(function () {
         var projectId = $('.project-list').val();
         SetPhraseModalValue(projectId, 0);
-        $.showDialog('phrase-modal', 'Add new phrase');
+        $.showDialog({
+            dialogId : 'phrase-modal',
+            title : 'Add new phrase',
+        });
     });
 }
 

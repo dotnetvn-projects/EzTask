@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace EEzTask.ModelBase
+namespace EzTask.Models
 {
     public class AccountSkillModel : BaseModel
     {

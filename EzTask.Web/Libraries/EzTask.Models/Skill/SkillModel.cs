@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EEzTask.ModelBase
+namespace EzTask.Models
 {
     public class SkillModel : BaseModel
     {

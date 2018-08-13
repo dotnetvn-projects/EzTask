@@ -88,6 +88,16 @@ namespace EzTask.Framework.Infrastructures
 
         private void TaskMapper()
         {
+            //Map Attachment to Attachment model
+            CreateMap<Attachment, AttachmentModel>()
+                .ForMember(c => c.AttatchmentId, t => t.MapFrom(z => z.Id));
+
+            //Map AttachmentModel to Attachment entity
+            CreateMap<AttachmentModel, Attachment>()
+                .ForMember(c => c.Id, t => t.MapFrom(z => z.AttatchmentId))
+                .ForMember(c => c.TaskId, t => t.MapFrom(z => z.Task != null ? z.Task.TaskId : 0))
+                .ForMember(c => c.AddedUser, t => t.MapFrom(z => z.User != null ? z.User.AccountId : 0));
+
             //Map TaskItem entity to TaskItem model
             CreateMap<TaskItem, TaskItemModel>()
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<TaskItemStatus>()))
