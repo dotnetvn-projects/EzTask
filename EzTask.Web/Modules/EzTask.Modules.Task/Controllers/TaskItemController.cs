@@ -72,9 +72,7 @@ namespace EzTask.Modules.Task.Controllers
             if (file.Length > 0)
             {
                 var stream = file.OpenReadStream();
-
-              
-
+           
                 AttachmentModel model = new AttachmentModel
                 {
                     FileName = file.FileName,
@@ -84,6 +82,18 @@ namespace EzTask.Modules.Task.Controllers
                 return Json(model);
             }
             return BadRequest();
+        }
+
+        /// <summary>
+        /// Get attachments list return vew component
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("taskitem/attachment-list.html")]
+        public IActionResult GetTaskAttachmentList(int taskId)
+        {
+            return ViewComponent("Attachments", new { taskId });
         }
 
         #region Non-Action

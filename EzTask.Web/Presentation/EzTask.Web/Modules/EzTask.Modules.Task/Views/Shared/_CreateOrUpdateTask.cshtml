@@ -73,9 +73,9 @@
                                 </div>
                                 @if (Model.TaskId > 0)
                                 {
-                                    <div class="tab-pane" id="tab_attachment">
-                                        <partial name="_AttachmentList" />
-                                    </div>
+                                <div class="tab-pane" id="tab_attachment">
+                                    @await Component.InvokeAsync("Attachments", new { taskId = Model.TaskId })
+                                </div>
                                     <div class="tab-pane" id="tab_history">
                                         <div class="content-container">
                                             <div class="row history-item">

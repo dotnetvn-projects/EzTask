@@ -7,19 +7,19 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Task.ViewComponents
 {
-    //public class AttachmentsViewComponent :ViewComponent
-    //{
-    //    protected EzTaskBusiness EzTask;
+    public class AttachmentsViewComponent : ViewComponent
+    {
+        protected EzTaskBusiness EzTask;
 
-    //    public AttachmentsViewComponent(EzTaskBusiness business)
-    //    {
-    //        EzTask = business;
-    //    }
+        public AttachmentsViewComponent(EzTaskBusiness business)
+        {
+            EzTask = business;
+        }
 
-    //    //public async Task<IViewComponentResult> InvokeAsync(int projectId)
-    //    //{
-    //    //    var data = await EzTask.Attachment.GetPhrase(projectId);
-    //    //    return View(data);
-    //    //}
-    //}
+        public async Task<IViewComponentResult> InvokeAsync(int taskId)
+        {
+            var data = await EzTask.Attachment.GetAttachments(taskId);
+            return View(data);
+        }
+    }
 }

@@ -29,12 +29,12 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<AttachmentModel>> GetAttachments(int accountId)
+        public async Task<IEnumerable<AttachmentModel>> GetAttachments(int taskId)
         {
             var iResult = await UnitOfWork.AttachRepository.Entity.Include(c=>c.Task).
                 Include(c=>c.User).ThenInclude(c=>c.AccountInfo).AsNoTracking()
-                .Where(c => c.AddedUser == accountId).OrderByDescending(c => c.AddedDate)
-                .ToListAsync();
+                .Where(c=>c.TaskId == taskId)
+                .OrderByDescending(c => c.AddedDate).ToListAsync();
 
             return iResult.ToModels();
         }

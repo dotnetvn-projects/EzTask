@@ -53,7 +53,7 @@ function submitSuccess(data) {
     if (currentId <= 0) {
         var attachmentTab = "<li class=''><a href='#tab_attachment' data-toggle='tab' aria-expanded='false'>Attachment</a></li>";
         var historyTab = "<li class=''><a href='#tab_history' data-toggle='tab' aria-expanded='false'>History</a></li>";
-        $(".nav-tabs ul").append(attachmentTab).append(historyTab);
+        $(".nav-tabs-custom ul").append(attachmentTab).append(historyTab);
 
         var attachmentContent = "<div class='tab-pane' id='tab_attachment'></div>";
         var historyContent = "<div class='tab-pane' id='tab_history'></div>";

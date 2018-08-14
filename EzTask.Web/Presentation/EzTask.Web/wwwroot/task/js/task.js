@@ -97,6 +97,7 @@ function DeleteTask() {
                     data: { taskIds: ids },
                     success: function (response) {
                         refreshTask();
+                        $.closeDialog('modal-confirm');
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
 
@@ -106,7 +107,7 @@ function DeleteTask() {
         });
     }
     else {
-        //wanring when don't have any items
+        //warning when don't have any items
         $.showDialog({
             dialogId : 'modal-warning',
             content: 'No items to delete, please select at least 1 item.'
