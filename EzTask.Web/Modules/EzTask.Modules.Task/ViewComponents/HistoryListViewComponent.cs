@@ -16,9 +16,9 @@ namespace EzTask.Modules.Task.ViewComponents
             EzTask = business;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int taskId)
+        public async Task<IViewComponentResult> InvokeAsync(int taskId, int accountId)
         {
-            var data = await EzTask.Attachment.GetAttachments(taskId);
+            var data = await EzTask.Task.GetHistoryList(taskId, accountId);
             return View(data);
         }
     }

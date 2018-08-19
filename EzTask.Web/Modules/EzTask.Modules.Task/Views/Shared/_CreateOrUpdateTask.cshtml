@@ -15,12 +15,13 @@
                 }
                 else
                 {
-                    <h4 class="modal-title">Update task'@Model.TaskTitle'</h4>
+                    <h4 class="modal-title">Task <b>'@Model.TaskTitle'</b></h4>
                 }
             </div>
             <form asp-action="@Model.ActionType" method="post" id="task-form" class="form-horizontal">
                 <input type="hidden" asp-for="TaskId" />
                 <input type="hidden" asp-for="TaskCode" />
+                <input type ="hidden" asp-for="AccountId"/>
                 <input type="hidden" asp-for="ProjectId" />
                 <div class="modal-body">
                     <div class="form-group">
@@ -76,84 +77,10 @@
                                 <div class="tab-pane" id="tab_attachment">
                                     @await Component.InvokeAsync("Attachments", new { taskId = Model.TaskId })
                                 </div>
-                                    <div class="tab-pane" id="tab_history">
-                                        <div class="content-container">
-                                            <div class="row history-item">
-                                                <div class="content-item col-md-12 col-xs-12">
-                                                    <div class="pull-left">
-                                                        <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
-                                                    </div>
-                                                    <div class="pull-left description">
-                                                        <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1" on </span>
-                                                        <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
-                                                        <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row history-item">
-                                                <div class="content-item col-md-12 col-xs-12">
-                                                    <div class="pull-left">
-                                                        <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
-                                                    </div>
-                                                    <div class="pull-left description">
-                                                        <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
-                                                        <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
-                                                        <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row history-item">
-                                                <div class="content-item col-md-12 col-xs-12">
-                                                    <div class="pull-left">
-                                                        <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
-                                                    </div>
-                                                    <div class="pull-left description">
-                                                        <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
-                                                        <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
-                                                        <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row history-item">
-                                                <div class="content-item col-md-12 col-xs-12">
-                                                    <div class="pull-left">
-                                                        <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
-                                                    </div>
-                                                    <div class="pull-left description">
-                                                        <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
-                                                        <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
-                                                        <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row history-item">
-                                                <div class="content-item col-md-12 col-xs-12">
-                                                    <div class="pull-left">
-                                                        <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
-                                                    </div>
-                                                    <div class="pull-left description">
-                                                        <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
-                                                        <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
-                                                        <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row history-item">
-                                                <div class="content-item col-md-12 col-xs-12">
-                                                    <div class="pull-left">
-                                                        <img src="@Url.Action("LoadAvatar","Common")" class="img-circle img-thumbnail" alt="User Image">
-                                                    </div>
-                                                    <div class="pull-left description">
-                                                        <span><b>Linh Pham</b> updated conent of task "Tạo phrase 1"</span>
-                                                        <p><i class="fa fa-calendar-check-o text-green"></i> 12/07/2018 3:00:44</p>
-                                                        <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <div class="tab-pane" id="tab_history">
+                                    @await Component.InvokeAsync("HistoryList", new { taskId = Model.TaskId, accountId = Model.AccountId })
+                                </div>
                                 }
-
                             </div>
                         </div>
                     </div>

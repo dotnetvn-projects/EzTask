@@ -12,9 +12,9 @@ namespace EzTask.Entity.Data
         public string FileUrl { get; set; }
         public byte[] FileData { get; set; }
         public DateTime AddedDate { get; set; }
-        public int AddedUser { get; set; }
+        public int AccountId { get; set; }
 
         public TaskItem Task { get; set; }
-        public Account User { get; set; }
+        public Account Account { get; set; }
     }
 }

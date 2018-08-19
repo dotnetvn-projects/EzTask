@@ -7,14 +7,14 @@ using System.Threading.Tasks;
 
 namespace EzTask.Framework.IO
 {
-    public class Stream
+    public static class StreamIO
     {
         /// <summary>
         /// Convert stream to byte data
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
-        public static async Task<byte[]> ConvertStreamToBytes(System.IO.Stream source)
+        public static async Task<byte[]> ConvertStreamToBytes(this System.IO.Stream source)
         {
             using (var ms = new MemoryStream())
             {

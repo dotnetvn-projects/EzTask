@@ -25,6 +25,7 @@ namespace EzTask.Modules.Task.Models
         public Int16 Status { get; set; }
 
         public int Assignee { get; set; }
+        public int AccountId { get; set; }
 
         public int ProjectId { get; set; }
 

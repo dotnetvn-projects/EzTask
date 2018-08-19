@@ -1,8 +1,17 @@
-﻿<div class="content-container">
+﻿@model IEnumerable<AttachmentModel>
+@{ 
+
+    var totalItems = 0;
+    if (Model != null)
+    {
+        totalItems = Model.Count();
+    }
+}
+<div class="content-container">
     <div class="row attachment-header">
         <div class="col-sm-5 col-xs-8">
             <h4 class="text-light-blue">Attachments</h4>
-            <h5 class="text-red small">There are 206 attached items</h5>
+            <h5 class="text-red small">There are @totalItems attached items</h5>
         </div>
         <div class="col-sm-7 col-xs-4">
             <div class="pull-right upload-file">
@@ -16,64 +25,36 @@
         </div>
     </div>
     <div class="row attachment-list">
-        <table class="table table-striped">
-            <tbody>
-                <tr>
-                    <th style="width: 10px">#</th>
-                    <th>Files</th>
-                    <th style="width: 150px"></th>
-                    <th style="width: 130px"></th>
-                    <th style="width: 60px"></th>
-                </tr>
-                <tr>
-                    <td>1.</td>
-                    <td>Update software</td>
-                    <td><i class="fa fa-user text-green"></i> Linh pham</td>
-                    <td><i class="fa fa-calendar-check-o"></i> 01/01/2019</td>
-                    <td>
-                        <div class="row">
-                            <a href="/"><span class="badge bg-red"><i class="fa fa-save"></i></span></a>
-                            <a href="/"><span class="badge bg-green"><i class="fa fa-eye"></i></span></a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>2.</td>
-                    <td>Clean database</td>
-                    <td><i class="fa fa-user text-green"></i> Linh pham</td>
-                    <td><i class="fa fa-calendar-check-o"></i> 01/01/2019</td>
-                    <td>
-                        <div class="row">
-                            <a href="/"><span class="badge bg-red"><i class="fa fa-save"></i></span></a>
-                            <a href="/"><span class="badge bg-green"><i class="fa fa-eye"></i></span></a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>3.</td>
-                    <td>Cron job running</td>
-                    <td><i class="fa fa-user text-green"></i> Linh pham</td>
-                    <td><i class="fa fa-calendar-check-o"></i> 01/01/2019</td>
-                    <td>
-                        <div class="row">
-                            <a href="/"><span class="badge bg-red"><i class="fa fa-save"></i></span></a>
-                            <a href="/"><span class="badge bg-green"><i class="fa fa-eye"></i></span></a>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>4.</td>
-                    <td>Fix and squish bugs</td>
-                    <td><i class="fa fa-user text-green"></i> Linh pham</td>
-                    <td><i class="fa fa-calendar-check-o"></i> 01/01/2019</td>
-                    <td>
-                        <div class="row">
-                            <a href="/"><span class="badge bg-red"><i class="fa fa-save"></i></span></a>
-                            <a href="/"><span class="badge bg-green"><i class="fa fa-eye"></i></span></a>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        @if (Model != null && Model.Any())
+        {
+            var i = 1;
+            <table class="table table-striped">
+                <tbody>
+                    <tr>
+                        <th style="width: 10px">#</th>
+                        <th>Files</th>
+                        <th style="width: 150px"></th>
+                        <th style="width: 130px"></th>
+                        <th style="width: 60px"></th>
+                    </tr>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@i.</td>
+                            <td>@item.FileName</td>
+                            <td><i class="fa fa-user text-green"></i> @item.User.DisplayName</td>
+                            <td><i class="fa fa-calendar-check-o"></i> @item.AddedDate.ToString("dd/MM/yyyy")</td>
+                            <td>
+                                <div class="row">
+                                    <a href="/"><span class="badge bg-red"><i class="fa fa-save"></i></span></a>
+                                    <a href="/"><span class="badge bg-green"><i class="fa fa-remove"></i></span></a>
+                                </div>
+                            </td>
+                        </tr>
+                        i++;
+                    }                    
+                </tbody>
+            </table>
+        }
     </div>
 </div>

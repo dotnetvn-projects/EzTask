@@ -7,7 +7,7 @@ using EzTask.Models;
 using EzTask.Web.Framework.Attributes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using IO = EzTask.Framework.IO.File;
+using IO = EzTask.Framework.IO.FileIO;
 namespace EzTask.Modules.Core.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]

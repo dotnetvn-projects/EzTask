@@ -18,6 +18,7 @@ namespace EzTask.Repository
             services.AddTransient<IRepository<Skill>, TRepository<Skill>>();
             services.AddTransient<IRepository<TaskItem>, TRepository<TaskItem>>();
             services.AddTransient<IRepository<Attachment>, TRepository<Attachment>>();
+            services.AddTransient<IRepository<TaskHistory>, TRepository<TaskHistory>>();
             services.AddTransient<UnitOfWork>();
         }
     }

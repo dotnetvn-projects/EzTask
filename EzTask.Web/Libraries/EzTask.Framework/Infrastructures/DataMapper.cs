@@ -152,6 +152,21 @@ namespace EzTask.Framework.Infrastructures
         {
             return FrameworkCore.Mapper.Map<IEnumerable<AttachmentModel>>(entity);
         }
+
+        public static TaskHistory ToEntity(this TaskHistoryModel model)
+        {
+            return FrameworkCore.Mapper.Map<TaskHistory>(model);
+        }
+
+        public static TaskHistoryModel ToModel(this TaskHistory entity)
+        {
+            return FrameworkCore.Mapper.Map<TaskHistoryModel>(entity);
+        }
+
+        public static IEnumerable<TaskHistoryModel> ToModels(this IEnumerable<TaskHistory> entity)
+        {
+            return FrameworkCore.Mapper.Map<IEnumerable<TaskHistoryModel>>(entity);
+        }
         #endregion
     }
 

@@ -20,6 +20,8 @@ namespace EzTask.Business
         {
         }
 
+        #region Task
+
         /// <summary>
         /// Create new task
         /// </summary>
@@ -37,7 +39,7 @@ namespace EzTask.Business
             task.Assignee = null;
             task.Member = null;
 
-            if(task.AssigneeId == 0)
+            if (task.AssigneeId == 0)
             {
                 task.AssigneeId = null;
             }
@@ -76,9 +78,9 @@ namespace EzTask.Business
             };
 
             var data = await UnitOfWork.TaskRepository.GetManyAsync(c => ids.Contains(c.Id));
-            if(!data.Any())
+            if (!data.Any())
             {
-                result.Status = ActionStatus.NotFound;               
+                result.Status = ActionStatus.NotFound;
             }
             else
             {
@@ -113,9 +115,9 @@ namespace EzTask.Business
 
             var model = data.ToModels();
 
-            foreach(var item in model)
+            foreach (var item in model)
             {
-                if(item.Assignee == null ||
+                if (item.Assignee == null ||
                     string.IsNullOrEmpty(item.Assignee.DisplayName))
                 {
                     item.Assignee = new AccountModel
@@ -126,5 +128,74 @@ namespace EzTask.Business
             }
             return model;
         }
+
+        #endregion Task
+
+
+        #region Attachment
+
+        /// <summary>
+        /// Get attachment list
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<AttachmentModel>> GetAttachments(int taskId)
+        {
+            var iResult = await UnitOfWork.AttachRepository.Entity.Include(c => c.Task).
+                Include(c => c.Account).ThenInclude(c => c.AccountInfo).AsNoTracking()
+                .Where(c => c.TaskId == taskId)
+                .OrderByDescending(c => c.AddedDate).ToListAsync();
+
+            return iResult.ToModels();
+        }
+
+        /// <summary>
+        /// Save an attachment
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<AttachmentModel>> SaveAttachment(AttachmentModel model)
+        {
+            ResultModel<AttachmentModel> result = new ResultModel<AttachmentModel>();
+
+            var entity = model.ToEntity();
+            var file = model.FileData;
+
+            if (entity.Id <= 0)
+            {
+                entity.AddedDate = DateTime.Now;
+            }
+
+            UnitOfWork.AttachRepository.Add(entity);
+            var iResult = await UnitOfWork.CommitAsync();
+
+            if (iResult > 0)
+            {
+                result.Status = ActionStatus.Ok;
+                result.Data = entity.ToModel();
+            }
+
+            return result;
+        }
+
+        #endregion
+
+        #region History
+        /// <summary>
+        /// Get task history
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<TaskHistoryModel>> GetHistoryList(int taskId, int accountId)
+        {
+            var iResult = await UnitOfWork.TaskHistoryRepository.Entity.Include(c => c.Task).
+                Include(c => c.User).ThenInclude(c => c.AccountInfo).AsNoTracking()
+                .Where(c => c.TaskId == taskId)
+                .OrderByDescending(c => c.UpdatedDate).ToListAsync();
+
+            return iResult.ToModels();
+        }
+        #endregion
     }
 }

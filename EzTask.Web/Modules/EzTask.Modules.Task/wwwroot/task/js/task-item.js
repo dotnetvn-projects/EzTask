@@ -20,7 +20,7 @@ function ShowAddNewModal() {
             BuildForm(data);
             $.hideLoading();
             $.showDialog({
-                dialogId : 'task-modal'
+                dialogId: 'task-modal'
             });
         }
     });
@@ -37,8 +37,8 @@ $.fn.Submit = function () {
                 type: form.attr('method'),
                 dataType: 'json',
                 data: $(form).serialize(),
-                success: function (data) {
-                    submitSuccess(data);
+                success: function (response) {
+                    submitSuccess(response);
                 },
                 error: function (xhr, textStatus, errorThrown) {
 
@@ -48,7 +48,7 @@ $.fn.Submit = function () {
     });
 }
 
-function submitSuccess(data) {
+function submitSuccess(response) {
     var currentId = $("#TaskId").val();
     if (currentId <= 0) {
         var attachmentTab = "<li class=''><a href='#tab_attachment' data-toggle='tab' aria-expanded='false'>Attachment</a></li>";
@@ -59,7 +59,31 @@ function submitSuccess(data) {
         var historyContent = "<div class='tab-pane' id='tab_history'></div>";
 
         $(".tab-content").append(attachmentContent).append(historyContent);
+
+        currentId = response.data.taskId;
+        $.ajax({
+            url: 'taskitem/attachment-list.html',
+            type: "POST",
+            async: false,
+            data: { taskId: currentId },
+            success: function (data) {
+                $('#tab_attachment').html(data);
+            }
+        });
+
+        $.ajax({
+            url: 'taskitem/history-list.html',
+            type: "POST",
+            async: false,
+            data: { taskId: currentId },
+            success: function (data) {
+                $('#tab_history').html(data);
+            }
+        });
     }
+
+    $("#TaskId").val(currentId);
+    $("#task-modal .modal-title").html("Task '<b>" + response.data.taskTitle + "</b>'");
     $.hideLoading();
     refreshTask();
 }

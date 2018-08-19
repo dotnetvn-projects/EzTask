@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using EzTask.Framework.Common;
 using System.Threading.Tasks;
-using System.Threading;
+using EzTask.Framework.IO;
+using System.IO;
 using Microsoft.AspNetCore.Http;
 
 namespace EzTask.Modules.Task.Controllers
@@ -42,6 +43,7 @@ namespace EzTask.Modules.Task.Controllers
 
             newTask.StatusList = BuildStatusSelectList();
             newTask.PriorityList = BuildPrioritySelectList();
+            newTask.AccountId = AccountId;
 
             return PartialView("_CreateOrUpdateTask", newTask);
         }
@@ -67,18 +69,21 @@ namespace EzTask.Modules.Task.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("taskitem/upload-attach-file.html")]
-        public IActionResult UpdateAttachFile(IFormFile file, int taskId)
+        public async Task<IActionResult> UpdateAttachFile(IFormFile file, int taskId)
         {
             if (file.Length > 0)
             {
                 var stream = file.OpenReadStream();
-           
+
                 AttachmentModel model = new AttachmentModel
                 {
                     FileName = file.FileName,
-                    
+                    FileData = await stream.ConvertStreamToBytes(),
+                    FileType = file.ContentType,
+                    Task = new TaskItemModel {TaskId = taskId },
+                    User = new AccountModel { AccountId = AccountId }
                 };
-
+                var iResult = await EzTask.Task.SaveAttachment(model);
                 return Json(model);
             }
             return BadRequest();
@@ -89,11 +94,23 @@ namespace EzTask.Modules.Task.Controllers
         /// </summary>
         /// <param name="taskId"></param>
         /// <returns></returns>
-        [HttpGet]
+        [HttpPost]
         [Route("taskitem/attachment-list.html")]
         public IActionResult GetTaskAttachmentList(int taskId)
         {
             return ViewComponent("Attachments", new { taskId });
+        }
+
+        /// <summary>
+        /// Get attachments list return vew component
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("taskitem/history-list.html")]
+        public IActionResult GetTaskHistoryList(int taskId)
+        {
+            return ViewComponent("HistoryList", new { taskId, accountId = AccountId });
         }
 
         #region Non-Action

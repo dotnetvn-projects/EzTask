@@ -16,22 +16,6 @@ namespace EzTask.DataAccess
 
         }
 
-        //public DbSet<Account> Accounts { get; set; }
-
-        //public DbSet<AccountInfo> AccountInfos { get; set; }
-
-        //public DbSet<Project> Projects { get; set; }
-
-        //public DbSet<ProjectMember> ProjectMembers { get; set; }
-
-        //public DbSet<Skill> Skills { get; set; }
-
-        //public DbSet<AccountSkill> AccountSkills { get; set; }
-
-        //public DbSet<TaskItem> Tasks { get; set; }
-
-        //public DbSet<Phrase> Phrases { get; set; }
-
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             _entityMapper = new EntityMapper(modelBuilder);

@@ -5,7 +5,7 @@ using SysIO = System.IO;
 
 namespace EzTask.Framework.IO
 {
-    public class Directory
+    public class DirectoryIO
     {
         public static void CreateDir(string path)
         {

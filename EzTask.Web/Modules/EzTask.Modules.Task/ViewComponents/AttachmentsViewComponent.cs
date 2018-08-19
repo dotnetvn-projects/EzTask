@@ -18,7 +18,7 @@ namespace EzTask.Modules.Task.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int taskId)
         {
-            var data = await EzTask.Attachment.GetAttachments(taskId);
+            var data = await EzTask.Task.GetAttachments(taskId);
             return View(data);
         }
     }

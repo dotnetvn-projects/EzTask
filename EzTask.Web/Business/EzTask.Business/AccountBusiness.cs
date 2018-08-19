@@ -6,12 +6,13 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.IO;
-using ImageStream = EzTask.Framework.IO.Stream;
+using ImageStream = EzTask.Framework.IO.StreamIO;
 using EzTask.Framework.ImageHandler;
 using EzTask.Models;
 using EzTask.Framework.Infrastructures;
 using EzTask.Models.Enum;
 using EzTask.Repository;
+using EzTask.Framework.IO;
 
 namespace EzTask.Business
 {
@@ -102,7 +103,7 @@ namespace EzTask.Business
             var accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => c.AccountId == accountId);
             if (accountInfo != null)
             {
-                var bytes = await ImageStream.ConvertStreamToBytes(stream);
+                var bytes = await stream.ConvertStreamToBytes();
                 var imageData = await _imageProcessor.CreateNewSize(bytes, 250, 250);
                 stream.Dispose();
 

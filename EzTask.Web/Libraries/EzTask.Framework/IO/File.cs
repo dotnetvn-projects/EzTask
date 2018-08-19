@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using SysIO = System.IO;
 namespace EzTask.Framework.IO
 {
-    public class File
+    public class FileIO
     {
         public static void Create(string filePath, byte[] data)
         {
@@ -32,7 +32,7 @@ namespace EzTask.Framework.IO
         public static string GenerateUniqueName(string folder, string fileName)
         {
             string name = fileName;
-            var files = Directory.ReadFiles(folder,
+            var files = DirectoryIO.ReadFiles(folder,
                 Path.GetFileNameWithoutExtension(fileName) + "*" + Path.GetExtension(fileName));
 
             foreach (var file in files)
