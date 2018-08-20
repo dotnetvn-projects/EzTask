@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace EzTask.Entity.Data
@@ -12,9 +13,11 @@ namespace EzTask.Entity.Data
         public string FileUrl { get; set; }
         public byte[] FileData { get; set; }
         public DateTime AddedDate { get; set; }
-        public int AccountId { get; set; }
+        public int AddedUser { get; set; }
 
         public TaskItem Task { get; set; }
-        public Account Account { get; set; }
+
+        [ForeignKey("UpdatedUser")]
+        public Account User { get; set; }
     }
 }

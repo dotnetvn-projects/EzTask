@@ -26,6 +26,31 @@ function ShowAddNewModal() {
     });
 }
 
+$.fn.putAttachment = function () {
+    var ajax = new XMLHttpRequest();
+
+    var file = $("#file-upload")[0].files[0];
+    var formData = new FormData();
+    formData.append("file", file);
+    formData.append("taskId", $("#TaskId").val());
+
+    ajax.onreadystatechange = function () {
+        if (ajax.status) {
+            if (ajax.status == 200 && (ajax.readyState == 4)) {
+                //To do tasks if any, when upload is completed
+            }
+        }
+    }
+    ajax.upload.addEventListener("progress", function (event) {
+        var percent = (event.loaded / event.total) * 100;
+        //**percent** variable can be used for modifying the length of your progress bar.
+        console.log(percent);
+    });
+
+    ajax.open("POST", 'taskitem/upload-attach-file.html', true);
+    ajax.send(formData);
+}
+
 $.fn.Submit = function () {
     $(this).click(function (e) {
         e.preventDefault();
