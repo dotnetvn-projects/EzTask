@@ -142,7 +142,7 @@ namespace EzTask.Business
         public async Task<IEnumerable<AttachmentModel>> GetAttachments(int taskId)
         {
             var iResult = await UnitOfWork.AttachRepository.Entity.Include(c => c.Task).
-                Include(c => c.Account).ThenInclude(c => c.AccountInfo).AsNoTracking()
+                Include(c => c.User).ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .Where(c => c.TaskId == taskId)
                 .OrderByDescending(c => c.AddedDate).ToListAsync();
 
@@ -165,7 +165,8 @@ namespace EzTask.Business
             {
                 entity.AddedDate = DateTime.Now;
             }
-
+            entity.Task = null;
+            entity.User = null;
             UnitOfWork.AttachRepository.Add(entity);
             var iResult = await UnitOfWork.CommitAsync();
 

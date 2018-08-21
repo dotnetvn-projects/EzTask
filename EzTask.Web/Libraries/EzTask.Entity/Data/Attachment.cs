@@ -10,14 +10,13 @@ namespace EzTask.Entity.Data
         public int TaskId { get; set; }
         public string FileName { get; set; }
         public string FileType { get; set; }
-        public string FileUrl { get; set; }
         public byte[] FileData { get; set; }
         public DateTime AddedDate { get; set; }
         public int AddedUser { get; set; }
 
         public TaskItem Task { get; set; }
 
-        [ForeignKey("UpdatedUser")]
+        [ForeignKey("AddedUser")]
         public Account User { get; set; }
     }
 }

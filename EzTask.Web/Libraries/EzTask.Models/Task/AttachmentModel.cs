@@ -9,7 +9,6 @@ namespace EzTask.Models
         public int AttatchmentId { get; set; }
         public string FileName { get; set; }
         public string FileType { get; set; }
-        public string FileUrl { get; set; }
         public DateTime AddedDate { get; set; }
         public AccountModel User { get; set; }
         public TaskItemModel Task { get; set; }

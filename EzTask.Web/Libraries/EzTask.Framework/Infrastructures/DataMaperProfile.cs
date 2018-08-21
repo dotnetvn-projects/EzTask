@@ -96,7 +96,7 @@ namespace EzTask.Framework.Infrastructures
             CreateMap<AttachmentModel, Attachment>()
                 .ForMember(c => c.Id, t => t.MapFrom(z => z.AttatchmentId))
                 .ForMember(c => c.TaskId, t => t.MapFrom(z => z.Task != null ? z.Task.TaskId : 0))
-                .ForMember(c => c.AccountId, t => t.MapFrom(z => z.User != null ? z.User.AccountId : 0));
+                .ForMember(c => c.AddedUser, t => t.MapFrom(z => z.User != null ? z.User.AccountId : 0));
 
             //Map history to history model
             CreateMap<TaskHistory, TaskHistoryModel>()
