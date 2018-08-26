@@ -29,7 +29,8 @@ namespace EzTask.Framework.Infrastructures
             ///Map Account entity to Account Model
             CreateMap<Account, AccountModel>()
                 .ForMember(c => c.AccountId, t => t.MapFrom(z => z.Id))
-                .ForMember(c => c.AccountStatus, t => t.MapFrom(z => z.AccountStatus.ToEnum<ProjectStatus>()));
+                .ForMember(c => c.AccountStatus, t => t.MapFrom(z => z.AccountStatus.ToEnum<ProjectStatus>()))
+                .ForMember(c => c.DisplayName, t => t.MapFrom(z => z.AccountInfo.DisplayName));
 
             ///Map Account model to Account entity
             CreateMap<AccountModel, Account>()
@@ -43,7 +44,9 @@ namespace EzTask.Framework.Infrastructures
             CreateMap<AccountInfo, AccountInfoModel>()
                 .ForMember(c => c.AccountInfoId, t => t.MapFrom(z => z.Id))
                 .ForMember(c => c.AccountName, t => t.MapFrom(z => z.Account.AccountName))
-                .ForMember(c => c.Password, t => t.MapFrom(z => z.Account.Password));
+                .ForMember(c => c.Password, t => t.MapFrom(z => z.Account.Password))
+                .ForMember(c => c.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo != null?
+                                                                z.Account.AccountInfo.DisplayName : string.Empty));
 
             ///Map AccountInfoModel to AccountInfo entity
             CreateMap<AccountInfoModel, AccountInfo>()

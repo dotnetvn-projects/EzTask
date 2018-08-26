@@ -21,8 +21,11 @@ namespace EzTask.Modules.Core.Controllers
         }
 
         [Route("profile-avatar.html")]
-        public async Task<IActionResult> LoadAvatar()
+        public async Task<IActionResult> LoadAvatar(int accountId = 0)
         {
+            if (accountId == 0)
+                accountId = AccountId;
+
             var dataImage = await EzTask.Account.LoadAvatar(AccountId);
             if (dataImage == null || dataImage.Length == 0)
             {

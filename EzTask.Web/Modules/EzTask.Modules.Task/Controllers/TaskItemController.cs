@@ -53,6 +53,11 @@ namespace EzTask.Modules.Task.Controllers
         {
             var model = CreateTaskItemModel(viewModel);
             var iResult = await EzTask.Task.CreateTask(model);
+            if(iResult.Status == ActionStatus.Ok)
+            {
+                string title = DisplayName + " created task \"" + iResult.Data.TaskTitle +"\"";
+                await SaveTaskHistory(iResult.Data.TaskId, title, string.Empty);
+            }
             return Json(iResult);
         }
 
@@ -69,7 +74,7 @@ namespace EzTask.Modules.Task.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("taskitem/upload-attach-file.html")]
-        public async Task<IActionResult> UpdateAttachFile(IFormFile file, int taskId)
+        public async Task<IActionResult> UploadAttachFile(IFormFile file, int taskId)
         {
             if (file.Length > 0)
             {
@@ -84,6 +89,12 @@ namespace EzTask.Modules.Task.Controllers
                     User = new AccountModel { AccountId = AccountId }
                 };
                 var iResult = await EzTask.Task.SaveAttachment(model);
+
+                if(iResult.Status == ActionStatus.Ok)
+                {
+                    string title = DisplayName + " uploaded file \"" + iResult.Data.FileName+"\"";
+                    await SaveTaskHistory(taskId, title, string.Empty);
+                }
                 return Json(model);
             }
             return BadRequest();

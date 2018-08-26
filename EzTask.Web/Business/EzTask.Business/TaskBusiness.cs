@@ -1,15 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EzTask.DataAccess;
-using EzTask.Entity.Data;
-using EzTask.Framework.Infrastructures;
-using EzTask.Interfaces;
+﻿using EzTask.Framework.Infrastructures;
 using EzTask.Models;
 using EzTask.Models.Enum;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EzTask.Business
 {
@@ -70,6 +67,11 @@ namespace EzTask.Business
             return result;
         }
 
+        /// <summary>
+        /// Delete tasks
+        /// </summary>
+        /// <param name="ids"></param>
+        /// <returns></returns>
         public async Task<ResultModel<bool>> DeleteTask(int[] ids)
         {
             ResultModel<bool> result = new ResultModel<bool>
@@ -83,7 +85,22 @@ namespace EzTask.Business
                 result.Status = ActionStatus.NotFound;
             }
             else
-            {
+            {             
+                foreach(var task in data)
+                {
+                    var history = UnitOfWork.TaskHistoryRepository.GetMany(c => c.TaskId == task.Id);
+                    if(history.Any())
+                    {
+                        UnitOfWork.TaskHistoryRepository.DeleteRange(history);
+                    }
+
+                    var attachment = UnitOfWork.AttachRepository.GetMany(c => c.TaskId == task.Id);
+                    if (attachment.Any())
+                    {
+                        UnitOfWork.AttachRepository.DeleteRange(attachment);
+                    }
+                }
+
                 UnitOfWork.TaskRepository.DeleteRange(data);
                 var iResult = await UnitOfWork.CommitAsync();
                 if (iResult > 0)
@@ -100,8 +117,10 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId, int phraseId,
-            int page = 1, int pageSize = 1000)
+        public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId, 
+            int phraseId,
+            int page = 1, 
+            int pageSize = 50)
         {
 
             var data = await UnitOfWork.TaskRepository.Entity.Include(c => c.Project)
@@ -167,6 +186,7 @@ namespace EzTask.Business
             }
             entity.Task = null;
             entity.User = null;
+
             UnitOfWork.AttachRepository.Add(entity);
             var iResult = await UnitOfWork.CommitAsync();
 
@@ -182,6 +202,37 @@ namespace EzTask.Business
         #endregion
 
         #region History
+
+        /// <summary>
+        /// Save history
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<TaskHistoryModel>> SaveHistory(TaskHistoryModel model)
+        {
+            ResultModel<TaskHistoryModel> result = new ResultModel<TaskHistoryModel>();
+
+            var entity = model.ToEntity();
+
+            if (entity.Id <= 0)
+            {
+                entity.UpdatedDate = DateTime.Now;
+            }
+            entity.Task = null;
+            entity.User = null;
+
+            UnitOfWork.TaskHistoryRepository.Add(entity);
+            var iResult = await UnitOfWork.CommitAsync();
+
+            if (iResult > 0)
+            {
+                result.Status = ActionStatus.Ok;
+                result.Data = entity.ToModel();
+            }
+
+            return result;
+        }
+
         /// <summary>
         /// Get task history
         /// </summary>

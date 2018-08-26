@@ -28,6 +28,8 @@ function ShowAddNewModal() {
 
 $.fn.putAttachment = function () {
     $(this).change(function () {
+        $.showLoading();
+
         var ajax = new XMLHttpRequest();
 
         var file = $("#file-upload")[0].files[0];
@@ -37,21 +39,23 @@ $.fn.putAttachment = function () {
 
         ajax.onreadystatechange = function () {
             if (ajax.status) {
-                if (ajax.status == 200 && (ajax.readyState == 4)) {
-                    //To do tasks if any, when upload is completed
+                if (ajax.status === 200 && ajax.readyState === 4) {
+                    $(this).loadAttachment($("#TaskId").val());
+                    $(this).loadHistory($("#TaskId").val());
+                    $.hideLoading();
                 }
             }
-        }
+        };
+
         ajax.upload.addEventListener("progress", function (event) {
-            var percent = (event.loaded / event.total) * 100;
-            //**percent** variable can be used for modifying the length of your progress bar.
+            var percent = (event.loaded / event.total) * 100;        
             console.log(percent);
         });
 
         ajax.open("POST", 'taskitem/upload-attach-file.html', true);
         ajax.send(formData);
     });
-}
+};
 
 $.fn.Submit = function () {
     $(this).click(function (e) {
@@ -73,7 +77,32 @@ $.fn.Submit = function () {
             });
         }
     });
-}
+};
+
+$.fn.loadAttachment = function (taskId) {
+    $.ajax({
+        url: 'taskitem/attachment-list.html',
+        type: "POST",
+        async: false,
+        data: { taskId: taskId },
+        success: function (data) {
+            $('#tab_attachment').html(data);
+            $("#file-upload").putAttachment();
+        }
+    });
+};
+
+$.fn.loadHistory = function (taskId) {
+    $.ajax({
+        url: 'taskitem/history-list.html',
+        type: "POST",
+        async: false,
+        data: { taskId: taskId },
+        success: function (data) {
+            $('#tab_history').html(data);
+        }
+    });
+};
 
 function submitSuccess(response) {
     var currentId = $("#TaskId").val();
@@ -88,26 +117,9 @@ function submitSuccess(response) {
         $(".tab-content").append(attachmentContent).append(historyContent);
 
         currentId = response.data.taskId;
-        $.ajax({
-            url: 'taskitem/attachment-list.html',
-            type: "POST",
-            async: false,
-            data: { taskId: currentId },
-            success: function (data) {
-                $('#tab_attachment').html(data);
-                $("#file-upload").putAttachment();
-            }
-        });
 
-        $.ajax({
-            url: 'taskitem/history-list.html',
-            type: "POST",
-            async: false,
-            data: { taskId: currentId },
-            success: function (data) {
-                $('#tab_history').html(data);
-            }
-        });
+        $(this).loadAttachment(currentId);
+        $(this).loadHistory(currentId);
     }
 
     $("#TaskId").val(currentId);

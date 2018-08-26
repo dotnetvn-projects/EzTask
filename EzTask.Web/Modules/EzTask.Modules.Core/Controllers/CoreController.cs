@@ -1,9 +1,11 @@
 ﻿using EzTask.Business;
 using EzTask.Framework.Data;
+using EzTask.Models;
 using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Threading.Tasks;
 
 namespace EzTask.Modules.Core.Controllers
 {
@@ -24,6 +26,14 @@ namespace EzTask.Modules.Core.Controllers
         protected int AccountId
         {
             get { return int.Parse(CurrentAccount.AccountId); }
+        }
+
+        /// <summary>
+        /// DisplayName
+        /// </summary>
+        protected string DisplayName
+        {
+            get { return CurrentAccount.NickName; }
         }
 
         /// <summary>
@@ -81,6 +91,20 @@ namespace EzTask.Modules.Core.Controllers
         protected void RememberMe()
         {
             CookiesManager.SetObject(AppKey.EzTaskAuthen, CurrentAccount, 3000);
+        }
+
+        protected async Task SaveTaskHistory(int taskId, string title, string updateInfo)
+        {
+            var model = new TaskHistoryModel
+            {
+                Content = updateInfo,
+                Task = new TaskItemModel { TaskId = taskId },
+                User = new AccountModel { AccountId = AccountId },
+                Title = title,
+                UpdatedDate = DateTime.Now
+            };
+
+            await EzTask.Task.SaveHistory(model);
         }
 
         #region Private
