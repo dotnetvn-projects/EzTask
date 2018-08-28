@@ -5,7 +5,8 @@ using System.Text;
 
 namespace EzTask.Plugin.MessageService
 {
-    public class EventHandleMessage : IMessageService
+    public class EventMessageService : IMessageService
     {
+
     }
 }

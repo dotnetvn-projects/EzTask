@@ -3,7 +3,8 @@ using System;
 
 namespace EzTask.Plugin.MessageService
 {
-    public class NotifyMessage : IMessageService
+    public class PushNotifyMessageService : IMessageService
     {
+
     }
 }
