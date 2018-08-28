@@ -8,7 +8,7 @@ function handleLoadTask(projectId, phraseid) {
             taskListPanel.html('');
             taskListPanel.html(response);
             jQueryBinding();
-        },
+        }
     });
 }
 
@@ -52,10 +52,10 @@ $.fn.loadPhrase = function () {
                 var phrase = $(".phrase-list > li > a").first();
                 var phraseId = phrase.attr('data-id');
                 handleLoadTask(id, phraseId);
-            },
+            }
         });
     });
-}
+};
 
 //handle load task event when click on item in phrase list
 function loadTask(data) {
@@ -68,7 +68,7 @@ function loadTask(data) {
 function refreshTask() {
     var phraseId = $("#phrase-id").val();
     var projectId = $('.project-list').val();
-    handleLoadTask(phraseId, phraseId);
+    handleLoadTask(projectId, phraseId);
 }
 
 //delete task event
@@ -90,7 +90,8 @@ function DeleteTask() {
         $.showDialog({
             dialogId: 'modal-confirm',
             content: 'Do you wanna delete ?',
-            confirmAction : function () {
+            confirmAction: function () {
+                $.showLoading();
                 $.ajax({
                     type: 'post',
                     url: 'task/delete-task.html',
@@ -98,6 +99,7 @@ function DeleteTask() {
                     success: function (response) {
                         refreshTask();
                         $.closeDialog('modal-confirm');
+                        $.hideLoading();
                     },
                     error: function (xhr, ajaxOptions, thrownError) {
 
@@ -113,7 +115,7 @@ function DeleteTask() {
             content: 'No items to delete, please select at least 1 item.'
         });
     }
-}
+};
 
 //iCheck for checkbox and radio inputs
 $.fn.registeriCheck = function () {
@@ -121,7 +123,7 @@ $.fn.registeriCheck = function () {
         checkboxClass: 'icheckbox_flat-green',
         radioClass: 'iradio_flat-green'
     });
-}
+};
 
 //Enable check and uncheck all functionality
 $.fn.checkboxtoggle = function () {
@@ -138,13 +140,13 @@ $.fn.checkboxtoggle = function () {
         }
         $(this).data("clicks", !clicks);
     });
-}
+};
 
 function jQueryBinding() {
     $('.search-task').searchTask();
     $(".checkbox-toggle").checkboxtoggle();
     $('.task-table input[type="checkbox"]').registeriCheck();
-}
+};
 
 $(function () {
     $('.project-list').loadPhrase();
