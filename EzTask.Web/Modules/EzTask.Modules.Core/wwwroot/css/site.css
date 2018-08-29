@@ -5,4 +5,7 @@
 .space-right{
     padding-right:4px;
 }
+td {
+    vertical-align: middle;
+}
 /*-----EndCommon-----*/

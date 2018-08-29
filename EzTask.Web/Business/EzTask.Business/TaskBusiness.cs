@@ -1,4 +1,5 @@
-﻿using EzTask.Framework.Infrastructures;
+﻿using EzTask.Entity.Data;
+using EzTask.Framework.Infrastructures;
 using EzTask.Models;
 using EzTask.Models.Enum;
 using EzTask.Repository;
@@ -28,7 +29,7 @@ namespace EzTask.Business
         {
             ResultModel<TaskItemModel> result = new ResultModel<TaskItemModel>();
 
-            var task = model.ToEntity();
+            TaskItem task = model.ToEntity();
 
             //reset navigate object
             task.Phrase = null;
@@ -50,14 +51,14 @@ namespace EzTask.Business
             task.UpdatedDate = DateTime.Now;
 
             UnitOfWork.TaskRepository.Add(task);
-            var iResult = await UnitOfWork.CommitAsync();
+            int iResult = await UnitOfWork.CommitAsync();
 
             if (iResult > 0)
             {
                 if (string.IsNullOrEmpty(task.TaskCode))
                 {
                     task.TaskCode = CreateCode("T", task.Id);
-                    var updatedRecord = await UnitOfWork.CommitAsync();
+                    int updatedRecord = await UnitOfWork.CommitAsync();
                 }
 
                 result.Status = ActionStatus.Ok;
@@ -79,22 +80,22 @@ namespace EzTask.Business
                 Data = true
             };
 
-            var data = await UnitOfWork.TaskRepository.GetManyAsync(c => ids.Contains(c.Id));
+            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c => ids.Contains(c.Id));
             if (!data.Any())
             {
                 result.Status = ActionStatus.NotFound;
             }
             else
-            {             
-                foreach(var task in data)
+            {
+                foreach (TaskItem task in data)
                 {
-                    var history = UnitOfWork.TaskHistoryRepository.GetMany(c => c.TaskId == task.Id);
-                    if(history.Any())
+                    IEnumerable<TaskHistory> history = UnitOfWork.TaskHistoryRepository.GetMany(c => c.TaskId == task.Id);
+                    if (history.Any())
                     {
                         UnitOfWork.TaskHistoryRepository.DeleteRange(history);
                     }
 
-                    var attachment = UnitOfWork.AttachRepository.GetMany(c => c.TaskId == task.Id);
+                    IEnumerable<Attachment> attachment = UnitOfWork.AttachRepository.GetMany(c => c.TaskId == task.Id);
                     if (attachment.Any())
                     {
                         UnitOfWork.AttachRepository.DeleteRange(attachment);
@@ -102,7 +103,7 @@ namespace EzTask.Business
                 }
 
                 UnitOfWork.TaskRepository.DeleteRange(data);
-                var iResult = await UnitOfWork.CommitAsync();
+                int iResult = await UnitOfWork.CommitAsync();
                 if (iResult > 0)
                 {
                     result.Status = ActionStatus.Ok;
@@ -117,34 +118,56 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId, 
+        public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId,
             int phraseId,
-            int page = 1, 
+            int page = 1,
             int pageSize = 50)
         {
 
-            var data = await UnitOfWork.TaskRepository.Entity.Include(c => c.Project)
+            List<TaskItem> data = await UnitOfWork.TaskRepository.Entity
+                                   .Include(c => c.Project)
                                    .Include(c => c.Member)
                                    .Include(c => c.Assignee)
                                    .Include(c => c.Phrase)
                                    .AsNoTracking()
                                    .Where(c => c.ProjectId == projectId && c.PhraseId == phraseId)
                                    .Skip(pageSize * page - pageSize).Take(pageSize)
-                                   .ToListAsync();
+                                   .Select(x => new TaskItem
+                                   {
+                                       Phrase = new Phrase { PhraseName = x.Phrase.PhraseName},
+                                       Attachments = x.Attachments.Any()? 
+                                            new List<Attachment> { new Attachment { Id =x.Attachments.FirstOrDefault().Id }  }: new List<Attachment> (),
+                                       AssigneeId = x.AssigneeId,
+                                       CreatedDate = x.CreatedDate,
+                                       UpdatedDate = x.UpdatedDate,
+                                       MemberId = x.MemberId,
+                                       PhraseId = x.PhraseId,
+                                       Priority = x.Priority,
+                                       ProjectId = x.ProjectId,
+                                       Status = x.Status,
+                                       TaskCode = x.TaskCode,
+                                       TaskTitle = x.TaskTitle,
+                                       Id = x.Id,
 
-            var model = data.ToModels();
+                                       Member = new Account
+                                       {
+                                           AccountInfo = new AccountInfo
+                                           {
+                                               DisplayName = x.Member.AccountInfo.DisplayName
+                                           }
+                                       },
+                                       Assignee = new Account
+                                       {
+                                           AccountInfo = new AccountInfo
+                                           {
+                                               DisplayName = x.Assignee != null ?
+                                                  x.Assignee.AccountInfo.DisplayName : "Non Assigned"
+                                           }
+                                       }                                     
+                                   }).ToListAsync();
 
-            foreach (var item in model)
-            {
-                if (item.Assignee == null ||
-                    string.IsNullOrEmpty(item.Assignee.DisplayName))
-                {
-                    item.Assignee = new AccountModel
-                    {
-                        DisplayName = "Non Assigned"
-                    };
-                }
-            }
+            IEnumerable<TaskItemModel> model = data.ToModels();
+
             return model;
         }
 
@@ -160,7 +183,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<IEnumerable<AttachmentModel>> GetAttachments(int taskId)
         {
-            var iResult = await UnitOfWork.AttachRepository.Entity.Include(c => c.Task).
+            List<Attachment> iResult = await UnitOfWork.AttachRepository.Entity.Include(c => c.Task).
                 Include(c => c.User).ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .Where(c => c.TaskId == taskId)
                 .OrderByDescending(c => c.AddedDate).ToListAsync();
@@ -177,8 +200,8 @@ namespace EzTask.Business
         {
             ResultModel<AttachmentModel> result = new ResultModel<AttachmentModel>();
 
-            var entity = model.ToEntity();
-            var file = model.FileData;
+            Attachment entity = model.ToEntity();
+            byte[] file = model.FileData;
 
             if (entity.Id <= 0)
             {
@@ -188,7 +211,7 @@ namespace EzTask.Business
             entity.User = null;
 
             UnitOfWork.AttachRepository.Add(entity);
-            var iResult = await UnitOfWork.CommitAsync();
+            int iResult = await UnitOfWork.CommitAsync();
 
             if (iResult > 0)
             {
@@ -212,7 +235,7 @@ namespace EzTask.Business
         {
             ResultModel<TaskHistoryModel> result = new ResultModel<TaskHistoryModel>();
 
-            var entity = model.ToEntity();
+            TaskHistory entity = model.ToEntity();
 
             if (entity.Id <= 0)
             {
@@ -222,7 +245,7 @@ namespace EzTask.Business
             entity.User = null;
 
             UnitOfWork.TaskHistoryRepository.Add(entity);
-            var iResult = await UnitOfWork.CommitAsync();
+            int iResult = await UnitOfWork.CommitAsync();
 
             if (iResult > 0)
             {
@@ -241,7 +264,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<IEnumerable<TaskHistoryModel>> GetHistoryList(int taskId, int accountId)
         {
-            var iResult = await UnitOfWork.TaskHistoryRepository.Entity.Include(c => c.Task).
+            List<TaskHistory> iResult = await UnitOfWork.TaskHistoryRepository.Entity.Include(c => c.Task).
                 Include(c => c.User).ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .Where(c => c.TaskId == taskId)
                 .OrderByDescending(c => c.UpdatedDate).ToListAsync();

@@ -20,6 +20,8 @@ namespace EzTask.Models
         public ProjectModel Project { get; set; }
         public PhraseModel Phrase { get; set; }
 
+        public bool HasAttachment { get; set; }
+
         public TaskItemModel()
         {
             Assignee = new AccountModel();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EzTask.Entity.Data
@@ -26,6 +27,8 @@ namespace EzTask.Entity.Data
         public Project Project { get; set; }
 
         public Phrase Phrase { get; set; }
+
+        public virtual ICollection<Attachment> Attachments { get; set; }
 
         public TaskItem ()
         {

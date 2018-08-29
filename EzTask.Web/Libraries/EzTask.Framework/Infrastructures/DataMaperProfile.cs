@@ -3,6 +3,7 @@ using EzTask.Entity.Data;
 using EzTask.Framework.Common;
 using EzTask.Models;
 using EzTask.Models.Enum;
+using System.Linq;
 
 namespace EzTask.Framework.Infrastructures
 {
@@ -115,7 +116,8 @@ namespace EzTask.Framework.Infrastructures
             CreateMap<TaskItem, TaskItemModel>()
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<TaskItemStatus>()))
                 .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToEnum<TaskItemStatus>()))
-                .ForMember(c => c.TaskId, t => t.MapFrom(z => z.Id));
+                .ForMember(c => c.TaskId, t => t.MapFrom(z => z.Id))
+                .ForMember(c=>c.HasAttachment, t => t.MapFrom(z=>z.Attachments !=null && z.Attachments.Any()));
 
             //Map TaskItem model to TaskItem entity
             CreateMap<TaskItemModel, TaskItem>()

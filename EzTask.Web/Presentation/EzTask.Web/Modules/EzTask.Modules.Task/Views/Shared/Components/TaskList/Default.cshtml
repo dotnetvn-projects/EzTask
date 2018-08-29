@@ -42,19 +42,26 @@
                     {
                         foreach (var task in Model.TaskList)
                         {
-                            <tr>
-                                <td><input data-id="@task.TaskId" type="checkbox"></td>
-                                <td class="task-name"><a href="read-mail.html">@task.TaskCode</a></td>
-                                <td class="task-title">
-                                    @task.TaskTitle
-                                </td>
-                                <td class="task-attachment">document</td>
-                                <td title="Assign to @task.Assignee.DisplayName" class="task-assignee"><i class="fa fa-user text-green"></i> @task.Assignee.DisplayName</td>
-                                <td class="task-status">
-                                    <task-status asp-for="@task.Status"></task-status>
-                                </td>
-                                <td class="task-date">@task.UpdatedDate.TimeAgo()</td>
-                            </tr>
+                    <tr>
+                        <td><input data-id="@task.TaskId" type="checkbox"></td>
+                        <td class="task-name"><a>@task.TaskCode</a></td>
+                        <td class="task-title">
+                            @task.TaskTitle
+                        </td>
+                        <td title="Assign to @task.Assignee.DisplayName" class="task-assignee"><i class="fa fa-user text-green"></i> @task.Assignee.DisplayName</td>
+                        <td class="task-status">
+                            <task-status asp-for="@task.Status"></task-status>
+                        </td>
+                        @if (task.HasAttachment)
+                        {
+                        <td class="task-attachment"><i class="fa fa-paperclip"></i></td>
+                        }
+                        else
+                        {
+                            <td></td>
+                        }
+                        <td class="task-date">@task.UpdatedDate.TimeAgo()</td>
+                    </tr>
                         }
                     }
                     else
