@@ -26,26 +26,33 @@ namespace EzTask.Modules.Task.Controllers
 
         [Route("taskitem/generate-view.html")]
         [HttpPost]
-        public async Task<IActionResult> PrepairTaskViewItem(TaskFormDataModel model)
+        public async Task<IActionResult> GenerateTaskView(TaskFormDataModel model)
         {
-            var newTask = new TaskItemViewModel();
+            var task = new TaskItemViewModel();
             if(model.TaskId == 0)
             {
-                model.ActionType = ActionType.CreateNew;
+                task.ProjectId = model.ProjectId;
+                task.AccountId = AccountId;
+                task.PhraseId = model.PhraseId;      
+                task.ActionType = ActionType.CreateNew;
             }
-            newTask.ProjectId = model.ProjectId;
+            else
+            {
+                task.ActionType = ActionType.Update;
+                var iResult = await EzTask.Task.GetTask(task.TaskId);
+                UpdateTaskFromExist(task, iResult);
+            }
 
-            var phrases = await EzTask.Phrase.GetPhrase(model.ProjectId);
-            newTask.PhraseList = BuildPhraseSelectList(phrases, model.PhraseId);
+            var phrases = await EzTask.Phrase.GetPhrase(task.ProjectId);
+            task.PhraseList = BuildPhraseSelectList(phrases, task.PhraseId);
 
-            var assignees = await EzTask.Project.GetAccountList(model.ProjectId);
-            newTask.AssigneeList = BuildAssigneeSelectList(assignees);
+            var assignees = await EzTask.Project.GetAccountList(task.ProjectId);
+            task.AssigneeList = BuildAssigneeSelectList(assignees);
 
-            newTask.StatusList = BuildStatusSelectList();
-            newTask.PriorityList = BuildPrioritySelectList();
-            newTask.AccountId = AccountId;
+            task.StatusList = BuildStatusSelectList();
+            task.PriorityList = BuildPrioritySelectList();           
 
-            return PartialView("_CreateOrUpdateTask", newTask);
+            return PartialView("_CreateOrUpdateTask", task);
         }
 
         [HttpPost]
@@ -149,6 +156,25 @@ namespace EzTask.Modules.Task.Controllers
         }
 
         /// <summary>
+        /// Update from exist task model
+        /// </summary>
+        /// <param name="task"></param>
+        /// <param name="iResult"></param>
+        private static void UpdateTaskFromExist(TaskItemViewModel task, ResultModel<TaskItemModel> iResult)
+        {
+            task.TaskId = iResult.Data.TaskId;
+            task.ProjectId = iResult.Data.Project.ProjectId;
+            task.PhraseId = iResult.Data.Phrase.Id;
+            task.Assignee = iResult.Data.Assignee != null ? iResult.Data.Assignee.AccountId : 0;
+            task.TaskTitle = iResult.Data.TaskTitle;
+            task.TaskCode = iResult.Data.TaskCode;
+            task.TaskDetail = iResult.Data.TaskDetail;
+            task.Status = iResult.Data.Status.ToInt16<TaskStatus>();
+            task.Priority = iResult.Status.ToInt16<TaskPriority>();
+            task.AccountId = iResult.Data.Member.AccountId;
+        }
+
+        /// <summary>
         /// Build Priority SelectList items
         /// </summary>
         /// <returns></returns>
@@ -225,12 +251,14 @@ namespace EzTask.Modules.Task.Controllers
         private static List<SelectListItem> BuildAssigneeSelectList(IEnumerable<AccountModel> assignees,
             int selectedId = 0)
         {
-            List<SelectListItem> assigneeItems = new List<SelectListItem>();
-            assigneeItems.Add(new SelectListItem
+            List<SelectListItem> assigneeItems = new List<SelectListItem>
             {
-                Value = "0",
-                Text = "Non-Assigned"
-            });
+                new SelectListItem
+                {
+                    Value = "0",
+                    Text = "Non-Assigned"
+                }
+            };
 
             if (assignees.Any())
             {
@@ -290,6 +318,7 @@ namespace EzTask.Modules.Task.Controllers
             }
             return statusItems;
         }
+
         #endregion
     }
 }

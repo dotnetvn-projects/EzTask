@@ -1,5 +1,5 @@
 ﻿
-function BuildForm(template) {
+$.fn.buildForm =  function(template) {
     $(".task-item-template").html('');
     $(".task-item-template").append(template);
     $.initCommonLib();
@@ -8,21 +8,23 @@ function BuildForm(template) {
     $("#task-modal .btn-confirm").Submit();
 }
 
-function ShowAddNewModal() {
-    var projectId = $('.project-list').val();
-    var phraseId = $("#phrase-id").val();
-    $.showLoading();
-    $.ajax({
-        url: 'taskitem/generate-view.html',
-        type: 'POST',
-        data: { projectid: projectId, phraseId: phraseId },
-        success: function (data) {
-            BuildForm(data);
-            $.hideLoading();
-            $.showDialog({
-                dialogId: 'task-modal'
-            });
-        }
+$.fn.showAddNewModal = function () {
+    $(this).click(function () {
+        var projectId = $('.project-list').val();
+        var phraseId = $("#phrase-id").val();
+        $.showLoading();
+        $.ajax({
+            url: 'taskitem/generate-view.html',
+            type: 'POST',
+            data: { projectId: projectId, phraseId: phraseId },
+            success: function (data) {
+                $.buildForm(data);
+                $.hideLoading();
+                $.showDialog({
+                    dialogId: 'task-modal'
+                });
+            }
+        });
     });
 }
 
@@ -68,9 +70,7 @@ $.fn.Submit = function () {
                 type: form.attr('method'),
                 dataType: 'json',
                 data: $(form).serialize(),
-                success: function (response) {
-                    submitSuccess(response);
-                },
+                success: submitSuccess,
                 error: function (xhr, textStatus, errorThrown) {
 
                 }
@@ -104,6 +104,25 @@ $.fn.loadHistory = function (taskId) {
     });
 };
 
+$.fn.showEdit = function () {
+    $(this).click(function () {
+        var taskId = $(this).data('taskid');
+        $.showLoading();
+        $.ajax({
+            url: 'taskitem/generate-view.html',
+            type: 'POST',
+            data: { taskId: taskId },
+            success: function (data) {
+                $.buildForm(data);
+                $.hideLoading();
+                $.showDialog({
+                    dialogId: 'task-modal'
+                });
+            }
+        });
+    });
+}
+
 function submitSuccess(response) {
     var currentId = $("#TaskId").val();
     if (currentId <= 0) {
@@ -120,10 +139,15 @@ function submitSuccess(response) {
 
         $(this).loadAttachment(currentId);
         $(this).loadHistory(currentId);
-    }
 
-    $("#TaskId").val(currentId);
-    $("#task-modal .modal-title").html("Task '<b>" + response.data.taskTitle + "</b>'");
+        $("#TaskId").val(currentId);
+        $("#task-modal .modal-title").html("Task '<b>" + response.data.taskTitle + "</b>'");
+    }
+   
     $.hideLoading();
-    refreshTask();
+
+    var phraseId = $("#phrase-id").val();
+    var projectId = $('.project-list').val();
+
+    $.handleLoadTask(projectId, phraseId);
 }

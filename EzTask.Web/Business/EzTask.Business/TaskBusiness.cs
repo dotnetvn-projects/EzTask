@@ -20,6 +20,14 @@ namespace EzTask.Business
 
         #region Task
 
+        public async Task<ResultModel<TaskItemModel>> GetTask(int id)
+        {
+            ResultModel<TaskItemModel> result = new ResultModel<TaskItemModel>();
+            var data = await UnitOfWork.TaskRepository.GetByIdAsync(id, false);
+            result.Data = data.ToModel();
+            return result;
+        }
+
         /// <summary>
         /// Create new task
         /// </summary>
@@ -125,46 +133,52 @@ namespace EzTask.Business
         {
 
             List<TaskItem> data = await UnitOfWork.TaskRepository.Entity
-                                   .Include(c => c.Project)
-                                   .Include(c => c.Member)
-                                   .Include(c => c.Assignee)
-                                   .Include(c => c.Phrase)
-                                   .AsNoTracking()
-                                   .Where(c => c.ProjectId == projectId && c.PhraseId == phraseId)
-                                   .Skip(pageSize * page - pageSize).Take(pageSize)
-                                   .Select(x => new TaskItem
-                                   {
-                                       Phrase = new Phrase { PhraseName = x.Phrase.PhraseName},
-                                       Attachments = x.Attachments.Any()? 
-                                            new List<Attachment> { new Attachment { Id =x.Attachments.FirstOrDefault().Id }  }: new List<Attachment> (),
-                                       AssigneeId = x.AssigneeId,
-                                       CreatedDate = x.CreatedDate,
-                                       UpdatedDate = x.UpdatedDate,
-                                       MemberId = x.MemberId,
-                                       PhraseId = x.PhraseId,
-                                       Priority = x.Priority,
-                                       ProjectId = x.ProjectId,
-                                       Status = x.Status,
-                                       TaskCode = x.TaskCode,
-                                       TaskTitle = x.TaskTitle,
-                                       Id = x.Id,
+                        .Include(c => c.Project)
+                        .Include(c => c.Member)
+                        .Include(c => c.Assignee)
+                        .Include(c => c.Phrase)
+                        .AsNoTracking()
+                        .Where(c => c.ProjectId == projectId && c.PhraseId == phraseId)
+                        .Skip(pageSize * page - pageSize).Take(pageSize)
+                        .Select(x => new TaskItem
+                        {
+                            Phrase = new Phrase { PhraseName = x.Phrase.PhraseName},
+                            Attachments = x.Attachments.Any()? 
+                                new List<Attachment>
+                                {
+                                    new Attachment
+                                    {
+                                        Id =x.Attachments.FirstOrDefault().Id
+                                    }
+                                } : new List<Attachment> (),
+                            AssigneeId = x.AssigneeId,
+                            CreatedDate = x.CreatedDate,
+                            UpdatedDate = x.UpdatedDate,
+                            MemberId = x.MemberId,
+                            PhraseId = x.PhraseId,
+                            Priority = x.Priority,
+                            ProjectId = x.ProjectId,
+                            Status = x.Status,
+                            TaskCode = x.TaskCode,
+                            TaskTitle = x.TaskTitle,
+                            Id = x.Id,
 
-                                       Member = new Account
-                                       {
-                                           AccountInfo = new AccountInfo
-                                           {
-                                               DisplayName = x.Member.AccountInfo.DisplayName
-                                           }
-                                       },
-                                       Assignee = new Account
-                                       {
-                                           AccountInfo = new AccountInfo
-                                           {
-                                               DisplayName = x.Assignee != null ?
-                                                  x.Assignee.AccountInfo.DisplayName : "Non Assigned"
-                                           }
-                                       }                                     
-                                   }).ToListAsync();
+                            Member = new Account
+                            {
+                                AccountInfo = new AccountInfo
+                                {
+                                    DisplayName = x.Member.AccountInfo.DisplayName
+                                }
+                            },
+                            Assignee = new Account
+                            {
+                                AccountInfo = new AccountInfo
+                                {
+                                    DisplayName = x.Assignee != null ?
+                                        x.Assignee.AccountInfo.DisplayName : "Non Assigned"
+                                }
+                            }                                     
+                        }).ToListAsync();
 
             IEnumerable<TaskItemModel> model = data.ToModels();
 

@@ -13,7 +13,6 @@ namespace EzTask.Entity.Data
         public byte[] FileData { get; set; }
         public DateTime AddedDate { get; set; }
         public int AddedUser { get; set; }
-
         public TaskItem Task { get; set; }
 
         [ForeignKey("AddedUser")]

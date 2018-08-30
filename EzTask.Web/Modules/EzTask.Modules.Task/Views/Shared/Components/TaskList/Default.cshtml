@@ -19,12 +19,12 @@
                 <i class="fa fa-square-o"></i>
             </button>
             <div class="btn-group">
-                <button type="button" onclick="DeleteTask();" title="Delete" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                <button type="button" onclick="ShowAddNewModal();" title="Add new task" class="btn btn-default btn-sm btn-addnew-task"><i class="fa fa-plus"></i></button>
+                <button type="button" title="Delete" class="btn btn-default btn-sm btn-delete-task"><i class="fa fa-trash-o"></i></button>
+                <button type="button" title="Add new task" class="btn btn-default btn-sm btn-addnew-task"><i class="fa fa-plus"></i></button>
                 <button type="button" title="" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
             </div>
             <!-- /.btn-group -->
-            <button type="button" onclick="refreshTask();" title="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+            <button type="button" title="refresh" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
                 1-50/200
                 <div class="btn-group">
@@ -36,7 +36,7 @@
             <!-- /.pull-right -->
         </div>
         <div class="table-responsive task-table">
-            <table class="table table-hover table-striped">
+            <table class="table table-hover table-striped task-list">
                 <tbody>
                     @if (Model.TaskList.Any())
                     {
@@ -82,12 +82,12 @@
                 <i class="fa fa-square-o"></i>
             </button>
             <div class="btn-group">
-                <button type="button" onclick="DeleteTask();" title="Delete" class="btn btn-default btn-sm"><i class="fa fa-trash-o"></i></button>
-                <button type="button" onclick="ShowAddNewModal();" title="Add new task" class="btn btn-default btn-addnew-task btn-sm"><i class="fa fa-plus"></i></button>
+                <button type="button" title="Delete" class="btn btn-default btn-sm btn-delete-task"><i class="fa fa-trash-o"></i></button>
+                <button type="button" title="Add new task" class="btn btn-default btn-addnew-task btn-sm"><i class="fa fa-plus"></i></button>
                 <button type="button" class="btn btn-default btn-sm"><i class="fa fa-share"></i></button>
             </div>
             <!-- /.btn-group -->
-            <button type="button" onclick="refreshTask();" title="refresh" class="btn btn-default btn-sm"><i class="fa fa-refresh"></i></button>
+            <button type="button" title="refresh" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
                 1-50/200
                 <div class="btn-group">
