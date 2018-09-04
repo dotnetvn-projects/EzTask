@@ -15,7 +15,7 @@
                         <p><i class="fa fa-calendar-check-o text-green"></i> @history.UpdatedDate.ToString("dd/MM/yyyy HH:mm:ss")</p>
                        @if (!string.IsNullOrEmpty(history.Content))
                        {
-                        <p><i class="fa fa-hand-o-right text-green"></i> <a href=""><span class="text-light-blue">View details</span></a></p>
+                        <p><i class="fa fa-hand-o-right text-green"></i> <a data-id="@history.HistoryId" class="history-detail" href=""><span class="text-light-blue">View details</span></a></p>
                        }                      
                     </div>
                 </div>

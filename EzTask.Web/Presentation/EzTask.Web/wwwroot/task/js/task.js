@@ -1,5 +1,5 @@
 ﻿//execute call ajax to load task list
-function handleLoadTask(projectId, phraseid) {
+$.fn.handleLoadTask = function (projectId, phraseid) {
     $.ajax({
         url: "task/task-list.html",
         data: { projectId: projectId, phraseId: phraseid },
@@ -7,10 +7,10 @@ function handleLoadTask(projectId, phraseid) {
             var taskListPanel = $(".task-list-panel");
             taskListPanel.html('');
             taskListPanel.html(response);
-            jQueryBinding();
+            $(this).handleEvent();
         }
     });
-}
+};
 
 //search on task table
 $.fn.searchTask = function () {
@@ -51,70 +51,79 @@ $.fn.loadPhrase = function () {
 
                 var phrase = $(".phrase-list > li > a").first();
                 var phraseId = phrase.attr('data-id');
-                handleLoadTask(id, phraseId);
+                $(this).handleLoadTask(id, phraseId);
+                $(".phrase-list > li > a").loadTask();
             }
         });
     });
 };
 
 //handle load task event when click on item in phrase list
-function loadTask(data) {
-    var phraseid = $(data).attr('data-id');
-    var projectId = $('.project-list').val();
-    handleLoadTask(projectId, phraseid);
-}
+$.fn.loadTask = function () {
+    $(this).click(function () {
+        var phraseid = $(this).attr('data-id');
+        var projectId = $('.project-list').val();
+        $(this).handleLoadTask(projectId, phraseid);
+    });
+};
 
 //refresh task list event
-function refreshTask() {
-    var phraseId = $("#phrase-id").val();
-    var projectId = $('.project-list').val();
-    handleLoadTask(projectId, phraseId);
-}
+$.fn.refreshTask = function () {
+    $(this).click(function () {
+        var phraseId = $("#phrase-id").val();
+        var projectId = $('.project-list').val();
+        $(this).handleLoadTask(projectId, phraseId);
+    });
+};
 
 //delete task event
-function DeleteTask() {
-    var isChecked = $(".task-table input:checkbox:checked").length > 0;
-    if (isChecked) {
+$.fn.deleteTask = function () {
+    $(this).click(function () {
+        var isChecked = $(".task-table input:checkbox:checked").length > 0;
+        if (isChecked) {
+            //get ids
+            var ids = [];
+            $(".task-table input[type='checkbox']").each(function () {
+                var chk = $(this);
+                if (chk.prop('checked')) {
+                    var id = chk.attr("data-id");
+                    ids.push(id);
+                }
+            });
 
-        //get ids
-        var ids = [];
-        $(".task-table input[type='checkbox']").each(function () {
-            var chk = $(this);
-            if (chk.prop('checked')) {
-                var id = chk.attr("data-id");
-                ids.push(id);
-            }
-        });
+            //ask for delete
+            $.showDialog({
+                dialogId: 'modal-confirm',
+                content: 'Do you wanna delete ?',
+                confirmAction: function () {
+                    $.showLoading();
+                    $.ajax({
+                        type: 'post',
+                        url: 'task/delete-task.html',
+                        data: { taskIds: ids },
+                        success: function (response) {
+                            var phraseId = $("#phrase-id").val();
+                            var projectId = $('.project-list').val();
 
-        //ask for delete
-        $.showDialog({
-            dialogId: 'modal-confirm',
-            content: 'Do you wanna delete ?',
-            confirmAction: function () {
-                $.showLoading();
-                $.ajax({
-                    type: 'post',
-                    url: 'task/delete-task.html',
-                    data: { taskIds: ids },
-                    success: function (response) {
-                        refreshTask();
-                        $.closeDialog('modal-confirm');
-                        $.hideLoading();
-                    },
-                    error: function (xhr, ajaxOptions, thrownError) {
+                            $(this).handleLoadTask(projectId, phraseId);
+                            $.closeDialog('modal-confirm');
+                            $.hideLoading();
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
 
-                    }
-                });
-            }
-        });
-    }
-    else {
-        //warning when don't have any items
-        $.showDialog({
-            dialogId : 'modal-warning',
-            content: 'No items to delete, please select at least 1 item.'
-        });
-    }
+                        }
+                    });
+                }
+            });
+        }
+        else {
+            //warning when don't have any items
+            $.showDialog({
+                dialogId: 'modal-warning',
+                content: 'No items to delete, please select at least 1 item.'
+            });
+        }
+    });
 };
 
 //iCheck for checkbox and radio inputs
@@ -142,13 +151,17 @@ $.fn.checkboxtoggle = function () {
     });
 };
 
-function jQueryBinding() {
+$.fn.handleEvent = function () {
     $('.search-task').searchTask();
     $(".checkbox-toggle").checkboxtoggle();
     $('.task-table input[type="checkbox"]').registeriCheck();
+    $('.btn-addnew-task').showAddNewModal();
+    $('.btn-delete-task').deleteTask();
+    $('.btn-refresh-task').refreshTask();
+    $('.task-list > tbody > tr').showEdit();
 };
 
 $(function () {
     $('.project-list').loadPhrase();
-    jQueryBinding();
+    $(this).handleEvent();
 });

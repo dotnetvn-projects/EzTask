@@ -23,7 +23,13 @@ namespace EzTask.Business
         public async Task<ResultModel<TaskItemModel>> GetTask(int id)
         {
             ResultModel<TaskItemModel> result = new ResultModel<TaskItemModel>();
-            var data = await UnitOfWork.TaskRepository.GetByIdAsync(id, false);
+            TaskItem data = await UnitOfWork.TaskRepository.Entity
+                         .Include(c => c.Project)
+                         .Include(c => c.Member)
+                         .Include(c => c.Assignee)
+                         .Include(c => c.Phrase)
+                         .AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
+
             result.Data = data.ToModel();
             return result;
         }
@@ -33,7 +39,7 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
-        public async Task<ResultModel<TaskItemModel>> CreateTask(TaskItemModel model)
+        public async Task<ResultModel<TaskItemModel>> SaveTask(TaskItemModel model)
         {
             ResultModel<TaskItemModel> result = new ResultModel<TaskItemModel>();
 
@@ -44,7 +50,7 @@ namespace EzTask.Business
             task.Project = null;
             task.Assignee = null;
             task.Member = null;
-
+            task.UpdatedDate = DateTime.Now;
             if (task.AssigneeId == 0)
             {
                 task.AssigneeId = null;
@@ -54,11 +60,14 @@ namespace EzTask.Business
             {
                 task.TaskCode = string.Empty;
                 task.CreatedDate = DateTime.Now;
+                UnitOfWork.TaskRepository.Add(task);
+            }
+            else
+            {
+                UnitOfWork.TaskRepository.Update(task);
             }
 
-            task.UpdatedDate = DateTime.Now;
 
-            UnitOfWork.TaskRepository.Add(task);
             int iResult = await UnitOfWork.CommitAsync();
 
             if (iResult > 0)
@@ -142,15 +151,15 @@ namespace EzTask.Business
                         .Skip(pageSize * page - pageSize).Take(pageSize)
                         .Select(x => new TaskItem
                         {
-                            Phrase = new Phrase { PhraseName = x.Phrase.PhraseName},
-                            Attachments = x.Attachments.Any()? 
+                            Phrase = new Phrase { PhraseName = x.Phrase.PhraseName, Id = x.Phrase.Id },
+                            Attachments = x.Attachments.Any() ?
                                 new List<Attachment>
                                 {
                                     new Attachment
                                     {
                                         Id =x.Attachments.FirstOrDefault().Id
                                     }
-                                } : new List<Attachment> (),
+                                } : new List<Attachment>(),
                             AssigneeId = x.AssigneeId,
                             CreatedDate = x.CreatedDate,
                             UpdatedDate = x.UpdatedDate,
@@ -177,7 +186,7 @@ namespace EzTask.Business
                                     DisplayName = x.Assignee != null ?
                                         x.Assignee.AccountInfo.DisplayName : "Non Assigned"
                                 }
-                            }                                     
+                            }
                         }).ToListAsync();
 
             IEnumerable<TaskItemModel> model = data.ToModels();
@@ -239,6 +248,20 @@ namespace EzTask.Business
         #endregion
 
         #region History
+
+        /// <summary>
+        /// Load history detail
+        /// </summary>
+        /// <param name="historyId"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<TaskHistoryModel>> LoadHistoryDetail(int historyId)
+        {
+            ResultModel<TaskHistoryModel> result = new ResultModel<TaskHistoryModel>();
+            TaskHistory data = await UnitOfWork.TaskHistoryRepository.Entity.AsNoTracking()
+                                .Include(c => c.Task).FirstOrDefaultAsync(c => c.Id == historyId);
+            result.Data = data.ToModel();
+            return result;
+        }
 
         /// <summary>
         /// Save history

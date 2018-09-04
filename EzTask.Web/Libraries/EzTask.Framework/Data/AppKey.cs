@@ -7,6 +7,7 @@ namespace EzTask.Framework.Data
     public enum AppKey
     {
         Account,
-        EzTaskAuthen
+        EzTaskAuthen,
+        TrackTask
     }
 }

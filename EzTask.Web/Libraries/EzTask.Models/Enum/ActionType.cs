@@ -6,6 +6,7 @@ namespace EzTask.Models.Enum
 {
     public enum ActionType
     {
+        CreateOrUpdate,
         CreateNew,
         Update,
         Delete,

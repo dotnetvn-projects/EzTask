@@ -1,7 +1,5 @@
 ﻿@model TaskItemViewModel
-@{
-    string action = "taskitem/" + Model.ActionType + ".html";
-}
+
 <div class="modal fade" data-backdrop="static" data-keyboard="false" id="task-modal">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
@@ -9,7 +7,7 @@
                 <button type="button" data-dismiss="modal" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                @if (Model.ActionType == ActionType.CreateNew)
+                @if (Model.TaskId == 0)
                 {
                     <h4 class="modal-title">Create new task</h4>
                 }
@@ -23,6 +21,8 @@
                 <input type="hidden" asp-for="TaskCode" />
                 <input type ="hidden" asp-for="AccountId"/>
                 <input type="hidden" asp-for="ProjectId" />
+                <input type="hidden" asp-for="CreatedDate" />
+
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="inputTaskTitle" class="col-sm-2 control-label">Task Title</label>

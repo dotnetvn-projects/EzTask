@@ -1,27 +1,27 @@
 ﻿
-function SetPhraseModalValue(projectId, phraseId) {
+function setPhraseModalValue(projectId, phraseId) {
     $('#inputPhraseName').val('');
     $('#phrase-modal .project-id').val(projectId);
     $('#phrase-modal .phrase-id').val(phraseId);
 }
 
-function FormatDate(dateString) {
+function formatDate(dateString) {
     var date = new Date(dateString);
-    return (date.getMonth() +1) + "/" + date.getDate() + "/" + date.getFullYear();
+    return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
 }
 
-$.fn.ShowModal = function () {
+$.fn.showModal = function () {
     $(this).click(function () {
         var projectId = $('.project-list').val();
-        SetPhraseModalValue(projectId, 0);
+        setPhraseModalValue(projectId, 0);
         $.showDialog({
-            dialogId : 'phrase-modal',
-            title : 'Add new phrase',
+            dialogId: 'phrase-modal',
+            title: 'Add new phrase',
         });
     });
-}
+};
 
-$.fn.PhraseModalAction = function () {
+$.fn.phraseModalAction = function () {
     $(this).click(function (e) {
         e.preventDefault();
         var form = $("#phrase-form");
@@ -39,8 +39,8 @@ $.fn.PhraseModalAction = function () {
                     phrasePanel.html(response);
 
                     $("#inputPhraseName").val('');
-                    $("#inputStartDate").val(FormatDate(response.startDate));
-                    $("#inputEndDate").val(FormatDate(response.endDate));
+                    $("#inputStartDate").val(formatDate(response.startDate));
+                    $("#inputEndDate").val(formatDate(response.endDate));
                     $.closeDialog('phrase-modal');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
@@ -49,10 +49,10 @@ $.fn.PhraseModalAction = function () {
             });
         }
     });
-}
+};
 
 $(function () {
-    $(".btn-addnew-phrase").ShowModal();
-    $("#phrase-modal .btn-confirm").PhraseModalAction();
+    $(".btn-addnew-phrase").showModal();
+    $("#phrase-modal .btn-confirm").phraseModalAction();
     $.triggerCloseDialog('phrase-modal');
-})
+});

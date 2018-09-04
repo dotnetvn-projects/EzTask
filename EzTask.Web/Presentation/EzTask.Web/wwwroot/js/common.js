@@ -21,7 +21,7 @@
     //------Dialog-------
     $.showDialog = function (options) {
         var settings = $.extend({
-            dialogId : '',
+            dialogId: '',
             title: '',
             content: '',
             confirmAction: null
@@ -33,7 +33,7 @@
         if (settings.content.length > 0) {
             $('#' + settings.dialogId + " .modal-body").text(settings.content);
         }
-        
+
 
         if (settings.confirmAction) {
             $('#' + settings.dialogId + " .btn-confirm").click(function () {
@@ -41,31 +41,31 @@
             });
         }
 
-        $('#' + settings.dialogId ).modal('show');
-    }
+        $('#' + settings.dialogId).modal('show');
+    };
 
     $.closeDialog = function (dialogId) {
         $('#' + dialogId).modal('hide');
         $('.modal-backdrop').hide();
-    }
+    };
 
     //hidden backdrop when click outsite
     $.triggerCloseDialog = function (dialogId) {
         $('#' + dialogId).on('hidden.bs.modal', function () {
             $('.modal-backdrop').hide();
         });
-    }
+    };
     //------End Dialog----
 
 
     //------loading-----
     $.showLoading = function () {
         $(".loader-panel").addClass("is-active");
-    }
+    };
 
     $.hideLoading = function () {
         $(".loader-panel").removeClass("is-active");
-    }
+    };
     //-----End loading-----
 
 })(jQuery);

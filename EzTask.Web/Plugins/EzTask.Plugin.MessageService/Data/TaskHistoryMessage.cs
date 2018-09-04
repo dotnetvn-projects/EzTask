@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EzTask.Plugin.MessageService.Data
 {
-    class TaskHistoryMessage : Message
+    public class TaskHistoryMessage : Message
     {
     }
 }

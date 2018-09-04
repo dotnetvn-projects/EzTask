@@ -7,10 +7,10 @@ $.fn.handleLoadTask = function (projectId, phraseid) {
             var taskListPanel = $(".task-list-panel");
             taskListPanel.html('');
             taskListPanel.html(response);
-            $.handleEvent();
+            $(this).handleEvent();
         }
     });
-}
+};
 
 //search on task table
 $.fn.searchTask = function () {
@@ -51,7 +51,7 @@ $.fn.loadPhrase = function () {
 
                 var phrase = $(".phrase-list > li > a").first();
                 var phraseId = phrase.attr('data-id');
-                $.handleLoadTask(id, phraseId);
+                $(this).handleLoadTask(id, phraseId);
                 $(".phrase-list > li > a").loadTask();
             }
         });
@@ -63,18 +63,18 @@ $.fn.loadTask = function () {
     $(this).click(function () {
         var phraseid = $(this).attr('data-id');
         var projectId = $('.project-list').val();
-        $.handleLoadTask(projectId, phraseid);
+        $(this).handleLoadTask(projectId, phraseid);
     });
-}
+};
 
 //refresh task list event
 $.fn.refreshTask = function () {
     $(this).click(function () {
         var phraseId = $("#phrase-id").val();
         var projectId = $('.project-list').val();
-        $.handleLoadTask(projectId, phraseId);
+        $(this).handleLoadTask(projectId, phraseId);
     });
-}
+};
 
 //delete task event
 $.fn.deleteTask = function () {
@@ -105,7 +105,7 @@ $.fn.deleteTask = function () {
                             var phraseId = $("#phrase-id").val();
                             var projectId = $('.project-list').val();
 
-                            $.handleLoadTask(projectId, phraseId);
+                            $(this).handleLoadTask(projectId, phraseId);
                             $.closeDialog('modal-confirm');
                             $.hideLoading();
                         },
@@ -159,7 +159,7 @@ $.fn.handleEvent = function () {
     $('.btn-delete-task').deleteTask();
     $('.btn-refresh-task').refreshTask();
     $('.task-list > tbody > tr').showEdit();
-}
+};
 
 $(function () {
     $('.project-list').loadPhrase();

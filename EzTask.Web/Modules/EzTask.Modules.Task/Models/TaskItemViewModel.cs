@@ -30,6 +30,7 @@ namespace EzTask.Modules.Task.Models
         public int ProjectId { get; set; }
 
         public Int16 Priority { get; set; }
+        public DateTime CreatedDate { get; set; }
 
         public List<SelectListItem> PhraseList { get; set; }
         public List<SelectListItem> StatusList { get; set; }

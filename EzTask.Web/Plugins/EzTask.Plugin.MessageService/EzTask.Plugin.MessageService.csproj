@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\EzTask.Business\EzTask.Business.csproj" />
     <ProjectReference Include="..\..\Libraries\EzTask.Interfaces\EzTask.Interfaces.csproj" />
   </ItemGroup>
 

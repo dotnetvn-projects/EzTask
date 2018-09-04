@@ -1,12 +1,13 @@
 ﻿
-$.fn.buildForm =  function(template) {
+$.fn.buildForm = function (template) {
     $(".task-item-template").html('');
-    $(".task-item-template").append(template);
-    $.initCommonLib();
+    $(".task-item-template").append(template);  
     var form = $("#task-form");
+    $.initCommonLib();
     $.validator.unobtrusive.parse(form);
     $("#task-modal .btn-confirm").Submit();
-}
+    $("#file-upload").putAttachment();
+};
 
 $.fn.showAddNewModal = function () {
     $(this).click(function () {
@@ -18,7 +19,7 @@ $.fn.showAddNewModal = function () {
             type: 'POST',
             data: { projectId: projectId, phraseId: phraseId },
             success: function (data) {
-                $.buildForm(data);
+                $(this).buildForm(data);
                 $.hideLoading();
                 $.showDialog({
                     dialogId: 'task-modal'
@@ -26,7 +27,7 @@ $.fn.showAddNewModal = function () {
             }
         });
     });
-}
+};
 
 $.fn.putAttachment = function () {
     $(this).change(function () {
@@ -79,6 +80,28 @@ $.fn.Submit = function () {
     });
 };
 
+$.fn.displayHistoryDetail = function () {
+    $(this).click(function (e) {
+        e.preventDefault();
+        $.showLoading();
+        var id = $(this).data('id');
+        $.ajax({
+            url: 'taskitem/history-detail.html',
+            type: "POST",
+            async: false,
+            data: { historyId: id },
+            success: function (data) {
+                $(".task-history-template").html('');
+                $(".task-history-template").append(data);  
+                $.showDialog({
+                    dialogId: 'task-history-detail'
+                });
+                $.hideLoading();
+            }
+        });
+    });
+};
+
 $.fn.loadAttachment = function (taskId) {
     $.ajax({
         url: 'taskitem/attachment-list.html',
@@ -100,20 +123,21 @@ $.fn.loadHistory = function (taskId) {
         data: { taskId: taskId },
         success: function (data) {
             $('#tab_history').html(data);
+            $('.history-detail').displayHistoryDetail();
         }
     });
 };
 
 $.fn.showEdit = function () {
     $(this).click(function () {
-        var taskId = $(this).data('taskid');
+        var taskId = $(this).data('id');
         $.showLoading();
         $.ajax({
             url: 'taskitem/generate-view.html',
             type: 'POST',
             data: { taskId: taskId },
             success: function (data) {
-                $.buildForm(data);
+                $(this).buildForm(data);
                 $.hideLoading();
                 $.showDialog({
                     dialogId: 'task-modal'
@@ -121,7 +145,7 @@ $.fn.showEdit = function () {
             }
         });
     });
-}
+};
 
 function submitSuccess(response) {
     var currentId = $("#TaskId").val();
@@ -141,13 +165,21 @@ function submitSuccess(response) {
         $(this).loadHistory(currentId);
 
         $("#TaskId").val(currentId);
-        $("#task-modal .modal-title").html("Task '<b>" + response.data.taskTitle + "</b>'");
+       
     }
-   
-    $.hideLoading();
+
+    $("#task-modal .modal-title").html("Task '<b>" + response.data.taskTitle + "</b>'");
 
     var phraseId = $("#phrase-id").val();
     var projectId = $('.project-list').val();
 
-    $.handleLoadTask(projectId, phraseId);
+    $(this).handleLoadTask(projectId, phraseId);
+
+    $.hideLoading();
 }
+
+
+$(function () {
+    $('.history-detail').displayHistoryDetail();
+    $("#file-upload").putAttachment();
+});
