@@ -66,6 +66,7 @@ namespace EzTask.Modules.Task.Controllers
             {
                 string title = string.Empty;
                 string diff = string.Empty;
+
                 if(viewModel.TaskId <= 0)
                 {
                     title = DisplayName + " created task \"" + iResult.Data.TaskTitle + "\"";
@@ -73,7 +74,9 @@ namespace EzTask.Modules.Task.Controllers
                 else
                 {
                     title = DisplayName + " updated task \"" + iResult.Data.TaskTitle + "\"";
-                    diff  = BuildDiffString(viewModel);
+                    var oldData = SessionManager.GetObject<TaskItemModel>(AppKey.TrackTask);
+                    var newData = CreateTaskItemModel(viewModel);
+                    diff = EzTask.Task.CompareChanges(newData, oldData);
                 }
                  
                 await SaveTaskHistory(iResult.Data.TaskId, title, diff);
@@ -192,7 +195,7 @@ namespace EzTask.Modules.Task.Controllers
 
             if (task.TaskId > 0)
             {
-                SessionManager.SetObject(AppKey.TrackTask, task);
+                SessionManager.SetObject(AppKey.TrackTask, CreateTaskItemModel(task));
             }
         }
 
@@ -340,49 +343,7 @@ namespace EzTask.Modules.Task.Controllers
             }
             return statusItems;
         }
-
-        private string BuildDiffString(TaskItemViewModel newData)
-        {
-            var oldData = SessionManager.GetObject<TaskItemViewModel>(AppKey.TrackTask);
-            if (oldData == null)
-                return string.Empty;
-
-            string content = string.Empty;
-            if(newData.TaskTitle != oldData.TaskTitle)
-            {
-                content += $"<p><b>Title</b>:<br/><small>{oldData.TaskTitle} => {newData.TaskTitle}</small> </p>";
-            }
-            if(newData.TaskDetail != oldData.TaskDetail)
-            {
-                content += $"<p><b>Detail</b>:<br/><small>{oldData.TaskDetail} => {newData.TaskDetail}</small> </p>";
-            }
-            if(newData.PhraseId != oldData.PhraseId)
-            {
-                string oldItem = oldData.PhraseList.First(c => c.Value == oldData.PhraseId.ToString()).Text;
-                string newItem = newData.PhraseList.First(c => c.Value == newData.PhraseId.ToString()).Text;
-                content += $"<p><b>Phrase</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
-            }
-            if (newData.Assignee != oldData.Assignee)
-            {
-                string oldItem = oldData.AssigneeList.First(c => c.Value == oldData.Assignee.ToString()).Text;
-                string newItem = newData.AssigneeList.First(c => c.Value == newData.Assignee.ToString()).Text;
-                content += $"<p><b>Assignee</b>:<br/><small>{oldItem} => {oldItem}</small> </p>";
-            }
-            if (newData.Priority != oldData.Priority)
-            {
-                string oldItem = oldData.PriorityList.First(c => c.Value == oldData.Priority.ToString()).Text;
-                string newItem = newData.PriorityList.First(c => c.Value == newData.Priority.ToString()).Text;
-                content += $"<p><b>Priority</b>:<br/><small>{oldItem} => {oldItem}</small> </p>";
-            }
-            if (newData.Status != oldData.Status)
-            {
-                string oldItem = oldData.StatusList.First(c => c.Value == oldData.Status.ToString()).Text;
-                string newItem = newData.StatusList.First(c => c.Value == newData.Status.ToString()).Text;
-                content += $"<p><b>Status</b>:<br/><small>{oldItem} => {oldItem}</small> </p>";
-            }
-
-            return content;
-        }
+   
         #endregion
     }
 }

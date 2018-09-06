@@ -308,6 +308,46 @@ namespace EzTask.Business
 
             return iResult.ToModels();
         }
+
+        public string CompareChanges(TaskItemModel newData, TaskItemModel oldData)
+        {
+           
+            string content = string.Empty;
+            if (newData.TaskTitle != oldData.TaskTitle)
+            {
+                content += $"<p><b>Title</b>:<br/><small>{oldData.TaskTitle} => {newData.TaskTitle}</small> </p>";
+            }
+            if (newData.TaskDetail != oldData.TaskDetail)
+            {
+                content += $"<p><b>Detail</b>:<br/><small>{oldData.TaskDetail} => {newData.TaskDetail}</small> </p>";
+            }
+            if (newData.Phrase.Id != oldData.Phrase.Id)
+            {
+                string oldItem = oldData.Phrase.PhraseName;
+                string newItem = newData.Phrase.PhraseName;
+                content += $"<p><b>Phrase</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+            }
+            if (newData.Assignee.AccountId != oldData.Assignee.AccountId)
+            {
+                string oldItem = oldData.Assignee.DisplayName;
+                string newItem = newData.Assignee.DisplayName;
+                content += $"<p><b>Assignee</b>:<br/><small>{oldItem} => {oldItem}</small> </p>";
+            }
+            if (newData.Priority != oldData.Priority)
+            {
+                string oldItem = oldData.Priority.ToString();
+                string newItem = newData.Priority.ToString();
+                content += $"<p><b>Priority</b>:<br/><small>{oldItem} => {oldItem}</small> </p>";
+            }
+            if (newData.Status != oldData.Status)
+            {
+                string oldItem = oldData.Status.ToString();
+                string newItem = newData.Status.ToString();
+                content += $"<p><b>Status</b>:<br/><small>{oldItem} => {oldItem}</small> </p>";
+            }
+
+            return content;
+        }
         #endregion
     }
 }
