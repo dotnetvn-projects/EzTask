@@ -7,6 +7,7 @@ $.fn.buildForm = function (template) {
     $.validator.unobtrusive.parse(form);
     $("#task-modal .btn-confirm").Submit();
     $("#file-upload").putAttachment();
+    $('.history-detail').displayHistoryDetail();
 };
 
 $.fn.showAddNewModal = function () {
@@ -178,8 +179,3 @@ function submitSuccess(response) {
     $.hideLoading();
 }
 
-
-$(function () {
-    $('.history-detail').displayHistoryDetail();
-    $("#file-upload").putAttachment();
-});
