@@ -84,6 +84,26 @@ namespace EzTask.Modules.Task.Controllers
             return Json(iResult);
         }
 
+        [Route("taskitem/generate-assign-view.html")]
+        [HttpPost]
+        public async Task<IActionResult> GenerateAssignTaskView(TaskFormDataModel model)
+        {
+            var task = new TaskItemViewModel();
+
+            var assignees = await EzTask.Project.GetAccountList(model.ProjectId);
+            task.AssigneeList = BuildAssigneeSelectList(assignees, task.Assignee);
+
+            return PartialView("_AssignTask", task);
+        }
+
+        //[HttpPost]
+        //[Route("taskitem/assign-task.html")]
+        //public async Task<IActionResult> Assign(int[] taskids, int accountId)
+        //{
+
+        //}
+
+
         /// <summary>
         /// Update file
         /// </summary>

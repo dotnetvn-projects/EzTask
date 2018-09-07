@@ -91,11 +91,8 @@ $.fn.deleteTask = function () {
                 }
             });
 
-            //ask for delete
-            $.showDialog({
-                dialogId: 'modal-confirm',
-                content: 'Do you wanna delete ?',
-                confirmAction: function () {
+            $.confirmDialog({
+                action: function () {
                     $.showLoading();
                     $.ajax({
                         type: 'post',
@@ -118,13 +115,61 @@ $.fn.deleteTask = function () {
         }
         else {
             //warning when don't have any items
-            $.showDialog({
-                dialogId: 'modal-warning',
-                content: 'No items to delete, please select at least 1 item.'
+            $.alertDialog({
+                content: 'No item to delete, please select at least 1 item.'
             });
         }
     });
 };
+
+$.fn.assignTask = function () {
+    $(this).click(function () {
+        var isChecked = $(".task-table input:checkbox:checked").length > 0;
+        if (isChecked) {
+            //get ids
+            var ids = [];
+            $(".task-table input[type='checkbox']").each(function () {
+                var chk = $(this);
+                if (chk.prop('checked')) {
+                    var id = chk.attr("data-id");
+                    ids.push(id);
+                }
+            });
+
+            var projectId = $('.project-list').val();
+            $.showLoading();
+            $.ajax({
+                url: 'taskitem/generate-assign-view.html',
+                type: 'POST',
+                data: { projectId: projectId },
+                success: function (data) {
+                    $(".assign-task-template").html('');
+                    $(".assign-task-template").append(data);  
+                    $.hideLoading();
+                    $.showDialog({
+                        dialogId: 'assign-task-modal'
+                    });
+
+                    $('#assign-task-modal .btn-confirm').click(function () {
+                        //$.ajax({
+                        //    url: 'taskitem/generate-assign-view.html',
+                        //    type: 'POST',
+                        //    data: { projectId: projectId },
+                        //    success: function (data) {
+                        //        $.closeDialog();
+                        //    });
+                    });
+                }
+            });
+
+        } else {
+            //warning when don't have any items
+            $.alertDialog({
+                content: 'No item selected, please select at least 1 item.'
+            });
+        }
+    });
+}
 
 //iCheck for checkbox and radio inputs
 $.fn.registeriCheck = function () {
@@ -159,6 +204,7 @@ $.fn.handleEvent = function () {
     $('.btn-delete-task').deleteTask();
     $('.btn-refresh-task').refreshTask();
     $('.task-list > tbody > tr').showEdit();
+    $('.btn-assign-task').assignTask();
 };
 
 $(function () {

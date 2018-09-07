@@ -1,0 +1,28 @@
+﻿@model TaskItemViewModel
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="assign-task-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Assign task to user</h4>
+            </div>
+            <form class="form-horizontal">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="selectAssignList" class="col-sm-2 control-label">Assign To</label>
+                        <div class="col-sm-9">
+                            <select asp-for="Assignee" asp-items="@Model.AssigneeList" id="selectAssignList" class="form-control select2"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary btn-confirm">Save</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
