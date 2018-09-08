@@ -23,7 +23,7 @@ $.fn.searchTask = function () {
         for (i = 0; i < tr.length; i++) {
             td = tr[i].getElementsByTagName("td");
             for (j = 1; j < td.length; j++) {
-                var data = td[j]
+                var data = td[j];
                 if (data) {
                     if (data.innerText.toUpperCase().indexOf(filter) > -1) {
                         tr[i].style.display = "";
@@ -60,7 +60,8 @@ $.fn.loadPhrase = function () {
 
 //handle load task event when click on item in phrase list
 $.fn.loadTask = function () {
-    $(this).click(function () {
+    $(this).click(function (e) {
+        e.preventDefault();
         var phraseid = $(this).attr('data-id');
         var projectId = $('.project-list').val();
         $(this).handleLoadTask(projectId, phraseid);
@@ -123,9 +124,11 @@ $.fn.deleteTask = function () {
 };
 
 $.fn.assignTask = function () {
+
     $(this).click(function () {
         var isChecked = $(".task-table input:checkbox:checked").length > 0;
         if (isChecked) {
+
             //get ids
             var ids = [];
             $(".task-table input[type='checkbox']").each(function () {
@@ -139,37 +142,43 @@ $.fn.assignTask = function () {
             var projectId = $('.project-list').val();
             $.showLoading();
             $.ajax({
-                url: 'taskitem/generate-assign-view.html',
+                url: 'task/generate-assign-view.html',
                 type: 'POST',
                 data: { projectId: projectId },
                 success: function (data) {
                     $(".assign-task-template").html('');
-                    $(".assign-task-template").append(data);  
+                    $(".assign-task-template").append(data);
                     $.hideLoading();
                     $.showDialog({
-                        dialogId: 'assign-task-modal'
-                    });
-
-                    $('#assign-task-modal .btn-confirm').click(function () {
-                        //$.ajax({
-                        //    url: 'taskitem/generate-assign-view.html',
-                        //    type: 'POST',
-                        //    data: { projectId: projectId },
-                        //    success: function (data) {
-                        //        $.closeDialog();
-                        //    });
+                        dialogId: 'assign-task-modal',
+                        confirmAction: function () {
+                            var accountid = $("#selectAssignList").val();
+                            $.ajax({
+                                url: 'task/assign-task.html',
+                                type: 'POST',
+                                data: { taskids: ids, accountId: accountid },
+                                success: function (data) {
+                                    var phraseId = $("#phrase-id").val();
+                                    var projectId = $('.project-list').val();
+                                    $(this).handleLoadTask(projectId, phraseId);
+                                }
+                            }).promise().done(function () {
+                                $.closeDialog('assign-task-modal');
+                                $.hideLoading();
+                            });
+                        }
                     });
                 }
             });
-
-        } else {
+        }
+        else {
             //warning when don't have any items
             $.alertDialog({
                 content: 'No item selected, please select at least 1 item.'
             });
         }
     });
-}
+};
 
 //iCheck for checkbox and radio inputs
 $.fn.registeriCheck = function () {
@@ -209,5 +218,6 @@ $.fn.handleEvent = function () {
 
 $(function () {
     $('.project-list').loadPhrase();
+    $(".phrase-list > li > a").loadTask();
     $(this).handleEvent();
 });

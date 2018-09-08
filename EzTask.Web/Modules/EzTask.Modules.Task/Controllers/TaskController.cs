@@ -8,6 +8,7 @@ using EzTask.Modules.Task.Models;
 using EzTask.Web.Framework.Attributes;
 using System.Linq;
 using EzTask.Models;
+using EzTask.Web.Framework.Data;
 
 namespace EzTask.Modules.Task.Controllers
 {
@@ -51,6 +52,41 @@ namespace EzTask.Modules.Task.Controllers
         {
             var iResult = await EzTask.Task.DeleteTask(taskIds);
             return Json(iResult);
+        }
+
+        /// <summary>
+        /// Generate assign task view
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        [Route("task/generate-assign-view.html")]
+        [HttpPost]
+        public async Task<IActionResult> GenerateAssignTaskView(TaskFormDataModel model)
+        {
+            var task = new TaskItemViewModel();
+
+            var assignees = await EzTask.Project.GetAccountList(model.ProjectId);
+            task.AssigneeList = StaticResources.BuildAssigneeSelectList(assignees, task.Assignee);
+
+            return PartialView("_AssignTask", task);
+        }
+
+        /// <summary>
+        /// Assign tasks to user
+        /// </summary>
+        /// <param name="taskids"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("task/assign-task.html")]
+        public async Task<IActionResult> Assign(int[] taskids, int accountId)
+        {
+            if (taskids != null && taskids.Length > 0 || accountId > 0)
+            {
+                await EzTask.Task.AssignTask(taskids, accountId);
+            }
+
+            return Ok();
         }
 
         #endregion

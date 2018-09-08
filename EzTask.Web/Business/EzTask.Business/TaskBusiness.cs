@@ -98,35 +98,25 @@ namespace EzTask.Business
             };
 
             IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c => ids.Contains(c.Id));
-            if (!data.Any())
+            await DeleteTasks(result, data);
+
+            return result;
+        }
+
+        /// <summary>
+        /// Delete tasks by projectid
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<bool>> DeleteTask(int projectId)
+        {
+            ResultModel<bool> result = new ResultModel<bool>
             {
-                result.Status = ActionStatus.NotFound;
-            }
-            else
-            {
-                foreach (TaskItem task in data)
-                {
-                    IEnumerable<TaskHistory> history = UnitOfWork.TaskHistoryRepository.GetMany(c => c.TaskId == task.Id);
-                    if (history.Any())
-                    {
-                        UnitOfWork.TaskHistoryRepository.DeleteRange(history);
-                    }
+                Data = true
+            };
 
-                    IEnumerable<Attachment> attachment = UnitOfWork.AttachRepository.GetMany(c => c.TaskId == task.Id);
-                    if (attachment.Any())
-                    {
-                        UnitOfWork.AttachRepository.DeleteRange(attachment);
-                    }
-                }
-
-                UnitOfWork.TaskRepository.DeleteRange(data);
-                int iResult = await UnitOfWork.CommitAsync();
-                if (iResult > 0)
-                {
-                    result.Status = ActionStatus.Ok;
-                }
-            }
-
+            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c => c.ProjectId == projectId);
+            await DeleteTasks(result, data);
             return result;
         }
 
@@ -192,6 +182,23 @@ namespace EzTask.Business
             IEnumerable<TaskItemModel> model = data.ToModels();
 
             return model;
+        }
+
+        /// <summary>
+        /// Assign task to user
+        /// </summary>
+        /// <param name="taskids"></param>
+        /// <param name="accountId"></param>
+        public async Task AssignTask(int[] taskids, int accountId)
+        {
+            var tasks = await UnitOfWork.TaskRepository.GetManyAsync(c => taskids.Contains(c.Id), false);
+            foreach(var task in tasks)
+            {
+                task.AssigneeId = accountId == 0 ? null : (int?)accountId;
+
+                UnitOfWork.TaskRepository.Update(task);
+            }
+            var iResult = await UnitOfWork.CommitAsync();            
         }
 
         #endregion Task
@@ -347,6 +354,40 @@ namespace EzTask.Business
             }
 
             return content;
+        }
+        #endregion
+
+        #region Private
+        private async Task DeleteTasks(ResultModel<bool> result, IEnumerable<TaskItem> data)
+        {
+            if (!data.Any())
+            {
+                result.Status = ActionStatus.NotFound;
+            }
+            else
+            {
+                foreach (TaskItem task in data)
+                {
+                    IEnumerable<TaskHistory> history = UnitOfWork.TaskHistoryRepository.GetMany(c => c.TaskId == task.Id);
+                    if (history.Any())
+                    {
+                        UnitOfWork.TaskHistoryRepository.DeleteRange(history);
+                    }
+
+                    IEnumerable<Attachment> attachment = UnitOfWork.AttachRepository.GetMany(c => c.TaskId == task.Id);
+                    if (attachment.Any())
+                    {
+                        UnitOfWork.AttachRepository.DeleteRange(attachment);
+                    }
+                }
+
+                UnitOfWork.TaskRepository.DeleteRange(data);
+                int iResult = await UnitOfWork.CommitAsync();
+                if (iResult > 0)
+                {
+                    result.Status = ActionStatus.Ok;
+                }
+            }
         }
         #endregion
     }

@@ -36,7 +36,8 @@
 
 
         if (settings.confirmAction) {
-            $('#' + settings.dialogId + " .btn-confirm").click(function () {
+            $('#' + settings.dialogId + " .btn-confirm").click(function (e) {
+                e.preventDefault();
                 settings.confirmAction();
             });
         }

@@ -32,7 +32,6 @@ namespace EzTask.Entity.Data
 
         public TaskItem ()
         {
-            Assignee = new Account();
         }
     }
 }

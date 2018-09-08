@@ -15,8 +15,11 @@ namespace EzTask.Business
 {
     public class ProjectBusiness : BusinessCore
     {
-        public ProjectBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly TaskBusiness _task;
+        public ProjectBusiness(UnitOfWork unitOfWork,
+            TaskBusiness task) : base(unitOfWork)
         {
+            _task = task;
         }
 
         /// <summary>
@@ -111,6 +114,9 @@ namespace EzTask.Business
                         var phrases = await UnitOfWork.PhraseRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
                         UnitOfWork.PhraseRepository.DeleteRange(phrases);
 
+                        //remove task
+                        await _task.DeleteTask(project.ProjectId);
+
                         //remove project
                         UnitOfWork.ProjectRepository.Delete(project.ToEntity());
 
@@ -121,7 +127,7 @@ namespace EzTask.Business
                     result.Status = ActionStatus.Ok;
                     result.Data = true;
                 }
-                catch (Exception )
+                catch (Exception ex)
                 {
                     transaction.Rollback();
                     result.Status = ActionStatus.Failed;

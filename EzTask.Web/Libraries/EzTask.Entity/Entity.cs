@@ -40,5 +40,10 @@ namespace EzTask.Entity
         {
             return (T)MemberwiseClone();
         }
+
+        public virtual void ResetNavigate()
+        {
+
+        }
     }
 }
