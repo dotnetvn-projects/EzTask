@@ -1,7 +1,7 @@
 ﻿
 $.fn.buildForm = function (template) {
-    $(".task-item-template").html('');
-    $(".task-item-template").append(template);  
+    $(".task-template").html('');
+    $(".task-template").append(template);  
     var form = $("#task-form");
     $.initCommonLib();
     $.validator.unobtrusive.parse(form);
@@ -92,8 +92,8 @@ $.fn.displayHistoryDetail = function () {
             async: false,
             data: { historyId: id },
             success: function (data) {
-                $(".task-history-template").html('');
-                $(".task-history-template").append(data);  
+                $(".task-template").html('');
+                $(".task-template").append(data);  
                 $.showDialog({
                     dialogId: 'task-history-detail'
                 });

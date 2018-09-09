@@ -34,23 +34,29 @@ input[type="file"] {
 
 
 
-
-
 /***************Task table***************/
-.task-table > .table {
-    margin: 0;
+
+.task-controls .task-count {
+    margin: 6px;
 }
+
+.task-table {
+    max-height: 709px;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+    .task-table > .table {
+        margin: 0;
+    }
 
 .task-controls {
     padding: 5px;
 }
 
-.task-title {
-}
-
-.task-controls.with-border {
-    border-bottom: 1px solid #f4f4f4;
-}
+    .task-controls.with-border {
+        border-bottom: 1px solid #f4f4f4;
+    }
 
 .task-read-info {
     border-bottom: 1px solid #f4f4f4;
@@ -112,8 +118,6 @@ input[type="file"] {
             height: auto;
         }
 /***************End Task table***************/
-
-
 
 
 
@@ -209,12 +213,13 @@ input[type="file"] {
     overflow-y: auto;
     overflow-x: hidden;
 }
-/*********End Task history detail********/
+    /*********End Task history detail********/
 
 
-/******Scroll bar******/
+    /******Scroll bar******/
     /* width */
     .content-container::-webkit-scrollbar,
+    .task-table::-webkit-scrollbar,
     #task-history-detail .inner::-webkit-scrollbar,
     .phrase-list::-webkit-scrollbar {
         width: 4px;
@@ -222,6 +227,7 @@ input[type="file"] {
 
     /* Track */
     .content-container::-webkit-scrollbar-track,
+    .task-table::-webkit-scrollbar-track,
     #task-history-detail .inner::-webkit-scrollbar-track,
     .phrase-list::-webkit-scrollbar-track {
         background: #f1f1f1;
@@ -229,16 +235,18 @@ input[type="file"] {
 
     /* Handle */
     .content-container::-webkit-scrollbar-thumb,
+    .task-table::-webkit-scrollbar-thumb,
     #task-history-detail .inner::-webkit-scrollbar-thumb,
     .phrase-list::-webkit-scrollbar-thumb {
         background: #888;
     }
 
-    /* Handle on hover */
-    .content-container::-webkit-scrollbar-thumb:hover,
-    #task-history-detail .inner::-webkit-scrollbar-thumb:hover
-    .phrase-list::-webkit-scrollbar-thumb:hover {
-        background: #555;
-    }
+        /* Handle on hover */
+        .content-container::-webkit-scrollbar-thumb:hover,
+        .task-table::-webkit-scrollbar-thumb:hover,
+        #task-history-detail .inner::-webkit-scrollbar-thumb:hover
+        .phrase-list::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
 
 /*****End Scroll bar******/

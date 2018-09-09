@@ -146,8 +146,9 @@ $.fn.assignTask = function () {
                 type: 'POST',
                 data: { projectId: projectId },
                 success: function (data) {
-                    $(".assign-task-template").html('');
-                    $(".assign-task-template").append(data);
+                    $(".task-template").html('');
+                    $(".task-template").append(data);
+                    $.initCommonLib();
                     $.hideLoading();
                     $.showDialog({
                         dialogId: 'assign-task-modal',

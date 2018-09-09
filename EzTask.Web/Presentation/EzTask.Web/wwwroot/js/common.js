@@ -14,7 +14,7 @@
                 $(this).datepicker('update', new Date($(this).val()));
             }
         });
-    }
+    };
     //------End common------
 
 

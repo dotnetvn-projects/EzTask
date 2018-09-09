@@ -128,7 +128,7 @@ namespace EzTask.Business
         public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId,
             int phraseId,
             int page = 1,
-            int pageSize = 50)
+            int pageSize = 9999)
         {
 
             List<TaskItem> data = await UnitOfWork.TaskRepository.Entity
@@ -358,6 +358,7 @@ namespace EzTask.Business
         #endregion
 
         #region Private
+
         private async Task DeleteTasks(ResultModel<bool> result, IEnumerable<TaskItem> data)
         {
             if (!data.Any())

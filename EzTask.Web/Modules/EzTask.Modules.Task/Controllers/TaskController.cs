@@ -66,7 +66,7 @@ namespace EzTask.Modules.Task.Controllers
             var task = new TaskItemViewModel();
 
             var assignees = await EzTask.Project.GetAccountList(model.ProjectId);
-            task.AssigneeList = StaticResources.BuildAssigneeSelectList(assignees, task.Assignee);
+            task.AssigneeList = StaticResources.BuildAssigneeSelectList(assignees);
 
             return PartialView("_AssignTask", task);
         }
@@ -81,7 +81,7 @@ namespace EzTask.Modules.Task.Controllers
         [Route("task/assign-task.html")]
         public async Task<IActionResult> Assign(int[] taskids, int accountId)
         {
-            if (taskids != null && taskids.Length > 0 || accountId > 0)
+            if (taskids != null && taskids.Length > 0)
             {
                 await EzTask.Task.AssignTask(taskids, accountId);
             }
