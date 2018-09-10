@@ -11,7 +11,7 @@
                     },
                     success: function (response) {
                         window.location = "/project.html";
-                    },                   
+                    }                   
                 });
             }
         });

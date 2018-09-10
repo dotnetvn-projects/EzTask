@@ -8,6 +8,7 @@ $.fn.buildForm = function (template) {
     $("#task-modal .btn-confirm").Submit();
     $("#file-upload").putAttachment();
     $('.history-detail').displayHistoryDetail();
+    $.triggerCloseDialog('task-modal');
 };
 
 $.fn.showAddNewModal = function () {
@@ -92,12 +93,17 @@ $.fn.displayHistoryDetail = function () {
             async: false,
             data: { historyId: id },
             success: function (data) {
-                $(".task-template").html('');
-                $(".task-template").append(data);  
+                $(".task-history-template").html('');
+                $(".task-history-template").append(data);    
+                //keep task model work correctly
+                $('#task-history-detail').on('hidden.bs.modal', function () {
+                    $("body").addClass("modal-open");
+                })
+
+                $.hideLoading();
                 $.showDialog({
                     dialogId: 'task-history-detail'
                 });
-                $.hideLoading();
             }
         });
     });
@@ -110,6 +116,7 @@ $.fn.loadAttachment = function (taskId) {
         async: false,
         data: { taskId: taskId },
         success: function (data) {
+            $('#tab_attachment').html('');
             $('#tab_attachment').html(data);
             $("#file-upload").putAttachment();
         }
@@ -123,6 +130,7 @@ $.fn.loadHistory = function (taskId) {
         async: false,
         data: { taskId: taskId },
         success: function (data) {
+            $('#tab_history').html('');
             $('#tab_history').html(data);
             $('.history-detail').displayHistoryDetail();
         }
@@ -160,14 +168,14 @@ function submitSuccess(response) {
 
         $(".tab-content").append(attachmentContent).append(historyContent);
 
-        currentId = response.data.taskId;
-
-        $(this).loadAttachment(currentId);
-        $(this).loadHistory(currentId);
+        currentId = response.data.taskId;      
 
         $("#TaskId").val(currentId);
        
     }
+
+    $(this).loadAttachment(currentId);
+    $(this).loadHistory(currentId);
 
     $("#task-modal .modal-title").html("Task '<b>" + response.data.taskTitle + "</b>'");
 

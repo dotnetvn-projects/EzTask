@@ -15,6 +15,8 @@ namespace EzTask.Business
 {
     public class PhraseBusiness : BusinessCore
     {
+        private const string DEFAULT_PHRASE = "Open Features";
+
         public PhraseBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
@@ -65,7 +67,7 @@ namespace EzTask.Business
         public async Task<PhraseModel> GetOpenFeaturePhrase(int projectId)
         {
             var data = await UnitOfWork.PhraseRepository.GetAsync(c => 
-            c.ProjectId == projectId && c.PhraseName == "Open Features",
+            c.ProjectId == projectId && c.PhraseName == DEFAULT_PHRASE,
                 allowTracking: false);
 
             return data.ToModel();

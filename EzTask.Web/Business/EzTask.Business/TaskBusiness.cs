@@ -14,8 +14,13 @@ namespace EzTask.Business
     public class TaskBusiness : BusinessCore
     {
 
-        public TaskBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly PhraseBusiness _phrase;
+        private readonly AccountBusiness _account;
+        public TaskBusiness(UnitOfWork unitOfWork,
+            PhraseBusiness phrase, AccountBusiness account) : base(unitOfWork)
         {
+            _phrase = phrase;
+            _account = account;
         }
 
         #region Task
@@ -316,7 +321,13 @@ namespace EzTask.Business
             return iResult.ToModels();
         }
 
-        public string CompareChanges(TaskItemModel newData, TaskItemModel oldData)
+        /// <summary>
+        /// Compare changes of old and new task
+        /// </summary>
+        /// <param name="newData"></param>
+        /// <param name="oldData"></param>
+        /// <returns></returns>
+        public async Task<string> CompareChangesAsync(TaskItemModel newData, TaskItemModel oldData)
         {
            
             string content = string.Empty;
@@ -330,27 +341,47 @@ namespace EzTask.Business
             }
             if (newData.Phrase.Id != oldData.Phrase.Id)
             {
-                string oldItem = oldData.Phrase.PhraseName;
-                string newItem = newData.Phrase.PhraseName;
+                string oldItem = "Open Features";
+                string newItem = "Open Features";
+                if (newData.Phrase.Id > 0)
+                {
+                    var phrase = await _phrase.GetPhraseById(newData.Phrase.Id);
+                    newItem = phrase.PhraseName;
+                }
+                if (oldData.Phrase.Id > 0)
+                {
+                    var phrase = await _phrase.GetPhraseById(oldData.Phrase.Id);
+                    oldItem = phrase.PhraseName;
+                }
                 content += $"<p><b>Phrase</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
             }
             if (newData.Assignee.AccountId != oldData.Assignee.AccountId)
             {
-                string oldItem = oldData.Assignee.DisplayName;
-                string newItem = newData.Assignee.DisplayName;
-                content += $"<p><b>Assignee</b>:<br/><small>{oldItem} => {oldItem}</small> </p>";
+                string oldItem = "Non-Assigned";
+                string newItem = "Non-Assigned";
+                if(newData.Assignee.AccountId > 0)
+                {
+                    var account = await _account.GetAccountInfo(newData.Assignee.AccountId);
+                    newItem = account.DisplayName;
+                }
+                if (oldData.Assignee.AccountId > 0)
+                {
+                    var account = await _account.GetAccountInfo(oldData.Assignee.AccountId);
+                    oldItem = account.DisplayName;
+                }
+                content += $"<p><b>Assignee</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
             }
             if (newData.Priority != oldData.Priority)
             {
                 string oldItem = oldData.Priority.ToString();
                 string newItem = newData.Priority.ToString();
-                content += $"<p><b>Priority</b>:<br/><small>{oldItem} => {oldItem}</small> </p>";
+                content += $"<p><b>Priority</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
             }
             if (newData.Status != oldData.Status)
             {
                 string oldItem = oldData.Status.ToString();
                 string newItem = newData.Status.ToString();
-                content += $"<p><b>Status</b>:<br/><small>{oldItem} => {oldItem}</small> </p>";
+                content += $"<p><b>Status</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
             }
 
             return content;

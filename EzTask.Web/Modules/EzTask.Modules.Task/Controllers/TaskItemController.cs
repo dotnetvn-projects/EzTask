@@ -75,17 +75,22 @@ namespace EzTask.Modules.Task.Controllers
 
                 if(viewModel.TaskId <= 0)
                 {
-                    title = DisplayName + " created task \"" + iResult.Data.TaskTitle + "\"";
+                    title =  "created task \"" + iResult.Data.TaskTitle + "\" <small>(Code: " + model.TaskCode + ")</small>";
                 }
                 else
                 {
-                    title = DisplayName + " updated task \"" + iResult.Data.TaskTitle + "\"";
+                    title =   "updated task \"" + iResult.Data.TaskTitle + "\" <small>(Code: " + model.TaskCode + ")</small>";
                     var oldData = SessionManager.GetObject<TaskItemModel>(AppKey.TrackTask);
                     var newData = CreateTaskItemModel(viewModel);
-                    diff = EzTask.Task.CompareChanges(newData, oldData);
+
+                    diff = await EzTask.Task.CompareChangesAsync(newData, oldData);
+
+                    //re-assign new data to session
+                    SessionManager.SetObject(AppKey.TrackTask, newData);
                 }
                  
                 await SaveTaskHistory(iResult.Data.TaskId, title, diff);
+                
             }
             return Json(iResult);
         }

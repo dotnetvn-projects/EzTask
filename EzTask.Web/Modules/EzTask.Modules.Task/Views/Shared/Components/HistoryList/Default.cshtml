@@ -11,7 +11,7 @@
                         <img src="@Url.Action("LoadAvatar", "Common", new { accountId = history.User.AccountId })" class="img-circle img-thumbnail" alt="User Image">
                     </div>
                     <div class="pull-left description">
-                        <span><b>@history.User.DisplayName</b> @history.Title</span>
+                        <span><b>@history.User.DisplayName</b> @Html.Raw(history.Title)</span>
                         <p><i class="fa fa-calendar-check-o text-green"></i> @history.UpdatedDate.ToString("dd/MM/yyyy HH:mm:ss")</p>
                         @if (!string.IsNullOrEmpty(history.Content))
                         {
