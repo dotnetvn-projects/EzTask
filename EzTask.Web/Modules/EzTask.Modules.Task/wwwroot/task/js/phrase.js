@@ -1,8 +1,11 @@
 ﻿
 function setPhraseModalValue(projectId, phraseId) {
+    var date = new Date();
     $('#inputPhraseName').val('');
     $('#phrase-modal .project-id').val(projectId);
     $('#phrase-modal .phrase-id').val(phraseId);
+    $('#phrase-modal #inputStartDate').val(date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear());
+    $('#phrase-modal #inputEndDate').val((date.getDate() + 1) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear());
 }
 
 function formatDate(dateString) {
@@ -16,7 +19,7 @@ $.fn.showModal = function () {
         setPhraseModalValue(projectId, 0);
         $.showDialog({
             dialogId: 'phrase-modal',
-            title: 'Add new phrase',
+            title: 'Add new phrase'
         });
     });
 };
@@ -25,8 +28,6 @@ $.fn.phraseModalAction = function () {
     $(this).click(function (e) {
         e.preventDefault();
         var form = $("#phrase-form");
-        var projectId = $('.project-list').val();
-        var phraseId = $('.phrase-id').val();
 
         if (form.valid()) {
             $.ajax({
@@ -37,14 +38,11 @@ $.fn.phraseModalAction = function () {
                     var phrasePanel = $(".phrase-list-panel");
                     phrasePanel.html('');
                     phrasePanel.html(response);
-
-                    $("#inputPhraseName").val('');
-                    $("#inputStartDate").val(formatDate(response.startDate));
-                    $("#inputEndDate").val(formatDate(response.endDate));
+                    $(".phrase-list > li > a").loadTask();
                     $.closeDialog('phrase-modal');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $('#phrase-modal .error-message').text('Error, EzTask cannot execute deleting data. Try again please !')
+                    $('#phrase-modal .error-message').text('Error, EzTask cannot create phrase. Try again please !');
                 }
             });
         }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EzTask.Framework.Common;
 using EzTask.Models;
 using EzTask.Models.Enum;
 using EzTask.Modules.Core.Controllers;
@@ -23,12 +24,15 @@ namespace EzTask.Modules.Task.Controllers
             if(!ModelState.IsValid)
                 return BadRequest();
 
+            model.StartDate = DateTimeUtilities.ParseFromString(model.StartDateDisplay);
+            model.EndDate = DateTimeUtilities.ParseFromString(model.EndDateDisplay);
+            if(model.EndDate < model.StartDate)
+            {
+                return BadRequest("End Date must be larger than Start Date");
+            }
             var iResult = await EzTask.Phrase.Save(model);
             if (iResult.Status == ActionStatus.Ok)
             {
-                var data = iResult.Data;
-                data.StartDate = DateTime.Now;
-                data.EndDate = DateTime.Now.AddDays(1);
                 return LoadPhraseList(model.ProjectId);
             }
 

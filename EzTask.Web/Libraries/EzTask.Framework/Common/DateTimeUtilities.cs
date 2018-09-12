@@ -6,6 +6,16 @@ namespace EzTask.Framework.Common
 {
     public static class DateTimeUtilities
     {
+        /// <summary>
+        /// Convert dd/mm/yyy to datatime
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static DateTime ParseFromString(string data)
+        {
+            var date = data.Split('/');
+            return new DateTime(int.Parse(date[2]), int.Parse(date[1]),int.Parse(date[0]));
+        }
         public static string TimeAgo(this DateTime dateTime)
         {
             TimeSpan span = DateTime.Now - dateTime;

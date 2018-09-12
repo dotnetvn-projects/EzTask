@@ -15,22 +15,34 @@ namespace EzTask.Models
         public string PhraseName { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}",
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
             ApplyFormatInEditMode = true)]
         public DateTime? StartDate { get; set; }
 
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}",
+        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
             ApplyFormatInEditMode = true)]
         public DateTime? EndDate { get; set; }
 
         public PhraseStatus Status { get; set; }
 
+        public string StartDateDisplay { get; set; }
+        public string EndDateDisplay { get; set; }
+
         public PhraseModel()
         {
+            Reset();
+            Status = PhraseStatus.Open;
+            
+        }
+
+        public void Reset()
+        {
+            PhraseName = string.Empty;
             StartDate = DateTime.Now;
             EndDate = DateTime.Now.AddDays(1);
-            Status = PhraseStatus.Open;
+            StartDateDisplay = StartDate.Value.ToString("dd/MM/yyyy");
+            EndDateDisplay = EndDate.Value.ToString("dd/MM/yyyy");
         }
     }
 }
