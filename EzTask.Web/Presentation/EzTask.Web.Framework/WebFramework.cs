@@ -22,7 +22,7 @@ namespace EzTask.Web.Framework
         {         
             FrameworkCore.Register(services, configuration);
             BusinessInitializer.Register(services);
-
+            
             env.RunWebBuilder();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -32,7 +32,7 @@ namespace EzTask.Web.Framework
             services.AddSingleton<Interfaces.IWebHostEnvironment, WebHost>();
             services.AddDistributedMemoryCache();
             services.AddSession();
-            services.AddMemoryCache();
+            services.AddMemoryCache();           
 
             services.Configure<CookiePolicyOptions>(options =>
             {

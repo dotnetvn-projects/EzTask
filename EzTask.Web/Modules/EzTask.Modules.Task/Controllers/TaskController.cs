@@ -13,7 +13,7 @@ using EzTask.Web.Framework.Data;
 namespace EzTask.Modules.Task.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class TaskController : CoreController
+    public class TaskController : BaseController
     {
         public TaskController(IServiceProvider serviceProvider) :
             base(serviceProvider)

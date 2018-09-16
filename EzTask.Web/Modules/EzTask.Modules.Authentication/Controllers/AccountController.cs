@@ -9,7 +9,7 @@ using EzTask.Models.Enum;
 
 namespace EzTask.Modules.Authentication.Controllers
 {
-    public class AccountController : CoreController
+    public class AccountController : BaseController
     {
         public AccountController(IServiceProvider serviceProvider) :
             base(serviceProvider)

@@ -215,6 +215,7 @@ $.fn.handleEvent = function () {
     $('.btn-refresh-task').refreshTask();
     $('.task-list > tbody > tr').showEdit();
     $('.btn-assign-task').assignTask();
+    $(".remove-phrase").removePhrase();
 };
 
 $(function () {

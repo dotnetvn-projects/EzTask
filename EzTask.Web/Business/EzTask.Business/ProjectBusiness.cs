@@ -60,6 +60,7 @@ namespace EzTask.Business
                                 {
                                     PhraseName = "Open Features",
                                     ProjectId = project.Id,
+                                    IsDefault = true,
                                     Status = (int)PhraseStatus.Open
                                 };
                                 UnitOfWork.PhraseRepository.Add(feature);

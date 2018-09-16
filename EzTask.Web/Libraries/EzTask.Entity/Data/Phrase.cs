@@ -11,6 +11,7 @@ namespace EzTask.Entity.Data
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public short Status { get; set; }
+        public bool IsDefault { get; set; }
 
         public Project Project { get; set; }
     }

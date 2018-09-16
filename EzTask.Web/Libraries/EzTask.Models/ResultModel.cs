@@ -4,7 +4,7 @@ namespace EzTask.Models
 {
     public class ResultModel<T>
     {
-        public ActionStatus Status { get; set; }//move action status to model
+        public ActionStatus Status { get; set; }
         public T Data { get; set; }
 
         public ResultModel()

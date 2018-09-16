@@ -9,13 +9,13 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Core.Controllers
 {
-    public class CoreController: Controller
+    public class BaseController: Controller
     {
         protected SessionManager SessionManager;
         protected CookiesManager CookiesManager;
         protected EzTaskBusiness EzTask;
 
-        public CoreController(IServiceProvider serviceProvider)
+        public BaseController(IServiceProvider serviceProvider)
         {
             InvokeComponents(serviceProvider);
         }
@@ -112,7 +112,7 @@ namespace EzTask.Modules.Core.Controllers
         {
             serviceProvider.InvokeComponents(out EzTask);
             serviceProvider.InvokeComponents(out SessionManager);
-            serviceProvider.InvokeComponents(out CookiesManager);
+            serviceProvider.InvokeComponents(out CookiesManager);           
         }
         #endregion
     }

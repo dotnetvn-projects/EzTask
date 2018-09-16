@@ -20,7 +20,7 @@ using EzTask.Web.Framework.Data;
 namespace EzTask.Modules.Task.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class TaskItemController : CoreController
+    public class TaskItemController : BaseController
     {
         public TaskItemController(IServiceProvider serviceProvider) :
             base(serviceProvider)
@@ -50,7 +50,7 @@ namespace EzTask.Modules.Task.Controllers
             var assignees = await EzTask.Project.GetAccountList(task.ProjectId);
             task.AssigneeList = StaticResources.BuildAssigneeSelectList(assignees, task.Assignee);
 
-            task.StatusList = StaticResources.BuildStatusSelectList(task.Status);
+            task.StatusList = StaticResources.BuildTaskStatusSelectList(task.Status);
             task.PriorityList = StaticResources.BuildPrioritySelectList(task.Priority);           
 
             return PartialView("_CreateOrUpdateTask", task);

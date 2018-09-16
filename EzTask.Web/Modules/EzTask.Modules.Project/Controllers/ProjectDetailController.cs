@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EzTask.Modules.Project.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class ProjectDetailController : CoreController
+    public class ProjectDetailController : BaseController
     {
         public ProjectDetailController(IServiceProvider serviceProvider) :
             base(serviceProvider)

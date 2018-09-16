@@ -54,6 +54,17 @@ namespace EzTask.Repository
         }
 
         /// <summary>
+        /// Delete an entity
+        /// </summary>
+        /// <param name="key"></param>
+        public void Delete(int key)
+        {
+            T existing = Entity.Find(key);
+            if (existing != null)
+                Entity.Remove(existing);
+        }
+
+        /// <summary>
         /// Delete entities
         /// </summary>
         /// <param name="entities"></param>

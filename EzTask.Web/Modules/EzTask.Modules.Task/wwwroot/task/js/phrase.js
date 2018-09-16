@@ -1,13 +1,4 @@
 ﻿
-function setPhraseModalValue(projectId, phraseId) {
-    var date = new Date();
-    $('#inputPhraseName').val('');
-    $('#phrase-modal .project-id').val(projectId);
-    $('#phrase-modal .phrase-id').val(phraseId);
-    $('#phrase-modal #inputStartDate').val(date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear());
-    $('#phrase-modal #inputEndDate').val((date.getDate() + 1) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear());
-}
-
 function formatDate(dateString) {
     var date = new Date(dateString);
     return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
@@ -15,12 +6,29 @@ function formatDate(dateString) {
 
 $.fn.showModal = function () {
     $(this).click(function () {
-        var projectId = $('.project-list').val();
-        setPhraseModalValue(projectId, 0);
-        $.showDialog({
-            dialogId: 'phrase-modal',
-            title: 'Add new phrase'
+        var phraseid = 0;
+
+        if ($(this).hasClass("edit-phrase")) {
+            phraseid = $("#phrase-id").val();
+        }
+
+        $.showLoading();
+        $.ajax({
+            url: 'task/generate-phrase.html',
+            type: "POST",
+            async: false,
+            data: { phraseId: phraseid },
+            success: function (data) {
+                $(".phrase-template").html('');
+                $(".phrase-template").append(data);
+                
+                $.hideLoading();
+                $.showDialog({
+                    dialogId: 'phrase-modal'
+                });
+            }
         });
+             
     });
 };
 
@@ -40,6 +48,7 @@ $.fn.phraseModalAction = function () {
                     phrasePanel.html(response);
                     $(".phrase-list > li > a").loadTask();
                     $.closeDialog('phrase-modal');
+                    $(".phrase-template").html('');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $('#phrase-modal .error-message').text('Error, EzTask cannot create phrase. Try again please !');
@@ -49,8 +58,39 @@ $.fn.phraseModalAction = function () {
     });
 };
 
+$.fn.removePhrase = function () {
+    $(this).click(function () {
+        $.confirmDialog({
+            title: 'Warning',
+            content: 'All tasks which related to this phrase will be removed. Are you sure to continue?',
+            action: function () {
+                $.showLoading();
+                $.ajax({
+                    type: 'post',
+                    url: "task/delete-phrase.html",
+                    data: { phraseId: $("#phrase-id").val()},
+                    success: function (response) {
+                        $('.project-list').change();
+                        $.hideLoading();
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        $.hideLoading();
+
+                        $.alertDialog({
+                            title: 'Error',
+                            content: xhr.responseText
+                        });
+                    }
+                });
+            }
+        });
+    });
+};
+
 $(function () {
     $(".btn-addnew-phrase").showModal();
+    $(".edit-phrase").showModal();
     $("#phrase-modal .btn-confirm").phraseModalAction();
     $.triggerCloseDialog('phrase-modal');
+    $(".remove-phrase").removePhrase();
 });

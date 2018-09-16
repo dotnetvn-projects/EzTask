@@ -73,10 +73,14 @@
     //------Confirm dialog----
     $.confirmDialog = function (options) {
         var settings = $.extend({
+            title: 'Hello',
+            content:'Are you sure to continue?',
             action: null
         }, options);
 
         $.confirm({
+            title: settings.title,
+            content: settings.content,
             icon: 'fa fa-question',
             theme: 'modern',
             closeIcon: true,
@@ -103,7 +107,7 @@
 
         $.alert({
             title: settings.title,
-            content: settings.content,
+            content: settings.content
         });
     };
     //------Confirm dialog----

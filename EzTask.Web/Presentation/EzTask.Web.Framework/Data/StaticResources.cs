@@ -150,10 +150,46 @@ namespace EzTask.Web.Framework.Data
         /// Build Status SelectList items
         /// </summary>
         /// <returns></returns>
-        public static List<SelectListItem> BuildStatusSelectList(Int16 selectedId = 0)
+        public static List<SelectListItem> BuildTaskStatusSelectList(Int16 selectedId = 0)
         {
             List<SelectListItem> statusItems = new List<SelectListItem>();
             var statuses = EnumUtilities.ToList<TaskItemStatus>();
+            if (statuses.Any())
+            {
+                foreach (var status in statuses)
+                {
+                    var selectItem = new SelectListItem
+                    {
+                        Text = status,
+                        Value = ((Int16)status.ToEnum<TaskItemStatus>()).ToString()
+                    };
+
+                    if (selectedId != 0)
+                    {
+                        var statusEnum = selectedId.ToEnum<TaskItemStatus>();
+                        if (status == statusEnum.ToString())
+                        {
+                            selectItem.Selected = true;
+                        }
+                    }
+                    statusItems.Add(selectItem);
+                }
+            }
+            if (selectedId == 0)
+            {
+                statusItems[0].Selected = true;
+            }
+            return statusItems;
+        }
+
+        /// <summary>
+        /// Build Status SelectList items
+        /// </summary>
+        /// <returns></returns>
+        public static List<SelectListItem> BuildPhraseStatusSelectList(Int16 selectedId = 0)
+        {
+            List<SelectListItem> statusItems = new List<SelectListItem>();
+            var statuses = EnumUtilities.ToList<PhraseStatus>();
             if (statuses.Any())
             {
                 foreach (var status in statuses)

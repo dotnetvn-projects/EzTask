@@ -1,22 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EzTask.DataAccess;
-using EzTask.Entity.Data;
+﻿using EzTask.Entity.Data;
 using EzTask.Framework.Infrastructures;
-using EzTask.Interfaces;
 using EzTask.Models;
 using EzTask.Models.Enum;
 using EzTask.Repository;
-using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EzTask.Business
 {
     public class PhraseBusiness : BusinessCore
     {
-        private const string DEFAULT_PHRASE = "Open Features";
-
         public PhraseBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
         {
         }
@@ -30,19 +24,23 @@ namespace EzTask.Business
         {
             ResultModel<PhraseModel> result = new ResultModel<PhraseModel>();
 
-            var phrase = model.ToEntity();
+            Phrase phrase = model.ToEntity();
             if (phrase.Id < 1)
             {
+                phrase.Status = (short)PhraseStatus.Open;
                 UnitOfWork.PhraseRepository.Add(phrase);
             }
             else
             {
+                var isDefault = IsDefault(model.Id);
+                phrase.IsDefault = isDefault;
+
                 UnitOfWork.PhraseRepository.Update(phrase);
             }
 
-            var iResult = await UnitOfWork.CommitAsync();
+            int iResult = await UnitOfWork.CommitAsync();
 
-            if(iResult > 0)
+            if (iResult > 0)
             {
                 result.Status = ActionStatus.Ok;
                 result.Data = phrase.ToModel();
@@ -52,26 +50,51 @@ namespace EzTask.Business
 
         public async Task<PhraseModel> GetPhraseById(int phraseId)
         {
-            var data = await UnitOfWork.PhraseRepository.GetByIdAsync(phraseId);
+            Phrase data = await UnitOfWork.PhraseRepository.GetByIdAsync(phraseId);
             return data.ToModel();
-            //TODO count task item in phrase
         }
 
         public async Task<IEnumerable<PhraseModel>> GetPhrase(int projectId)
         {
-            var data = await UnitOfWork.PhraseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
+            IEnumerable<Phrase> data = await UnitOfWork.PhraseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
             return data.ToModels();
             //TODO count task item in phrase
         }
 
         public async Task<PhraseModel> GetOpenFeaturePhrase(int projectId)
         {
-            var data = await UnitOfWork.PhraseRepository.GetAsync(c => 
-            c.ProjectId == projectId && c.PhraseName == DEFAULT_PHRASE,
+            Phrase data = await UnitOfWork.PhraseRepository.GetAsync(c =>
+            c.ProjectId == projectId && c.IsDefault == true,
                 allowTracking: false);
 
             return data.ToModel();
-            //TODO count task item in phrase
+        }
+
+        public bool IsDefault(int phraseId)
+        {
+            Phrase data = UnitOfWork.PhraseRepository.Get(c => c.Id == phraseId && c.IsDefault);
+
+            return data != null;
+        }
+
+        /// <summary>
+        /// Delete phrase
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<PhraseModel>> Delele(PhraseModel model)
+        {
+            ResultModel<PhraseModel> result = new ResultModel<PhraseModel>();
+
+            UnitOfWork.PhraseRepository.Delete(model.Id);
+            int iResult = await UnitOfWork.CommitAsync();
+
+            if (iResult > 0)
+            {
+                result.Status = ActionStatus.Ok;
+            }
+
+            return result;
         }
     }
 }

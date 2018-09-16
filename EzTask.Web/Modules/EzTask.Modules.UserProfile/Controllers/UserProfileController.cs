@@ -9,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace EzTask.Modules.UserProfile.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class UserProfileController : CoreController
+    public class UserProfileController : BaseController
     {
         public UserProfileController(IServiceProvider serviceProvider) :
             base(serviceProvider)

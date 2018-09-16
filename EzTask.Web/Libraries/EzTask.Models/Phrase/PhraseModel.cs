@@ -1,5 +1,6 @@
 ﻿using EzTask.Models.Enum;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Models
@@ -26,23 +27,14 @@ namespace EzTask.Models
 
         public PhraseStatus Status { get; set; }
 
-        public string StartDateDisplay { get; set; }
-        public string EndDateDisplay { get; set; }
+        public bool IsDefault { get; set; }
 
         public PhraseModel()
         {
-            Reset();
             Status = PhraseStatus.Open;
-            
-        }
-
-        public void Reset()
-        {
             PhraseName = string.Empty;
             StartDate = DateTime.Now;
             EndDate = DateTime.Now.AddDays(1);
-            StartDateDisplay = StartDate.Value.ToString("dd/MM/yyyy");
-            EndDateDisplay = EndDate.Value.ToString("dd/MM/yyyy");
         }
     }
 }

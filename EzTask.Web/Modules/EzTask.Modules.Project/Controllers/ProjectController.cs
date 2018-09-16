@@ -13,7 +13,7 @@ using EzTask.Models.Enum;
 namespace EzTask.Modules.Project.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class ProjectController : CoreController
+    public class ProjectController : BaseController
     {
         public ProjectController(IServiceProvider serviceProvider) :
             base(serviceProvider)

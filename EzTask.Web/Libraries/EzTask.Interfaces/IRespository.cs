@@ -60,6 +60,12 @@ namespace EzTask.Interfaces
         void Delete(T entity);
 
         /// <summary>
+        /// Delete an entity
+        /// </summary>
+        /// <param name="key"></param>
+        void Delete(int key);
+
+        /// <summary>
         /// Delete the entities
         /// </summary>
         /// <param name="entities"></param>

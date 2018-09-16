@@ -6,7 +6,7 @@ using EzTask.Web.Framework.Attributes;
 namespace EzTask.Modules.Dashboard.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class HomeController : CoreController
+    public class HomeController : BaseController
     {
         public HomeController(IServiceProvider serviceProvider) : 
             base(serviceProvider)

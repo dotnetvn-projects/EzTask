@@ -126,6 +126,24 @@ namespace EzTask.Business
         }
 
         /// <summary>
+        /// Delete tasks by projectid and phraseid
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<bool>> DeleteTask(int projectId, int phraseId)
+        {
+            ResultModel<bool> result = new ResultModel<bool>
+            {
+                Data = true
+            };
+
+            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c => 
+                                        c.ProjectId == projectId && c.PhraseId == phraseId);
+            await DeleteTasks(result, data);
+            return result;
+        }
+
+        /// <summary>
         /// Get task list
         /// </summary>
         /// <param name="projectId"></param>

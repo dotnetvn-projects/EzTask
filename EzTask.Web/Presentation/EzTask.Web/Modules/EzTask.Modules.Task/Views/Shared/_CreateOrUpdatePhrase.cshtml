@@ -19,6 +19,16 @@
                             <p><span asp-validation-for="PhraseName" class="text-danger"></span></p>
                         </div>
                     </div>
+                    <div style="display:none" class="form-group phrase-status-form">
+                        <label for="inputPhraseStatus" class="col-sm-3 control-label">Phrase Status</label>
+                        <div class="col-sm-9">
+                            <select id="inputPhraseStatus" name="Status" class="form-control select2">
+                                <option value="Open">Open</option>
+                                <option value="Failed">Failed</option>
+                                <option value="Closed">Closed</option>
+                            </select>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="inputStartDate" class="col-sm-3 control-label">Start date</label>
                         <div class="col-sm-9">
