@@ -35,8 +35,11 @@ namespace EzTask.Modules.Task.Controllers
                 viewModel.ProjectId = phrase.ProjectId;
                 viewModel.IsDefault = phrase.IsDefault;
                 viewModel.PhraseName = phrase.PhraseName;
-                viewModel.StartDate = phrase.StartDate.Value.ToString("dd/MM/yyyy");
-                viewModel.EndDate = phrase.EndDate.Value.ToString("dd/MM/yyyy");
+                if (!viewModel.IsDefault)
+                {
+                    viewModel.StartDate = phrase.StartDate.Value.ToString("dd/MM/yyyy");
+                    viewModel.EndDate = phrase.EndDate.Value.ToString("dd/MM/yyyy");
+                }                
             }
 
             viewModel.StatusList = StaticResources.BuildPhraseStatusSelectList(phrase.Status.ToInt16<PhraseStatus>());

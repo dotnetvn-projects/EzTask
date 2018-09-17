@@ -95,10 +95,11 @@ $.fn.displayHistoryDetail = function () {
             success: function (data) {
                 $(".task-history-template").html('');
                 $(".task-history-template").append(data);    
-                //keep task model work correctly
+
+                //keep task modal work correctly
                 $('#task-history-detail').on('hidden.bs.modal', function () {
                     $("body").addClass("modal-open");
-                })
+                });
 
                 $.hideLoading();
                 $.showDialog({

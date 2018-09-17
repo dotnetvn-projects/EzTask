@@ -1,4 +1,4 @@
-﻿@model PhraseModel
+﻿@model PhraseViewModel
 <div class="modal fade" id="phrase-modal">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -6,11 +6,20 @@
                 <button type="button" data-dismiss="modal" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title"></h4>
+                @if (Model.PhraseId > 0)
+                {
+                    <h4 class="modal-title">Add new phrase</h4>
+                }
+                else
+                {
+                    <h4 class="modal-title">Edit phrase '@Model.PhraseName'</h4>
+                }
+
             </div>
             <form id="phrase-form" class="form-horizontal">
                 <input asp-for="ProjectId" class="project-id" type="hidden" />
-                <input asp-for="Id" class="phrase-id" type="hidden" />
+                <input asp-for="PhraseId" class="phrase-id" type="hidden" />
+                <input asp-for="IsDefault" class="phrase-default" type="hidden" />
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="inputPhraseName" class="col-sm-3 control-label">Phrase Name</label>
@@ -19,16 +28,19 @@
                             <p><span asp-validation-for="PhraseName" class="text-danger"></span></p>
                         </div>
                     </div>
-                    <div style="display:none" class="form-group phrase-status-form">
-                        <label for="inputPhraseStatus" class="col-sm-3 control-label">Phrase Status</label>
-                        <div class="col-sm-9">
-                            <select id="inputPhraseStatus" name="Status" class="form-control select2">
-                                <option value="Open">Open</option>
-                                <option value="Failed">Failed</option>
-                                <option value="Closed">Closed</option>
-                            </select>
+                    @if (Model.PhraseId > 0)
+                    {
+                        <div class="form-group">
+                            <label for="selectStatusList" class="col-sm-3 control-label">Status  </label>
+                            <div class="col-sm-9">
+                                <select asp-for="Status" asp-items="@Model.StatusList" id="selectStatusList" class="form-control select2"></select>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <input asp-for="Status" class="phrase-status" type="hidden" />
+                    }
                     <div class="form-group">
                         <label for="inputStartDate" class="col-sm-3 control-label">Start date</label>
                         <div class="col-sm-9">
@@ -36,7 +48,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input asp-for="StartDateDisplay" class="form-control pull-right datepicker" id="inputStartDate" type="text">
+                                <input asp-for="StartDate" class="form-control pull-right datepicker" id="inputStartDate" type="text">
                             </div>
                         </div>
                     </div>
@@ -47,7 +59,7 @@
                                 <div class="input-group-addon">
                                     <i class="fa fa-calendar"></i>
                                 </div>
-                                <input asp-for="EndDateDisplay" class="form-control pull-right datepicker" id="inputEndDate" type="text">
+                                <input asp-for="EndDate" class="form-control pull-right datepicker" id="inputEndDate" type="text">
                             </div>
                         </div>
                     </div>

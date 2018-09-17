@@ -1,23 +1,4 @@
 ﻿
-function setPhraseModalValue(projectId, phraseId) {
-    $('#phrase-modal .project-id').val(projectId);
-    $('#phrase-modal .phrase-id').val(phraseId);
-
-    if (phraseId === 0) {
-        $(".phrase-status-form").hide();
-        var date = new Date();
-        $('#inputPhraseName').val('');
-        $('#phrase-modal #inputStartDate').val(date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear());
-        $('#phrase-modal #inputEndDate').val((date.getDate() + 1) + "/" + (date.getMonth() + 1) + "/" + date.getFullYear());
-    }
-    else {
-        $(".phrase-status-form").show();
-        $('#inputPhraseName').val($("#phrase-name").val());
-        $('#phrase-modal #inputStartDate').val($("#phrase-startdate").val());
-        $('#phrase-modal #inputEndDate').val($("#phrase-enddate").val());
-    }
-}
-
 function formatDate(dateString) {
     var date = new Date(dateString);
     return date.getMonth() + 1 + "/" + date.getDate() + "/" + date.getFullYear();
@@ -31,12 +12,23 @@ $.fn.showModal = function () {
             phraseid = $("#phrase-id").val();
         }
 
-        var projectId = $('.project-list').val();
-        setPhraseModalValue(projectId, phraseid);
-        $.showDialog({
-            dialogId: 'phrase-modal',
-            title: 'Add new phrase'
+        $.showLoading();
+        $.ajax({
+            url: 'task/generate-phrase.html',
+            type: "POST",
+            async: false,
+            data: { phraseId: phraseid },
+            success: function (data) {
+                $(".phrase-template").html('');
+                $(".phrase-template").append(data);
+                
+                $.hideLoading();
+                $.showDialog({
+                    dialogId: 'phrase-modal'
+                });
+            }
         });
+             
     });
 };
 
@@ -56,6 +48,7 @@ $.fn.phraseModalAction = function () {
                     phrasePanel.html(response);
                     $(".phrase-list > li > a").loadTask();
                     $.closeDialog('phrase-modal');
+                    $(".phrase-template").html('');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $('#phrase-modal .error-message').text('Error, EzTask cannot create phrase. Try again please !');
@@ -96,8 +89,6 @@ $.fn.removePhrase = function () {
 
 $(function () {
     $(".btn-addnew-phrase").showModal();
-    $(".edit-phrase").showModal();
     $("#phrase-modal .btn-confirm").phraseModalAction();
     $.triggerCloseDialog('phrase-modal');
-    $(".remove-phrase").removePhrase();
 });

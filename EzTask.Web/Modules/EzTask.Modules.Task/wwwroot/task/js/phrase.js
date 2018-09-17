@@ -89,8 +89,6 @@ $.fn.removePhrase = function () {
 
 $(function () {
     $(".btn-addnew-phrase").showModal();
-    $(".edit-phrase").showModal();
     $("#phrase-modal .btn-confirm").phraseModalAction();
     $.triggerCloseDialog('phrase-modal');
-    $(".remove-phrase").removePhrase();
 });
