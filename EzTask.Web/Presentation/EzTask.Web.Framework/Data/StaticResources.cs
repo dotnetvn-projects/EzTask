@@ -197,12 +197,12 @@ namespace EzTask.Web.Framework.Data
                     var selectItem = new SelectListItem
                     {
                         Text = status,
-                        Value = ((Int16)status.ToEnum<TaskItemStatus>()).ToString()
+                        Value = ((Int16)status.ToEnum<PhraseStatus>()).ToString()
                     };
 
                     if (selectedId != 0)
                     {
-                        var statusEnum = selectedId.ToEnum<TaskItemStatus>();
+                        var statusEnum = selectedId.ToEnum<PhraseStatus>();
                         if (status == statusEnum.ToString())
                         {
                             selectItem.Selected = true;

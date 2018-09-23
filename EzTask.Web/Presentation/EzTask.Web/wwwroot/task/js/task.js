@@ -47,8 +47,7 @@ $.fn.loadPhrase = function () {
             success: function (response) {
                 var phrasePanel = $(".phrase-list-panel");
                 phrasePanel.html('');
-                phrasePanel.html(response);
-
+                phrasePanel.html(response);              
                 var phrase = $(".phrase-list > li > a").first();
                 var phraseId = phrase.attr('data-id');
                 $(this).handleLoadTask(id, phraseId);
@@ -102,7 +101,6 @@ $.fn.deleteTask = function () {
                         success: function (response) {
                             var phraseId = $("#phrase-id").val();
                             var projectId = $('.project-list').val();
-
                             $(this).handleLoadTask(projectId, phraseId);
                             $.closeDialog('modal-confirm');
                             $.hideLoading();

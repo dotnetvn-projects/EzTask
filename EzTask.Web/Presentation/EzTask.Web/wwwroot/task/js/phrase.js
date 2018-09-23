@@ -16,16 +16,18 @@ $.fn.showModal = function () {
         $.ajax({
             url: 'task/generate-phrase.html',
             type: "POST",
-            async: false,
             data: { phraseId: phraseid },
             success: function (data) {
-                $(".phrase-template").html('');
-                $(".phrase-template").append(data);
-                
+                $(".phrase-template").html(data);
+
+                $.initCommonLib();
+                $("#phrase-modal .btn-confirm").phraseModalAction();
                 $.hideLoading();
+
                 $.showDialog({
                     dialogId: 'phrase-modal'
                 });
+                $.triggerCloseDialog('phrase-modal');
             }
         });
              
@@ -36,23 +38,27 @@ $.fn.phraseModalAction = function () {
     $(this).click(function (e) {
         e.preventDefault();
         var form = $("#phrase-form");
-
+        $.showLoading();
         if (form.valid()) {
             $.ajax({
                 type: 'post',
                 url: "task/phrase-modal-action.html",
                 data: form.serialize(),
-                success: function (response) {
+                success: function (response) {                  
                     var phrasePanel = $(".phrase-list-panel");
                     phrasePanel.html('');
                     phrasePanel.html(response);
-                    $(".phrase-list > li > a").loadTask();
-                    $.closeDialog('phrase-modal');
-                    $(".phrase-template").html('');
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    $('#phrase-modal .error-message').text('Error, EzTask cannot create phrase. Try again please !');
+                    $.alertDialog({
+                        title: 'Error',
+                        content: xhr.responseText
+                    });
                 }
+            }).promise().done(function () {
+                $.closeDialog('phrase-modal');
+                $(".phrase-list > li > a").loadTask();
+                $.hideLoading();
             });
         }
     });
@@ -89,6 +95,4 @@ $.fn.removePhrase = function () {
 
 $(function () {
     $(".btn-addnew-phrase").showModal();
-    $("#phrase-modal .btn-confirm").phraseModalAction();
-    $.triggerCloseDialog('phrase-modal');
 });

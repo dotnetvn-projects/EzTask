@@ -1,7 +1,6 @@
 ﻿
 $.fn.buildForm = function (template) {
-    $(".task-template").html('');
-    $(".task-template").append(template);  
+    $(".task-template").html(template);  
     var form = $("#task-form");
     $.initCommonLib();
     $.validator.unobtrusive.parse(form);
@@ -141,19 +140,21 @@ $.fn.loadHistory = function (taskId) {
 $.fn.showEdit = function () {
     $(this).click(function () {
         var taskId = $(this).data('id');
-        $.showLoading();
-        $.ajax({
-            url: 'taskitem/generate-view.html',
-            type: 'POST',
-            data: { taskId: taskId },
-            success: function (data) {
-                $(this).buildForm(data);
-                $.hideLoading();
-                $.showDialog({
-                    dialogId: 'task-modal'
-                });
-            }
-        });
+        if (taskId !== undefined) {
+            $.showLoading();
+            $.ajax({
+                url: 'taskitem/generate-view.html',
+                type: 'POST',
+                data: { taskId: taskId },
+                success: function (data) {
+                    $(this).buildForm(data);
+                    $.hideLoading();
+                    $.showDialog({
+                        dialogId: 'task-modal'
+                    });
+                }
+            });
+        }
     });
 };
 

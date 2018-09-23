@@ -31,6 +31,7 @@ namespace EzTask.Modules.Task.Controllers
             }
             else
             {
+                viewModel.Status = phrase.Status.ToInt16<PhraseStatus>();
                 viewModel.PhraseId = phrase.Id;
                 viewModel.ProjectId = phrase.ProjectId;
                 viewModel.IsDefault = phrase.IsDefault;
@@ -42,7 +43,7 @@ namespace EzTask.Modules.Task.Controllers
                 }                
             }
 
-            viewModel.StatusList = StaticResources.BuildPhraseStatusSelectList(phrase.Status.ToInt16<PhraseStatus>());
+            viewModel.StatusList = StaticResources.BuildPhraseStatusSelectList(viewModel.Status);
 
             return PartialView("_CreateOrUpdatePhrase", viewModel);
         }
@@ -72,13 +73,14 @@ namespace EzTask.Modules.Task.Controllers
             {
                 return BadRequest("End Date must be larger than Start Date");
             }
+
             ResultModel<PhraseModel> iResult = await EzTask.Phrase.Save(model);
             if (iResult.Status == ActionStatus.Ok)
             {
                 return LoadPhraseList(model.ProjectId);
             }
 
-            return BadRequest();
+            return BadRequest("Cannot create phrase, please try again!");
         }
 
         [HttpGet]
@@ -119,5 +121,6 @@ namespace EzTask.Modules.Task.Controllers
 
             return BadRequest("Error, cannot process your request!.");
         }
+
     }
 }

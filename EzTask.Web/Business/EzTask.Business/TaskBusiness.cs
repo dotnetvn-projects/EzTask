@@ -91,6 +91,17 @@ namespace EzTask.Business
         }
 
         /// <summary>
+        /// Count task by phrase
+        /// </summary>
+        /// <param name="phraseId"></param>
+        /// <returns></returns>
+        public async Task<int> CountByPhrase(int phraseId)
+        {
+            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhraseId == phraseId);
+            return totalTask;
+        }
+
+        /// <summary>
         /// Delete tasks
         /// </summary>
         /// <param name="ids"></param>

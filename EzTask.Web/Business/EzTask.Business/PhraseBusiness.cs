@@ -57,8 +57,9 @@ namespace EzTask.Business
         public async Task<IEnumerable<PhraseModel>> GetPhrase(int projectId)
         {
             IEnumerable<Phrase> data = await UnitOfWork.PhraseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
-            return data.ToModels();
-            //TODO count task item in phrase
+            var model = data.ToModels();
+
+            return model;
         }
 
         public async Task<PhraseModel> GetOpenFeaturePhrase(int projectId)

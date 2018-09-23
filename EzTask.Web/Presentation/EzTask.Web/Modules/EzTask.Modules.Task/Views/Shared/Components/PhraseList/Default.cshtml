@@ -17,19 +17,21 @@
         {
             <li title="65 tasks">
                 <a data-id="@p.Id" href="#">
-                    <div><i class="fa fa-book text-success"></i> @p.PhraseName <span title="65 tasks" class="label label-warning pull-right">65</span></div>
+                    <div><i class="fa fa-book text-success"></i> @p.PhraseName <span title="65 tasks" class="label label-warning pull-right">@p.TotalTask</span></div>
                     @if (p.StartDate.HasValue)
                     {
-                        <div class="date"><i class="fa fa-calendar"></i> <display-for asp-for="@p.StartDate"></display-for> - <display-for asp-for="@p.EndDate"></display-for></div>
+                        var from = p.StartDate.Value.ToString("dd/MM/yyyy");
+                        var to = p.EndDate.Value.ToString("dd/MM/yyyy");
+                        <div class="date"><i class="fa fa-calendar"></i> <display-for asp-for="@from"></display-for> - <display-for asp-for="@to"></display-for></div>
                     }
                     <div class="status">
                         @switch (p.Status)
                         {
                             case PhraseStatus.Closed:
-                                @:<i class="fa fa-circle-o text-light-blue"></i> Closed
+                                @:<i class="fa fa-check-circle text-success"></i> Closed
                                 break;
                             case PhraseStatus.Failed:
-                                @:<i class="fa-circle-o text-red"></i> Failed
+                                @:<i class="fa fa-close text-red"></i> Failed
                                 break;
                             case PhraseStatus.Open:
                                 @:<i class="fa fa-circle-o text-yellow"></i> Open

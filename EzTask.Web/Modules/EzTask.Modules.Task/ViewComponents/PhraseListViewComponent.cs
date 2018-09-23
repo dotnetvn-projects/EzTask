@@ -16,6 +16,11 @@ namespace EzTask.Modules.Task.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(int projectId)
         {
             var data = await EzTask.Phrase.GetPhrase(projectId);
+            foreach(var item in data)
+            {
+                var countTask = await EzTask.Task.CountByPhrase(item.Id);
+                item.TotalTask = countTask;
+            }
             return View(data);
         }
     }

@@ -28,6 +28,7 @@ namespace EzTask.Models
         public PhraseStatus Status { get; set; }
 
         public bool IsDefault { get; set; }
+        public int TotalTask { get; set; }
 
         public PhraseModel()
         {
