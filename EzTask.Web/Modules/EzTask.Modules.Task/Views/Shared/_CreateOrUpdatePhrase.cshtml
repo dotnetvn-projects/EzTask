@@ -6,7 +6,7 @@
                 <button type="button" data-dismiss="modal" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                @if (Model.PhraseId > 0)
+                @if (Model.PhraseId <= 0)
                 {
                     <h4 class="modal-title">Add new phrase</h4>
                 }

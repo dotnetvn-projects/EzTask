@@ -21,7 +21,7 @@ namespace EzTask.Modules.Task.Controllers
 
         [HttpPost]
         [Route("task/generate-phrase.html")]
-        public async Task<IActionResult> GeneratePhraseView(int phraseId)
+        public async Task<IActionResult> GeneratePhraseView(int phraseId, int projectId)
         {
             PhraseViewModel viewModel = new PhraseViewModel();
             PhraseModel phrase = await EzTask.Phrase.GetPhraseById(phraseId);
@@ -29,20 +29,18 @@ namespace EzTask.Modules.Task.Controllers
             {
                 phrase = new PhraseModel();
             }
-            else
-            {
-                viewModel.Status = phrase.Status.ToInt16<PhraseStatus>();
-                viewModel.PhraseId = phrase.Id;
-                viewModel.ProjectId = phrase.ProjectId;
-                viewModel.IsDefault = phrase.IsDefault;
-                viewModel.PhraseName = phrase.PhraseName;
-                if (!viewModel.IsDefault)
-                {
-                    viewModel.StartDate = phrase.StartDate.Value.ToString("dd/MM/yyyy");
-                    viewModel.EndDate = phrase.EndDate.Value.ToString("dd/MM/yyyy");
-                }                
-            }
 
+            viewModel.Status = phrase.Status.ToInt16<PhraseStatus>();
+            viewModel.PhraseId = phraseId;
+            viewModel.ProjectId = projectId;
+            viewModel.IsDefault = phrase.IsDefault;
+            viewModel.PhraseName = phrase.PhraseName;
+            if (!viewModel.IsDefault)
+            {
+                viewModel.StartDate = phrase.StartDate.Value.ToString("dd/MM/yyyy");
+                viewModel.EndDate = phrase.EndDate.Value.ToString("dd/MM/yyyy");
+            }                
+            
             viewModel.StatusList = StaticResources.BuildPhraseStatusSelectList(viewModel.Status);
 
             return PartialView("_CreateOrUpdatePhrase", viewModel);

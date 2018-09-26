@@ -7,7 +7,7 @@ function formatDate(dateString) {
 $.fn.showModal = function () {
     $(this).click(function () {
         var phraseid = 0;
-
+        var projectid = $('.project-list').val();
         if ($(this).hasClass("edit-phrase")) {
             phraseid = $("#phrase-id").val();
         }
@@ -16,7 +16,7 @@ $.fn.showModal = function () {
         $.ajax({
             url: 'task/generate-phrase.html',
             type: "POST",
-            data: { phraseId: phraseid },
+            data: { phraseId: phraseid, projectId: projectid },
             success: function (data) {
                 $(".phrase-template").html(data);
 
