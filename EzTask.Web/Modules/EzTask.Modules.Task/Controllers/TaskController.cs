@@ -21,6 +21,7 @@ namespace EzTask.Modules.Task.Controllers
         }
 
         [Route("task.html")]
+        [PageTitle("Task List")]
         public async Task<IActionResult> Index()
         {
             TaskViewModel model = await PrepareData();        

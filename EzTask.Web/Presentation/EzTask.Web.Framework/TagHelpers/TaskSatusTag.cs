@@ -37,7 +37,6 @@ namespace EzTask.Web.Framework.TagHelpers
             var status = dataValue.ToEnum<TaskItemStatus>();
 
             var htmlString = _resources.GetTaskStatusUIElement(status);
-        //    tag.InnerHtml.AppendHtml(htmlString);
 
             output.Content.SetHtmlContent(htmlString);
         }

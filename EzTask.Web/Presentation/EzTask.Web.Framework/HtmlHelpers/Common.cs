@@ -25,5 +25,14 @@ namespace EzTask.Web.Framework.HtmlHelpers
         {
             return new HtmlString(AppMessage.PageNotFound);
         }
+
+        public static IHtmlContent PrintNumberWithText(this IHtmlHelper htmlHelper, string text, int number)
+        {
+            if(number > 1)
+            {
+                text += "s";
+            }
+            return new HtmlString(number + $" {text}");
+        }
     }
 }

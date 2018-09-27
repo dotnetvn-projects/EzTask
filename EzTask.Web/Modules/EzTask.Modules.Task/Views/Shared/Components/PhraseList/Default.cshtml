@@ -15,9 +15,9 @@
     <ul class="nav nav-pills nav-stacked phrase-list">
         @foreach (var p in Model)
         {
-            <li title="65 tasks">
+            <li title="@Html.PrintNumberWithText("task",p.TotalTask)">
                 <a data-id="@p.Id" href="#">
-                    <div><i class="fa fa-book text-success"></i> @p.PhraseName <span title="65 tasks" class="label label-warning pull-right">@p.TotalTask</span></div>
+                    <div><i class="fa fa-book text-success"></i> @p.PhraseName <span title="@Html.PrintNumberWithText("task",p.TotalTask)" class="label label-warning pull-right">@p.TotalTask</span></div>
                     @if (p.StartDate.HasValue)
                     {
                         var from = p.StartDate.Value.ToString("dd/MM/yyyy");
