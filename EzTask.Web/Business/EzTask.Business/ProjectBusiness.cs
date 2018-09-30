@@ -14,6 +14,7 @@ namespace EzTask.Business
     public class ProjectBusiness : BusinessCore
     {
         private readonly TaskBusiness _task;
+
         public ProjectBusiness(UnitOfWork unitOfWork,
             TaskBusiness task) : base(unitOfWork)
         {
@@ -143,7 +144,8 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<IEnumerable<ProjectModel>> GetProjects(int ownerId)
         {
-            List<Project> data = await UnitOfWork.ProjectMemberRepository.Entity.Include(c => c.Member)
+            List<Project> data = await UnitOfWork.ProjectMemberRepository.Entity
+                .Include(c => c.Member)
                 .Include(c => c.Project)
                 .AsNoTracking()
                 .Where(c => c.MemberId == ownerId)
@@ -151,7 +153,6 @@ namespace EzTask.Business
                 .Select(x => x.Project)
                 .ToListAsync();
 
-            //TODO get project which related to project-member
             return data.ToModels();
         }
 
@@ -206,8 +207,17 @@ namespace EzTask.Business
             Project data = await UnitOfWork.ProjectRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
+            var model = data.ToModel();         
 
-            return data.ToModel();
+            return model;
+        }
+
+        public async Task<int> CountMember(int projectId)
+        {
+            var data = await UnitOfWork.ProjectMemberRepository.Entity
+                    .CountAsync(c => c.ProjectId == projectId);
+
+            return data;
         }
 
         /// <summary>
@@ -215,16 +225,18 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<AccountModel>> GetAccountList(int projectId)
+        public async Task<IEnumerable<ProjectMemberModel>> GetAccountList(int projectId)
         {
-            List<AccountModel> data = await UnitOfWork.ProjectMemberRepository.Entity
+            List<ProjectMemberModel> data = await UnitOfWork.ProjectMemberRepository.Entity
                 .Include(c => c.Project)
                 .Include(c => c.Member)
                 .ThenInclude(c => c.AccountInfo).AsNoTracking()
-                .Where(c => c.ProjectId == projectId).Select(t => new AccountModel
+                .Where(c => c.ProjectId == projectId)
+                .Select(t => new ProjectMemberModel
                 {
                     AccountId = t.MemberId,
-                    DisplayName = t.Member.AccountInfo.DisplayName
+                    AddDate = t.AddDate,
+                    DisplayName = t.Member.AccountInfo.DisplayName,           
                 }).ToListAsync();
 
             return data;

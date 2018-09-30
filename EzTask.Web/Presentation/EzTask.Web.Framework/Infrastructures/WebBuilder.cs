@@ -1,25 +1,19 @@
 ﻿using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
 
 namespace EzTask.Web.Framework.Infrastructures
 {
     public static class WebBuilder
     {
-        public static void RunWebBuilder(this IHostingEnvironment env)
+        public static void RunWebBuilder(this IHostingEnvironment env, bool onlyContent = false)
         {
-            CopyModules(new string[] { "../../../EzTask.Web/" });
+            CopyModules(new string[] { "../../../EzTask.Web/" }, onlyContent);
         }
 
-
-        static void CopyModules(string[] args)
+        private static void CopyModules(string[] args, bool onlyContent)
         {
-            var workFolder = args[0];
-            var moduleBuildPath = Path.Combine(workFolder, "Presentation/EzTask.Web/Modules");
+            string workFolder = args[0];
+            string moduleBuildPath = Path.Combine(workFolder, "Presentation/EzTask.Web/Modules");
             if (Directory.Exists(moduleBuildPath))
             {
                 try
@@ -30,34 +24,42 @@ namespace EzTask.Web.Framework.Infrastructures
                 catch { }
             }
 
-            var moduleDevPath = Path.Combine(workFolder, "Modules");
-            var moduleDevFolder = Directory.GetDirectories(moduleDevPath);
+            string moduleDevPath = Path.Combine(workFolder, "Modules");
+            string[] moduleDevFolder = Directory.GetDirectories(moduleDevPath);
 
-            foreach (var devFolder in moduleDevFolder)
+            foreach (string devFolder in moduleDevFolder)
             {
-                var moduleConfig = File.ReadAllLines(devFolder + "\\config.cf");
-                var moduleName = moduleConfig[0].Split(":")[1].Trim();
-                var modulePath = Path.Combine(moduleBuildPath, moduleName);
+                string[] moduleConfig = File.ReadAllLines(devFolder + "\\config.cf");
+                string moduleName = moduleConfig[0].Split(":")[1].Trim();
+                string modulePath = Path.Combine(moduleBuildPath, moduleName);
                 Directory.CreateDirectory(modulePath);
 
-                var folderCopy = moduleConfig[1].Split(":")[1].Split(",");
+                string[] folderCopy = moduleConfig[1].Split(":")[1].Split(",");
 
-                foreach (var folder in folderCopy)
+                foreach (string folder in folderCopy)
                 {
-                    var copyPath = folder.Trim();
-                    var sourcePath = Path.Combine(devFolder, copyPath);
+                    string copyPath = folder.Trim();
+                    string sourcePath = Path.Combine(devFolder, copyPath);
                     if (!Directory.Exists(sourcePath))
+                    {
                         continue;
-                    var desPath = string.Empty;
+                    }
+
+                    string desPath = string.Empty;
+
+                    if (onlyContent && copyPath.ToLower() == "bin")
+                    {
+                        continue;
+                    }
 
                     switch (copyPath.ToLower())
                     {
                         case "bin":
-                            var files = Directory.GetFiles(sourcePath, moduleName + ".dll", SearchOption.AllDirectories);
-                            var binPath = Path.Combine(modulePath, "bin");
+                            string[] files = Directory.GetFiles(sourcePath, moduleName + ".dll", SearchOption.AllDirectories);
+                            string binPath = Path.Combine(modulePath, "bin");
                             Directory.CreateDirectory(binPath);
 
-                            foreach (var item in files)
+                            foreach (string item in files)
                             {
                                 desPath = Path.Combine(binPath, Path.GetFileName(item));
                                 File.Copy(item, desPath, true);
@@ -74,7 +76,6 @@ namespace EzTask.Web.Framework.Infrastructures
                             DirectoryCopy(sourcePath, desPath, true);
                             break;
                     }
-
                 }
             }
         }

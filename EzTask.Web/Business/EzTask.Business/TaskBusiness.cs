@@ -95,9 +95,33 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="phraseId"></param>
         /// <returns></returns>
-        public async Task<int> CountByPhrase(int phraseId)
+        public async Task<int> CountByPhrase(int phraseId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhraseId == phraseId);
+            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhraseId == phraseId 
+            && c.ProjectId == projectId);
+            return totalTask;
+        }
+
+        /// <summary>
+        /// Count task by phrase
+        /// </summary>
+        /// <param name="phraseId"></param>
+        /// <returns></returns>
+        public async Task<int> CountByProject(int projectId)
+        {
+            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.ProjectId == projectId);
+            return totalTask;
+        }
+
+        /// <summary>
+        /// Count task by member
+        /// </summary>
+        /// <param name="memberId"></param>
+        /// <returns></returns>
+        public async Task<int> CountByMember(int memberId, int projectId)
+        {
+            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.MemberId == memberId 
+            && c.ProjectId == projectId);
             return totalTask;
         }
 

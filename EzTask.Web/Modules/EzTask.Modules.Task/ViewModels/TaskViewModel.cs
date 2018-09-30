@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace EzTask.Modules.Task.Models
+namespace EzTask.Modules.Task.ViewModels
 {
     public class TaskViewModel
     {

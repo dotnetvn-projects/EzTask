@@ -1,4 +1,4 @@
-﻿@model IEnumerable<List<ProjectModel>>
+﻿@model IEnumerable<List<ProjectViewModel>>
 @{
     var nothingToShow = (Model == null || !Model.Any());
     var projectCount = nothingToShow ? 0 : Model.Sum(c => c.Count());

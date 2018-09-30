@@ -2,7 +2,7 @@
 using EzTask.Models;
 using EzTask.Models.Enum;
 using EzTask.Modules.Core.Controllers;
-using EzTask.Modules.Task.Models;
+using EzTask.Modules.Task.ViewModels;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.Data;
 using Microsoft.AspNetCore.Mvc;

@@ -198,6 +198,6 @@ namespace EzTask.Business
            var data = await UnitOfWork.AccountRepository.Entity.Where(c=> c.ManageAccountId == manageUserId)
                 .Skip(pageSize * page - pageSize).Take(pageSize).ToListAsync();
             return data.ToModels();
-        }
+        }       
     }
 }

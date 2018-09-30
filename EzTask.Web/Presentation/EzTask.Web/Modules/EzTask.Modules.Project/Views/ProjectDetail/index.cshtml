@@ -1,41 +1,50 @@
-﻿@model ProjectModel
+﻿@model ProjectViewModel
+@section styles{
+    <link rel="stylesheet" href="~/project/css/project.css">
+}
 @section header{
     <h1>
-        Project: @Model.ProjectName
-        <small>Project code: @Model.ProjectCode</small>
+        Project: @Model.Project.ProjectName
+        <small>Project code: @Model.Project.ProjectCode</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li><a asp-action="Index" asp-controller="Project">Project</a></li>
-        <li class="active">@Model.ProjectCode</li>
+        <li class="active">@Model.Project.ProjectCode</li>
     </ol>
 }
 
-    <div class="box">
-        <div class="box-header with-border">
-            <h3 class="box-title"><i class="fa fa-bandcamp"></i> Project information</h3>
+<div class="box">
+    <div class="box-header with-border">
+        <h3 class="box-title"><i class="fa fa-bandcamp text-green"></i> Project information</h3>
 
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
-            </div>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="" data-original-title="Collapse">
+                <i class="fa fa-minus"></i>
+            </button>
         </div>
-        <div class="box-body">
-            <div class="row">
-                <div class="col-xs-4">
-                   <p><i class="fa fa-qrcode"> Project Code: @Model.ProjectCode</i></p>
-                   <p> <i class="fa fa-book"> Project Name: @Model.ProjectName</i></p>
-                   <p> <i class="fa fa-user-circle"> Manager: @Model.Owner.DisplayName</i></p>
-                </div>
-                <div class="col-xs-8">
-                    TWO
-                </div>
-            </div>
-        </div>
-        <!-- /.box-body -->
-        <div class="box-footer">
-           <i class="fa fa-circle"></i><span class="space-left">Status: Project is @Model.Status.ToString().ToLower()</span>
-        </div>
-        <!-- /.box-footer-->
     </div>
+    <div class="box-body">
+        <div class="row">
+            <div class="col-xs-4">
+                <p class="under-line-dot"><i class="fa fa-qrcode"> Project Code: @Model.Project.ProjectCode</i></p>
+                <p class="under-line-dot"> <i class="fa fa-book"> Project Name: @Model.Project.ProjectName</i></p>
+                <p class="under-line-dot"> <i class="fa fa-user-circle"> Manager: @Model.Project.Owner.DisplayName</i></p>
+            </div>
+            <div class="col-xs-4">
+                <p class="under-line-dot"><i class="fa fa-qrcode"> Total of phrase: @Model.TotalPhrase</i></p>
+                <p class="under-line-dot"><i class="fa fa-qrcode"> Total of task: @Model.TotalTask</i></p>
+                <p class="under-line-dot"><i class="fa fa-qrcode"> Total of member: @Model.TotalMember</i></p>
+            </div>
+            <div class="col-xs-4">
+                <p class="under-line-dot"><i class="fa fa-qrcode"> Total of phrase: @Model.TotalPhrase</i></p>
+                <p class="under-line-dot"><i class="fa fa-qrcode"> Total of task: @Model.TotalTask</i></p>
+            </div>
+        </div>
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer">
+        <i class="fa fa-circle text-green"></i><span class="space-left">Status: Project is @Model.Project.Status.ToString().ToLower()</span>
+    </div>
+    <!-- /.box-footer-->
+</div>

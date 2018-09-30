@@ -18,7 +18,7 @@ namespace EzTask.Modules.Task.ViewComponents
             var data = await EzTask.Phrase.GetPhrase(projectId);
             foreach(var item in data)
             {
-                var countTask = await EzTask.Task.CountByPhrase(item.Id);
+                var countTask = await EzTask.Task.CountByPhrase(item.Id, projectId);
                 item.TotalTask = countTask;
             }
             return View(data);

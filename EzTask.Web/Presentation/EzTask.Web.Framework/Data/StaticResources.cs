@@ -111,7 +111,7 @@ namespace EzTask.Web.Framework.Data
         /// </summary>
         /// <param name="assignees"></param>
         /// <returns></returns>
-        public static List<SelectListItem> BuildAssigneeSelectList(IEnumerable<AccountModel> assignees,
+        public static List<SelectListItem> BuildAssigneeSelectList(IEnumerable<ProjectMemberModel> assignees,
             int selectedId = 0)
         {
             List<SelectListItem> assigneeItems = new List<SelectListItem>

@@ -3,6 +3,7 @@ using EzTask.Framework.Infrastructures;
 using EzTask.Models;
 using EzTask.Models.Enum;
 using EzTask.Repository;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -52,6 +53,12 @@ namespace EzTask.Business
         {
             Phrase data = await UnitOfWork.PhraseRepository.GetByIdAsync(phraseId);
             return data.ToModel();
+        }
+
+        public async Task<int> CountByProject(int projectId)
+        {
+            var data = await UnitOfWork.PhraseRepository.Entity.CountAsync(c=>c.ProjectId == projectId);
+            return data;
         }
 
         public async Task<IEnumerable<PhraseModel>> GetPhrase(int projectId)

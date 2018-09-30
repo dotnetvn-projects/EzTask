@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using EzTask.Modules.Task.Models;
+using EzTask.Modules.Task.ViewModels;
 using EzTask.Web.Framework.Attributes;
 using System.Linq;
 using EzTask.Models;

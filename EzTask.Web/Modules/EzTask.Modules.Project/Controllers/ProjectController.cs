@@ -9,6 +9,7 @@ using EzTask.Models;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Models.Enum;
+using EzTask.Modules.Project.ViewModels;
 
 namespace EzTask.Modules.Project.Controllers
 {
@@ -25,6 +26,7 @@ namespace EzTask.Modules.Project.Controllers
         public async Task<IActionResult> Index()
         {
             var models = await GetProjectList();
+
             return View(models);
         }
 
@@ -54,7 +56,7 @@ namespace EzTask.Modules.Project.Controllers
         [PageTitle("Creating project is successful")]
         public async Task<IActionResult> CreateSuccess(string code)
         {
-            var project = await EzTask.Project.GetProjectDetail(code);
+            var project = await EzTask.Project.GetProjectDetail(code);         
 
             return View(project);
         }
@@ -236,15 +238,35 @@ namespace EzTask.Modules.Project.Controllers
         /// </summary>
         /// <returns></returns>
         [NonAction]
-        private async Task<IEnumerable<List<ProjectModel>>> GetProjectList()
+        private async Task<IEnumerable<List<ProjectViewModel>>> GetProjectList()
         {
-            IEnumerable<List<ProjectModel>> models = new List<List<ProjectModel>>();
+            IEnumerable<List<ProjectViewModel>> models = new List<List<ProjectViewModel>>();
             var data = await EzTask.Project.GetProjects(AccountId);
             if (data == null)
             {
                 return models;
             }
-            models = data.ToList().SplitList(3);
+
+            var viewModels = new List<ProjectViewModel>();
+
+            foreach(var proj in data)
+            {
+                ProjectViewModel vm = new ProjectViewModel()
+                {
+                   Project = proj,
+                   TotalTask = await EzTask.Task.CountByProject(proj.ProjectId)
+                };
+                var members = await EzTask.Project.GetAccountList(proj.ProjectId);
+                foreach(var mem in members)
+                {
+                    mem.TotalTask = await EzTask.Task.CountByMember(mem.AccountId, proj.ProjectId);
+                    vm.Members.Add(mem);
+                }
+                viewModels.Add(vm);
+            }
+
+            models = viewModels.ToList().SplitList(3);
+        
             return models;
         }
         #endregion

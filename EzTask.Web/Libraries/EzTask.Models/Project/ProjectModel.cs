@@ -22,7 +22,7 @@ namespace EzTask.Models
         public DateTime UpdatedDate { get; set; }
         public int MaximumUser { get; set; }
         public ProjectStatus Status { get; set; } 
-        public string Comment { get; set; }
+        public string Comment { get; set; }     
 
         #region UI Model
         public string Color { get; set; }
