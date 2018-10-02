@@ -44,4 +44,9 @@
 .under-line-dot{
     border-bottom:dotted 1px;
 }
+
+.project-detail-summary {
+    display: table;
+    margin: 0 auto;
+}
 /*----End Project------*/

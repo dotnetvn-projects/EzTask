@@ -4,13 +4,14 @@
     <div class="row">
         @foreach (var item in projects)
         {
+            var taskCount =item.Project.ProjectCode +" has "+ Html.PrintNumberWithText("task", item.TotalTask);
             <div class="col-md-4">
                 <div class="box box-@item.Project.BoxType direct-chat direct-chat-@item.Project.BoxType">
                     <div class="box-header with-border">
                         <h3 class="box-title">@item.Project.ProjectCode</h3>
 
                         <div class="box-tools pull-right">
-                            <span data-toggle="tooltip" title="EzTask#001 has @Html.PrintNumberWithText("task",item.TotalTask)" class="badge bg-@item.Project.Color" data-original-title="EzTask#001 has 9 tasks">20</span>
+                            <span data-toggle="tooltip" title="@taskCount" class="badge bg-@item.Project.Color" data-original-title="@taskCount">@item.TotalTask</span>
                             <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
                             </button>

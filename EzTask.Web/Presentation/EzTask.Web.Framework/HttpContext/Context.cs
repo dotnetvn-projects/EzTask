@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using EzTask.Framework.Data;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 
 namespace EzTask.Web.Framework.HttpContext
@@ -6,11 +7,13 @@ namespace EzTask.Web.Framework.HttpContext
     public static class Context
     {
         private static IHttpContextAccessor _httpContextAccessor;
-    
+        private static AccountContext _account;
+
         public static void Configure(this IApplicationBuilder applicationBuilder,
             IHttpContextAccessor httpContextAccessor)
         {
-                _httpContextAccessor = httpContextAccessor;
+            _httpContextAccessor = httpContextAccessor;
+            _account = new AccountContext();
         }
 
         public static string GetRemoteIP
@@ -36,6 +39,11 @@ namespace EzTask.Web.Framework.HttpContext
         public static Microsoft.AspNetCore.Http.HttpContext Current
         {
             get => _httpContextAccessor.HttpContext;
+        }
+
+        public static AccountContext CurrentAccount
+        {
+            get { return _account; }
         }
     }
 }

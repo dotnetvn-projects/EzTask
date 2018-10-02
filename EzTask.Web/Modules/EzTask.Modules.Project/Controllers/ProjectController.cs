@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Models.Enum;
 using EzTask.Modules.Project.ViewModels;
+using EzTask.Web.Framework.HttpContext;
 
 namespace EzTask.Modules.Project.Controllers
 {
@@ -25,9 +26,8 @@ namespace EzTask.Modules.Project.Controllers
         [PageTitle("Projects")]
         public async Task<IActionResult> Index()
         {
-            var models = await GetProjectList();
-
-            return View(models);
+            ViewBag.TotalProject = await EzTask.Project.CountByUser(Context.CurrentAccount.AccountId);
+            return View();
         }
 
         #region Create project 
@@ -233,42 +233,6 @@ namespace EzTask.Modules.Project.Controllers
         #endregion
 
         #region Non action
-        /// <summary>
-        /// Get project list
-        /// </summary>
-        /// <returns></returns>
-        [NonAction]
-        private async Task<IEnumerable<List<ProjectViewModel>>> GetProjectList()
-        {
-            IEnumerable<List<ProjectViewModel>> models = new List<List<ProjectViewModel>>();
-            var data = await EzTask.Project.GetProjects(AccountId);
-            if (data == null)
-            {
-                return models;
-            }
-
-            var viewModels = new List<ProjectViewModel>();
-
-            foreach(var proj in data)
-            {
-                ProjectViewModel vm = new ProjectViewModel()
-                {
-                   Project = proj,
-                   TotalTask = await EzTask.Task.CountByProject(proj.ProjectId)
-                };
-                var members = await EzTask.Project.GetAccountList(proj.ProjectId);
-                foreach(var mem in members)
-                {
-                    mem.TotalTask = await EzTask.Task.CountByMember(mem.AccountId, proj.ProjectId);
-                    vm.Members.Add(mem);
-                }
-                viewModels.Add(vm);
-            }
-
-            models = viewModels.ToList().SplitList(3);
-        
-            return models;
-        }
         #endregion
     }
 }

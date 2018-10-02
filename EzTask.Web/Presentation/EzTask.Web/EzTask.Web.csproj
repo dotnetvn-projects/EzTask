@@ -6,9 +6,13 @@
 
   <ItemGroup>
     <Compile Remove="Modules\**" />
+    <Compile Remove="Uploads\**" />
     <Content Remove="Modules\**" />
+    <Content Remove="Uploads\**" />
     <EmbeddedResource Remove="Modules\**" />
+    <EmbeddedResource Remove="Uploads\**" />
     <None Remove="Modules\**" />
+    <None Remove="Uploads\**" />
   </ItemGroup>
 
   <ItemGroup>
@@ -6810,7 +6814,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Uploads\" />
     <Folder Include="WebBuilder\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />

@@ -157,6 +157,21 @@ namespace EzTask.Business
         }
 
         /// <summary>
+        /// Count project by user
+        /// </summary>
+        /// <param name="ownerId"></param>
+        /// <returns></returns>
+        public async Task<int> CountByUser(int ownerId)
+        {
+            var data = await UnitOfWork.ProjectMemberRepository
+                            .Entity
+                            .CountAsync(c => c.MemberId == ownerId);
+
+            return data;
+        }
+
+
+        /// <summary>
         ///  Get project
         /// </summary>
         /// <param name="projectCode"></param>

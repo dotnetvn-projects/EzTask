@@ -31,8 +31,4 @@
     <ProjectReference Include="..\EzTask.Modules.Core\EzTask.Modules.Core.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Views\Shared\" />
-  </ItemGroup>
-
 </Project>

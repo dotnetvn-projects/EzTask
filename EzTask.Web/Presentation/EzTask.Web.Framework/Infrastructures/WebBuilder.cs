@@ -103,8 +103,12 @@ namespace EzTask.Web.Framework.Infrastructures
             FileInfo[] files = dir.GetFiles();
             foreach (FileInfo file in files)
             {
-                string temppath = Path.Combine(destDirName, file.Name);
-                file.CopyTo(temppath, true);
+                try
+                {
+                    string temppath = Path.Combine(destDirName, file.Name);
+                    file.CopyTo(temppath, true);
+                }
+                catch { }
             }
 
             // If copying subdirectories, copy them and their contents to new location.

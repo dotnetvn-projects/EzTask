@@ -25,7 +25,7 @@ namespace EzTask.Modules.Project.Controllers
             vm.TotalPhrase = await EzTask.Phrase.CountByProject(model.ProjectId);
             vm.TotalMember = await EzTask.Project.CountMember(model.ProjectId);
 
-            return View(model);
+            return View(vm);
         }
 
         #region Non Action

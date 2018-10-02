@@ -1,8 +1,7 @@
 ﻿@model IEnumerable<List<ProjectViewModel>>
 @{
-    var nothingToShow = (Model == null || !Model.Any());
-    var projectCount = nothingToShow ? 0 : Model.Sum(c => c.Count());
-    var boxStyle = nothingToShow ? "box" : "";
+    var projectCount = ViewBag.TotalProject;
+    var boxStyle = projectCount == 0 ? "box" : "";
 }
 @section styles{
     <link rel="stylesheet" href="~/project/css/project.css">
@@ -43,7 +42,7 @@
         </div>
     </div>
     <div class="box-body">
-        @if (nothingToShow)
+        @if (ViewBag.TotalProject <=0 )
         {
             <div class="box-header with-border">
                 <h3><i class="fa fa-frown-o"></i><span class="space-left">Ops! There is nothing to display right now</span></h3>
@@ -52,7 +51,7 @@
         }
         else
         {
-            <partial name="_ProjectList" model='Model'/>
+            @await Component.InvokeAsync("ProjectList")
         }
     </div>
 </div>
