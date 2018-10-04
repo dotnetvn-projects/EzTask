@@ -63,7 +63,8 @@ namespace EzTask.Business
 
         public async Task<IEnumerable<PhraseModel>> GetPhrase(int projectId)
         {
-            IEnumerable<Phrase> data = await UnitOfWork.PhraseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
+            IEnumerable<Phrase> data = await UnitOfWork.PhraseRepository
+                                                        .GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
             var model = data.ToModels();
 
             return model;

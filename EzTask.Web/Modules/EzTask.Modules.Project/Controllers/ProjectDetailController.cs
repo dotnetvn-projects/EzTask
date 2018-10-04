@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Project.ViewModels;
 using EzTask.Web.Framework.Attributes;
@@ -25,10 +28,21 @@ namespace EzTask.Modules.Project.Controllers
             vm.TotalPhrase = await EzTask.Phrase.CountByProject(model.ProjectId);
             vm.TotalMember = await EzTask.Project.CountMember(model.ProjectId);
 
+            var phrases = await EzTask.Phrase.GetPhrase(model.ProjectId);
+
+            foreach (var phrase in phrases)
+            {
+                var tasks = await EzTask.Task.GetTasks(model.ProjectId, phrase.Id);
+                if(tasks.Any())
+                  vm.TaskList.Add(tasks.ToList());
+            }
+
             return View(vm);
         }
 
         #region Non Action
+
+
         #endregion
     }
 }

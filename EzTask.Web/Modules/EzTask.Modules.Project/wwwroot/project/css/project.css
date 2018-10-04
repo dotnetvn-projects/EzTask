@@ -42,6 +42,7 @@
     }
 
 .under-line-dot{
+    padding: 4px;
     border-bottom:dotted 1px;
 }
 
