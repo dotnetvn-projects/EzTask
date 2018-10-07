@@ -19,6 +19,7 @@ namespace EzTask.Entity.Data
         public DateTime? EndDate { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public int PercentCompleted { get; set; }
 
         public Account Assignee { get; set; }
 

@@ -18,6 +18,11 @@
     });
 };
 
+$.fn.applyDatatable = function () {
+    $(".task-table table").DataTable();
+};
+
 $(function () {
+    $(this).applyDatatable();
     $('.remove-project').deleteproject();
 });

@@ -1,5 +1,5 @@
 ﻿//execute call ajax to load task list
-$.fn.handleLoadTask = function (projectId, phraseid) {
+$.fn.handleLoadTask = function (projectId, phraseid, doneAction) {
     $.ajax({
         url: "task/task-list.html",
         data: { projectId: projectId, phraseId: phraseid },
@@ -8,6 +8,7 @@ $.fn.handleLoadTask = function (projectId, phraseid) {
             taskListPanel.html('');
             taskListPanel.html(response);
             $(this).handleEvent();
+            doneAction();
         }
     });
 };
@@ -61,9 +62,12 @@ $.fn.loadPhrase = function () {
 $.fn.loadTask = function () {
     $(this).click(function (e) {
         e.preventDefault();
+        $.showLoading();
         var phraseid = $(this).attr('data-id');
         var projectId = $('.project-list').val();
-        $(this).handleLoadTask(projectId, phraseid);
+        $(this).handleLoadTask(projectId, phraseid, function () {
+            $.hideLoading();
+        });       
     });
 };
 

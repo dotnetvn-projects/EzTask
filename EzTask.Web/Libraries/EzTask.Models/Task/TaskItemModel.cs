@@ -11,6 +11,7 @@ namespace EzTask.Models
         public string TaskDetail { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime UpdatedDate { get; set; }
+        public int PercentCompleted { get; set; }
         public TaskPriority Priority { get; set; }
         public TaskItemStatus Status { get; set; }
         public DateTime? StartDate { get; set; }

@@ -50,4 +50,8 @@
     display: table;
     margin: 0 auto;
 }
+
+.task-table table td {
+    vertical-align: middle !important;
+}
 /*----End Project------*/
