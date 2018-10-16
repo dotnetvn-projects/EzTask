@@ -17,7 +17,9 @@ namespace EzTask.Entity.Data
         public Int16 Status { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
+        [Column(TypeName = "datetime")]
         public DateTime CreatedDate { get; set; }
+        [Column(TypeName = "datetime")]
         public DateTime UpdatedDate { get; set; }
         public int PercentCompleted { get; set; }
 

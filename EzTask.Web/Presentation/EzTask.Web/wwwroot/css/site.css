@@ -8,4 +8,8 @@
 td {
     vertical-align: middle;
 }
+
+.none-display{
+    display:none;
+}
 /*-----EndCommon-----*/

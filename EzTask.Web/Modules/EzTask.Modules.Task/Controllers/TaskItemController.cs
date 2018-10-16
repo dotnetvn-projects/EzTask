@@ -32,11 +32,11 @@ namespace EzTask.Modules.Task.Controllers
         public async Task<IActionResult> GenerateTaskView(TaskFormDataModel model)
         {
             var task = new TaskItemViewModel();
-            if(model.TaskId == 0)
+            if (model.TaskId == 0)
             {
                 task.ProjectId = model.ProjectId;
                 task.AccountId = AccountId;
-                task.PhraseId = model.PhraseId;      
+                task.PhraseId = model.PhraseId;
             }
             else
             {
@@ -51,7 +51,7 @@ namespace EzTask.Modules.Task.Controllers
             task.AssigneeList = StaticResources.BuildAssigneeSelectList(assignees, task.Assignee);
 
             task.StatusList = StaticResources.BuildTaskStatusSelectList(task.Status);
-            task.PriorityList = StaticResources.BuildPrioritySelectList(task.Priority);           
+            task.PriorityList = StaticResources.BuildPrioritySelectList(task.Priority);
 
             return PartialView("_CreateOrUpdateTask", task);
         }
@@ -68,29 +68,35 @@ namespace EzTask.Modules.Task.Controllers
 
             var iResult = await EzTask.Task.SaveTask(model);
 
-            if(iResult.Status == ActionStatus.Ok)
+            if (iResult.Status == ActionStatus.Ok)
             {
+                model.TaskCode = iResult.Data.TaskCode;
+                model.CreatedDate = iResult.Data.CreatedDate;
+                model.UpdatedDate = iResult.Data.UpdatedDate;
+                model.TaskId = iResult.Data.TaskId;
+
                 string title = string.Empty;
                 string diff = string.Empty;
 
-                if(viewModel.TaskId <= 0)
+                if (viewModel.TaskId <= 0)
                 {
-                    title =  "created task \"" + iResult.Data.TaskTitle + "\" <small>(Code: " + model.TaskCode + ")</small>";
+                    title = "created task \"" + iResult.Data.TaskTitle + "\" <small>(Code: " + model.TaskCode + ")</small>";                   
+                    SetTaskDataToSession(model);
                 }
                 else
                 {
-                    title =   "updated task \"" + iResult.Data.TaskTitle + "\" <small>(Code: " + model.TaskCode + ")</small>";
-                    var oldData = SessionManager.GetObject<TaskItemModel>(AppKey.TrackTask);
-                    var newData = CreateTaskItemModel(viewModel);
+                    title = "updated task \"" + iResult.Data.TaskTitle + "\" <small>(Code: " + model.TaskCode + ")</small>";
+                    var oldData = ReadTaskDataFromSession(model.TaskId);
+                    var newData = model;
 
                     diff = await EzTask.Task.CompareChangesAsync(newData, oldData);
 
                     //re-assign new data to session
-                    SessionManager.SetObject(AppKey.TrackTask, newData);
+                    SetTaskDataToSession(newData);
                 }
-                 
+
                 await SaveTaskHistory(iResult.Data.TaskId, title, diff);
-                
+
             }
             return Json(iResult);
         }
@@ -113,14 +119,14 @@ namespace EzTask.Modules.Task.Controllers
                     FileName = file.FileName,
                     FileData = await stream.ConvertStreamToBytes(),
                     FileType = file.ContentType,
-                    Task = new TaskItemModel {TaskId = taskId },
+                    Task = new TaskItemModel { TaskId = taskId },
                     User = new AccountModel { AccountId = AccountId }
                 };
                 var iResult = await EzTask.Task.SaveAttachment(model);
 
-                if(iResult.Status == ActionStatus.Ok)
+                if (iResult.Status == ActionStatus.Ok)
                 {
-                    string title = DisplayName + " uploaded file \"" + iResult.Data.FileName+"\"";
+                    string title = DisplayName + " uploaded file \"" + iResult.Data.FileName + "\"";
                     await SaveTaskHistory(taskId, title, string.Empty);
                 }
                 return Json(model);
@@ -181,6 +187,7 @@ namespace EzTask.Modules.Task.Controllers
             data.TaskId = viewModel.TaskId;
             data.TaskTitle = viewModel.TaskTitle;
             data.CreatedDate = viewModel.CreatedDate;
+            data.PercentCompleted = viewModel.PercentCompleted;
 
             return data;
         }
@@ -202,14 +209,60 @@ namespace EzTask.Modules.Task.Controllers
             task.Status = iResult.Data.Status.ToInt16<TaskStatus>();
             task.Priority = iResult.Status.ToInt16<TaskPriority>();
             task.AccountId = iResult.Data.Member.AccountId;
+            task.PercentCompleted = iResult.Data.PercentCompleted;
             task.CreatedDate = iResult.Data.CreatedDate;
 
             if (task.TaskId > 0)
             {
-                SessionManager.SetObject(AppKey.TrackTask, CreateTaskItemModel(task));
+                SetTaskDataToSession(CreateTaskItemModel(task));
             }
-        }       
-   
+        }
+
+        /// <summary>
+        /// Get data from session to serve for comparing
+        /// </summary>
+        /// <param name="taskId"></param>
+        /// <returns></returns>
+        private TaskItemModel ReadTaskDataFromSession(int taskId)
+        {
+            TaskItemModel result = new TaskItemModel();
+            var data = SessionManager.GetObject<List<TaskItemModel>>(AppKey.TrackTask);
+            if (data != null)
+            {
+                var item = data.FirstOrDefault(c => c.TaskId == taskId);
+                if (item != null)
+                {
+                    result = item;
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Store data to session to serve for comparing
+        /// </summary>
+        /// <param name="taskData"></param>
+        private void SetTaskDataToSession(TaskItemModel taskData)
+        {
+            TaskItemModel result = new TaskItemModel();
+            var data = SessionManager.GetObject<List<TaskItemModel>>(AppKey.TrackTask);
+            if (data == null)
+            {
+                data = new List<TaskItemModel>();
+            }
+            else
+            {
+                var item = data.FirstOrDefault(c => c.TaskId == taskData.TaskId);
+                if (item != null)
+                {
+                    data.Remove(item);
+                }
+            }
+
+            data.Add(taskData);
+            SessionManager.SetObject(AppKey.TrackTask, data);
+        }
+
         #endregion
     }
 }

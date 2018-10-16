@@ -58,6 +58,20 @@
                             <select asp-for="Assignee" asp-items="@Model.AssigneeList" id="selectAssignList" class="form-control select2"></select>
                         </div>
                     </div>
+                    @{ 
+                        var display = Model.TaskId <= 0 ? "none-display" : "";
+                    }
+                   
+                    <div class="form-group percentComplete @display">
+                        <label for="percentComplete" class="col-sm-2 control-label">Percent complete</label>
+                        <div class="col-sm-9">
+                            <div class="slidecontainer">
+                                <input asp-for="@Model.PercentCompleted" type="range" class="slider" />
+                                <p><span class="slider-value pull-right badge bg-green"></span></p>
+                            </div>
+                        </div>
+                    </div>      
+                    
                     <div class="form-group">
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
@@ -74,12 +88,12 @@
                                 </div>
                                 @if (Model.TaskId > 0)
                                 {
-                                <div class="tab-pane" id="tab_attachment">
-                                    @await Component.InvokeAsync("Attachments", new { taskId = Model.TaskId })
-                                </div>
-                                <div class="tab-pane" id="tab_history">
-                                    @await Component.InvokeAsync("HistoryList", new { taskId = Model.TaskId, accountId = Model.AccountId })
-                                </div>
+                                    <div class="tab-pane" id="tab_attachment">
+                                        @await Component.InvokeAsync("Attachments", new { taskId = Model.TaskId })
+                                    </div>
+                                    <div class="tab-pane" id="tab_history">
+                                        @await Component.InvokeAsync("HistoryList", new { taskId = Model.TaskId, accountId = Model.AccountId })
+                                    </div>
                                 }
                             </div>
                         </div>

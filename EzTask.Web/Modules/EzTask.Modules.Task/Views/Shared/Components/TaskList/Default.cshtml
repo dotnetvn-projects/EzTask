@@ -1,5 +1,7 @@
 ﻿@model TaskViewModel
-
+@{ 
+    var taskCount = Model.TaskList.Count();
+}
 <div class="box box-primary">
     <div class="box-header with-border">
         <div class="phrase-tool">
@@ -8,7 +10,7 @@
         </div>
         <div class="task-tool">
             <h3 class="box-title">
-                <i class="fa fa-book text-success"></i>  @Model.Phrase.PhraseName: @Model.TaskCount
+                <i class="fa fa-book text-success"></i>  @Model.Phrase.PhraseName: @Html.PrintNumberWithText("task", taskCount)
             </h3>
             <div class="box-tools pull-right">
                 <div class="has-feedback">
@@ -32,7 +34,7 @@
             <!-- /.btn-group -->
             <button type="button" title="refresh" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
-                <span class="badge bg-aqua task-count">@Model.TaskCount</span>
+                <span class="badge bg-aqua task-count">@Html.PrintNumberWithText("task", taskCount)</span>
             </div>
             <!-- /.pull-right -->
         </div>
@@ -90,7 +92,7 @@
             <!-- /.btn-group -->
             <button type="button" title="refresh" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
-                <span class="badge bg-aqua task-count">@Model.TaskCount</span>
+                <span class="badge bg-aqua task-count">@Html.PrintNumberWithText("task", taskCount)</span>
             </div>
             <!-- /.pull-right -->
         </div>

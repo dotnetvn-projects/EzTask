@@ -7,6 +7,7 @@ $.fn.buildForm = function (template) {
     $("#task-modal .btn-confirm").Submit();
     $("#file-upload").putAttachment();
     $('.history-detail').displayHistoryDetail();
+    $(".slider").sliderbar();
     $.triggerCloseDialog('task-modal');
 };
 
@@ -170,10 +171,18 @@ function submitSuccess(response) {
 
         $(".tab-content").append(attachmentContent).append(historyContent);
 
-        currentId = response.data.taskId;      
-
+        currentId = response.data.taskId;     
         $("#TaskId").val(currentId);
-       
+
+        var createdDate = new Date(response.data.createdDate);
+        $("#CreatedDate").val($.formatDate(createdDate));
+
+        $("#TaskCode").val(response.data.taskCode);
+
+        //update slider bar
+        $(".percentComplete .slider").val(response.data.percentCompleted);
+        $(".percentComplete .slider").change();
+        $(".percentComplete").show();
     }
 
     $(this).loadAttachment(currentId);

@@ -65,6 +65,7 @@ namespace EzTask.Business
             {
                 task.TaskCode = string.Empty;
                 task.CreatedDate = DateTime.Now;
+                task.PercentCompleted = 5;
                 UnitOfWork.TaskRepository.Add(task);
             }
             else
@@ -97,7 +98,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountByPhrase(int phraseId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhraseId == phraseId 
+            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhraseId == phraseId
             && c.ProjectId == projectId);
             return totalTask;
         }
@@ -120,7 +121,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountByMember(int memberId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.MemberId == memberId 
+            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.MemberId == memberId
             && c.ProjectId == projectId);
             return totalTask;
         }
@@ -172,7 +173,7 @@ namespace EzTask.Business
                 Data = true
             };
 
-            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c => 
+            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c =>
                                         c.ProjectId == projectId && c.PhraseId == phraseId);
             await DeleteTasks(result, data);
             return result;
@@ -218,6 +219,7 @@ namespace EzTask.Business
                             Status = x.Status,
                             TaskCode = x.TaskCode,
                             TaskTitle = x.TaskTitle,
+                            PercentCompleted = x.PercentCompleted,
                             Id = x.Id,
 
                             Member = new Account
@@ -250,13 +252,13 @@ namespace EzTask.Business
         public async Task AssignTask(int[] taskids, int accountId)
         {
             var tasks = await UnitOfWork.TaskRepository.GetManyAsync(c => taskids.Contains(c.Id), false);
-            foreach(var task in tasks)
+            foreach (var task in tasks)
             {
                 task.AssigneeId = accountId == 0 ? null : (int?)accountId;
 
                 UnitOfWork.TaskRepository.Update(task);
             }
-            var iResult = await UnitOfWork.CommitAsync();            
+            var iResult = await UnitOfWork.CommitAsync();
         }
 
         #endregion Task
@@ -382,7 +384,11 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<string> CompareChangesAsync(TaskItemModel newData, TaskItemModel oldData)
         {
-           
+            if (newData.TaskId != oldData.TaskId)
+            {
+                return string.Empty;
+            }
+
             string content = string.Empty;
             if (newData.TaskTitle != oldData.TaskTitle)
             {
@@ -412,7 +418,7 @@ namespace EzTask.Business
             {
                 string oldItem = "Non-Assigned";
                 string newItem = "Non-Assigned";
-                if(newData.Assignee.AccountId > 0)
+                if (newData.Assignee.AccountId > 0)
                 {
                     var account = await _account.GetAccountInfo(newData.Assignee.AccountId);
                     newItem = account.DisplayName;
@@ -435,6 +441,12 @@ namespace EzTask.Business
                 string oldItem = oldData.Status.ToString();
                 string newItem = newData.Status.ToString();
                 content += $"<p><b>Status</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+            }
+            if (newData.PercentCompleted != oldData.PercentCompleted)
+            {
+                string oldItem = oldData.PercentCompleted.ToString();
+                string newItem = newData.PercentCompleted.ToString();
+                content += $"<p><b>Percent Completed</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
             }
 
             return content;

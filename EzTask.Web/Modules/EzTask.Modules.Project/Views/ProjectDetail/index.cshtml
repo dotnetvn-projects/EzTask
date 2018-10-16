@@ -147,14 +147,14 @@
                                             <div title="current working at @percent of completion" class="progress progress-xs progress-striped active">
                                                 <div class="progress-bar progress-bar-success" style="width: @percent"></div>
                                             </div>
-                                            <span class="label text-black">100% completed</span>
+                                            <span class="label text-black">@percent completed</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Closed)
                                         {
                                             <div title="100% completed" class="progress progress-xs progress-striped active">
                                                 <div class="progress-bar progress-bar-yellow" style="width: 100%"></div>
                                             </div>
-                                            <span class="label text-black">100% completed</span>
+                                            <span class="label text-black">Completed</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Failed)
                                         {

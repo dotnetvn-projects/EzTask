@@ -146,11 +146,26 @@ namespace EzTask.Business
         {
             List<Project> data = await UnitOfWork.ProjectMemberRepository.Entity
                 .Include(c => c.Member)
-                .Include(c => c.Project)
+                .Include(c => c.Project).ThenInclude(c=>c.Account).ThenInclude(c=>c.AccountInfo)
                 .AsNoTracking()
                 .Where(c => c.MemberId == ownerId)
                 .OrderBy(c => c.Project.Status)
-                .Select(x => x.Project)
+                .Select(x => new Project {
+                    Account = new Account
+                    {
+                        AccountInfo = x.Project.Account.AccountInfo                        
+                    },
+                    Comment = x.Project.Comment,
+                    CreatedDate = x.Project.CreatedDate,
+                    Description = x.Project.Description,
+                    Id = x.Project.Id,
+                    MaximumUser = x.Project.MaximumUser,
+                    Owner = x.Project.Owner,
+                    ProjectCode = x.Project.ProjectCode,
+                    ProjectName = x.Project.ProjectName,
+                    Status = x.Project.Status,
+                    UpdatedDate = x.Project.UpdatedDate
+                })
                 .ToListAsync();
 
             return data.ToModels();
