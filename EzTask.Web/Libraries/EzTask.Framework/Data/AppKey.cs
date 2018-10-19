@@ -4,10 +4,11 @@ using System.Text;
 
 namespace EzTask.Framework.Data
 {
-    public enum AppKey
+    public enum SessionKey
     {
         Account,
         EzTaskAuthen,
-        TrackTask
+        TrackTask,
+        LanguageSetting
     }
 }

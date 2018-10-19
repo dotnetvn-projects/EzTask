@@ -6,6 +6,7 @@ using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Models.Enum;
+using EzTask.Web.Framework.HttpContext;
 
 namespace EzTask.Modules.Authentication.Controllers
 {
@@ -48,11 +49,15 @@ namespace EzTask.Modules.Authentication.Controllers
                 {
                     if (account.AccountStatus != AccountStatus.Block)
                     {
-                        CurrentAccount = CurrentAccount.Create(account.AccountId.ToString(), 
-                            account.AccountName, account.DisplayName, 
-                            account.JobTitle, account.CreatedDate);
+                        var currentAccount = CurrentAccount.Create(account.AccountId,
+                            account.AccountName, account.DisplayName,
+                            account.JobTitle, account.LangDisplay, account.CreatedDate);
 
-                        RememberMe();
+                        Context.CurrentAccount.Set(currentAccount);
+
+                        Context.RememberLogin(currentAccount);
+
+                        Context.SetLanguageLocalization(account.LangDisplay);
 
                         if (string.IsNullOrEmpty(model.RedirectUrl))
                         {
@@ -147,10 +152,10 @@ namespace EzTask.Modules.Authentication.Controllers
         #region Login use social network
         #endregion
 
-        [HttpPost]
+        [Route("logout.html")]
         public IActionResult LogOff()
         {
-            SuspendSession(AppKey.Account);
+            Context.SuspendSession(SessionKey.Account);
             return RedirectToAction("Login", "Account");
         }
     }

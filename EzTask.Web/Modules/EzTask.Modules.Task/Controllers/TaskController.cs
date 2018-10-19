@@ -9,6 +9,7 @@ using EzTask.Web.Framework.Attributes;
 using System.Linq;
 using EzTask.Models;
 using EzTask.Web.Framework.Data;
+using EzTask.Web.Framework.HttpContext;
 
 namespace EzTask.Modules.Task.Controllers
 {
@@ -101,7 +102,7 @@ namespace EzTask.Modules.Task.Controllers
         private async Task<TaskViewModel> PrepareData()
         {
             TaskViewModel viewModel = new TaskViewModel();
-            var projects = await EzTask.Project.GetProjects(AccountId);
+            var projects = await EzTask.Project.GetProjects(Context.CurrentAccount.AccountId);
 
             if (projects.Any())
             {

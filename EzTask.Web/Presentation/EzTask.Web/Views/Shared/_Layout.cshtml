@@ -18,6 +18,8 @@
 
     <link rel="stylesheet" href="~/themes/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
 
+    <link rel="stylesheet" href="~/themes/plugins/iCheck/flat/green.css">
+
     <!--css loader-->
     <link rel="stylesheet" href="~/lib/css-loader/dist/css-loader.css">
 
@@ -193,7 +195,7 @@ desired effect
                                 <!-- The user image in the navbar-->
                                 <img src="@Url.Action("LoadAvatar","Common")" class="user-image" alt="User Image">
                                 <!-- hidden-xs hides the username on small devices so only the image appears. -->
-                                <span class="hidden-xs">@Html.NickName()</span>
+                                <span class="hidden-xs">@Html.DisplayName()</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- The user image in the menu -->
@@ -201,7 +203,7 @@ desired effect
                                     <img src="@Url.Action("LoadAvatar","Common")" class="img-circle" alt="User Image">
 
                                     <p>
-                                        @Html.NickName() - @Html.JobTitle()
+                                        @Html.DisplayName() - @Html.JobTitle()
                                         <small>Member since @Html.UserJoinDate()</small>
                                     </p>
                                 </li>
@@ -226,7 +228,7 @@ desired effect
                                         <a asp-action="Profile" asp-controller="UserProfile" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
-                                        <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                                        <a asp-action="LogOff" asp-controller="Account" class="btn btn-default btn-flat">Sign out</a>
                                     </div>
                                 </li>
                             </ul>
@@ -251,7 +253,7 @@ desired effect
                         <img src="@Url.Action("LoadAvatar","Common")" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>@Html.NickName()</p>
+                        <p>@Html.DisplayName()</p>
                         <!-- Status -->
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
@@ -260,7 +262,7 @@ desired effect
                 <!-- search form (Optional) -->
                 <form action="#" method="get" class="sidebar-form">
                     <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="Search...">
+                        <input type="text" name="q" class="form-control" placeholder="@Html.GetCommonString("Search")...">
                         <span class="input-group-btn">
                             <button type="submit" name="search" id="search-btn" class="btn btn-flat">
                                 <i class="fa fa-search"></i>
@@ -271,16 +273,16 @@ desired effect
                 <!-- /.search form -->
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">MAIN NAVIGATION</li>
+                    <li class="header">@Html.GetCommonString("MainNavigation")</li>
                     <li class="active treeview">
                         <a asp-action="Index" asp-controller="Home">
-                            <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                            <i class="fa fa-dashboard"></i> <span>@Html.GetCommonString("Dashboard")</span>
                         </a>
                     </li>
 
-                    <li class="header">PROJECT MANAGEMENT</li>
-                    <li><a asp-action="Index" asp-controller="Task"><i class="fa fa-tasks"></i> <span>Task</span></a></li>
-                    <li><a asp-action="Index" asp-controller="Project"><i class="fa fa-reddit"></i> <span>Project</span></a></li>        
+                    <li class="header">@Html.GetCommonString("ProjectManagement")</li>
+                    <li><a asp-action="Index" asp-controller="Task"><i class="fa fa-tasks"></i> <span>@Html.GetCommonString("Task")</span></a></li>
+                    <li><a asp-action="Index" asp-controller="Project"><i class="fa fa-reddit"></i> <span>@Html.GetCommonString("Project")</span></a></li>
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
@@ -402,6 +404,7 @@ desired effect
     @*<script src="~/themes/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>*@
 
     <script src="~/themes/bower_components/fastclick/lib/fastclick.js"></script>
+    <script src="~/themes/plugins/iCheck/icheck.js"></script>
 
     <script src="~/themes/bower_components/select2/dist/js/select2.full.min.js"></script>
     <!-- DataTables -->

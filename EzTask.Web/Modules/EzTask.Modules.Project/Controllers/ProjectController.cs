@@ -86,7 +86,7 @@ namespace EzTask.Modules.Project.Controllers
                         model.Status = ProjectStatus.Pending;
                         model.Owner = new AccountModel
                         {
-                            AccountId = AccountId
+                            AccountId = Context.CurrentAccount.AccountId
                         };
 
                         var project = await EzTask.Project.Save(model);
@@ -228,6 +228,40 @@ namespace EzTask.Modules.Project.Controllers
             {
                 return BadRequest();
             }
+        }
+
+        /// <summary>
+        /// Remove project
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("project/invite-new-member.html")]
+        public async Task<IActionResult> InviteMember(int projectId, string accountName)
+        {
+            var account = await EzTask.Account.GetAccountInfo(accountName);
+
+            if(account == null)
+            {
+                return BadRequest("NotFound fwefwefwe");
+            }
+
+            ProjectMemberModel model = new ProjectMemberModel
+            {
+                AccountId = account.AccountId,
+                ProjectId = projectId
+            };
+
+            var alreadyAdded = await EzTask.Project.HasAlreadyAdded(model);
+
+            if (alreadyAdded.Data)
+            {
+                return BadRequest("added règrwgregregre");          
+            }
+
+            var iResult = await EzTask.Project.AddMember(model);
+
+            return PartialView("_AddNewMemberItemTemplate", iResult.Data);
         }
 
         #endregion

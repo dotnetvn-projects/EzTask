@@ -392,11 +392,11 @@ namespace EzTask.Business
             string content = string.Empty;
             if (newData.TaskTitle != oldData.TaskTitle)
             {
-                content += $"<p><b>Title</b>:<br/><small>{oldData.TaskTitle} => {newData.TaskTitle}</small> </p>";
+                content += FormartHistoryContent("Title", oldData.TaskTitle, newData.TaskTitle);
             }
             if (newData.TaskDetail != oldData.TaskDetail)
             {
-                content += $"<p><b>Detail</b>:<br/><small>{oldData.TaskDetail} => {newData.TaskDetail}</small> </p>";
+                content += FormartHistoryContent("Detail", oldData.TaskDetail, newData.TaskDetail);
             }
             if (newData.Phrase.Id != oldData.Phrase.Id)
             {
@@ -412,7 +412,7 @@ namespace EzTask.Business
                     var phrase = await _phrase.GetPhraseById(oldData.Phrase.Id);
                     oldItem = phrase.PhraseName;
                 }
-                content += $"<p><b>Phrase</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+                content += FormartHistoryContent("Phrase", oldItem, newItem);
             }
             if (newData.Assignee.AccountId != oldData.Assignee.AccountId)
             {
@@ -428,25 +428,25 @@ namespace EzTask.Business
                     var account = await _account.GetAccountInfo(oldData.Assignee.AccountId);
                     oldItem = account.DisplayName;
                 }
-                content += $"<p><b>Assignee</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+                content += FormartHistoryContent("Assignee", oldItem, newItem);
             }
             if (newData.Priority != oldData.Priority)
             {
                 string oldItem = oldData.Priority.ToString();
                 string newItem = newData.Priority.ToString();
-                content += $"<p><b>Priority</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+                content += FormartHistoryContent("Priority", oldItem, newItem);
             }
             if (newData.Status != oldData.Status)
             {
                 string oldItem = oldData.Status.ToString();
                 string newItem = newData.Status.ToString();
-                content += $"<p><b>Status</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+                content += FormartHistoryContent("Status", oldItem, newItem);
             }
             if (newData.PercentCompleted != oldData.PercentCompleted)
             {
                 string oldItem = oldData.PercentCompleted.ToString();
                 string newItem = newData.PercentCompleted.ToString();
-                content += $"<p><b>Percent Completed</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+                content += FormartHistoryContent("Percent Completed", oldItem, newItem);
             }
 
             return content;
@@ -486,6 +486,19 @@ namespace EzTask.Business
                 }
             }
         }
+
+        private string FormartHistoryContent(string field, string oldData, string newData)
+        {
+            if(field == "Detail")
+            {
+                string content = $"<p><b>{field}</b>:<br/>";
+                content += $"Old data:<br/> <small style=\"word-wrap: break-word;\">{oldData}</small><br/>";
+                content += $"New data:<br/> <small style=\"word-wrap: break-word;\" class='text-danger'>{newData}</small><br/>";
+                return content;
+            }
+            return $"<p><b>{field}</b>:<br/><small>{oldData} => <span style=\"color:red;\">{newData}</span></small></p>";
+        }
+
         #endregion
     }
 }

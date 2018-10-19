@@ -24,9 +24,12 @@
                 <div class="box-body no-padding">
                     <div class="project-box">
                         <select asp-items="@Model.ProjectItems" class="form-control select2 project-list"></select>
-                        <a data-toggle="modal" class="btn btn-block btn-addnew-phrase">
-                            <i class="fa fa-plus"></i> Add new phrase
-                        </a>
+                        @if (Model.Project.Owner.AccountId == User.Identity.AccountId())
+                        {
+                            <a data-toggle="modal" class="btn btn-block btn-addnew-phrase">
+                                <i class="fa fa-plus"></i> Add new phrase
+                            </a>
+                        }
                     </div>
                 </div>
             </div>

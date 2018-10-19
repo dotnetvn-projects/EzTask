@@ -22,6 +22,7 @@ namespace EzTask.Models
         public string Comment { get; set; }
         public string Introduce { get; set; }
         public byte[] Document { get; set; }
+        public string LangDisplay { get; set; }
         public string Skills { get; set; }
         public bool IsPublished { get; set; }      
 

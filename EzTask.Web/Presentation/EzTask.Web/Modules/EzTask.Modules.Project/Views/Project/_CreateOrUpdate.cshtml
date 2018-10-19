@@ -1,11 +1,11 @@
 ﻿@model ProjectModel
 
-<form asp-action="@Model.ActionType.ToString()" method="post" role="form">
+<form asp-action="@Model.ActionType.ToString()" class="project-form" method="post" role="form">
     <input asp-for="ProjectCode" type="hidden" />
-    <input asp-for="Status" type="hidden" />
     <input asp-for="MaximumUser" type="hidden" />
-    <input asp-for="CreatedDate" type="hidden"/>
+    <input asp-for="CreatedDate" type="hidden" />
     <input asp-for="ProjectId" type="hidden" />
+    <input asp-for="ActionType" type="hidden" />
 
     <div class="box-body">
         <div class="form-group">
@@ -22,6 +22,28 @@
                 <span asp-validation-for="Description" class="text-danger"></span>
             </div>
         </div>
+        @if (Model.ProjectId > 0)
+        {
+            <div class="form-group status-group">
+                <label>Project Status</label>
+                <div>
+                    <input asp-for="Status" value="Pending" type="radio" id="Pending" class="flat-red ckstatus" />
+                    <label for="Pending">Pending </label>
+
+                    <input asp-for="Status" value="Implementing" type="radio" id="Implementing" class="flat-red ckstatus" />
+                    <label for="Implementing">Implementing </label>
+
+                    <input asp-for="Status" value="Completed" type="radio" id="Completed" class="flat-red ckstatus" />
+                    <label for="Completed">Completed </label>
+
+                    <input asp-for="Status" value="Failed" type="radio" id="Failed" class="flat-red ckstatus" />
+                    <label for="Failed">Failed </label>
+
+                    <input asp-for="Status" value="Canceled" type="radio" id="Canceled" class="flat-red ckstatus" />
+                    <label for="Canceled">Canceled</label>
+                </div>
+            </div>
+        }
     </div>
 
     <div class="box-footer">

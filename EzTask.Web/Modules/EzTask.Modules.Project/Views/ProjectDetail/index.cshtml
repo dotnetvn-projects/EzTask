@@ -57,13 +57,13 @@
                 <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Open Phrases</span>
-                    <span class="info-box-number">3</span>
+                    <span class="info-box-number">@Model.TotalOpenPhrase</span>
 
                     <div class="progress">
-                        <div class="progress-bar" style="width: 70%"></div>
+                        <div class="progress-bar" style="width: @Model.PercentOpenPhrase%"></div>
                     </div>
                     <span class="progress-description">
-                        70% Take in @Html.PrintNumberWithText("Phrase", Model.TotalPhrase)
+                        @Model.PercentOpenPhrase% Take in @Html.PrintNumberWithText("Phrase", Model.TotalPhrase)
                     </span>
                 </div>
             </div>
@@ -73,13 +73,13 @@
                 <span class="info-box-icon"><i class="fa fa-check-circle"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Closed Phrases</span>
-                    <span class="info-box-number">30</span>
+                    <span class="info-box-number">@Model.TotalClosedPhrase</span>
 
                     <div class="progress">
-                        <div class="progress-bar" style="width: 70%"></div>
+                        <div class="progress-bar" style="width: @Model.PercentClosedPhrase%"></div>
                     </div>
                     <span class="progress-description">
-                        70% Take in @Html.PrintNumberWithText("Phrase", Model.TotalPhrase)
+                        @Model.PercentClosedPhrase% Take in @Html.PrintNumberWithText("Phrase", Model.TotalPhrase)
                     </span>
                 </div>
             </div>
@@ -89,13 +89,13 @@
                 <span class="info-box-icon"><i class="fa fa-times-circle"></i></span>
                 <div class="info-box-content">
                     <span class="info-box-text">Failed Phrases</span>
-                    <span class="info-box-number">30</span>
+                    <span class="info-box-number">@Model.TotalFailedPhrase</span>
 
                     <div class="progress">
-                        <div class="progress-bar" style="width: 70%"></div>
+                        <div class="progress-bar" style="width: @Model.PercentFailedPhrase%"></div>
                     </div>
                     <span class="progress-description">
-                        70% Take in @Html.PrintNumberWithText("Phrase", Model.TotalPhrase)
+                        @Model.PercentFailedPhrase% Take in @Html.PrintNumberWithText("Phrase", Model.TotalPhrase)
                     </span>
                 </div>
             </div>
@@ -218,4 +218,3 @@
         }
     </div>
 </div>
-

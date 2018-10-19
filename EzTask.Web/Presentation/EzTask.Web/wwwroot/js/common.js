@@ -127,4 +127,12 @@
             minuteFormatted + morning;
     };
 
+    //iCheck for checkbox and radio inputs
+    $.registeriCheck = function (element) {
+        $(element).iCheck({
+            checkboxClass: 'icheckbox_flat-green',
+            radioClass: 'iradio_flat-green'
+        });
+    };
+
 })(jQuery);

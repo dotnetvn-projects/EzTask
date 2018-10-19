@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
+using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -54,7 +55,7 @@ namespace EzTask.Modules.UserProfile.Controllers
             if (ModelState.IsValid)
             {
                 var account = await EzTask.Account.UpdateAccount(model);
-                await EzTask.Skill.SaveAccountSkill(model.Skills, AccountId);
+                await EzTask.Skill.SaveAccountSkill(model.Skills, Context.CurrentAccount.AccountId);
             }
             return View("Profile", model);
         }
@@ -71,7 +72,7 @@ namespace EzTask.Modules.UserProfile.Controllers
             if (file.Length > 0)
             {
                 var stream = file.OpenReadStream();
-                var result = await EzTask.Account.UpdateAvatar(AccountId, stream);
+                var result = await EzTask.Account.UpdateAvatar(Context.CurrentAccount.AccountId, stream);
                 return Ok();
             }
             return BadRequest();
@@ -84,10 +85,10 @@ namespace EzTask.Modules.UserProfile.Controllers
         /// <returns></returns>
         private async Task<AccountInfoModel> GetAccountInfo()
         {
-            var data = await EzTask.Account.GetAccountInfo(AccountId);            
+            var data = await EzTask.Account.GetAccountInfo(Context.CurrentAccount.AccountId);            
             if(data != null)
             {
-                data.Skills = await EzTask.Skill.GetSkill(AccountId);
+                data.Skills = await EzTask.Skill.GetSkill(Context.CurrentAccount.AccountId);
             }
             return data;
         }

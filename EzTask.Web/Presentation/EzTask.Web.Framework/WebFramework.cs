@@ -13,6 +13,8 @@ using EzTask.Business;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Web.Framework.Data;
 using EzTask.Web.Framework.Filters;
+using EzTask.Framework.Infrastructures;
+using EzTask.Interfaces;
 
 namespace EzTask.Web.Framework
 {
@@ -25,12 +27,13 @@ namespace EzTask.Web.Framework
             BusinessInitializer.Register(services);
             
             env.RunWebBuilder();
-
+           
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<StaticResources>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
             services.AddSingleton<Interfaces.IWebHostEnvironment, WebHost>();
+            services.AddTransient<ViewRender>();
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMemoryCache();           
@@ -75,7 +78,10 @@ namespace EzTask.Web.Framework
 
         public static void ConfigureFramework(this IApplicationBuilder app)
         {
-            app.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>());
+            app.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>(),
+                app.ApplicationServices.GetRequiredService<IWebHostEnvironment>(),
+                app.ApplicationServices.GetRequiredService<SessionManager>(),
+                app.ApplicationServices.GetRequiredService<CookiesManager>());
         }
     }
 }

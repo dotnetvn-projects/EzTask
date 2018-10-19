@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Localization>
+  <Pattern>English</Pattern>
+  
+  <CommonMessage>
+    <Language>
+      <Key>Search</Key>
+      <Content>Search</Content>
+    </Language>
+    <Language>
+      <Key>Task</Key>
+      <Content>Task</Content>
+    </Language>
+    <Language>
+      <Key>Project</Key>
+      <Content>Project</Content>
+    </Language>
+    <Language>
+      <Key>ControlPanel</Key>
+      <Content>Control panel</Content>
+    </Language>
+    <Language>
+      <Key>Dashboard</Key>
+      <Content>Dashboard</Content>
+    </Language>
+    <Language>
+      <Key>ProjectManagement</Key>
+      <Content>PROJECT MANAGEMENT</Content>
+    </Language>
+    <Language>
+      <Key>MainNavigation</Key>
+      <Content>MAIN NAVIGATION</Content>
+    </Language>
+  </CommonMessage>
+  
+  <MessageTitle>
+    <Language>
+      <Key>Error</Key>
+      <Content>Error!</Content>
+    </Language>
+    <Language>
+      <Key>Alert</Key>
+      <Content>Alert</Content>
+    </Language>
+  </MessageTitle>
+    
+  <ErrorMessage>
+    <Language>
+      <Key>AccountNotFound</Key>
+      <Content>Account {0} doesn't exist.</Content>
+    </Language>
+    <Language>
+      <Key>NotFound</Key>
+      <Content>Not Found</Content>
+    </Language>
+  </ErrorMessage>
+
+  <SuccessMessage>
+    <Language>
+      <Key>fefew</Key>
+      <Content>ewfwefew</Content>
+    </Language>
+  </SuccessMessage>
+  
+  <DashboardPage>
+    <Language>
+      <Key>ưefwe</Key>
+      <Content>èwefwe</Content>
+    </Language>
+  </DashboardPage>
+  
+  <ProjectPage>
+    <Language>
+      <Key>ưefwe</Key>
+      <Content>fwefwe</Content>
+    </Language>
+  </ProjectPage>
+  
+</Localization>

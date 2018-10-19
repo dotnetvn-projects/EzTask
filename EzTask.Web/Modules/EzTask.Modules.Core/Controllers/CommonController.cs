@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EzTask.Models;
 using EzTask.Web.Framework.Attributes;
+using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using IO = EzTask.Framework.IO.FileIO;
@@ -24,9 +25,9 @@ namespace EzTask.Modules.Core.Controllers
         public async Task<IActionResult> LoadAvatar(int accountId = 0)
         {
             if (accountId == 0)
-                accountId = AccountId;
+                accountId = Context.CurrentAccount.AccountId;
 
-            var dataImage = await EzTask.Account.LoadAvatar(AccountId);
+            var dataImage = await EzTask.Account.LoadAvatar(accountId);
             if (dataImage == null || dataImage.Length == 0)
             {
                 string noAvatar = Path.Combine(hostingEnvironment.WebRootPath, "images/no-avatar.jpg");

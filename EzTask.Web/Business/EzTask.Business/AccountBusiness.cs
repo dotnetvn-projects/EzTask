@@ -177,6 +177,22 @@ namespace EzTask.Business
             return data.ToModel();
         }
 
+        /// <summary>
+        /// Get account info by account name
+        /// </summary>
+        /// <param name="accountName"></param>
+        /// <returns></returns>
+        public async Task<AccountInfoModel> GetAccountInfo(string accountName)
+        {
+            var accountInfo = await UnitOfWork.AccountInfoRepository
+                        .Entity
+                        .Include(c => c.Account)
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(c => c.Account.AccountName == accountName);
+
+            return accountInfo.ToModel();
+        }
+
         public async Task<byte[]> LoadAvatar(int accountId)
         {
             var data = await UnitOfWork.AccountInfoRepository.GetAsync(c => 

@@ -19,6 +19,7 @@ namespace EzTask.Entity.Data
         public string Comment { get; set; }
         public string Introduce { get; set; }
         public byte[] Document { get; set; }
+        public string LangDisplay { get; set; }
         public bool IsPublished { get; set; }
 
         public override void Update(AccountInfo entity)

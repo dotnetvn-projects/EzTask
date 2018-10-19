@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Http;
 using EzTask.Framework.Data;
 using System.Text;
 using EzTask.Web.Framework.Data;
+using EzTask.Web.Framework.HttpContext;
 
 namespace EzTask.Modules.Task.Controllers
 {
@@ -35,7 +36,7 @@ namespace EzTask.Modules.Task.Controllers
             if (model.TaskId == 0)
             {
                 task.ProjectId = model.ProjectId;
-                task.AccountId = AccountId;
+                task.AccountId = Context.CurrentAccount.AccountId;
                 task.PhraseId = model.PhraseId;
             }
             else
@@ -120,13 +121,13 @@ namespace EzTask.Modules.Task.Controllers
                     FileData = await stream.ConvertStreamToBytes(),
                     FileType = file.ContentType,
                     Task = new TaskItemModel { TaskId = taskId },
-                    User = new AccountModel { AccountId = AccountId }
+                    User = new AccountModel { AccountId = Context.CurrentAccount.AccountId }
                 };
                 var iResult = await EzTask.Task.SaveAttachment(model);
 
                 if (iResult.Status == ActionStatus.Ok)
                 {
-                    string title = DisplayName + " uploaded file \"" + iResult.Data.FileName + "\"";
+                    string title = Context.CurrentAccount.DisplayName + " uploaded file \"" + iResult.Data.FileName + "\"";
                     await SaveTaskHistory(taskId, title, string.Empty);
                 }
                 return Json(model);
@@ -155,7 +156,7 @@ namespace EzTask.Modules.Task.Controllers
         [Route("taskitem/history-list.html")]
         public IActionResult GetTaskHistoryList(int taskId)
         {
-            return ViewComponent("HistoryList", new { taskId, accountId = AccountId });
+            return ViewComponent("HistoryList", new { taskId, accountId = Context.CurrentAccount.AccountId });
         }
 
         [HttpPost]
@@ -177,7 +178,7 @@ namespace EzTask.Modules.Task.Controllers
         {
             var data = new TaskItemModel();
             data.Assignee.AccountId = viewModel.Assignee;
-            data.Member.AccountId = AccountId;
+            data.Member.AccountId = Context.CurrentAccount.AccountId;
             data.Phrase.Id = viewModel.PhraseId;
             data.Project.ProjectId = viewModel.ProjectId;
             data.Priority = viewModel.Priority.ToEnum<TaskPriority>();
@@ -226,7 +227,7 @@ namespace EzTask.Modules.Task.Controllers
         private TaskItemModel ReadTaskDataFromSession(int taskId)
         {
             TaskItemModel result = new TaskItemModel();
-            var data = SessionManager.GetObject<List<TaskItemModel>>(AppKey.TrackTask);
+            var data = SessionManager.GetObject<List<TaskItemModel>>(SessionKey.TrackTask);
             if (data != null)
             {
                 var item = data.FirstOrDefault(c => c.TaskId == taskId);
@@ -245,7 +246,7 @@ namespace EzTask.Modules.Task.Controllers
         private void SetTaskDataToSession(TaskItemModel taskData)
         {
             TaskItemModel result = new TaskItemModel();
-            var data = SessionManager.GetObject<List<TaskItemModel>>(AppKey.TrackTask);
+            var data = SessionManager.GetObject<List<TaskItemModel>>(SessionKey.TrackTask);
             if (data == null)
             {
                 data = new List<TaskItemModel>();
@@ -260,7 +261,7 @@ namespace EzTask.Modules.Task.Controllers
             }
 
             data.Add(taskData);
-            SessionManager.SetObject(AppKey.TrackTask, data);
+            SessionManager.SetObject(SessionKey.TrackTask, data);
         }
 
         #endregion

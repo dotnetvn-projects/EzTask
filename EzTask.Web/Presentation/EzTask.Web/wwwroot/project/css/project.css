@@ -54,4 +54,19 @@
 .task-table table td {
     vertical-align: middle !important;
 }
+
+.btn-add-member {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index:9999;
+    margin: 5px;
+}
+.btn-add-member i {
+    color:white;
+}
+
+.project-form .status-group > div > label {
+    padding-right: 15px;
+}
 /*----End Project------*/

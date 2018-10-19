@@ -1,5 +1,5 @@
 ﻿@model TaskViewModel
-@{ 
+@{
     var taskCount = Model.TaskList.Count();
 }
 <div class="box box-primary">
@@ -45,26 +45,26 @@
                     {
                         foreach (var task in Model.TaskList)
                         {
-                    <tr data-id="@task.TaskId">
-                        <td width="20"><input data-id="@task.TaskId" type="checkbox"></td>
-                        <td class="task-name"><a>@task.TaskCode</a></td>
-                        <td class="task-title">
-                            @task.TaskTitle
-                        </td>
-                        <td title="Assign to @task.Assignee.DisplayName" class="task-assignee"><i class="fa fa-user text-green"></i> @task.Assignee.DisplayName</td>
-                        <td class="task-status">
-                            <task-status asp-for="@task.Status"></task-status>
-                        </td>
-                        @if (task.HasAttachment)
-                        {
-                        <td class="task-attachment"><i class="fa fa-paperclip"></i></td>
-                        }
-                        else
-                        {
-                            <td></td>
-                        }
-                        <td class="task-date">@task.UpdatedDate.TimeAgo()</td>
-                    </tr>
+                            <tr data-id="@task.TaskId">
+                                <td width="20"><input data-id="@task.TaskId" type="checkbox"></td>
+                                <td class="task-name"><a>@task.TaskCode</a></td>
+                                <td class="task-title">
+                                    @task.TaskTitle
+                                </td>
+                                <td title="Assign to @task.Assignee.DisplayName" class="task-assignee"><i class="fa fa-user text-green"></i> @task.Assignee.DisplayName</td>
+                                <td class="task-status">
+                                    <task-status asp-for="@task.Status"></task-status>
+                                </td>
+                                @if (task.HasAttachment)
+                                {
+                                    <td class="task-attachment"><i class="fa fa-paperclip"></i></td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                <td class="task-date">@task.UpdatedDate.TimeAgo()</td>
+                            </tr>
                         }
                     }
                     else
@@ -99,4 +99,4 @@
     </div>
 </div>
 
-<input type="hidden" id="phrase-id" asp-for="Phrase.Id"/>
+<input type="hidden" id="phrase-id" asp-for="Phrase.Id" />

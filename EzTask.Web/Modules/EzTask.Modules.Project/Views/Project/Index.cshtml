@@ -42,7 +42,7 @@
         </div>
     </div>
     <div class="box-body">
-        @if (ViewBag.TotalProject <=0 )
+        @if (ViewBag.TotalProject <= 0)
         {
             <div class="box-header with-border">
                 <h3><i class="fa fa-frown-o"></i><span class="space-left">Ops! There is nothing to display right now</span></h3>
@@ -55,6 +55,34 @@
         }
     </div>
 </div>
+
+<div class="modal fade" data-backdrop="static" data-keyboard="false" id="add-member-modal">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Add new member</h4>
+            </div>
+            <div class="modal-body">
+                <div class="box-body">
+                    <div class="input-group">
+                        <span class="input-group-addon">@Html.Raw("@")</span>
+                        <input type="text" class="form-control txt-account" placeholder="Type email of member and hit enter">                       
+                    </div>                  
+                </div>
+                <input type="hidden" id="project-id" />
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary btn-confirm">Add</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
 @section Scripts{
     <script src="~/project/js/project.js"></script>
 }
