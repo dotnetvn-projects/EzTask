@@ -22,7 +22,7 @@ namespace EzTask.Modules.Task.Controllers
         }
 
         [HttpPost]
-        [Route("task/generate-phrase.html")]
+        [Route("phase/generate-phase.html")]
         public async Task<IActionResult> GeneratePhraseView(int phraseId, int projectId)
         {
             PhraseViewModel viewModel = new PhraseViewModel();
@@ -49,7 +49,7 @@ namespace EzTask.Modules.Task.Controllers
         }
 
         [HttpPost]
-        [Route("task/phrase-modal-action.html")]
+        [Route("phase/phase-modal-action.html")]
         public async Task<IActionResult> CreateOrUpdatePhrase(PhraseViewModel viewmodel)
         {
             if (!ModelState.IsValid)
@@ -84,24 +84,22 @@ namespace EzTask.Modules.Task.Controllers
         }
 
         [HttpGet]
-        [Route("task/phrase-list.html")]
+        [Route("phase/phase-list.html")]
         public async Task<IActionResult> LoadPhraseListAsync(int projectId)
         {       
             var project = await EzTask.Project.GetProject(projectId);
+
             if (project!=null 
                 && project.Owner.AccountId == Context.CurrentAccount.AccountId)
-            {
-
-                var template = await Context.RenderViewToStringAsync("_ButtonAddNewPhase", ControllerContext);
+            {              
                 Context.AddResponseHeader("authorized-add-phase", "authorized");
-                Context.AddResponseHeader("button-add-phase", template);
             }
 
             return ViewComponent("PhraseList", projectId);
         }
 
         [HttpPost]
-        [Route("task/delete-phrase.html")]
+        [Route("phase/delete-phase.html")]
         public async Task<IActionResult> RemovePhrase(int phraseId)
         {
             PhraseModel phrase = await EzTask.Phrase.GetPhraseById(phraseId);
@@ -132,5 +130,12 @@ namespace EzTask.Modules.Task.Controllers
             return BadRequest("Error, cannot process your request!.");
         }
 
+        [HttpPost]
+        [Route("phase/generate-addbutton.html")]
+        public async Task<IActionResult> RenderAddNewPhraseButton()
+        {
+            var template = await Context.RenderViewToStringAsync("_ButtonAddNewPhase", ControllerContext);
+            return Content(template);
+        }
     }
 }

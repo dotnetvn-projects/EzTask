@@ -211,7 +211,8 @@ namespace EzTask.Business
                 {
                     Account = new Account
                     {
-                        AccountInfo = x.Project.Account.AccountInfo
+                        AccountInfo = x.Project.Account.AccountInfo,
+                        Id = x.Project.Account.Id
                     },
                     Comment = x.Project.Comment,
                     CreatedDate = x.Project.CreatedDate,

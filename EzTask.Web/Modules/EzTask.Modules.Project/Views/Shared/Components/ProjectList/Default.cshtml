@@ -90,7 +90,7 @@
                     </div>
                     <!-- /.box-body -->
                     <div class="box-footer" style="">
-                        <i class="fa fa-circle text-@item.Project.Color"></i> @item.Project.Status.ToString()
+                        <span><i class="fa fa-circle text-@item.Project.Color"></i> @item.Project.Status.ToString()</span>
                         <a asp-action="Index" asp-controller="ProjectDetail"
                            asp-route-code="@item.Project.ProjectCode" class="btn btn-flat btn-@item.Project.BoxType btn-sm pull-right">
                             <span><i class="fa fa-hand-o-right"></i> View Detail</span>

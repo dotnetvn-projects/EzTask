@@ -43,8 +43,9 @@ $.fn.searchTask = function () {
 $.fn.loadPhrase = function () {
     $(this).change(function () {
         var id = $(this).val();
+        $.showLoading();
         $.ajax({
-            url: "task/phrase-list.html",
+            url: "phase/phase-list.html",
             data: { projectId: id },
             success: function (response, status, request) {
                 var phrasePanel = $(".phrase-list-panel");
@@ -61,13 +62,16 @@ $.fn.loadPhrase = function () {
 
                 if (authorizeAdd === "authorized") {
                     if ($(".btn-addnew-phrase").length <= 0) {
-                        var addButtonTemplate = request.getResponseHeader("button-add-phase");
-                        $(".project-box").append(addButtonTemplate);
-                        $(".btn-addnew-phrase").showModal();
+                        $.post('phase/generate-addbutton.html', function (res) {
+                            $(".project-box").append(res);
+                            $(".btn-addnew-phrase").showModal();
+                            $.hideLoading();
+                        });            
                     }
                 }
                 else {
                     $(".btn-addnew-phrase").remove();
+                    $.hideLoading();
                 }
             }
         });

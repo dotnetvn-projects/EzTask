@@ -117,7 +117,7 @@ namespace EzTask.Framework.Infrastructures
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<TaskItemStatus>()))
                 .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToEnum<TaskItemStatus>()))
                 .ForMember(c => c.TaskId, t => t.MapFrom(z => z.Id))
-                .ForMember(c=>c.HasAttachment, t => t.MapFrom(z=>z.Attachments !=null && z.Attachments.Any()));
+                .ForMember(c => c.HasAttachment, t => t.MapFrom(z => z.Attachments != null && z.Attachments.Any()));
 
             //Map TaskItem model to TaskItem entity
             CreateMap<TaskItemModel, TaskItem>()

@@ -199,7 +199,7 @@ namespace EzTask.Business
                         .Where(c => c.ProjectId == projectId && c.PhraseId == phraseId)
                         .Skip(pageSize * page - pageSize).Take(pageSize)
                         .Select(x => new TaskItem
-                        {
+                        {   
                             Phrase = new Phrase { PhraseName = x.Phrase.PhraseName, Id = x.Phrase.Id },
                             Attachments = x.Attachments.Any() ?
                                 new List<Attachment>
@@ -227,7 +227,8 @@ namespace EzTask.Business
                                 AccountInfo = new AccountInfo
                                 {
                                     DisplayName = x.Member.AccountInfo.DisplayName
-                                }
+                                },
+                                Id = x.Member.Id
                             },
                             Assignee = new Account
                             {
