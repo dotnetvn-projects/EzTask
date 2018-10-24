@@ -262,7 +262,7 @@ desired effect
                 <!-- search form (Optional) -->
                 <form action="#" method="get" class="sidebar-form">
                     <div class="input-group">
-                        <input type="text" name="q" class="form-control" placeholder="@Html.GetCommonString("Search")...">
+                        <input type="text" name="q" class="form-control" placeholder="@Html.GetStringResource("Search", StringResourceType.Common)...">
                         <span class="input-group-btn">
                             <button type="submit" name="search" id="search-btn" class="btn btn-flat">
                                 <i class="fa fa-search"></i>
@@ -273,16 +273,16 @@ desired effect
                 <!-- /.search form -->
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">@Html.GetCommonString("MainNavigation")</li>
+                    <li class="header">@Html.GetStringResource("MainNavigation", StringResourceType.Common)</li>
                     <li class="active treeview">
                         <a asp-action="Index" asp-controller="Home">
-                            <i class="fa fa-dashboard"></i> <span>@Html.GetCommonString("Dashboard")</span>
+                            <i class="fa fa-dashboard"></i> <span>@Html.GetStringResource("Dashboard", StringResourceType.Common)</span>
                         </a>
                     </li>
 
-                    <li class="header">@Html.GetCommonString("ProjectManagement")</li>
-                    <li><a asp-action="Index" asp-controller="Task"><i class="fa fa-tasks"></i> <span>@Html.GetCommonString("Task")</span></a></li>
-                    <li><a asp-action="Index" asp-controller="Project"><i class="fa fa-reddit"></i> <span>@Html.GetCommonString("Project")</span></a></li>
+                    <li class="header">@Html.GetStringResource("ProjectManagement", StringResourceType.Common)</li>
+                    <li><a asp-action="Index" asp-controller="Task"><i class="fa fa-tasks"></i> <span>@Html.GetStringResource("Task", StringResourceType.Common)</span></a></li>
+                    <li><a asp-action="Index" asp-controller="Project"><i class="fa fa-reddit"></i> <span>@Html.GetStringResource("Project", StringResourceType.Common)</span></a></li>
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>

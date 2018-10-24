@@ -76,10 +76,38 @@ namespace EzTask.Web.Framework.HttpContext
         /// Get language
         /// </summary>
         /// <returns></returns>
-        public static LocalizationMapper GetLanguageLocalization()
+        private static LocalizationMapper GetLanguageLocalization()
         {
             var data = _sessionManager.GetObject<LocalizationMapper>(SessionKey.LanguageSetting);
             return data;
+        }
+
+        /// <summary>
+        /// Get string resource
+        /// </summary>
+        /// <param name="key"></param>
+        /// <param name="resourceType"></param>
+        /// <returns></returns>
+        public static string GetStringResource(string key, StringResourceType resourceType)
+        {
+            var lang = GetLanguageLocalization();
+            switch (resourceType)
+            {
+                case StringResourceType.Common:
+                    return lang.GetCommonMessageLang(key);
+                case StringResourceType.Dashboard:
+                    return lang.GetDashboardPageLang(key);
+                case StringResourceType.Error:
+                    return lang.GetErrorMessageLang(key);
+                case StringResourceType.MessageTitle:
+                    return lang.GetMessageTitleLang(key);
+                case StringResourceType.ProjectPage:
+                    return lang.GetProjectPageLang(key);
+                case StringResourceType.Success:
+                    return lang.GetSuccessMessageLang(key);
+            }
+
+            return string.Empty;            
         }
 
         /// <summary>

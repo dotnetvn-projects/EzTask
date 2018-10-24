@@ -40,11 +40,31 @@
     </Language>
     <Language>
       <Key>Alert</Key>
-      <Content>Alert</Content>
+      <Content>Alert!</Content>
     </Language>
   </MessageTitle>
     
   <ErrorMessage>
+    <Language>
+      <Key>AccountBlocked</Key>
+      <Content>Failed to login, your account is blocked</Content>
+    </Language>
+    <Language>
+      <Key>LoginFailed</Key>
+      <Content>Failed to login, wrong email or password</Content>
+    </Language>
+    <Language>
+      <Key>ConfirmPasswordNotMatch</Key>
+      <Content>Value in "Retype Password" field doesn't match to your password, please re-type again</Content>
+    </Language>
+    <Language>
+      <Key>CreateAccountFailed</Key>
+      <Content>Sorry we cannot create account for you, please try again</Content>
+    </Language>
+    <Language>
+      <Key>AccountExisted</Key>
+      <Content>This email already registered, please choose an other email</Content>
+    </Language>
     <Language>
       <Key>AccountNotFound</Key>
       <Content>Account {0} doesn't exist.</Content>
@@ -53,12 +73,32 @@
       <Key>NotFound</Key>
       <Content>Not Found</Content>
     </Language>
+    <Language>
+      <Key>PageNotFound</Key>
+      <Content>Ops! Something's wrong here, we cannot display information right now</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectError</Key>
+      <Content>Sorry we cannot create project for you, please try again !</Content>
+    </Language>
+    <Language>
+      <Key>ProjectIsDupplicated</Key>
+      <Content>Project name was register by other user, please choose another name</Content>
+    </Language>
+    <Language>
+      <Key>ErrorUpdateProject</Key>
+      <Content>Sorry we cannot update project for you, please try again !</Content>
+    </Language>
   </ErrorMessage>
 
   <SuccessMessage>
     <Language>
-      <Key>fefew</Key>
-      <Content>ewfwefew</Content>
+      <Key>CreateProjectSuccess</Key>
+      <Content>Your project has been created !</Content>
+    </Language>
+    <Language>
+      <Key>UpdateProjectSuccess</Key>
+      <Content>Your project has been updated !</Content>
     </Language>
   </SuccessMessage>
   
