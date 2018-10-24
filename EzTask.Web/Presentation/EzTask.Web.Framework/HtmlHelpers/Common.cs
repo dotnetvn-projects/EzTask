@@ -40,7 +40,7 @@ namespace EzTask.Web.Framework.HtmlHelpers
         /// <returns></returns>
         public static IHtmlContent GetStringResource(this IHtmlHelper htmlHelper, string key, StringResourceType resourceType)
         {
-            var content = Context.GetStringResource(key, StringResourceType.MessageTitle);
+            var content = Context.GetStringResource(key, resourceType);
             return new HtmlString(content);
         }
     }

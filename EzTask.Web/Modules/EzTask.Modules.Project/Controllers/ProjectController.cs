@@ -40,7 +40,7 @@ namespace EzTask.Modules.Project.Controllers
         {
             return View(new ProjectModel
             {
-                ActionType = ActionType.CreateNew,
+                ActionType = ActionType.CreateNew, 
                 Owner = new AccountModel()
             });
         }
