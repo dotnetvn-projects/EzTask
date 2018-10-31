@@ -1,7 +1,8 @@
 ﻿//execute call ajax to load task list
-$.fn.handleLoadTask = function (projectId, phraseid, doneAction) {
+$.fn.handleLoadTask = function (projectId, phraseid, doneAction, allowAsync = true) {
     $.ajax({
         url: "task/task-list.html",
+        async: allowAsync,
         data: { projectId: projectId, phraseId: phraseid },
         success: function (response) {
             var taskListPanel = $(".task-list-panel");
@@ -55,7 +56,7 @@ $.fn.loadPhrase = function () {
                 var phraseId = phrase.attr('data-id');
 
                 if (phraseId != 0){
-                    $(this).handleLoadTask(id, phraseId);
+                    $(this).handleLoadTask(id, phraseId, null, false);
                     $(".phrase-list > li > a").loadTask();
                 }
                 var authorizeAdd = request.getResponseHeader("authorized-add-phase");
@@ -66,7 +67,10 @@ $.fn.loadPhrase = function () {
                             $(".project-box").append(res);
                             $(".btn-addnew-phrase").showModal();
                             $.hideLoading();
-                        });            
+                        });
+                    }
+                    else {
+                        $.hideLoading();
                     }
                 }
                 else {

@@ -1,6 +1,7 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Models;
 using EzTask.Models.Enum;
+using EzTask.Models.Notification;
 using System.Collections.Generic;
 
 namespace EzTask.Framework.Infrastructures
@@ -166,6 +167,23 @@ namespace EzTask.Framework.Infrastructures
         public static IEnumerable<TaskHistoryModel> ToModels(this IEnumerable<TaskHistory> entity)
         {
             return FrameworkCore.Mapper.Map<IEnumerable<TaskHistoryModel>>(entity);
+        }
+        #endregion
+
+        #region Notification Mapper
+        public static Notification ToEntity(this NotificationModel model)
+        {
+            return FrameworkCore.Mapper.Map<Notification>(model);
+        }
+
+        public static NotificationModel ToModel(this Notification entity)
+        {
+            return FrameworkCore.Mapper.Map<NotificationModel>(entity);
+        }
+
+        public static IEnumerable<NotificationModel> ToModels(this IEnumerable<Notification> entity)
+        {
+            return FrameworkCore.Mapper.Map<IEnumerable<NotificationModel>>(entity);
         }
         #endregion
     }

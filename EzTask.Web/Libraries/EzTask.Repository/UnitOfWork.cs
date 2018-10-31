@@ -20,6 +20,7 @@ namespace EzTask.Repository
         public IRepository<TaskItem> TaskRepository { get; }
         public IRepository<Attachment> AttachRepository { get; }
         public IRepository<TaskHistory> TaskHistoryRepository { get; }
+        public IRepository<Notification> NotifyRepository { get; }
 
         public UnitOfWork(EzTaskDbContext context,
              IRepository<Account> account,
@@ -31,7 +32,8 @@ namespace EzTask.Repository
              IRepository<Skill> skill,
              IRepository<TaskItem> task,
              IRepository<Attachment> attach,
-             IRepository<TaskHistory> taskHistory)
+             IRepository<TaskHistory> taskHistory,
+             IRepository<Notification> notifyRepository)
         {
             Context = context;
             AccountRepository = account;
@@ -63,6 +65,9 @@ namespace EzTask.Repository
 
             TaskHistoryRepository = taskHistory;
             TaskHistoryRepository.Context = context;
+
+            NotifyRepository = notifyRepository;
+            NotifyRepository.Context = context;
         }
 
 
