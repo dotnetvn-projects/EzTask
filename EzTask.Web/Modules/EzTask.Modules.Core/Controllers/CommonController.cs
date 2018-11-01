@@ -42,5 +42,12 @@ namespace EzTask.Modules.Core.Controllers
         {
             return View();
         }
+
+        [Route("error.html")]
+        [PageTitle("Page not found")]
+        public IActionResult Error()
+        {
+            return View();
+        }
     }
 }

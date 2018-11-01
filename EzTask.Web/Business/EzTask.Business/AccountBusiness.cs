@@ -193,6 +193,11 @@ namespace EzTask.Business
             return accountInfo.ToModel();
         }
 
+        /// <summary>
+        /// Load avatar
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
         public async Task<byte[]> LoadAvatar(int accountId)
         {
             var data = await UnitOfWork.AccountInfoRepository.GetAsync(c => 

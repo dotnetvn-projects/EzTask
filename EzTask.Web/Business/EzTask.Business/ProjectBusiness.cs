@@ -316,6 +316,11 @@ namespace EzTask.Business
             return model;
         }
 
+        /// <summary>
+        /// Count member of project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public async Task<int> CountMember(int projectId)
         {
             var data = await UnitOfWork.ProjectMemberRepository.Entity
@@ -344,6 +349,21 @@ namespace EzTask.Business
                     AddDate = t.AddDate,
                     DisplayName = t.Member.AccountInfo.DisplayName,
                 }).ToListAsync();
+
+            return data;
+        }
+
+        /// <summary>
+        /// Get account id list belong to a specific project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<int>> GetAccountIdList(int projectId)
+        {
+            List<int> data = await UnitOfWork.ProjectMemberRepository
+                .Entity.AsNoTracking()
+                .Where(c => c.ProjectId == projectId)
+                .Select(t => t.MemberId).ToListAsync();
 
             return data;
         }

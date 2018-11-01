@@ -14,8 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <None Remove="Views\Common\Error.cshtml" />
     <None Remove="Views\Common\PageNotFound.cshtml" />
     <None Remove="Views\Common\_WarningModal.cshtml" />
+    <None Remove="Views\Notification\_NewNotificationList.cshtml" />
+    <None Remove="Views\Notification\_NotificationList.cshtml" />
     <None Remove="Views\Shared\_ConfirmModal.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
     <None Remove="Views\_ViewStart.cshtml" />
@@ -60,6 +63,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Views\Common\Error.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\Notification\_NotificationList.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+    <Content Include="Views\Notification\_NewNotificationList.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="Views\Shared\_ConfirmModal.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

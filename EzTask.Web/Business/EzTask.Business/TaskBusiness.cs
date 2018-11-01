@@ -104,9 +104,9 @@ namespace EzTask.Business
         }
 
         /// <summary>
-        /// Count task by phrase
+        /// Count task by project
         /// </summary>
-        /// <param name="phraseId"></param>
+        /// <param name="projectId"></param>
         /// <returns></returns>
         public async Task<int> CountByProject(int projectId)
         {
