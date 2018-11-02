@@ -16,22 +16,12 @@ namespace EzTask.Modules.Core.Controllers
         public NotificationController(IServiceProvider serviceProvider) 
             : base(serviceProvider) { }
 
-        [HttpPost]
-        [Route("notify/get-new")]
-        public async Task<IActionResult> _NewNotificationList(short context)
-        {
-            var model = await EzTask.Notification.NewNotificationList(Context.CurrentAccount.AccountId,
-                context.ToEnum<NotifyContext>());
-
-            return PartialView("_NewNotificationList", model);
-        }
 
         [HttpPost]
-        [Route("notify/get-all")]
+        [Route("notify/get-all.html")]
         public async Task<IActionResult> _NotificationList(short context)
         {
-            var model = await EzTask.Notification.GetNotificationList(Context.CurrentAccount.AccountId,
-                context.ToEnum<NotifyContext>());
+            var model = await EzTask.Notification.GetNotificationList(Context.CurrentAccount.AccountId);
 
             return PartialView("_NotificationList", model);
         }

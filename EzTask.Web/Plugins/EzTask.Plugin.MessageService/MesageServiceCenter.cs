@@ -13,7 +13,7 @@ namespace EzTask.Plugin.MessageService
 
         public MesageServiceCenter()
         {
-            _pushService = new PushNotifyMessageService();
+            _pushService = new PushMessageService();
         }
 
         public void Delivery(Message message)

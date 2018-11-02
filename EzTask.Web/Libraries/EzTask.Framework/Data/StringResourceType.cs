@@ -11,6 +11,7 @@ namespace EzTask.Framework.Data
         Success,
         MessageTitle,
         Dashboard,
-        ProjectPage
+        ProjectPage,
+        Notification
     }
 }

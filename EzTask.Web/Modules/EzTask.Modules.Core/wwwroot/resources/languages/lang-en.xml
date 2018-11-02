@@ -4,6 +4,10 @@
   
   <CommonMessage>
     <Language>
+      <Key>ViewAll</Key>
+      <Content>View all</Content>
+    </Language>
+    <Language>
       <Key>Search</Key>
       <Content>Search</Content>
     </Language>
@@ -102,7 +106,15 @@
     </Language>
   </SuccessMessage>
 
-  <Notification>
+  <NotificationMessage>
+    <Language>
+      <Key>NotifyCount</Key>
+      <Content>You have {0} notifications</Content>
+    </Language>
+    <Language>
+      <Key>EmptyNotification</Key>
+      <Content>You have no any notification item</Content>
+    </Language>
     <Language>
       <Key>AddNewTask</Key>
       <Content>created new task</Content>
@@ -111,7 +123,7 @@
       <Key>AssignTask</Key>
       <Content>assgined task to you</Content>
     </Language>
-  </Notification>
+  </NotificationMessage>
 
   <DashboardPage>
     <Language>

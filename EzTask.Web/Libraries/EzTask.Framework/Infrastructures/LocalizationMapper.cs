@@ -26,6 +26,15 @@ namespace EzTask.Framework.Infrastructures
             return string.Empty;
         }
 
+        public string GetNotificationMessageLang(string key)
+        {
+            var existKey = Data.NotificationMessage.FirstOrDefault(c => c.Key == key);
+            if (existKey != null)
+            {
+                return existKey.Content;
+            }
+            return string.Empty;
+        }
 
         public string GetErrorMessageLang(string key)
         {
