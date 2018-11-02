@@ -14,11 +14,10 @@ namespace EzTask.Framework.Data
         public List<Language> MessageTitle { get; set; }
         public List<Language> ErrorMessage { get; set; }
         public List<Language> SuccessMessage { get; set; }  
-        public List<Language> NotificationMessage { get; set; }
+
         public List<Language> DashboardPage { get; set; }
 
         public List<Language> ProjectPage { get; set; }
-
 
     }
 }

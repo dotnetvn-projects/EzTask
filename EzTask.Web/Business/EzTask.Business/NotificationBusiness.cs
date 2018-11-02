@@ -3,6 +3,7 @@ using EzTask.Framework.Data;
 using EzTask.Framework.Infrastructures;
 using EzTask.Models;
 using EzTask.Models.Enum;
+using EzTask.Models.Notification;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -28,15 +29,14 @@ namespace EzTask.Business
 
 
         /// <summary>
-        /// add new notification to all member of project 
-        /// when there is someone do some action on task
+        /// add new notification to all member of project when there is someone create new task
         /// </summary>
         /// <param name="member"></param>
         /// <param name="taskCode"></param>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task AddTaskNotify(CurrentAccount account, 
-            string taskCode, int projectId, NotifyContext context,  string contentTemplate)
+        public async Task AddNewTaskNotify(CurrentAccount account, 
+            string taskCode, int projectId, string contentTemplate)
         {
             var memberIds = await _project.GetAccountIdList(projectId);
             if (memberIds.Any())
@@ -49,13 +49,34 @@ namespace EzTask.Business
                     await AddNotification(new NotificationModel
                     {
                         Account = new AccountModel { AccountId = id },
-                        Context = context,
-                        Content = $"{account.DisplayName} {contentTemplate}",
+                        Context = NotifyContext.AddNewTask,
+                        Content = $"{account.DisplayName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode, taskCode)})",
                         HasViewed = false,
-                        RefData = string.Format(TASK_DETAIL_REF, taskCode, taskCode)
+                        RefData = taskCode
                     });
                 }
             }         
+        }
+
+
+        /// <summary>
+        /// add new notification to all member of project when there is someone create new task
+        /// </summary>
+        /// <param name="member"></param>
+        /// <param name="taskCode"></param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public async Task AssignTaskNotify(CurrentAccount account,
+            string taskCode, int assignee, string contentTemplate)
+        {
+            await AddNotification(new NotificationModel
+            {
+                Account = new AccountModel { AccountId = assignee },
+                Context = NotifyContext.AssignTask,
+                Content = $"{account.DisplayName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode, taskCode)})",
+                HasViewed = false,
+                RefData = taskCode
+            });
         }
 
         /// <summary>
@@ -83,20 +104,17 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ResultModel<IEnumerable<NotificationModel>>> NewNotificationList(int accountId)
+        public async Task<ResultModel<IEnumerable<NotificationModel>>> NewNotificationList(int accountId,
+            NotifyContext context)
         {
-            ResultModel<IEnumerable<NotificationModel>> result = new ResultModel<IEnumerable<NotificationModel>>
-            {
-                Data = new List<NotificationModel>()
-            };
-
-            var notifyContext = (short)NotifyContext.Message;
-
-            var data = await UnitOfWork.NotifyRepository.Entity
-                .AsNoTracking()
+            ResultModel<IEnumerable<NotificationModel>> result = new ResultModel<IEnumerable<NotificationModel>>();
+            var notifyContext = context.ToInt16<NotifyContext>();
+          
+            var data = await UnitOfWork.NotifyRepository.Entity.Include(c => c.Account)
+                .ThenInclude(c => c.AccountInfo)
                 .Where(c => c.AccountId == accountId 
                          && c.HasViewed == false
-                         && c.Context != notifyContext)
+                         && c.Context == notifyContext)
                 .OrderByDescending(c => c.CreatedDate)
                 .ToListAsync();
 
@@ -113,16 +131,16 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ResultModel<IEnumerable<NotificationModel>>> GetNotificationList(int accountId)
+        public async Task<ResultModel<IEnumerable<NotificationModel>>> GetNotificationList(int accountId,
+            NotifyContext context)
         {
-            ResultModel<IEnumerable<NotificationModel>> result = new ResultModel<IEnumerable<NotificationModel>>
-            {
-                Data = new List<NotificationModel>()
-            };
+            ResultModel<IEnumerable<NotificationModel>> result = new ResultModel<IEnumerable<NotificationModel>>();
+            var notifyContext = context.ToInt16<NotifyContext>();
 
             var data = await UnitOfWork.NotifyRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
-                .Where(c => c.AccountId == accountId)
+                .Where(c => c.AccountId == accountId
+                         && c.Context == notifyContext)
                 .OrderByDescending(c=>c.CreatedDate)
                 .ToListAsync();
 

@@ -15,7 +15,6 @@ namespace EzTask.Business
             _services.AddTransient<SkillBusiness>();
             _services.AddTransient<PhraseBusiness>();
             _services.AddTransient<TaskBusiness>();
-            _services.AddTransient<NotificationBusiness>();
         }
 
         public static ServiceProvider ServiceProvider

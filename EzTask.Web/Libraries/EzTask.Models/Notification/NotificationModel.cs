@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Models
+namespace EzTask.Models.Notification
 {
     public class NotificationModel: BaseModel
     {

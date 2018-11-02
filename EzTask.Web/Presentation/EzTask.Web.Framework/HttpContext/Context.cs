@@ -105,8 +105,6 @@ namespace EzTask.Web.Framework.HttpContext
                     return lang.GetProjectPageLang(key);
                 case StringResourceType.Success:
                     return lang.GetSuccessMessageLang(key);
-                case StringResourceType.Notification:
-                    return lang.GetNotificationMessageLang(key);
             }
 
             return string.Empty;            
