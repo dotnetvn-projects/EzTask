@@ -125,7 +125,10 @@ $.fn.deleteTask = function () {
                     $.ajax({
                         type: 'post',
                         url: 'task/delete-task.html',
-                        data: { taskIds: ids },
+                        data: {
+                            taskIds: ids,
+                            projectId: $('.project-list').val()
+                        },
                         success: function (response) {
                             var phraseId = $("#phrase-id").val();
                             var projectId = $('.project-list').val();

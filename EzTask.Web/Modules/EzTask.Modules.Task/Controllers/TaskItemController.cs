@@ -83,6 +83,12 @@ namespace EzTask.Modules.Task.Controllers
                 {
                     title = "created task \"" + iResult.Data.TaskTitle + "\" <small>(Code: " + model.TaskCode + ")</small>";                   
                     SetTaskDataToSession(model);
+
+                    //add notify
+                    await EzTask.Notification.AddNewTaskNotify(Context.CurrentAccount.DisplayName,
+                        Context.CurrentAccount.AccountId,
+                        iResult.Data.TaskCode, viewModel.ProjectId,
+                        Context.GetStringResource("AddNewTask", StringResourceType.Notification));
                 }
                 else
                 {
@@ -94,6 +100,12 @@ namespace EzTask.Modules.Task.Controllers
 
                     //re-assign new data to session
                     SetTaskDataToSession(newData);
+
+                    //add notify
+                    await EzTask.Notification.UpdateTaskNotify(Context.CurrentAccount.DisplayName,
+                        Context.CurrentAccount.AccountId,
+                        iResult.Data.TaskCode, viewModel.ProjectId,
+                        Context.GetStringResource("UpdateTask", StringResourceType.Notification));
                 }
 
                 await SaveTaskHistory(iResult.Data.TaskId, title, diff);

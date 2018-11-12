@@ -39,6 +39,17 @@ namespace EzTask.Business
             return result;
         }
 
+        public async Task<ResultModel<string>> GetTaskCode(int id)
+        {
+            ResultModel<string> result = new ResultModel<string>();
+            string code = await UnitOfWork.TaskRepository.Entity
+                         .AsNoTracking().Where(c=>c.Id == id)
+                         .Select(c => c.TaskCode).FirstOrDefaultAsync();
+
+            result.Data = code;
+            return result;
+        }
+
         /// <summary>
         /// Create new task
         /// </summary>

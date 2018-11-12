@@ -20,8 +20,7 @@ namespace EzTask.Modules.Core.Controllers
         [Route("notify/get-new")]
         public async Task<IActionResult> _NewNotificationList(short context)
         {
-            var model = await EzTask.Notification.NewNotificationList(Context.CurrentAccount.AccountId,
-                context.ToEnum<NotifyContext>());
+            var model = await EzTask.Notification.NewNotificationList(Context.CurrentAccount.AccountId);
 
             return PartialView("_NewNotificationList", model);
         }

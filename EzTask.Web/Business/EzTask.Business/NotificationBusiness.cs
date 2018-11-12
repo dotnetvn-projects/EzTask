@@ -18,15 +18,18 @@ namespace EzTask.Business
     {
         private readonly ProjectBusiness _project;
         private readonly AccountBusiness _account;
+        private readonly TaskBusiness _task;
         private const string TASK_DETAIL_REF = "<a href='/task/{0}.html'>{1}</a>";
 
         public NotificationBusiness(UnitOfWork unitOfWork,
-            ProjectBusiness project, AccountBusiness account) : base(unitOfWork)
+            ProjectBusiness project, AccountBusiness account, TaskBusiness task) : base(unitOfWork)
         {
             _project = project;
             _account = account;
+            _task = task;
         }
 
+        #region Task Notification
 
         /// <summary>
         /// add new notification to all member of project when there is someone create new task
@@ -35,7 +38,7 @@ namespace EzTask.Business
         /// <param name="taskCode"></param>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task AddNewTaskNotify(CurrentAccount account, 
+        public async Task AddNewTaskNotify(string accountName,int accountId,
             string taskCode, int projectId, string contentTemplate)
         {
             var memberIds = await _project.GetAccountIdList(projectId);
@@ -43,14 +46,14 @@ namespace EzTask.Business
             {
                 foreach(var id in memberIds)
                 {
-                    if (id == account.AccountId)
+                    if (id == accountId)
                         continue;
 
                     await AddNotification(new NotificationModel
                     {
                         Account = new AccountModel { AccountId = id },
                         Context = NotifyContext.AddNewTask,
-                        Content = $"{account.DisplayName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode, taskCode)})",
+                        Content = $"{accountName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode, taskCode)})",
                         HasViewed = false,
                         RefData = taskCode
                     });
@@ -58,26 +61,95 @@ namespace EzTask.Business
             }         
         }
 
-
         /// <summary>
-        /// add new notification to all member of project when there is someone create new task
+        /// add new notification to all member of project when there is someone update task
         /// </summary>
         /// <param name="member"></param>
         /// <param name="taskCode"></param>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task AssignTaskNotify(CurrentAccount account,
-            string taskCode, int assignee, string contentTemplate)
+        public async Task UpdateTaskNotify(string accountName, int accountId,
+            string taskCode, int projectId, string contentTemplate)
         {
-            await AddNotification(new NotificationModel
+            var memberIds = await _project.GetAccountIdList(projectId);
+            if (memberIds.Any())
             {
-                Account = new AccountModel { AccountId = assignee },
-                Context = NotifyContext.AssignTask,
-                Content = $"{account.DisplayName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode, taskCode)})",
-                HasViewed = false,
-                RefData = taskCode
-            });
+                foreach (var id in memberIds)
+                {
+                    if (id == accountId)
+                        continue;
+
+                    await AddNotification(new NotificationModel
+                    {
+                        Account = new AccountModel { AccountId = id },
+                        Context = NotifyContext.UpdateTask,
+                        Content = $"{accountName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode, taskCode)})",
+                        HasViewed = false,
+                        RefData = taskCode
+                    });
+                }
+            }
         }
+
+        /// <summary>
+        /// add new notification to all member of project when there is someone create new task
+        /// </summary>
+        /// <param name="accountName"></param>
+        /// <param name="taskids"></param>
+        /// <param name="assignee"></param>
+        /// <returns></returns>
+        public async Task AssignTaskNotify(string accountName,
+            int[] taskids, int assignee, string contentTemplate)
+        {
+            foreach(var id in taskids)
+            {
+                var taskCode = await _task.GetTaskCode(id);
+                await AddNotification(new NotificationModel
+                {
+                    Account = new AccountModel { AccountId = assignee },
+                    Context = NotifyContext.AssignTask,
+                    Content = $"{accountName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode.Data, taskCode.Data)})",
+                    HasViewed = false,
+                    RefData = taskCode.Data
+                });
+            }                   
+        }
+
+        /// <summary>
+        /// add new notification to all member of project when manager deletes task
+        /// </summary>
+        /// <param name="accountName"></param>
+        /// <param name="taskids"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task DeleteTaskNotify(string accountName,int accountId,
+            int[] taskids, int projectId, string contentTemplate)
+        {
+            var memberIds = await _project.GetAccountIdList(projectId);
+            if (memberIds.Any())
+            {
+                foreach (var id in memberIds)
+                {
+                    if (id == accountId)
+                        continue;
+
+                    foreach (var taskId in taskids)
+                    {
+                        var taskCode = await _task.GetTaskCode(id);
+                        await AddNotification(new NotificationModel
+                        {
+                            Account = new AccountModel { AccountId = id },
+                            Context = NotifyContext.DeleteTask,
+                            Content = $"{accountName} {contentTemplate} ({taskCode.Data})",
+                            HasViewed = false,
+                            RefData = taskCode.Data
+                        });
+                    }
+                }
+            }
+        }
+
+        #endregion
 
         /// <summary>
         /// Add new notification
@@ -104,17 +176,15 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ResultModel<IEnumerable<NotificationModel>>> NewNotificationList(int accountId,
-            NotifyContext context)
+        public async Task<ResultModel<IEnumerable<NotificationModel>>> NewNotificationList(int accountId)
         {
             ResultModel<IEnumerable<NotificationModel>> result = new ResultModel<IEnumerable<NotificationModel>>();
-            var notifyContext = context.ToInt16<NotifyContext>();
-          
+
             var data = await UnitOfWork.NotifyRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
                 .Where(c => c.AccountId == accountId 
                          && c.HasViewed == false
-                         && c.Context == notifyContext)
+                         && c.Context != (short)NotifyContext.Message)
                 .OrderByDescending(c => c.CreatedDate)
                 .ToListAsync();
 

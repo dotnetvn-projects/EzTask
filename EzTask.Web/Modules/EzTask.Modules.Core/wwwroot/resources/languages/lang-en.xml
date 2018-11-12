@@ -107,6 +107,14 @@
       <Key>AddNewTask</Key>
       <Content>created new task</Content>
     </Language>
+     <Language>
+      <Key>UpdateTask</Key>
+      <Content>updated task</Content>
+    </Language>
+     <Language>
+      <Key>DeleteTask</Key>
+      <Content>deleted task</Content>
+    </Language>
     <Language>
       <Key>AssignTask</Key>
       <Content>assgined task to you</Content>

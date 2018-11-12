@@ -101,7 +101,26 @@
       <Content>Your project has been updated !</Content>
     </Language>
   </SuccessMessage>
-  
+
+  <Notification>
+    <Language>
+      <Key>AddNewTask</Key>
+      <Content>created new task</Content>
+    </Language>
+     <Language>
+      <Key>UpdateTask</Key>
+      <Content>updated task</Content>
+    </Language>
+     <Language>
+      <Key>DeleteTask</Key>
+      <Content>deleted task</Content>
+    </Language>
+    <Language>
+      <Key>AssignTask</Key>
+      <Content>assgined task to you</Content>
+    </Language>
+  </Notification>
+
   <DashboardPage>
     <Language>
       <Key>ưefwe</Key>

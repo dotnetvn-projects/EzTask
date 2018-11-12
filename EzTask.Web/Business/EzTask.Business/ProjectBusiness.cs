@@ -264,6 +264,20 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectCode"></param>
         /// <returns></returns>
+        public async Task<ProjectModel> GetProjectByOwner(int owner)
+        {
+            Project data = await UnitOfWork.ProjectRepository
+                .Entity
+                .Include(c => c.Account).AsNoTracking().FirstOrDefaultAsync(c => c.Owner == owner);
+
+            return data.ToModel();
+        }
+
+        /// <summary>
+        ///  Get project
+        /// </summary>
+        /// <param name="projectCode"></param>
+        /// <returns></returns>
         public async Task<ProjectModel> GetProject(int projectId)
         {
             Project data = await UnitOfWork.ProjectRepository

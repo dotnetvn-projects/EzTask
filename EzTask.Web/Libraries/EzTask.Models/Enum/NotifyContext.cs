@@ -7,8 +7,9 @@ namespace EzTask.Models.Enum
     public enum NotifyContext
     {
         AddNewTask,
-        UpdateTask
+        UpdateTask,
         AssignTask,
+        DeleteTask,
         Message
     }
 }
