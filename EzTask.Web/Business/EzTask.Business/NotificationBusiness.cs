@@ -1,9 +1,8 @@
 ﻿using EzTask.Framework.Common;
-using EzTask.Framework.Data;
 using EzTask.Framework.Infrastructures;
 using EzTask.Models;
 using EzTask.Models.Enum;
-using EzTask.Models.Notification;
+using EzTask.Entity.Data;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -161,6 +160,8 @@ namespace EzTask.Business
             ResultModel<NotificationModel> result = new ResultModel<NotificationModel>();
             var entity = model.ToEntity();
             entity.CreatedDate = model.CreatedDate = DateTime.Now;
+            entity.Account = null;
+            UnitOfWork.NotifyRepository.Add(entity);
 
             var iresult = await UnitOfWork.CommitAsync();
             if(iresult > 0)

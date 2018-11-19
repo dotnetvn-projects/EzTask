@@ -28,6 +28,7 @@ namespace EzTask.DataAccess
             _modelBuilder.Entity<Phrase>().ToTable(TableName.Phrase.ToString());
             _modelBuilder.Entity<Attachment>().ToTable(TableName.Attachment.ToString());
             _modelBuilder.Entity<TaskHistory>().ToTable(TableName.TaskHistory.ToString());
+            _modelBuilder.Entity<Notification>().ToTable(TableName.Notification.ToString());
         }
     }
 }

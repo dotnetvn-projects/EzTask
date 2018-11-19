@@ -2,6 +2,7 @@
 using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Text.RegularExpressions;
 
 namespace EzTask.Web.Framework.HtmlHelpers
 {
@@ -42,6 +43,11 @@ namespace EzTask.Web.Framework.HtmlHelpers
         {
             var content = Context.GetStringResource(key, resourceType);
             return new HtmlString(content);
+        }
+
+        public static IHtmlContent DisplayPlanText(this IHtmlHelper htmlHelper, string text)
+        {
+            return new HtmlString(Regex.Replace(text, "<.*?>", string.Empty));
         }
     }
 }

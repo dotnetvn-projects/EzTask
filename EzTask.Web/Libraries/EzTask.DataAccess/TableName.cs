@@ -12,6 +12,7 @@ namespace EzTask.DataAccess
         TaskItem,
         Phrase,
         Attachment,
-        TaskHistory
+        TaskHistory,
+        Notification
     }
 }

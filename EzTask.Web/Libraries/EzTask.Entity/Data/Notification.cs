@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EzTask.Entity.Data
 {
-    public class Notification: Entity<Notification>
+    public class Notification : Entity<Notification>
     {
         public int AccountId { get; set; }
         public string Content { get; set; }

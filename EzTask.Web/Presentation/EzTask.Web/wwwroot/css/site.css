@@ -23,3 +23,13 @@ td {
     line-height: 1.42857;
 }
 /*-----EndCommon-----*/
+
+
+/*------notification------*/
+
+.notifications-menu > ul > li p {
+    padding-left: 23px;
+    color: #999999;
+}
+
+/*------End notification------*/

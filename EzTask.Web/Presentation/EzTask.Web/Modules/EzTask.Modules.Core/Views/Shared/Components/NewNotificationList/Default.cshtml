@@ -7,8 +7,16 @@
 
 <ul class="dropdown-menu">
     <li class="header">
-        @string.Format(Html.GetStringResource("NotifyCount",
-             StringResourceType.Notification).ToString(), Model.Count())
+        @if (Model.Count() <= 1)
+        {
+            @Html.Raw(string.Format(Html.GetStringResource("NotificationCountSingle",
+                 StringResourceType.Notification).ToString(), Model.Count()))
+        }
+        else
+        {
+            @Html.Raw(string.Format(Html.GetStringResource("NotificationCountPlural",
+                          StringResourceType.Notification).ToString(), Model.Count()))
+        }
     </li>
     @if (Model.Any())
     {
@@ -16,11 +24,12 @@
             <ul class="menu">
                 @foreach (var item in Model)
                 {
-                <li>
-                    <a href="#">
-                        <i class="fa fa-users text-aqua"></i> @item.Content
-                    </a>
-                </li>
+                    <li>
+                        <a title="@Html.DisplayPlanText(item.Content)" href="#">
+                            <i class="fa fa-users text-aqua"></i> @Html.Raw(item.Content)
+                            <p><small>@item.CreatedDate.TimeAgo()</small></p>
+                        </a>
+                    </li>
                 }
             </ul>
         </li>

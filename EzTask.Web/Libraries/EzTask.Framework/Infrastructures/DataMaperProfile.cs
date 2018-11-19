@@ -3,7 +3,6 @@ using EzTask.Entity.Data;
 using EzTask.Framework.Common;
 using EzTask.Models;
 using EzTask.Models.Enum;
-using EzTask.Models.Notification;
 using System.Linq;
 
 namespace EzTask.Framework.Infrastructures
@@ -16,6 +15,7 @@ namespace EzTask.Framework.Infrastructures
             ProjectMapper();
             PhraseMapper();
             TaskMapper();
+            NotificationMapper();
         }
 
         private void AccountMaper()
@@ -136,9 +136,10 @@ namespace EzTask.Framework.Infrastructures
         {
             //Map Notification entity to Notification model
             CreateMap<Notification, NotificationModel>()
-                .ForMember(c => c.Account.AccountId, t => t.MapFrom(z => z.Account.Id))
-                .ForMember(c => c.Account.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo.DisplayName))
-                .ForMember(c => c.Context, t => t.MapFrom( z => z.Context.ToEnum<NotifyContext>()));
+                .ForPath(c => c.Account.AccountId, t => t.MapFrom(z => z.Account.Id))
+                .ForPath(c => c.Account.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo.DisplayName))
+                .ForMember(c => c.Context, t => t.MapFrom( z => z.Context.ToEnum<NotifyContext>()))
+                .ReverseMap();
 
             //Map Notification model to Notification entity
             CreateMap<NotificationModel, Notification>()

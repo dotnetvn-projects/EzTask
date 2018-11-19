@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Localization>
   <Pattern>English</Pattern>
-  
+
   <CommonMessage>
     <Language>
       <Key>Search</Key>
@@ -31,8 +31,12 @@
       <Key>MainNavigation</Key>
       <Content>MAIN NAVIGATION</Content>
     </Language>
+  <Language>
+      <Key>ViewAll</Key>
+      <Content>View all</Content>
+    </Language>
   </CommonMessage>
-  
+
   <MessageTitle>
     <Language>
       <Key>Error</Key>
@@ -43,7 +47,7 @@
       <Content>Alert!</Content>
     </Language>
   </MessageTitle>
-    
+
   <ErrorMessage>
     <Language>
       <Key>AccountBlocked</Key>
@@ -107,17 +111,25 @@
       <Key>AddNewTask</Key>
       <Content>created new task</Content>
     </Language>
-     <Language>
+    <Language>
       <Key>UpdateTask</Key>
       <Content>updated task</Content>
     </Language>
-     <Language>
+    <Language>
       <Key>DeleteTask</Key>
       <Content>deleted task</Content>
     </Language>
     <Language>
       <Key>AssignTask</Key>
       <Content>assgined task to you</Content>
+    </Language>
+    <Language>
+      <Key>NotificationCountSingle</Key>
+      <Content>You have {0} notification</Content>
+    </Language>
+      <Language>
+      <Key>NotificationCountPlural</Key>
+      <Content>You have {0} notifications</Content>
     </Language>
   </Notification>
 
@@ -127,12 +139,12 @@
       <Content>èwefwe</Content>
     </Language>
   </DashboardPage>
-  
+
   <ProjectPage>
     <Language>
       <Key>ưefwe</Key>
       <Content>fwefwe</Content>
     </Language>
   </ProjectPage>
-  
+
 </Localization>

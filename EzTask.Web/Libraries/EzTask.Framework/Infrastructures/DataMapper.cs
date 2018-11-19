@@ -1,7 +1,6 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Models;
 using EzTask.Models.Enum;
-using EzTask.Models.Notification;
 using System.Collections.Generic;
 
 namespace EzTask.Framework.Infrastructures
