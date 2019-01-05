@@ -21,7 +21,7 @@ namespace EzTask.Modules.UserProfile.Controllers
         /// </summary>
         /// <param name="accountName"></param>
         /// <returns></returns>
-        [Route("pubic-profile.html")]
+        [Route("public-profile.html")]
         [PageTitle("Profile - ")]
         public async Task<IActionResult> PublicProfile(string account)
         {
