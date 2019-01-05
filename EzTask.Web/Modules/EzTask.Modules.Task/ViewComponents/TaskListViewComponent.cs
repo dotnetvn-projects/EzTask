@@ -30,7 +30,7 @@ namespace EzTask.Modules.Task.ViewComponents
             {
                 viewModel.Phrase = await EzTask.Phrase.GetPhraseById(phraseId);
             }
-
+            viewModel.Project = await EzTask.Project.GetProject(projectId);
             return View(viewModel);
         }
     }

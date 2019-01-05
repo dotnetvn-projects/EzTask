@@ -12,17 +12,6 @@ namespace EzTask.Modules.Task.ViewModels
         public IEnumerable<TaskItemModel> TaskList { get; set; }
         public PhraseModel Phrase { get; set; }
 
-        public string TaskCount
-        {
-            get
-            {
-                var count = TaskList.Count();
-                if (count > 1)
-                    return count + " tasks";
-                return count + " task";
-            }
-        }
-
         public TaskViewModel()
         {
             ProjectItems = new List<SelectListItem>();

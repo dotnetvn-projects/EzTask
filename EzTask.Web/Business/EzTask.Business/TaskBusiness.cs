@@ -39,6 +39,17 @@ namespace EzTask.Business
             return result;
         }
 
+        public async Task<ResultModel<string>> GetTaskCode(int id)
+        {
+            ResultModel<string> result = new ResultModel<string>();
+            string code = await UnitOfWork.TaskRepository.Entity
+                         .AsNoTracking().Where(c=>c.Id == id)
+                         .Select(c => c.TaskCode).FirstOrDefaultAsync();
+
+            result.Data = code;
+            return result;
+        }
+
         /// <summary>
         /// Create new task
         /// </summary>
@@ -65,6 +76,7 @@ namespace EzTask.Business
             {
                 task.TaskCode = string.Empty;
                 task.CreatedDate = DateTime.Now;
+                task.PercentCompleted = 5;
                 UnitOfWork.TaskRepository.Add(task);
             }
             else
@@ -97,15 +109,15 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountByPhrase(int phraseId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhraseId == phraseId 
+            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhraseId == phraseId
             && c.ProjectId == projectId);
             return totalTask;
         }
 
         /// <summary>
-        /// Count task by phrase
+        /// Count task by project
         /// </summary>
-        /// <param name="phraseId"></param>
+        /// <param name="projectId"></param>
         /// <returns></returns>
         public async Task<int> CountByProject(int projectId)
         {
@@ -120,7 +132,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountByMember(int memberId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.MemberId == memberId 
+            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.MemberId == memberId
             && c.ProjectId == projectId);
             return totalTask;
         }
@@ -172,7 +184,7 @@ namespace EzTask.Business
                 Data = true
             };
 
-            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c => 
+            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c =>
                                         c.ProjectId == projectId && c.PhraseId == phraseId);
             await DeleteTasks(result, data);
             return result;
@@ -198,7 +210,7 @@ namespace EzTask.Business
                         .Where(c => c.ProjectId == projectId && c.PhraseId == phraseId)
                         .Skip(pageSize * page - pageSize).Take(pageSize)
                         .Select(x => new TaskItem
-                        {
+                        {   
                             Phrase = new Phrase { PhraseName = x.Phrase.PhraseName, Id = x.Phrase.Id },
                             Attachments = x.Attachments.Any() ?
                                 new List<Attachment>
@@ -218,6 +230,7 @@ namespace EzTask.Business
                             Status = x.Status,
                             TaskCode = x.TaskCode,
                             TaskTitle = x.TaskTitle,
+                            PercentCompleted = x.PercentCompleted,
                             Id = x.Id,
 
                             Member = new Account
@@ -225,7 +238,8 @@ namespace EzTask.Business
                                 AccountInfo = new AccountInfo
                                 {
                                     DisplayName = x.Member.AccountInfo.DisplayName
-                                }
+                                },
+                                Id = x.Member.Id
                             },
                             Assignee = new Account
                             {
@@ -250,13 +264,13 @@ namespace EzTask.Business
         public async Task AssignTask(int[] taskids, int accountId)
         {
             var tasks = await UnitOfWork.TaskRepository.GetManyAsync(c => taskids.Contains(c.Id), false);
-            foreach(var task in tasks)
+            foreach (var task in tasks)
             {
                 task.AssigneeId = accountId == 0 ? null : (int?)accountId;
 
                 UnitOfWork.TaskRepository.Update(task);
             }
-            var iResult = await UnitOfWork.CommitAsync();            
+            var iResult = await UnitOfWork.CommitAsync();
         }
 
         #endregion Task
@@ -382,15 +396,19 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<string> CompareChangesAsync(TaskItemModel newData, TaskItemModel oldData)
         {
-           
+            if (newData.TaskId != oldData.TaskId)
+            {
+                return string.Empty;
+            }
+
             string content = string.Empty;
             if (newData.TaskTitle != oldData.TaskTitle)
             {
-                content += $"<p><b>Title</b>:<br/><small>{oldData.TaskTitle} => {newData.TaskTitle}</small> </p>";
+                content += FormartHistoryContent("Title", oldData.TaskTitle, newData.TaskTitle);
             }
             if (newData.TaskDetail != oldData.TaskDetail)
             {
-                content += $"<p><b>Detail</b>:<br/><small>{oldData.TaskDetail} => {newData.TaskDetail}</small> </p>";
+                content += FormartHistoryContent("Detail", oldData.TaskDetail, newData.TaskDetail);
             }
             if (newData.Phrase.Id != oldData.Phrase.Id)
             {
@@ -406,13 +424,13 @@ namespace EzTask.Business
                     var phrase = await _phrase.GetPhraseById(oldData.Phrase.Id);
                     oldItem = phrase.PhraseName;
                 }
-                content += $"<p><b>Phrase</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+                content += FormartHistoryContent("Phrase", oldItem, newItem);
             }
             if (newData.Assignee.AccountId != oldData.Assignee.AccountId)
             {
                 string oldItem = "Non-Assigned";
                 string newItem = "Non-Assigned";
-                if(newData.Assignee.AccountId > 0)
+                if (newData.Assignee.AccountId > 0)
                 {
                     var account = await _account.GetAccountInfo(newData.Assignee.AccountId);
                     newItem = account.DisplayName;
@@ -422,19 +440,25 @@ namespace EzTask.Business
                     var account = await _account.GetAccountInfo(oldData.Assignee.AccountId);
                     oldItem = account.DisplayName;
                 }
-                content += $"<p><b>Assignee</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+                content += FormartHistoryContent("Assignee", oldItem, newItem);
             }
             if (newData.Priority != oldData.Priority)
             {
                 string oldItem = oldData.Priority.ToString();
                 string newItem = newData.Priority.ToString();
-                content += $"<p><b>Priority</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+                content += FormartHistoryContent("Priority", oldItem, newItem);
             }
             if (newData.Status != oldData.Status)
             {
                 string oldItem = oldData.Status.ToString();
                 string newItem = newData.Status.ToString();
-                content += $"<p><b>Status</b>:<br/><small>{oldItem} => {newItem}</small> </p>";
+                content += FormartHistoryContent("Status", oldItem, newItem);
+            }
+            if (newData.PercentCompleted != oldData.PercentCompleted)
+            {
+                string oldItem = oldData.PercentCompleted.ToString();
+                string newItem = newData.PercentCompleted.ToString();
+                content += FormartHistoryContent("Percent Completed", oldItem, newItem);
             }
 
             return content;
@@ -474,6 +498,19 @@ namespace EzTask.Business
                 }
             }
         }
+
+        private string FormartHistoryContent(string field, string oldData, string newData)
+        {
+            if(field == "Detail")
+            {
+                string content = $"<p><b>{field}</b>:<br/>";
+                content += $"Old data:<br/> <small style=\"word-wrap: break-word;\">{oldData}</small><br/>";
+                content += $"New data:<br/> <small style=\"word-wrap: break-word;\" class='text-danger'>{newData}</small><br/>";
+                return content;
+            }
+            return $"<p><b>{field}</b>:<br/><small>{oldData} => <span style=\"color:red;\">{newData}</span></small></p>";
+        }
+
         #endregion
     }
 }

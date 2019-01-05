@@ -4,21 +4,24 @@ namespace EzTask.Framework.Data
 {
     public class CurrentAccount
     {
-        public string AccountId { get; set; }
+        public int AccountId { get; set; }
+
         public string AccountName { get; set; }
-        public string NickName { get; set; }
+        public string DisplayName { get; set; }
         public string JobTitle { get; set; }
+        public string Language { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public static CurrentAccount Create(string accountId, string accountName,
-            string nickName, string jobTitle, DateTime createdDate)
+        public static CurrentAccount Create(int accountId, string accountName,
+            string displayName, string jobTitle, string language, DateTime createdDate)
         {
             return new CurrentAccount
             {
                 AccountId = accountId,
                 AccountName = accountName,
-                NickName = nickName ,
+                DisplayName = displayName,
                 JobTitle = jobTitle,
+                Language = language,
                 CreatedDate = createdDate
             };
         }

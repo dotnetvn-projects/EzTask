@@ -11,14 +11,12 @@ namespace EzTask.Web.Framework.Attributes
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
     public class AuthenAttribute :  Attribute, IAsyncAuthorizationFilter
     {
-        SessionManager _sessionManager;
         CookiesManager _cookiesManager;
         public string ControllerName { get; set; }
 
-        public AuthenAttribute(SessionManager session, CookiesManager cookies)
+        public AuthenAttribute(CookiesManager cookies)
         {
             ControllerName = string.Empty;
-            _sessionManager = session;
             _cookiesManager = cookies;
         }
 
@@ -26,17 +24,16 @@ namespace EzTask.Web.Framework.Attributes
         {
             await Task.Factory.StartNew(() =>
             {
-                var currentUser = _sessionManager.GetObject<CurrentAccount>(AppKey.Account);
-                if (currentUser == null)
+                if (Context.CurrentAccount.AccountId <= 0)
                 {
-                    currentUser = _cookiesManager.GetObject<CurrentAccount>(AppKey.EzTaskAuthen);
-                    if (currentUser != null)
+                    var cookieUser = _cookiesManager.GetObject<CurrentAccount>(SessionKey.EzTaskAuthen);
+                    if (cookieUser != null)
                     {
-                        _sessionManager.SetObject(AppKey.Account, currentUser);
+                        Context.CurrentAccount.Set(cookieUser);
+                        Context.SetLanguageLocalization(cookieUser.Language);
                     }
                 }
-                if (currentUser == null
-                    || string.IsNullOrEmpty(currentUser.AccountId))
+                if (Context.CurrentAccount.AccountId <=0)
                 {
                     var returnUrl = context.HttpContext.Request.GetEncodedUrl();
                     context.Result = new RedirectToActionResult("Login", "Account", new { redirect = returnUrl });

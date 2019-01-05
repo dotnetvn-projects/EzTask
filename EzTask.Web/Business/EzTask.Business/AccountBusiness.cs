@@ -1,18 +1,16 @@
-﻿using EzTask.DataAccess;
-using EzTask.Framework.Security;
-using System;
-using System.Threading.Tasks;
-using System.Linq;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.IO;
-using ImageStream = EzTask.Framework.IO.StreamIO;
-using EzTask.Framework.ImageHandler;
-using EzTask.Models;
+﻿using EzTask.Framework.ImageHandler;
 using EzTask.Framework.Infrastructures;
+using EzTask.Framework.IO;
+using EzTask.Framework.Security;
+using EzTask.Models;
 using EzTask.Models.Enum;
 using EzTask.Repository;
-using EzTask.Framework.IO;
+using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EzTask.Business
 {
@@ -21,11 +19,11 @@ namespace EzTask.Business
         private readonly ImageProcessor _imageProcessor;
 
         public AccountBusiness(ImageProcessor imageProcessor,
-           UnitOfWork unitOfWork):base(unitOfWork)
-        { 
+           UnitOfWork unitOfWork) : base(unitOfWork)
+        {
             _imageProcessor = imageProcessor;
         }
-    
+
         /// <summary>
         /// Register a new account to EzTask
         /// </summary>
@@ -38,21 +36,23 @@ namespace EzTask.Business
                 Status = ActionStatus.Failed
             };
 
-            var account = model.ToEntity();
+            Entity.Data.Account account = model.ToEntity();
             if (account.Id < 1)
+            {
                 account.CreatedDate = DateTime.Now;
+            }
 
             account.PasswordHash = Cryptography.GetHashString(account.AccountName);
-            account.Password = Encrypt.Do(account.Password, 
+            account.Password = Encrypt.Do(account.Password,
                 account.PasswordHash);
 
             account.UpdatedDate = DateTime.Now;
             account.AccountStatus = (int)AccountStatus.Active;
 
             UnitOfWork.AccountRepository.Add(account);
-            var insertedRecord = await UnitOfWork.CommitAsync();
+            int insertedRecord = await UnitOfWork.CommitAsync();
 
-            if(insertedRecord > 0)
+            if (insertedRecord > 0)
             {
                 result.Status = ActionStatus.Ok;
                 result.Data = account.ToModel();
@@ -73,12 +73,14 @@ namespace EzTask.Business
                 Status = ActionStatus.NotFound
             };
 
-            var accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => c.Id == model.AccountInfoId);
+            Entity.Data.AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository
+                .GetAsync(c => c.Id == model.AccountInfoId);
+
             if (accountInfo != null)
             {
                 accountInfo.Update(accountInfo);
-                
-                var updateRecord = await UnitOfWork.CommitAsync();
+
+                int updateRecord = await UnitOfWork.CommitAsync();
                 if (updateRecord > 0)
                 {
                     result.Status = ActionStatus.Ok;
@@ -100,16 +102,16 @@ namespace EzTask.Business
                 Status = ActionStatus.Failed
             };
 
-            var accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => c.AccountId == accountId);
+            Entity.Data.AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => c.AccountId == accountId);
             if (accountInfo != null)
             {
-                var bytes = await stream.ConvertStreamToBytes();
-                var imageData = await _imageProcessor.CreateNewSize(bytes, 250, 250);
+                byte[] bytes = await stream.ConvertStreamToBytes();
+                byte[] imageData = await _imageProcessor.CreateNewSize(bytes, 250, 250);
                 stream.Dispose();
 
                 accountInfo.DisplayImage = imageData;
 
-                var iResult = await UnitOfWork.CommitAsync();
+                int iResult = await UnitOfWork.CommitAsync();
                 if (iResult > 0)
                 {
                     result.Status = ActionStatus.Ok;
@@ -130,9 +132,9 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> GetAccountInfo(int accountId)
         {
-            var data = await UnitOfWork.AccountInfoRepository.Entity.Include(c => c.Account)
+            Entity.Data.AccountInfo data = await UnitOfWork.AccountInfoRepository.Entity.Include(c => c.Account)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(c=>c.AccountId == accountId);
+                .FirstOrDefaultAsync(c => c.AccountId == accountId);
 
             return data.ToModel();
         }
@@ -145,9 +147,10 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> GetAccount(string accountName, string password)
         {
-            var accountInfo = await UnitOfWork.AccountInfoRepository.Entity.Include(c=>c.Account).
-                FirstOrDefaultAsync(c => c.Account.AccountName == accountName 
-                && c.Account.Password == password);
+            Entity.Data.AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository
+                .Entity.Include(c => c.Account)
+                .FirstOrDefaultAsync(c => c.Account.AccountName == accountName
+                             && c.Account.Password == password);
 
             return accountInfo.ToModel();
         }
@@ -159,10 +162,10 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> Login(LoginModel model)
         {
-            var hash = Cryptography.GetHashString(model.AccountName);
+            string hash = Cryptography.GetHashString(model.AccountName);
             model.Password = Encrypt.Do(model.Password, hash);
 
-            var account = await GetAccount(model.AccountName, model.Password);
+            AccountInfoModel account = await GetAccount(model.AccountName, model.Password);
             return account;
         }
 
@@ -173,13 +176,34 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountModel> GetAccount(string accountName)
         {
-            var data = await UnitOfWork.AccountRepository.GetAsync(c => c.AccountName == accountName);
+            Entity.Data.Account data = await UnitOfWork.AccountRepository.GetAsync(c => c.AccountName == accountName);
             return data.ToModel();
         }
 
+        /// <summary>
+        /// Get account info by account name
+        /// </summary>
+        /// <param name="accountName"></param>
+        /// <returns></returns>
+        public async Task<AccountInfoModel> GetAccountInfo(string accountName)
+        {
+            Entity.Data.AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository
+                        .Entity
+                        .Include(c => c.Account)
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync(c => c.Account.AccountName == accountName);
+
+            return accountInfo.ToModel();
+        }
+
+        /// <summary>
+        /// Load avatar
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
         public async Task<byte[]> LoadAvatar(int accountId)
         {
-            var data = await UnitOfWork.AccountInfoRepository.GetAsync(c => 
+            Entity.Data.AccountInfo data = await UnitOfWork.AccountInfoRepository.GetAsync(c =>
                     c.AccountId == accountId, allowTracking: false);
 
             return data.DisplayImage;
@@ -195,9 +219,9 @@ namespace EzTask.Business
         public async Task<IEnumerable<AccountModel>> GetAccountList(int page, int pageSize,
             int manageUserId)
         {
-           var data = await UnitOfWork.AccountRepository.Entity.Where(c=> c.ManageAccountId == manageUserId)
+            List<Entity.Data.Account> data = await UnitOfWork.AccountRepository.Entity.Where(c => c.ManageAccountId == manageUserId)
                 .Skip(pageSize * page - pageSize).Take(pageSize).ToListAsync();
             return data.ToModels();
-        }       
+        }
     }
 }

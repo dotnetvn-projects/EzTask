@@ -14,7 +14,6 @@ namespace EzTask.Business
     public class ProjectBusiness : BusinessCore
     {
         private readonly TaskBusiness _task;
-
         public ProjectBusiness(UnitOfWork unitOfWork,
             TaskBusiness task) : base(unitOfWork)
         {
@@ -71,7 +70,8 @@ namespace EzTask.Business
                                 {
                                     MemberId = project.Owner,
                                     ProjectId = project.Id,
-                                    AddDate = DateTime.Now
+                                    AddDate = DateTime.Now,
+                                    IsPending = false
                                 };
                                 UnitOfWork.ProjectMemberRepository.Add(member);
                                 await UnitOfWork.CommitAsync();
@@ -87,6 +87,63 @@ namespace EzTask.Business
                     return null;
                 }
             }
+        }
+
+        /// <summary>
+        /// Add member to project
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<ProjectMemberModel>> AddMember(ProjectMemberModel model)
+        {
+            ResultModel<ProjectMemberModel> result = new ResultModel<ProjectMemberModel>();
+            //add project member
+            ProjectMember member = new ProjectMember
+            {
+                MemberId = model.AccountId,
+                ProjectId = model.ProjectId,
+                AddDate = DateTime.Now,
+                IsPending = true
+            };
+
+            UnitOfWork.ProjectMemberRepository.Add(member);
+            var iresult = await UnitOfWork.CommitAsync();
+
+            if (iresult > 0)
+            {
+                var accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => 
+                                                c.AccountId == model.AccountId);
+
+                model.AddDate = member.AddDate;
+                model.DisplayName = accountInfo.DisplayName;
+                model.IsPending = member.IsPending;
+
+                result.Data = model;
+                result.Status = ActionStatus.Ok;
+            }
+
+            return result;
+        }
+
+        /// <summary>
+        /// check member has been added to project yet
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<bool>> HasAlreadyAdded(ProjectMemberModel model)
+        {
+            ResultModel<bool> result = new ResultModel<bool>();
+
+            var data = await UnitOfWork.ProjectMemberRepository.GetAsync(c => c.MemberId == model.AccountId
+                                 && c.ProjectId == model.ProjectId);
+
+            if (data != null)
+            {
+                result.Data = true;
+                result.Status = ActionStatus.Ok;
+            }
+
+            return result;
         }
 
         /// <summary>
@@ -146,11 +203,28 @@ namespace EzTask.Business
         {
             List<Project> data = await UnitOfWork.ProjectMemberRepository.Entity
                 .Include(c => c.Member)
-                .Include(c => c.Project)
+                .Include(c => c.Project).ThenInclude(c => c.Account).ThenInclude(c => c.AccountInfo)
                 .AsNoTracking()
-                .Where(c => c.MemberId == ownerId)
+                .Where(c => c.MemberId == ownerId && c.IsPending == false)
                 .OrderBy(c => c.Project.Status)
-                .Select(x => x.Project)
+                .Select(x => new Project
+                {
+                    Account = new Account
+                    {
+                        AccountInfo = x.Project.Account.AccountInfo,
+                        Id = x.Project.Account.Id
+                    },
+                    Comment = x.Project.Comment,
+                    CreatedDate = x.Project.CreatedDate,
+                    Description = x.Project.Description,
+                    Id = x.Project.Id,
+                    MaximumUser = x.Project.MaximumUser,
+                    Owner = x.Project.Owner,
+                    ProjectCode = x.Project.ProjectCode,
+                    ProjectName = x.Project.ProjectName,
+                    Status = x.Project.Status,
+                    UpdatedDate = x.Project.UpdatedDate
+                })
                 .ToListAsync();
 
             return data.ToModels();
@@ -165,7 +239,7 @@ namespace EzTask.Business
         {
             var data = await UnitOfWork.ProjectMemberRepository
                             .Entity
-                            .CountAsync(c => c.MemberId == ownerId);
+                            .CountAsync(c => c.MemberId == ownerId && c.IsPending == false);
 
             return data;
         }
@@ -178,8 +252,37 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ProjectModel> GetProject(string projectCode)
         {
-            Project data = await UnitOfWork.ProjectRepository.GetAsync(c =>
-                c.ProjectCode == projectCode, allowTracking: false);
+            Project data = await UnitOfWork.ProjectRepository
+                .Entity
+                .Include(c => c.Account).AsNoTracking().FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
+
+            return data.ToModel();
+        }
+
+        /// <summary>
+        ///  Get project
+        /// </summary>
+        /// <param name="projectCode"></param>
+        /// <returns></returns>
+        public async Task<ProjectModel> GetProjectByOwner(int owner)
+        {
+            Project data = await UnitOfWork.ProjectRepository
+                .Entity
+                .Include(c => c.Account).AsNoTracking().FirstOrDefaultAsync(c => c.Owner == owner);
+
+            return data.ToModel();
+        }
+
+        /// <summary>
+        ///  Get project
+        /// </summary>
+        /// <param name="projectCode"></param>
+        /// <returns></returns>
+        public async Task<ProjectModel> GetProject(int projectId)
+        {
+            Project data = await UnitOfWork.ProjectRepository
+                .Entity
+                .Include(c => c.Account).AsNoTracking().FirstOrDefaultAsync(c => c.Id == projectId);
 
             return data.ToModel();
         }
@@ -222,11 +325,16 @@ namespace EzTask.Business
             Project data = await UnitOfWork.ProjectRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
-            var model = data.ToModel();         
+            var model = data.ToModel();
 
             return model;
         }
 
+        /// <summary>
+        /// Count member of project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public async Task<int> CountMember(int projectId)
         {
             var data = await UnitOfWork.ProjectMemberRepository.Entity
@@ -249,10 +357,27 @@ namespace EzTask.Business
                 .Where(c => c.ProjectId == projectId)
                 .Select(t => new ProjectMemberModel
                 {
+                    ProjectId = t.ProjectId,
                     AccountId = t.MemberId,
+                    IsPending = t.IsPending,
                     AddDate = t.AddDate,
-                    DisplayName = t.Member.AccountInfo.DisplayName,           
+                    DisplayName = t.Member.AccountInfo.DisplayName,
                 }).ToListAsync();
+
+            return data;
+        }
+
+        /// <summary>
+        /// Get account id list belong to a specific project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<int>> GetAccountIdList(int projectId)
+        {
+            List<int> data = await UnitOfWork.ProjectMemberRepository
+                .Entity.AsNoTracking()
+                .Where(c => c.ProjectId == projectId)
+                .Select(t => t.MemberId).ToListAsync();
 
             return data;
         }

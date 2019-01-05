@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.Models;
+using EzTask.Models.Enum;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Project.ViewModels;
 using EzTask.Web.Framework.Attributes;
@@ -29,12 +30,22 @@ namespace EzTask.Modules.Project.Controllers
             vm.TotalMember = await EzTask.Project.CountMember(model.ProjectId);
 
             var phrases = await EzTask.Phrase.GetPhrase(model.ProjectId);
-
-            foreach (var phrase in phrases)
+            if (phrases.Any())
             {
-                var tasks = await EzTask.Task.GetTasks(model.ProjectId, phrase.Id);
-                if(tasks.Any())
-                  vm.TaskList.Add(tasks.ToList());
+                vm.TotalOpenPhrase = phrases.Count(c => c.Status == PhraseStatus.Open);
+                vm.TotalClosedPhrase = phrases.Count(c => c.Status == PhraseStatus.Closed);
+                vm.TotalFailedPhrase = phrases.Count(c => c.Status == PhraseStatus.Failed);
+
+                vm.PercentOpenPhrase = (int)(vm.TotalOpenPhrase / (float)vm.TotalPhrase * 100);
+                vm.PercentClosedPhrase = (int)(vm.TotalClosedPhrase / (float)vm.TotalPhrase * 100);
+                vm.PercentFailedPhrase = (int)(vm.TotalFailedPhrase / (float)vm.TotalPhrase * 100);
+
+                foreach (var phrase in phrases)
+                {
+                    var tasks = await EzTask.Task.GetTasks(model.ProjectId, phrase.Id);
+                    if (tasks.Any())
+                        vm.TaskList.Add(tasks.ToList());
+                }
             }
 
             return View(vm);

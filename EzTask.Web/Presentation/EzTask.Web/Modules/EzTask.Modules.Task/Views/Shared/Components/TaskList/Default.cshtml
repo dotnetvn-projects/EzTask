@@ -1,14 +1,19 @@
 ﻿@model TaskViewModel
-
+@{
+    var taskCount = Model.TaskList.Count();
+}
 <div class="box box-primary">
     <div class="box-header with-border">
         <div class="phrase-tool">
+            @if (User.Identity.AccountId() == Model.Project.Owner.AccountId)
+            {
             <span class="badge"><a class="edit-phrase"><i class="fa fa-edit"></i> Edit phrase</a></span>
             <span class="badge"><a class="remove-phrase"><i class="fa fa-remove"></i> Remove phrase</a></span>
+            }
         </div>
         <div class="task-tool">
             <h3 class="box-title">
-                <i class="fa fa-book text-success"></i>  @Model.Phrase.PhraseName: @Model.TaskCount
+                <i class="fa fa-book text-success"></i>  @Model.Phrase.PhraseName: @Html.PrintNumberWithText("task", taskCount)
             </h3>
             <div class="box-tools pull-right">
                 <div class="has-feedback">
@@ -32,7 +37,7 @@
             <!-- /.btn-group -->
             <button type="button" title="refresh" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
-                <span class="badge bg-aqua task-count">@Model.TaskCount</span>
+                <span class="badge bg-aqua task-count">@Html.PrintNumberWithText("task", taskCount)</span>
             </div>
             <!-- /.pull-right -->
         </div>
@@ -43,26 +48,26 @@
                     {
                         foreach (var task in Model.TaskList)
                         {
-                    <tr data-id="@task.TaskId">
-                        <td width="20"><input data-id="@task.TaskId" type="checkbox"></td>
-                        <td class="task-name"><a>@task.TaskCode</a></td>
-                        <td class="task-title">
-                            @task.TaskTitle
-                        </td>
-                        <td title="Assign to @task.Assignee.DisplayName" class="task-assignee"><i class="fa fa-user text-green"></i> @task.Assignee.DisplayName</td>
-                        <td class="task-status">
-                            <task-status asp-for="@task.Status"></task-status>
-                        </td>
-                        @if (task.HasAttachment)
-                        {
-                        <td class="task-attachment"><i class="fa fa-paperclip"></i></td>
-                        }
-                        else
-                        {
-                            <td></td>
-                        }
-                        <td class="task-date">@task.UpdatedDate.TimeAgo()</td>
-                    </tr>
+                            <tr data-id="@task.TaskId">
+                                <td width="20"><input data-id="@task.TaskId" type="checkbox"></td>
+                                <td class="task-name"><a>@task.TaskCode</a></td>
+                                <td class="task-title">
+                                    @task.TaskTitle
+                                </td>
+                                <td title="Assign to @task.Assignee.DisplayName" class="task-assignee"><i class="fa fa-user text-green"></i> @task.Assignee.DisplayName</td>
+                                <td class="task-status">
+                                    <task-status asp-for="@task.Status"></task-status>
+                                </td>
+                                @if (task.HasAttachment)
+                                {
+                                    <td class="task-attachment"><i class="fa fa-paperclip"></i></td>
+                                }
+                                else
+                                {
+                                    <td></td>
+                                }
+                                <td class="task-date">@task.UpdatedDate.TimeAgo()</td>
+                            </tr>
                         }
                     }
                     else
@@ -90,11 +95,11 @@
             <!-- /.btn-group -->
             <button type="button" title="refresh" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
-                <span class="badge bg-aqua task-count">@Model.TaskCount</span>
+                <span class="badge bg-aqua task-count">@Html.PrintNumberWithText("task", taskCount)</span>
             </div>
             <!-- /.pull-right -->
         </div>
     </div>
 </div>
 
-<input type="hidden" id="phrase-id" asp-for="Phrase.Id"/>
+<input type="hidden" id="phrase-id" asp-for="Phrase.Id" />

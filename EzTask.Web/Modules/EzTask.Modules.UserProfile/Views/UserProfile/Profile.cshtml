@@ -21,7 +21,7 @@
                 <a href="" data-toggle="modal" data-target="#upload-avatar-modal">
                     <img class="profile-user-img img-responsive img-circle" src="@Url.Action("LoadAvatar","Common")" alt="User profile picture">
                 </a>
-                <h3 class="profile-username text-center">@Html.NickName()</h3>
+                <h3 class="profile-username text-center">@Html.DisplayName()</h3>
                 <p class="text-muted text-center">Job Title: @Html.JobTitle()</p>
                 <ul class="list-group list-group-unbordered">
                     <li class="list-group-item">

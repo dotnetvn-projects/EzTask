@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EzTask.Framework.Message;
 using EzTask.Framework.Data;
 using EzTask.Models;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Models.Enum;
+using EzTask.Web.Framework.HttpContext;
 
 namespace EzTask.Modules.Authentication.Controllers
 {
@@ -48,11 +48,15 @@ namespace EzTask.Modules.Authentication.Controllers
                 {
                     if (account.AccountStatus != AccountStatus.Block)
                     {
-                        CurrentAccount = CurrentAccount.Create(account.AccountId.ToString(), 
-                            account.AccountName, account.DisplayName, 
-                            account.JobTitle, account.CreatedDate);
+                        var currentAccount = CurrentAccount.Create(account.AccountId,
+                            account.AccountName, account.DisplayName,
+                            account.JobTitle, account.LangDisplay, account.CreatedDate);
 
-                        RememberMe();
+                        Context.CurrentAccount.Set(currentAccount);
+
+                        Context.RememberLogin(currentAccount);
+
+                        Context.SetLanguageLocalization(account.LangDisplay);
 
                         if (string.IsNullOrEmpty(model.RedirectUrl))
                         {
@@ -65,17 +69,17 @@ namespace EzTask.Modules.Authentication.Controllers
                     }
                     else
                     {
-                        ErrorMessage = AccountMessage.AccountBlock;
+                        ErrorMessage = Context.GetStringResource("AccountBlocked", StringResourceType.Error);
                     }
                 }
                 else
                 {
-                    ErrorMessage = AccountMessage.LoginFailed;
+                    ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.Error);
                 }
             }
             catch (Exception ex)
             {
-                ErrorMessage = AccountMessage.LoginFailed;
+                ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.Error);
             }
 
             return View();
@@ -108,7 +112,7 @@ namespace EzTask.Modules.Authentication.Controllers
             {
                 if (model.Password != model.PasswordTemp)
                 {
-                    ErrorMessage = AccountMessage.ConfirmPasswordNotMatch;
+                    ErrorMessage = Context.GetStringResource("ConfirmPasswordNotMatch", StringResourceType.Error);
                 }
                 else
                 {
@@ -125,18 +129,18 @@ namespace EzTask.Modules.Authentication.Controllers
                                 return RedirectToAction("Login", "Account");
                             }
 
-                            ErrorMessage = AccountMessage.CreateFailed;
+                            ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.Error);
                         }
                         else
                         {
-                            ErrorMessage = AccountMessage.ExistAccount;
+                            ErrorMessage = Context.GetStringResource("AccountExisted", StringResourceType.Error);;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                ErrorMessage = AccountMessage.CreateFailed;
+                ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.Error);
             }
 
             return View();
@@ -147,10 +151,10 @@ namespace EzTask.Modules.Authentication.Controllers
         #region Login use social network
         #endregion
 
-        [HttpPost]
+        [Route("logout.html")]
         public IActionResult LogOff()
         {
-            SuspendSession(AppKey.Account);
+            Context.SuspendSession(SessionKey.Account);
             return RedirectToAction("Login", "Account");
         }
     }

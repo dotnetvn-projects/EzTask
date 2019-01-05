@@ -14,6 +14,14 @@ namespace EzTask.Modules.Project.ViewModels
         public int TotalPhrase { get; set; }
         public int TotalMember { get; set; }
 
+        public int TotalOpenPhrase { get; set; }
+        public int TotalClosedPhrase { get; set; }
+        public int TotalFailedPhrase { get; set; }
+
+        public int PercentOpenPhrase { get; set; }
+        public int PercentClosedPhrase { get; set; }
+        public int PercentFailedPhrase { get; set; }
+
         public List<ProjectMemberModel> Members { get; set; }
 
         public ProjectViewModel()

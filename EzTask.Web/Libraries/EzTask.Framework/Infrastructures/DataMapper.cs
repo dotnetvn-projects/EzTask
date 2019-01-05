@@ -168,6 +168,23 @@ namespace EzTask.Framework.Infrastructures
             return FrameworkCore.Mapper.Map<IEnumerable<TaskHistoryModel>>(entity);
         }
         #endregion
+
+        #region Notification Mapper
+        public static Notification ToEntity(this NotificationModel model)
+        {
+            return FrameworkCore.Mapper.Map<Notification>(model);
+        }
+
+        public static NotificationModel ToModel(this Notification entity)
+        {
+            return FrameworkCore.Mapper.Map<NotificationModel>(entity);
+        }
+
+        public static IEnumerable<NotificationModel> ToModels(this IEnumerable<Notification> entity)
+        {
+            return FrameworkCore.Mapper.Map<IEnumerable<NotificationModel>>(entity);
+        }
+        #endregion
     }
 
 }

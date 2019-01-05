@@ -15,6 +15,7 @@ namespace EzTask.Framework.Infrastructures
             ProjectMapper();
             PhraseMapper();
             TaskMapper();
+            NotificationMapper();
         }
 
         private void AccountMaper()
@@ -44,6 +45,7 @@ namespace EzTask.Framework.Infrastructures
             ///Map AccountInfo entity to AccountInfoModel
             CreateMap<AccountInfo, AccountInfoModel>()
                 .ForMember(c => c.AccountInfoId, t => t.MapFrom(z => z.Id))
+                .ForMember(c => c.CreatedDate, t => t.MapFrom(z => z.Account.CreatedDate))
                 .ForMember(c => c.AccountName, t => t.MapFrom(z => z.Account.AccountName))
                 .ForMember(c => c.Password, t => t.MapFrom(z => z.Account.Password))
                 .ForMember(c => c.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo != null?
@@ -117,7 +119,7 @@ namespace EzTask.Framework.Infrastructures
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<TaskItemStatus>()))
                 .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToEnum<TaskItemStatus>()))
                 .ForMember(c => c.TaskId, t => t.MapFrom(z => z.Id))
-                .ForMember(c=>c.HasAttachment, t => t.MapFrom(z=>z.Attachments !=null && z.Attachments.Any()));
+                .ForMember(c => c.HasAttachment, t => t.MapFrom(z => z.Attachments != null && z.Attachments.Any()));
 
             //Map TaskItem model to TaskItem entity
             CreateMap<TaskItemModel, TaskItem>()
@@ -128,6 +130,21 @@ namespace EzTask.Framework.Infrastructures
                 .ForMember(c => c.PhraseId, t => t.MapFrom(z => z.Phrase != null ? z.Phrase.Id : 0))
                 .ForMember(c => c.AssigneeId, t => t.MapFrom(z => z.Assignee != null ? z.Assignee.AccountId : 0))
                 .ForMember(c => c.ProjectId, t => t.MapFrom(z => z.Project != null ? z.Project.ProjectId : 0));
+        }
+
+        public void NotificationMapper()
+        {
+            //Map Notification entity to Notification model
+            CreateMap<Notification, NotificationModel>()
+                .ForPath(c => c.Account.AccountId, t => t.MapFrom(z => z.Account.Id))
+                .ForPath(c => c.Account.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo.DisplayName))
+                .ForMember(c => c.Context, t => t.MapFrom( z => z.Context.ToEnum<NotifyContext>()))
+                .ReverseMap();
+
+            //Map Notification model to Notification entity
+            CreateMap<NotificationModel, Notification>()
+                .ForMember(c => c.AccountId, t => t.MapFrom(z => z.Account.AccountId))
+                .ForMember(c => c.Context, t => t.MapFrom(z => z.Context.ToInt16<NotifyContext>()));
         }
     }
 }

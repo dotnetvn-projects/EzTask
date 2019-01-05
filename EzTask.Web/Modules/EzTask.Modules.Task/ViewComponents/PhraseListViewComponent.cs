@@ -1,4 +1,5 @@
 ﻿using EzTask.Business;
+using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -21,6 +22,7 @@ namespace EzTask.Modules.Task.ViewComponents
                 var countTask = await EzTask.Task.CountByPhrase(item.Id, projectId);
                 item.TotalTask = countTask;
             }
+
             return View(data);
         }
     }

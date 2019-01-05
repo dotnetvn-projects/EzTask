@@ -1,0 +1,150 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Localization>
+  <Pattern>English</Pattern>
+
+  <CommonMessage>
+    <Language>
+      <Key>Search</Key>
+      <Content>Search</Content>
+    </Language>
+    <Language>
+      <Key>Task</Key>
+      <Content>Task</Content>
+    </Language>
+    <Language>
+      <Key>Project</Key>
+      <Content>Project</Content>
+    </Language>
+    <Language>
+      <Key>ControlPanel</Key>
+      <Content>Control panel</Content>
+    </Language>
+    <Language>
+      <Key>Dashboard</Key>
+      <Content>Dashboard</Content>
+    </Language>
+    <Language>
+      <Key>ProjectManagement</Key>
+      <Content>PROJECT MANAGEMENT</Content>
+    </Language>
+    <Language>
+      <Key>MainNavigation</Key>
+      <Content>MAIN NAVIGATION</Content>
+    </Language>
+  <Language>
+      <Key>ViewAll</Key>
+      <Content>View all</Content>
+    </Language>
+  </CommonMessage>
+
+  <MessageTitle>
+    <Language>
+      <Key>Error</Key>
+      <Content>Error!</Content>
+    </Language>
+    <Language>
+      <Key>Alert</Key>
+      <Content>Alert!</Content>
+    </Language>
+  </MessageTitle>
+
+  <ErrorMessage>
+    <Language>
+      <Key>AccountBlocked</Key>
+      <Content>Failed to login, your account is blocked</Content>
+    </Language>
+    <Language>
+      <Key>LoginFailed</Key>
+      <Content>Failed to login, wrong email or password</Content>
+    </Language>
+    <Language>
+      <Key>ConfirmPasswordNotMatch</Key>
+      <Content>Value in "Retype Password" field doesn't match to your password, please re-type again</Content>
+    </Language>
+    <Language>
+      <Key>CreateAccountFailed</Key>
+      <Content>Sorry we cannot create account for you, please try again</Content>
+    </Language>
+    <Language>
+      <Key>AccountExisted</Key>
+      <Content>This email already registered, please choose an other email</Content>
+    </Language>
+    <Language>
+      <Key>AccountNotFound</Key>
+      <Content>Account {0} doesn't exist.</Content>
+    </Language>
+    <Language>
+      <Key>NotFound</Key>
+      <Content>Not Found</Content>
+    </Language>
+    <Language>
+      <Key>PageNotFound</Key>
+      <Content>Ops! Something's wrong here, we cannot display information right now</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectError</Key>
+      <Content>Sorry we cannot create project for you, please try again !</Content>
+    </Language>
+    <Language>
+      <Key>ProjectIsDupplicated</Key>
+      <Content>Project name was register by other user, please choose another name</Content>
+    </Language>
+    <Language>
+      <Key>ErrorUpdateProject</Key>
+      <Content>Sorry we cannot update project for you, please try again !</Content>
+    </Language>
+  </ErrorMessage>
+
+  <SuccessMessage>
+    <Language>
+      <Key>CreateProjectSuccess</Key>
+      <Content>Your project has been created !</Content>
+    </Language>
+    <Language>
+      <Key>UpdateProjectSuccess</Key>
+      <Content>Your project has been updated !</Content>
+    </Language>
+  </SuccessMessage>
+
+  <Notification>
+    <Language>
+      <Key>AddNewTask</Key>
+      <Content>created new task</Content>
+    </Language>
+    <Language>
+      <Key>UpdateTask</Key>
+      <Content>updated task</Content>
+    </Language>
+    <Language>
+      <Key>DeleteTask</Key>
+      <Content>deleted task</Content>
+    </Language>
+    <Language>
+      <Key>AssignTask</Key>
+      <Content>assgined task to you</Content>
+    </Language>
+    <Language>
+      <Key>NotificationCountSingle</Key>
+      <Content>You have {0} notification</Content>
+    </Language>
+      <Language>
+      <Key>NotificationCountPlural</Key>
+      <Content>You have {0} notifications</Content>
+    </Language>
+  </Notification>
+
+  <DashboardPage>
+    <Language>
+      <Key>ưefwe</Key>
+      <Content>èwefwe</Content>
+    </Language>
+  </DashboardPage>
+
+  <ProjectPage>
+    <Language>
+      <Key>ưefwe</Key>
+      <Content>fwefwe</Content>
+    </Language>
+  </ProjectPage>
+
+</Localization>

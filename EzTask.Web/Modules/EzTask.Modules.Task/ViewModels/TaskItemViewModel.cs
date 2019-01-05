@@ -31,6 +31,7 @@ namespace EzTask.Modules.Task.ViewModels
 
         public Int16 Priority { get; set; }
         public DateTime CreatedDate { get; set; }
+        public int PercentCompleted { get; set; }
 
         public List<SelectListItem> PhraseList { get; set; }
         public List<SelectListItem> StatusList { get; set; }

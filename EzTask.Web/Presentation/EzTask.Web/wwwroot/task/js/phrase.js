@@ -14,7 +14,7 @@ $.fn.showModal = function () {
 
         $.showLoading();
         $.ajax({
-            url: 'task/generate-phrase.html',
+            url: 'phase/generate-phase.html',
             type: "POST",
             data: { phraseId: phraseid, projectId: projectid },
             success: function (data) {
@@ -42,7 +42,7 @@ $.fn.phraseModalAction = function () {
         if (form.valid()) {
             $.ajax({
                 type: 'post',
-                url: "task/phrase-modal-action.html",
+                url: "phase/phase-modal-action.html",
                 data: form.serialize(),
                 success: function (response) {                  
                     var phrasePanel = $(".phrase-list-panel");
@@ -73,7 +73,7 @@ $.fn.removePhrase = function () {
                 $.showLoading();
                 $.ajax({
                     type: 'post',
-                    url: "task/delete-phrase.html",
+                    url: "phase/delete-phase.html",
                     data: { phraseId: $("#phrase-id").val()},
                     success: function (response) {
                         $('.project-list').change();

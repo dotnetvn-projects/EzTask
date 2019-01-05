@@ -7,12 +7,25 @@ namespace EzTask.Web.Framework.HttpContext
 {
     public class AccountContext
     {
+        private SessionManager _sessionManager;
+
+        public AccountContext(SessionManager sessionManager)
+        {
+            _sessionManager = sessionManager;
+        }
+
+        public void Set(CurrentAccount currentAccount)
+        {
+            _sessionManager.SetObject(SessionKey.Account, currentAccount);
+        }
+
         private CurrentAccount _currentAccount
         {
             get
             {
-                SessionManager sessionManager = new SessionManager();
-                var currentAccount = sessionManager.GetObject<CurrentAccount>(AppKey.Account);
+                var currentAccount = _sessionManager.GetObject<CurrentAccount>(SessionKey.Account);
+                if (currentAccount == null)
+                    currentAccount = new CurrentAccount();
                 return currentAccount;
             }
         }
@@ -22,7 +35,7 @@ namespace EzTask.Web.Framework.HttpContext
         /// </summary>
         public int AccountId
         {
-            get { return int.Parse(_currentAccount.AccountId); }
+            get { return _currentAccount.AccountId; }
         }
 
         /// <summary>
@@ -30,7 +43,31 @@ namespace EzTask.Web.Framework.HttpContext
         /// </summary>
         public string DisplayName
         {
-            get { return _currentAccount.NickName; }
+            get { return _currentAccount.DisplayName; }
+        }
+
+        /// <summary>
+        /// AccountName
+        /// </summary>
+        public string AccountName
+        {
+            get { return _currentAccount.AccountName; }
+        }
+
+        /// <summary>
+        /// CreatedDate
+        /// </summary>
+        public DateTime CreatedDate
+        {
+            get { return _currentAccount.CreatedDate; }
+        }
+
+        /// <summary>
+        /// JobTitle
+        /// </summary>
+        public string JobTitle
+        {
+            get { return _currentAccount.JobTitle; }
         }
     }
 }

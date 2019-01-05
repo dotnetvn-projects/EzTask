@@ -9,6 +9,8 @@ using EzTask.Web.Framework.Attributes;
 using System.Linq;
 using EzTask.Models;
 using EzTask.Web.Framework.Data;
+using EzTask.Web.Framework.HttpContext;
+using EzTask.Framework.Data;
 
 namespace EzTask.Modules.Task.Controllers
 {
@@ -49,9 +51,15 @@ namespace EzTask.Modules.Task.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("task/delete-task.html")]
-        public async Task<IActionResult> DeleteTasks(int[] taskIds)
+        public async Task<IActionResult> DeleteTasks(int[] taskIds, int projectId)
         {
             var iResult = await EzTask.Task.DeleteTask(taskIds);
+
+            //add notify
+            await EzTask.Notification.DeleteTaskNotify(Context.CurrentAccount.DisplayName,
+                Context.CurrentAccount.AccountId, taskIds, projectId,
+                Context.GetStringResource("DeleteTask", StringResourceType.Notification));
+
             return Json(iResult);
         }
 
@@ -85,6 +93,10 @@ namespace EzTask.Modules.Task.Controllers
             if (taskids != null && taskids.Length > 0)
             {
                 await EzTask.Task.AssignTask(taskids, accountId);
+
+                //add notify
+                await EzTask.Notification.AssignTaskNotify(Context.CurrentAccount.DisplayName, taskids, accountId,
+                    Context.GetStringResource("AssignTask", StringResourceType.Notification));
             }
 
             return Ok();
@@ -101,7 +113,7 @@ namespace EzTask.Modules.Task.Controllers
         private async Task<TaskViewModel> PrepareData()
         {
             TaskViewModel viewModel = new TaskViewModel();
-            var projects = await EzTask.Project.GetProjects(AccountId);
+            var projects = await EzTask.Project.GetProjects(Context.CurrentAccount.AccountId);
 
             if (projects.Any())
             {

@@ -2,6 +2,7 @@
 @section styles{
     <link rel="stylesheet" href="~/themes/plugins/iCheck/flat/green.css">
     <link rel="stylesheet" href="~/task/css/task.css">
+    <link rel="stylesheet" href="~/lib/slider-bar/css/slider-bar-round.css">
 }
 
 @section header{
@@ -23,9 +24,12 @@
                 <div class="box-body no-padding">
                     <div class="project-box">
                         <select asp-items="@Model.ProjectItems" class="form-control select2 project-list"></select>
-                        <a data-toggle="modal" class="btn btn-block btn-addnew-phrase">
-                            <i class="fa fa-plus"></i> Add new phrase
-                        </a>
+                        @if (Model.Project.Owner.AccountId == User.Identity.AccountId())
+                        {
+                            <a data-toggle="modal" class="btn btn-block btn-addnew-phrase">
+                                <i class="fa fa-plus"></i> Add new phrase
+                            </a>
+                        }
                     </div>
                 </div>
             </div>
@@ -51,5 +55,6 @@
     <script src="~/task/js/task.js"></script>
     <script src="~/task/js/phrase.js"></script>
     <script src="~/task/js/task-item.js"></script>
-    <partial name="_ValidationScriptsPartial"/>
+    <script src="~/lib/slider-bar/js/slider-bar.js"></script>
+    <partial name="_ValidationScriptsPartial" />
 }

@@ -11,6 +11,10 @@
         <li class="active">Create new</li>
     </ol>
 }
+@section styles{
+    <link rel="stylesheet" href="~/project/css/project.css">
+}
+
 <div class="box box-primary">
     <div class="box-header with-border">
         @if (Model.ProjectId < 1)
@@ -33,3 +37,6 @@
         </div>
     </div>
 </div>
+@section Scripts{
+    <script src="~/project/js/project.js"></script>
+}

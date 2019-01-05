@@ -12,7 +12,7 @@ namespace EzTask.Web.Framework.HttpContext
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <param name="expireTime"></param>
-        public void Set(AppKey key, string value, int? expireTime)
+        public void Set(SessionKey key, string value, int? expireTime)
         {
             CookieOptions option = new CookieOptions();
 
@@ -29,7 +29,7 @@ namespace EzTask.Web.Framework.HttpContext
         /// </summary>
         /// <param name="key"></param>
         /// <returns></returns>
-        public string Get(AppKey key)
+        public string Get(SessionKey key)
         {
             try
             {
@@ -47,7 +47,7 @@ namespace EzTask.Web.Framework.HttpContext
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <param name="expireTime"></param>
-        public void SetObject(AppKey key, object value, int? expireTime)
+        public void SetObject(SessionKey key, object value, int? expireTime)
         {
             CookieOptions option = new CookieOptions();
 
@@ -65,7 +65,7 @@ namespace EzTask.Web.Framework.HttpContext
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
         /// <returns></returns>
-        public T GetObject<T>(AppKey key)
+        public T GetObject<T>(SessionKey key)
         {
             try
             {
@@ -81,7 +81,7 @@ namespace EzTask.Web.Framework.HttpContext
         /// Remove cookie
         /// </summary>
         /// <param name="key"></param>
-        public void Remove(AppKey key)
+        public void Remove(SessionKey key)
         {
             Context.Current.Response.Cookies.Delete(key.ToString());
         }
