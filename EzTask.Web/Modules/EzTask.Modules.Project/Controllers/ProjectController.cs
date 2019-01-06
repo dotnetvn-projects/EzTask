@@ -241,7 +241,7 @@ namespace EzTask.Modules.Project.Controllers
 
             if(account == null)
             {
-                return BadRequest("NotFound fwefwefwe");
+                return BadRequest("NotFound");
             }
 
             ProjectMemberModel model = new ProjectMemberModel
@@ -254,7 +254,7 @@ namespace EzTask.Modules.Project.Controllers
 
             if (alreadyAdded.Data)
             {
-                return BadRequest("added règrwgregregre");          
+                return BadRequest("added");          
             }
 
             var iResult = await EzTask.Project.AddMember(model);

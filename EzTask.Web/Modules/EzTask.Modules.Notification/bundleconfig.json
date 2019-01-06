@@ -1,0 +1,14 @@
+[
+  {
+    "outputFileName": "wwwroot/notification/css/notification.min.css",
+    "inputFiles": [
+      "wwwroot/notification/css/notification.css"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/notification/js/notification.min.js",
+    "inputFiles": [
+      "wwwroot/notification/js/notification.js"
+    ]
+  }
+]

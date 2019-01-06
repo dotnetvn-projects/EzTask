@@ -1,5 +1,6 @@
 ﻿using EzTask.Framework.Common;
 using EzTask.Models.Enum;
+using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Mvc;
@@ -8,7 +9,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EzTask.Modules.Core.Controllers
+namespace EzTask.Modules.Notification.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
     public class NotificationController : BaseController
@@ -16,23 +17,13 @@ namespace EzTask.Modules.Core.Controllers
         public NotificationController(IServiceProvider serviceProvider) 
             : base(serviceProvider) { }
 
-        [HttpPost]
-        [Route("notify/get-new")]
-        public async Task<IActionResult> _NewNotificationList(short context)
-        {
-            var model = await EzTask.Notification.NewNotificationList(Context.CurrentAccount.AccountId);
-
-            return PartialView("_NewNotificationList", model);
-        }
-
-        [HttpPost]
-        [Route("notify/get-all")]
-        public async Task<IActionResult> _NotificationList(short context)
+        [Route("notification/list.html")]
+        public async Task<IActionResult> NotificationList(short context)
         {
             var model = await EzTask.Notification.GetNotificationList(Context.CurrentAccount.AccountId,
                 context.ToEnum<NotifyContext>());
 
-            return PartialView("_NotificationList", model);
+            return View(model);
         }
     }
 }
