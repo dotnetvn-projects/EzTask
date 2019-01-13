@@ -72,9 +72,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Repository", "Librar
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Plugin.MessageService", "Plugins\EzTask.Plugin.MessageService\EzTask.Plugin.MessageService.csproj", "{3CE78A5A-ED5A-4957-A274-6B39C8AF688D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Web.Management", "Presentation\EzTask.Web.Management\EzTask.Web.Management.csproj", "{2E3286CE-06C5-4F30-AA53-0D99ACC31609}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EzTask.Modules.Notification", "Modules\EzTask.Modules.Notification\EzTask.Modules.Notification.csproj", "{C6CA1B42-3CD7-4641-969A-352B64894DB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EzTask.Modules.Notification", "Modules\EzTask.Modules.Notification\EzTask.Modules.Notification.csproj", "{C6CA1B42-3CD7-4641-969A-352B64894DB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -162,10 +160,6 @@ Global
 		{3CE78A5A-ED5A-4957-A274-6B39C8AF688D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CE78A5A-ED5A-4957-A274-6B39C8AF688D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CE78A5A-ED5A-4957-A274-6B39C8AF688D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2E3286CE-06C5-4F30-AA53-0D99ACC31609}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2E3286CE-06C5-4F30-AA53-0D99ACC31609}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2E3286CE-06C5-4F30-AA53-0D99ACC31609}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2E3286CE-06C5-4F30-AA53-0D99ACC31609}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C6CA1B42-3CD7-4641-969A-352B64894DB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C6CA1B42-3CD7-4641-969A-352B64894DB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C6CA1B42-3CD7-4641-969A-352B64894DB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -202,7 +196,6 @@ Global
 		{5BD0CC4D-C4D4-4E00-B8B4-0A8D8B958F77} = {A65C3E72-6FF1-48B1-9A97-4F48CD43FC64}
 		{408E093A-F77E-4F5B-B0CE-AABB6A843DA3} = {2831A897-F971-47EA-8E8A-B062098D9F0E}
 		{3CE78A5A-ED5A-4957-A274-6B39C8AF688D} = {1CA0114A-B5D8-45AB-A0C1-0F45CD06772D}
-		{2E3286CE-06C5-4F30-AA53-0D99ACC31609} = {7E2601D8-AE2C-45A2-BBD8-BB89BAFA9967}
 		{C6CA1B42-3CD7-4641-969A-352B64894DB5} = {82CB43CE-A2C2-408F-8BE5-7EBE12A5B8AD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

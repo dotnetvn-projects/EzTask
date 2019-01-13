@@ -38,21 +38,6 @@ namespace EzTask.Modules.Core.Controllers
             get { return TempData["success"]?.ToString(); }
             set { TempData["success"] = value; }
         }
-      
-
-        protected async Task SaveTaskHistory(int taskId, string title, string updateInfo)
-        {
-            var model = new TaskHistoryModel
-            {
-                Content = updateInfo,
-                Task = new TaskItemModel { TaskId = taskId },
-                User = new AccountModel { AccountId = Context.CurrentAccount.AccountId },
-                Title = title,
-                UpdatedDate = DateTime.Now
-            };
-
-            await EzTask.Task.SaveHistory(model);
-        }
 
         /// <summary>
         /// Create response message

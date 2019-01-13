@@ -1,14 +1,11 @@
-﻿using EzTask.Framework.Common;
-using EzTask.Framework.Infrastructures;
+﻿using EzTask.Framework.Infrastructures;
 using EzTask.Models;
 using EzTask.Models.Enum;
-using EzTask.Entity.Data;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EzTask.Business
@@ -18,7 +15,6 @@ namespace EzTask.Business
         private readonly ProjectBusiness _project;
         private readonly AccountBusiness _account;
         private readonly TaskBusiness _task;
-        private const string TASK_DETAIL_REF = "<a href='/task/{0}.html'>{1}</a>";
 
         public NotificationBusiness(UnitOfWork unitOfWork,
             ProjectBusiness project, AccountBusiness account, TaskBusiness task) : base(unitOfWork)
@@ -52,7 +48,7 @@ namespace EzTask.Business
                     {
                         Account = new AccountModel { AccountId = id },
                         Context = NotifyContext.AddNewTask,
-                        Content = $"{accountName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode, taskCode)})",
+                        Content = $"{accountName} {contentTemplate} <b>${taskCode}</b>",
                         HasViewed = false,
                         RefData = taskCode
                     });
@@ -82,7 +78,7 @@ namespace EzTask.Business
                     {
                         Account = new AccountModel { AccountId = id },
                         Context = NotifyContext.UpdateTask,
-                        Content = $"{accountName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode, taskCode)})",
+                        Content = $"{accountName} {contentTemplate} <b>{taskCode}</b>",
                         HasViewed = false,
                         RefData = taskCode
                     });
@@ -107,7 +103,7 @@ namespace EzTask.Business
                 {
                     Account = new AccountModel { AccountId = assignee },
                     Context = NotifyContext.AssignTask,
-                    Content = $"{accountName} {contentTemplate} ({string.Format(TASK_DETAIL_REF, taskCode.Data, taskCode.Data)})",
+                    Content = $"{accountName} {contentTemplate} (<b>{taskCode.Data}</b>)",
                     HasViewed = false,
                     RefData = taskCode.Data
                 });
@@ -139,7 +135,7 @@ namespace EzTask.Business
                         {
                             Account = new AccountModel { AccountId = id },
                             Context = NotifyContext.DeleteTask,
-                            Content = $"{accountName} {contentTemplate} ({taskCode.Data})",
+                            Content = $"{accountName} {contentTemplate} (<b>{taskCode.Data}</b>)",
                             HasViewed = false,
                             RefData = taskCode.Data
                         });
@@ -173,13 +169,59 @@ namespace EzTask.Business
         }
 
         /// <summary>
+        /// Update notify status
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<bool>> UpdateNotifyStatus(int accountId)
+        {
+            ResultModel<bool> result = new ResultModel<bool>();
+            var data = await UnitOfWork.NotifyRepository.GetManyAsync(c => c.AccountId == accountId 
+                && c.HasViewed == false && c.Context != (short)NotifyContext.Message);
+
+            if (data.Any())
+            {
+                foreach (var item in data)
+                {
+                    item.HasViewed = true;
+                    UnitOfWork.NotifyRepository.Update(item);
+                }
+                var iresult = await UnitOfWork.CommitAsync();
+                result.Data = iresult > 0;
+                result.Status = ActionStatus.Ok;
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Delete notify item
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<bool>> DeleteNotify(int id)
+        {
+            ResultModel<bool> result = new ResultModel<bool>();
+            UnitOfWork.NotifyRepository.Delete(id);
+            var iresult = await UnitOfWork.CommitAsync();
+            if(iresult > 0)
+            {
+                result.Data = true;
+                result.Status = ActionStatus.Ok;
+            }
+            return result;
+        }
+
+        /// <summary>
         /// get the notification list is not yet viewed
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public async Task<ResultModel<IEnumerable<NotificationModel>>> NewNotificationList(int accountId)
         {
-            ResultModel<IEnumerable<NotificationModel>> result = new ResultModel<IEnumerable<NotificationModel>>();
+            ResultModel<IEnumerable<NotificationModel>> result = new ResultModel<IEnumerable<NotificationModel>>
+            {
+                Data = new List<NotificationModel>()
+            };
 
             var data = await UnitOfWork.NotifyRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
@@ -202,22 +244,22 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ResultModel<IEnumerable<NotificationModel>>> GetNotificationList(int accountId,
-            NotifyContext context)
+        public async Task<ResultModel<IEnumerable<IGrouping<DateTime, NotificationModel>>>> GetNotificationList(int accountId)
         {
-            ResultModel<IEnumerable<NotificationModel>> result = new ResultModel<IEnumerable<NotificationModel>>();
-            var notifyContext = context.ToInt16<NotifyContext>();
+            ResultModel<IEnumerable<IGrouping<DateTime, NotificationModel>>> result =
+                                new ResultModel<IEnumerable<IGrouping<DateTime, NotificationModel>>> {
+                    Data = new List<IGrouping<DateTime, NotificationModel>>()
+             };
 
             var data = await UnitOfWork.NotifyRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
-                .Where(c => c.AccountId == accountId
-                         && c.Context == notifyContext)
+                .Where(c => c.AccountId == accountId && c.Context != (short)NotifyContext.Message)
                 .OrderByDescending(c=>c.CreatedDate)
                 .ToListAsync();
 
             if (data.Any())
             {
-                result.Data = data.ToModels();
+                result.Data = data.ToModels().GroupBy(t=>t.CreatedDate.Date);
                 result.Status = ActionStatus.Ok;
             }
             return result;

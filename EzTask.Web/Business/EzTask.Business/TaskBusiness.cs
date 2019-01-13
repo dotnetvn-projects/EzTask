@@ -13,7 +13,6 @@ namespace EzTask.Business
 {
     public class TaskBusiness : BusinessCore
     {
-
         private readonly PhraseBusiness _phrase;
         private readonly AccountBusiness _account;
         public TaskBusiness(UnitOfWork unitOfWork,
@@ -275,7 +274,6 @@ namespace EzTask.Business
 
         #endregion Task
 
-
         #region Attachment
 
         /// <summary>
@@ -345,11 +343,18 @@ namespace EzTask.Business
         /// <summary>
         /// Save history
         /// </summary>
-        /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ResultModel<TaskHistoryModel>> SaveHistory(TaskHistoryModel model)
+        public async Task<ResultModel<TaskHistoryModel>> SaveHistory(int taskId, string title, string updateInfo, int accountId)
         {
             ResultModel<TaskHistoryModel> result = new ResultModel<TaskHistoryModel>();
+            var model = new TaskHistoryModel
+            {
+                Content = updateInfo,
+                Task = new TaskItemModel { TaskId = taskId },
+                User = new AccountModel { AccountId = accountId },
+                Title = title,
+                UpdatedDate = DateTime.Now
+            };
 
             TaskHistory entity = model.ToEntity();
 

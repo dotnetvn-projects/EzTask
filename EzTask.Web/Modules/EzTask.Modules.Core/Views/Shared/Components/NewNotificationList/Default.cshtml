@@ -25,7 +25,7 @@
                 @foreach (var item in Model)
                 {
                     <li>
-                        <a title="@Html.DisplayPlanText(item.Content)" href="#">
+                        <a title="@Html.DisplayPlanText(item.Content)" asp-action="NotificationList" asp-controller="Notification">
                             <i class="fa fa-users text-aqua"></i> @Html.Raw(item.Content)
                             <p><small>@item.CreatedDate.TimeAgo()</small></p>
                         </a>
@@ -40,13 +40,13 @@
         <li>
             <ul class="menu">
                 <li>
-                    <a href="#">
+                    <a>
                         <i class="fa fa-users text-aqua"></i> @Html.GetStringResource("EmptyNotification", StringResourceType.Notification)
                     </a>
                 </li>
             </ul>
         </li>
     }
-    <li class="footer"><a href="#">@Html.GetStringResource("ViewAll", StringResourceType.Common)</a></li>
+    <li class="footer"><a asp-action="NotificationList" asp-controller="Notification">@Html.GetStringResource("ViewAll", StringResourceType.Common)</a></li>
 
 </ul>

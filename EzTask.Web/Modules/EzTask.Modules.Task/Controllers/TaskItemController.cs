@@ -108,7 +108,7 @@ namespace EzTask.Modules.Task.Controllers
                         Context.GetStringResource("UpdateTask", StringResourceType.Notification));
                 }
 
-                await SaveTaskHistory(iResult.Data.TaskId, title, diff);
+                await EzTask.Task.SaveHistory(iResult.Data.TaskId, title, diff, Context.CurrentAccount.AccountId);
 
             }
             return Json(iResult);
@@ -140,7 +140,7 @@ namespace EzTask.Modules.Task.Controllers
                 if (iResult.Status == ActionStatus.Ok)
                 {
                     string title = Context.CurrentAccount.DisplayName + " uploaded file \"" + iResult.Data.FileName + "\"";
-                    await SaveTaskHistory(taskId, title, string.Empty);
+                    await EzTask.Task.SaveHistory(taskId, title, string.Empty, Context.CurrentAccount.AccountId);
                 }
                 return Json(model);
             }

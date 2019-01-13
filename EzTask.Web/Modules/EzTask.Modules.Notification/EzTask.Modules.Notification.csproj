@@ -31,4 +31,10 @@
     <ProjectReference Include="..\EzTask.Modules.Core\EzTask.Modules.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="Views\Shared\Components\NotificationList\Default.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+  </ItemGroup>
+
 </Project>

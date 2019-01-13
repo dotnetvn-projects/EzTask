@@ -94,9 +94,12 @@ namespace EzTask.Modules.Task.Controllers
             {
                 await EzTask.Task.AssignTask(taskids, accountId);
 
-                //add notify
-                await EzTask.Notification.AssignTaskNotify(Context.CurrentAccount.DisplayName, taskids, accountId,
-                    Context.GetStringResource("AssignTask", StringResourceType.Notification));
+                if(Context.CurrentAccount.AccountId != accountId)
+                {
+                    //add notify
+                    await EzTask.Notification.AssignTaskNotify(Context.CurrentAccount.DisplayName, taskids, accountId,
+                        Context.GetStringResource("AssignTask", StringResourceType.Notification));
+                }         
             }
 
             return Ok();

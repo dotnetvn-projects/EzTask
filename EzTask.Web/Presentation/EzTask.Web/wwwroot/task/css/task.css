@@ -68,6 +68,10 @@ input[type="file"] {
         margin: 0;
     }
 
+        .task-table > .table td {
+            vertical-align: middle !important;
+        }
+
 .task-controls {
     padding: 5px;
 }
@@ -135,6 +139,16 @@ input[type="file"] {
             max-width: 100%;
             height: auto;
         }
+
+.task-status {
+    width: 100px;
+}
+.task-assignee {
+    width: 150px;
+}
+.task-date {
+    width: 144px;
+}
 /***************End Task table***************/
 
 

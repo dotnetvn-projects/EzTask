@@ -38,7 +38,7 @@ $.fn.searchTask = function () {
             }
         }
     });
-}
+};
 
 //load phrase and task list when project list changed
 $.fn.loadPhrase = function () {

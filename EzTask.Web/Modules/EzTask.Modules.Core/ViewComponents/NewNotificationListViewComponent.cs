@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EzTask.Modules.Notification.ViewComponents
+namespace EzTask.Modules.Core.ViewComponents
 {
     public class NewNotificationListViewComponent : ViewComponent
     {

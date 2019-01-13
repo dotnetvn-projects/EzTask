@@ -36,6 +36,18 @@ namespace EzTask.Modules.Core.Controllers
             return File(dataImage, "image/jpeg");
         }
 
+        /// <summary>
+        /// Get new notify items
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("notify/new-list.html")]
+        public IActionResult GetNewNotifyList()
+        {
+            return ViewComponent("NewNotificationList", new { Context.CurrentAccount.AccountId });
+        }
+
         [Route("not-found.html")]
         [PageTitle("Page not found")]
         public IActionResult PageNotFound()
