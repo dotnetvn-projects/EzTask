@@ -130,7 +130,6 @@ $.fn.deleteAttachment = function () {
     $(this).click(function (e) {
         e.preventDefault();
         var id = $(this).data('attachment-id');
-        $.showLoading();
         $.ajax({
             url: 'task/attachment/delete.html',
             type: "POST",
@@ -139,7 +138,6 @@ $.fn.deleteAttachment = function () {
             success: function (data) {
                 var currentId = $("#TaskId").val();
                 $(this).loadAttachment(currentId);
-                $.hideLoading();
             },
             error: function (xhr, textStatus, errorThrown) {
                 $.hideLoading();

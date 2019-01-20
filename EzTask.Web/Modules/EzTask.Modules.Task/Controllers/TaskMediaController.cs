@@ -26,6 +26,11 @@ namespace EzTask.Modules.Task.Controllers
             {
                 return Content("Invalid request");
             }
+
+            if(attachment.FileType.ToLower().Contains("image") || attachment.FileType.ToLower().Contains("pdf"))
+            {
+                return File(attachment.FileData, attachment.FileType);
+            }
             return File(attachment.FileData, attachment.FileType, attachment.FileName);
         }
 
