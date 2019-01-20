@@ -10,7 +10,7 @@ namespace EzTask.DataAccess
         Skill,
         Account_Skill,
         TaskItem,
-        Phrase,
+        Phase,
         Attachment,
         TaskHistory,
         Notification

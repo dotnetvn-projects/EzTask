@@ -1,9 +1,9 @@
 ﻿
-@model IEnumerable<PhraseModel>
+@model IEnumerable<PhaseModel>
 
 
 <div class="box-header with-border">
-    <h3 class="box-title">Phrases</h3>
+    <h3 class="box-title">Phases</h3>
 
     <div class="box-tools">
         <button type="button" class="btn btn-box-tool" data-widget="collapse">
@@ -12,12 +12,12 @@
     </div>
 </div>
 <div class="box-body no-padding">
-    <ul class="nav nav-pills nav-stacked phrase-list">
+    <ul class="nav nav-pills nav-stacked phase-list">
         @foreach (var p in Model)
         {
             <li title="@Html.PrintNumberWithText("task",p.TotalTask)">
                 <a data-id="@p.Id" href="#">
-                    <div><i class="fa fa-book text-success"></i> @p.PhraseName <span title="@Html.PrintNumberWithText("task",p.TotalTask)" class="label label-warning pull-right">@p.TotalTask</span></div>
+                    <div><i class="fa fa-book text-success"></i> @p.PhaseName <span title="@Html.PrintNumberWithText("task",p.TotalTask)" class="label label-warning pull-right">@p.TotalTask</span></div>
                     @if (p.StartDate.HasValue)
                     {
                         var from = p.StartDate.Value.ToString("dd/MM/yyyy");
@@ -27,13 +27,13 @@
                     <div class="status">
                         @switch (p.Status)
                         {
-                            case PhraseStatus.Closed:
+                            case PhaseStatus.Closed:
                                 @:<i class="fa fa-check-circle text-success"></i> Closed
                                 break;
-                            case PhraseStatus.Failed:
+                            case PhaseStatus.Failed:
                                 @:<i class="fa fa-close text-red"></i> Failed
                                 break;
-                            case PhraseStatus.Open:
+                            case PhaseStatus.Open:
                                 @:<i class="fa fa-circle-o text-yellow"></i> Open
                                 break;
                         }

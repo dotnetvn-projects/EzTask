@@ -5,15 +5,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Models
 {
-    public class PhraseModel:BaseModel
+    public class PhaseModel:BaseModel
     {
         public int Id { get; set; }
 
         public int ProjectId { get; set; }
 
         [Required, StringLength(maximumLength: 250, MinimumLength = 5,
-            ErrorMessage = "Phrase Name must be a string has from 5 to 250 characters")]
-        public string PhraseName { get; set; }
+            ErrorMessage = "Phase Name must be a string has from 5 to 250 characters")]
+        public string PhaseName { get; set; }
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}",
@@ -25,15 +25,15 @@ namespace EzTask.Models
             ApplyFormatInEditMode = true)]
         public DateTime? EndDate { get; set; }
 
-        public PhraseStatus Status { get; set; }
+        public PhaseStatus Status { get; set; }
 
         public bool IsDefault { get; set; }
         public int TotalTask { get; set; }
 
-        public PhraseModel()
+        public PhaseModel()
         {
-            Status = PhraseStatus.Open;
-            PhraseName = string.Empty;
+            Status = PhaseStatus.Open;
+            PhaseName = string.Empty;
             StartDate = DateTime.Now;
             EndDate = DateTime.Now.AddDays(1);
         }

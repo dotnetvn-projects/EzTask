@@ -5,21 +5,21 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Task.ViewComponents
 {
-    public class PhraseListViewComponent : ViewComponent
+    public class PhaseListViewComponent : ViewComponent
     {
         protected EzTaskBusiness EzTask;
 
-        public PhraseListViewComponent(EzTaskBusiness business)
+        public PhaseListViewComponent(EzTaskBusiness business)
         {
             EzTask = business;
         }
 
         public async Task<IViewComponentResult> InvokeAsync(int projectId)
         {
-            var data = await EzTask.Phrase.GetPhrase(projectId);
+            var data = await EzTask.Phase.GetPhase(projectId);
             foreach(var item in data)
             {
-                var countTask = await EzTask.Task.CountByPhrase(item.Id, projectId);
+                var countTask = await EzTask.Task.CountByPhase(item.Id, projectId);
                 item.TotalTask = countTask;
             }
 

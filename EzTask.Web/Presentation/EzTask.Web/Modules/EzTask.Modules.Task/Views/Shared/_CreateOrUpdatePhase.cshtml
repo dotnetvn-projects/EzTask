@@ -1,34 +1,34 @@
-﻿@model PhraseViewModel
-<div class="modal fade" id="phrase-modal">
+﻿@model PhaseViewModel
+<div class="modal fade" id="phase-modal">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" data-dismiss="modal" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                @if (Model.PhraseId <= 0)
+                @if (Model.PhaseId <= 0)
                 {
-                    <h4 class="modal-title">Add new phrase</h4>
+                    <h4 class="modal-title">Add new phase</h4>
                 }
                 else
                 {
-                    <h4 class="modal-title">Edit phrase '@Model.PhraseName'</h4>
+                    <h4 class="modal-title">Edit phase '@Model.PhaseName'</h4>
                 }
 
             </div>
-            <form id="phrase-form" class="form-horizontal">
+            <form id="phase-form" class="form-horizontal">
                 <input asp-for="ProjectId" class="project-id" type="hidden" />
-                <input asp-for="PhraseId" class="phrase-id" type="hidden" />
-                <input asp-for="IsDefault" class="phrase-default" type="hidden" />
+                <input asp-for="PhaseId" class="phase-id" type="hidden" />
+                <input asp-for="IsDefault" class="phase-default" type="hidden" />
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="inputPhraseName" class="col-sm-3 control-label">Phrase Name</label>
+                        <label for="inputPhaseName" class="col-sm-3 control-label">Phase Name</label>
                         <div class="col-sm-9">
-                            <input asp-for="PhraseName" class="form-control" id="inputPhraseName" placeholder="Phrase name">
-                            <p><span asp-validation-for="PhraseName" class="text-danger"></span></p>
+                            <input asp-for="PhaseName" class="form-control" id="inputPhaseName" placeholder="Phase name">
+                            <p><span asp-validation-for="PhaseName" class="text-danger"></span></p>
                         </div>
                     </div>
-                    @if (Model.PhraseId > 0)
+                    @if (Model.PhaseId > 0)
                     {
                         <div class="form-group">
                             <label for="selectStatusList" class="col-sm-3 control-label">Status  </label>
@@ -39,7 +39,7 @@
                     }
                     else
                     {
-                        <input asp-for="Status" class="phrase-status" type="hidden" />
+                        <input asp-for="Status" class="phase-status" type="hidden" />
                     }
                     @if (!Model.IsDefault)
                     {

@@ -23,7 +23,7 @@ namespace EzTask.Web.Framework.Filters
         {
             #if DEBUG
             //copy content file during developmen time
-                     _env.RunWebBuilder(true);
+              _env.RunWebBuilder(true);
             #endif
         }
     }

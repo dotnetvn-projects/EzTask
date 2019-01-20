@@ -26,34 +26,34 @@
                         <select asp-items="@Model.ProjectItems" class="form-control select2 project-list"></select>
                         @if (Model.Project.Owner.AccountId == User.Identity.AccountId())
                         {
-                            <a data-toggle="modal" class="btn btn-block btn-addnew-phrase">
-                                <i class="fa fa-plus"></i> Add new phrase
+                            <a data-toggle="modal" class="btn btn-block btn-addnew-phase">
+                                <i class="fa fa-plus"></i> Add new phase
                             </a>
                         }
                     </div>
                 </div>
             </div>
         </div>
-        <div class="box box-solid phrase-list-panel">
-            @await Component.InvokeAsync("PhraseList", new { projectId = Model.Project.ProjectId })
+        <div class="box box-solid phase-list-panel">
+            @await Component.InvokeAsync("PhaseList", new { projectId = Model.Project.ProjectId })
         </div>
         <div class="box box-solid collapsed-box">
             <partial name="_TaskLabels" />
         </div>
     </div>
     <div class="col-md-9 task-list-panel">
-        @await Component.InvokeAsync("TaskList", new { projectId = Model.Project.ProjectId, phraseId = Model.Phrase.Id })
+        @await Component.InvokeAsync("TaskList", new { projectId = Model.Project.ProjectId, phaseId = Model.Phase.Id })
     </div>
 </div>
 
-<div class="phrase-template"></div>
+<div class="phase-template"></div>
 <div class="task-template"></div>
 <div class="task-history-template"></div>
 
 @section Scripts{
     <script src="~/themes/plugins/iCheck/icheck.js"></script>
     <script src="~/task/js/task.js"></script>
-    <script src="~/task/js/phrase.js"></script>
+    <script src="~/task/js/phase.js"></script>
     <script src="~/task/js/task-item.js"></script>
     <script src="~/lib/slider-bar/js/slider-bar.js"></script>
     <partial name="_ValidationScriptsPartial" />

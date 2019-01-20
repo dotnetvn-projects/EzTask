@@ -19,7 +19,7 @@ namespace EzTask.Models
         public AccountModel Assignee { get; set; }
         public AccountModel Member { get; set; }
         public ProjectModel Project { get; set; }
-        public PhraseModel Phrase { get; set; }
+        public PhaseModel Phase { get; set; }
 
         public bool HasAttachment { get; set; }
 
@@ -28,7 +28,7 @@ namespace EzTask.Models
             Assignee = new AccountModel();
             Member = new AccountModel();
             Project = new ProjectModel();
-            Phrase = new PhraseModel();
+            Phase = new PhaseModel();
         }
     }
 }

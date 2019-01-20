@@ -1111,8 +1111,8 @@ Version 1.1
      If You create or use a modified version of this License (which you may
      only do in order to apply it to code which is not already Covered Code
      governed by this License), You must (a) rename Your license so that
-     the phrases "Mozilla", "MOZILLAPL", "MOZPL", "Netscape",
-     "MPL", "NPL" or any confusingly similar phrase do not appear in your
+     the phases "Mozilla", "MOZILLAPL", "MOZPL", "Netscape",
+     "MPL", "NPL" or any confusingly similar phase do not appear in your
      license (except to note that your license differs from this License)
      and (b) otherwise make it clear that Your version of the license
      contains terms which differ from the Mozilla Public License and

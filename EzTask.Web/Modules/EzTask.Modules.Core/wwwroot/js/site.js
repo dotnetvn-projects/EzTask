@@ -2,5 +2,5 @@
 $(function () {
     $.initCommonLib();
     $.loadNewNotifyList();
-    setInterval(function () { $.loadNewNotifyList(); }, 3000);
+   // setInterval(function () { $.loadNewNotifyList(); }, 3000);
 });

@@ -37,7 +37,7 @@ namespace EzTask.Modules.Task.Controllers
             {
                 task.ProjectId = model.ProjectId;
                 task.AccountId = Context.CurrentAccount.AccountId;
-                task.PhraseId = model.PhraseId;
+                task.PhaseId = model.PhaseId;
             }
             else
             {
@@ -45,8 +45,8 @@ namespace EzTask.Modules.Task.Controllers
                 UpdateTaskFromExist(task, iResult);
             }
 
-            var phrases = await EzTask.Phrase.GetPhrase(task.ProjectId);
-            task.PhraseList = StaticResources.BuildPhraseSelectList(phrases, task.PhraseId);
+            var phases = await EzTask.Phase.GetPhase(task.ProjectId);
+            task.PhaseList = StaticResources.BuildPhaseSelectList(phases, task.PhaseId);
 
             var assignees = await EzTask.Project.GetAccountList(task.ProjectId);
             task.AssigneeList = StaticResources.BuildAssigneeSelectList(assignees, task.Assignee);
@@ -191,7 +191,7 @@ namespace EzTask.Modules.Task.Controllers
             var data = new TaskItemModel();
             data.Assignee.AccountId = viewModel.Assignee;
             data.Member.AccountId = Context.CurrentAccount.AccountId;
-            data.Phrase.Id = viewModel.PhraseId;
+            data.Phase.Id = viewModel.PhaseId;
             data.Project.ProjectId = viewModel.ProjectId;
             data.Priority = viewModel.Priority.ToEnum<TaskPriority>();
             data.Status = viewModel.Status.ToEnum<TaskItemStatus>();
@@ -214,7 +214,7 @@ namespace EzTask.Modules.Task.Controllers
         {
             task.TaskId = iResult.Data.TaskId;
             task.ProjectId = iResult.Data.Project.ProjectId;
-            task.PhraseId = iResult.Data.Phrase.Id;
+            task.PhaseId = iResult.Data.Phase.Id;
             task.Assignee = iResult.Data.Assignee != null ? iResult.Data.Assignee.AccountId : 0;
             task.TaskTitle = iResult.Data.TaskTitle;
             task.TaskCode = iResult.Data.TaskCode;

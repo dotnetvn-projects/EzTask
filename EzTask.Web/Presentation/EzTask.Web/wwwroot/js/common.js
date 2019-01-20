@@ -11,7 +11,7 @@
             format: 'dd/mm/yyyy',
             todayHighlight: true
         }).on('show', function (e) {
-            if ($(this).val().length > 0 && $('.datepicker:visible') == false) {
+            if ($(this).val().length > 0 && $('.datepicker:visible') === false) {
                 $(this).datepicker('update', new Date($(this).val()));
             }
             });

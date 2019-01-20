@@ -74,36 +74,36 @@ namespace EzTask.Web.Framework.Data
         }
 
         /// <summary>
-        /// Build Phrase SelectList items
+        /// Build Phase SelectList items
         /// </summary>
-        /// <param name="phrases"></param>
+        /// <param name="phases"></param>
         /// <returns></returns>
-        public static List<SelectListItem> BuildPhraseSelectList(IEnumerable<PhraseModel> phrases,
+        public static List<SelectListItem> BuildPhaseSelectList(IEnumerable<PhaseModel> phases,
             int selectedId = 0)
         {
-            List<SelectListItem> phraseItems = new List<SelectListItem>();
+            List<SelectListItem> phaseItems = new List<SelectListItem>();
 
-            if (phrases.Any())
+            if (phases.Any())
             {
-                foreach (var phr in phrases)
+                foreach (var phr in phases)
                 {
                     var selectItem = new SelectListItem
                     {
-                        Text = phr.PhraseName,
+                        Text = phr.PhaseName,
                         Value = phr.Id.ToString()
                     };
                     if (phr.Id == selectedId)
                     {
                         selectItem.Selected = true;
                     }
-                    phraseItems.Add(selectItem);
+                    phaseItems.Add(selectItem);
                 }
             }
             if (selectedId == 0)
             {
-                phraseItems[0].Selected = true;
+                phaseItems[0].Selected = true;
             }
-            return phraseItems;
+            return phaseItems;
         }
 
         /// <summary>
@@ -186,10 +186,10 @@ namespace EzTask.Web.Framework.Data
         /// Build Status SelectList items
         /// </summary>
         /// <returns></returns>
-        public static List<SelectListItem> BuildPhraseStatusSelectList(Int16 selectedId = 0)
+        public static List<SelectListItem> BuildPhaseStatusSelectList(Int16 selectedId = 0)
         {
             List<SelectListItem> statusItems = new List<SelectListItem>();
-            var statuses = EnumUtilities.ToList<PhraseStatus>();
+            var statuses = EnumUtilities.ToList<PhaseStatus>();
             if (statuses.Any())
             {
                 foreach (var status in statuses)
@@ -197,12 +197,12 @@ namespace EzTask.Web.Framework.Data
                     var selectItem = new SelectListItem
                     {
                         Text = status,
-                        Value = ((Int16)status.ToEnum<PhraseStatus>()).ToString()
+                        Value = ((Int16)status.ToEnum<PhaseStatus>()).ToString()
                     };
 
                     if (selectedId != 0)
                     {
-                        var statusEnum = selectedId.ToEnum<PhraseStatus>();
+                        var statusEnum = selectedId.ToEnum<PhaseStatus>();
                         if (status == statusEnum.ToString())
                         {
                             selectItem.Selected = true;

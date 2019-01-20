@@ -6,7 +6,6 @@ using EzTask.Modules.Task.ViewModels;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.Data;
 using EzTask.Web.Framework.HttpContext;
-using EzTask.Web.Framework.Infrastructures;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -14,78 +13,77 @@ using System.Threading.Tasks;
 namespace EzTask.Modules.Task.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
-    public class PhraseController : BaseController
+    public class PhaseController : BaseController
     {
-        public PhraseController(IServiceProvider serviceProvider) :
+        public PhaseController(IServiceProvider serviceProvider) :
             base(serviceProvider)
         {
         }
 
         [HttpPost]
         [Route("phase/generate-phase.html")]
-        public async Task<IActionResult> GeneratePhraseView(int phraseId, int projectId)
+        public async Task<IActionResult> GeneratePhaseView(int phaseId, int projectId)
         {
-            PhraseViewModel viewModel = new PhraseViewModel();
-            PhraseModel phrase = await EzTask.Phrase.GetPhraseById(phraseId);
-            if (phrase == null)
+            PhaseViewModel viewModel = new PhaseViewModel();
+            PhaseModel phase = await EzTask.Phase.GetPhaseById(phaseId);
+            if (phase == null)
             {
-                phrase = new PhraseModel();
+                phase = new PhaseModel();
             }
 
-            viewModel.Status = phrase.Status.ToInt16<PhraseStatus>();
-            viewModel.PhraseId = phraseId;
+            viewModel.Status = phase.Status.ToInt16<PhaseStatus>();
+            viewModel.PhaseId = phaseId;
             viewModel.ProjectId = projectId;
-            viewModel.IsDefault = phrase.IsDefault;
-            viewModel.PhraseName = phrase.PhraseName;
+            viewModel.IsDefault = phase.IsDefault;
+            viewModel.PhaseName = phase.PhaseName;
             if (!viewModel.IsDefault)
             {
-                viewModel.StartDate = phrase.StartDate.Value.ToString("dd/MM/yyyy");
-                viewModel.EndDate = phrase.EndDate.Value.ToString("dd/MM/yyyy");
+                viewModel.StartDate = phase.StartDate.Value.ToString("dd/MM/yyyy");
+                viewModel.EndDate = phase.EndDate.Value.ToString("dd/MM/yyyy");
             }                
             
-            viewModel.StatusList = StaticResources.BuildPhraseStatusSelectList(viewModel.Status);
+            viewModel.StatusList = StaticResources.BuildPhaseStatusSelectList(viewModel.Status);
 
-            return PartialView("_CreateOrUpdatePhrase", viewModel);
+            return PartialView("_CreateOrUpdatePhase", viewModel);
         }
 
         [HttpPost]
         [Route("phase/phase-modal-action.html")]
-        public async Task<IActionResult> CreateOrUpdatePhrase(PhraseViewModel viewmodel)
+        public async Task<IActionResult> CreateOrUpdatePhase(PhaseViewModel viewmodel)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest();
             }
 
-            PhraseModel model = new PhraseModel()
+            PhaseModel model = new PhaseModel()
             {
                 StartDate = DateTimeUtilities.ParseFromString(viewmodel.StartDate),
                 EndDate = DateTimeUtilities.ParseFromString(viewmodel.EndDate),
-                Id = viewmodel.PhraseId,
-                PhraseName = viewmodel.PhraseName,
+                Id = viewmodel.PhaseId,
+                PhaseName = viewmodel.PhaseName,
                 ProjectId = viewmodel.ProjectId,
                 IsDefault = viewmodel.IsDefault,
-                Status = viewmodel.Status.ToEnum<PhraseStatus>()
+                Status = viewmodel.Status.ToEnum<PhaseStatus>()
             };
-
 
             if (model.EndDate < model.StartDate)
             {
                 return BadRequest("End Date must be larger than Start Date");
             }
 
-            ResultModel<PhraseModel> iResult = await EzTask.Phrase.Save(model);
+            ResultModel<PhaseModel> iResult = await EzTask.Phase.Save(model);
             if (iResult.Status == ActionStatus.Ok)
             {
-                return await LoadPhraseListAsync(model.ProjectId);
+                return await LoadPhaseListAsync(model.ProjectId);
             }
 
-            return BadRequest("Cannot create phrase, please try again!");
+            return BadRequest("Cannot create phase, please try again!");
         }
 
         [HttpGet]
         [Route("phase/phase-list.html")]
-        public async Task<IActionResult> LoadPhraseListAsync(int projectId)
+        public async Task<IActionResult> LoadPhaseListAsync(int projectId)
         {       
             var project = await EzTask.Project.GetProject(projectId);
 
@@ -95,26 +93,26 @@ namespace EzTask.Modules.Task.Controllers
                 Context.AddResponseHeader("authorized-add-phase", "authorized");
             }
 
-            return ViewComponent("PhraseList", projectId);
+            return ViewComponent("PhaseList", projectId);
         }
 
         [HttpPost]
         [Route("phase/delete-phase.html")]
-        public async Task<IActionResult> RemovePhrase(int phraseId)
+        public async Task<IActionResult> RemovePhase(int phaseId)
         {
-            PhraseModel phrase = await EzTask.Phrase.GetPhraseById(phraseId);
+            PhaseModel phase = await EzTask.Phase.GetPhaseById(phaseId);
 
-            if (phrase != null)
+            if (phase != null)
             {
-                if (phrase.IsDefault)
+                if (phase.IsDefault)
                 {
                     return BadRequest("You cannot delete \"Open Features\"!.");
                 }
-                ResultModel<bool> deleteTaskResult = await EzTask.Task.DeleteTask(phrase.ProjectId, phraseId);
+                ResultModel<bool> deleteTaskResult = await EzTask.Task.DeleteTask(phase.ProjectId, phaseId);
 
                 if (deleteTaskResult.Data)
                 {
-                    ResultModel<PhraseModel> iResult = await EzTask.Phrase.Delele(phrase);
+                    ResultModel<PhaseModel> iResult = await EzTask.Phase.Delele(phase);
 
                     if (iResult.Status == ActionStatus.Ok)
                     {
@@ -124,7 +122,7 @@ namespace EzTask.Modules.Task.Controllers
             }
             else
             {
-                return BadRequest("Phrase doesn't exist!.");
+                return BadRequest("Phase doesn't exist!.");
             }
 
             return BadRequest("Error, cannot process your request!.");
@@ -132,7 +130,7 @@ namespace EzTask.Modules.Task.Controllers
 
         [HttpPost]
         [Route("phase/generate-addbutton.html")]
-        public async Task<IActionResult> RenderAddNewPhraseButton()
+        public async Task<IActionResult> RenderAddNewPhaseButton()
         {
             var template = await Context.RenderViewToStringAsync("_ButtonAddNewPhase", ControllerContext);
             return Content(template);

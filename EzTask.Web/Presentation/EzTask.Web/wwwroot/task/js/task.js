@@ -1,15 +1,15 @@
 ﻿//execute call ajax to load task list
-$.fn.handleLoadTask = function (projectId, phraseid, doneAction, allowAsync = true) {
+$.fn.handleLoadTask = function (projectId, phaseid, doneAction, allowAsync = true) {
     $.ajax({
         url: "task/task-list.html",
         async: allowAsync,
-        data: { projectId: projectId, phraseId: phraseid },
+        data: { projectId: projectId, phaseId: phaseid },
         success: function (response) {
             var taskListPanel = $(".task-list-panel");
             taskListPanel.html('');
             taskListPanel.html(response);
             $(this).handleEvent();
-           if(doneAction !=null)
+           if(doneAction !==null)
             doneAction();
         }
     });
@@ -40,8 +40,8 @@ $.fn.searchTask = function () {
     });
 };
 
-//load phrase and task list when project list changed
-$.fn.loadPhrase = function () {
+//load phase and task list when project list changed
+$.fn.loadPhase = function () {
     $(this).change(function () {
         var id = $(this).val();
         $.showLoading();
@@ -49,23 +49,23 @@ $.fn.loadPhrase = function () {
             url: "phase/phase-list.html",
             data: { projectId: id },
             success: function (response, status, request) {
-                var phrasePanel = $(".phrase-list-panel");
-                phrasePanel.html('');
-                phrasePanel.html(response);
-                var phrase = $(".phrase-list > li > a").first();
-                var phraseId = phrase.attr('data-id');
+                var phasePanel = $(".phase-list-panel");
+                phasePanel.html('');
+                phasePanel.html(response);
+                var phase = $(".phase-list > li > a").first();
+                var phaseId = phase.attr('data-id');
 
-                if (phraseId != 0){
-                    $(this).handleLoadTask(id, phraseId, null, false);
-                    $(".phrase-list > li > a").loadTask();
+                if (phaseId !== 0){
+                    $(this).handleLoadTask(id, phaseId, null, false);
+                    $(".phase-list > li > a").loadTask();
                 }
                 var authorizeAdd = request.getResponseHeader("authorized-add-phase");
 
                 if (authorizeAdd === "authorized") {
-                    if ($(".btn-addnew-phrase").length <= 0) {
+                    if ($(".btn-addnew-phase").length <= 0) {
                         $.post('phase/generate-addbutton.html', function (res) {
                             $(".project-box").append(res);
-                            $(".btn-addnew-phrase").showModal();
+                            $(".btn-addnew-phase").showModal();
                             $.hideLoading();
                         });
                     }
@@ -74,7 +74,7 @@ $.fn.loadPhrase = function () {
                     }
                 }
                 else {
-                    $(".btn-addnew-phrase").remove();
+                    $(".btn-addnew-phase").remove();
                     $.hideLoading();
                 }
             }
@@ -82,14 +82,14 @@ $.fn.loadPhrase = function () {
     });
 };
 
-//handle load task event when click on item in phrase list
+//handle load task event when click on item in phase list
 $.fn.loadTask = function () {
     $(this).click(function (e) {
         e.preventDefault();
         $.showLoading();
-        var phraseid = $(this).attr('data-id');
+        var phaseid = $(this).attr('data-id');
         var projectId = $('.project-list').val();
-        $(this).handleLoadTask(projectId, phraseid, function () {
+        $(this).handleLoadTask(projectId, phaseid, function () {
             $.hideLoading();
         });       
     });
@@ -98,9 +98,9 @@ $.fn.loadTask = function () {
 //refresh task list event
 $.fn.refreshTask = function () {
     $(this).click(function () {
-        var phraseId = $("#phrase-id").val();
+        var phaseId = $("#phase-id").val();
         var projectId = $('.project-list').val();
-        $(this).handleLoadTask(projectId, phraseId);
+        $(this).handleLoadTask(projectId, phaseId);
     });
 };
 
@@ -130,9 +130,9 @@ $.fn.deleteTask = function () {
                             projectId: $('.project-list').val()
                         },
                         success: function (response) {
-                            var phraseId = $("#phrase-id").val();
+                            var phaseId = $("#phase-id").val();
                             var projectId = $('.project-list').val();
-                            $(this).handleLoadTask(projectId, phraseId);
+                            $(this).handleLoadTask(projectId, phaseId);
                             $.closeDialog('modal-confirm');
                             $.hideLoading();
                         },
@@ -188,9 +188,9 @@ $.fn.assignTask = function () {
                                 type: 'POST',
                                 data: { taskids: ids, accountId: accountid },
                                 success: function (data) {
-                                    var phraseId = $("#phrase-id").val();
+                                    var phaseId = $("#phase-id").val();
                                     var projectId = $('.project-list').val();
-                                    $(this).handleLoadTask(projectId, phraseId);
+                                    $(this).handleLoadTask(projectId, phaseId);
                                 }
                             }).promise().done(function () {
                                 $.closeDialog('assign-task-modal');
@@ -237,12 +237,12 @@ $.fn.handleEvent = function () {
     $('.btn-refresh-task').refreshTask();
     $('.task-list > tbody > tr').showEdit();
     $('.btn-assign-task').assignTask();
-    $(".remove-phrase").removePhrase();
-    $(".edit-phrase").showModal();
+    $(".remove-phase").removePhase();
+    $(".edit-phase").showModal();
 };
 
 $(function () {
-    $('.project-list').loadPhrase();
-    $(".phrase-list > li > a").loadTask();
+    $('.project-list').loadPhase();
+    $(".phase-list > li > a").loadTask();
     $(this).handleEvent();
 });

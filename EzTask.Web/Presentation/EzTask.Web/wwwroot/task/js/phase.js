@@ -64,7 +64,7 @@ $.fn.phaseModalAction = function () {
     });
 };
 
-$.fn.removephase = function () {
+$.fn.removePhase = function () {
     $(this).click(function () {
         $.confirmDialog({
             title: 'Warning',

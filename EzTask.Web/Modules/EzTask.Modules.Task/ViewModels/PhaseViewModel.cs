@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Task.ViewModels
 {
-    public class PhraseViewModel
+    public class PhaseViewModel
     {
-        public int PhraseId { get; set; }
+        public int PhaseId { get; set; }
         public int ProjectId { get; set; }
-        public string PhraseName { get; set; }
+        public string PhaseName { get; set; }
         public string StartDate { get; set; }
         public string EndDate { get; set; }
         public short Status { get; set; }
         public bool IsDefault { get; set; }
         public List<SelectListItem> StatusList { get; set; }
 
-        public PhraseViewModel()
+        public PhaseViewModel()
         {
             StatusList = new List<SelectListItem>();
         }

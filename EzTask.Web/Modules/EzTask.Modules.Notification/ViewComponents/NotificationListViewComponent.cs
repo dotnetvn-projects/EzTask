@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Notification.ViewComponents
 {
-    public class NotificationListViewComponent: ViewComponent
+    public class NotificationListViewComponent : ViewComponent
     {
         private readonly EzTaskBusiness _ezTask;
+
         public NotificationListViewComponent(EzTaskBusiness eztask)
         {
             _ezTask = eztask;

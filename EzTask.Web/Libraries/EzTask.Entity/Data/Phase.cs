@@ -4,10 +4,10 @@ using System.Text;
 
 namespace EzTask.Entity.Data
 {
-    public class Phrase :Entity<Phrase>
+    public class Phase : Entity<Phase>
     {
         public int ProjectId { get; set; }
-        public string PhraseName { get; set; }
+        public string PhaseName { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public short Status { get; set; }

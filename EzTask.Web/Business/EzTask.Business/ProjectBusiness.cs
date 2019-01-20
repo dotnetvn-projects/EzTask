@@ -55,15 +55,15 @@ namespace EzTask.Business
                             iResult = await UnitOfWork.CommitAsync();
                             if (iResult > 0)
                             {
-                                //create feature in Phrase table as default
-                                Phrase feature = new Phrase
+                                //create feature in Phase table as default
+                                Phase feature = new Phase
                                 {
-                                    PhraseName = "Open Features",
+                                    PhaseName = "Open Features",
                                     ProjectId = project.Id,
                                     IsDefault = true,
-                                    Status = (int)PhraseStatus.Open
+                                    Status = (int)PhaseStatus.Open
                                 };
-                                UnitOfWork.PhraseRepository.Add(feature);
+                                UnitOfWork.PhaseRepository.Add(feature);
 
                                 //add project member
                                 ProjectMember member = new ProjectMember
@@ -167,9 +167,9 @@ namespace EzTask.Business
                                 c.ProjectId == project.ProjectId);
                         UnitOfWork.ProjectMemberRepository.DeleteRange(memberList);
 
-                        //remove phrase
-                        IEnumerable<Phrase> phrases = await UnitOfWork.PhraseRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
-                        UnitOfWork.PhraseRepository.DeleteRange(phrases);
+                        //remove phase
+                        IEnumerable<Phase> phases = await UnitOfWork.PhaseRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
+                        UnitOfWork.PhaseRepository.DeleteRange(phases);
 
                         //remove task
                         await _task.DeleteTask(project.ProjectId);

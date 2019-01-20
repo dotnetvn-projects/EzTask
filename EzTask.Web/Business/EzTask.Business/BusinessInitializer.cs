@@ -13,7 +13,7 @@ namespace EzTask.Business
             _services.AddScoped<AccountBusiness>();
             _services.AddScoped<ProjectBusiness>();
             _services.AddScoped<SkillBusiness>();
-            _services.AddScoped<PhraseBusiness>();
+            _services.AddScoped<PhaseBusiness>();
             _services.AddScoped<TaskBusiness>();
             _services.AddScoped<NotificationBusiness>();
         }

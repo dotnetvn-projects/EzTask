@@ -93,26 +93,26 @@ namespace EzTask.Framework.Infrastructures
 
         #endregion
 
-        #region Phrase Mapper
-        public static PhraseModel ToModel(this Phrase entity)
+        #region Phase Mapper
+        public static PhaseModel ToModel(this Phase entity)
         {
             if (entity == null)
                 return null;
 
-            return FrameworkCore.Mapper.Map<PhraseModel>(entity);
+            return FrameworkCore.Mapper.Map<PhaseModel>(entity);
         }
 
-        public static Phrase ToEntity(this PhraseModel model)
+        public static Phase ToEntity(this PhaseModel model)
         {
             if (model == null)
                 return null;
 
-            return FrameworkCore.Mapper.Map<Phrase>(model);
+            return FrameworkCore.Mapper.Map<Phase>(model);
         }
 
-        public static IEnumerable<PhraseModel> ToModels(this IEnumerable<Phrase> entity)
+        public static IEnumerable<PhaseModel> ToModels(this IEnumerable<Phase> entity)
         {
-            return FrameworkCore.Mapper.Map<IEnumerable<PhraseModel>>(entity);
+            return FrameworkCore.Mapper.Map<IEnumerable<PhaseModel>>(entity);
         }
         #endregion
 

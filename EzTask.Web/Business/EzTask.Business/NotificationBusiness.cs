@@ -177,7 +177,7 @@ namespace EzTask.Business
         {
             ResultModel<bool> result = new ResultModel<bool>();
             var data = await UnitOfWork.NotifyRepository.GetManyAsync(c => c.AccountId == accountId 
-                && c.HasViewed == false && c.Context != (short)NotifyContext.Message);
+                && c.HasViewed == false);
 
             if (data.Any())
             {
@@ -226,8 +226,7 @@ namespace EzTask.Business
             var data = await UnitOfWork.NotifyRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
                 .Where(c => c.AccountId == accountId 
-                         && c.HasViewed == false
-                         && c.Context != (short)NotifyContext.Message)
+                         && c.HasViewed == false)
                 .OrderByDescending(c => c.CreatedDate)
                 .ToListAsync();
 
@@ -253,7 +252,7 @@ namespace EzTask.Business
 
             var data = await UnitOfWork.NotifyRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
-                .Where(c => c.AccountId == accountId && c.Context != (short)NotifyContext.Message)
+                .Where(c => c.AccountId == accountId)
                 .OrderByDescending(c=>c.CreatedDate)
                 .ToListAsync();
 

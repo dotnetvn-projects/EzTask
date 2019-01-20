@@ -10,9 +10,9 @@
     }
   },
   {
-    "outputFileName": "wwwroot/task/js/phrase.min.js",
+    "outputFileName": "wwwroot/task/js/phase.min.js",
     "inputFiles": [
-      "wwwroot/task/js/phrase.js"
+      "wwwroot/task/js/phase.js"
     ]
   },
   {

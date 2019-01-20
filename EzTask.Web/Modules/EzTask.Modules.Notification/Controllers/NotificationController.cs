@@ -1,6 +1,6 @@
-﻿using EzTask.Modules.Core.Controllers;
+﻿using EzTask.Models;
+using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
-using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -29,8 +29,8 @@ namespace EzTask.Modules.Notification.Controllers
         [Route("notification/delete.html")]
         public async Task<IActionResult> DeleteNotifyItem(int notifyId)
         {
-           var result = await EzTask.Notification.DeleteNotify(notifyId);
-           return Ok(result);
+            ResultModel<bool> result = await EzTask.Notification.DeleteNotify(notifyId);
+            return Ok(result);
         }
     }
 }

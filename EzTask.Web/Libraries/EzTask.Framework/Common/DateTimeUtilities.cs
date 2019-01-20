@@ -11,11 +11,16 @@ namespace EzTask.Framework.Common
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
-        public static DateTime ParseFromString(string data)
+        public static DateTime? ParseFromString(string data)
         {
+            if(string.IsNullOrEmpty(data))
+            {
+                return null; 
+            }
             var date = data.Split('/');
             return new DateTime(int.Parse(date[2]), int.Parse(date[1]),int.Parse(date[0]));
         }
+
         public static string TimeAgo(this DateTime dateTime)
         {
             TimeSpan span = DateTime.Now - dateTime;

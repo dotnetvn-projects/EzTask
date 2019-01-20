@@ -13,12 +13,12 @@ namespace EzTask.Business
 {
     public class TaskBusiness : BusinessCore
     {
-        private readonly PhraseBusiness _phrase;
+        private readonly PhaseBusiness _phase;
         private readonly AccountBusiness _account;
         public TaskBusiness(UnitOfWork unitOfWork,
-            PhraseBusiness phrase, AccountBusiness account) : base(unitOfWork)
+            PhaseBusiness phase, AccountBusiness account) : base(unitOfWork)
         {
-            _phrase = phrase;
+            _phase = phase;
             _account = account;
         }
 
@@ -31,7 +31,7 @@ namespace EzTask.Business
                          .Include(c => c.Project)
                          .Include(c => c.Member)
                          .Include(c => c.Assignee)
-                         .Include(c => c.Phrase)
+                         .Include(c => c.Phase)
                          .AsNoTracking().FirstOrDefaultAsync(c => c.Id == id);
 
             result.Data = data.ToModel();
@@ -61,7 +61,7 @@ namespace EzTask.Business
             TaskItem task = model.ToEntity();
 
             //reset navigate object
-            task.Phrase = null;
+            task.Phase = null;
             task.Project = null;
             task.Assignee = null;
             task.Member = null;
@@ -102,13 +102,13 @@ namespace EzTask.Business
         }
 
         /// <summary>
-        /// Count task by phrase
+        /// Count task by phase
         /// </summary>
-        /// <param name="phraseId"></param>
+        /// <param name="phaseId"></param>
         /// <returns></returns>
-        public async Task<int> CountByPhrase(int phraseId, int projectId)
+        public async Task<int> CountByPhase(int phaseId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhraseId == phraseId
+            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhaseId == phaseId
             && c.ProjectId == projectId);
             return totalTask;
         }
@@ -172,11 +172,11 @@ namespace EzTask.Business
         }
 
         /// <summary>
-        /// Delete tasks by projectid and phraseid
+        /// Delete tasks by projectid and phaseid
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<ResultModel<bool>> DeleteTask(int projectId, int phraseId)
+        public async Task<ResultModel<bool>> DeleteTask(int projectId, int phaseId)
         {
             ResultModel<bool> result = new ResultModel<bool>
             {
@@ -184,7 +184,7 @@ namespace EzTask.Business
             };
 
             IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c =>
-                                        c.ProjectId == projectId && c.PhraseId == phraseId);
+                                        c.ProjectId == projectId && c.PhaseId == phaseId);
             await DeleteTasks(result, data);
             return result;
         }
@@ -195,7 +195,7 @@ namespace EzTask.Business
         /// <param name="projectId"></param>
         /// <returns></returns>
         public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId,
-            int phraseId,
+            int phaseId,
             int page = 1,
             int pageSize = 9999)
         {
@@ -204,13 +204,13 @@ namespace EzTask.Business
                         .Include(c => c.Project)
                         .Include(c => c.Member)
                         .Include(c => c.Assignee)
-                        .Include(c => c.Phrase)
+                        .Include(c => c.Phase)
                         .AsNoTracking()
-                        .Where(c => c.ProjectId == projectId && c.PhraseId == phraseId)
+                        .Where(c => c.ProjectId == projectId && c.PhaseId == phaseId)
                         .Skip(pageSize * page - pageSize).Take(pageSize)
                         .Select(x => new TaskItem
                         {   
-                            Phrase = new Phrase { PhraseName = x.Phrase.PhraseName, Id = x.Phrase.Id },
+                            Phase = new Phase { PhaseName = x.Phase.PhaseName, Id = x.Phase.Id, IsDefault = x.Phase.IsDefault },
                             Attachments = x.Attachments.Any() ?
                                 new List<Attachment>
                                 {
@@ -223,7 +223,7 @@ namespace EzTask.Business
                             CreatedDate = x.CreatedDate,
                             UpdatedDate = x.UpdatedDate,
                             MemberId = x.MemberId,
-                            PhraseId = x.PhraseId,
+                            PhaseId = x.PhaseId,
                             Priority = x.Priority,
                             ProjectId = x.ProjectId,
                             Status = x.Status,
@@ -289,6 +289,29 @@ namespace EzTask.Business
                 .OrderByDescending(c => c.AddedDate).ToListAsync();
 
             return iResult.ToModels();
+        }
+
+        /// <summary>
+        /// Get attachment by id
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<AttachmentModel> GetAttachment(int id)
+        {
+            Attachment iResult = await UnitOfWork.AttachRepository.GetByIdAsync(id);
+
+            return iResult.ToModel();
+        }
+
+        /// <summary>
+        /// delete attachment
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task DeleteAttachment(int id)
+        {
+            UnitOfWork.AttachRepository.Delete(id);
+            await UnitOfWork.CommitAsync();
         }
 
         /// <summary>
@@ -415,21 +438,21 @@ namespace EzTask.Business
             {
                 content += FormartHistoryContent("Detail", oldData.TaskDetail, newData.TaskDetail);
             }
-            if (newData.Phrase.Id != oldData.Phrase.Id)
+            if (newData.Phase.Id != oldData.Phase.Id)
             {
                 string oldItem = "Open Features";
                 string newItem = "Open Features";
-                if (newData.Phrase.Id > 0)
+                if (newData.Phase.Id > 0)
                 {
-                    var phrase = await _phrase.GetPhraseById(newData.Phrase.Id);
-                    newItem = phrase.PhraseName;
+                    var phase = await _phase.GetPhaseById(newData.Phase.Id);
+                    newItem = phase.PhaseName;
                 }
-                if (oldData.Phrase.Id > 0)
+                if (oldData.Phase.Id > 0)
                 {
-                    var phrase = await _phrase.GetPhraseById(oldData.Phrase.Id);
-                    oldItem = phrase.PhraseName;
+                    var phase = await _phase.GetPhaseById(oldData.Phase.Id);
+                    oldItem = phase.PhaseName;
                 }
-                content += FormartHistoryContent("Phrase", oldItem, newItem);
+                content += FormartHistoryContent("Phase", oldItem, newItem);
             }
             if (newData.Assignee.AccountId != oldData.Assignee.AccountId)
             {

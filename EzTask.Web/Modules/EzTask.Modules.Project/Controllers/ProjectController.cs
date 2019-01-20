@@ -130,6 +130,7 @@ namespace EzTask.Modules.Project.Controllers
             {
                 return RedirectToAction("PageNotFound", "Common");
             }
+
             project.ActionType = ActionType.Update;
             return View(project);
         }
