@@ -31,7 +31,7 @@
       <Key>MainNavigation</Key>
       <Content>MAIN NAVIGATION</Content>
     </Language>
-  <Language>
+    <Language>
       <Key>ViewAll</Key>
       <Content>View all</Content>
     </Language>
@@ -125,11 +125,15 @@
     </Language>
     <Language>
       <Key>NotificationCountSingle</Key>
-      <Content>You have {0} notification</Content>
+      <Content>You have {0} new notification</Content>
     </Language>
-      <Language>
+    <Language>
       <Key>NotificationCountPlural</Key>
-      <Content>You have {0} notifications</Content>
+      <Content>You have {0} new notifications</Content>
+    </Language>
+    <Language>
+      <Key>EmptyNotification</Key>
+      <Content>No data available</Content>
     </Language>
   </Notification>
 

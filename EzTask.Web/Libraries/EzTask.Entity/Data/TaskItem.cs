@@ -12,7 +12,7 @@ namespace EzTask.Entity.Data
         public int? AssigneeId { get; set; }
         public int MemberId { get; set; }
         public int ProjectId { get; set; }
-        public int PhraseId { get; set; }
+        public int PhaseId { get; set; }
         public Int16 Priority { get; set; }
         public Int16 Status { get; set; }
         public DateTime? StartDate { get; set; }
@@ -29,7 +29,7 @@ namespace EzTask.Entity.Data
 
         public Project Project { get; set; }
 
-        public Phrase Phrase { get; set; }
+        public Phase Phase { get; set; }
 
         public virtual ICollection<Attachment> Attachments { get; set; }
 

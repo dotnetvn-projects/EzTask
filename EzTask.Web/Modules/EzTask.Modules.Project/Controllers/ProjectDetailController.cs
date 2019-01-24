@@ -26,23 +26,23 @@ namespace EzTask.Modules.Project.Controllers
             var vm = new ProjectViewModel();
             vm.Project = model;
             vm.TotalTask = await EzTask.Task.CountByProject(model.ProjectId);
-            vm.TotalPhrase = await EzTask.Phrase.CountByProject(model.ProjectId);
+            vm.TotalPhase = await EzTask.Phase.CountByProject(model.ProjectId);
             vm.TotalMember = await EzTask.Project.CountMember(model.ProjectId);
 
-            var phrases = await EzTask.Phrase.GetPhrase(model.ProjectId);
-            if (phrases.Any())
+            var phases = await EzTask.Phase.GetPhase(model.ProjectId);
+            if (phases.Any())
             {
-                vm.TotalOpenPhrase = phrases.Count(c => c.Status == PhraseStatus.Open);
-                vm.TotalClosedPhrase = phrases.Count(c => c.Status == PhraseStatus.Closed);
-                vm.TotalFailedPhrase = phrases.Count(c => c.Status == PhraseStatus.Failed);
+                vm.TotalOpenPhase = phases.Count(c => c.Status == PhaseStatus.Open);
+                vm.TotalClosedPhase = phases.Count(c => c.Status == PhaseStatus.Closed);
+                vm.TotalFailedPhase = phases.Count(c => c.Status == PhaseStatus.Failed);
 
-                vm.PercentOpenPhrase = (int)(vm.TotalOpenPhrase / (float)vm.TotalPhrase * 100);
-                vm.PercentClosedPhrase = (int)(vm.TotalClosedPhrase / (float)vm.TotalPhrase * 100);
-                vm.PercentFailedPhrase = (int)(vm.TotalFailedPhrase / (float)vm.TotalPhrase * 100);
+                vm.PercentOpenPhase = (int)(vm.TotalOpenPhase / (float)vm.TotalPhase * 100);
+                vm.PercentClosedPhase = (int)(vm.TotalClosedPhase / (float)vm.TotalPhase * 100);
+                vm.PercentFailedPhase = (int)(vm.TotalFailedPhase / (float)vm.TotalPhase * 100);
 
-                foreach (var phrase in phrases)
+                foreach (var phase in phases)
                 {
-                    var tasks = await EzTask.Task.GetTasks(model.ProjectId, phrase.Id);
+                    var tasks = await EzTask.Task.GetTasks(model.ProjectId, phase.Id);
                     if (tasks.Any())
                         vm.TaskList.Add(tasks.ToList());
                 }

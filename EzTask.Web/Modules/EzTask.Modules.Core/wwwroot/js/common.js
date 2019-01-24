@@ -11,10 +11,10 @@
             format: 'dd/mm/yyyy',
             todayHighlight: true
         }).on('show', function (e) {
-            if ($(this).val().length > 0 && $('.datepicker:visible') == false) {
+            if ($(this).val().length > 0 && $('.datepicker:visible') === false) {
                 $(this).datepicker('update', new Date($(this).val()));
             }
-        });
+            });
     };
     //------End common------
 
@@ -132,6 +132,17 @@
         $(element).iCheck({
             checkboxClass: 'icheckbox_flat-green',
             radioClass: 'iradio_flat-green'
+        });
+    };
+
+    $.loadNewNotifyList = function () {
+        $.ajax({
+            url: '/notify/new-list.html',
+            type: "POST",
+            success: function (data) {
+                $(".notifications-menu").html('');
+                $(".notifications-menu").html(data);
+            }
         });
     };
 

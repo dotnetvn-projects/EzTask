@@ -32,7 +32,7 @@ namespace EzTask.Web.Framework
             services.AddSingleton<StaticResources>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
-            services.AddSingleton<Interfaces.IWebHostEnvironment, WebHost>();
+            services.AddSingleton<IWebHostEnvironment, WebHost>();
             services.AddTransient<ViewRender>();
             services.AddDistributedMemoryCache();
             services.AddSession();

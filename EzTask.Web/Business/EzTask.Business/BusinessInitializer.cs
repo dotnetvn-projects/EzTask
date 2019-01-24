@@ -9,13 +9,13 @@ namespace EzTask.Business
         public static void Register(IServiceCollection services)
         {
             _services = services;
-            _services.AddTransient<EzTaskBusiness>();
-            _services.AddTransient<AccountBusiness>();
-            _services.AddTransient<ProjectBusiness>();
-            _services.AddTransient<SkillBusiness>();
-            _services.AddTransient<PhraseBusiness>();
-            _services.AddTransient<TaskBusiness>();
-            _services.AddTransient<NotificationBusiness>();
+            _services.AddScoped<EzTaskBusiness>();
+            _services.AddScoped<AccountBusiness>();
+            _services.AddScoped<ProjectBusiness>();
+            _services.AddScoped<SkillBusiness>();
+            _services.AddScoped<PhaseBusiness>();
+            _services.AddScoped<TaskBusiness>();
+            _services.AddScoped<NotificationBusiness>();
         }
 
         public static ServiceProvider ServiceProvider

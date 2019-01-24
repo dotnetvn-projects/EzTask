@@ -39,9 +39,9 @@ namespace EzTask.Modules.Task.Controllers
         /// <returns></returns>
         [HttpGet]
         [Route("task/task-list.html")]
-        public IActionResult GetTaskList(int projectId, int phraseId)
+        public IActionResult GetTaskList(int projectId, int phaseId)
         {
-            return ViewComponent("TaskList", new { projectId, phraseId });
+            return ViewComponent("TaskList", new { projectId, phaseId });
         }
 
         /// <summary>
@@ -94,9 +94,12 @@ namespace EzTask.Modules.Task.Controllers
             {
                 await EzTask.Task.AssignTask(taskids, accountId);
 
-                //add notify
-                await EzTask.Notification.AssignTaskNotify(Context.CurrentAccount.DisplayName, taskids, accountId,
-                    Context.GetStringResource("AssignTask", StringResourceType.Notification));
+                if(Context.CurrentAccount.AccountId != accountId)
+                {
+                    //add notify
+                    await EzTask.Notification.AssignTaskNotify(Context.CurrentAccount.DisplayName, taskids, accountId,
+                        Context.GetStringResource("AssignTask", StringResourceType.Notification));
+                }         
             }
 
             return Ok();
@@ -118,8 +121,8 @@ namespace EzTask.Modules.Task.Controllers
             if (projects.Any())
             {
                 viewModel.Project = projects.First();
-                var features = await EzTask.Phrase.GetOpenFeaturePhrase(viewModel.Project.ProjectId);
-                viewModel.Phrase = features;
+                var features = await EzTask.Phase.GetOpenFeaturePhase(viewModel.Project.ProjectId);
+                viewModel.Phase = features;
             }
           
             viewModel.ProjectItems = BuildProjectSelectList(projects);

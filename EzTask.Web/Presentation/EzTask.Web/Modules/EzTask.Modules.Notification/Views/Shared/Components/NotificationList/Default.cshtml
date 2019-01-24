@@ -1,0 +1,44 @@
+﻿@model IEnumerable<IGrouping<DateTime, NotificationModel>>
+
+@if (Model.Any())
+{
+    <ul class="timeline timeline-inverse">
+        @foreach (var gr in Model)
+        {
+            <li class="time-label">
+                <span class="bg-red">
+                    @gr.Key.ToString("dddd, dd MMMM yyyy")
+                </span>
+            </li>
+            @foreach (var item in gr)
+            {
+                <li>
+                    <i class="fa fa-send bg-blue"></i>
+                    <div class="timeline-item">
+                        <span class="time"><i class="fa fa-clock-o"></i> @gr.Key.TimeAgo()</span>
+                        <h3 class="timeline-header"><a>@item.Account.DisplayName</a> gave a notification</h3>
+                        <div class="timeline-body">
+                            @Html.Raw(item.Content)
+                        </div>
+                        <div class="timeline-footer">
+                            @if (item.Context == NotifyContext.UpdateTask)
+                            {
+                                <a class="btn btn-primary btn-xs">Read more</a>
+                            }
+                            <a data-notifyid="@item.Id" class="btn btn-danger btn-xs btn-delete">Delete</a>
+                        </div>
+                    </div>
+                </li>
+            }
+        }
+        <li>
+            <i class="fa fa-clock-o bg-gray"></i>
+        </li>
+    </ul>
+}
+else
+{
+    <span class="text-center lead">
+        @Html.GetStringResource("EmptyNotificationItem", StringResourceType.Notification)
+    </span>
+}

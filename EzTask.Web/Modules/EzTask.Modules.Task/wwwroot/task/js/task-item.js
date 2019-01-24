@@ -9,17 +9,18 @@ $.fn.buildForm = function (template) {
     $('.history-detail').displayHistoryDetail();
     $(".slider").sliderbar();
     $.triggerCloseDialog('task-modal');
+    $(".remove-attachment").deleteAttachment();
 };
 
 $.fn.showAddNewModal = function () {
     $(this).click(function () {
         var projectId = $('.project-list').val();
-        var phraseId = $("#phrase-id").val();
+        var phaseId = $("#phase-id").val();
         $.showLoading();
         $.ajax({
             url: 'taskitem/generate-view.html',
             type: 'POST',
-            data: { projectId: projectId, phraseId: phraseId },
+            data: { projectId: projectId, phaseId: phaseId },
             success: function (data) {
                 $(this).buildForm(data);
                 $.hideLoading();
@@ -120,7 +121,31 @@ $.fn.loadAttachment = function (taskId) {
             $('#tab_attachment').html('');
             $('#tab_attachment').html(data);
             $("#file-upload").putAttachment();
+            $(".remove-attachment").deleteAttachment();
         }
+    });
+};
+
+$.fn.deleteAttachment = function () {
+    $(this).click(function (e) {
+        e.preventDefault();
+        var id = $(this).data('attachment-id');
+        $.ajax({
+            url: 'task/attachment/delete.html',
+            type: "POST",
+            async: false,
+            data: { id: id },
+            success: function (data) {
+                var currentId = $("#TaskId").val();
+                $(this).loadAttachment(currentId);
+            },
+            error: function (xhr, textStatus, errorThrown) {
+                $.hideLoading();
+                $.alertDialog({
+                    content: 'Error, cannot delete attachment!.'
+                });
+            }
+        });
     });
 };
 
@@ -190,10 +215,10 @@ function submitSuccess(response) {
 
     $("#task-modal .modal-title").html("Task '<b>" + response.data.taskTitle + "</b>'");
 
-    var phraseId = $("#phrase-id").val();
+    var phaseId = $("#phase-id").val();
     var projectId = $('.project-list').val();
 
-    $(this).handleLoadTask(projectId, phraseId);
+    $(this).handleLoadTask(projectId, phaseId);
 
     $.hideLoading();
 }

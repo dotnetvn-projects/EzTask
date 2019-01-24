@@ -11,16 +11,16 @@ namespace EzTask.Modules.Project.ViewModels
         public ProjectModel Project { get; set; }
         public List<List<TaskItemModel>> TaskList { get; set; }
         public int TotalTask { get; set; }
-        public int TotalPhrase { get; set; }
+        public int TotalPhase { get; set; }
         public int TotalMember { get; set; }
 
-        public int TotalOpenPhrase { get; set; }
-        public int TotalClosedPhrase { get; set; }
-        public int TotalFailedPhrase { get; set; }
+        public int TotalOpenPhase { get; set; }
+        public int TotalClosedPhase { get; set; }
+        public int TotalFailedPhase { get; set; }
 
-        public int PercentOpenPhrase { get; set; }
-        public int PercentClosedPhrase { get; set; }
-        public int PercentFailedPhrase { get; set; }
+        public int PercentOpenPhase { get; set; }
+        public int PercentClosedPhase { get; set; }
+        public int PercentFailedPhase { get; set; }
 
         public List<ProjectMemberModel> Members { get; set; }
 

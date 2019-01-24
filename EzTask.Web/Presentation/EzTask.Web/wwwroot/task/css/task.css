@@ -4,7 +4,7 @@
     width: 100% !important;
 }
 
-.project-box .btn-addnew-phrase {
+.project-box .btn-addnew-phase {
     margin-top: 5px !important;
 }
 
@@ -15,33 +15,33 @@ input[type="file"] {
 
 
 
-/***************Phrase list***************/
-.phrase-list {
+/***************phase list***************/
+.phase-list {
     max-height: 700px;
     overflow: auto;
 }
 
-    .phrase-list .date,
-    .phrase-list .status {
+    .phase-list .date,
+    .phase-list .status {
         padding-top: 8px;
     }
 
-        .phrase-list .date :nth-child(2) {
+        .phase-list .date :nth-child(2) {
             padding-left: 2px;
         }
-/***************End Phrase list***************/
+/***************End Phase list***************/
 
 
 
 
 /***************Task table***************/
 
-.phrase-tool {
+.phase-tool {
     border-bottom: 1px solid #f4f4f4;
     padding-bottom: 10px;
 }
 
-    .phrase-tool a {
+    .phase-tool a {
         color: white;
         cursor: pointer;
     }
@@ -67,6 +67,10 @@ input[type="file"] {
     .task-table > .table {
         margin: 0;
     }
+
+        .task-table > .table td {
+            vertical-align: middle !important;
+        }
 
 .task-controls {
     padding: 5px;
@@ -135,6 +139,16 @@ input[type="file"] {
             max-width: 100%;
             height: auto;
         }
+
+.task-status {
+    width: 100px;
+}
+.task-assignee {
+    width: 150px;
+}
+.task-date {
+    width: 144px;
+}
 /***************End Task table***************/
 
 
@@ -222,6 +236,9 @@ input[type="file"] {
             padding: 3px;
         }
 
+.slidecontainer {
+    margin-top:12px;
+}
 /****************End Task modal***************/
 
 
@@ -239,7 +256,7 @@ input[type="file"] {
     .content-container::-webkit-scrollbar,
     .task-table::-webkit-scrollbar,
     #task-history-detail .inner::-webkit-scrollbar,
-    .phrase-list::-webkit-scrollbar {
+    .phase-list::-webkit-scrollbar {
         width: 4px;
         height: 4px;
     }
@@ -248,7 +265,7 @@ input[type="file"] {
     .content-container::-webkit-scrollbar-track,
     .task-table::-webkit-scrollbar-track,
     #task-history-detail .inner::-webkit-scrollbar-track,
-    .phrase-list::-webkit-scrollbar-track {
+    .phase-list::-webkit-scrollbar-track {
         background: #f1f1f1;
     }
 
@@ -256,7 +273,7 @@ input[type="file"] {
     .content-container::-webkit-scrollbar-thumb,
     .task-table::-webkit-scrollbar-thumb,
     #task-history-detail .inner::-webkit-scrollbar-thumb,
-    .phrase-list::-webkit-scrollbar-thumb {
+    .phase-list::-webkit-scrollbar-thumb {
         background: #888;
     }
 
@@ -264,7 +281,7 @@ input[type="file"] {
         .content-container::-webkit-scrollbar-thumb:hover,
         .task-table::-webkit-scrollbar-thumb:hover,
         #task-history-detail .inner::-webkit-scrollbar-thumb:hover
-        .phrase-list::-webkit-scrollbar-thumb:hover {
+        .phase-list::-webkit-scrollbar-thumb:hover {
             background: #555;
         }
 

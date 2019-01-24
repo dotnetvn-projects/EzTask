@@ -15,20 +15,20 @@ namespace EzTask.Modules.Task.ViewComponents
             EzTask = business;
         }
 
-        public async Task<IViewComponentResult> InvokeAsync(int projectId, int phraseId)
+        public async Task<IViewComponentResult> InvokeAsync(int projectId, int phaseId)
         {
             TaskViewModel viewModel = new TaskViewModel();
 
-            var data = await EzTask.Task.GetTasks(projectId, phraseId);
+            var data = await EzTask.Task.GetTasks(projectId, phaseId);
             viewModel.TaskList = data;
 
             if(viewModel.TaskList.Any())
             {
-                viewModel.Phrase = viewModel.TaskList.First().Phrase;
+                viewModel.Phase = viewModel.TaskList.First().Phase;
             }
             else
             {
-                viewModel.Phrase = await EzTask.Phrase.GetPhraseById(phraseId);
+                viewModel.Phase = await EzTask.Phase.GetPhaseById(phaseId);
             }
             viewModel.Project = await EzTask.Project.GetProject(projectId);
             return View(viewModel);

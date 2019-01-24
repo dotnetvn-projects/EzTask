@@ -20,7 +20,7 @@ namespace EzTask.Modules.Task.ViewModels
 
         public string TaskDetail { get; set; }
 
-        public int PhraseId { get; set; }
+        public int PhaseId { get; set; }
 
         public Int16 Status { get; set; }
 
@@ -33,7 +33,7 @@ namespace EzTask.Modules.Task.ViewModels
         public DateTime CreatedDate { get; set; }
         public int PercentCompleted { get; set; }
 
-        public List<SelectListItem> PhraseList { get; set; }
+        public List<SelectListItem> PhaseList { get; set; }
         public List<SelectListItem> StatusList { get; set; }
         public List<SelectListItem> AssigneeList { get; set; }
         public List<SelectListItem> PriorityList { get; set; }

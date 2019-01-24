@@ -13,7 +13,7 @@ namespace EzTask.Framework.Infrastructures
         {
             AccountMaper();
             ProjectMapper();
-            PhraseMapper();
+            PhaseMapper();
             TaskMapper();
             NotificationMapper();
         }
@@ -81,15 +81,15 @@ namespace EzTask.Framework.Infrastructures
                 .ForMember(c => c.Account, t => t.Ignore());
         }
 
-        private void PhraseMapper()
+        private void PhaseMapper()
         {
-            //Map phrase entity to phrase model
-            CreateMap<Phrase, PhraseModel>()
-                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<PhraseStatus>()));
+            //Map phase entity to phase model
+            CreateMap<Phase, PhaseModel>()
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<PhaseStatus>()));
 
-            //Map phrase model to phrase entity
-            CreateMap<PhraseModel, Phrase>()
-                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<PhraseStatus>()));
+            //Map phase model to phase entity
+            CreateMap<PhaseModel, Phase>()
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<PhaseStatus>()));
         }
 
         private void TaskMapper()
@@ -127,7 +127,7 @@ namespace EzTask.Framework.Infrastructures
                 .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToInt16<TaskItemStatus>()))
                 .ForMember(c => c.Id, t => t.MapFrom(z => z.TaskId))
                 .ForMember(c => c.MemberId, t => t.MapFrom(z => z.Member != null ? z.Member.AccountId : 0))
-                .ForMember(c => c.PhraseId, t => t.MapFrom(z => z.Phrase != null ? z.Phrase.Id : 0))
+                .ForMember(c => c.PhaseId, t => t.MapFrom(z => z.Phase != null ? z.Phase.Id : 0))
                 .ForMember(c => c.AssigneeId, t => t.MapFrom(z => z.Assignee != null ? z.Assignee.AccountId : 0))
                 .ForMember(c => c.ProjectId, t => t.MapFrom(z => z.Project != null ? z.Project.ProjectId : 0));
         }

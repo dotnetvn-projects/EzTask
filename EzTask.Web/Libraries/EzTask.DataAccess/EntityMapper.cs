@@ -25,7 +25,7 @@ namespace EzTask.DataAccess
             _modelBuilder.Entity<Skill>().ToTable(TableName.Skill.ToString());
             _modelBuilder.Entity<AccountSkill>().ToTable(TableName.Account_Skill.ToString());
             _modelBuilder.Entity<TaskItem>().ToTable(TableName.TaskItem.ToString());
-            _modelBuilder.Entity<Phrase>().ToTable(TableName.Phrase.ToString());
+            _modelBuilder.Entity<Phase>().ToTable(TableName.Phase.ToString());
             _modelBuilder.Entity<Attachment>().ToTable(TableName.Attachment.ToString());
             _modelBuilder.Entity<TaskHistory>().ToTable(TableName.TaskHistory.ToString());
             _modelBuilder.Entity<Notification>().ToTable(TableName.Notification.ToString());

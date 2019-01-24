@@ -7,19 +7,19 @@ namespace EzTask.Business
         public AccountBusiness Account { get; }
         public ProjectBusiness Project { get; }
         public SkillBusiness Skill { get;  }
-        public PhraseBusiness Phrase { get; }
+        public PhaseBusiness Phase { get; }
         public TaskBusiness Task { get; }
         public NotificationBusiness Notification { get; }
 
         public EzTaskBusiness(AccountBusiness account,
             ProjectBusiness project, SkillBusiness skill,
-            PhraseBusiness phrase, TaskBusiness task,
+            PhaseBusiness phase, TaskBusiness task,
             NotificationBusiness notification)
         {
             Account = account;
             Project = project;
             Skill = skill;
-            Phrase = phrase;
+            Phase = phase;
             Task = task;
             Notification = notification;
         }

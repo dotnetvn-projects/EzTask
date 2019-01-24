@@ -57,7 +57,7 @@ $.fn.confirmAddMember = function () {
                 });
             }
         });
-        $.hideLoading()
+        $.hideLoading();
     });
 };
 

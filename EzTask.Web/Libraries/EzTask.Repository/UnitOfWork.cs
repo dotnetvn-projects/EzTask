@@ -13,7 +13,7 @@ namespace EzTask.Repository
         public IRepository<Account> AccountRepository { get; }
         public IRepository<AccountInfo> AccountInfoRepository { get; }
         public IRepository<Project> ProjectRepository { get; }
-        public IRepository<Phrase> PhraseRepository { get; }
+        public IRepository<Phase> PhaseRepository { get; }
         public IRepository<AccountSkill> AccountSkillRepository { get; }
         public IRepository<ProjectMember> ProjectMemberRepository { get; }
         public IRepository<Skill> SkillRepository { get; }
@@ -26,7 +26,7 @@ namespace EzTask.Repository
              IRepository<Account> account,
              IRepository<AccountInfo> accountInfo,
              IRepository<Project> project,
-             IRepository<Phrase> phrase,
+             IRepository<Phase> phase,
              IRepository<AccountSkill> accountSkill,
              IRepository<ProjectMember> projectMember,
              IRepository<Skill> skill,
@@ -45,8 +45,8 @@ namespace EzTask.Repository
             ProjectRepository = project;
             ProjectRepository.Context = Context;
 
-            PhraseRepository = phrase;
-            PhraseRepository.Context = context;
+            PhaseRepository = phase;
+            PhaseRepository.Context = context;
 
             AccountSkillRepository = accountSkill;
             AccountSkillRepository.Context = context;

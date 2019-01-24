@@ -66,7 +66,7 @@ CKEDITOR.stylesSet.add( 'default', [
 	{ name: 'Typewriter',		element: 'tt' },
 
 	{ name: 'Computer Code',	element: 'code' },
-	{ name: 'Keyboard Phrase',	element: 'kbd' },
+	{ name: 'Keyboard phase',	element: 'kbd' },
 	{ name: 'Sample Text',		element: 'samp' },
 	{ name: 'Variable',			element: 'var' },
 

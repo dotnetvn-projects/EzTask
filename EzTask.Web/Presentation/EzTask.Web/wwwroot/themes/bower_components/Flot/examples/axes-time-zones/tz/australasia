@@ -846,14 +846,14 @@ Zone	Pacific/Wallis	12:15:20 -	LMT	1901
 # abbreviation does _not_ change...
 # The legislation does not actually define abbreviations, at least
 # in this State, but the abbreviation is just commonly taken to be the
-# initials of the phrase, and the legislation here uniformly uses
-# the phrase `summer time' and does not use the phrase `daylight
+# initials of the phase, and the legislation here uniformly uses
+# the phase `summer time' and does not use the phase `daylight
 # time'.
 # Announcers on the Commonwealth radio network, the ABC (for Australian
-# Broadcasting Commission), use the phrases `Eastern Standard Time'
+# Broadcasting Commission), use the phases `Eastern Standard Time'
 # or `Eastern Summer Time'.  (Note, though, that as I say in the
 # current australasia file, there is really no such thing.)  Announcers
-# on its overseas service, Radio Australia, use the same phrases
+# on its overseas service, Radio Australia, use the same phases
 # prefixed by the word `Australian' when referring to local times;
 # time announcements on that service, naturally enough, are made in UTC.
 

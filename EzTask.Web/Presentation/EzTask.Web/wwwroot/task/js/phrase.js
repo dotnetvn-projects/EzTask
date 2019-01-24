@@ -6,38 +6,38 @@ function formatDate(dateString) {
 
 $.fn.showModal = function () {
     $(this).click(function () {
-        var phraseid = 0;
+        var phaseid = 0;
         var projectid = $('.project-list').val();
-        if ($(this).hasClass("edit-phrase")) {
-            phraseid = $("#phrase-id").val();
+        if ($(this).hasClass("edit-phase")) {
+            phaseid = $("#phase-id").val();
         }
 
         $.showLoading();
         $.ajax({
             url: 'phase/generate-phase.html',
             type: "POST",
-            data: { phraseId: phraseid, projectId: projectid },
+            data: { phaseId: phaseid, projectId: projectid },
             success: function (data) {
-                $(".phrase-template").html(data);
+                $(".phase-template").html(data);
 
                 $.initCommonLib();
-                $("#phrase-modal .btn-confirm").phraseModalAction();
+                $("#phase-modal .btn-confirm").phaseModalAction();
                 $.hideLoading();
 
                 $.showDialog({
-                    dialogId: 'phrase-modal'
+                    dialogId: 'phase-modal'
                 });
-                $.triggerCloseDialog('phrase-modal');
+                $.triggerCloseDialog('phase-modal');
             }
         });
              
     });
 };
 
-$.fn.phraseModalAction = function () {
+$.fn.phaseModalAction = function () {
     $(this).click(function (e) {
         e.preventDefault();
-        var form = $("#phrase-form");
+        var form = $("#phase-form");
         $.showLoading();
         if (form.valid()) {
             $.ajax({
@@ -45,9 +45,9 @@ $.fn.phraseModalAction = function () {
                 url: "phase/phase-modal-action.html",
                 data: form.serialize(),
                 success: function (response) {                  
-                    var phrasePanel = $(".phrase-list-panel");
-                    phrasePanel.html('');
-                    phrasePanel.html(response);
+                    var phasePanel = $(".phase-list-panel");
+                    phasePanel.html('');
+                    phasePanel.html(response);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.alertDialog({
@@ -56,25 +56,25 @@ $.fn.phraseModalAction = function () {
                     });
                 }
             }).promise().done(function () {
-                $.closeDialog('phrase-modal');
-                $(".phrase-list > li > a").loadTask();
+                $.closeDialog('phase-modal');
+                $(".phase-list > li > a").loadTask();
                 $.hideLoading();
             });
         }
     });
 };
 
-$.fn.removePhrase = function () {
+$.fn.removephase = function () {
     $(this).click(function () {
         $.confirmDialog({
             title: 'Warning',
-            content: 'All tasks which related to this phrase will be removed. Are you sure to continue?',
+            content: 'All tasks which related to this phase will be removed. Are you sure to continue?',
             action: function () {
                 $.showLoading();
                 $.ajax({
                     type: 'post',
                     url: "phase/delete-phase.html",
-                    data: { phraseId: $("#phrase-id").val()},
+                    data: { phaseId: $("#phase-id").val()},
                     success: function (response) {
                         $('.project-list').change();
                         $.hideLoading();
@@ -94,5 +94,5 @@ $.fn.removePhrase = function () {
 };
 
 $(function () {
-    $(".btn-addnew-phrase").showModal();
+    $(".btn-addnew-phase").showModal();
 });

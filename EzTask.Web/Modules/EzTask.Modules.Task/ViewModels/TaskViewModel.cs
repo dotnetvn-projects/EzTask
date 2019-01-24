@@ -10,13 +10,13 @@ namespace EzTask.Modules.Task.ViewModels
         public ProjectModel Project { get; set; }
         public List<SelectListItem> ProjectItems { get; set; }
         public IEnumerable<TaskItemModel> TaskList { get; set; }
-        public PhraseModel Phrase { get; set; }
+        public PhaseModel Phase { get; set; }
 
         public TaskViewModel()
         {
             ProjectItems = new List<SelectListItem>();
             Project = new ProjectModel();
-            Phrase = new PhraseModel();
+            Phase = new PhaseModel();
         }
     }
 }

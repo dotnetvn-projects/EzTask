@@ -10,6 +10,6 @@ namespace EzTask.Modules.Task.ViewModels
     {
         public int ProjectId { get; set; }
         public int TaskId { get; set; }
-        public int PhraseId { get; set; }
+        public int PhaseId { get; set; }
     }
 }
