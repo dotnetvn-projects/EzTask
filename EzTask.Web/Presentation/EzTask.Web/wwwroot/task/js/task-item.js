@@ -178,6 +178,13 @@ $.fn.showEdit = function () {
                     $.showDialog({
                         dialogId: 'task-modal'
                     });
+
+                    $('#task-modal').on('hidden.bs.modal', function () {
+                        var taskCode = $.queryString()["code"];
+                        if (taskCode !== undefined && taskCode !== '' && taskCode !== null) {
+                            window.location.href = '/task.html';
+                        }
+                    });
                 }
             });
         }

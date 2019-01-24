@@ -45,7 +45,7 @@ namespace EzTask.Modules.Task.Controllers
                 UpdateTaskFromExist(task, iResult);
             }
 
-            var phases = await EzTask.Phase.GetPhase(task.ProjectId);
+            var phases = await EzTask.Phase.GetPhases(task.ProjectId);
             task.PhaseList = StaticResources.BuildPhaseSelectList(phases, task.PhaseId);
 
             var assignees = await EzTask.Project.GetAccountList(task.ProjectId);

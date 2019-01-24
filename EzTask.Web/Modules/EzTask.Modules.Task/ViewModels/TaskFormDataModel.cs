@@ -1,8 +1,4 @@
 ﻿using EzTask.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EzTask.Modules.Task.ViewModels
 {

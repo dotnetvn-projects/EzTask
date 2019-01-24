@@ -254,7 +254,9 @@ namespace EzTask.Business
         {
             Project data = await UnitOfWork.ProjectRepository
                 .Entity
-                .Include(c => c.Account).AsNoTracking().FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
+                .Include(c => c.Account)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
 
             return data.ToModel();
         }
@@ -268,7 +270,9 @@ namespace EzTask.Business
         {
             Project data = await UnitOfWork.ProjectRepository
                 .Entity
-                .Include(c => c.Account).AsNoTracking().FirstOrDefaultAsync(c => c.Owner == owner);
+                .Include(c => c.Account)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(c => c.Owner == owner);
 
             return data.ToModel();
         }
@@ -282,7 +286,9 @@ namespace EzTask.Business
         {
             Project data = await UnitOfWork.ProjectRepository
                 .Entity
-                .Include(c => c.Account).AsNoTracking().FirstOrDefaultAsync(c => c.Id == projectId);
+                .Include(c => c.Account)
+                .AsNoTracking()
+                .FirstOrDefaultAsync(c => c.Id == projectId);
 
             return data.ToModel();
         }
@@ -294,8 +300,8 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ProjectModel> GetProjectByName(string name)
         {
-            Project data = await UnitOfWork.ProjectRepository.GetAsync(c =>
-                c.ProjectName.ToLower() == name.ToLower(), allowTracking: false);
+            Project data = await UnitOfWork.ProjectRepository
+                .GetAsync(c =>c.ProjectName.ToLower() == name.ToLower(), allowTracking: false);
 
             return data.ToModel();
         }
@@ -308,9 +314,9 @@ namespace EzTask.Business
         /// <returns>True if it is, False if it is not</returns>
         public async Task<bool> IsDupplicated(string name, int id)
         {
-            Project data = await UnitOfWork.ProjectRepository.GetAsync(c =>
-                 c.ProjectName.ToLower() == name.ToLower()
-                 && c.Id != id, allowTracking: false);
+            Project data = await UnitOfWork.ProjectRepository
+                .GetAsync(c => c.ProjectName.ToLower() == name.ToLower()
+                                && c.Id != id, allowTracking: false);
 
             return data != null;
         }
@@ -322,9 +328,12 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ProjectModel> GetProjectDetail(string projectCode)
         {
-            Project data = await UnitOfWork.ProjectRepository.Entity.Include(c => c.Account)
+            Project data = await UnitOfWork.ProjectRepository
+                .Entity
+                .Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
+
             var model = data.ToModel();
 
             return model;
@@ -337,8 +346,9 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountMember(int projectId)
         {
-            var data = await UnitOfWork.ProjectMemberRepository.Entity
-                    .CountAsync(c => c.ProjectId == projectId);
+            var data = await UnitOfWork.ProjectMemberRepository
+                .Entity
+                .CountAsync(c => c.ProjectId == projectId);
 
             return data;
         }
@@ -350,10 +360,12 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<IEnumerable<ProjectMemberModel>> GetAccountList(int projectId)
         {
-            List<ProjectMemberModel> data = await UnitOfWork.ProjectMemberRepository.Entity
+            List<ProjectMemberModel> data = await UnitOfWork.ProjectMemberRepository
+                .Entity
                 .Include(c => c.Project)
                 .Include(c => c.Member)
-                .ThenInclude(c => c.AccountInfo).AsNoTracking()
+                .ThenInclude(c => c.AccountInfo)
+                .AsNoTracking()
                 .Where(c => c.ProjectId == projectId)
                 .Select(t => new ProjectMemberModel
                 {
@@ -377,7 +389,8 @@ namespace EzTask.Business
             List<int> data = await UnitOfWork.ProjectMemberRepository
                 .Entity.AsNoTracking()
                 .Where(c => c.ProjectId == projectId)
-                .Select(t => t.MemberId).ToListAsync();
+                .Select(t => t.MemberId)
+                .ToListAsync();
 
             return data;
         }

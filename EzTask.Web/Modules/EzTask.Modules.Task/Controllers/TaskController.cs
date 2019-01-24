@@ -105,6 +105,24 @@ namespace EzTask.Modules.Task.Controllers
             return Ok();
         }
 
+        /// <summary>
+        /// Assign tasks to user
+        /// </summary>
+        /// <param name="taskids"></param>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("task/validate-code.html")]
+        public async Task<IActionResult> ValidateTaskCode(string code)
+        {
+            var result = await EzTask.Task.IsValidTaskCode(code);
+            if(result.Data)
+            {
+                return Ok();
+            }
+            return NotFound();
+        }
+
         #endregion
 
         #region Non Action

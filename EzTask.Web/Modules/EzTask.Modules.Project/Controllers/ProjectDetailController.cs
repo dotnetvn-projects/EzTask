@@ -29,7 +29,7 @@ namespace EzTask.Modules.Project.Controllers
             vm.TotalPhase = await EzTask.Phase.CountByProject(model.ProjectId);
             vm.TotalMember = await EzTask.Project.CountMember(model.ProjectId);
 
-            var phases = await EzTask.Phase.GetPhase(model.ProjectId);
+            var phases = await EzTask.Phase.GetPhases(model.ProjectId);
             if (phases.Any())
             {
                 vm.TotalOpenPhase = phases.Count(c => c.Status == PhaseStatus.Open);

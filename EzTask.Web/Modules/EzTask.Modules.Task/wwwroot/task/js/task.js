@@ -55,8 +55,9 @@ $.fn.loadPhase = function () {
                 var phase = $(".phase-list > li > a").first();
                 var phaseId = phase.attr('data-id');
 
-                if (phaseId !== 0){
+                if (phaseId !== 0) {
                     $(this).handleLoadTask(id, phaseId, null, false);
+
                     $(".phase-list > li > a").loadTask();
                 }
                 var authorizeAdd = request.getResponseHeader("authorized-add-phase");
@@ -153,7 +154,6 @@ $.fn.deleteTask = function () {
 };
 
 $.fn.assignTask = function () {
-
     $(this).click(function () {
         var isChecked = $(".task-table input:checkbox:checked").length > 0;
         if (isChecked) {
@@ -210,7 +210,6 @@ $.fn.assignTask = function () {
     });
 };
 
-
 //Enable check and uncheck all functionality
 $.fn.checkboxtoggle = function () {
     $(this).click(function () {
@@ -241,8 +240,26 @@ $.fn.handleEvent = function () {
     $(".edit-phase").showModal();
 };
 
+$.fn.showDetailFromCode = function () {
+    var taskCode = $.queryString()["code"];
+    if (taskCode !== undefined && taskCode !== '' && taskCode !== null) {
+        $.ajax({
+            url: "task/validate-code.html",
+            type: 'POST',
+            data: { code: taskCode },
+            success: function (response, status, request) {
+                $('.task-list > tbody > tr[data-code="' + taskCode + '"]').trigger("click");
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                window.location.href = '/';
+            }
+        });
+    }
+};
+
 $(function () {
     $('.project-list').loadPhase();
     $(".phase-list > li > a").loadTask();
     $(this).handleEvent();
+    $(this).showDetailFromCode();
 });
