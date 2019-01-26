@@ -70,8 +70,6 @@ namespace EzTask.Repository
             NotifyRepository.Context = context;
         }
 
-
-
         public int Commit()
         {
             var iResult = Context.SaveChanges();

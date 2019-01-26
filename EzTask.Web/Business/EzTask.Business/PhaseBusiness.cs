@@ -48,12 +48,22 @@ namespace EzTask.Business
             return result;
         }
 
+        /// <summary>
+        /// Get phase by id
+        /// </summary>
+        /// <param name="phaseId"></param>
+        /// <returns></returns>
         public async Task<PhaseModel> GetPhaseById(int phaseId)
         {
             Phase data = await UnitOfWork.PhaseRepository.GetByIdAsync(phaseId);
             return data.ToModel();
         }
 
+        /// <summary>
+        /// Count Amount of phase in project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public async Task<int> CountByProject(int projectId)
         {
             int data = await UnitOfWork.
@@ -61,7 +71,12 @@ namespace EzTask.Business
             return data;
         }
 
-        public async Task<IEnumerable<PhaseModel>> GetPhase(int projectId)
+        /// <summary>
+        /// Get phrases in project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<PhaseModel>> GetPhases(int projectId)
         {
             IEnumerable<Phase> data = await UnitOfWork.
                 PhaseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
@@ -70,6 +85,11 @@ namespace EzTask.Business
             return model;
         }
 
+        /// <summary>
+        /// Get only open feature
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         public async Task<PhaseModel> GetOpenFeaturePhase(int projectId)
         {
             Phase data = await UnitOfWork.
@@ -78,6 +98,11 @@ namespace EzTask.Business
             return data.ToModel();
         }
 
+        /// <summary>
+        /// Check whether phase is default or not
+        /// </summary>
+        /// <param name="phaseId"></param>
+        /// <returns></returns>
         public bool IsDefault(int phaseId)
         {
             Phase data = UnitOfWork.PhaseRepository.Get(c => c.Id == phaseId && c.IsDefault);

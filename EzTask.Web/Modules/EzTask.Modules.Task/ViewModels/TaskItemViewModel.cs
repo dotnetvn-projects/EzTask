@@ -3,8 +3,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EzTask.Modules.Task.ViewModels
 {
@@ -22,14 +20,14 @@ namespace EzTask.Modules.Task.ViewModels
 
         public int PhaseId { get; set; }
 
-        public Int16 Status { get; set; }
+        public short Status { get; set; }
 
         public int Assignee { get; set; }
         public int AccountId { get; set; }
 
         public int ProjectId { get; set; }
 
-        public Int16 Priority { get; set; }
+        public short Priority { get; set; }
         public DateTime CreatedDate { get; set; }
         public int PercentCompleted { get; set; }
 

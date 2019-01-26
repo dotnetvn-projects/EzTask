@@ -16,7 +16,7 @@ namespace EzTask.Modules.Task.ViewComponents
 
         public async Task<IViewComponentResult> InvokeAsync(int projectId)
         {
-            var data = await EzTask.Phase.GetPhase(projectId);
+            var data = await EzTask.Phase.GetPhases(projectId);
             foreach(var item in data)
             {
                 var countTask = await EzTask.Task.CountByPhase(item.Id, projectId);

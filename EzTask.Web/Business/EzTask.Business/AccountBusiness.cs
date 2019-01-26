@@ -36,7 +36,7 @@ namespace EzTask.Business
                 Status = ActionStatus.Failed
             };
 
-            Entity.Data.Account account = model.ToEntity();
+            var account = model.ToEntity();
             if (account.Id < 1)
             {
                 account.CreatedDate = DateTime.Now;
@@ -73,7 +73,7 @@ namespace EzTask.Business
                 Status = ActionStatus.NotFound
             };
 
-            Entity.Data.AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository
+            var accountInfo = await UnitOfWork.AccountInfoRepository
                 .GetAsync(c => c.Id == model.AccountInfoId);
 
             if (accountInfo != null)
@@ -102,7 +102,7 @@ namespace EzTask.Business
                 Status = ActionStatus.Failed
             };
 
-            Entity.Data.AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => c.AccountId == accountId);
+            var accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => c.AccountId == accountId);
             if (accountInfo != null)
             {
                 byte[] bytes = await stream.ConvertStreamToBytes();
@@ -132,7 +132,8 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> GetAccountInfo(int accountId)
         {
-            Entity.Data.AccountInfo data = await UnitOfWork.AccountInfoRepository.Entity.Include(c => c.Account)
+            var data = await UnitOfWork.AccountInfoRepository
+                .Entity.Include(c => c.Account)
                 .AsNoTracking()
                 .FirstOrDefaultAsync(c => c.AccountId == accountId);
 
@@ -147,7 +148,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> GetAccount(string accountName, string password)
         {
-            Entity.Data.AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository
+            var accountInfo = await UnitOfWork.AccountInfoRepository
                 .Entity.Include(c => c.Account)
                 .FirstOrDefaultAsync(c => c.Account.AccountName == accountName
                              && c.Account.Password == password);
@@ -176,7 +177,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountModel> GetAccount(string accountName)
         {
-            Entity.Data.Account data = await UnitOfWork.AccountRepository.GetAsync(c => c.AccountName == accountName);
+            var data = await UnitOfWork.AccountRepository.GetAsync(c => c.AccountName == accountName);
             return data.ToModel();
         }
 
@@ -187,7 +188,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AccountInfoModel> GetAccountInfo(string accountName)
         {
-            Entity.Data.AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository
+            var accountInfo = await UnitOfWork.AccountInfoRepository
                         .Entity
                         .Include(c => c.Account)
                         .AsNoTracking()
@@ -203,7 +204,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<byte[]> LoadAvatar(int accountId)
         {
-            Entity.Data.AccountInfo data = await UnitOfWork.AccountInfoRepository.GetAsync(c =>
+            var data = await UnitOfWork.AccountInfoRepository.GetAsync(c =>
                     c.AccountId == accountId, allowTracking: false);
 
             return data.DisplayImage;
@@ -219,8 +220,12 @@ namespace EzTask.Business
         public async Task<IEnumerable<AccountModel>> GetAccountList(int page, int pageSize,
             int manageUserId)
         {
-            List<Entity.Data.Account> data = await UnitOfWork.AccountRepository.Entity.Where(c => c.ManageAccountId == manageUserId)
-                .Skip(pageSize * page - pageSize).Take(pageSize).ToListAsync();
+            var data = await UnitOfWork.AccountRepository
+                .Entity
+                .Where(c => c.ManageAccountId == manageUserId)
+                .Skip(pageSize * page - pageSize)
+                .Take(pageSize)
+                .ToListAsync();
             return data.ToModels();
         }
     }

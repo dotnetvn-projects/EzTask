@@ -51,7 +51,7 @@
                     {
                         foreach (var task in Model.TaskList)
                         {
-                            <tr data-id="@task.TaskId">
+                            <tr data-id="@task.TaskId" data-code="@task.TaskCode">
                                 <td width="20"><input data-id="@task.TaskId" type="checkbox"></td>
                                 <td class="task-name"><a>@task.TaskCode</a></td>
                                 <td class="task-title">
