@@ -1,12 +1,9 @@
-﻿using EzTask.Interfaces;
+﻿using EzTask.Interface;
 using Microsoft.AspNetCore.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Web.Framework.Infrastructures
 {
-    public class WebHost : Interfaces.IWebHostEnvironment
+    public class WebHost : IWebHostEnvironment
     {
         private readonly IHostingEnvironment _hosting;
         public WebHost(IHostingEnvironment host)

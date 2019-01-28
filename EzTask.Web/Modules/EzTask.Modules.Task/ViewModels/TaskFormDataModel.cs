@@ -1,4 +1,4 @@
-﻿using EzTask.Models;
+﻿using EzTask.Model;
 
 namespace EzTask.Modules.Task.ViewModels
 {

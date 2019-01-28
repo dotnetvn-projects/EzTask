@@ -1,7 +1,7 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Framework.Infrastructures;
-using EzTask.Models;
-using EzTask.Models.Enum;
+using EzTask.Model;
+using EzTask.Model.Enum;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;

@@ -1,4 +1,4 @@
-﻿using EzTask.Models;
+﻿using EzTask.Model;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;

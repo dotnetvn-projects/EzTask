@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using EzTask.Models;
+using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.HttpContext;

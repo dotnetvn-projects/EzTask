@@ -179,6 +179,7 @@ $.fn.showEdit = function () {
                         dialogId: 'task-modal'
                     });
 
+                    //reload get all task when current url contain code param
                     $('#task-modal').on('hidden.bs.modal', function () {
                         var taskCode = $.queryString()["code"];
                         if (taskCode !== undefined && taskCode !== '' && taskCode !== null) {

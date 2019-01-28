@@ -14,7 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 using EzTask.Web.Framework.Data;
 using EzTask.Web.Framework.Filters;
 using EzTask.Framework.Infrastructures;
-using EzTask.Interfaces;
+using EzTask.Interface;
+using EzTask.Plugin.MessageService;
 
 namespace EzTask.Web.Framework
 {
@@ -25,7 +26,7 @@ namespace EzTask.Web.Framework
         {         
             FrameworkCore.Register(services, configuration);
             BusinessInitializer.Register(services);
-            
+            MessageServiceRegister.Register(services);
             env.RunWebBuilder();
            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();

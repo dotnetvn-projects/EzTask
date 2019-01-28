@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.Modules.Core.Controllers;
-using EzTask.Models;
+using EzTask.Model;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Web.Framework.Attributes;
-using EzTask.Models.Enum;
+using EzTask.Model.Enum;
 using EzTask.Web.Framework.HttpContext;
 using EzTask.Framework.Data;
 

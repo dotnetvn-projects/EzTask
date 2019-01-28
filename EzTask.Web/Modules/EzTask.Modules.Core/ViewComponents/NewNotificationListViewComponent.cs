@@ -1,5 +1,5 @@
 ﻿using EzTask.Business;
-using EzTask.Models.Enum;
+using EzTask.Model.Enum;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;

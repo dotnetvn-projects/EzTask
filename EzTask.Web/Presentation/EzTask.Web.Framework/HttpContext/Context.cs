@@ -1,6 +1,6 @@
 ﻿using EzTask.Framework.Data;
 using EzTask.Framework.Infrastructures;
-using EzTask.Interfaces;
+using EzTask.Interface;
 using EzTask.Web.Framework.Infrastructures;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;

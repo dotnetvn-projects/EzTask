@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using EzTask.DataAccess;
 using EzTask.Entity.Data;
-using EzTask.Interfaces;
+using EzTask.Interface;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 

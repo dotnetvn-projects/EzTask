@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using EzTask.Models;
+using EzTask.Model;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Hosting;
@@ -39,13 +39,23 @@ namespace EzTask.Modules.Core.Controllers
         /// <summary>
         /// Get new notify items
         /// </summary>
-        /// <param name="projectId"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("notify/new-list.html")]
         public IActionResult GetNewNotifyList()
         {
             return ViewComponent("NewNotificationList", new { Context.CurrentAccount.AccountId });
+        }
+
+        /// <summary>
+        /// Get task notify items
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("notify/task-list.html")]
+        public IActionResult GetTaskNotifyList()
+        {
+            return ViewComponent("TaskNotificationList", new { assigneeId = Context.CurrentAccount.AccountId });
         }
 
         [Route("not-found.html")]

@@ -1,4 +1,4 @@
-﻿using EzTask.Models;
+﻿using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
 using Microsoft.AspNetCore.Mvc;

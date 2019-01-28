@@ -135,6 +135,14 @@
       <Key>EmptyNotification</Key>
       <Content>No data available</Content>
     </Language>
+    <Language>
+      <Key>TaskNotificationCountSingle</Key>
+      <Content>You have {0} task</Content>
+    </Language>
+    <Language>
+      <Key>TaskNotificationCountPlural</Key>
+      <Content>You have {0} tasks</Content>
+    </Language>
   </Notification>
 
   <DashboardPage>

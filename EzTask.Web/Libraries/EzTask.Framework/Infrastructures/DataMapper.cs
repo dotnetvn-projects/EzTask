@@ -1,6 +1,6 @@
 ﻿using EzTask.Entity.Data;
-using EzTask.Models;
-using EzTask.Models.Enum;
+using EzTask.Model;
+using EzTask.Model.Enum;
 using System.Collections.Generic;
 
 namespace EzTask.Framework.Infrastructures

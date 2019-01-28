@@ -1,6 +1,6 @@
 ﻿using EzTask.Framework.Common;
-using EzTask.Models;
-using EzTask.Models.Enum;
+using EzTask.Model;
+using EzTask.Model.Enum;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;

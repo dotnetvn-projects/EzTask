@@ -18,6 +18,7 @@
     <None Remove="Views\Common\PageNotFound.cshtml" />
     <None Remove="Views\Common\_WarningModal.cshtml" />
     <None Remove="Views\Shared\Components\NewNotificationList\Default.cshtml" />
+    <None Remove="Views\Shared\Components\TaskNotificationList\Default.cshtml" />
     <None Remove="Views\Shared\_ConfirmModal.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
     <None Remove="Views\_ViewStart.cshtml" />
@@ -66,6 +67,10 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Views\Shared\Components\NewNotificationList\Default.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
+    <Content Include="Views\Shared\Components\TaskNotificationList\Default.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -210,7 +215,6 @@
     <ProjectReference Include="..\..\Business\EzTask.Business\EzTask.Business.csproj" />
     <ProjectReference Include="..\..\Libraries\EzTask.DataAccess\EzTask.DataAccess.csproj" />
     <ProjectReference Include="..\..\Libraries\EzTask.Framework\EzTask.Framework.csproj" />
-    <ProjectReference Include="..\..\Libraries\EzTask.Interfaces\EzTask.Interfaces.csproj" />
     <ProjectReference Include="..\..\Presentation\EzTask.Web.Framework\EzTask.Web.Framework.csproj" />
   </ItemGroup>
 

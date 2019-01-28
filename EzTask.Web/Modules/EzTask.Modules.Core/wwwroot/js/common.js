@@ -146,6 +146,17 @@
         });
     };
 
+    $.loadTaskNotifyList = function () {
+        $.ajax({
+            url: '/notify/task-list.html',
+            type: "POST",
+            success: function (data) {
+                $(".tasks-menu").html('');
+                $(".tasks-menu").html(data);
+            }
+        });
+    };
+
     // Read a page's GET URL variables and return them as an associative array.
     $.queryString = function getUrlVars() {
         var vars = [], hash;

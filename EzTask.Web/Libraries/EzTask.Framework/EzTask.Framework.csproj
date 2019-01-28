@@ -21,8 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EzTask.DataAccess\EzTask.DataAccess.csproj" />
-    <ProjectReference Include="..\EzTask.Interfaces\EzTask.Interfaces.csproj" />
-    <ProjectReference Include="..\EzTask.Models\EzTask.Models.csproj" />
+    <ProjectReference Include="..\EzTask.Model\EzTask.Model.csproj" />
     <ProjectReference Include="..\EzTask.Repository\EzTask.Repository.csproj" />
   </ItemGroup>
 

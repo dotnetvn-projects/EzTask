@@ -1,6 +1,6 @@
 ﻿using EzTask.Framework.Common;
-using EzTask.Models;
-using EzTask.Models.Enum;
+using EzTask.Model;
+using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Task.ViewModels;
 using EzTask.Web.Framework.Attributes;

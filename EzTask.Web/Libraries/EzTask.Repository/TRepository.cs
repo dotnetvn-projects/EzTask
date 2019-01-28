@@ -1,5 +1,5 @@
 ﻿using EzTask.DataAccess;
-using EzTask.Interfaces;
+using EzTask.Interface;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Extensions.Internal;
 using Microsoft.EntityFrameworkCore.Infrastructure;

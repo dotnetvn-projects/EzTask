@@ -1,6 +1,6 @@
 ﻿using EzTask.DataAccess;
 using EzTask.Entity.Data;
-using EzTask.Interfaces;
+using EzTask.Interface;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Repository

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using EzTask.Models;
-using EzTask.Models.Enum;
+using EzTask.Model;
+using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Task.ViewModels;
 using EzTask.Web.Framework.Attributes;

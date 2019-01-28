@@ -6,7 +6,6 @@ namespace EzTask.Plugin.MessageService.Data
 {
     public enum MessageType
     {
-        Push,
         Email
     }
 }

@@ -1,7 +1,7 @@
 ﻿using EzTask.Business;
 using EzTask.Framework.Data;
-using EzTask.Models;
-using EzTask.Models.Message;
+using EzTask.Model;
+using EzTask.Model.Message;
 using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;

@@ -1,4 +1,4 @@
-﻿using EzTask.Interfaces;
+﻿using EzTask.Interface;
 using Microsoft.AspNetCore.Mvc.Filters;
 using System;
 using System.Threading.Tasks;

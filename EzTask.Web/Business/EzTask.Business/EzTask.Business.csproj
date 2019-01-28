@@ -11,6 +11,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Libraries\EzTask.Framework\EzTask.Framework.csproj" />
+    <ProjectReference Include="..\..\Libraries\EzTask.Interface\EzTask.Interface.csproj" />
+    <ProjectReference Include="..\..\Libraries\EzTask.Model\EzTask.Model.csproj" />
   </ItemGroup>
 
 </Project>

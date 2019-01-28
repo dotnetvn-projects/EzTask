@@ -1,7 +1,7 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Framework.Infrastructures;
-using EzTask.Models;
-using EzTask.Models.Enum;
+using EzTask.Model;
+using EzTask.Model.Enum;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -203,6 +203,47 @@ namespace EzTask.Business
                                         c.ProjectId == projectId && c.PhaseId == phaseId);
             await DeleteTasks(result, data);
             return result;
+        }
+
+        /// <summary>
+        /// Get top x tasks which are assinging to a specific user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<IEnumerable<TaskItemModel>>> GetTasksByAssigneeId(int assigneeId, int top = 10)
+        {
+            ResultModel<IEnumerable<TaskItemModel>> iResult = new ResultModel<IEnumerable<TaskItemModel>>();
+            List<TaskItem> data = await UnitOfWork.TaskRepository.Entity
+                       .Include(c => c.Assignee)
+                       .AsNoTracking()
+                       .Where(c => c.AssigneeId == assigneeId 
+                                && c.Status != (short)TaskItemStatus.Closed 
+                                && c.Status != (short)TaskItemStatus.Failed)
+                       .OrderByDescending(c=>c.UpdatedDate)
+                       .Take(top)
+                       .Select(x => new TaskItem
+                       {
+                           CreatedDate = x.CreatedDate,
+                           UpdatedDate = x.UpdatedDate,
+                           TaskCode = x.TaskCode,
+                           TaskTitle = x.TaskTitle,
+                           PercentCompleted = x.PercentCompleted,
+                           Id = x.Id,
+
+                           Assignee = new Account
+                           {
+                               AccountInfo = new AccountInfo
+                               {
+                                   DisplayName = x.Assignee != null ?
+                                       x.Assignee.AccountInfo.DisplayName : "Non Assigned"
+                               }
+                           }
+                       }).ToListAsync();
+
+            iResult.Data = data.ToModels();
+
+            return iResult;
         }
 
         /// <summary>

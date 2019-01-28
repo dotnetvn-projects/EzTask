@@ -2,8 +2,8 @@
 using EzTask.Framework.Infrastructures;
 using EzTask.Framework.IO;
 using EzTask.Framework.Security;
-using EzTask.Models;
-using EzTask.Models.Enum;
+using EzTask.Model;
+using EzTask.Model.Enum;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;

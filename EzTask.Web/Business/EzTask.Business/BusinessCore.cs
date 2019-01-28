@@ -1,5 +1,5 @@
 ﻿using EzTask.DataAccess;
-using EzTask.Interfaces;
+using EzTask.Interface;
 using EzTask.Repository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

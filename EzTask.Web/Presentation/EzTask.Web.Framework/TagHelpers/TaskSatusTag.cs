@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
 using EzTask.Web.Framework.Data;
-using EzTask.Models.Enum;
+using EzTask.Model.Enum;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using EzTask.Framework.Common;
 

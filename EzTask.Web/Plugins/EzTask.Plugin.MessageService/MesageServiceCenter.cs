@@ -1,38 +1,39 @@
-﻿using EzTask.Interfaces;
+﻿using EzTask.Interface;
 using EzTask.Plugin.MessageService.Data;
+using EzTask.Plugin.MessageService.Service;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace EzTask.Plugin.MessageService
 {
     public class MesageServiceCenter
-    {       
-        private IMessageService<PushMessage> _pushService;
-
+    {
+        private IList<IMessageService<Message>> _services;
         public MesageServiceCenter()
         {
-            _pushService = new PushNotifyMessageService();
+            ServiceFactory();
         }
 
-        public void Delivery(Message message)
+        private void ServiceFactory()
+        {
+            _services = new List<IMessageService<Message>>
+            {
+                new EmailMessageService()
+            };
+        }
+
+        public void Push(Message message)
         {
             var type = message.GetType();
             if (type == typeof(PushMessage))
             {
-                _pushService.Enqueue(message as PushMessage);
+                var service = _services.First(c => c.GetType() == typeof(EmailMessageService));
+                service.Delivery(message);
             }
-        }
-
-        public void Start()
-        {
-            _pushService.Start();
-        }
-
-        public void Stop()
-        {
-            _pushService.Stop();
         }
     }
 }
