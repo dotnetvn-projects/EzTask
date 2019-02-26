@@ -81,7 +81,7 @@ namespace EzTask.Modules.Task.Controllers
 
                 if (viewModel.TaskId <= 0)
                 {
-                    title = "created task \"" + iResult.Data.TaskTitle + "\" <small>(Code: " + model.TaskCode + ")</small>";                   
+                    title = Context.GetStringResource("CreatedTask", StringResourceType.TaskPage) + " \"" + iResult.Data.TaskTitle + "\" <small>("+ Context.GetStringResource("Code", StringResourceType.TaskPage) + ": " + model.TaskCode + ")</small>";                   
                     SetTaskDataToSession(model);
 
                     //add notify
@@ -92,7 +92,7 @@ namespace EzTask.Modules.Task.Controllers
                 }
                 else
                 {
-                    title = "updated task \"" + iResult.Data.TaskTitle + "\" <small>(Code: " + model.TaskCode + ")</small>";
+                    title = Context.GetStringResource("UpdatedTask", StringResourceType.TaskPage) + " \"" + iResult.Data.TaskTitle + "\" <small>(" + Context.GetStringResource("Code", StringResourceType.TaskPage) + ": " + model.TaskCode + ")</small>";
                     var oldData = ReadTaskDataFromSession(model.TaskId);
                     var newData = model;
 
@@ -139,7 +139,8 @@ namespace EzTask.Modules.Task.Controllers
 
                 if (iResult.Status == ActionStatus.Ok)
                 {
-                    string title = Context.CurrentAccount.DisplayName + " uploaded file \"" + iResult.Data.FileName + "\"";
+                    string title = string.Format(Context.CurrentAccount.DisplayName + " {0} \"" + iResult.Data.FileName + "\"",
+                                                    Context.GetStringResource("UploadedFile", StringResourceType.TaskPage));
                     await EzTask.Task.SaveHistory(taskId, title, string.Empty, Context.CurrentAccount.AccountId);
                 }
                 return Json(model);

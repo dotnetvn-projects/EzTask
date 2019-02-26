@@ -40,5 +40,18 @@ namespace EzTask.Framework.IO
               });
             return result;
         }
+
+        /// <summary>
+        /// Read string from file
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        public static string ReadFile(string path)
+        {
+            using (StreamReader reader = new StreamReader(path))
+            {
+                return reader.ReadToEnd();
+            }
+        }
     }
 }

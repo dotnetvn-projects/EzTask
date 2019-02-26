@@ -8,11 +8,11 @@
                 </button>
                 @if (Model.PhaseId <= 0)
                 {
-                    <h4 class="modal-title">Add new phase</h4>
+                    <h4 class="modal-title">@Html.GetStringResource("AddNewPhase", StringResourceType.TaskPage)</h4>
                 }
                 else
                 {
-                    <h4 class="modal-title">Edit phase '@Model.PhaseName'</h4>
+                    <h4 class="modal-title">@Html.GetStringResource("EditPhase", StringResourceType.TaskPage) '@Model.PhaseName'</h4>
                 }
 
             </div>
@@ -22,16 +22,16 @@
                 <input asp-for="IsDefault" class="phase-default" type="hidden" />
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="inputPhaseName" class="col-sm-3 control-label">Phase Name</label>
+                        <label for="inputPhaseName" class="col-sm-3 control-label">@Html.GetStringResource("PhaseName", StringResourceType.TaskPage)</label>
                         <div class="col-sm-9">
-                            <input asp-for="PhaseName" class="form-control" id="inputPhaseName" placeholder="Phase name">
+                            <input asp-for="PhaseName" class="form-control" id="inputPhaseName" placeholder="@Html.GetStringResource("PhaseName", StringResourceType.TaskPage)">
                             <p><span asp-validation-for="PhaseName" class="text-danger"></span></p>
                         </div>
                     </div>
                     @if (Model.PhaseId > 0)
                     {
                         <div class="form-group">
-                            <label for="selectStatusList" class="col-sm-3 control-label">Status  </label>
+                            <label for="selectStatusList" class="col-sm-3 control-label">@Html.GetStringResource("Status", StringResourceType.TaskPage)  </label>
                             <div class="col-sm-9">
                                 <select asp-for="Status" asp-items="@Model.StatusList" id="selectStatusList" class="form-control select2"></select>
                             </div>
@@ -44,7 +44,7 @@
                     @if (!Model.IsDefault)
                     {
                         <div class="form-group">
-                            <label for="inputStartDate" class="col-sm-3 control-label">Start date</label>
+                            <label for="inputStartDate" class="col-sm-3 control-label">@Html.GetStringResource("StartDate", StringResourceType.TaskPage)</label>
                             <div class="col-sm-9">
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -55,7 +55,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label for="inputEndDate" class="col-sm-3 control-label">End date</label>
+                            <label for="inputEndDate" class="col-sm-3 control-label">@Html.GetStringResource("End date", StringResourceType.TaskPage)</label>
                             <div class="col-sm-9">
                                 <div class="input-group date">
                                     <div class="input-group-addon">
@@ -73,7 +73,7 @@
                     }
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-confirm">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-confirm">@Html.GetStringResource("Submit", StringResourceType.TaskPage)</button>
                 </div>
             </form>
         </div>

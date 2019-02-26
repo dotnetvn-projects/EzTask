@@ -9,14 +9,14 @@
 
     <div class="box-body">
         <div class="form-group">
-            <label for="projectName">Project Name</label>
-            <input asp-for="ProjectName" class="form-control" id="projectName" placeholder="Enter project name" type="text">
+            <label for="projectName">@Html.GetStringResource("ProjectName", StringResourceType.ProjectPage)</label>
+            <input asp-for="ProjectName" class="form-control" id="projectName" placeholder="@Html.GetStringResource("EnterProjectName", StringResourceType.ProjectPage)" type="text">
             <div>
                 <span asp-validation-for="ProjectName" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label for="description">Description</label>
+            <label for="description">@Html.GetStringResource("Description", StringResourceType.ProjectPage)</label>
             <textarea rows="5" asp-for="Description" class="form-control" id="description"></textarea>
             <div>
                 <span asp-validation-for="Description" class="text-danger"></span>
@@ -25,28 +25,28 @@
         @if (Model.ProjectId > 0)
         {
             <div class="form-group status-group">
-                <label>Project Status</label>
+                <label>@Html.GetStringResource("ProjectStatus", StringResourceType.ProjectPage)</label>
                 <div>
                     <input asp-for="Status" value="Pending" type="radio" id="Pending" class="flat-red ckstatus" />
-                    <label for="Pending">Pending </label>
+                    <label for="Pending">@Html.GetStringResource("Pending", StringResourceType.ProjectPage) </label>
 
                     <input asp-for="Status" value="Implementing" type="radio" id="Implementing" class="flat-red ckstatus" />
-                    <label for="Implementing">Implementing </label>
+                    <label for="Implementing">@Html.GetStringResource("Implementing", StringResourceType.ProjectPage) </label>
 
                     <input asp-for="Status" value="Completed" type="radio" id="Completed" class="flat-red ckstatus" />
-                    <label for="Completed">Completed </label>
+                    <label for="Completed">@Html.GetStringResource("Completed", StringResourceType.ProjectPage) </label>
 
                     <input asp-for="Status" value="Failed" type="radio" id="Failed" class="flat-red ckstatus" />
-                    <label for="Failed">Failed </label>
+                    <label for="Failed">@Html.GetStringResource("Failed", StringResourceType.ProjectPage) </label>
 
                     <input asp-for="Status" value="Canceled" type="radio" id="Canceled" class="flat-red ckstatus" />
-                    <label for="Canceled">Canceled</label>
+                    <label for="Canceled">@Html.GetStringResource("Canceled", StringResourceType.ProjectPage)</label>
                 </div>
             </div>
         }
     </div>
 
     <div class="box-footer">
-        <button type="submit" class="btn btn-flat btn-success">Submit</button>
+        <button type="submit" class="btn btn-flat btn-success">@Html.GetStringResource("Submit", StringResourceType.ProjectPage)</button>
     </div>
 </form>

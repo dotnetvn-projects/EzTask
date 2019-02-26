@@ -1,6 +1,7 @@
 ﻿@{ 
     string tagCss = "login";
-    if(ViewBag.Title != null && !ViewBag.Title.Contains("Login"))
+    var url = Context.Request.Path.ToString().ToUpper();
+    if(url.Contains("LOGIN"))
     {
         tagCss = "register";
     }
@@ -36,7 +37,7 @@
 <body class="hold-transition @tagCss-page">
     <div class="login-box">
         <div class="@tagCss-logo">
-            <a href="#"><b>EzTask Management</b></a>
+            <a href="#"><b>@Html.GetStringResource("AppTitle", StringResourceType.Common)</b></a>
         </div>
 
         <div class="@tagCss-box-body">

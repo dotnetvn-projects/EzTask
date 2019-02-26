@@ -9,11 +9,11 @@
                 </button>
                 @if (Model.TaskId == 0)
                 {
-                    <h4 class="modal-title">Create new task</h4>
+                    <h4 class="modal-title">@Html.GetStringResource("CreateNewTask", StringResourceType.TaskPage)</h4>
                 }
                 else
                 {
-                    <h4 class="modal-title">Task <b>'@Model.TaskTitle'</b></h4>
+                    <h4 class="modal-title">@Html.GetStringResource("Task", StringResourceType.TaskPage) <b>'@Model.TaskTitle'</b></h4>
                 }
             </div>
             <form asp-action="@Model.ActionType" method="post" id="task-form" class="form-horizontal">
@@ -25,15 +25,15 @@
 
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="inputTaskTitle" class="col-sm-2 control-label">Task Title</label>
+                        <label for="inputTaskTitle" class="col-sm-2 control-label">@Html.GetStringResource("TaskTitle", StringResourceType.TaskPage)</label>
                         <div class="col-sm-9">
-                            <input asp-for="TaskTitle" class="form-control" id="inputTaskTitle" placeholder="Task title" />
+                            <input asp-for="TaskTitle" class="form-control" id="inputTaskTitle" placeholder="@Html.GetStringResource("TaskTitle", StringResourceType.TaskPage)" />
                             <p><span asp-validation-for="TaskTitle" class="text-danger"></span></p>
                         </div>
                     </div>
 
                     <div class="form-group">
-                        <label for="selectPhaseList" class="col-sm-2 control-label">Phase / Priority  </label>
+                        <label for="selectPhaseList" class="col-sm-2 control-label">@Html.GetStringResource("PhaseAndPriority", StringResourceType.TaskPage)  </label>
                         <div class="col-sm-9">
                             <div class="row">
                                 <div class="col-sm-6">
@@ -47,13 +47,13 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="selectTaskStatusList" class="col-sm-2 control-label">Status  </label>
+                        <label for="selectTaskStatusList" class="col-sm-2 control-label">@Html.GetStringResource("Status", StringResourceType.TaskPage)  </label>
                         <div class="col-sm-9">
                             <select asp-for="Status" asp-items="@Model.StatusList" id="selectTaskStatusList" class="form-control select2"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="selectAssignList" class="col-sm-2 control-label">Assign To</label>
+                        <label for="selectAssignList" class="col-sm-2 control-label">@Html.GetStringResource("AssignTo", StringResourceType.TaskPage)</label>
                         <div class="col-sm-9">
                             <select asp-for="Assignee" asp-items="@Model.AssigneeList" id="selectAssignList" class="form-control select2"></select>
                         </div>
@@ -63,7 +63,7 @@
                     }
                    
                     <div class="form-group percentComplete @display">
-                        <label for="percentComplete" class="col-sm-2 control-label">Percent complete</label>
+                        <label for="percentComplete" class="col-sm-2 control-label">@Html.GetStringResource("PercentComplete", StringResourceType.TaskPage)</label>
                         <div class="col-sm-9">
                             <div class="slidecontainer">
                                 <input asp-for="@Model.PercentCompleted" type="range" class="slider" />
@@ -75,11 +75,11 @@
                     <div class="form-group">
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">
-                                <li class="active"><a href="#tab_detail" data-toggle="tab" aria-expanded="true">Details</a></li>
+                                <li class="active"><a href="#tab_detail" data-toggle="tab" aria-expanded="true">@Html.GetStringResource("Detail", StringResourceType.TaskPage)</a></li>
                                 @if (Model.TaskId > 0)
                                 {
-                                    <li class=""><a href="#tab_attachment" data-toggle="tab" aria-expanded="false">Attachment</a></li>
-                                    <li class=""><a href="#tab_history" data-toggle="tab" aria-expanded="false">History</a></li>
+                                    <li class=""><a href="#tab_attachment" data-toggle="tab" aria-expanded="false">@Html.GetStringResource("Attachment", StringResourceType.TaskPage)</a></li>
+                                    <li class=""><a href="#tab_history" data-toggle="tab" aria-expanded="false">@Html.GetStringResource("History", StringResourceType.TaskPage)</a></li>
                                 }
                             </ul>
                             <div class="tab-content">
@@ -100,7 +100,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-confirm">Save</button>
+                    <button type="submit" class="btn btn-primary btn-confirm">@Html.GetStringResource("Save", StringResourceType.TaskPage)</button>
                 </div>
             </form>
         </div>

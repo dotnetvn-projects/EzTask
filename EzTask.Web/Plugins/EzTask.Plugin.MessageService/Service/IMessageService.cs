@@ -3,7 +3,7 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Text;
 
-namespace EzTask.Interface
+namespace EzTask.Plugin.MessageService
 {
     public interface IMessageService<T>
     {

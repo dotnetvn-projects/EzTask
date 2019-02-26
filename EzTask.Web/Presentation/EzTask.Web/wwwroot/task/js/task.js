@@ -121,6 +121,8 @@ $.fn.deleteTask = function () {
             });
 
             $.confirmDialog({
+                title: $('#warning-title').val(),
+                content: $('#delete-task-warning').val(),
                 action: function () {
                     $.showLoading();
                     $.ajax({
@@ -134,7 +136,6 @@ $.fn.deleteTask = function () {
                             var phaseId = $("#phase-id").val();
                             var projectId = $('.project-list').val();
                             $(this).handleLoadTask(projectId, phaseId);
-                            $.closeDialog('modal-confirm');
                             $.hideLoading();
                         },
                         error: function (xhr, ajaxOptions, thrownError) {
@@ -147,7 +148,8 @@ $.fn.deleteTask = function () {
         else {
             //warning when don't have any items
             $.alertDialog({
-                content: 'No item to delete, please select at least 1 item.'
+                title: $('#alert-title').val(),
+                content: $('#no-task-selected-delete-warning').val()
             });
         }
     });
@@ -204,7 +206,8 @@ $.fn.assignTask = function () {
         else {
             //warning when don't have any items
             $.alertDialog({
-                content: 'No item selected, please select at least 1 item.'
+                title: $('#alert-title').val(),
+                content: $('#no-task-selected-warning').val()
             });
         }
     });

@@ -1,5 +1,7 @@
 ﻿using EzTask.Interface;
+using EzTask.Interface.SharedData;
 using EzTask.Plugin.MessageService.Data;
+using EzTask.Plugin.MessageService.Data.Email;
 using EzTask.Plugin.MessageService.Service;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -10,9 +12,9 @@ using System.Text;
 
 namespace EzTask.Plugin.MessageService
 {
-    public class MesageServiceCenter
+    internal class MesageServiceCenter: IMessageCenter
     {
-        private IList<IMessageService<Message>> _services;
+        private IList<IMessageService<IMessage>> _services;
         public MesageServiceCenter()
         {
             ServiceFactory();
@@ -20,16 +22,17 @@ namespace EzTask.Plugin.MessageService
 
         private void ServiceFactory()
         {
-            _services = new List<IMessageService<Message>>
+            _services = new List<IMessageService<IMessage>>
             {
                 new EmailMessageService()
             };
         }
 
-        public void Push(Message message)
+        public void Push(IMessage message)
         {
             var type = message.GetType();
-            if (type == typeof(PushMessage))
+
+            if (type == typeof(EmailMessage))
             {
                 var service = _services.First(c => c.GetType() == typeof(EmailMessageService));
                 service.Delivery(message);

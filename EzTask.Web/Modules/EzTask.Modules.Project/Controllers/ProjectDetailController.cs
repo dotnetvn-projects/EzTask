@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Project.ViewModels;
@@ -22,6 +20,8 @@ namespace EzTask.Modules.Project.Controllers
         [Route("project/{code}.html")]
         public async Task<IActionResult> Index(string code)
         {
+            ViewBag.ProjectCode = code;
+
             var model = await EzTask.Project.GetProjectDetail(code);
             var vm = new ProjectViewModel();
             vm.Project = model;

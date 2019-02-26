@@ -26,7 +26,7 @@ namespace EzTask.Web.Framework
         {         
             FrameworkCore.Register(services, configuration);
             BusinessInitializer.Register(services);
-            MessageServiceRegister.Register(services);
+            MessageServiceRegister.Register(services, configuration);
             env.RunWebBuilder();
            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -34,6 +34,7 @@ namespace EzTask.Web.Framework
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
             services.AddSingleton<IWebHostEnvironment, WebHost>();
+            services.AddScoped<ILanguageLocalization, LanguageLocalization>();
             services.AddTransient<ViewRender>();
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -82,7 +83,8 @@ namespace EzTask.Web.Framework
             app.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>(),
                 app.ApplicationServices.GetRequiredService<IWebHostEnvironment>(),
                 app.ApplicationServices.GetRequiredService<SessionManager>(),
-                app.ApplicationServices.GetRequiredService<CookiesManager>());
+                app.ApplicationServices.GetRequiredService<CookiesManager>(),
+                app.ApplicationServices.GetRequiredService<ILanguageLocalization>());
         }
     }
 }

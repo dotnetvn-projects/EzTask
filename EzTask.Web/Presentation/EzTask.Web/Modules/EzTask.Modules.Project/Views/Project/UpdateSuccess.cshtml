@@ -1,17 +1,18 @@
 ﻿@{
     var canDisplay = !string.IsNullOrEmpty(Html.PrintSucessMessage().ToString());
+    ViewBag.Title = "EzTask - " + Html.GetStringResource("UpdateProjectSuccessPageTitle", StringResourceType.ProjectPage).ToString();
 }
 
 @model ProjectModel
 @section header{
-    <h1>
-        Project
-        <small>Update success a project on EzTask</small>
-    </h1>
+<h1>
+    @Html.GetStringResource("Project", StringResourceType.BreadCrumb)
+    <small>@Html.GetStringResource("UpdateProjectSuccessTitle", StringResourceType.BreadCrumb)</small>
+</h1>
     <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a asp-action="Index" asp-controller="Project">Project</a></li>
-        <li class="active">Update success</li>
+        <li><a href="/"><i class="fa fa-dashboard"></i> @Html.GetStringResource("Dashboard", StringResourceType.BreadCrumb)</a></li>
+        <li><a asp-action="Index" asp-controller="Project">@Html.GetStringResource("Project", StringResourceType.BreadCrumb)</a></li>
+        <li class="active">@Html.GetStringResource("UpdateProjectSuccess", StringResourceType.BreadCrumb)</li>
     </ol>
 }
 <div class="box box-primary">
@@ -19,7 +20,7 @@
         @if (!canDisplay)
         {
             <h3><i class="fa fa-frown-o"></i><span class="space-left">@Html.GetStringResource("PageNotFound", StringResourceType.Error)</span></h3>
-            <span>Click <a asp-action="Index" asp-controller="Project">here</a> to go back project list</span>
+            <span>@Html.GetStringResource("Click", StringResourceType.ProjectPage) <a asp-action="Index" asp-controller="Project">@Html.GetStringResource("Here", StringResourceType.ProjectPage)</a> @Html.GetStringResource("GoBackProjectListTitle", StringResourceType.ProjectPage)</span>
         }
         else
         { <i class="fa fa-circle text-green"></i>

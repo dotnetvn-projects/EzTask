@@ -1,14 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EzTask.Modules.Core.Controllers;
-using EzTask.Model;
-using Microsoft.AspNetCore.Mvc;
-using EzTask.Web.Framework.Attributes;
-using EzTask.Model.Enum;
-using EzTask.Web.Framework.HttpContext;
+﻿using EzTask.Framework.Common;
 using EzTask.Framework.Data;
+using EzTask.Model;
+using EzTask.Model.Enum;
+using EzTask.Modules.Core.Controllers;
+using EzTask.Web.Framework.Attributes;
+using EzTask.Web.Framework.HttpContext;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace EzTask.Modules.Project.Controllers
 {
@@ -21,7 +20,6 @@ namespace EzTask.Modules.Project.Controllers
         }
 
         [Route("project.html")]
-        [PageTitle("Projects")]
         public async Task<IActionResult> Index()
         {
             ViewBag.TotalProject = await EzTask.Project.CountByUser(Context.CurrentAccount.AccountId);
@@ -35,12 +33,11 @@ namespace EzTask.Modules.Project.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("project/create-project.html")]
-        [PageTitle("Create new project")]
         public IActionResult CreateNew()
         {
             return View(new ProjectModel
             {
-                ActionType = ActionType.CreateNew, 
+                ActionType = ActionType.CreateNew,
                 Owner = new AccountModel()
             });
         }
@@ -51,10 +48,9 @@ namespace EzTask.Modules.Project.Controllers
         /// <param name="projectCode"></param>
         /// <returns></returns>
         [Route("project/create-success.html")]
-        [PageTitle("Creating project is successful")]
         public async Task<IActionResult> CreateSuccess(string code)
         {
-            var project = await EzTask.Project.GetProjectDetail(code);         
+            ProjectModel project = await EzTask.Project.GetProjectDetail(code);
 
             return View(project);
         }
@@ -72,11 +68,11 @@ namespace EzTask.Modules.Project.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var isDupplicated = await EzTask.Project.IsDupplicated(model.ProjectName, model.ProjectId);
+                    bool isDupplicated = await EzTask.Project.IsDupplicated(model.ProjectName, model.ProjectId);
 
                     if (isDupplicated)
                     {
-                        ErrorMessage = Context.GetStringResource("ProjectIsDupplicated", StringResourceType.Error);
+                        ErrorMessage = Context.GetStringResource("ProjectIsDupplicated", StringResourceType.ProjectPage);
                     }
                     else
                     {
@@ -87,25 +83,25 @@ namespace EzTask.Modules.Project.Controllers
                             AccountId = Context.CurrentAccount.AccountId
                         };
 
-                        var project = await EzTask.Project.Save(model);
+                        ProjectModel project = await EzTask.Project.Save(model);
                         if (project == null)
                         {
-                            ErrorMessage = Context.GetStringResource("CreateProjectError", StringResourceType.Error);
+                            ErrorMessage = Context.GetStringResource("CreateProjectError", StringResourceType.ProjectPage);
                             model.HasError = true;
                         }
                         else
                         {
-                            SuccessMessage = Context.GetStringResource("CreateProjectSuccess", StringResourceType.Success);
+                            SuccessMessage = Context.GetStringResource("CreateProjectSuccess", StringResourceType.ProjectPage);
                             return base.RedirectToAction("CreateSuccess",
                                 new { code = project.ProjectCode });
                         }
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 model.HasError = true;
-                ErrorMessage = Context.GetStringResource("CreateProjectError", StringResourceType.Error);
+                ErrorMessage = Context.GetStringResource("CreateProjectError", StringResourceType.ProjectPage);
             }
             return View(model);
 
@@ -120,12 +116,11 @@ namespace EzTask.Modules.Project.Controllers
         /// <param name="projectCode"></param>
         /// <returns></returns>
         [Route("project/update-project.html")]
-        [PageTitle("Update project: ")]
         public async Task<IActionResult> Update(string code)
         {
-            PageTitleAttribute.CombineWith(this, code);
+            ViewBag.ProjectCode = code;
 
-            var project = await EzTask.Project.GetProject(code);
+            ProjectModel project = await EzTask.Project.GetProject(code);
             if (project == null)
             {
                 return RedirectToAction("PageNotFound", "Common");
@@ -141,10 +136,9 @@ namespace EzTask.Modules.Project.Controllers
         /// <param name="code"></param>
         /// <returns></returns>
         [Route("project/update-success.html")]
-        [PageTitle("Updating project is successful")]
         public async Task<IActionResult> UpdateSuccess(string code)
         {
-            var project = await EzTask.Project.GetProjectDetail(code);   
+            ProjectModel project = await EzTask.Project.GetProjectDetail(code);
             return View(project);
         }
 
@@ -161,33 +155,33 @@ namespace EzTask.Modules.Project.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var data = await EzTask.Project.GetProject(model.ProjectCode);
+                    ProjectModel data = await EzTask.Project.GetProject(model.ProjectCode);
                     if (data == null)
                     {
-                        ErrorMessage = Context.GetStringResource("ErrorUpdateProject", StringResourceType.Error);
+                        ErrorMessage = Context.GetStringResource("ErrorUpdateProject", StringResourceType.ProjectPage);
                         model.HasError = true;
                     }
                     else
                     {
-                        var isDupplicated = await EzTask.Project.IsDupplicated(model.ProjectName, model.ProjectId);
+                        bool isDupplicated = await EzTask.Project.IsDupplicated(model.ProjectName, model.ProjectId);
 
                         if (isDupplicated)
                         {
-                            ErrorMessage = Context.GetStringResource("ProjectIsDupplicated", StringResourceType.Error);
+                            ErrorMessage = Context.GetStringResource("ProjectIsDupplicated", StringResourceType.ProjectPage);
                         }
                         else
                         {
                             model.Owner = new AccountModel { AccountId = data.Owner.AccountId };
 
-                            var project = await EzTask.Project.Save(model);
+                            ProjectModel project = await EzTask.Project.Save(model);
                             if (project == null)
                             {
-                                ErrorMessage = Context.GetStringResource("ErrorUpdateProject", StringResourceType.Error);
+                                ErrorMessage = Context.GetStringResource("ErrorUpdateProject", StringResourceType.ProjectPage);
                                 model.HasError = true;
                             }
                             else
                             {
-                                SuccessMessage = Context.GetStringResource("UpdateProjectSuccess", StringResourceType.Success);
+                                SuccessMessage = Context.GetStringResource("UpdateProjectSuccess", StringResourceType.ProjectPage);
                                 return base.RedirectToAction("UpdateSuccess",
                                     new { code = project.ProjectCode });
                             }
@@ -195,10 +189,10 @@ namespace EzTask.Modules.Project.Controllers
                     }
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 model.HasError = true;
-                ErrorMessage = Context.GetStringResource("ProjectIsDupplicated", StringResourceType.Error);
+                ErrorMessage = Context.GetStringResource("ProjectIsDupplicated", StringResourceType.ProjectPage);
             }
             return View(model);
 
@@ -218,14 +212,14 @@ namespace EzTask.Modules.Project.Controllers
         [TokenAttribute]
         public async Task<IActionResult> RemoveProject(string code)
         {
-            var iResult = await EzTask.Project.Delete(code);
+            ResultModel<bool> iResult = await EzTask.Project.Delete(code);
             if (iResult.Status == ActionStatus.Ok)
             {
                 return Ok();
             }
             else
             {
-                return BadRequest();
+                return BadRequest(Context.GetStringResource("RequestFailed", StringResourceType.Error));
             }
         }
 
@@ -238,11 +232,29 @@ namespace EzTask.Modules.Project.Controllers
         [Route("project/invite-new-member.html")]
         public async Task<IActionResult> InviteMember(int projectId, string accountName)
         {
-            var account = await EzTask.Account.GetAccountInfo(accountName);
-
-            if(account == null)
+            bool isNewMember = false;
+            if (!Validator.IsValidEmailAddress(accountName))
             {
-                return BadRequest("NotFound");
+                return BadRequest(Context.GetStringResource("EmailWrongFormat", StringResourceType.Error));
+            }
+
+            AccountInfoModel account = await EzTask.Account.GetAccountInfo(accountName);
+
+            if (account == null)
+            {
+                isNewMember = true;
+                ResultModel<AccountModel> registerResult = await EzTask.Account.RegisterNew(new RegisterModel
+                {
+                    AccountName = accountName,
+                    Password = Guid.NewGuid().ToString().Substring(0, 6),
+                    FullName = accountName,
+                    DisplayName = accountName,
+                });
+
+                if (registerResult.Status == ActionStatus.Ok)
+                {
+                    account = new AccountInfoModel { AccountId = registerResult.Data.AccountId };
+                }
             }
 
             ProjectMemberModel model = new ProjectMemberModel
@@ -251,14 +263,24 @@ namespace EzTask.Modules.Project.Controllers
                 ProjectId = projectId
             };
 
-            var alreadyAdded = await EzTask.Project.HasAlreadyAdded(model);
+            ResultModel<bool> alreadyAdded = await EzTask.Project.HasAlreadyAdded(model);
 
             if (alreadyAdded.Data)
             {
-                return BadRequest("added");          
+                return BadRequest(Context.GetStringResource("AddedAccount", StringResourceType.ProjectPage));
             }
 
-            var iResult = await EzTask.Project.AddMember(model);
+            ResultModel<ProjectMemberModel> iResult = await EzTask.Project.AddMember(model);
+
+            if (iResult.Status == ActionStatus.Ok)
+            {
+                await EzTask.Project.SendInvitation(model.ProjectId, model.AccountId, isNewMember,
+                             Context.GetStringResource("InviteTitleEmail", StringResourceType.ProjectPage));
+            }
+            else
+            {
+                return BadRequest(Context.GetStringResource("RequestFailed", StringResourceType.Error));
+            }
 
             return PartialView("_AddNewMemberItemTemplate", iResult.Data);
         }

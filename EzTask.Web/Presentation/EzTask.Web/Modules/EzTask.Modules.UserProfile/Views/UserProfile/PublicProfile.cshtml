@@ -1,6 +1,6 @@
 ﻿
-@{
-    ViewData["Title"] = "PublicProfile";
+@{   
+    ViewBag.Title = "EzTask - " + string.Format(Html.GetStringResource("PublicUserProfile", StringResourceType.UserProfilePage).ToString(), ViewBag.Account);
 }
 
 <h2>PublicProfile</h2>

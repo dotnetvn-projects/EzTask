@@ -16,16 +16,16 @@
                     <i class="fa fa-send bg-blue"></i>
                     <div class="timeline-item">
                         <span class="time"><i class="fa fa-clock-o"></i> @gr.Key.TimeAgo()</span>
-                        <h3 class="timeline-header"><a>@item.Account.DisplayName</a> gave a notification</h3>
+                        <h3 class="timeline-header"><a>@item.Account.DisplayName</a> @Html.GetStringResource("GaveNotification", StringResourceType.Notification)</h3>
                         <div class="timeline-body">
                             @Html.Raw(item.Content)
                         </div>
                         <div class="timeline-footer">
                             @if (item.Context == NotifyContext.UpdateTask)
                             {
-                                <a class="btn btn-primary btn-xs">Read more</a>
+                                <a class="btn btn-primary btn-xs">@Html.GetStringResource("ReadMore", StringResourceType.Notification)</a>
                             }
-                            <a data-notifyid="@item.Id" class="btn btn-danger btn-xs btn-delete">Delete</a>
+                            <a data-notifyid="@item.Id" class="btn btn-danger btn-xs btn-delete">@Html.GetStringResource("Delete", StringResourceType.Notification)</a>
                         </div>
                     </div>
                 </li>

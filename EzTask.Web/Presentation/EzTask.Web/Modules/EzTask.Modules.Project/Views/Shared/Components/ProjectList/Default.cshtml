@@ -4,7 +4,7 @@
     <div class="row">
         @foreach (var item in projects)
         {
-            var taskCount = item.Project.ProjectCode + " has " + Html.PrintNumberWithText("task", item.TotalTask);
+            var taskCount = item.Project.ProjectCode + " " + Html.GetStringResource("Has", StringResourceType.ProjectPage) + " " + Html.PrintNumberWithText(Html.GetStringResource("Task", StringResourceType.ProjectPage).ToString(), item.TotalTask);
             <div class="col-md-4">
                 <div class="box box-@item.Project.BoxType direct-chat direct-chat-@item.Project.BoxType">
                     <div class="box-header with-border">
@@ -15,13 +15,13 @@
                             <button type="button" class="btn btn-box-tool" data-widget="collapse">
                                 <i class="fa fa-minus"></i>
                             </button>
-                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="member list" data-widget="chat-pane-toggle" data-original-title="Contacts">
+                            <button type="button" class="btn btn-box-tool" data-toggle="tooltip" title="@Html.GetStringResource("MemberList", StringResourceType.ProjectPage)" data-widget="chat-pane-toggle" data-original-title="Contacts">
                                 <i class="fa fa-user"></i>
                             </button>
                             @if (User.Identity.AccountId() == item.Project.Owner.AccountId)
                             {
-                                <a asp-action="Update" asp-controller="Project" asp-route-code="@item.Project.ProjectCode" class="btn btn-box-tool" title="Edit"><i class="fa fa-edit"></i></a>
-                                <button data-source="@item.Project.ProjectName" data-code="@item.Project.ProjectCode" type="button" class="btn btn-box-tool remove-project" title="Delete"><i class="fa fa-times"></i></button>
+                                <a asp-action="Update" asp-controller="Project" asp-route-code="@item.Project.ProjectCode" class="btn btn-box-tool" title="@Html.GetStringResource("Edit", StringResourceType.ProjectPage)"><i class="fa fa-edit"></i></a>
+                                <button data-source="@item.Project.ProjectName" data-code="@item.Project.ProjectCode" type="button" class="btn btn-box-tool remove-project" title="@Html.GetStringResource("Delete", StringResourceType.ProjectPage)"><i class="fa fa-times"></i></button>
                             }
                         </div>
                     </div>
@@ -29,28 +29,28 @@
                     <div class="box-body" style="">
                         <div class="project-item">
                             <div>
-                                <i class="fa fa-book"></i><b> Project Name</b>:
+                                <i class="fa fa-book"></i><b> @Html.GetStringResource("ProjectName", StringResourceType.ProjectPage)</b>:
                                 <div class="name">
                                     <span>@item.Project.ProjectName</span>
                                 </div>
                             </div>
 
                             <div>
-                                <i class="fa fa-audio-description"></i><b> Project Description</b>:
+                                <i class="fa fa-audio-description"></i><b> @Html.GetStringResource("ProjectDescription", StringResourceType.ProjectPage)</b>:
                                 <div class="description">
                                     <span>@item.Project.Description</span>
                                 </div>
                             </div>
                             <div>
-                                <i class="fa fa-user-circle"></i><b> Owner</b>:
+                                <i class="fa fa-user-circle"></i><b> @Html.GetStringResource("Owner", StringResourceType.ProjectPage)</b>:
                                 <div class="description">
-                                    <span>@item.Project.Owner.DisplayName is owner of project</span>
+                                    <span>@item.Project.Owner.DisplayName @Html.GetStringResource("ProjectOwnerTitle", StringResourceType.ProjectPage)</span>
                                 </div>
                             </div>
                             <div>
-                                <i class="fa fa-calendar"></i><b> Created date</b>:
+                                <i class="fa fa-calendar"></i><b> @Html.GetStringResource("CreatedDate", StringResourceType.ProjectPage)</b>:
                                 <div class="description">
-                                    <span>Project was created at @item.Project.CreatedDate.ToString("MM/dd/yyyy")</span>
+                                    <span>@Html.GetStringResource("CreatedDateTitle", StringResourceType.ProjectPage) @item.Project.CreatedDate.ToString("MM /dd/yyyy")</span>
                                 </div>
                             </div>
                         </div>
@@ -62,7 +62,7 @@
                                     {
                                         <li>
                                             <a href="#">
-                                                <img class="contacts-list-img" src="@Url.Action("LoadAvatar","Common", new {accountId = mem.AccountId })" alt="User Image">
+                                                <img class="contacts-list-img" src="@Url.Action("LoadAvatar","Common", new {accountId = mem.AccountId })">
 
                                                 <div class="contacts-list-info">
                                                     <span class="contacts-list-name">
@@ -71,11 +71,11 @@
                                                     </span>
                                                     @if (mem.IsPending)
                                                     {
-                                                        <span class="contacts-list-msg">Pending for accepting</span>
+                                                        <span class="contacts-list-msg">@Html.GetStringResource("InvitePending", StringResourceType.ProjectPage)</span>
                                                     }
                                                     else
                                                     {
-                                                        <span class="contacts-list-msg">Linh pham is having @Html.PrintNumberWithText("task", mem.TotalTask)</span>
+                                                        <span class="contacts-list-msg">@mem.DisplayName is having @Html.PrintNumberWithText(Html.GetStringResource("Task", StringResourceType.ProjectPage).ToString(), mem.TotalTask)</span>
                                                     }
                                                 </div>
                                             </a>
@@ -93,7 +93,7 @@
                         <span><i class="fa fa-circle text-@item.Project.Color"></i> @item.Project.Status.ToString()</span>
                         <a asp-action="Index" asp-controller="ProjectDetail"
                            asp-route-code="@item.Project.ProjectCode" class="btn btn-flat btn-@item.Project.BoxType btn-sm pull-right">
-                            <span><i class="fa fa-hand-o-right"></i> View Detail</span>
+                            <span><i class="fa fa-hand-o-right"></i> @Html.GetStringResource("ViewDetail", StringResourceType.ProjectPage)</span>
                         </a>
                     </div>
                     <!-- /.box-footer-->

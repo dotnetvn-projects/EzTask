@@ -9,18 +9,18 @@
             {
                 if (!Model.Phase.IsDefault)
                 {
-                    <span class="badge"><a class="edit-phase"><i class="fa fa-edit"></i> Edit phase</a></span>
-                    <span class="badge"><a class="remove-phase"><i class="fa fa-remove"></i> Remove phase</a></span>
+                    <span class="badge"><a class="edit-phase"><i class="fa fa-edit"></i> @Html.GetStringResource("EditPhase", StringResourceType.TaskPage)</a></span>
+                    <span class="badge"><a class="remove-phase"><i class="fa fa-remove"></i> @Html.GetStringResource("RemovePhase", StringResourceType.TaskPage)</a></span>
                 }
             }
         </div>
         <div class="task-tool">
             <h3 class="box-title">
-                <i class="fa fa-book text-success"></i>  @Model.Phase.PhaseName: @Html.PrintNumberWithText("task", taskCount)
+                <i class="fa fa-book text-success"></i>  @Model.Phase.PhaseName: @Html.PrintNumberWithText(Html.GetStringResource("Task", StringResourceType.TaskPage).ToString(), taskCount)
             </h3>
             <div class="box-tools pull-right">
                 <div class="has-feedback">
-                    <input type="text" class="form-control input-sm search-task" placeholder="Search task">
+                    <input type="text" class="form-control input-sm search-task" placeholder="@Html.GetStringResource("SearchTask", StringResourceType.TaskPage)">
                     <span class="glyphicon glyphicon-search form-control-feedback"></span>
                 </div>
             </div>
@@ -33,14 +33,14 @@
                 <i class="fa fa-square-o"></i>
             </button>
             <div class="btn-group">
-                <button type="button" title="Delete" class="btn btn-default btn-sm btn-delete-task"><i class="fa fa-trash-o"></i></button>
-                <button type="button" title="Add new task" class="btn btn-default btn-sm btn-addnew-task"><i class="fa fa-plus"></i></button>
-                <button type="button" title="Assign task" class="btn btn-default btn-sm btn-assign-task"><i class="fa fa-share"></i></button>
+                <button type="button" title="@Html.GetStringResource("Delete", StringResourceType.TaskPage)" class="btn btn-default btn-sm btn-delete-task"><i class="fa fa-trash-o"></i></button>
+                <button type="button" title="@Html.GetStringResource("AddNewTask", StringResourceType.TaskPage)" class="btn btn-default btn-sm btn-addnew-task"><i class="fa fa-plus"></i></button>
+                <button type="button" title="@Html.GetStringResource("AssignTask", StringResourceType.TaskPage)" class="btn btn-default btn-sm btn-assign-task"><i class="fa fa-share"></i></button>
             </div>
             <!-- /.btn-group -->
-            <button type="button" title="refresh" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
+            <button type="button" title="@Html.GetStringResource("Refresh", StringResourceType.TaskPage)" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
-                <span class="badge bg-aqua task-count">@Html.PrintNumberWithText("task", taskCount)</span>
+                <span class="badge bg-aqua task-count">@Html.PrintNumberWithText(Html.GetStringResource("Task", StringResourceType.TaskPage).ToString(), taskCount)</span>
             </div>
             <!-- /.pull-right -->
         </div>
@@ -57,7 +57,7 @@
                                 <td class="task-title">
                                     @task.TaskTitle
                                 </td>
-                                <td title="Assign to @task.Assignee.DisplayName" class="task-assignee"><i class="fa fa-user text-green"></i> @task.Assignee.DisplayName</td>
+                                <td title="@Html.GetStringResource("AssignTo", StringResourceType.TaskPage) @task.Assignee.DisplayName" class="task-assignee"><i class="fa fa-user text-green"></i> @task.Assignee.DisplayName</td>
                                 <td class="task-status">
                                     <task-status asp-for="@task.Status"></task-status>
                                 </td>
@@ -76,7 +76,7 @@
                     else
                     {
                         <tr>
-                            <td><i class="fa fa-frown-o text-red"></i> No content to display</td>
+                            <td><i class="fa fa-frown-o text-red"></i> @Html.GetStringResource("NoTask", StringResourceType.TaskPage)</td>
                         </tr>
                     }
                 </tbody>
@@ -90,14 +90,14 @@
                 <i class="fa fa-square-o"></i>
             </button>
             <div class="btn-group">
-                <button type="button" title="Delete" class="btn btn-default btn-sm btn-delete-task"><i class="fa fa-trash-o"></i></button>
-                <button type="button" title="Add new task" class="btn btn-default btn-addnew-task btn-sm"><i class="fa fa-plus"></i></button>
-                <button type="button" title="Assign task" class="btn btn-default btn-sm btn-assign-task"><i class="fa fa-share"></i></button>
+                <button type="button" title="@Html.GetStringResource("Delete", StringResourceType.TaskPage)" class="btn btn-default btn-sm btn-delete-task"><i class="fa fa-trash-o"></i></button>
+                <button type="button" title="@Html.GetStringResource("AddNewTask", StringResourceType.TaskPage)" class="btn btn-default btn-addnew-task btn-sm"><i class="fa fa-plus"></i></button>
+                <button type="button" title="@Html.GetStringResource("AssignTask", StringResourceType.TaskPage)" class="btn btn-default btn-sm btn-assign-task"><i class="fa fa-share"></i></button>
             </div>
             <!-- /.btn-group -->
-            <button type="button" title="refresh" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
+            <button type="button" title="@Html.GetStringResource("Refresh", StringResourceType.TaskPage)" class="btn btn-default btn-sm btn-refresh-task"><i class="fa fa-refresh"></i></button>
             <div class="pull-right">
-                <span class="badge bg-aqua task-count">@Html.PrintNumberWithText("task", taskCount)</span>
+                <span class="badge bg-aqua task-count">@Html.PrintNumberWithText(Html.GetStringResource("Task", StringResourceType.TaskPage).ToString(), taskCount)</span>
             </div>
             <!-- /.pull-right -->
         </div>

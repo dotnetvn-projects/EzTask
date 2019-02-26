@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>@Html.PageTitle()</title>
+    <title>@ViewBag.Title</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="~/themes/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -78,7 +78,7 @@ desired effect
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>Ez</b>T</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>EzTask</b></span>
+                <span class="logo-lg"><b>@Html.GetStringResource("ShortAppTitle", StringResourceType.Common)</b></span>
             </a>
 
             <!-- Header Navbar -->
@@ -92,7 +92,7 @@ desired effect
                     <ul class="nav navbar-nav">
                         <!-- Notifications Menu -->
                         <li class="dropdown notifications-menu">
-                          <!--load new notify items-->
+                            <!--load new notify items-->
                         </li>
                         <!-- Tasks Menu -->
                         <li class="dropdown tasks-menu">
@@ -147,7 +147,7 @@ desired effect
                     <div class="pull-left info">
                         <p>@Html.DisplayName()</p>
                         <!-- Status -->
-                        <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+                        <a href="#"><i class="fa fa-circle text-success"></i> @Html.GetStringResource("Online", StringResourceType.Common)</a>
                     </div>
                 </div>
 
@@ -165,16 +165,16 @@ desired effect
                 <!-- /.search form -->
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu" data-widget="tree">
-                    <li class="header">@Html.GetStringResource("MainNavigation", StringResourceType.Common)</li>
+                    <li class="header">@Html.GetStringResource("MainNavigation", StringResourceType.MainMenu)</li>
                     <li class="active treeview">
                         <a asp-action="Index" asp-controller="Home">
-                            <i class="fa fa-dashboard"></i> <span>@Html.GetStringResource("Dashboard", StringResourceType.Common)</span>
+                            <i class="fa fa-dashboard"></i> <span>@Html.GetStringResource("Dashboard", StringResourceType.MainMenu)</span>
                         </a>
                     </li>
 
-                    <li class="header">@Html.GetStringResource("ProjectManagement", StringResourceType.Common)</li>
-                    <li><a asp-action="Index" asp-controller="Task"><i class="fa fa-tasks"></i> <span>@Html.GetStringResource("Task", StringResourceType.Common)</span></a></li>
-                    <li><a asp-action="Index" asp-controller="Project"><i class="fa fa-reddit"></i> <span>@Html.GetStringResource("Project", StringResourceType.Common)</span></a></li>
+                    <li class="header">@Html.GetStringResource("ProjectManagement", StringResourceType.MainMenu)</li>
+                    <li><a asp-action="Index" asp-controller="Task"><i class="fa fa-tasks"></i> <span>@Html.GetStringResource("Task", StringResourceType.MainMenu)</span></a></li>
+                    <li><a asp-action="Index" asp-controller="Project"><i class="fa fa-reddit"></i> <span>@Html.GetStringResource("Project", StringResourceType.MainMenu)</span></a></li>
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
@@ -236,7 +236,6 @@ desired effect
     @RenderSection("Scripts", required: false)
 
     <div class="loader loader-bouncing loader-panel"></div>
-    <partial name="~/Modules/EzTask.Modules.Core/Views/Shared/_WarningModal.cshtml" />
-    <partial name="~/Modules/EzTask.Modules.Core/Views/Shared/_ConfirmModal.cshtml" />
+    <partial name="~/Modules/EzTask.Modules.Core/Views/Shared/_CommonMessage.cshtml" />
 </body>
 </html>

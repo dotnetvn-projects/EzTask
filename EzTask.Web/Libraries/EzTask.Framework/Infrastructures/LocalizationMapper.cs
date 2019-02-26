@@ -16,9 +16,9 @@ namespace EzTask.Framework.Infrastructures
             Data = XmlUtilities.Deserialize<Localization>(filepath);
         }
 
-        public string GetCommonMessageLang(string key)
+        public string GetCommonLocalization(string key)
         {
-            var existKey = Data.CommonMessage.FirstOrDefault(c => c.Key == key);
+            var existKey = Data.Common.FirstOrDefault(c => c.Key == key);
             if (existKey != null)
             {
                 return existKey.Content;
@@ -26,7 +26,7 @@ namespace EzTask.Framework.Infrastructures
             return string.Empty;
         }
 
-        public string GetNotificationMessageLang(string key)
+        public string GetNotificationLocalization(string key)
         {
             var existKey = Data.Notification.FirstOrDefault(c => c.Key == key);
             if (existKey != null)
@@ -37,9 +37,9 @@ namespace EzTask.Framework.Infrastructures
         }
 
 
-        public string GetErrorMessageLang(string key)
+        public string GetErrorLocalization(string key)
         {
-            var existKey = Data.ErrorMessage.FirstOrDefault(c => c.Key == key);
+            var existKey = Data.Error.FirstOrDefault(c => c.Key == key);
             if (existKey != null)
             {
                 return existKey.Content;
@@ -47,9 +47,9 @@ namespace EzTask.Framework.Infrastructures
             return string.Empty;
         }
 
-        public string GetSuccessMessageLang(string key)
+        public string GetDialogTitleLocalization(string key)
         {
-            var existKey = Data.SuccessMessage.FirstOrDefault(c => c.Key == key);
+            var existKey = Data.DialogTitle.FirstOrDefault(c => c.Key == key);
             if (existKey != null)
             {
                 return existKey.Content;
@@ -57,17 +57,7 @@ namespace EzTask.Framework.Infrastructures
             return string.Empty;
         }
 
-        public string GetMessageTitleLang(string key)
-        {
-            var existKey = Data.MessageTitle.FirstOrDefault(c => c.Key == key);
-            if (existKey != null)
-            {
-                return existKey.Content;
-            }
-            return string.Empty;
-        }
-
-        public string GetDashboardPageLang(string key)
+        public string GetDashboardPageLocalization(string key)
         {
             var existKey = Data.DashboardPage.FirstOrDefault(c => c.Key == key);
             if (existKey != null)
@@ -77,9 +67,69 @@ namespace EzTask.Framework.Infrastructures
             return string.Empty;
         }     
 
-        public string GetProjectPageLang(string key)
+        public string GetProjectPageLocalization(string key)
         {
             var existKey = Data.ProjectPage.FirstOrDefault(c => c.Key == key);
+            if (existKey != null)
+            {
+                return existKey.Content;
+            }
+            return string.Empty;
+        }
+
+        public string GetTaskPageLocalization(string key)
+        {
+            var existKey = Data.TaskPage.FirstOrDefault(c => c.Key == key);
+            if (existKey != null)
+            {
+                return existKey.Content;
+            }
+            return string.Empty;
+        }
+
+        public string GetUserProfilePageLocalization(string key)
+        {
+            var existKey = Data.UserProfilePage.FirstOrDefault(c => c.Key == key);
+            if (existKey != null)
+            {
+                return existKey.Content;
+            }
+            return string.Empty;
+        }
+
+        public string GetBreadCrumbLocalization(string key)
+        {
+            var existKey = Data.BreadCrumb.FirstOrDefault(c => c.Key == key);
+            if (existKey != null)
+            {
+                return existKey.Content;
+            }
+            return string.Empty;
+        }
+
+        public string GetMainMenuLocalization(string key)
+        {
+            var existKey = Data.MainMenu.FirstOrDefault(c => c.Key == key);
+            if (existKey != null)
+            {
+                return existKey.Content;
+            }
+            return string.Empty;
+        }
+
+        public string GetAuthLocalization(string key)
+        {
+            var existKey = Data.Auth.FirstOrDefault(c => c.Key == key);
+            if (existKey != null)
+            {
+                return existKey.Content;
+            }
+            return string.Empty;
+        }
+
+        public string GetErrorPageLocalization(string key)
+        {
+            var existKey = Data.ErrorPage.FirstOrDefault(c => c.Key == key);
             if (existKey != null)
             {
                 return existKey.Content;

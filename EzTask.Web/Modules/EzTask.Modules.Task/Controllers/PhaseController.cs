@@ -1,4 +1,5 @@
 ﻿using EzTask.Framework.Common;
+using EzTask.Framework.Data;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
@@ -20,6 +21,12 @@ namespace EzTask.Modules.Task.Controllers
         {
         }
 
+        /// <summary>
+        /// Create phase view
+        /// </summary>
+        /// <param name="phaseId"></param>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("phase/generate-phase.html")]
         public async Task<IActionResult> GeneratePhaseView(int phaseId, int projectId)
@@ -47,6 +54,11 @@ namespace EzTask.Modules.Task.Controllers
             return PartialView("_CreateOrUpdatePhase", viewModel);
         }
 
+        /// <summary>
+        /// Phase action
+        /// </summary>
+        /// <param name="viewmodel"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("phase/phase-modal-action.html")]
         public async Task<IActionResult> CreateOrUpdatePhase(PhaseViewModel viewmodel)
@@ -69,7 +81,7 @@ namespace EzTask.Modules.Task.Controllers
 
             if (model.EndDate < model.StartDate)
             {
-                return BadRequest("End Date must be larger than Start Date");
+                return BadRequest(Context.GetStringResource("DateRange", StringResourceType.Error));
             }
 
             ResultModel<PhaseModel> iResult = await EzTask.Phase.Save(model);
@@ -78,9 +90,18 @@ namespace EzTask.Modules.Task.Controllers
                 return await LoadPhaseListAsync(model.ProjectId);
             }
 
-            return BadRequest("Cannot create phase, please try again!");
+            if(model.Id > 0)
+            {
+                return BadRequest(Context.GetStringResource("UpdatePhaseError", StringResourceType.TaskPage));
+            }
+            return BadRequest(Context.GetStringResource("CreatePhaseError", StringResourceType.TaskPage));
         }
 
+        /// <summary>
+        /// Load phase list
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("phase/phase-list.html")]
         public async Task<IActionResult> LoadPhaseListAsync(int projectId)
@@ -96,6 +117,11 @@ namespace EzTask.Modules.Task.Controllers
             return ViewComponent("PhaseList", projectId);
         }
 
+        /// <summary>
+        /// Delete phase
+        /// </summary>
+        /// <param name="phaseId"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("phase/delete-phase.html")]
         public async Task<IActionResult> RemovePhase(int phaseId)
@@ -106,7 +132,7 @@ namespace EzTask.Modules.Task.Controllers
             {
                 if (phase.IsDefault)
                 {
-                    return BadRequest("You cannot delete \"Open Features\"!.");
+                    return BadRequest(Context.GetStringResource("DeleteOpenFeatureWarning", StringResourceType.TaskPage));
                 }
                 ResultModel<bool> deleteTaskResult = await EzTask.Task.DeleteTask(phase.ProjectId, phaseId);
 
@@ -122,12 +148,16 @@ namespace EzTask.Modules.Task.Controllers
             }
             else
             {
-                return BadRequest("Phase doesn't exist!.");
+                return BadRequest(Context.GetStringResource("PhaseNotExist",  StringResourceType.TaskPage));
             }
 
-            return BadRequest("Error, cannot process your request!.");
+            return BadRequest(Context.GetStringResource("RequestFailed", StringResourceType.Error));
         }
 
+        /// <summary>
+        /// Render add phase button depends on context
+        /// </summary>
+        /// <returns></returns>
         [HttpPost]
         [Route("phase/generate-addbutton.html")]
         public async Task<IActionResult> RenderAddNewPhaseButton()

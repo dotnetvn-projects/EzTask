@@ -7,19 +7,19 @@
                 <button type="button" data-dismiss="modal" class="close" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <h4 class="modal-title">Assign task to user</h4>
+                <h4 class="modal-title">@Html.GetStringResource("AssignTaskToUser", StringResourceType.TaskPage)</h4>
             </div>
             <form class="form-horizontal">
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="selectAssignList" class="col-sm-3 control-label">Assign To</label>
+                        <label for="selectAssignList" class="col-sm-3 control-label">@Html.GetStringResource("AssignTo", StringResourceType.TaskPage)</label>
                         <div class="col-sm-9">
                             <select asp-for="Assignee" asp-items="@Model.AssigneeList" id="selectAssignList" class="form-control select2"></select>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary btn-confirm">Save</button>
+                    <button type="submit" class="btn btn-primary btn-confirm">@Html.GetStringResource("Save", StringResourceType.TaskPage)</button>
                 </div>
             </form>
         </div>

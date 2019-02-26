@@ -76,7 +76,10 @@ $.fn.Submit = function () {
                 data: $(form).serialize(),
                 success: submitSuccess,
                 error: function (xhr, textStatus, errorThrown) {
-
+                    $.alertDialog({
+                        title: $('#error-title').val(),
+                        content: xhr.responseText
+                    });
                 }
             });
         }
@@ -142,7 +145,8 @@ $.fn.deleteAttachment = function () {
             error: function (xhr, textStatus, errorThrown) {
                 $.hideLoading();
                 $.alertDialog({
-                    content: 'Error, cannot delete attachment!.'
+                    title: $('#error-title').val(),
+                    content: xhr.responseText
                 });
             }
         });
@@ -195,8 +199,8 @@ $.fn.showEdit = function () {
 function submitSuccess(response) {
     var currentId = $("#TaskId").val();
     if (currentId <= 0) {
-        var attachmentTab = "<li class=''><a href='#tab_attachment' data-toggle='tab' aria-expanded='false'>Attachment</a></li>";
-        var historyTab = "<li class=''><a href='#tab_history' data-toggle='tab' aria-expanded='false'>History</a></li>";
+        var attachmentTab = "<li class=''><a href='#tab_attachment' data-toggle='tab' aria-expanded='false'>" + $("#attatchment-tab").val() + "</a></li>";
+        var historyTab = "<li class=''><a href='#tab_history' data-toggle='tab' aria-expanded='false'>"+ $("#history-tab").val() +"</a></li>";
         $(".nav-tabs-custom ul").append(attachmentTab).append(historyTab);
 
         var attachmentContent = "<div class='tab-pane' id='tab_attachment'></div>";
@@ -221,7 +225,7 @@ function submitSuccess(response) {
     $(this).loadAttachment(currentId);
     $(this).loadHistory(currentId);
 
-    $("#task-modal .modal-title").html("Task '<b>" + response.data.taskTitle + "</b>'");
+    $("#task-modal .modal-title").html($("#task-title").val()+ " '<b>" + response.data.taskTitle + "</b>'");
 
     var phaseId = $("#phase-id").val();
     var projectId = $('.project-list').val();

@@ -26,7 +26,7 @@ namespace EzTask.Web
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            WebFramework.Register(services, Configuration, Environment);                                  
+            WebFramework.Register(services, Configuration, Environment);
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

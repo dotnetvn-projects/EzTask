@@ -19,7 +19,7 @@
     <None Remove="Views\Common\_WarningModal.cshtml" />
     <None Remove="Views\Shared\Components\NewNotificationList\Default.cshtml" />
     <None Remove="Views\Shared\Components\TaskNotificationList\Default.cshtml" />
-    <None Remove="Views\Shared\_ConfirmModal.cshtml" />
+    <None Remove="Views\Shared\_CommonMessage.cshtml" />
     <None Remove="Views\_ViewImports.cshtml" />
     <None Remove="Views\_ViewStart.cshtml" />
     <None Remove="wwwroot\css\site.css" />
@@ -74,10 +74,7 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
-    <Content Include="Views\Shared\_ConfirmModal.cshtml">
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-    <Content Include="Views\Shared\_WarningModal.cshtml">
+    <Content Include="Views\Shared\_CommonMessage.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>
     <Content Include="Views\Common\PageNotFound.cshtml">

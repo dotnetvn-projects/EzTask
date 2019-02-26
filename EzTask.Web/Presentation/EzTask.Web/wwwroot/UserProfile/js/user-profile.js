@@ -3,7 +3,7 @@
         var reader = new FileReader();
         reader.onload = function (e) {
             $('.img-avatar').attr('src', e.target.result);
-        }
+        };
         reader.readAsDataURL(input.target.files[0]);
     }
 }
@@ -24,14 +24,14 @@ $.fn.uploadAvatar = function () {
             success: function (response) {
                 window.location = "profile.html";
             },
-            error: function () {
-                $('#upload-avatar-modal .error-message').text('Error, EzTask cannot execute uploading image. Try again please !')
+            error: function (xhr) {
+                $('#upload-avatar-modal .error-message').text(xhr.responseText);
             }
         });
     });
-}
+};
 
-$(function () { 
+$(function () {
     $("#image-upload").change(readURL);
     $(".btn-upload-avatar").uploadAvatar();
-})
+});

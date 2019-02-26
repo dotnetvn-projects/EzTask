@@ -51,7 +51,7 @@ $.fn.phaseModalAction = function () {
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.alertDialog({
-                        title: 'Error',
+                        title: $('#error-title').val(),
                         content: xhr.responseText
                     });
                 }
@@ -67,8 +67,8 @@ $.fn.phaseModalAction = function () {
 $.fn.removePhase = function () {
     $(this).click(function () {
         $.confirmDialog({
-            title: 'Warning',
-            content: 'All tasks which related to this phase will be removed. Are you sure to continue?',
+            title: $('#warning-title').val(),
+            content: $('#remove-phase-warning').val(),
             action: function () {
                 $.showLoading();
                 $.ajax({
@@ -83,7 +83,7 @@ $.fn.removePhase = function () {
                         $.hideLoading();
 
                         $.alertDialog({
-                            title: 'Error',
+                            title: $('#error-title').val(),
                             content: xhr.responseText
                         });
                     }

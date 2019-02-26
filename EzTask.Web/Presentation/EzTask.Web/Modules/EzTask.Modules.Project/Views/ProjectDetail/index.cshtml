@@ -1,4 +1,8 @@
 ﻿@model ProjectViewModel
+@{ 
+    ViewBag.Title = "EzTask - " + string.Format(Html.GetStringResource("ProjectPageDetailTitle", StringResourceType.ProjectPage).ToString(), ViewBag.ProjectCode);
+}
+
 @section styles{
     <link rel="stylesheet" href="~/project/css/project.css">
 }
@@ -7,19 +11,19 @@
 }
 @section header{
     <h1>
-        Project: @Model.Project.ProjectName
-        <small>Project code: @Model.Project.ProjectCode</small>
+        @Html.GetStringResource("Project", StringResourceType.BreadCrumb): @Model.Project.ProjectName
+        <small>@Html.GetStringResource("ProjectCode", StringResourceType.BreadCrumb): @Model.Project.ProjectCode</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a asp-action="Index" asp-controller="Project">Project</a></li>
+        <li><a href="/"><i class="fa fa-dashboard"></i> @Html.GetStringResource("Dashboard", StringResourceType.BreadCrumb)</a></li>
+        <li><a asp-action="Index" asp-controller="Project">@Html.GetStringResource("Project", StringResourceType.BreadCrumb)</a></li>
         <li class="active">@Model.Project.ProjectCode</li>
     </ol>
 }
 
 <div class="box">
     <div class="box-header with-border">
-        <h3 class="box-title"><i class="fa fa-bandcamp text-green"></i> Project information</h3>
+        <h3 class="box-title"><i class="fa fa-bandcamp text-green"></i> @Html.GetStringResource("ProjectInformation", StringResourceType.ProjectPage)</h3>
 
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool"
@@ -31,22 +35,22 @@
     <div class="box-body">
         <div class="row">
             <div class="col-xs-4">
-                <p class="under-line-dot"><i class="fa fa-qrcode"> Project Code: @Model.Project.ProjectCode</i></p>
-                <p class="under-line-dot"> <i class="fa fa-book"> Project Name: @Model.Project.ProjectName</i></p>
-                <p class="under-line-dot"> <i class="fa fa-user-circle"> Manager: @Model.Project.Owner.DisplayName</i></p>
+                <p class="under-line-dot"><i class="fa fa-qrcode"> @Html.GetStringResource("ProjectCode", StringResourceType.ProjectPage): @Model.Project.ProjectCode</i></p>
+                <p class="under-line-dot"> <i class="fa fa-book"> @Html.GetStringResource("ProjectName", StringResourceType.ProjectPage): @Model.Project.ProjectName</i></p>
+                <p class="under-line-dot"> <i class="fa fa-user-circle"> @Html.GetStringResource("Manager", StringResourceType.ProjectPage): @Model.Project.Owner.DisplayName</i></p>
             </div>
             <div class="col-xs-4">
-                <p class="under-line-dot"><i class="fa fa-qrcode"> Total of phase: @Model.TotalPhase</i></p>
-                <p class="under-line-dot"><i class="fa fa-qrcode"> Total of task: @Model.TotalTask</i></p>
-                <p class="under-line-dot"><i class="fa fa-qrcode"> Total of member: @Model.TotalMember</i></p>
+                <p class="under-line-dot"><i class="fa fa-qrcode"> @Html.GetStringResource("TotalOfPhase", StringResourceType.ProjectPage): @Model.TotalPhase</i></p>
+                <p class="under-line-dot"><i class="fa fa-qrcode"> @Html.GetStringResource("TotalOfTask", StringResourceType.ProjectPage): @Model.TotalTask</i></p>
+                <p class="under-line-dot"><i class="fa fa-qrcode"> @Html.GetStringResource("TotalOfMember", StringResourceType.ProjectPage): @Model.TotalMember</i></p>
             </div>
             <div class="col-xs-4">
-                <p class="under-line-dot"><i class="fa fa-calendar-o"> Created date: @Model.Project.CreatedDate.ToString("dd/MM/yyy")</i></p>
+                <p class="under-line-dot"><i class="fa fa-calendar-o"> @Html.GetStringResource("CreatedDate", StringResourceType.ProjectPage): @Model.Project.CreatedDate.ToString("dd/MM/yyy")</i></p>
             </div>
         </div>
     </div>
     <div class="box-footer">
-        <i class="fa fa-circle text-green"></i><span class="space-left">Status: Project is @Model.Project.Status.ToString().ToLower()</span>
+        <i class="fa fa-circle text-green"></i><span class="space-left">@Html.GetStringResource("Status", StringResourceType.ProjectPage): @Html.GetStringResource("StatusTitle", StringResourceType.ProjectPage) @Model.Project.Status.ToString().ToLower()</span>
     </div>
 </div>
 
@@ -56,14 +60,14 @@
             <div class="info-box bg-light-blue">
                 <span class="info-box-icon"><i class="fa fa-thumbs-o-up"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Open Phases</span>
+                    <span class="info-box-text">@Html.GetStringResource("OpenPhases", StringResourceType.ProjectPage)</span>
                     <span class="info-box-number">@Model.TotalOpenPhase</span>
 
                     <div class="progress">
                         <div class="progress-bar" style="width: @Model.PercentOpenPhase%"></div>
                     </div>
                     <span class="progress-description">
-                        @Model.PercentOpenPhase% Take in @Html.PrintNumberWithText("Phase", Model.TotalPhase)
+                        @Model.PercentOpenPhase% @Html.GetStringResource("TakeIn", StringResourceType.ProjectPage) @Html.PrintNumberWithText(Html.GetStringResource("Phase", StringResourceType.ProjectPage).ToString(), Model.TotalPhase)
                     </span>
                 </div>
             </div>
@@ -72,14 +76,14 @@
             <div class="info-box bg-green">
                 <span class="info-box-icon"><i class="fa fa-check-circle"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Closed Phases</span>
+                    <span class="info-box-text">@Html.GetStringResource("ClosedPhases", StringResourceType.ProjectPage)</span>
                     <span class="info-box-number">@Model.TotalClosedPhase</span>
 
                     <div class="progress">
                         <div class="progress-bar" style="width: @Model.PercentClosedPhase%"></div>
                     </div>
                     <span class="progress-description">
-                        @Model.PercentClosedPhase% Take in @Html.PrintNumberWithText("Phase", Model.TotalPhase)
+                        @Model.PercentClosedPhase% @Html.GetStringResource("OpenPhases", StringResourceType.ProjectPage) @Html.PrintNumberWithText(Html.GetStringResource("Phase", StringResourceType.ProjectPage).ToString(), Model.TotalPhase)
                     </span>
                 </div>
             </div>
@@ -88,14 +92,14 @@
             <div class="info-box bg-red">
                 <span class="info-box-icon"><i class="fa fa-times-circle"></i></span>
                 <div class="info-box-content">
-                    <span class="info-box-text">Failed Phases</span>
+                    <span class="info-box-text">@Html.GetStringResource("FailedPhases", StringResourceType.ProjectPage)</span>
                     <span class="info-box-number">@Model.TotalFailedPhase</span>
 
                     <div class="progress">
                         <div class="progress-bar" style="width: @Model.PercentFailedPhase%"></div>
                     </div>
                     <span class="progress-description">
-                        @Model.PercentFailedPhase% Take in @Html.PrintNumberWithText("Phase", Model.TotalPhase)
+                        @Model.PercentFailedPhase% @Html.GetStringResource("OpenPhases", StringResourceType.ProjectPage) @Html.PrintNumberWithText(Html.GetStringResource("Phase", StringResourceType.ProjectPage).ToString(), Model.TotalPhase)
                     </span>
                 </div>
             </div>
@@ -112,7 +116,7 @@
             <div class="col-md-6">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Phase: @phaseName</h3>
+                        <h3 class="box-title">@Html.GetStringResource("Phase", StringResourceType.ProjectPage): @phaseName</h3>
                     </div>
                     <div class="box-body">
                         <table class="table table-bordered table-hover dataTable"
@@ -120,10 +124,10 @@
                             <thead>
                                 <tr role="row">
                                     <th width="10px">#</th>
-                                    <th>Task</th>
-                                    <th>Owner</th>
-                                    <th>Progress</th>
-                                    <th>Label</th>
+                                    <th>@Html.GetStringResource("Task", StringResourceType.ProjectPage)</th>
+                                    <th>@Html.GetStringResource("Owner", StringResourceType.ProjectPage)</th>
+                                    <th>@Html.GetStringResource("Progress", StringResourceType.ProjectPage)</th>
+                                    <th>@Html.GetStringResource("Label", StringResourceType.ProjectPage)</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -147,64 +151,64 @@
                                             <div title="current working at @percent of completion" class="progress progress-xs progress-striped active">
                                                 <div class="progress-bar progress-bar-success" style="width: @percent"></div>
                                             </div>
-                                            <span class="label text-black">@percent completed</span>
+                                            <span class="label text-black">@percent @Html.GetStringResource("Completed", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Closed)
                                         {
                                             <div title="100% completed" class="progress progress-xs progress-striped active">
                                                 <div class="progress-bar progress-bar-yellow" style="width: 100%"></div>
                                             </div>
-                                            <span class="label text-black">Completed</span>
+                                            <span class="label text-black">@Html.GetStringResource("Completed2", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Failed)
                                         {
-                                            <span class="label label-danger">Task is failed</span>
+                                            <span class="label label-danger">@Html.GetStringResource("TaskFailed", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Open)
                                         {
-                                            <span class="label bg-light-blue">Task is openning</span>
+                                            <span class="label bg-light-blue">@Html.GetStringResource("TaskOpenning", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Feedback)
                                         {
-                                            <span class="label bg-blue">Wait for feedback</span>
+                                            <span class="label bg-blue">@Html.GetStringResource("WaitFeedback", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Resovled)
                                         {
-                                            <span class="label bg-green">Need to be review</span>
+                                            <span class="label bg-green">@Html.GetStringResource("NeedReviewed", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Assiged)
                                         {
-                                            <span class="label bg-yellow">Wait for implementation</span>
+                                            <span class="label bg-yellow">@Html.GetStringResource("WaitImplementation", StringResourceType.ProjectPage)</span>
                                         }
                                     </td>
                                     <td class="text-center">
                                         @if (task.Status == TaskItemStatus.Working)
                                         {
-                                            <span class="badge bg-green">@task.Status</span>
+                                            <span class="badge bg-green">@Html.GetStringResource("WorkingStatus", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Closed)
                                         {
-                                            <span class="badge bg-yellow">@task.Status</span>
+                                            <span class="badge bg-yellow">@Html.GetStringResource("ClosedStatus", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Failed)
                                         {
-                                            <span class="badge bg-red">@task.Status</span>
+                                            <span class="badge bg-red">@Html.GetStringResource("FailedStatus", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Open)
                                         {
-                                            <span class="badge bg-light-blue">@task.Status</span>
+                                            <span class="badge bg-light-blue">@Html.GetStringResource("OpenStatus", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Feedback)
                                         {
-                                            <span class="badge bg-blue">@task.Status</span>
+                                            <span class="badge bg-blue">@Html.GetStringResource("FeedbackStatus", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Resovled)
                                         {
-                                            <span class="badge bg-green">@task.Status</span>
+                                            <span class="badge bg-green">@Html.GetStringResource("ResovledStatus", StringResourceType.ProjectPage)</span>
                                         }
                                         else if (task.Status == TaskItemStatus.Assiged)
                                         {
-                                            <span class="badge bg-yellow">@task.Status</span>
+                                            <span class="badge bg-yellow">@Html.GetStringResource("AssignedStatus", StringResourceType.ProjectPage)</span>
                                         }
                                     </td>
                                 </tr>

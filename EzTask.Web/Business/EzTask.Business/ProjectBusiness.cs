@@ -1,9 +1,15 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Framework.Infrastructures;
+using EzTask.Framework.IO;
+using EzTask.Framework.Security;
+using EzTask.Interface;
 using EzTask.Model;
 using EzTask.Model.Enum;
+using EzTask.Plugin.MessageService;
+using EzTask.Plugin.MessageService.Data.Email;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,10 +20,18 @@ namespace EzTask.Business
     public class ProjectBusiness : BusinessCore
     {
         private readonly TaskBusiness _task;
+        private readonly AccountBusiness _accountBusiness;
+        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IMessageCenter _mesageCenter;
+
         public ProjectBusiness(UnitOfWork unitOfWork,
-            TaskBusiness task) : base(unitOfWork)
+            TaskBusiness task, IWebHostEnvironment hostEnvironment,
+            IMessageCenter mesageCenter, AccountBusiness accountBusiness) : base(unitOfWork)
         {
             _task = task;
+            _hostEnvironment = hostEnvironment;
+            _mesageCenter = mesageCenter;
+            _accountBusiness = accountBusiness;
         }
 
         /// <summary>
@@ -120,6 +134,8 @@ namespace EzTask.Business
 
                 result.Data = model;
                 result.Status = ActionStatus.Ok;
+
+                
             }
 
             return result;
@@ -155,7 +171,7 @@ namespace EzTask.Business
         {
             ResultModel<bool> result = new ResultModel<bool>();
 
-            using (Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction transaction = UnitOfWork.Context.Database.BeginTransaction())
+            using (IDbContextTransaction transaction = UnitOfWork.Context.Database.BeginTransaction())
             {
                 try
                 {
@@ -179,7 +195,6 @@ namespace EzTask.Business
 
                         await UnitOfWork.CommitAsync();
                     }
-
                     transaction.Commit();
                     result.Status = ActionStatus.Ok;
                     result.Data = true;
@@ -189,7 +204,7 @@ namespace EzTask.Business
                     transaction.Rollback();
                     result.Status = ActionStatus.Failed;
                 }
-
+            
                 return result;
             }
         }
@@ -393,6 +408,48 @@ namespace EzTask.Business
                 .ToListAsync();
 
             return data;
+        }
+
+        //public async Task AcceptInvite(string data)
+        //{
+
+        //}
+
+        /// <summary>
+        /// Send an email to invite an user joins project
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <param name="memberId"></param>
+        /// <returns></returns>
+        public async Task SendInvitation(int projectId, int memberId, bool isNewMember, string title)
+        {
+            var emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
+                       + "/resources/templates/invite_email.html";
+            var member = await _accountBusiness.GetAccountInfo(memberId);
+            var project = await GetProject(projectId);
+            string password = string.Empty;
+
+            if(isNewMember)
+            {
+                emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
+                       + "/resources/templates/invite_new_email.html";
+
+                var hash = Cryptography.GetHashString(member.AccountName);
+                password = Decrypt.Do(member.Password, hash);
+            }
+
+            var emailContent = StreamIO.ReadFile(emailTemplateUrl);
+            emailContent = emailContent.Replace("{UserName}", member.DisplayName);
+            emailContent = emailContent.Replace("{Project}", project.ProjectName.ToUpper());
+            emailContent = emailContent.Replace("{Url}", "http://eztask.dotnetvn.com/accept-invite.html?ref=" + member.AccountName);
+            emailContent = emailContent.Replace("{Account}", member.AccountName);
+            emailContent = emailContent.Replace("{Password}", password);
+
+            _mesageCenter.Push(new EmailMessage {
+                Content = emailContent,
+                Title = title + " " + project.ProjectName.ToUpper(),
+                To = member.AccountName
+            });
         }
     }
 }

@@ -54,7 +54,6 @@ namespace EzTask.Modules.Core.Controllers
             };
         }
 
-
         #region Private
         private void InvokeComponents(IServiceProvider serviceProvider)
         {

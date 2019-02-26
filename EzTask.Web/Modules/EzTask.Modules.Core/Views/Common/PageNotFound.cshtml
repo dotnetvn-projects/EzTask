@@ -1,15 +1,19 @@
-﻿
+﻿@{
+    ViewData["Title"] = "EzTask - " + Html.GetStringResource("PageNotFoundTitle", StringResourceType.ErrorPage);
+}
+
+
 @section header{
     <h1>
-        Page not found
+        @Html.GetStringResource("PageNotFound", StringResourceType.BreadCrumb)
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="/"><i class="fa fa-dashboard"></i>  @Html.GetStringResource("Dashboard", StringResourceType.BreadCrumb)</a></li>
     </ol>
 }
 <div class="box box-primary">
     <div class="box-header with-border">
         <h3><i class="fa fa-frown-o"></i><span class="space-left">@Html.GetStringResource("PageNotFound", StringResourceType.Error)</span></h3>
-        <span>Click <a asp-action="Index" asp-controller="Home">here</a> to go back home page</span>
+        <span>@Html.GetStringResource("Click", StringResourceType.ErrorPage) <a asp-action="Index" asp-controller="Home">@Html.GetStringResource("Here", StringResourceType.ErrorPage)</a> @Html.GetStringResource("ToGoBackHomePage", StringResourceType.ErrorPage)</span>
     </div>
 </div>

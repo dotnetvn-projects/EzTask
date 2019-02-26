@@ -1,5 +1,7 @@
-﻿using EzTask.Model;
+﻿using EzTask.Framework.Data;
+using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
+using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -24,7 +26,7 @@ namespace EzTask.Modules.Task.Controllers
             var attachment = await EzTask.Task.GetAttachment(id);
             if (attachment == null)
             {
-                return Content("Invalid request");
+                return Content(Context.GetStringResource("InvalidRequest", StringResourceType.Error));
             }
 
             if(attachment.FileType.ToLower().Contains("image") || attachment.FileType.ToLower().Contains("pdf"))

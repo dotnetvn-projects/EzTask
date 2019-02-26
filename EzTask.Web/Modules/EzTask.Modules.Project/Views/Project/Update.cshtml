@@ -1,14 +1,17 @@
 ﻿
 @model ProjectModel
+@{ 
+    ViewBag.Title = string.Format("EzTask - " + Html.GetStringResource("UpdateProjectPageTitle", StringResourceType.ProjectPage).ToString(), ViewBag.ProjectCode);
+}
 @section header{
     <h1>
-        Project
-        <small>Update the project on EzTask</small>
+        @Html.GetStringResource("Project", StringResourceType.BreadCrumb)
+        <small>@Html.GetStringResource("UpdateProjectTitle", StringResourceType.BreadCrumb)</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li><a asp-action="Index" asp-controller="Project">Project</a></li>
-        <li class="active">Update</li>
+        <li><a href="/"><i class="fa fa-dashboard"></i> @Html.GetStringResource("Dashboard", StringResourceType.BreadCrumb)</a></li>
+        <li><a asp-action="Index" asp-controller="Project">@Html.GetStringResource("Project", StringResourceType.BreadCrumb)</a></li>
+        <li class="active">@Html.GetStringResource("UpdateProject", StringResourceType.BreadCrumb)</li>
     </ol>
 }
 @section styles{
@@ -26,7 +29,7 @@
             else
             {
                 <i class="fa fa-circle text-yellow"></i>
-                <h3 class="box-title">You're updating the project</h3>
+                <h3 class="box-title">@Html.GetStringResource("UpdatingProject", StringResourceType.ProjectPage)</h3>
             }
         }
     </div>

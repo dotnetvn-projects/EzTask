@@ -1,4 +1,8 @@
 ﻿@model TaskViewModel
+@{ 
+    ViewBag.Title = "EzTask - " + Html.GetStringResource("TaskPageTitle", StringResourceType.TaskPage);
+}
+
 @section styles{
     <link rel="stylesheet" href="~/themes/plugins/iCheck/flat/green.css">
     <link rel="stylesheet" href="~/task/css/task.css">
@@ -7,12 +11,12 @@
 
 @section header{
     <h1>
-        Task
-        <small>your current tasks</small>
+        @Html.GetStringResource("Task", StringResourceType.BreadCrumb)
+        <small>@Html.GetStringResource("TaskTitle", StringResourceType.BreadCrumb)</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="/"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Task</li>
+        <li><a href="/"><i class="fa fa-dashboard"></i> @Html.GetStringResource("Dashboard", StringResourceType.BreadCrumb)</a></li>
+        <li class="active">@Html.GetStringResource("Task", StringResourceType.BreadCrumb)</li>
     </ol>
 }
 
@@ -20,14 +24,14 @@
     <div class="col-md-3">
         <div class="box box-solid">
             <div class="box-header with-border">
-                <h3 class="box-title">Project</h3>
+                <h3 class="box-title">@Html.GetStringResource("Project", StringResourceType.TaskPage)</h3>
                 <div class="box-body no-padding">
                     <div class="project-box">
                         <select asp-items="@Model.ProjectItems" class="form-control select2 project-list"></select>
                         @if (Model.Project.Owner.AccountId == User.Identity.AccountId())
                         {
                             <a data-toggle="modal" class="btn btn-block btn-addnew-phase">
-                                <i class="fa fa-plus"></i> Add new phase
+                                <i class="fa fa-plus"></i> @Html.GetStringResource("AddNewPhase", StringResourceType.TaskPage)
                             </a>
                         }
                     </div>

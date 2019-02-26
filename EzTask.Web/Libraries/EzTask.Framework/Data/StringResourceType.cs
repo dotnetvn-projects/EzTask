@@ -8,10 +8,15 @@ namespace EzTask.Framework.Data
     {
         Common,
         Error,
-        Success,
-        MessageTitle,
-        Dashboard,
+        ErrorPage,
+        MainMenu,
+        BreadCrumb,
+        DialogTitle,
+        DashboardPage,
         ProjectPage,
-        Notification
+        TaskPage,
+        UserProfilePage,
+        Notification,
+        AuthenticationPage
     }
 }

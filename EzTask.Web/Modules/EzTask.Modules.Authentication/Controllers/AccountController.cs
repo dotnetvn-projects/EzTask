@@ -69,17 +69,17 @@ namespace EzTask.Modules.Authentication.Controllers
                     }
                     else
                     {
-                        ErrorMessage = Context.GetStringResource("AccountBlocked", StringResourceType.Error);
+                        ErrorMessage = Context.GetStringResource("AccountBlocked", StringResourceType.AuthenticationPage);
                     }
                 }
                 else
                 {
-                    ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.Error);
+                    ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.AuthenticationPage);
                 }
             }
             catch (Exception ex)
             {
-                ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.Error);
+                ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.AuthenticationPage);
             }
 
             return View();
@@ -112,7 +112,7 @@ namespace EzTask.Modules.Authentication.Controllers
             {
                 if (model.Password != model.PasswordTemp)
                 {
-                    ErrorMessage = Context.GetStringResource("ConfirmPasswordNotMatch", StringResourceType.Error);
+                    ErrorMessage = Context.GetStringResource("ConfirmPasswordNotMatch", StringResourceType.AuthenticationPage);
                 }
                 else
                 {
@@ -129,18 +129,18 @@ namespace EzTask.Modules.Authentication.Controllers
                                 return RedirectToAction("Login", "Account");
                             }
 
-                            ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.Error);
+                            ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.AuthenticationPage);
                         }
                         else
                         {
-                            ErrorMessage = Context.GetStringResource("AccountExisted", StringResourceType.Error);;
+                            ErrorMessage = Context.GetStringResource("AccountExisted", StringResourceType.AuthenticationPage);;
                         }
                     }
                 }
             }
             catch (Exception ex)
             {
-                ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.Error);
+                ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.AuthenticationPage);
             }
 
             return View();

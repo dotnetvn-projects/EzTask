@@ -1,10 +1,14 @@
-﻿@section header{
+﻿@{ 
+    ViewBag.Title = "EzTask - "+ Html.GetStringResource("DashboardPageTitle", StringResourceType.DashboardPage);
+}
+
+@section header{
     <h1>
-        Dashboard
-        <small>Control panel</small>
+        @Html.GetStringResource("Dashboard", StringResourceType.BreadCrumb)
+        <small>@Html.GetStringResource("ControlPanel", StringResourceType.BreadCrumb)</small>
     </h1>
     <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">Home</li>
+        <li><a href="#"><i class="fa fa-dashboard"></i> @Html.GetStringResource("Dashboard", StringResourceType.BreadCrumb)</a></li>
+        <li class="active">@Html.GetStringResource("Home", StringResourceType.BreadCrumb)</li>
     </ol>
 }

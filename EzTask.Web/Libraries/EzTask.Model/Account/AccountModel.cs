@@ -13,12 +13,12 @@ namespace EzTask.Model
 
         [Required, StringLength(maximumLength:50, MinimumLength = 6, 
             ErrorMessage = "Email must be a string between 6 and 50 characters")]
-        [EmailAddress]
+        [EmailAddress(ErrorMessage ="Email is wrong format")]
         [Display(Name ="Email")]
         public string AccountName { get; set; }
 
         [Required, StringLength(maximumLength: 50, MinimumLength = 6,
-            ErrorMessage = "Email must be a string between 6 and 50 characters")]
+            ErrorMessage = "Password must be a string between 6 and 50 characters")]
         public string Password { get; set; }
 
         public string FullName { get; set; }

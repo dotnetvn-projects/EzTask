@@ -7,7 +7,7 @@
         skills = Model.Skills.Split(",").ToList().SplitList(5);
     }
 }
-<strong><i class="fa fa-pencil margin-r-5"></i> Skills</strong>
+<strong><i class="fa fa-pencil margin-r-5"></i> @Html.GetStringResource("Skills", StringResourceType.UserProfilePage)</strong>
 <p>
     @foreach (var item in skills)
     {

@@ -15,16 +15,19 @@ namespace EzTask.Web.Framework.HttpContext
         private static SessionManager _sessionManager;
         private static CookiesManager _cookiesManager;
         private static IWebHostEnvironment _webHostEnvironment;
+        private static ILanguageLocalization _languageLocalization;
 
         public static void Configure(this IApplicationBuilder applicationBuilder,
             IHttpContextAccessor httpContextAccessor, IWebHostEnvironment webHostEnvironment,
-            SessionManager sessionManager, CookiesManager cookiesManager)
+            SessionManager sessionManager, CookiesManager cookiesManager,
+            ILanguageLocalization languageLocalization)
         {
             _httpContextAccessor = httpContextAccessor;
             CurrentAccount = new AccountContext(sessionManager);
             _cookiesManager = cookiesManager;
             _sessionManager = sessionManager;
             _webHostEnvironment = webHostEnvironment;
+            _languageLocalization = languageLocalization;
         }
 
         public static string GetRemoteIP
@@ -60,26 +63,7 @@ namespace EzTask.Web.Framework.HttpContext
         /// <param name="lang"></param>
         public static void SetLanguageLocalization(string lang)
         {
-            if (string.IsNullOrEmpty(lang))
-            {
-                lang = "lang-en.xml";
-            }
-
-            var langPath = _webHostEnvironment.GetRootContentUrl() + "/resources/languages/" + lang;
-
-            var mapper = new LocalizationMapper(langPath);
-
-            _sessionManager.SetObject(SessionKey.LanguageSetting, mapper);           
-        }
-
-        /// <summary>
-        /// Get language
-        /// </summary>
-        /// <returns></returns>
-        private static LocalizationMapper GetLanguageLocalization()
-        {
-            var data = _sessionManager.GetObject<LocalizationMapper>(SessionKey.LanguageSetting);
-            return data;
+            _languageLocalization.SetLocalization(lang);
         }
 
         /// <summary>
@@ -90,26 +74,7 @@ namespace EzTask.Web.Framework.HttpContext
         /// <returns></returns>
         public static string GetStringResource(string key, StringResourceType resourceType)
         {
-            var lang = GetLanguageLocalization();
-            switch (resourceType)
-            {
-                case StringResourceType.Common:
-                    return lang.GetCommonMessageLang(key);
-                case StringResourceType.Dashboard:
-                    return lang.GetDashboardPageLang(key);
-                case StringResourceType.Error:
-                    return lang.GetErrorMessageLang(key);
-                case StringResourceType.MessageTitle:
-                    return lang.GetMessageTitleLang(key);
-                case StringResourceType.ProjectPage:
-                    return lang.GetProjectPageLang(key);
-                case StringResourceType.Success:
-                    return lang.GetSuccessMessageLang(key);
-                case StringResourceType.Notification:
-                    return lang.GetNotificationMessageLang(key);
-            }
-
-            return string.Empty;            
+            return _languageLocalization.GetLocalization(key, resourceType);
         }
 
         /// <summary>

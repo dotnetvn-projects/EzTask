@@ -2,11 +2,30 @@
 <Localization>
   <Pattern>English</Pattern>
 
-  <CommonMessage>
+  <Common>
+    <Language>
+      <Key>Online</Key>
+      <Content>Online</Content>
+    </Language>
+    <Language>
+      <Key>AppTitle</Key>
+      <Content>EzTask Management</Content>
+    </Language>
+    <Language>
+      <Key>ShortAppTitle</Key>
+      <Content>EzTask</Content>
+    </Language>
     <Language>
       <Key>Search</Key>
       <Content>Search</Content>
     </Language>
+    <Language>
+      <Key>ControlPanel</Key>
+      <Content>Control panel</Content>
+    </Language>
+  </Common>
+
+  <MainMenu>
     <Language>
       <Key>Task</Key>
       <Content>Task</Content>
@@ -14,10 +33,6 @@
     <Language>
       <Key>Project</Key>
       <Content>Project</Content>
-    </Language>
-    <Language>
-      <Key>ControlPanel</Key>
-      <Content>Control panel</Content>
     </Language>
     <Language>
       <Key>Dashboard</Key>
@@ -31,47 +46,122 @@
       <Key>MainNavigation</Key>
       <Content>MAIN NAVIGATION</Content>
     </Language>
-    <Language>
-      <Key>ViewAll</Key>
-      <Content>View all</Content>
-    </Language>
-  </CommonMessage>
+  </MainMenu>
 
-  <MessageTitle>
+  <BreadCrumb>
+    <Language>
+      <Key>PageNotFound</Key>
+      <Content>Page Not Found</Content>
+    </Language>
+    <Language>
+      <Key>Dashboard</Key>
+      <Content>Dashboard</Content>
+    </Language>
+    <Language>
+      <Key>ControlPanel</Key>
+      <Content>Control panel</Content>
+    </Language>
+    <Language>
+      <Key>Home</Key>
+      <Content>Home</Content>
+    </Language>
+    <Language>
+      <Key>Project</Key>
+      <Content>Project</Content>
+    </Language>
+    <Language>
+      <Key>ProjectCode</Key>
+      <Content>Project code</Content>
+    </Language>
+    <Language>
+      <Key>UpdateProjectSuccess</Key>
+      <Content>Update success</Content>
+    </Language>
+    <Language>
+      <Key>UpdateProjectSuccessTitle</Key>
+      <Content>Update success a project on EzTask</Content>
+    </Language>
+    <Language>
+      <Key>UpdateProject</Key>
+      <Content>Update</Content>
+    </Language>
+    <Language>
+      <Key>UpdateProjectTitle</Key>
+      <Content>Update the project on EzTask</Content>
+    </Language>
+    <Language>
+      <Key>YourCurrentProject</Key>
+      <Content>Your current projects</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectSuccessTitle</Key>
+      <Content>Create success a project on EzTask</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectSuccess</Key>
+      <Content>Create success</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectTitle</Key>
+      <Content>Create new project on EzTask</Content>
+    </Language>
+    <Language>
+      <Key>CreateProject</Key>
+      <Content>Create new</Content>
+    </Language>
+    <Language>
+      <Key>Notification</Key>
+      <Content>Notification</Content>
+    </Language>
+    <Language>
+      <Key>NotificationTitle</Key>
+      <Content>Your current notify items</Content>
+    </Language>
+    <Language>
+      <Key>Task</Key>
+      <Content>Task</Content>
+    </Language>
+    <Language>
+      <Key>TaskTitle</Key>
+      <Content>Your current tasks</Content>
+    </Language>
+    <Language>
+      <Key>UserProfile</Key>
+      <Content>User Profile</Content>
+    </Language>
+    <Language>
+      <Key>ErrorTitle</Key>
+      <Content>Error</Content>
+    </Language>
+  </BreadCrumb>
+
+  <DialogTitle>
     <Language>
       <Key>Error</Key>
       <Content>Error!</Content>
     </Language>
     <Language>
+      <Key>Success</Key>
+      <Content>Success!</Content>
+    </Language>
+    <Language>
       <Key>Alert</Key>
       <Content>Alert!</Content>
     </Language>
-  </MessageTitle>
+    <Language>
+      <Key>Warning</Key>
+      <Content>Warning!</Content>
+    </Language>
+  </DialogTitle>
 
-  <ErrorMessage>
+  <Error>
     <Language>
-      <Key>AccountBlocked</Key>
-      <Content>Failed to login, your account is blocked</Content>
+      <Key>InvalidRequest</Key>
+      <Content>Invalid request!</Content>
     </Language>
     <Language>
-      <Key>LoginFailed</Key>
-      <Content>Failed to login, wrong email or password</Content>
-    </Language>
-    <Language>
-      <Key>ConfirmPasswordNotMatch</Key>
-      <Content>Value in "Retype Password" field doesn't match to your password, please re-type again</Content>
-    </Language>
-    <Language>
-      <Key>CreateAccountFailed</Key>
-      <Content>Sorry we cannot create account for you, please try again</Content>
-    </Language>
-    <Language>
-      <Key>AccountExisted</Key>
-      <Content>This email already registered, please choose an other email</Content>
-    </Language>
-    <Language>
-      <Key>AccountNotFound</Key>
-      <Content>Account {0} doesn't exist.</Content>
+      <Key>RequestFailed</Key>
+      <Content>Server is busy, cannot proceed your request!</Content>
     </Language>
     <Language>
       <Key>NotFound</Key>
@@ -82,31 +172,47 @@
       <Content>Ops! Something's wrong here, we cannot display information right now</Content>
     </Language>
     <Language>
-      <Key>CreateProjectError</Key>
-      <Content>Sorry we cannot create project for you, please try again !</Content>
+      <Key>ErrorMessage</Key>
+      <Content>Ops! Something's wrong here, cannot proceed your request</Content>
     </Language>
     <Language>
-      <Key>ProjectIsDupplicated</Key>
-      <Content>Project name was register by other user, please choose another name</Content>
+      <Key>EmailWrongFormat</Key>
+      <Content>Email is wrong format !</Content>
     </Language>
     <Language>
-      <Key>ErrorUpdateProject</Key>
-      <Content>Sorry we cannot update project for you, please try again !</Content>
+      <Key>DateRange</Key>
+      <Content>End Date must be greater than Start Date!</Content>
     </Language>
-  </ErrorMessage>
+  </Error>
 
-  <SuccessMessage>
+  <ErrorPage>
     <Language>
-      <Key>CreateProjectSuccess</Key>
-      <Content>Your project has been created !</Content>
+      <Key>PageNotFoundTitle</Key>
+      <Content>Page not found</Content>
     </Language>
     <Language>
-      <Key>UpdateProjectSuccess</Key>
-      <Content>Your project has been updated !</Content>
+      <Key>PageErrorTitle</Key>
+      <Content>Error</Content>
     </Language>
-  </SuccessMessage>
+    <Language>
+      <Key>Click</Key>
+      <Content>Click</Content>
+    </Language>
+    <Language>
+      <Key>Here</Key>
+      <Content>here</Content>
+    </Language>
+    <Language>
+      <Key>ToGoBackHomePage</Key>
+      <Content>to go back home page</Content>
+    </Language>
+  </ErrorPage>
 
   <Notification>
+    <Language>
+      <Key>NotificationPageTitle</Key>
+      <Content>Notification</Content>
+    </Language>
     <Language>
       <Key>AddNewTask</Key>
       <Content>created new task</Content>
@@ -143,20 +249,793 @@
       <Key>TaskNotificationCountPlural</Key>
       <Content>You have {0} tasks</Content>
     </Language>
+    <Language>
+      <Key>ViewAll</Key>
+      <Content>View all</Content>
+    </Language>
+    <Language>
+      <Key>GaveNotification</Key>
+      <Content>gave a notification</Content>
+    </Language>
+    <Language>
+      <Key>ReadMore</Key>
+      <Content>Read more</Content>
+    </Language>
+    <Language>
+      <Key>Delete</Key>
+      <Content>Delete</Content>
+    </Language>
+    <Language>
+      <Key>NotifcationList</Key>
+      <Content>Notifcation list</Content>
+    </Language>
   </Notification>
 
   <DashboardPage>
     <Language>
-      <Key>ưefwe</Key>
-      <Content>èwefwe</Content>
+      <Key>DashboardPageTitle</Key>
+      <Content>Home</Content>
     </Language>
   </DashboardPage>
 
+  <AuthenticationPage>
+    <Language>
+      <Key>AccountBlocked</Key>
+      <Content>Failed to login, your account is blocked</Content>
+    </Language>
+    <Language>
+      <Key>LoginFailed</Key>
+      <Content>Failed to login, wrong email or password</Content>
+    </Language>
+    <Language>
+      <Key>ConfirmPasswordNotMatch</Key>
+      <Content>Value in "Retype Password" field doesn't match to your password, please re-type again</Content>
+    </Language>
+    <Language>
+      <Key>CreateAccountFailed</Key>
+      <Content>Sorry we cannot create account for you, please try again</Content>
+    </Language>
+    <Language>
+      <Key>AccountExisted</Key>
+      <Content>This email already registered, please choose an other email</Content>
+    </Language>
+    <Language>
+      <Key>SignInTitle</Key>
+      <Content>Sign in to start your session</Content>
+    </Language>
+    <Language>
+      <Key>Email</Key>
+      <Content>Email</Content>
+    </Language>
+    <Language>
+      <Key>Password</Key>
+      <Content>Password</Content>
+    </Language>
+    <Language>
+      <Key>RememberMe</Key>
+      <Content>Remember Me</Content>
+    </Language>
+    <Language>
+      <Key>SignIn</Key>
+      <Content>Sign In</Content>
+    </Language>
+    <Language>
+      <Key>ForgotPassword</Key>
+      <Content>I forgot my password</Content>
+    </Language>
+    <Language>
+      <Key>Register</Key>
+      <Content>Register a new membership</Content>
+    </Language>
+    <Language>
+      <Key>LoginPageTitle</Key>
+      <Content>Login</Content>
+    </Language>
+    <Language>
+      <Key>RegisterPageTitle</Key>
+      <Content>Register a new membership</Content>
+    </Language>
+    <Language>
+      <Key>FullName</Key>
+      <Content>Full name</Content>
+    </Language>
+    <Language>
+      <Key>Password</Key>
+      <Content>Password</Content>
+    </Language>
+    <Language>
+      <Key>RetypePassword</Key>
+      <Content>Retype password</Content>
+    </Language>
+    <Language>
+      <Key>AgreeTerm</Key>
+      <Content>I agree to the</Content>
+    </Language>
+    <Language>
+      <Key>Term</Key>
+      <Content>Terms</Content>
+    </Language>
+    <Language>
+      <Key>RegisterSubmit</Key>
+      <Content>Register</Content>
+    </Language>
+    <Language>
+      <Key>AlreadyHaveAccount</Key>
+      <Content>I already have a membership</Content>
+    </Language>
+  </AuthenticationPage>
+
   <ProjectPage>
     <Language>
-      <Key>ưefwe</Key>
-      <Content>fwefwe</Content>
+      <Key>ProjectPageTitle</Key>
+      <Content>Project List</Content>
+    </Language>
+    <Language>
+      <Key>ProjectPageDetailTitle</Key>
+    <Content>Project: {0}</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectPageTitle</Key>
+      <Content>Create new project</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectSuccessPageTitle</Key>
+      <Content>Creating project is successful</Content>
+    </Language>
+    <Language>
+      <Key>UpdateProjectPageTitle</Key>
+      <Content>Update project: {0}</Content>
+    </Language>
+    <Language>
+      <Key>UpdateProjectSuccessPageTitle</Key>
+      <Content>Updating project is successful</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectError</Key>
+      <Content>Sorry we cannot create project for you, please try again !</Content>
+    </Language>
+    <Language>
+      <Key>ProjectIsDupplicated</Key>
+      <Content>Project name was register by other user, please choose another name</Content>
+    </Language>
+    <Language>
+      <Key>ErrorUpdateProject</Key>
+      <Content>Sorry we cannot update project for you, please try again!</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectSuccess</Key>
+      <Content>Your project has been created !</Content>
+    </Language>
+    <Language>
+      <Key>UpdateProjectSuccess</Key>
+      <Content>Your project has been updated !</Content>
+    </Language>
+    <Language>
+      <Key>AddedAccount</Key>
+      <Content>Account existed in this project already!</Content>
+    </Language>
+    <Language>
+      <Key>AddMemberSuccess</Key>
+      <Content>Your invitation has been sent to {0}, you have to wait for accepting from this member !</Content>
+    </Language>
+    <Language>
+      <Key>InviteTitleEmail</Key>
+      <Content>EzTask - The invite letter for joining project</Content>
+    </Language>
+    <Language>
+      <Key>InvitePending</Key>
+      <Content>Pending for accepting</Content>
+    </Language>
+    <Language>
+      <Key>MemberList</Key>
+      <Content>member list</Content>
+    </Language>
+    <Language>
+      <Key>ViewDetail</Key>
+      <Content>View Detail</Content>
+    </Language>
+    <Language>
+      <Key>CreatedDate</Key>
+      <Content>Created date</Content>
+    </Language>
+    <Language>
+      <Key>CreatedDateTitle</Key>
+      <Content>Project was created at</Content>
+    </Language>
+    <Language>
+      <Key>Owner</Key>
+      <Content>Owner</Content>
+    </Language>
+    <Language>
+      <Key>ProjectOwnerTitle</Key>
+      <Content>is owner of project</Content>
+    </Language>
+    <Language>
+      <Key>ProjectDescription</Key>
+      <Content>Project Description</Content>
+    </Language>
+    <Language>
+      <Key>ProjectName</Key>
+      <Content>Project Name</Content>
+    </Language>
+    <Language>
+      <Key>ProjectCode</Key>
+      <Content>Project Code</Content>
+    </Language>
+    <Language>
+      <Key>ProjectInformation</Key>
+      <Content>Project information</Content>
+    </Language>
+    <Language>
+      <Key>Manager</Key>
+      <Content>Manager</Content>
+    </Language>
+    <Language>
+      <Key>TotalOfPhase</Key>
+      <Content>Total of phase</Content>
+    </Language>
+    <Language>
+      <Key>TotalOfTask</Key>
+      <Content>Total of task</Content>
+    </Language>
+    <Language>
+      <Key>TotalOfMember</Key>
+      <Content>Total of member</Content>
+    </Language>
+    <Language>
+      <Key>Status</Key>
+      <Content>Status</Content>
+    </Language>
+    <Language>
+      <Key>StatusTitle</Key>
+      <Content>Project is</Content>
+    </Language>
+    <Language>
+      <Key>OpenPhases</Key>
+      <Content>Open Phases</Content>
+    </Language>
+    <Language>
+      <Key>ClosedPhases</Key>
+      <Content>Closed Phases</Content>
+    </Language>
+    <Language>
+      <Key>FailedPhases</Key>
+      <Content>Failed Phases</Content>
+    </Language>
+    <Language>
+      <Key>TakeIn</Key>
+      <Content>take in</Content>
+    </Language>
+    <Language>
+      <Key>Phase</Key>
+      <Content>Phase</Content>
+    </Language>
+    <Language>
+      <Key>Task</Key>
+      <Content>Task</Content>
+    </Language>
+    <Language>
+      <Key>Progress</Key>
+      <Content>Progress</Content>
+    </Language>
+    <Language>
+      <Key>Label</Key>
+      <Content>Label</Content>
+    </Language>
+    <Language>
+      <Key>Completed</Key>
+      <Content>completed</Content>
+    </Language>
+    <Language>
+      <Key>Complete2</Key>
+      <Content>Completed</Content>
+    </Language>
+    <Language>
+      <Key>TaskFailed</Key>
+      <Content>Task is failed</Content>
+    </Language>
+    <Language>
+      <Key>TaskOpenning</Key>
+      <Content>Task is openning</Content>
+    </Language>
+    <Language>
+      <Key>WaitFeedback</Key>
+      <Content>Wait for feedback</Content>
+    </Language>
+    <Language>
+      <Key>NeedReviewed</Key>
+      <Content>Need to be reviewed</Content>
+    </Language>
+    <Language>
+      <Key>WaitImplementation</Key>
+      <Content>Wait for implementation</Content>
+    </Language>
+    <Language>
+      <Key>WorkingStatus</Key>
+      <Content>Working</Content>
+    </Language>
+    <Language>
+      <Key>ClosedStatus</Key>
+      <Content>Closed</Content>
+    </Language>
+    <Language>
+      <Key>FailedStatus</Key>
+      <Content>Failed</Content>
+    </Language>
+    <Language>
+      <Key>OpenStatus</Key>
+      <Content>Open</Content>
+    </Language>
+    <Language>
+      <Key>FeedbackStatus</Key>
+      <Content>Feedback</Content>
+    </Language>
+    <Language>
+      <Key>ResovledStatus</Key>
+      <Content>Resovled</Content>
+    </Language>
+    <Language>
+      <Key>AssigedStatus</Key>
+      <Content>Assiged</Content>
+    </Language>
+    <Language>
+      <Key>Click</Key>
+      <Content>Click</Content>
+    </Language>
+    <Language>
+      <Key>Here</Key>
+      <Content>here</Content>
+    </Language>
+    <Language>
+      <Key>GoBackProjectListTitle</Key>
+      <Content>to go back project list</Content>
+    </Language>
+    <Language>
+      <Key>UpdatingProject</Key>
+      <Content>You're updating the project</Content>
+    </Language>
+    <Language>
+      <Key>CountProjectSingle</Key>
+      <Content>You have {0} project</Content>
+    </Language>
+    <Language>
+      <Key>CountProjectPlural</Key>
+      <Content>You have {0} projects</Content>
+    </Language>
+    <Language>
+      <key>CreateNew</key>
+      <Content>Create new</Content>
+    </Language>
+    <Language>
+      <Key>StatusColor</Key>
+      <Content>Status Color</Content>
+    </Language>
+    <Language>
+      <Key>Pending</Key>
+      <Content>Pending</Content>
+    </Language>
+    <Language>
+      <Key>Completed</Key>
+      <Content>Completed</Content>
+    </Language>
+    <Language>
+      <Key>Cancel</Key>
+      <Content>Cancel</Content>
+    </Language>
+    <Language>
+      <Key>Failed</Key>
+      <Content>Failed</Content>
+    </Language>
+    <Language>
+      <Key>Implementing</Key>
+      <Content>Implementing</Content>
+    </Language>
+    <Language>
+      <Key>NoProject</Key>
+      <Content>Ops! There is nothing to display right now</Content>
+    </Language>
+    <Language>
+      <Key>CreateProjectTitle</Key>
+      <Content>to create a new project</Content>
+    </Language>
+    <Language>
+      <Key>AddNewMemberTitle</Key>
+      <Content>Add new member</Content>
+    </Language>
+    <Language>
+      <Key>TypeEmailTitle</Key>
+      <Content>Type email of member and hit enter</Content>
+    </Language>
+    <Language>
+      <Key>Add</Key>
+      <Content>Add</Content>
+    </Language>
+    <Language>
+      <Key>CreatingProject</Key>
+      <Content>You're creating a new project</Content>
+    </Language>
+    <Language>
+      <Key>EnterProjectName</Key>
+      <Content>Enter project name</Content>
+    </Language>
+    <Language>
+      <Key>Description</Key>
+      <Content>Description</Content>
+    </Language>
+    <Language>
+      <Key>YourProjectInformation</Key>
+      <Content>Your project information</Content>
+    </Language>
+    <Language>
+      <Key>Note</Key>
+      <Content>Note</Content>
+    </Language>
+    <Language>
+      <Key>ProjectNote</Key>
+      <Content>Currently your project is pending now so please go to project detail page and change your project status</Content>
+    </Language>
+    <Language>
+      <Key>ProjectStatus</Key>
+      <Content>Project Status</Content>
+    </Language>
+    <Language>
+      <Key>Submit</Key>
+      <Content>Submit</Content>
+    </Language>
+    <Language>
+      <Key>Has</Key>
+      <Content>has</Content>
+    </Language>
+    <Language>
+      <Key>Edit</Key>
+      <Content>Edit</Content>
+    </Language>
+    <Language>
+      <Key>Delete</Key>
+      <Content>Delete</Content>
     </Language>
   </ProjectPage>
+
+  <TaskPage>
+    <Language>
+      <Key>TaskPageTitle</Key>
+      <Content>Task List</Content>
+    </Language>
+    <Language>
+      <Key>RemovePhaseWarning</Key>
+      <Content>All tasks which related to this phase will be removed. Are you sure to continue?</Content>
+    </Language>
+    <Language>
+      <Key>NoTaskSelectedDeleteWarning</Key>
+      <Content>No item to delete, please select at least 1 item.</Content>
+    </Language>
+    <Language>
+      <Key>NoTaskSelectedWarning</Key>
+      <Content>No item selected, please select at least 1 item.</Content>
+    </Language>
+    <Language>
+      <Key>DeleteTaskWarning</Key>
+      <Content>Are you sure you wanna delete this task?</Content>
+    </Language>
+    <Language>
+      <Key>PhaseNotExist</Key>
+      <Content>Phase doesn't exist!.</Content>
+    </Language>
+    <Language>
+      <Key>CreatePhaseError</Key>
+      <Content>Cannot create phase, please try again!</Content>
+    </Language>
+    <Language>
+      <Key>UpdatePhaseError</Key>
+      <Content>Cannot updaye phase, please try again!</Content>
+    </Language>
+    <Language>
+      <Key>DeleteOpenFeatureWarning</Key>
+      <Content>You cannot delete "Open Features"!.</Content>
+    </Language>
+    <Language>
+      <Key>Project</Key>
+      <Content>Project</Content>
+    </Language>
+    <Language>
+      <Key>AddNewPhase</Key>
+      <Content>Add new phase</Content>
+    </Language>
+    <Language>
+      <Key>TaskLabel</Key>
+      <Content>Task Labels</Content>
+    </Language>
+    <Language>
+      <Key>Open</Key>
+      <Content>Open</Content>
+    </Language>
+    <Language>
+      <Key>WaitForFeedBack</Key>
+      <Content>Wait for feedback</Content>
+    </Language>
+    <Language>
+      <Key>Assiged</Key>
+      <Content>Assiged</Content>
+    </Language>
+    <Language>
+      <Key>Working</Key>
+      <Content>Working</Content>
+    </Language>
+    <Language>
+      <Key>Resovled</Key>
+      <Content>Resovled</Content>
+    </Language>
+    <Language>
+      <Key>Failed</Key>
+      <Content>Failed</Content>
+    </Language>
+    <Language>
+      <Key>Closed</Key>
+      <Content>Closed</Content>
+    </Language>
+    <Language>
+      <Key>Close</Key>
+      <Content>Close</Content>
+    </Language>
+    <Language>
+      <Key>CreateNewTask</Key>
+      <Content>Create new task</Content>
+    </Language>
+    <Language>
+      <Key>TaskTitle</Key>
+      <Content>Task Title</Content>
+    </Language>
+    <Language>
+      <Key>Task</Key>
+      <Content>Task</Content>
+    </Language>
+    <Language>
+      <Key>PhaseAndPriority</Key>
+      <Content>Phase / Priority</Content>
+    </Language>
+    <Language>
+      <Key>Status</Key>
+      <Content>Status</Content>
+    </Language>
+    <Language>
+      <Key>AssignTo</Key>
+      <Content>Assign To</Content>
+    </Language>
+    <Language>
+      <Key>PercentComplete</Key>
+      <Content>Percent complete</Content>
+    </Language>
+    <Language>
+      <Key>Detail</Key>
+      <Content>Details</Content>
+    </Language>
+    <Language>
+      <Key>Attachment</Key>
+      <Content>Attachment</Content>
+    </Language>
+    <Language>
+      <Key>History</Key>
+      <Content>History</Content>
+    </Language>
+    <Language>
+      <Key>Save</Key>
+      <Content>Save</Content>
+    </Language>
+    <Language>
+      <Key>EditPhase</Key>
+      <Content>Edit phase</Content>
+    </Language>
+    <Language>
+      <Key>PhaseName</Key>
+      <Content>Phase Name</Content>
+    </Language>
+    <Language>
+      <Key>StartDate</Key>
+      <Content>Start date</Content>
+    </Language>
+    <Language>
+      <Key>EndDate</Key>
+      <Content>End date</Content>
+    </Language>
+    <Language>
+      <Key>Submit</Key>
+      <Content>Submit</Content>
+    </Language>
+    <Language>
+      <Key>AssignTaskToUser</Key>
+      <Content>Assign task to user</Content>
+    </Language>
+    <Language>
+      <Key>EditPhase</Key>
+      <Content>Edit phase</Content>
+    </Language>
+    <Language>
+      <Key>RemovePhase</Key>
+      <Content>Remove phase</Content>
+    </Language>
+    <Language>
+      <Key>SearchTask</Key>
+      <Content>Search task</Content>
+    </Language>
+    <Language>
+      <Key>Delete</Key>
+      <Content>Delete</Content>
+    </Language>
+    <Language>
+      <Key>AddNewTask</Key>
+      <Content>Add new task</Content>
+    </Language>
+    <Language>
+      <Key>AssignTask</Key>
+      <Content>Assign task</Content>
+    </Language>
+    <Language>
+      <Key>Refresh</Key>
+      <Content>Refresh</Content>
+    </Language>
+    <Language>
+      <Key>NoTask</Key>
+      <Content>No content to display</Content>
+    </Language>
+    <Language>
+      <Key>Phases</Key>
+      <Content>Phases</Content>
+    </Language>
+    <Language>
+      <Key>ViewDetail</Key>
+      <Content>View details</Content>
+    </Language>
+    <Language>
+      <Key>Attachment</Key>
+      <Content>Attachments</Content>
+    </Language>
+    <Language>
+      <Key>CountAttachmentItems</Key>
+      <Content>There are {0} attached items</Content>
+    </Language>
+    <Language>
+      <Key>CountAttachmentItem</Key>
+      <Content>There is {0} attached item</Content>
+    </Language>
+    <Language>
+      <Key>EmptyAttachment</Key>
+      <Content>There are not any attached items</Content>
+    </Language>
+    <Language>
+      <Key>UploadFile</Key>
+      <Content>Upload file</Content>
+    </Language>
+    <Language>
+      <Key>Files</Key>
+      <Content>Files</Content>
+    </Language>
+    <Language>
+      <Key>CreatedTask</Key>
+      <Content>created task</Content>
+    </Language>
+    <Language>
+      <Key>UpdatedTask</Key>
+      <Content>updated task</Content>
+    </Language>
+    <Language>
+      <Key>Code</Key>
+      <Content>Code</Content>
+    </Language>
+    <Language>
+      <Key>UploadedFile</Key>
+      <Content>uploaded file</Content>
+    </Language>
+    <Language>
+      <Key>AttatchmentTab</Key>
+      <Content>Attachment</Content>
+    </Language>
+    <Language>
+      <Key>HistoryTab</Key>
+      <Content>History</Content>
+    </Language>
+  </TaskPage>
+
+  <UserProfilePage>
+    <Language>
+      <Key>UserProfile</Key>
+      <Content>Your Profile</Content>
+    </Language>
+    <Language>
+      <Key>PublicUserProfile</Key>
+      <Content>Profile: {0}</Content>
+    </Language>
+    <Language>
+      <Key>Skills</Key>
+      <Content>Skills</Content>
+    </Language>
+    <Language>
+      <Key>JobTitle</Key>
+      <Content>Job Title</Content>
+    </Language>
+    <Language>
+      <Key>AboutMe</Key>
+      <Content>About Me</Content>
+    </Language>
+    <Language>
+      <Key>Education</Key>
+      <Content>Education</Content>
+    </Language>
+    <Language>
+      <Key>Location</Key>
+      <Content>Location</Content>
+    </Language>
+    <Language>
+      <Key>SummaryInfo</Key>
+      <Content>Summary Info</Content>
+    </Language>
+    <Language>
+      <Key>AboutYou</Key>
+      <Content>About you</Content>
+    </Language>
+    <Language>
+      <Key>PersonalInformation</Key>
+      <Content>Personal Information</Content>
+    </Language>
+    <Language>
+      <Key>Name</Key>
+      <Content>Name</Content>
+    </Language>
+    <Language>
+      <Key>NickName</Key>
+      <Content>Nick Name</Content>
+    </Language>
+    <Language>
+      <Key>YourNickName</Key>
+      <Content>Your nick name</Content>
+    </Language>
+    <Language>
+      <Key>Email</Key>
+      <Content>Email</Content>
+    </Language>
+    <Language>
+      <Key>PhoneNumber</Key>
+      <Content>Phone Number</Content>
+    </Language>
+    <Language>
+      <Key>DayOfBirth</Key>
+      <Content>Day Of Birth</Content>
+    </Language>
+    <Language>
+      <Key>Address1</Key>
+      <Content>Address 1</Content>
+    </Language>
+    <Language>
+      <Key>Address2</Key>
+      <Content>Address 2</Content>
+    </Language>
+    <Language>
+      <Key>AgreePublishProfile</Key>
+      <Content>I agree to publish my profile to everyone</Content>
+    </Language>
+    <Language>
+      <Key>SkillExample</Key>
+      <Content>Example: Management, Coding, C#, Java</Content>
+    </Language>
+    <Language>
+      <Key>UploadAvatar</Key>
+      <Content>Update Avatar</Content>
+    </Language>
+    <Language>
+      <Key>UserProfilePicture</Key>
+      <Content>User profile picture</Content>
+    </Language>
+    <Language>
+      <Key>UploadAvatarError</Key>
+      <Content>Error, cannot upload your image!</Content>
+    </Language>
+    <Language>
+      <Key>Accept</Key>
+      <Content>Accept</Content>
+    </Language>
+    <Language>
+      <Key>Submit</Key>
+      <Content>Submit</Content>
+    </Language>
+  </UserProfilePage>
 
 </Localization>

@@ -26,9 +26,6 @@ namespace EzTask.Framework.Infrastructures
 
         public static AccountInfoModel ToModel(this AccountInfo entity)
         {
-            if (entity == null)
-                return new AccountInfoModel();
-
             return FrameworkCore.Mapper.Map<AccountInfoModel>(entity);
         }
 
@@ -42,17 +39,11 @@ namespace EzTask.Framework.Infrastructures
 
         public static ProjectModel ToModel(this Project entity)
         {
-            if (entity == null)
-                return null;
-
             return FrameworkCore.Mapper.Map<ProjectModel>(entity);
         }
 
         public static Project ToEntity(this ProjectModel model)
         {
-            if (model == null)
-                return null;
-
             return FrameworkCore.Mapper.Map<Project>(model);
         }
 
@@ -96,17 +87,11 @@ namespace EzTask.Framework.Infrastructures
         #region Phase Mapper
         public static PhaseModel ToModel(this Phase entity)
         {
-            if (entity == null)
-                return null;
-
             return FrameworkCore.Mapper.Map<PhaseModel>(entity);
         }
 
         public static Phase ToEntity(this PhaseModel model)
         {
-            if (model == null)
-                return null;
-
             return FrameworkCore.Mapper.Map<Phase>(model);
         }
 
@@ -119,17 +104,11 @@ namespace EzTask.Framework.Infrastructures
         #region Task Mapper
         public static TaskItemModel ToModel(this TaskItem entity)
         {
-            if (entity == null)
-                return null;
-
             return FrameworkCore.Mapper.Map<TaskItemModel>(entity);
         }
 
         public static TaskItem ToEntity(this TaskItemModel model)
         {
-            if (model == null)
-                return null;
-
             return FrameworkCore.Mapper.Map<TaskItem>(model);
         }
 

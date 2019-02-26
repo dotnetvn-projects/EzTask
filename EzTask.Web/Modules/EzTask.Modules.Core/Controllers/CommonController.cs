@@ -1,14 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Threading.Tasks;
-using EzTask.Model;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.HttpContext;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using IO = EzTask.Framework.IO.FileIO;
+
 namespace EzTask.Modules.Core.Controllers
 {
     [TypeFilter(typeof(AuthenAttribute))]
@@ -59,14 +57,12 @@ namespace EzTask.Modules.Core.Controllers
         }
 
         [Route("not-found.html")]
-        [PageTitle("Page not found")]
         public IActionResult PageNotFound()
         {
             return View();
         }
 
         [Route("error.html")]
-        [PageTitle("Page not found")]
         public IActionResult Error()
         {
             return View();

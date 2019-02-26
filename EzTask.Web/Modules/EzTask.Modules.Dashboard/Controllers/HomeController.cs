@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
+using EzTask.Plugin.MessageService;
+using EzTask.Plugin.MessageService.Data.Email;
 
 namespace EzTask.Modules.Dashboard.Controllers
 {
@@ -10,10 +12,9 @@ namespace EzTask.Modules.Dashboard.Controllers
     {
         public HomeController(IServiceProvider serviceProvider) : 
             base(serviceProvider)
-        {                
+        {
         }
-
-        [PageTitle("Home")]      
+    
         public IActionResult Index()
         {
             return View();

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EzTask.Framework.Data;
 using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
@@ -23,10 +24,9 @@ namespace EzTask.Modules.UserProfile.Controllers
         /// <param name="accountName"></param>
         /// <returns></returns>
         [Route("public-profile.html")]
-        [PageTitle("Profile - ")]
         public async Task<IActionResult> PublicProfile(string account)
         {
-            PageTitleAttribute.CombineWith(this, account);
+            ViewBag.Account = account;
             var profileData = await GetAccountInfo();
             return View(profileData);
         }
@@ -36,7 +36,6 @@ namespace EzTask.Modules.UserProfile.Controllers
         /// </summary>
         /// <returns></returns>
         [Route("profile.html")]
-        [PageTitle("Profile")]
         public async Task<IActionResult> Profile()
         {
             var profileData = await GetAccountInfo();
@@ -75,7 +74,7 @@ namespace EzTask.Modules.UserProfile.Controllers
                 var result = await EzTask.Account.UpdateAvatar(Context.CurrentAccount.AccountId, stream);
                 return Ok();
             }
-            return BadRequest();
+            return BadRequest(Context.GetStringResource("UploadAvatarError", StringResourceType.UserProfilePage));
         }
 
         #region Non-Action

@@ -33,8 +33,10 @@ namespace EzTask.Web.Framework.Attributes
                         Context.SetLanguageLocalization(cookieUser.Language);
                     }
                 }
+                
                 if (Context.CurrentAccount.AccountId <=0)
                 {
+                    Context.SetLanguageLocalization("");
                     var returnUrl = context.HttpContext.Request.GetEncodedUrl();
                     context.Result = new RedirectToActionResult("Login", "Account", new { redirect = returnUrl });
                 }

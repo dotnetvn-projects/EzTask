@@ -4,11 +4,11 @@
         <form role="form">
             <div class="box-body">
                 <div class="form-group">
-                    <label for="projectName">Project Name</label>
-                    <input asp-for="ProjectName" class="form-control" id="projectName" placeholder="Enter project name" type="text">
+                    <label for="projectName">@Html.GetStringResource("ProjectName", StringResourceType.ProjectPage)</label>
+                    <input asp-for="ProjectName" class="form-control" id="projectName" placeholder="@Html.GetStringResource("EnterProjectName", StringResourceType.ProjectPage)"  type="text">
                 </div>
                 <div class="form-group">
-                    <label for="description">Description</label>
+                    <label for="description">@Html.GetStringResource("Description", StringResourceType.ProjectPage)</label>
                     <textarea rows="5" asp-for="Description" class="form-control" id="description"></textarea>
                 </div>
             </div>
@@ -17,14 +17,14 @@
     </div>
     <div class="col-md-4">
         <div class="callout callout-success">
-            <h4>Your project information:</h4>
-            <p><i class="fa fa-qrcode"></i><span class="space-left"><b>Project Code</b>: @Model.ProjectCode</span></p>
-            <p><i class="fa fa-book"></i><span class="space-left"><b>Project Name</b>: @Model.ProjectName</span></p>
-            <p><i class="fa fa-user-circle"></i><span class="space-left"><b>Owner</b>: @Model.Owner.DisplayName</span></p>
-            <p><i class="fa fa-bell-slash-o"></i><span class="space-left"><b>Status</b>: @Model.Status</span></p>
+            <h4>@Html.GetStringResource("YourProjectInformation", StringResourceType.ProjectPage):</h4>
+            <p><i class="fa fa-qrcode"></i><span class="space-left"><b>@Html.GetStringResource("ProjectCode", StringResourceType.ProjectPage)</b>: @Model.ProjectCode</span></p>
+            <p><i class="fa fa-book"></i><span class="space-left"><b>@Html.GetStringResource("ProjectName", StringResourceType.ProjectPage)</b>: @Model.ProjectName</span></p>
+            <p><i class="fa fa-user-circle"></i><span class="space-left"><b>@Html.GetStringResource("Owner", StringResourceType.ProjectPage)</b>: @Model.Owner.DisplayName</span></p>
+            <p><i class="fa fa-bell-slash-o"></i><span class="space-left"><b>@Html.GetStringResource("Status", StringResourceType.ProjectPage)</b>: @Model.Status</span></p>
             @if (Model.Status == ProjectStatus.Pending)
             {
-                <p><i class="fa fa-hand-o-right"></i><span class="space-left"><b>Note</b>: Currently your project is pending now so please go to project detail page and change your project status</span></p>
+                <p><i class="fa fa-hand-o-right"></i><span class="space-left"><b>@Html.GetStringResource("Note", StringResourceType.ProjectPage)</b>: @Html.GetStringResource("ProjectNote", StringResourceType.ProjectPage)</span></p>
             }
         </div>
     </div>

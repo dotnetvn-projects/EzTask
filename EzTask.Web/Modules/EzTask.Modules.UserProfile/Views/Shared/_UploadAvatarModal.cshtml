@@ -6,15 +6,15 @@
                     <button data-dismiss="modal" type="button" class="close" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
-                    <h4 class="modal-title">Update Avatar</h4>
+                    <h4 class="modal-title">@Html.GetStringResource("UploadAvatar", StringResourceType.UserProfilePage)</h4>
                 </div>
                 <div class="modal-body">
                     <img class="profile-user-img img-responsive img-circle img-avatar"
-                         src="@Url.Action("LoadAvatar","Common")" alt="User profile picture">
+                         src="@Url.Action("LoadAvatar","Common")" alt="@Html.GetStringResource("UserProfilePicture", StringResourceType.UserProfilePage)">
                     <div class="upload-avatar-button">
 
                         <label for="image-upload" class="custom-file-upload">
-                            <i class="fa fa-cloud-upload"></i> Upload avatar
+                            <i class="fa fa-cloud-upload"></i> @Html.GetStringResource("UploadAvatar", StringResourceType.UserProfilePage)
                         </label>
                         <input accept="image/x-png,image/gif,image/jpeg"
                                id="image-upload" type="file" />
@@ -23,7 +23,7 @@
                     <p class="text-danger error-message"></p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-primary btn-upload-avatar">Accept</button>
+                    <button type="button" class="btn btn-primary btn-upload-avatar">@Html.GetStringResource("Accept", StringResourceType.UserProfilePage)</button>
                 </div>
             </form>
         </div>

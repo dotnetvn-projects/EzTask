@@ -73,8 +73,8 @@
     //------Confirm dialog----
     $.confirmDialog = function (options) {
         var settings = $.extend({
-            title: 'Hello',
-            content:'Are you sure to continue?',
+            title: '',
+            content:'',
             action: null
         }, options);
 
@@ -101,13 +101,19 @@
 
     $.alertDialog = function (options) {
         var settings = $.extend({
-            title: 'Alert!',
-            content:''
+            title: '',
+            content: '',
+            action: null
         }, options);
 
         $.alert({
             title: settings.title,
-            content: settings.content
+            content: settings.content,
+            onClose: function () {
+                if (settings.action !== null) {
+                    settings.action();
+                }
+            }
         });
     };
     //------Confirm dialog----
