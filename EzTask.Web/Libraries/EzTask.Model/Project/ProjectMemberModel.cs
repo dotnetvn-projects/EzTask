@@ -11,6 +11,8 @@ namespace EzTask.Model
         public string DisplayName { get; set; }
         public DateTime AddDate { get; set; }
         public bool IsPending { get; set; }
+        public string ActiveCode { get; set; }
+
         public int TotalTask { get; set; }
     }
 }

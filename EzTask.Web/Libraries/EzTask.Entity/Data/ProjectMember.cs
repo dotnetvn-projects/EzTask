@@ -8,6 +8,7 @@ namespace EzTask.Entity.Data
         public int ProjectId { get; set; }
         public DateTime AddDate { get; set; }
         public bool IsPending { get; set; }
+        public string ActiveCode { get; set; }
 
         public Account Member { get; set; }
         public Project Project { get; set; }
