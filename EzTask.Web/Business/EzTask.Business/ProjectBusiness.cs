@@ -5,7 +5,6 @@ using EzTask.Framework.Security;
 using EzTask.Interface;
 using EzTask.Model;
 using EzTask.Model.Enum;
-using EzTask.Plugin.MessageService;
 using EzTask.Plugin.MessageService.Data.Email;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
@@ -41,7 +40,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ProjectModel> Save(ProjectModel model)
         {
-            using (Microsoft.EntityFrameworkCore.Storage.IDbContextTransaction transaction = UnitOfWork.Context.Database.BeginTransaction())
+            using (IDbContextTransaction transaction = UnitOfWork.Context.Database.BeginTransaction())
             {
                 try
                 {
@@ -121,11 +120,11 @@ namespace EzTask.Business
             };
 
             UnitOfWork.ProjectMemberRepository.Add(member);
-            var iresult = await UnitOfWork.CommitAsync();
+            int iresult = await UnitOfWork.CommitAsync();
 
             if (iresult > 0)
             {
-                var accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => 
+                AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c =>
                                                 c.AccountId == model.AccountId);
 
                 model.AddDate = member.AddDate;
@@ -135,7 +134,7 @@ namespace EzTask.Business
                 result.Data = model;
                 result.Status = ActionStatus.Ok;
 
-                
+
             }
 
             return result;
@@ -150,7 +149,7 @@ namespace EzTask.Business
         {
             ResultModel<bool> result = new ResultModel<bool>();
 
-            var data = await UnitOfWork.ProjectMemberRepository.GetAsync(c => c.MemberId == model.AccountId
+            ProjectMember data = await UnitOfWork.ProjectMemberRepository.GetAsync(c => c.MemberId == model.AccountId
                                  && c.ProjectId == model.ProjectId);
 
             if (data != null)
@@ -204,7 +203,7 @@ namespace EzTask.Business
                     transaction.Rollback();
                     result.Status = ActionStatus.Failed;
                 }
-            
+
                 return result;
             }
         }
@@ -252,7 +251,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountByUser(int ownerId)
         {
-            var data = await UnitOfWork.ProjectMemberRepository
+            int data = await UnitOfWork.ProjectMemberRepository
                             .Entity
                             .CountAsync(c => c.MemberId == ownerId && c.IsPending == false);
 
@@ -316,7 +315,7 @@ namespace EzTask.Business
         public async Task<ProjectModel> GetProjectByName(string name)
         {
             Project data = await UnitOfWork.ProjectRepository
-                .GetAsync(c =>c.ProjectName.ToLower() == name.ToLower(), allowTracking: false);
+                .GetAsync(c => c.ProjectName.ToLower() == name.ToLower(), allowTracking: false);
 
             return data.ToModel();
         }
@@ -349,7 +348,7 @@ namespace EzTask.Business
                 .ThenInclude(c => c.AccountInfo).AsNoTracking()
                 .FirstOrDefaultAsync(c => c.ProjectCode == projectCode);
 
-            var model = data.ToModel();
+            ProjectModel model = data.ToModel();
 
             return model;
         }
@@ -361,7 +360,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountMember(int projectId)
         {
-            var data = await UnitOfWork.ProjectMemberRepository
+            int data = await UnitOfWork.ProjectMemberRepository
                 .Entity
                 .CountAsync(c => c.ProjectId == projectId);
 
@@ -410,10 +409,34 @@ namespace EzTask.Business
             return data;
         }
 
-        //public async Task AcceptInvite(string data)
-        //{
+        /// <summary>
+        /// Accept invitation
+        /// </summary>
+        /// <param name="activeCode"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<AccountInfoModel>> AcceptInvitation(string activeCode)
+        {
+            ResultModel<AccountInfoModel> iResult = new ResultModel<AccountInfoModel>();
+            ProjectMember inviteItem = await UnitOfWork.ProjectMemberRepository.GetAsync(c => c.ActiveCode == activeCode);
+            if (inviteItem == null)
+            {
+                iResult.Status = ActionStatus.NotFound;
+            }
+            else
+            {
+                inviteItem.ActiveCode = string.Empty;
+                inviteItem.IsPending = false;
 
-        //}
+                UnitOfWork.ProjectMemberRepository.Update(inviteItem);
+
+                if (await UnitOfWork.CommitAsync() > 0)
+                {
+                    iResult.Data = await _accountBusiness.GetAccountInfo(inviteItem.MemberId);
+                    iResult.Status = ActionStatus.Ok;
+                }
+            }
+            return iResult;
+        }
 
         /// <summary>
         /// Send an email to invite an user joins project
@@ -423,29 +446,31 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task SendInvitation(int projectId, int memberId, bool isNewMember, string title)
         {
-            var emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
+            string emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
                        + "/resources/templates/invite_email.html";
-            var member = await _accountBusiness.GetAccountInfo(memberId);
-            var project = await GetProject(projectId);
+            AccountInfoModel member = await _accountBusiness.GetAccountInfo(memberId);
+            ProjectModel project = await GetProject(projectId);
             string password = string.Empty;
 
-            if(isNewMember)
+            if (isNewMember)
             {
                 emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
                        + "/resources/templates/invite_new_email.html";
 
-                var hash = Cryptography.GetHashString(member.AccountName);
+                string hash = Cryptography.GetHashString(member.AccountName);
                 password = Decrypt.Do(member.Password, hash);
             }
 
-            var emailContent = StreamIO.ReadFile(emailTemplateUrl);
+            string activeCode = Guid.NewGuid().ToString();
+            string emailContent = StreamIO.ReadFile(emailTemplateUrl);
             emailContent = emailContent.Replace("{UserName}", member.DisplayName);
             emailContent = emailContent.Replace("{Project}", project.ProjectName.ToUpper());
-            emailContent = emailContent.Replace("{Url}", "http://eztask.dotnetvn.com/accept-invite.html?ref=" + member.AccountName);
+            emailContent = emailContent.Replace("{Url}", "http://eztask.dotnetvn.com/accept-invite.html?ref=" + activeCode);
             emailContent = emailContent.Replace("{Account}", member.AccountName);
             emailContent = emailContent.Replace("{Password}", password);
 
-            _mesageCenter.Push(new EmailMessage {
+            _mesageCenter.Push(new EmailMessage
+            {
                 Content = emailContent,
                 Title = title + " " + project.ProjectName.ToUpper(),
                 To = member.AccountName

@@ -5,6 +5,7 @@ using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.HttpContext;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;
@@ -224,7 +225,7 @@ namespace EzTask.Modules.Project.Controllers
         }
 
         /// <summary>
-        /// Remove project
+        /// Invite a specify person join to project
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -248,7 +249,7 @@ namespace EzTask.Modules.Project.Controllers
                     AccountName = accountName,
                     Password = Guid.NewGuid().ToString().Substring(0, 6),
                     FullName = accountName,
-                    DisplayName = accountName,
+                    DisplayName = accountName
                 });
 
                 if (registerResult.Status == ActionStatus.Ok)
@@ -283,6 +284,24 @@ namespace EzTask.Modules.Project.Controllers
             }
 
             return PartialView("_AddNewMemberItemTemplate", iResult.Data);
+        }
+
+        /// <summary>
+        /// Accept action a specify person to join to project
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        [Route("project/accept-invite.html")]
+        [AllowAnonymous]
+        public async Task<IActionResult> AcceptInvite([FromQuery(Name = "ref")] string activeCode)
+        {
+            if (string.IsNullOrWhiteSpace(activeCode))
+            {
+                // move to 404 page
+            }
+
+            var result = await EzTask.Project.AcceptInvitation(activeCode);
+            return View(result);
         }
 
         #endregion
