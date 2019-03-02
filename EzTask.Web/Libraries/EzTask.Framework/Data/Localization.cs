@@ -16,7 +16,7 @@ namespace EzTask.Framework.Data
         public List<Language> ErrorPage { get; set; }
         public List<Language> MainMenu { get; set; }
         public List<Language> BreadCrumb { get; set; }
-        public List<Language> Auth { get; set; }
+        public List<Language> AuthenticationPage { get; set; }
         public List<Language> Notification { get; set; }
         public List<Language> DashboardPage { get; set; }
         public List<Language> ProjectPage { get; set; }

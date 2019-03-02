@@ -1,7 +1,7 @@
 ﻿using EzTask.Framework.Data;
 using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
-using EzTask.Web.Framework.HttpContext;
+using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Threading.Tasks;

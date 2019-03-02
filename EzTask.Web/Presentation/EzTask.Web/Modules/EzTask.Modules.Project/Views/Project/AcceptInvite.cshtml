@@ -1,0 +1,38 @@
+﻿@model InviteResultViewModel
+@{
+    ViewBag.Title = "EzTask - " + Html.GetStringResource("AcceptProjectPageTitle", StringResourceType.ProjectPage).ToString();
+}
+@section styles{
+    <link rel="stylesheet" href="~/project/css/project.css">
+}
+@section header{
+    <h1>
+        @Html.GetStringResource("Project", StringResourceType.BreadCrumb)
+        <small>@Html.GetStringResource("AcceptProject", StringResourceType.BreadCrumb)</small>
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/"><i class="fa fa-dashboard"></i> @Html.GetStringResource("Dashboard", StringResourceType.BreadCrumb)</a></li>
+        <li class="active">@Html.GetStringResource("AcceptProject", StringResourceType.BreadCrumb)</li>
+    </ol>
+}
+
+<div class="box box-primary">
+    <div class="box-header with-border">
+        <h3>
+            <i class="fa fa-frown-o"></i>
+            <span class="space-left">
+                @if (Model != null)
+                {
+                    string inviteMess = Html.GetStringResource("AcceptInviteSuccess", StringResourceType.ProjectPage).ToString();
+                    inviteMess = string.Format(inviteMess, "<b>" + Model.MemberName + "</b>", Model.ProjectName, Model.Manager);
+                    <span>@inviteMess</span>
+                }
+                else
+                {
+                    <span>@Html.GetStringResource("RequestFailed", StringResourceType.Error)</span>
+                }
+            </span>
+        </h3>
+
+    </div>
+</div>

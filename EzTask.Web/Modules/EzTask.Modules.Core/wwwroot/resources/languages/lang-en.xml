@@ -110,6 +110,18 @@
       <Content>Create new</Content>
     </Language>
     <Language>
+      <Key>AcceptProjectPageTitle</Key>
+      <Key>Accept the project invitation</Key>
+    </Language>
+    <Language>
+      <Key>AcceptProject</Key>
+      <Key>Accept to join project</Key>
+    </Language>
+    <Language>
+      <Key>AcceptInviteSuccess</Key>
+      <Content>Congratulations {0}! Yow that you are a member of Project {0}. Manager of this project is {2}, please contact this person for more info!.</Content>
+    </Language>
+    <Language>
       <Key>Notification</Key>
       <Content>Notification</Content>
     </Language>
@@ -164,18 +176,6 @@
       <Content>Server is busy, cannot proceed your request!</Content>
     </Language>
     <Language>
-      <Key>NotFound</Key>
-      <Content>Not Found</Content>
-    </Language>
-    <Language>
-      <Key>PageNotFound</Key>
-      <Content>Ops! Something's wrong here, we cannot display information right now</Content>
-    </Language>
-    <Language>
-      <Key>ErrorMessage</Key>
-      <Content>Ops! Something's wrong here, cannot proceed your request</Content>
-    </Language>
-    <Language>
       <Key>EmailWrongFormat</Key>
       <Content>Email is wrong format !</Content>
     </Language>
@@ -186,13 +186,36 @@
   </Error>
 
   <ErrorPage>
+    <!--For users who don't login to system-->
+    <Language>
+      <Key>PageNotFoundTitleForAnonymous</Key>
+      <Content>404 Page not found</Content>
+    </Language>
+    <Language>
+      <Key>PageNotFoundMessageForAnonymous</Key>
+      <Content>The page you are looking for might have been removed had its name changed or is temporarily unavailable.</Content>
+    </Language>
+    <Language>
+      <Key>GoToHomePageAnonymous</Key>
+      <Content>Go To Homepage</Content>
+    </Language>
+    <!--For users who don't login to system-->
+    
     <Language>
       <Key>PageNotFoundTitle</Key>
       <Content>Page not found</Content>
     </Language>
     <Language>
+      <Key>PageNotFoundMessage</Key>
+      <Content>Ops! Something's wrong here, we cannot display information right now</Content>
+    </Language>
+    <Language>
       <Key>PageErrorTitle</Key>
       <Content>Error</Content>
+    </Language>
+    <Language>
+      <Key>ErrorMessage</Key>
+      <Content>Ops! Something's wrong here, cannot proceed your request</Content>
     </Language>
     <Language>
       <Key>Click</Key>
@@ -372,7 +395,7 @@
     </Language>
     <Language>
       <Key>ProjectPageDetailTitle</Key>
-    <Content>Project: {0}</Content>
+      <Content>Project: {0}</Content>
     </Language>
     <Language>
       <Key>CreateProjectPageTitle</Key>

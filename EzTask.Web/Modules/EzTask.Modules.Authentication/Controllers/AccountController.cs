@@ -5,7 +5,7 @@ using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Model.Enum;
-using EzTask.Web.Framework.HttpContext;
+using EzTask.Web.Framework.WebContext;
 
 namespace EzTask.Modules.Authentication.Controllers
 {

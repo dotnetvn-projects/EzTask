@@ -3,11 +3,13 @@ using EzTask.Framework.Data;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
+using EzTask.Modules.Project.ViewModels;
 using EzTask.Web.Framework.Attributes;
-using EzTask.Web.Framework.HttpContext;
+using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace EzTask.Modules.Project.Controllers
@@ -294,14 +296,33 @@ namespace EzTask.Modules.Project.Controllers
         [Route("project/accept-invite.html")]
         [AllowAnonymous]
         public async Task<IActionResult> AcceptInvite([FromQuery(Name = "ref")] string activeCode)
-        {
+        {     
             if (string.IsNullOrWhiteSpace(activeCode))
             {
-                // move to 404 page
+                return NotFound();
             }
 
+            InviteResultViewModel model = null;
+
             var result = await EzTask.Project.AcceptInvitation(activeCode);
-            return View(result);
+
+            if(result.Status == ActionStatus.Ok)
+            {
+                model = new InviteResultViewModel
+                {
+                    MemberName = result.Data.DisplayName
+                };
+
+                var projectInfo = await EzTask.Project.GetProjectByActiveCode(activeCode);
+                model.ProjectName = projectInfo.Data.ProjectName;
+                model.Manager = projectInfo.Data.Owner.DisplayName;
+            }
+            else
+            {
+                return RedirectToAction("Error", "Common");
+            }
+
+            return View(model);
         }
 
         #endregion

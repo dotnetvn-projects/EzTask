@@ -10,5 +10,11 @@
     "inputFiles": [
       "wwwroot/js/site.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/css/404.min.css",
+    "inputFiles": [
+      "wwwroot/css/404.css"
+    ]
   }
 ]

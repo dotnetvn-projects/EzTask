@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Http.Extensions;
 using System;
 using System.Threading.Tasks;
-using EzTask.Web.Framework.HttpContext;
+using EzTask.Web.Framework.WebContext;
 
 namespace EzTask.Web.Framework.Attributes
 {
@@ -34,7 +34,7 @@ namespace EzTask.Web.Framework.Attributes
                     }
                 }
                 
-                if (Context.CurrentAccount.AccountId <=0)
+                if (Context.CurrentAccount.AccountId <= 0)
                 {
                     Context.SetLanguageLocalization("");
                     var returnUrl = context.HttpContext.Request.GetEncodedUrl();

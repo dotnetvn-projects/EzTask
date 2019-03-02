@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Security.Principal;
 using System.Text;
 
-namespace EzTask.Web.Framework.HttpContext
+namespace EzTask.Web.Framework.WebContext
 {
     public static class IdentityExtensions
     {

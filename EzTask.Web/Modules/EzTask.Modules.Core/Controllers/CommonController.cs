@@ -2,7 +2,8 @@
 using System.IO;
 using System.Threading.Tasks;
 using EzTask.Web.Framework.Attributes;
-using EzTask.Web.Framework.HttpContext;
+using EzTask.Web.Framework.WebContext;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using IO = EzTask.Framework.IO.FileIO;
@@ -56,14 +57,33 @@ namespace EzTask.Modules.Core.Controllers
             return ViewComponent("TaskNotificationList", new { assigneeId = Context.CurrentAccount.AccountId });
         }
 
+        /// <summary>
+        /// Not found for logined user
+        /// </summary>
+        /// <returns></returns>
         [Route("not-found.html")]
         public IActionResult PageNotFound()
         {
             return View();
         }
 
+        /// <summary>
+        /// Error for logined user
+        /// </summary>
+        /// <returns></returns>
         [Route("error.html")]
         public IActionResult Error()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Not found for anonymous user
+        /// </summary>
+        /// <returns></returns>
+        [AllowAnonymous]
+        [Route("error/not-found.html")]
+        public IActionResult PageNotFoundAnonymous()
         {
             return View();
         }

@@ -119,7 +119,7 @@ namespace EzTask.Framework.Infrastructures
 
         public string GetAuthLocalization(string key)
         {
-            var existKey = Data.Auth.FirstOrDefault(c => c.Key == key);
+            var existKey = Data.AuthenticationPage.FirstOrDefault(c => c.Key == key);
             if (existKey != null)
             {
                 return existKey.Content;

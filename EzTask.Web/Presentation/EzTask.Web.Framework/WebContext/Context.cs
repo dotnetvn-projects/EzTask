@@ -1,5 +1,4 @@
 ﻿using EzTask.Framework.Data;
-using EzTask.Framework.Infrastructures;
 using EzTask.Interface;
 using EzTask.Web.Framework.Infrastructures;
 using Microsoft.AspNetCore.Builder;
@@ -7,7 +6,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace EzTask.Web.Framework.HttpContext
+namespace EzTask.Web.Framework.WebContext
 {
     public static class Context
     {

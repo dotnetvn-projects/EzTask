@@ -418,6 +418,7 @@ namespace EzTask.Business
         {
             ResultModel<AccountInfoModel> iResult = new ResultModel<AccountInfoModel>();
             ProjectMember inviteItem = await UnitOfWork.ProjectMemberRepository.GetAsync(c => c.ActiveCode == activeCode);
+
             if (inviteItem == null)
             {
                 iResult.Status = ActionStatus.NotFound;
@@ -435,6 +436,37 @@ namespace EzTask.Business
                     iResult.Status = ActionStatus.Ok;
                 }
             }
+            return iResult;
+        }
+
+        /// <summary>
+        /// Get project info by active code
+        /// </summary>
+        /// <param name="activeCode"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<ProjectModel>> GetProjectByActiveCode(string activeCode)
+        {
+            ResultModel<ProjectModel> iResult = new ResultModel<ProjectModel>();
+            var project = await UnitOfWork.ProjectMemberRepository.Entity
+                .Include(c => c.Project)
+                .ThenInclude(c => c.Account)
+                .ThenInclude(c => c.AccountInfo)
+                .Select(t => new ProjectModel
+                {
+                    Owner = new AccountModel
+                    {
+                        DisplayName = t.Project.Account.AccountInfo.DisplayName
+                    },
+                    ProjectName = t.Project.ProjectName
+                   
+                }).FirstOrDefaultAsync();
+
+            if (project != null)
+            {
+                iResult.Status = ActionStatus.Ok;
+                iResult.Data = project;
+            }
+
             return iResult;
         }
 

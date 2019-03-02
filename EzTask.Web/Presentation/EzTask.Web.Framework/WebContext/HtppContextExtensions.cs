@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 
-namespace EzTask.Web.Framework.HttpContext
+namespace EzTask.Web.Framework.WebContext
 {
     public static class HtppContextExtensions
     {

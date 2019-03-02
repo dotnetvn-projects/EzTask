@@ -16,6 +16,7 @@
   <ItemGroup>
     <None Remove="Views\Common\Error.cshtml" />
     <None Remove="Views\Common\PageNotFound.cshtml" />
+    <None Remove="Views\Common\PageNotFoundAnonymous.cshtml" />
     <None Remove="Views\Common\_WarningModal.cshtml" />
     <None Remove="Views\Shared\Components\NewNotificationList\Default.cshtml" />
     <None Remove="Views\Shared\Components\TaskNotificationList\Default.cshtml" />
@@ -63,6 +64,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Views\Common\PageNotFoundAnonymous.cshtml">
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
     <Content Include="Views\Common\Error.cshtml">
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
     </Content>

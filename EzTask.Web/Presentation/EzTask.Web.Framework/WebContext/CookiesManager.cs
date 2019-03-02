@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Http;
 using System;
 
-namespace EzTask.Web.Framework.HttpContext
+namespace EzTask.Web.Framework.WebContext
 {
     public class CookiesManager
     {

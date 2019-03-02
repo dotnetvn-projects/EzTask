@@ -8,7 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
 using EzTask.Web.Framework.Infrastructures;
-using EzTask.Web.Framework.HttpContext;
+using EzTask.Web.Framework.WebContext;
 using EzTask.Business;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Web.Framework.Data;
@@ -34,7 +34,7 @@ namespace EzTask.Web.Framework
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
             services.AddSingleton<IWebHostEnvironment, WebHost>();
-            services.AddScoped<ILanguageLocalization, LanguageLocalization>();
+            services.AddTransient<ILanguageLocalization, LanguageLocalization>();
             services.AddTransient<ViewRender>();
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -50,7 +50,7 @@ namespace EzTask.Web.Framework
             var mvcBuilder = services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(GlobalFilter));
-               // options.Filters.Add(typeof(ExceptionFilter));
+                options.Filters.Add(typeof(ExceptionFilter));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             mvcBuilder.AddSessionStateTempDataProvider();

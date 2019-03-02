@@ -1,7 +1,7 @@
 ﻿using EzTask.Framework.Data;
 using Microsoft.AspNetCore.Http;
 
-namespace EzTask.Web.Framework.HttpContext
+namespace EzTask.Web.Framework.WebContext
 {
     public class SessionManager
     {

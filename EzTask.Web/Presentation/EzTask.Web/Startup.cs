@@ -8,6 +8,7 @@ using EzTask.Business;
 using System.Diagnostics;
 using System.IO;
 using EzTask.Web.Framework;
+using EzTask.Web.Framework.Middlewares;
 
 namespace EzTask.Web
 {
@@ -36,11 +37,14 @@ namespace EzTask.Web
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
+                app.UseExceptionMiddleware();
             }
             else
             {
+                app.UseExceptionMiddleware();
                 app.UseExceptionHandler("/Home/Error");
             }
+
             app.UseSession();
             app.UseStaticFiles();
             app.ConfigureFramework();
