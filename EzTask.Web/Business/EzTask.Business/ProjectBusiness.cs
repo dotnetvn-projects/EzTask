@@ -476,7 +476,8 @@ namespace EzTask.Business
         /// <param name="projectId"></param>
         /// <param name="memberId"></param>
         /// <returns></returns>
-        public async Task SendInvitation(int projectId, int memberId, bool isNewMember, string title)
+        public async Task SendInvitation(int projectId, int memberId, bool isNewMember,
+            string title, string activeCode)
         {
             string emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
                        + "/resources/templates/invite_email.html";
@@ -493,11 +494,10 @@ namespace EzTask.Business
                 password = Decrypt.Do(member.Password, hash);
             }
 
-            string activeCode = Guid.NewGuid().ToString();
             string emailContent = StreamIO.ReadFile(emailTemplateUrl);
             emailContent = emailContent.Replace("{UserName}", member.DisplayName);
             emailContent = emailContent.Replace("{Project}", project.ProjectName.ToUpper());
-            emailContent = emailContent.Replace("{Url}", "http://eztask.dotnetvn.com/accept-invite.html?ref=" + activeCode);
+            emailContent = emailContent.Replace("{Url}", "http://eztask.dotnetvn.com/project/accept-invite.html?ref=" + activeCode);
             emailContent = emailContent.Replace("{Account}", member.AccountName);
             emailContent = emailContent.Replace("{Password}", password);
 

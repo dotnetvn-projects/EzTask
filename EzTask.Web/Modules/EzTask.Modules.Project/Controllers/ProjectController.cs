@@ -263,7 +263,8 @@ namespace EzTask.Modules.Project.Controllers
             ProjectMemberModel model = new ProjectMemberModel
             {
                 AccountId = account.AccountId,
-                ProjectId = projectId
+                ProjectId = projectId,
+                ActiveCode = Guid.NewGuid().ToString().Replace("-", "")
             };
 
             ResultModel<bool> alreadyAdded = await EzTask.Project.HasAlreadyAdded(model);
@@ -277,8 +278,9 @@ namespace EzTask.Modules.Project.Controllers
 
             if (iResult.Status == ActionStatus.Ok)
             {
-                await EzTask.Project.SendInvitation(model.ProjectId, model.AccountId, isNewMember,
-                             Context.GetStringResource("InviteTitleEmail", StringResourceType.ProjectPage));
+                string inviteTitle = Context.GetStringResource("InviteTitleEmail", StringResourceType.ProjectPage);
+                await EzTask.Project.SendInvitation(model.ProjectId, model.AccountId,
+                            isNewMember, inviteTitle, model.ActiveCode);
             }
             else
             {
