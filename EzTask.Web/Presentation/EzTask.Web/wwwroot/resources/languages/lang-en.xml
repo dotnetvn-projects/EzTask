@@ -626,7 +626,7 @@
       <Content>You have {0} projects</Content>
     </Language>
     <Language>
-      <key>CreateNew</key>
+      <Key>CreateNew</Key>
       <Content>Create new</Content>
     </Language>
     <Language>
@@ -773,6 +773,10 @@
       <Content>Open</Content>
     </Language>
     <Language>
+      <Key>Feedback</Key>
+      <Content>Feedback</Content>
+    </Language>
+    <Language>
       <Key>WaitForFeedBack</Key>
       <Content>Wait for feedback</Content>
     </Language>
@@ -795,6 +799,26 @@
     <Language>
       <Key>Closed</Key>
       <Content>Closed</Content>
+    </Language>
+    <Language>
+      <Key>CriticalPriority</Key>
+      <Content>Critical</Content>
+    </Language>
+    <Language>
+      <Key>HighPriority</Key>
+      <Content>High</Content>
+    </Language>
+    <Language>
+      <Key>MediumPriority</Key>
+      <Content>Medium</Content>
+    </Language>
+    <Language>
+      <Key>LowPriority</Key>
+      <Content>Low</Content>
+    </Language>
+    <Language>
+      <Key>NonAssigned</Key>
+      <Content>Non-Assigned</Content>
     </Language>
     <Language>
       <Key>Close</Key>

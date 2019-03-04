@@ -37,11 +37,11 @@ namespace EzTask.Web
             {
                 app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();
-                app.UseExceptionMiddleware();
+                //app.UseExceptionMiddleware();
             }
             else
             {
-                app.UseExceptionMiddleware();
+                //app.UseExceptionMiddleware();
                 app.UseExceptionHandler("/Home/Error");
             }
 

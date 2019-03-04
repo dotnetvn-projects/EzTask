@@ -1,6 +1,8 @@
 ﻿using EzTask.Framework.Common;
+using EzTask.Framework.Data;
 using EzTask.Model;
 using EzTask.Model.Enum;
+using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -22,13 +24,26 @@ namespace EzTask.Web.Framework.Data
         {
             _taskStatusUIElement = new Dictionary<TaskItemStatus, string>()
             {
-                { TaskItemStatus.Assiged, "<i class=\"fa fa-anchor\"></i> <span class=\"space-left\">Assiged</span>" },
-                { TaskItemStatus.Closed, "<i class=\"fa fa-check-circle text-success\"></i><span class=\"space-left\">Closed</span>" },
-                { TaskItemStatus.Failed, "<i class=\"fa fa-close text-red\"></i> Failed" },
-                { TaskItemStatus.Feedback, "<i class=\"fa fa-coffee text-fuchsia\"></i><span class=\"space-left\">Feedback</span>" },
-                { TaskItemStatus.Open, "<i class=\"fa fa-circle-o text-yellow\"></i><span class=\"space-left\">Open</span>" },
-                { TaskItemStatus.Resovled, "<i class=\"fa fa-thumbs-o-up\"></i><span class=\"space-left\">Resovled</span>" },
-                { TaskItemStatus.Working, "<i class=\"fa fa-plane text-yellow\"></i><span class=\"space-left\">Working</span>" }
+                { TaskItemStatus.Assiged, string.Format("<i class=\"fa fa-anchor\"></i> <span class=\"space-left\">{0}</span>",
+                                                            Context.GetStringResource("Assiged", StringResourceType.TaskPage)) },
+
+                { TaskItemStatus.Closed, string.Format("<i class=\"fa fa-check-circle text-success\"></i><span class=\"space-left\">{0}</span>",
+                                                            Context.GetStringResource("Closed", StringResourceType.TaskPage))},
+
+                { TaskItemStatus.Failed, string.Format("<i class=\"fa fa-close text-red\"></i><span class=\"space-left\">{0}</span>",
+                                                            Context.GetStringResource("Failed", StringResourceType.TaskPage))},
+
+                { TaskItemStatus.Feedback, string.Format("<i class=\"fa fa-coffee text-fuchsia\"></i><span class=\"space-left\">{0}</span>",
+                                                            Context.GetStringResource("Feedback", StringResourceType.TaskPage))},
+
+                { TaskItemStatus.Open, string.Format("<i class=\"fa fa-circle-o text-yellow\"></i><span class=\"space-left\">{0}</span>",
+                                                            Context.GetStringResource("Open", StringResourceType.TaskPage))},
+
+                { TaskItemStatus.Resovled, string.Format("<i class=\"fa fa-thumbs-o-up\"></i><span class=\"space-left\">{0}</span>",
+                                                            Context.GetStringResource("Resovled", StringResourceType.TaskPage))},
+
+                { TaskItemStatus.Working, string.Format("<i class=\"fa fa-plane text-yellow\"></i><span class=\"space-left\">{0}</span>",
+                                                            Context.GetStringResource("Working", StringResourceType.TaskPage))}
             };
         }            
 
@@ -51,7 +66,7 @@ namespace EzTask.Web.Framework.Data
                 {
                     var selectItem = new SelectListItem
                     {
-                        Text = data,
+                        Text = Context.GetStringResource(data + "Priority", StringResourceType.TaskPage),
                         Value = ((Int16)data.ToEnum<TaskPriority>()).ToString()
                     };
 
@@ -119,7 +134,7 @@ namespace EzTask.Web.Framework.Data
                 new SelectListItem
                 {
                     Value = "0",
-                    Text = "Non-Assigned"
+                    Text = Context.GetStringResource("NonAssigned", StringResourceType.TaskPage)
                 }
             };
 

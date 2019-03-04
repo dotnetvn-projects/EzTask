@@ -21,7 +21,7 @@ namespace EzTask.Web.Framework.Middlewares
         {
             try
             {
-                await next(context);
+                await HandleHttpRequestAsync(context);
             }
             catch (Exception ex)
             {
@@ -32,24 +32,29 @@ namespace EzTask.Web.Framework.Middlewares
         private async Task HandleExceptionAsync(HttpContext context, Exception exception)
         {
             //TODO add log
+            context.Items["originalPath"] = context.Request.Path.Value;
+            context.Request.Path = "/error.html";
+            await next(context);
+        }
+
+        private async Task HandleHttpRequestAsync(HttpContext context)
+        {
+            //TODO add log
             string originalPath = context.Request.Path.Value;
-            
-            if (context.Response.StatusCode == 404 
-                && !context.Response.HasStarted && !string.IsNullOrEmpty(context.Session.GetString(SessionKey.Account.ToString())))
+
+            if (context.Response.StatusCode == 404
+                && !string.IsNullOrEmpty(context.Session.GetString(SessionKey.Account.ToString())))
             {
                 context.Items["originalPath"] = originalPath;
-                context.Request.Path = "/not-found.html";                
+                context.Request.Path = "/not-found.html";
             }
-            else if (context.Response.StatusCode == 404
-                && !context.Response.HasStarted)
+            else if (context.Response.StatusCode == 404)
             {
                 context.Items["originalPath"] = originalPath;
                 context.Request.Path = "/error/not-found.html";
             }
-            else
-            {
-                await next(context);
-            }           
+
+            await next(context);
         }
     }
 }
