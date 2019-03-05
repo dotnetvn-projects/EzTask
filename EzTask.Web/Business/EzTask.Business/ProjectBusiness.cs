@@ -133,8 +133,6 @@ namespace EzTask.Business
 
                 result.Data = model;
                 result.Status = ActionStatus.Ok;
-
-
             }
 
             return result;
@@ -194,6 +192,7 @@ namespace EzTask.Business
 
                         await UnitOfWork.CommitAsync();
                     }
+
                     transaction.Commit();
                     result.Status = ActionStatus.Ok;
                     result.Data = true;
@@ -211,15 +210,15 @@ namespace EzTask.Business
         /// <summary>
         /// Get project list for a specific user
         /// </summary>
-        /// <param name="ownerId"></param>
+        /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<ProjectModel>> GetProjects(int ownerId)
+        public async Task<IEnumerable<ProjectModel>> GetProjects(int accountId)
         {
             List<Project> data = await UnitOfWork.ProjectMemberRepository.Entity
                 .Include(c => c.Member)
                 .Include(c => c.Project).ThenInclude(c => c.Account).ThenInclude(c => c.AccountInfo)
                 .AsNoTracking()
-                .Where(c => c.MemberId == ownerId && c.IsPending == false)
+                .Where(c => c.MemberId == accountId && c.IsPending == false)
                 .OrderBy(c => c.Project.Status)
                 .Select(x => new Project
                 {
@@ -245,15 +244,33 @@ namespace EzTask.Business
         }
 
         /// <summary>
+        /// Get project id list for a specific user
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<List<int>> GetProjectIds(int accountId)
+        {
+            List<int> data = await UnitOfWork.ProjectMemberRepository.Entity
+                .Include(c => c.Member)
+                .Include(c => c.Project)
+                .AsNoTracking()
+                .Where(c => c.MemberId == accountId && c.IsPending == false)
+                .Select(x=>x.ProjectId)
+                .ToListAsync();
+
+            return data;
+        }
+
+        /// <summary>
         /// Count project by user
         /// </summary>
-        /// <param name="ownerId"></param>
+        /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<int> CountByUser(int ownerId)
+        public async Task<int> CountProjectByUser(int accountId)
         {
             int data = await UnitOfWork.ProjectMemberRepository
                             .Entity
-                            .CountAsync(c => c.MemberId == ownerId && c.IsPending == false);
+                            .CountAsync(c => c.MemberId == accountId && c.IsPending == false);
 
             return data;
         }
@@ -278,15 +295,15 @@ namespace EzTask.Business
         /// <summary>
         ///  Get project
         /// </summary>
-        /// <param name="projectCode"></param>
+        /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<ProjectModel> GetProjectByOwner(int owner)
+        public async Task<ProjectModel> GetProjectByOwner(int accountId)
         {
             Project data = await UnitOfWork.ProjectRepository
                 .Entity
                 .Include(c => c.Account)
                 .AsNoTracking()
-                .FirstOrDefaultAsync(c => c.Owner == owner);
+                .FirstOrDefaultAsync(c => c.Owner == accountId);
 
             return data.ToModel();
         }
@@ -358,11 +375,25 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<int> CountMember(int projectId)
+        public async Task<int> CountMemberByProjectId(int projectId)
         {
             int data = await UnitOfWork.ProjectMemberRepository
                 .Entity
                 .CountAsync(c => c.ProjectId == projectId);
+
+            return data;
+        }
+
+        /// <summary>
+        /// Count member of projects
+        /// </summary>
+        /// <param name="projectIds"></param>
+        /// <returns></returns>
+        public async Task<int> CountMemberByProductIdList(List<int> projectIds)
+        {
+            int data = await UnitOfWork.ProjectMemberRepository
+                .Entity
+                .CountAsync(c => projectIds.Contains(c.ProjectId));
 
             return data;
         }

@@ -16,7 +16,7 @@
                     <i class="fa fa-send bg-blue"></i>
                     <div class="timeline-item">
                         <span class="time"><i class="fa fa-clock-o"></i> @gr.Key.TimeAgo()</span>
-                        <h3 class="timeline-header"><a>@item.Account.DisplayName</a> @Html.GetStringResource("GaveNotification", StringResourceType.Notification)</h3>
+                        <h3 class="timeline-header">@Html.GetStringResource("NotificationFrom", StringResourceType.Notification) <a>@item.Account.DisplayName</a></h3>
                         <div class="timeline-body">
                             @Html.Raw(item.Content)
                         </div>

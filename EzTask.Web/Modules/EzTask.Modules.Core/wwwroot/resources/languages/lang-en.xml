@@ -277,8 +277,8 @@
       <Content>View all</Content>
     </Language>
     <Language>
-      <Key>GaveNotification</Key>
-      <Content>gave a notification</Content>
+      <Key>NotificationFrom</Key>
+      <Content>Notification from</Content>
     </Language>
     <Language>
       <Key>ReadMore</Key>

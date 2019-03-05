@@ -25,9 +25,9 @@ namespace EzTask.Modules.Project.Controllers
             var model = await EzTask.Project.GetProjectDetail(code);
             var vm = new ProjectViewModel();
             vm.Project = model;
-            vm.TotalTask = await EzTask.Task.CountByProject(model.ProjectId);
+            vm.TotalTask = await EzTask.Task.CountTaskByProjectId(model.ProjectId);
             vm.TotalPhase = await EzTask.Phase.CountByProject(model.ProjectId);
-            vm.TotalMember = await EzTask.Project.CountMember(model.ProjectId);
+            vm.TotalMember = await EzTask.Project.CountMemberByProjectId(model.ProjectId);
 
             var phases = await EzTask.Phase.GetPhases(model.ProjectId);
             if (phases.Any())

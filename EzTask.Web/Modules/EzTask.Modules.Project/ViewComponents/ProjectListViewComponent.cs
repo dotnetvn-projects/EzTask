@@ -41,12 +41,12 @@ namespace EzTask.Modules.Project.ViewComponents
                 ProjectViewModel vm = new ProjectViewModel()
                 {
                     Project = proj,
-                    TotalTask = await _ezTask.Task.CountByProject(proj.ProjectId)
+                    TotalTask = await _ezTask.Task.CountTaskByProjectId(proj.ProjectId)
                 };
                 var members = await _ezTask.Project.GetAccountList(proj.ProjectId);
                 foreach (var mem in members)
                 {
-                    mem.TotalTask = await _ezTask.Task.CountByMember(mem.AccountId, proj.ProjectId);
+                    mem.TotalTask = await _ezTask.Task.CountTaskByMember(mem.AccountId, proj.ProjectId);
                     vm.Members.Add(mem);
                 }
                 viewModels.Add(vm);

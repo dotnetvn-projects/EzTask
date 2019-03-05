@@ -124,7 +124,8 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountByPhase(int phaseId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.PhaseId == phaseId
+            var totalTask = await UnitOfWork.TaskRepository.Entity
+                                  .CountAsync(c => c.PhaseId == phaseId
             && c.ProjectId == projectId);
             return totalTask;
         }
@@ -134,9 +135,22 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<int> CountByProject(int projectId)
+        public async Task<int> CountTaskByProjectId(int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.ProjectId == projectId);
+            var totalTask = await UnitOfWork.TaskRepository.Entity
+                                  .CountAsync(c => c.ProjectId == projectId);
+            return totalTask;
+        }
+
+        /// <summary>
+        /// Count task by projects
+        /// </summary>
+        /// <param name="projectIds"></param>
+        /// <returns></returns>
+        public async Task<int> CountTaskByProjectIdList(List<int> projectIds)
+        {
+            var totalTask = await UnitOfWork.TaskRepository.Entity
+                                  .CountAsync(c => projectIds.Contains(c.ProjectId));
             return totalTask;
         }
 
@@ -145,10 +159,10 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="memberId"></param>
         /// <returns></returns>
-        public async Task<int> CountByMember(int memberId, int projectId)
+        public async Task<int> CountTaskByMember(int memberId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity.CountAsync(c => c.MemberId == memberId
-            && c.ProjectId == projectId);
+            var totalTask = await UnitOfWork.TaskRepository.Entity
+                                 .CountAsync(c => c.MemberId == memberId && c.ProjectId == projectId);
             return totalTask;
         }
 

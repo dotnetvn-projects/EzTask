@@ -263,5 +263,18 @@ namespace EzTask.Business
             }
             return result;
         }
+
+        /// <summary>
+        /// count notification 
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
+        public async Task<int> CountNotification(int accountId)
+        {
+            var data = await UnitOfWork.NotifyRepository.Entity
+                .CountAsync(c => c.AccountId == accountId);
+      
+            return data;
+        }
     }
 }
