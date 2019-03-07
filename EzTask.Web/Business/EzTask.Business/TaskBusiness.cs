@@ -42,7 +42,7 @@ namespace EzTask.Business
         {
             ResultModel<string> result = new ResultModel<string>();
             string code = await UnitOfWork.TaskRepository.Entity
-                         .AsNoTracking().Where(c=>c.Id == id)
+                         .AsNoTracking().Where(c => c.Id == id)
                          .Select(c => c.TaskCode).FirstOrDefaultAsync();
 
             result.Data = code;
@@ -56,8 +56,8 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<ResultModel<bool>> IsValidTaskCode(string code)
         {
-            var result = new ResultModel<bool>();
-            var data = await UnitOfWork.TaskRepository
+            ResultModel<bool> result = new ResultModel<bool>();
+            TaskItem data = await UnitOfWork.TaskRepository
                 .Entity
                 .FirstOrDefaultAsync(c => c.TaskCode == code);
             result.Data = data != null;
@@ -124,7 +124,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountByPhase(int phaseId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity
+            int totalTask = await UnitOfWork.TaskRepository.Entity
                                   .CountAsync(c => c.PhaseId == phaseId
             && c.ProjectId == projectId);
             return totalTask;
@@ -137,7 +137,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountTaskByProjectId(int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity
+            int totalTask = await UnitOfWork.TaskRepository.Entity
                                   .CountAsync(c => c.ProjectId == projectId);
             return totalTask;
         }
@@ -149,7 +149,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountTaskByProjectIdList(List<int> projectIds)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity
+            int totalTask = await UnitOfWork.TaskRepository.Entity
                                   .CountAsync(c => projectIds.Contains(c.ProjectId));
             return totalTask;
         }
@@ -161,7 +161,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountTaskByMember(int memberId, int projectId)
         {
-            var totalTask = await UnitOfWork.TaskRepository.Entity
+            int totalTask = await UnitOfWork.TaskRepository.Entity
                                  .CountAsync(c => c.MemberId == memberId && c.ProjectId == projectId);
             return totalTask;
         }
@@ -231,10 +231,10 @@ namespace EzTask.Business
             List<TaskItem> data = await UnitOfWork.TaskRepository.Entity
                        .Include(c => c.Assignee)
                        .AsNoTracking()
-                       .Where(c => c.AssigneeId == assigneeId 
-                                && c.Status != (short)TaskItemStatus.Closed 
+                       .Where(c => c.AssigneeId == assigneeId
+                                && c.Status != (short)TaskItemStatus.Closed
                                 && c.Status != (short)TaskItemStatus.Failed)
-                       .OrderByDescending(c=>c.UpdatedDate)
+                       .OrderByDescending(c => c.UpdatedDate)
                        .Take(top)
                        .Select(x => new TaskItem
                        {
@@ -261,6 +261,55 @@ namespace EzTask.Business
         }
 
         /// <summary>
+        /// Get top x tasks which are assinging to a specific user
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="top"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<IEnumerable<TaskItemModel>>> GetTasksByMemberId(int menberId)
+        {
+            ResultModel<IEnumerable<TaskItemModel>> iResult = new ResultModel<IEnumerable<TaskItemModel>>();
+            List<TaskItem> data = await UnitOfWork.TaskRepository.Entity
+                       .Include(c => c.Member)
+                            .ThenInclude(c => c.AccountInfo)
+                       .Include(c => c.Project)
+                       .AsNoTracking()
+                       .Where(c => c.AssigneeId == menberId)
+                       .OrderByDescending(c => c.UpdatedDate)
+                       .OrderBy(c => c.PercentCompleted)
+                       .Select(x => new TaskItem
+                       {
+                           CreatedDate = x.CreatedDate,
+                           UpdatedDate = x.UpdatedDate,
+                           TaskCode = x.TaskCode,
+                           TaskTitle = x.TaskTitle,
+                           PercentCompleted = x.PercentCompleted,
+                           Status = x.Status,
+                           Id = x.Id,
+
+                           Member = new Account
+                           {
+                               AccountInfo = new AccountInfo { DisplayName = x.Member.AccountInfo.DisplayName }
+                           },
+
+                           Project = new Project
+                           {
+                               ProjectName = x.Project.ProjectName
+                           },
+
+                           Phase = new Phase
+                           {
+                               PhaseName = x.Phase.PhaseName
+                           }
+                       }).ToListAsync();
+
+            iResult.Data = data.ToModels();
+
+            return iResult;
+        }
+
+
+        /// <summary>
         /// Get task list
         /// </summary>
         /// <param name="projectId"></param>
@@ -280,7 +329,7 @@ namespace EzTask.Business
                         .Where(c => c.ProjectId == projectId && c.PhaseId == phaseId)
                         .Skip(pageSize * page - pageSize).Take(pageSize)
                         .Select(x => new TaskItem
-                        {   
+                        {
                             Phase = new Phase { PhaseName = x.Phase.PhaseName, Id = x.Phase.Id, IsDefault = x.Phase.IsDefault },
                             Attachments = x.Attachments.Any() ?
                                 new List<Attachment>
@@ -290,6 +339,7 @@ namespace EzTask.Business
                                         Id =x.Attachments.FirstOrDefault().Id
                                     }
                                 } : new List<Attachment>(),
+
                             AssigneeId = x.AssigneeId,
                             CreatedDate = x.CreatedDate,
                             UpdatedDate = x.UpdatedDate,
@@ -333,14 +383,14 @@ namespace EzTask.Business
         /// <param name="accountId"></param>
         public async Task AssignTask(int[] taskids, int accountId)
         {
-            var tasks = await UnitOfWork.TaskRepository.GetManyAsync(c => taskids.Contains(c.Id), false);
-            foreach (var task in tasks)
+            IEnumerable<TaskItem> tasks = await UnitOfWork.TaskRepository.GetManyAsync(c => taskids.Contains(c.Id), false);
+            foreach (TaskItem task in tasks)
             {
                 task.AssigneeId = accountId == 0 ? null : (int?)accountId;
 
                 UnitOfWork.TaskRepository.Update(task);
             }
-            var iResult = await UnitOfWork.CommitAsync();
+            int iResult = await UnitOfWork.CommitAsync();
         }
 
         #endregion Task
@@ -441,7 +491,7 @@ namespace EzTask.Business
         public async Task<ResultModel<TaskHistoryModel>> SaveHistory(int taskId, string title, string updateInfo, int accountId)
         {
             ResultModel<TaskHistoryModel> result = new ResultModel<TaskHistoryModel>();
-            var model = new TaskHistoryModel
+            TaskHistoryModel model = new TaskHistoryModel
             {
                 Content = updateInfo,
                 Task = new TaskItemModel { TaskId = taskId },
@@ -515,12 +565,12 @@ namespace EzTask.Business
                 string newItem = "Open Features";
                 if (newData.Phase.Id > 0)
                 {
-                    var phase = await _phase.GetPhaseById(newData.Phase.Id);
+                    PhaseModel phase = await _phase.GetPhaseById(newData.Phase.Id);
                     newItem = phase.PhaseName;
                 }
                 if (oldData.Phase.Id > 0)
                 {
-                    var phase = await _phase.GetPhaseById(oldData.Phase.Id);
+                    PhaseModel phase = await _phase.GetPhaseById(oldData.Phase.Id);
                     oldItem = phase.PhaseName;
                 }
                 content += FormartHistoryContent("Phase", oldItem, newItem);
@@ -531,12 +581,12 @@ namespace EzTask.Business
                 string newItem = "Non-Assigned";
                 if (newData.Assignee.AccountId > 0)
                 {
-                    var account = await _account.GetAccountInfo(newData.Assignee.AccountId);
+                    AccountInfoModel account = await _account.GetAccountInfo(newData.Assignee.AccountId);
                     newItem = account.DisplayName;
                 }
                 if (oldData.Assignee.AccountId > 0)
                 {
-                    var account = await _account.GetAccountInfo(oldData.Assignee.AccountId);
+                    AccountInfoModel account = await _account.GetAccountInfo(oldData.Assignee.AccountId);
                     oldItem = account.DisplayName;
                 }
                 content += FormartHistoryContent("Assignee", oldItem, newItem);
@@ -600,7 +650,7 @@ namespace EzTask.Business
 
         private string FormartHistoryContent(string field, string oldData, string newData)
         {
-            if(field == "Detail")
+            if (field == "Detail")
             {
                 string content = $"<p><b>{field}</b>:<br/>";
                 content += $"Old data:<br/> <small style=\"word-wrap: break-word;\">{oldData}</small><br/>";
