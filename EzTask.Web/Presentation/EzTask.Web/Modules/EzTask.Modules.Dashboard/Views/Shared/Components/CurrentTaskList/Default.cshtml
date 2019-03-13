@@ -1,116 +1,114 @@
 @model IList<TaskItemModel>
-<div class="col-md-12">
-    <div class="box box-success task-table">
-        <div class="box-header">
-            <h3 class="box-title">Your Task List</h3>
-            <div class="box-tools pull-right">
-                <button type="button" class="btn btn-box-tool" data-widget="collapse">
-                    <i class="fa fa-minus"></i>
-                </button>
-            </div>
+<div class="box task-table">
+    <div class="box-header">
+        <h3 class="box-title">Your Task List</h3>
+        <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
         </div>
-        <div class="box-body">
-            <table class="table table-bordered table-hover dataTable no-footer">
-                <thead>
-                    <tr>
-                        <th>Task</th>
-                        <th width="120">Project</th>
-                        <th>Phase</th>
-                        <th>Assign by</th>
-                        <th>Process</th>
-                        <th>Label</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @if (Model != null && Model.Any())
+    </div>
+    <div class="box-body">
+        <table class="table table-bordered table-hover dataTable no-footer">
+            <thead>
+                <tr>
+                    <th>Task</th>
+                    <th width="120">Project</th>
+                    <th>Phase</th>
+                    <th>Assign by</th>
+                    <th>Process</th>
+                    <th>Label</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var task in Model)
                     {
-                        foreach (var task in Model)
-                        {
-                            var index = Model.IndexOf(task);
-                            var seperateClass = index % 2 == 0 ? "odd" : "even";
-                            var percent = task.PercentCompleted + "%";
-                            <tr role="row" class="@seperateClass">
-                                <td style="word-break: break-word;"><a target="_blank" href="/task.html?code=@task.TaskCode">@task.TaskTitle</a></td>
-                                <td class="text-center">
-                                    <b>@task.Project.ProjectName</b>
-                                </td>
-                                <td class="text-center">
-                                    <b>@task.Phase.PhaseName</b>
-                                </td>
-                                <td class="text-center">
-                                    <i class="fa fa-user text-green"></i> @task.Member.DisplayName
-                                </td>
-                                <td class="text-center">
-                                    @if (task.Status == TaskItemStatus.Working)
-                                    {
-                                        <div title="current working at @percent of completion" class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar progress-bar-success" style="width: @percent"></div>
-                                        </div>
-                                        <span class="label text-black">@percent @Html.GetStringResource("Completed", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Closed)
-                                    {
-                                        <div title="100% completed" class="progress progress-xs progress-striped active">
-                                            <div class="progress-bar progress-bar-yellow" style="width: 100%"></div>
-                                        </div>
-                                        <span class="label text-black">@Html.GetStringResource("Completed2", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Failed)
-                                    {
-                                        <span class="label label-danger">@Html.GetStringResource("TaskFailed", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Open)
-                                    {
-                                        <span class="label bg-light-blue">@Html.GetStringResource("TaskOpenning", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Feedback)
-                                    {
-                                        <span class="label bg-blue">@Html.GetStringResource("WaitFeedback", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Resovled)
-                                    {
-                                        <span class="label bg-green">@Html.GetStringResource("NeedReviewed", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Assiged)
-                                    {
-                                        <span class="label bg-yellow">@Html.GetStringResource("WaitImplementation", StringResourceType.ProjectPage)</span>
-                                    }
-                                </td>
-                                <td class="text-center">
-                                    @if (task.Status == TaskItemStatus.Working)
-                                    {
-                                        <span class="badge bg-green">@Html.GetStringResource("WorkingStatus", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Closed)
-                                    {
-                                        <span class="badge bg-yellow">@Html.GetStringResource("ClosedStatus", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Failed)
-                                    {
-                                        <span class="badge bg-red">@Html.GetStringResource("FailedStatus", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Open)
-                                    {
-                                        <span class="badge bg-light-blue">@Html.GetStringResource("OpenStatus", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Feedback)
-                                    {
-                                        <span class="badge bg-blue">@Html.GetStringResource("FeedbackStatus", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Resovled)
-                                    {
-                                        <span class="badge bg-green">@Html.GetStringResource("ResovledStatus", StringResourceType.ProjectPage)</span>
-                                    }
-                                    else if (task.Status == TaskItemStatus.Assiged)
-                                    {
-                                        <span class="badge bg-yellow">@Html.GetStringResource("AssignedStatus", StringResourceType.ProjectPage)</span>
-                                    }
-                                </td>
-                            </tr>
-                        }
+                        var index = Model.IndexOf(task);
+                        var seperateClass = index % 2 == 0 ? "odd" : "even";
+                        var percent = task.PercentCompleted + "%";
+                        <tr role="row" class="@seperateClass">
+                            <td style="word-break: break-word;"><a target="_blank" href="/task.html?code=@task.TaskCode">@task.TaskTitle</a></td>
+                            <td class="text-center">
+                                <b>@task.Project.ProjectName</b>
+                            </td>
+                            <td class="text-center">
+                                <b>@task.Phase.PhaseName</b>
+                            </td>
+                            <td class="text-center">
+                                <i class="fa fa-user text-green"></i> @task.Member.DisplayName
+                            </td>
+                            <td class="text-center">
+                                @if (task.Status == TaskItemStatus.Working)
+                                {
+                                    <div title="current working at @percent of completion" class="progress progress-xs progress-striped active">
+                                        <div class="progress-bar progress-bar-success" style="width: @percent"></div>
+                                    </div>
+                                    <span class="label text-black">@percent @Html.GetStringResource("Completed", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Closed)
+                                {
+                                    <div title="100% completed" class="progress progress-xs progress-striped active">
+                                        <div class="progress-bar progress-bar-yellow" style="width: 100%"></div>
+                                    </div>
+                                    <span class="label text-black">@Html.GetStringResource("Completed2", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Failed)
+                                {
+                                    <span class="label label-danger">@Html.GetStringResource("TaskFailed", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Open)
+                                {
+                                    <span class="label bg-light-blue">@Html.GetStringResource("TaskOpenning", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Feedback)
+                                {
+                                    <span class="label bg-blue">@Html.GetStringResource("WaitFeedback", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Resovled)
+                                {
+                                    <span class="label bg-green">@Html.GetStringResource("NeedReviewed", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Assiged)
+                                {
+                                    <span class="label bg-yellow">@Html.GetStringResource("WaitImplementation", StringResourceType.ProjectPage)</span>
+                                }
+                            </td>
+                            <td class="text-center">
+                                @if (task.Status == TaskItemStatus.Working)
+                                {
+                                    <span class="badge bg-green">@Html.GetStringResource("WorkingStatus", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Closed)
+                                {
+                                    <span class="badge bg-yellow">@Html.GetStringResource("ClosedStatus", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Failed)
+                                {
+                                    <span class="badge bg-red">@Html.GetStringResource("FailedStatus", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Open)
+                                {
+                                    <span class="badge bg-light-blue">@Html.GetStringResource("OpenStatus", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Feedback)
+                                {
+                                    <span class="badge bg-blue">@Html.GetStringResource("FeedbackStatus", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Resovled)
+                                {
+                                    <span class="badge bg-green">@Html.GetStringResource("ResovledStatus", StringResourceType.ProjectPage)</span>
+                                }
+                                else if (task.Status == TaskItemStatus.Assiged)
+                                {
+                                    <span class="badge bg-yellow">@Html.GetStringResource("AssignedStatus", StringResourceType.ProjectPage)</span>
+                                }
+                            </td>
+                        </tr>
                     }
-                </tbody>
-            </table>
-        </div>
+                }
+            </tbody>
+        </table>
     </div>
 </div>

@@ -230,7 +230,7 @@ function submitSuccess(response) {
     var phaseId = $("#phase-id").val();
     var projectId = $('.project-list').val();
 
-    $(this).handleLoadTask(projectId, phaseId);
+    $(this).handleLoadTask(projectId, phaseId, null);
 
     $.hideLoading();
 }

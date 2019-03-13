@@ -8,6 +8,15 @@
     background-image: -o-linear-gradient(left, #f0f0f0, #f39c12, #f0f0f0);
 }
 
+div.task-table {
+    padding: 5px;
+}
+
 .task-table .table td {
     vertical-align: middle !important;
+}
+
+.small-box {
+    margin-top:15px;
+    margin-bottom: 15px;
 }

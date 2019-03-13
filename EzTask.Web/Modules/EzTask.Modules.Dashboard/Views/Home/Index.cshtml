@@ -30,7 +30,13 @@
 </div>
 
 <div class="row">
-    @await Component.InvokeAsync("Summary")
+    <div class="col-md-12">
+        <div class="box">
+            <div class="box-body">
+                @await Component.InvokeAsync("Summary")
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="row">
@@ -38,7 +44,9 @@
 </div>
 
 <div class="row">
-    @await Component.InvokeAsync("CurrentTaskList")
+    <div class="col-md-12">
+        @await Component.InvokeAsync("CurrentTaskList")
+    </div>
 </div>
 
 <div class="row">
