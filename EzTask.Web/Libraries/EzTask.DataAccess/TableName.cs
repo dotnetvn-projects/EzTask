@@ -13,6 +13,7 @@ namespace EzTask.DataAccess
         Phase,
         Attachment,
         TaskHistory,
-        Notification
+        Notification,
+        ToDoItem
     }
 }

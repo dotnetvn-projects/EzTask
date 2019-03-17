@@ -251,7 +251,13 @@ $.fn.showDetailFromCode = function () {
             type: 'POST',
             data: { code: taskCode },
             success: function (response, status, request) {
-                $('.task-list > tbody > tr[data-code="' + taskCode + '"]').trigger("click");
+                $.showLoading();
+                $(this).handleLoadTask(response.projectId, response.phaseId, function () {
+                    $("#phase-id").val(response.phaseId);
+                    $('.project-list').val(response.projectId);
+                    $.hideLoading();
+                    $('.task-list > tbody > tr[data-code="' + taskCode + '"]').trigger("click");
+                });              
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 window.location.href = '/';

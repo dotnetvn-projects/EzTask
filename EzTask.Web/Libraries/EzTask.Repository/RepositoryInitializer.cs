@@ -20,6 +20,7 @@ namespace EzTask.Repository
             services.AddScoped<IRepository<Attachment>, TRepository<Attachment>>();
             services.AddScoped<IRepository<TaskHistory>, TRepository<TaskHistory>>();
             services.AddScoped<IRepository<Notification>, TRepository<Notification>>();
+            services.AddScoped<IRepository<ToDoItem>, TRepository<ToDoItem>>();
             services.AddScoped<UnitOfWork>();
         }
     }

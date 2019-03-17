@@ -1,6 +1,7 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Model;
 using EzTask.Model.Enum;
+using EzTask.Model.ToDoList;
 using System.Collections.Generic;
 
 namespace EzTask.Framework.Infrastructures
@@ -162,6 +163,23 @@ namespace EzTask.Framework.Infrastructures
         public static IEnumerable<NotificationModel> ToModels(this IEnumerable<Notification> entity)
         {
             return FrameworkCore.Mapper.Map<IEnumerable<NotificationModel>>(entity);
+        }
+        #endregion
+
+        #region To Do List Mapper
+        public static ToDoItem ToEntity(this ToDoItemModel model)
+        {
+            return FrameworkCore.Mapper.Map<ToDoItem>(model);
+        }
+
+        public static ToDoItemModel ToModel(this ToDoItem entity)
+        {
+            return FrameworkCore.Mapper.Map<ToDoItemModel>(entity);
+        }
+
+        public static IEnumerable<ToDoItemModel> ToModels(this IEnumerable<ToDoItem> entity)
+        {
+            return FrameworkCore.Mapper.Map<IEnumerable<ToDoItemModel>>(entity);
         }
         #endregion
     }

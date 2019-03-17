@@ -13,10 +13,10 @@ namespace EzTask.DataAccess
 
         public void Map()
         {
-            AccountMap();
+            TableMap();
         }
 
-        private void AccountMap()
+        private void TableMap()
         {
             _modelBuilder.Entity<Account>().ToTable(TableName.Account.ToString());
             _modelBuilder.Entity<AccountInfo>().ToTable(TableName.AccountInfo.ToString());
@@ -29,6 +29,7 @@ namespace EzTask.DataAccess
             _modelBuilder.Entity<Attachment>().ToTable(TableName.Attachment.ToString());
             _modelBuilder.Entity<TaskHistory>().ToTable(TableName.TaskHistory.ToString());
             _modelBuilder.Entity<Notification>().ToTable(TableName.Notification.ToString());
+            _modelBuilder.Entity<ToDoItem>().ToTable(TableName.ToDoItem.ToString());
         }
     }
 }

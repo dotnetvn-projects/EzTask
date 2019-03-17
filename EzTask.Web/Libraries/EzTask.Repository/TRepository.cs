@@ -1,8 +1,5 @@
-﻿using EzTask.DataAccess;
-using EzTask.Interface;
+﻿using EzTask.Interface;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Extensions.Internal;
-using Microsoft.EntityFrameworkCore.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Linq;

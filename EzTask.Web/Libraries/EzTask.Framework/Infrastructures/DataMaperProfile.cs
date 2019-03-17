@@ -3,6 +3,7 @@ using EzTask.Entity.Data;
 using EzTask.Framework.Common;
 using EzTask.Model;
 using EzTask.Model.Enum;
+using EzTask.Model.ToDoList;
 using System.Linq;
 
 namespace EzTask.Framework.Infrastructures
@@ -145,6 +146,21 @@ namespace EzTask.Framework.Infrastructures
             CreateMap<NotificationModel, Notification>()
                 .ForMember(c => c.AccountId, t => t.MapFrom(z => z.Account.AccountId))
                 .ForMember(c => c.Context, t => t.MapFrom(z => z.Context.ToInt16<NotifyContext>()));
+        }
+
+        public void TodoMapper()
+        {
+            //Map ToDoItem entity to ToDoItem model
+            CreateMap<ToDoItem, ToDoItemModel>()
+                .ForPath(c => c.Account.AccountId, t => t.MapFrom(z => z.Account.Id))
+                .ForPath(c => c.Account.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo.DisplayName))
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<ToDoItemStatus>()))
+                .ReverseMap();
+
+            //Map ToDoItem model to ToDoItem entity
+            CreateMap<ToDoItemModel, ToDoItem>()
+                .ForMember(c => c.Owner, t => t.MapFrom(z => z.Account.AccountId))
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<ToDoItemStatus>()));
         }
     }
 }

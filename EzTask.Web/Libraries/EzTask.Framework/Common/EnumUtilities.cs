@@ -7,12 +7,12 @@ namespace EzTask.Framework.Common
 {
     public static class EnumUtilities
     {
-        public static T ToEnum<T>(this Int16 value)
+        public static T ToEnum<T>(this short value)
         {
             return (T)Enum.ToObject(typeof(T), value);
         }
 
-        public static Int16 ToInt16<T>(this Enum value)
+        public static short ToInt16<T>(this Enum value)
         {
             return Convert.ToInt16(value);
         }

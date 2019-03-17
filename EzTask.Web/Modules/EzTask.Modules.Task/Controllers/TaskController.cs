@@ -1,16 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using EzTask.Framework.Data;
+using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using EzTask.Modules.Task.ViewModels;
 using EzTask.Web.Framework.Attributes;
-using System.Linq;
-using EzTask.Model;
 using EzTask.Web.Framework.Data;
 using EzTask.Web.Framework.WebContext;
-using EzTask.Framework.Data;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EzTask.Modules.Task.Controllers
 {
@@ -25,7 +25,7 @@ namespace EzTask.Modules.Task.Controllers
         [Route("task.html")]
         public async Task<IActionResult> Index()
         {
-            TaskViewModel model = await PrepareData();        
+            TaskViewModel model = await PrepareData();
             return View(model);
         }
 
@@ -52,7 +52,7 @@ namespace EzTask.Modules.Task.Controllers
         [Route("task/delete-task.html")]
         public async Task<IActionResult> DeleteTasks(int[] taskIds, int projectId)
         {
-            var iResult = await EzTask.Task.DeleteTask(taskIds);
+            ResultModel<bool> iResult = await EzTask.Task.DeleteTask(taskIds);
 
             //add notify
             await EzTask.Notification.DeleteTaskNotify(Context.CurrentAccount.DisplayName,
@@ -71,9 +71,9 @@ namespace EzTask.Modules.Task.Controllers
         [HttpPost]
         public async Task<IActionResult> GenerateAssignTaskView(TaskFormDataModel model)
         {
-            var task = new TaskItemViewModel();
+            TaskItemViewModel task = new TaskItemViewModel();
 
-            var assignees = await EzTask.Project.GetAccountList(model.ProjectId);
+            IEnumerable<ProjectMemberModel> assignees = await EzTask.Project.GetAccountList(model.ProjectId);
             task.AssigneeList = StaticResources.BuildAssigneeSelectList(assignees);
 
             return PartialView("_AssignTask", task);
@@ -93,12 +93,12 @@ namespace EzTask.Modules.Task.Controllers
             {
                 await EzTask.Task.AssignTask(taskids, accountId);
 
-                if(Context.CurrentAccount.AccountId != accountId)
+                if (Context.CurrentAccount.AccountId != accountId)
                 {
                     //add notify
                     await EzTask.Notification.AssignTaskNotify(Context.CurrentAccount.DisplayName, taskids, accountId,
                         Context.GetStringResource("AssignTask", StringResourceType.Notification));
-                }         
+                }
             }
 
             return Ok();
@@ -114,10 +114,14 @@ namespace EzTask.Modules.Task.Controllers
         [Route("task/validate-code.html")]
         public async Task<IActionResult> ValidateTaskCode(string code)
         {
-            var result = await EzTask.Task.IsValidTaskCode(code);
-            if(result.Data)
+            ResultModel<TaskItemModel> result = await EzTask.Task.GetTaskByTaskCode(code);
+            if (result.Data != null)
             {
-                return Ok();
+                return Ok(new
+                {
+                    result.Data.Project.ProjectId,
+                    PhaseId = result.Data.Phase.Id
+                });
             }
             return NotFound();
         }
@@ -133,15 +137,15 @@ namespace EzTask.Modules.Task.Controllers
         private async Task<TaskViewModel> PrepareData()
         {
             TaskViewModel viewModel = new TaskViewModel();
-            var projects = await EzTask.Project.GetProjects(Context.CurrentAccount.AccountId);
+            IEnumerable<ProjectModel> projects = await EzTask.Project.GetProjects(Context.CurrentAccount.AccountId);
 
             if (projects.Any())
             {
                 viewModel.Project = projects.First();
-                var features = await EzTask.Phase.GetOpenFeaturePhase(viewModel.Project.ProjectId);
+                PhaseModel features = await EzTask.Phase.GetOpenFeaturePhase(viewModel.Project.ProjectId);
                 viewModel.Phase = features;
             }
-          
+
             viewModel.ProjectItems = BuildProjectSelectList(projects);
 
             return viewModel;
@@ -167,7 +171,7 @@ namespace EzTask.Modules.Task.Controllers
 
             if (projects.Any())
             {
-                foreach (var pro in projects)
+                foreach (ProjectModel pro in projects)
                 {
                     projectItems.Add(new SelectListItem
                     {
@@ -176,9 +180,11 @@ namespace EzTask.Modules.Task.Controllers
                     });
                 }
             }
-            
+
             if (projectItems.Count > 1)
+            {
                 projectItems[1].Selected = true;
+            }
 
             return projectItems;
         }

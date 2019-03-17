@@ -187,6 +187,8 @@ $.fn.showEdit = function () {
                     $('#task-modal').on('hidden.bs.modal', function () {
                         var taskCode = $.queryString()["code"];
                         if (taskCode !== undefined && taskCode !== '' && taskCode !== null) {
+                           // history.pushState(null, $(document).find("title").text(), '/task.html');
+                           // history.go(0);
                             window.location.href = '/task.html';
                         }
                     });
@@ -230,7 +232,7 @@ function submitSuccess(response) {
     var phaseId = $("#phase-id").val();
     var projectId = $('.project-list').val();
 
-    $(this).handleLoadTask(projectId, phaseId);
+    $(this).handleLoadTask(projectId, phaseId, null);
 
     $.hideLoading();
 }

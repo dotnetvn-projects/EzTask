@@ -50,17 +50,22 @@ namespace EzTask.Business
         }
 
         /// <summary>
-        /// Check whether task code valid or not
+        /// Get by task code
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public async Task<ResultModel<bool>> IsValidTaskCode(string code)
+        public async Task<ResultModel<TaskItemModel>> GetTaskByTaskCode(string code)
         {
-            ResultModel<bool> result = new ResultModel<bool>();
-            TaskItem data = await UnitOfWork.TaskRepository
+            ResultModel<TaskItemModel> result = new ResultModel<TaskItemModel>();
+            TaskItem data = await UnitOfWork
+                .TaskRepository
                 .Entity
+                .Include(x=>x.Project)
+                .Include(x=>x.Phase)
                 .FirstOrDefaultAsync(c => c.TaskCode == code);
-            result.Data = data != null;
+
+            if (data != null)
+                result.Data = data.ToModel();
 
             return result;
         }
