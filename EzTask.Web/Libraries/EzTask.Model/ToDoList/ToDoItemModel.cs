@@ -1,7 +1,5 @@
 ﻿using EzTask.Model.Enum;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Model.ToDoList
 {

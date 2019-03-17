@@ -1,9 +1,4 @@
-﻿using EzTask.Entity;
-using EzTask.Entity.Data;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.DataAccess
 {

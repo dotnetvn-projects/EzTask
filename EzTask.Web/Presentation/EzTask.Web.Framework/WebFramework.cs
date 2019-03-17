@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Razor;
@@ -13,7 +12,6 @@ using EzTask.Business;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Web.Framework.Data;
 using EzTask.Web.Framework.Filters;
-using EzTask.Framework.Infrastructures;
 using EzTask.Interface;
 using EzTask.Plugin.MessageService;
 
