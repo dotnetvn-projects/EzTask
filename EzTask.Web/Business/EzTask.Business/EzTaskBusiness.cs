@@ -10,11 +10,13 @@ namespace EzTask.Business
         public PhaseBusiness Phase { get; }
         public TaskBusiness Task { get; }
         public NotificationBusiness Notification { get; }
+        public ToDoListBusiness ToDoList { get; }
 
         public EzTaskBusiness(AccountBusiness account,
             ProjectBusiness project, SkillBusiness skill,
             PhaseBusiness phase, TaskBusiness task,
-            NotificationBusiness notification)
+            NotificationBusiness notification,
+            ToDoListBusiness toDoList)
         {
             Account = account;
             Project = project;
@@ -22,6 +24,7 @@ namespace EzTask.Business
             Phase = phase;
             Task = task;
             Notification = notification;
+            ToDoList = toDoList;
         }
 
         /// <summary>

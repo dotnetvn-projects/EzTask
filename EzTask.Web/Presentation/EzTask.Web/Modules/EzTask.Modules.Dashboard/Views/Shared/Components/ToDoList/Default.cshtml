@@ -1,0 +1,80 @@
+@model PagingModel<ToDoItemModel>
+@{ 
+    if(Model.PageList != null)
+    {
+        Model.PageList.Css = "pagination-sm inline";
+    }
+}
+
+<div class="box box-primary">
+    <div class="box-header">
+        <i class="ion ion-clipboard"></i>
+
+        <h3 class="box-title">To Do List</h3>
+
+        <div class="box-tools pull-right">
+            <partial name="~/Modules/EzTask.Modules.Core/Views/Shared/_PageList.cshtml"
+                     Model="Model.PageList" />
+
+            <button type="button" class="btn btn-box-tool" data-widget="collapse">
+                <i class="fa fa-minus"></i>
+            </button>
+        </div>
+    </div>
+    <!-- /.box-header -->
+    <div class="box-body">
+        @if (Model.Data != null && Model.Data.Any())
+        {
+        <ul class="todo-list ui-sortable">
+            @foreach (var item in Model.Data)
+            {
+                string timeCss = "label-danger";
+                string time = item.CompleteOn.TimeAgo().Replace("ago", "left");
+
+                if(time.Contains("minute"))
+                {
+                    timeCss = "label-warning";
+                }
+                else if(time.Contains("hour"))
+                {
+                    timeCss = "label-info";
+                }
+                else if (time.Contains("day"))
+                {
+                    timeCss = "label-success";
+                }
+                else if (time.Contains("month"))
+                {
+                    timeCss = "label-default";
+                }
+                else if (time.Contains("year"))
+                {
+                    timeCss = "label-primary";
+                }
+                <li>
+                    <span>
+                        <i class="fa fa-ellipsis-v"></i>
+                        <i class="fa fa-ellipsis-v"></i>
+                    </span>
+                    <input data-id="@item.Id" type="checkbox" value="">
+                    <span class="text">@item.Title</span>
+                    <small class="label @timeCss"><i class="fa fa-clock-o"></i> @time</small>
+                    <div class="tools">
+                        <i class="fa fa-edit"></i>
+                        <i class="fa fa-trash-o"></i>
+                    </div>
+                </li>
+            }
+        </ul>
+        }
+        else
+        {
+            <span>No data to display</span>
+        }
+    </div>
+    <!-- /.box-body -->
+    <div class="box-footer clearfix no-border">
+        <button type="button" class="btn btn-default pull-left bg-red"><i class="fa fa-remove remove-todo-item"></i> Delete</button>
+        <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus add-todo-item"></i> Add item</button>
+    </div>
+</div>

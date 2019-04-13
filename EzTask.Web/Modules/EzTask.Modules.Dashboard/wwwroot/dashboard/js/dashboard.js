@@ -4,6 +4,15 @@
     });
 };
 
+$.fn.getTodoList = function () {
+    var params = {
+        currentPage: $(this).data("page")
+    };
+
+    $.PaginationRequest('dashboard/todo-list.html',this, ".todolist", params);
+};
+
 $(function () {
     $(this).applyDatatable();
+    $(".pagination > li > a").getTodoList();
 });

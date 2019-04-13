@@ -110,6 +110,36 @@ namespace EzTask.Repository
         }
 
         /// <summary>
+        /// Get paging
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="allowTracking"></param>
+        /// <returns></returns>
+        public IEnumerable<T> GetPaging(Expression<Func<T, bool>> predicate, int page, int pageSize, bool allowTracking = true)
+        {
+            if (allowTracking)
+            {
+                return Entity.Where(predicate).Skip(page).Take(pageSize).AsEnumerable();
+            }
+
+            return Entity.AsNoTracking().Where(predicate).Skip(page).Take(pageSize).AsEnumerable();
+        }
+
+        /// <summary>
+        /// Count entities by lambda expression
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public int Count(Expression<Func<T, bool>> predicate,
+            bool allowTracking = true)
+        {
+            var data = Entity.Count(predicate);
+            return data;
+        }
+
+        /// <summary>
         /// Update an entity
         /// </summary>
         /// <param name="entity"></param>
@@ -120,7 +150,7 @@ namespace EzTask.Repository
         }
 
         /// <summary>
-        /// Get entities from sql string
+        /// Get entities from sql string 
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
@@ -145,7 +175,7 @@ namespace EzTask.Repository
         }
 
         /// <summary>
-        /// Get entities by lambda expression
+        /// Get entities by lambda expression async
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
@@ -153,6 +183,18 @@ namespace EzTask.Repository
             bool allowTracking = true)
         {
             var data = await Entity.Where(predicate).ToListAsync();
+            return data;
+        }
+
+        /// <summary>
+        /// Count entities by lambda expression async
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        public async Task<int> CountAsync(Expression<Func<T, bool>> predicate,
+            bool allowTracking = true)
+        {
+            var data = await Entity.CountAsync(predicate);
             return data;
         }
 
@@ -207,6 +249,24 @@ namespace EzTask.Repository
                 data = await Entity.AsNoTracking().FromSql(sql).ToListAsync();
             }
             return data;
+        }
+
+        /// <summary>
+        /// Get paging async
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <param name="page"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="allowTracking"></param>
+        /// <returns></returns>
+        public async Task<IEnumerable<T>> GetPagingAsync(Expression<Func<T, bool>> predicate, int page, int pageSize, bool allowTracking = true)
+        {
+            if (allowTracking)
+            {
+                return await Entity.Where(predicate).Skip(page).Take(pageSize).ToListAsync();
+            }
+
+            return await Entity.AsNoTracking().Where(predicate).Skip(page).Take(pageSize).ToListAsync();
         }
     }
 }

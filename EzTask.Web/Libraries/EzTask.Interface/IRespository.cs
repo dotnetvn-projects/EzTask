@@ -27,6 +27,20 @@ namespace EzTask.Interface
         IEnumerable<T> GetMany(Expression<Func<T, bool>> predicate, bool allowTracking = true);
 
         /// <summary>
+        /// Get entities lambda expression
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        IEnumerable<T> GetPaging(Expression<Func<T, bool>> predicate, int page, int pageSize, bool allowTracking = true);
+
+        /// <summary>
+        /// Count entities by lambda expression
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        int Count(Expression<Func<T, bool>> predicate, bool allowTracking = true);
+
+        /// <summary>
         /// Get entity by id
         /// </summary>
         /// <param name="id"></param>
@@ -92,6 +106,20 @@ namespace EzTask.Interface
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> predicate, bool allowTracking = true);
+
+        /// <summary>
+        /// Get entities lambda expression async
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        Task<IEnumerable<T>> GetPagingAsync(Expression<Func<T, bool>> predicate, int page, int pageSize, bool allowTracking = true);
+
+        /// <summary>
+        /// Count entities by lambda expression async
+        /// </summary>
+        /// <param name="predicate"></param>
+        /// <returns></returns>
+        Task<int> CountAsync(Expression<Func<T, bool>> predicate, bool allowTracking = true);
 
         /// <summary>
         /// Get entity by id async

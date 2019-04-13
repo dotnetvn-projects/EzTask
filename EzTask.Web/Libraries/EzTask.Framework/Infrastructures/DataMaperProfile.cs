@@ -3,7 +3,6 @@ using EzTask.Entity.Data;
 using EzTask.Framework.Common;
 using EzTask.Model;
 using EzTask.Model.Enum;
-using EzTask.Model.ToDoList;
 using System.Linq;
 
 namespace EzTask.Framework.Infrastructures
@@ -17,6 +16,7 @@ namespace EzTask.Framework.Infrastructures
             PhaseMapper();
             TaskMapper();
             NotificationMapper();
+            TodoMapper();
         }
 
         private void AccountMaper()
@@ -155,12 +155,14 @@ namespace EzTask.Framework.Infrastructures
                 .ForPath(c => c.Account.AccountId, t => t.MapFrom(z => z.Account.Id))
                 .ForPath(c => c.Account.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo.DisplayName))
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<ToDoItemStatus>()))
+                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToEnum<ToDoItemPriority>()))
                 .ReverseMap();
 
             //Map ToDoItem model to ToDoItem entity
             CreateMap<ToDoItemModel, ToDoItem>()
                 .ForMember(c => c.Owner, t => t.MapFrom(z => z.Account.AccountId))
-                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<ToDoItemStatus>()));
+                .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<ToDoItemStatus>()))
+                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToInt16<ToDoItemPriority>()));
         }
     }
 }

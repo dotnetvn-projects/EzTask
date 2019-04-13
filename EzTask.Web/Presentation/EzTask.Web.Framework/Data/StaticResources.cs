@@ -232,5 +232,77 @@ namespace EzTask.Web.Framework.Data
             }
             return statusItems;
         }
+
+        /// <summary>
+        /// Build Todo item status SelectList items
+        /// </summary>
+        /// <returns></returns>
+        public static List<SelectListItem> BuildToDoItemStatusSelectList(short selectedId = 0)
+        {
+            List<SelectListItem> statusItems = new List<SelectListItem>();
+            var statuses = EnumUtilities.ToList<ToDoItemStatus>();
+            if (statuses.Any())
+            {
+                foreach (var status in statuses)
+                {
+                    var selectItem = new SelectListItem
+                    {
+                        Text = status,
+                        Value = ((short)status.ToEnum<ToDoItemStatus>()).ToString()
+                    };
+
+                    if (selectedId != 0)
+                    {
+                        var statusEnum = selectedId.ToEnum<ToDoItemStatus>();
+                        if (status == statusEnum.ToString())
+                        {
+                            selectItem.Selected = true;
+                        }
+                    }
+                    statusItems.Add(selectItem);
+                }
+            }
+            if (selectedId == 0)
+            {
+                statusItems[0].Selected = true;
+            }
+            return statusItems;
+        }
+
+        /// <summary>
+        /// Build Todo item priority SelectList items
+        /// </summary>
+        /// <returns></returns>
+        public static List<SelectListItem> BuildToDoItemPrioritySelectList(short selectedId = 0)
+        {
+            List<SelectListItem> priorityItems = new List<SelectListItem>();
+            var priorities = EnumUtilities.ToList<ToDoItemPriority>();
+            if (priorities.Any())
+            {
+                foreach (var priority in priorities)
+                {
+                    var selectItem = new SelectListItem
+                    {
+                        Text = priority,
+                        Value = ((short)priority.ToEnum<ToDoItemPriority>()).ToString()
+                    };
+
+                    if (selectedId != 0)
+                    {
+                        var priorityEnum = selectedId.ToEnum<ToDoItemPriority>();
+                        if (priority == priorityEnum.ToString())
+                        {
+                            selectItem.Selected = true;
+                        }
+                    }
+                    priorityItems.Add(selectItem);
+                }
+            }
+            if (selectedId == 0)
+            {
+                priorityItems[0].Selected = true;
+            }
+            return priorityItems;
+        }
     }
 }

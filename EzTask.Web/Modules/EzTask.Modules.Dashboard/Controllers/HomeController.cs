@@ -17,5 +17,16 @@ namespace EzTask.Modules.Dashboard.Controllers
         {
             return View();
         }
+
+        /// <summary>
+        /// load to do list
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("dashboard/todo-list.html")]
+        public IActionResult GetTaskList(int currentPage)
+        {
+            return ViewComponent("TodoList", new { currentPage });
+        }
     }
 }
