@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 namespace EzTask.Modules.Dashboard.ViewComponents
 {
     // http://jasonwatmore.com/post/2016/08/23/angular-2-pagination-example-with-logic-like-google
+    /// <summary>
+    /// TodoList ViewComponent
+    /// </summary>
     public class TodoListViewComponent: ViewComponent
     {
         private readonly EzTaskBusiness _ezTask;
@@ -15,6 +18,12 @@ namespace EzTask.Modules.Dashboard.ViewComponents
             _ezTask = eztask;
         }
 
+        /// <summary>
+        /// Main method
+        /// </summary>
+        /// <param name="currentPage"></param>
+        /// <param name="pageSize"></param>
+        /// <returns></returns>
         public async Task<IViewComponentResult> InvokeAsync(int currentPage = 1, int pageSize = 5)
         {
             int accountId = Context.CurrentAccount.AccountId;

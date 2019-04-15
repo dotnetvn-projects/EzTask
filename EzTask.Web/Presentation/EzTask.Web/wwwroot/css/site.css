@@ -22,11 +22,13 @@ td {
     font-size: 12px;
     line-height: 1.42857;
 }
+
+.pagination > li {
+    cursor: pointer;
+}
 /*-----EndCommon-----*/
 
-
 /*------notification------*/
-
 .notifications-menu > ul > li p {
     padding-left: 23px;
     color: #999999;

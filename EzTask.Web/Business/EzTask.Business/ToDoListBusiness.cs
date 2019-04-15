@@ -81,45 +81,34 @@ namespace EzTask.Business
             return iResult;
         }
 
-        /// <summary>
-        /// Delete a todoitem
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        public async Task<ResultModel<ToDoItemModel>> Delete(ToDoItemModel model)
-        {
-            ResultModel<ToDoItemModel> result = new ResultModel<ToDoItemModel>();
-
-            UnitOfWork.TodoItemRepository.Delete(model.Id);
-            int iResult = await UnitOfWork.CommitAsync();
-
-            if (iResult > 0)
-            {
-                result.Status = ActionStatus.Ok;
-            }
-
-            return result;
-        }
 
         /// <summary>
         /// Delete todoitem list
         /// </summary>
         /// <param name="models"></param>
         /// <returns></returns>
-        public async Task<ResultModel<ToDoItemModel>> Deletes(List<ToDoItemModel> models)
+        public async Task<ResultModel<bool>> Deletes(int[] ids)
         {
-            ResultModel<ToDoItemModel> result = new ResultModel<ToDoItemModel>();
+            ResultModel<bool> result = new ResultModel<bool>();
 
-            var ids = models.Select(c => c.Id).ToList();
             var dataRange = await UnitOfWork.TodoItemRepository.GetManyAsync(c => ids.Contains(c.Id));
 
-            UnitOfWork.TodoItemRepository.DeleteRange(dataRange);
-
-            int iResult = await UnitOfWork.CommitAsync();
-
-            if (iResult > 0)
+            if (dataRange.Any())
             {
-                result.Status = ActionStatus.Ok;
+                UnitOfWork.TodoItemRepository.DeleteRange(dataRange);
+
+                int iResult = await UnitOfWork.CommitAsync();
+
+                if (iResult > 0)
+                {
+                    result.Data = true;
+                    result.Status = ActionStatus.Ok;
+                }
+            }
+            else
+            {
+                // do nothing
+                result.Status = ActionStatus.NotFound;
             }
 
             return result;

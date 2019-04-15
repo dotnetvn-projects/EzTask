@@ -46,7 +46,7 @@ namespace EzTask.Model
             int startPage;
             int endPage;
 
-            if (totalPages <= 10)
+            if (totalPages <= 5)
             {
                 // less than 10 total pages so show all
                 startPage = 1;
@@ -55,26 +55,22 @@ namespace EzTask.Model
             else
             {
                 // more than 10 total pages so calculate start and end pages
-                if (PageList.CurrentPage <= 6)
+                if (PageList.CurrentPage <= 2)
                 {
                     startPage = 1;
-                    endPage = 10;
+                    endPage = 5;
                 }
-                else if (PageList.CurrentPage + 4 >= totalPages)
+                else if (PageList.CurrentPage + 2 >= totalPages)
                 {
-                    startPage = totalPages - 9;
+                    startPage = totalPages - 4;
                     endPage = totalPages;
                 }
                 else
                 {
-                    startPage = PageList.CurrentPage - 5;
-                    endPage = PageList.CurrentPage + 4;
+                    startPage = PageList.CurrentPage - 2;
+                    endPage = PageList.CurrentPage + 2;
                 }
             }
-
-            // calculate start and end item indexes
-            int startIndex = (PageList.CurrentPage - 1) * ItemPerpage;
-            int endIndex = Math.Min(startIndex + ItemPerpage - 1, TotalRecord - 1);
 
             // create an array of pages to ng-repeat in the pager control
             for (int i = startPage; i <= endPage; i++)

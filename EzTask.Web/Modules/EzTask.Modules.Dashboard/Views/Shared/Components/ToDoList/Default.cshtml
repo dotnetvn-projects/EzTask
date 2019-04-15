@@ -56,12 +56,12 @@
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                     </span>
-                    <input data-id="@item.Id" type="checkbox" value="">
+                    <input class="todo-check" data-id="@item.Id" type="checkbox" value="">
                     <span class="text">@item.Title</span>
                     <small class="label @timeCss"><i class="fa fa-clock-o"></i> @time</small>
                     <div class="tools">
-                        <i class="fa fa-edit"></i>
-                        <i class="fa fa-trash-o"></i>
+                        <a class="edit-todo"><i class="fa  fa-edit"></i></a>
+                        <a data-id="@item.Id" class="remove-todoitem"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </li>
             }
@@ -74,7 +74,7 @@
     </div>
     <!-- /.box-body -->
     <div class="box-footer clearfix no-border">
-        <button type="button" class="btn btn-default pull-left bg-red"><i class="fa fa-remove remove-todo-item"></i> Delete</button>
-        <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus add-todo-item"></i> Add item</button>
+        <button type="button" class="btn btn-default remove-todoitems pull-left bg-red"><i class="fa fa-remove"></i> Delete</button>
+        <button type="button" class="btn btn-default pull-right add-todo-item"><i class="fa fa-plus"></i> Add item</button>
     </div>
 </div>

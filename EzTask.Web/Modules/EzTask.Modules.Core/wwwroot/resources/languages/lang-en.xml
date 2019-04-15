@@ -299,6 +299,14 @@
       <Key>DashboardPageTitle</Key>
       <Content>Home</Content>
     </Language>
+    <Language>
+      <Key>DeleteTodoListWarning</Key>
+      <Content>No item seleted, please select at least 1 item!</Content>
+    </Language>
+    <Language>
+      <Key>CompleteOnError</Key>
+      <Content>"Complete on" must be greater than or equal now time!</Content>
+    </Language>
   </DashboardPage>
 
   <AuthenticationPage>

@@ -38,6 +38,7 @@ namespace EzTask.Repository
              IRepository<ToDoItem> todoItemRepository)
         {
             Context = context;
+
             AccountRepository = account;
             AccountRepository.Context = Context;
 

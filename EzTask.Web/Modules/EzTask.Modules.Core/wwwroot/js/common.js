@@ -176,22 +176,18 @@
     };
 
     // make paging request
-    $.PaginationRequest = function Pagination(url, pageItem, target, params, action) {
-        $(pageItem).click(function (e) {
-            e.preventDefault();
-            var requestUrl = url;
-            $.ajax({
-                url: requestUrl,
-                data: params,
-                type: "POST",
-                success: function (data) {
-                    $(target).html(data);
-                    if (action !== null && action !== undefined) {
-                        action();
-                    }
+    $.PaginationRequest = function Pagination(requestUrl, target, params, action) {
+        $.ajax({
+            url: requestUrl,
+            data: params,
+            type: "POST",
+            success: function (data) {
+                target.html(data);
+                if (action !== null && action !== undefined) {
+                    action();
                 }
-            });
-        });    
+            }
+        });   
     };
 
 })(jQuery);

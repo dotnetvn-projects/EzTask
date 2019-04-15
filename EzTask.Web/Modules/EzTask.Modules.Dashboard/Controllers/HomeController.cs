@@ -1,7 +1,13 @@
-﻿using System;
-using Microsoft.AspNetCore.Mvc;
+﻿using EzTask.Framework.Data;
+using EzTask.Model;
+using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
+using EzTask.Web.Framework.WebContext;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EzTask.Modules.Dashboard.Controllers
 {
@@ -17,6 +23,29 @@ namespace EzTask.Modules.Dashboard.Controllers
         {
             return View();
         }
+        #region ToDoList
+
+        /// <summary>
+        /// add new to do item
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+        public async Task<IActionResult> AddOrEditToDoItem(ToDoItemModel model)
+        {
+            if(string.IsNullOrWhiteSpace(model.Title))
+            {
+                return BadRequest("");
+            }
+
+            if (model.CompleteOn < DateTime.Now)
+            {
+                return BadRequest(Context.GetStringResource("CompleteOnError", StringResourceType.DashboardPage));
+            }
+
+            var result = await EzTask.ToDoList.Save(model);
+
+            return Json(result);
+        }
 
         /// <summary>
         /// load to do list
@@ -24,9 +53,23 @@ namespace EzTask.Modules.Dashboard.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("dashboard/todo-list.html")]
-        public IActionResult GetTaskList(int currentPage)
+        public IActionResult GetTodoList(int currentPage)
         {
             return ViewComponent("TodoList", new { currentPage });
         }
+
+        /// <summary>
+        /// remove to do list
+        /// </summary>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("dashboard/remove-todo-list.html")]
+        public async Task<IActionResult> RemoveTodoList(int[] items)
+        {
+            var result = await EzTask.ToDoList.Deletes(items);
+            return Json(result);           
+        }
+
+        #endregion
     }
 }
