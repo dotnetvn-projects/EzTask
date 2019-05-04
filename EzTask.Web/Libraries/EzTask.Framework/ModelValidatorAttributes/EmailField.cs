@@ -1,11 +1,9 @@
 ﻿using EzTask.Interface;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 using System.Text.RegularExpressions;
 
-namespace EzTask.Model.ModelValidatorAttributes
+namespace EzTask.Framework.ModelValidatorAttributes
 {
     public class EmailField: DataTypeAttribute
     {

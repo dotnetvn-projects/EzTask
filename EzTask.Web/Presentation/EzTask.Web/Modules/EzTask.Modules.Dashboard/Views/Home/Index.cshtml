@@ -58,7 +58,8 @@
         @await Component.InvokeAsync("TodoList")
     </div>
 </div>
-
+<div class="view-template"></div>
 @section Scripts{
     <script src="~/dashboard/js/dashboard.js"></script>
+    <partial name="_ValidationScriptsPartial" />
 }

@@ -74,6 +74,7 @@ namespace EzTask.Web.Framework
                     options.ViewLocationExpanders.Add(new ModuleViewLocationExpander());
                 });
             }
+            FrameworkCore.ServiceProvider = services.BuildServiceProvider();
         }
 
         public static void ConfigureFramework(this IApplicationBuilder app)

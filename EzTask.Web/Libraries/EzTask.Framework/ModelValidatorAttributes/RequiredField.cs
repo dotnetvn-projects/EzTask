@@ -1,21 +1,18 @@
 ﻿using EzTask.Interface;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
 
-namespace EzTask.Model.ModelValidatorAttributes
+namespace EzTask.Framework.ModelValidatorAttributes
 {
-    public class StringLengthField: StringLengthAttribute
+    public class RequiredField: RequiredAttribute
     {
         private ILanguageLocalization _languageLocalization;
 
         public string ErrorLanguageKey { get; set; }
         public string LanguagePageSetting { get; set; }
 
-        public StringLengthField(int maximumLength, ILanguageLocalization languageLocalization) : base(maximumLength)
+        public RequiredField()
         {
-            _languageLocalization = languageLocalization;
+            _languageLocalization = FrameworkCore.ServiceProvider.InvokeComponents<ILanguageLocalization>();
         }
 
         public override string FormatErrorMessage(string name)

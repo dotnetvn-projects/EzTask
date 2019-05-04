@@ -1,22 +1,91 @@
-﻿$.fn.applyDatatable = function () {
+﻿// load todo list base on page number
+function loadTodoList(page) {
+    var params = {
+        currentPage: page
+    };
+    var target = $(".todolist");
+    $.PaginationRequest('dashboard/todo-list.html', target, params, function () {
+        $(this).initJs();
+    });
+}
+
+// apply datatablejs
+$.fn.applyDatatable = function () {
     $(".task-table table").DataTable({
         "lengthMenu": [[10], [10]]
     });
 };
 
+// get todo list
 $.fn.getTodoList = function () {
     $(this).click(function (e) {
-        e.preventDefault();
-        var params = {
-            currentPage: $(this).data("page")
-        };
-        var target = $(".todolist");
-        $.PaginationRequest('dashboard/todo-list.html', target, params, function () {
-            $(this).initJs();
-        });
+        loadTodoList($(this).data("page"));
     });   
 };
 
+// show add or edit modal
+$.fn.showModal = function () {
+    $(this).click(function (e) {
+        var itemId = $(this).data('itemid');
+        $.showLoading();
+        $.ajax({
+            url: 'dashboard/todolist/generateview.html',
+            data: { itemId: itemId },
+            type: "POST",
+            success: function (reponse) {
+                $(".view-template").html(reponse);
+
+                $.initCommonLib();
+
+                $("#todoitem-modal .btn-confirm").todoItemModalAction();
+
+                $.showDialog({
+                    dialogId: 'todoitem-modal'
+                });
+
+                $.triggerCloseDialog('todoitem-modal');
+                $.hideLoading();
+            },
+            error: function (xhr, ajaxOptions, thrownError) {
+                $.hideLoading();
+                $.alertDialog({
+                    title: $('#error-title').val(),
+                    content: xhr.responseText
+                });
+            }
+        });
+    });
+};
+
+// excute add or edit todo item
+$.fn.todoItemModalAction = function () {
+    $(this).click(function (e) {
+        e.preventDefault();
+        var form = $("#todoItem-form");
+        $.showLoading();
+        if (form.valid()) {
+            $.ajax({
+                type: 'POST',
+                url: "dashboard/todolist/save.html",
+                data: form.serialize(),
+                success: function (response) {
+                    $.closeDialog('todoitem-modal');
+                    loadTodoList(1);
+                    $.hideLoading();
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $.alertDialog({
+                        title: $('#error-title').val(),
+                        content: xhr.responseText
+                    });
+                    $.hideLoading();
+                }
+            });
+        }
+    });  
+};
+
+// remove item from todo list
 $.fn.removeTodoList = function () {
     $(this).click(function (e) {
         e.preventDefault();
@@ -24,11 +93,11 @@ $.fn.removeTodoList = function () {
         if ($(this).hasClass('remove-todoitems')) {
             $('input.todo-check[type=checkbox]').each(function () {
                 if (this.checked)
-                    todoItem.push($(this).data("id"));
+                    todoItem.push($(this).data("itemid"));
             });
         }
         else {
-            todoItem.push($(this).data("id"));
+            todoItem.push($(this).data("itemid"));
         }
 
         if (todoItem.length > 0) {
@@ -57,11 +126,14 @@ $.fn.removeTodoList = function () {
     });
 };
 
+// apply common js
 $.fn.initJs = function applyJs() {
-    $(".pagination > li > a").getTodoList();
+    $(".todolist-pager .pagination > li > a").getTodoList();
     $(".remove-todoitem,.remove-todoitems").removeTodoList();
+    $(".add-todo-item,.edit-todo").showModal();
 };
 
+// js main
 $(function () {
     $(this).applyDatatable();
     $(this).initJs();

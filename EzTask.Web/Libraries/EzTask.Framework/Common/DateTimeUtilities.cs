@@ -21,6 +21,16 @@ namespace EzTask.Framework.Common
             return new DateTime(int.Parse(date[2]), int.Parse(date[1]),int.Parse(date[0]));
         }
 
+        /// <summary>
+        /// Convert datetime to string
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static string ToDateString(this DateTime data)
+        {
+            return data.ToString("dd/MM/yyyy");
+        }
+
         public static string TimeAgo(this DateTime dateTime)
         {
             TimeSpan span = DateTime.Now - dateTime;

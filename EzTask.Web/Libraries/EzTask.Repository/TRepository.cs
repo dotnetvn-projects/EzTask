@@ -263,10 +263,10 @@ namespace EzTask.Repository
         {
             if (allowTracking)
             {
-                return await Entity.Where(predicate).Skip(page).Take(pageSize).ToListAsync();
+                return await Entity.Where(predicate).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
             }
 
-            return await Entity.AsNoTracking().Where(predicate).Skip(page).Take(pageSize).ToListAsync();
+            return await Entity.AsNoTracking().Where(predicate).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
     }
 }

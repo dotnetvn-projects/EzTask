@@ -3,7 +3,7 @@ using System;
 
 namespace EzTask.Model
 {
-    public class ToDoItemModel: BaseModel
+    public class ToDoItemModel : BaseModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -11,6 +11,16 @@ namespace EzTask.Model
         public ToDoItemStatus Status { get; set; }
         public DateTime CompleteOn { get; set; }
         public AccountModel Account { get; set; }
+
+        public bool IsWarning
+        {
+            get
+            {
+                if (CompleteOn < DateTime.Now)
+                    return true;
+                return false;
+            }
+        }
 
         public ToDoItemModel()
         {

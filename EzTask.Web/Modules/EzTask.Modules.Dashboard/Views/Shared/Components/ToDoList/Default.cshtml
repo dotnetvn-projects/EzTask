@@ -12,7 +12,7 @@
 
         <h3 class="box-title">To Do List</h3>
 
-        <div class="box-tools pull-right">
+        <div class="box-tools pull-right todolist-pager">
             <partial name="~/Modules/EzTask.Modules.Core/Views/Shared/_PageList.cshtml"
                      Model="Model.PageList" />
 
@@ -56,12 +56,12 @@
                         <i class="fa fa-ellipsis-v"></i>
                         <i class="fa fa-ellipsis-v"></i>
                     </span>
-                    <input class="todo-check" data-id="@item.Id" type="checkbox" value="">
+                    <input class="todo-check" data-itemid="@item.Id" type="checkbox" value="">
                     <span class="text">@item.Title</span>
                     <small class="label @timeCss"><i class="fa fa-clock-o"></i> @time</small>
                     <div class="tools">
-                        <a class="edit-todo"><i class="fa  fa-edit"></i></a>
-                        <a data-id="@item.Id" class="remove-todoitem"><i class="fa fa-trash-o"></i></a>
+                        <a data-itemid = "@item.Id" class="edit-todo"><i class="fa  fa-edit"></i></a>
+                        <a data-itemid = "@item.Id" class="remove-todoitem"><i class="fa fa-trash-o"></i></a>
                     </div>
                 </li>
             }
@@ -75,6 +75,6 @@
     <!-- /.box-body -->
     <div class="box-footer clearfix no-border">
         <button type="button" class="btn btn-default remove-todoitems pull-left bg-red"><i class="fa fa-remove"></i> Delete</button>
-        <button type="button" class="btn btn-default pull-right add-todo-item"><i class="fa fa-plus"></i> Add item</button>
+        <button type="button" data-itemid = "" class="btn btn-default pull-right add-todo-item"><i class="fa fa-plus"></i> Add item</button>
     </div>
 </div>

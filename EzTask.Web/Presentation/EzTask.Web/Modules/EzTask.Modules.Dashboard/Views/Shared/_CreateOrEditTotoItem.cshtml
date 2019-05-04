@@ -1,0 +1,59 @@
+﻿@model ToDoItemViewModel
+<div class="modal fade" id="todoitem-modal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" data-dismiss="modal" class="close" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                @if (Model.Id <= 0)
+                {
+                    <h4 class="modal-title">Add new todo item</h4>
+                }
+                else
+                {
+                    <h4 class="modal-title">Edit '@Model.Title'</h4>
+                }
+
+            </div>
+            <form id="todoItem-form" class="form-horizontal">
+                <input asp-for="Id" type="hidden" />
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="inputPhaseName" class="col-sm-3 control-label">Title</label>
+                        <div class="col-sm-9">
+                            <input asp-for="Title" class="form-control" id="todo-title" placeholder="Title">
+                            <p><span asp-validation-for="Title" class="text-danger"></span></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectStatusList" class="col-sm-3 control-label">Priority</label>
+                        <div class="col-sm-9">
+                            <select asp-for="Priority" asp-items="@Model.PriorityList" id="selectStatusList" class="form-control select2"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="selectStatusList" class="col-sm-3 control-label">Status</label>
+                        <div class="col-sm-9">
+                            <select asp-for="Status" asp-items="@Model.StatusList" id="selectStatusList" class="form-control select2"></select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputCompleteOn" class="col-sm-3 control-label">Completed On</label>
+                        <div class="col-sm-9">
+                            <div class="input-group date">
+                                <div class="input-group-addon">
+                                    <i class="fa fa-calendar"></i>
+                                </div>
+                                <input asp-for="CompleteOn" class="form-control pull-right datepicker" id="inputCompleteOn" type="text">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary btn-confirm">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

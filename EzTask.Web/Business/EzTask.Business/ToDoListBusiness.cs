@@ -22,8 +22,7 @@ namespace EzTask.Business
         public async Task<PagingModel<ToDoItemModel>> GetToDoList(int accountId, int currentPage = 1, int pageSize = 5)
         {
             var totalRecord = await UnitOfWork.TodoItemRepository.CountAsync(c => c.Owner == accountId);
-            var data = await UnitOfWork.TodoItemRepository.GetPagingAsync(c => c.Owner == accountId,
-                        currentPage, pageSize, false);
+            var data = await UnitOfWork.TodoItemRepository.GetPagingAsync(c => c.Owner == accountId, currentPage, pageSize, false);
 
             if(data.Any())
             {
