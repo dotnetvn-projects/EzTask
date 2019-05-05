@@ -16,11 +16,13 @@ namespace EzTask.Model
         {
             get
             {
-                if (CompleteOn < DateTime.Now)
+                if (CompleteOn.Date < DateTime.Now.Date)
                     return true;
                 return false;
             }
         }
+
+        public int TimeLeft { get; set; }
 
         public ToDoItemModel()
         {

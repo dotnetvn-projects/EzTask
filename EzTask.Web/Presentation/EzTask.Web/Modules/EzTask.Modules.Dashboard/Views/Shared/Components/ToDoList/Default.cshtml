@@ -29,41 +29,41 @@
             @foreach (var item in Model.Data)
             {
                 string timeCss = "label-danger";
-                string time ="about "+ item.CompleteOn.Subtract(DateTime.Now).Days + " left";
+                string time = item.TimeLeft > 1? item.TimeLeft+ " days left": item.TimeLeft+ " day left";
 
-                if(time.Contains("minute"))
+                if(item.TimeLeft == 0)
                 {
                     timeCss = "label-warning";
                 }
-                else if(time.Contains("hour"))
+                else if(item.TimeLeft < 0)
                 {
-                    timeCss = "label-info";
+                    timeCss = "label-danger";
                 }
-                else if (time.Contains("day"))
-                {
-                    timeCss = "label-success";
-                }
-                else if (time.Contains("month"))
-                {
-                    timeCss = "label-default";
-                }
-                else if (time.Contains("year"))
+                else
                 {
                     timeCss = "label-primary";
                 }
-                <li>
-                    <span>
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                    </span>
-                    <input class="todo-check" data-itemid="@item.Id" type="checkbox" value="">
-                    <span class="text">@item.Title</span>
-                    <small class="label @timeCss"><i class="fa fa-clock-o"></i> @time</small>
-                    <div class="tools">
-                        <a data-itemid = "@item.Id" class="edit-todo"><i class="fa  fa-edit"></i></a>
-                        <a data-itemid = "@item.Id" class="remove-todoitem"><i class="fa fa-trash-o"></i></a>
-                    </div>
-                </li>
+            <li>
+                <span>
+                    <i class="fa fa-ellipsis-v"></i>
+                    <i class="fa fa-ellipsis-v"></i>
+                </span>
+                <input class="todo-check" data-itemid="@item.Id" type="checkbox" value="">
+                <span class="text">@item.Title</span>
+
+
+                <small class="label @timeCss"><i class="fa fa-clock-o"></i> @time</small>
+                <div class="tools">
+                    <a data-itemid="@item.Id" class="edit-todo"><i class="fa  fa-edit"></i></a>
+                    <a data-itemid="@item.Id" class="remove-todoitem"><i class="fa fa-trash-o"></i></a>
+                </div>
+                <div>
+                    @if (item.TimeLeft < 0)
+                    {
+                        <span class="users-list-date text-danger">Out of estimate date, please take a look on this task</span>
+                    }
+                </div>
+            </li>
             }
         </ul>
         }

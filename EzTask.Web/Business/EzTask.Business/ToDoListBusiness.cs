@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.Framework.Infrastructures;
+using EzTask.Interface.SharedData;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Repository;
@@ -21,12 +23,22 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<PagingModel<ToDoItemModel>> GetToDoList(int accountId, int currentPage = 1, int pageSize = 5)
         {
-            var totalRecord = await UnitOfWork.TodoItemRepository.CountAsync(c => c.Owner == accountId);
-            var data = await UnitOfWork.TodoItemRepository.GetPagingAsync(c => c.Owner == accountId, currentPage, pageSize, false);
+            var totalRecord = await UnitOfWork.TodoItemRepository
+                                   .CountAsync(c => c.Owner == accountId);
 
-            if(data.Any())
+            var data = UnitOfWork.TodoItemRepository
+                      .GetPaging(c => c.Owner == accountId, c => c.CompleteOn, 
+                                OrderType.ASC, currentPage, pageSize, false);
+
+            if (data.Any())
             {
-                return PagingModel<ToDoItemModel>.CreatePager(data.ToModels(),
+                var model = data.ToModels();
+                foreach(var item in model)
+                {
+                    item.TimeLeft = Convert.ToInt32((item.CompleteOn - DateTime.Now.Date).TotalDays);
+                }
+
+                return PagingModel<ToDoItemModel>.CreatePager(model,
                             totalRecord, pageSize, currentPage);
             }
             return new PagingModel<ToDoItemModel>();

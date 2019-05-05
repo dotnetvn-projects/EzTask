@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using EzTask.Interface.SharedData;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -31,7 +32,8 @@ namespace EzTask.Interface
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        IEnumerable<T> GetPaging(Expression<Func<T, bool>> predicate, int page, int pageSize, bool allowTracking = true);
+        IEnumerable<T> GetPaging(Expression<Func<T, bool>> predicate,
+          Func<T, Object> orderBy, OrderType orderType, int page, int pageSize, bool allowTracking = true);
 
         /// <summary>
         /// Count entities by lambda expression
@@ -106,13 +108,6 @@ namespace EzTask.Interface
         /// <param name="predicate"></param>
         /// <returns></returns>
         Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> predicate, bool allowTracking = true);
-
-        /// <summary>
-        /// Get entities lambda expression async
-        /// </summary>
-        /// <param name="predicate"></param>
-        /// <returns></returns>
-        Task<IEnumerable<T>> GetPagingAsync(Expression<Func<T, bool>> predicate, int page, int pageSize, bool allowTracking = true);
 
         /// <summary>
         /// Count entities by lambda expression async

@@ -1,4 +1,5 @@
 ﻿using EzTask.Interface;
+using EzTask.Interface.SharedData;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -117,14 +118,24 @@ namespace EzTask.Repository
         /// <param name="pageSize"></param>
         /// <param name="allowTracking"></param>
         /// <returns></returns>
-        public IEnumerable<T> GetPaging(Expression<Func<T, bool>> predicate, int page, int pageSize, bool allowTracking = true)
+        public IEnumerable<T> GetPaging(Expression<Func<T, bool>> predicate,
+           Func<T, Object> orderBy, OrderType orderType, int page, int pageSize, bool allowTracking = true)
         {
             if (allowTracking)
             {
-                return Entity.Where(predicate).Skip(page).Take(pageSize).AsEnumerable();
+                if (orderType == OrderType.ASC)
+                {
+                    return Entity.Where(predicate).OrderBy(orderBy).Skip((page - 1) * pageSize).Take(pageSize).AsEnumerable();
+                }
+
+                return Entity.Where(predicate).OrderByDescending(orderBy).Skip((page - 1) * pageSize).Take(pageSize).AsEnumerable();
+            }
+            if (orderType == OrderType.ASC)
+            {
+                return Entity.AsNoTracking().Where(predicate).OrderBy(orderBy).Skip((page - 1) * pageSize).Take(pageSize).AsEnumerable();
             }
 
-            return Entity.AsNoTracking().Where(predicate).Skip(page).Take(pageSize).AsEnumerable();
+            return Entity.AsNoTracking().Where(predicate).OrderByDescending(orderBy).Skip((page - 1) * pageSize).Take(pageSize).AsEnumerable();
         }
 
         /// <summary>
@@ -249,24 +260,6 @@ namespace EzTask.Repository
                 data = await Entity.AsNoTracking().FromSql(sql).ToListAsync();
             }
             return data;
-        }
-
-        /// <summary>
-        /// Get paging async
-        /// </summary>
-        /// <param name="predicate"></param>
-        /// <param name="page"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="allowTracking"></param>
-        /// <returns></returns>
-        public async Task<IEnumerable<T>> GetPagingAsync(Expression<Func<T, bool>> predicate, int page, int pageSize, bool allowTracking = true)
-        {
-            if (allowTracking)
-            {
-                return await Entity.Where(predicate).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
-            }
-
-            return await Entity.AsNoTracking().Where(predicate).Skip((page - 1) * pageSize).Take(pageSize).ToListAsync();
         }
     }
 }
