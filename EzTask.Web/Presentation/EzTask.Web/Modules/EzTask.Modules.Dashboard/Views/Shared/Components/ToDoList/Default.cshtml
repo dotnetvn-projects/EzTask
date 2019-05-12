@@ -29,7 +29,7 @@
             @foreach (var item in Model.Data)
             {
                 string timeCss = "label-danger";
-                string time = item.TimeLeft > 1? item.TimeLeft+ " days left": item.TimeLeft+ " day left";
+                string time = Math.Abs(item.TimeLeft) > 1? item.TimeLeft+ " days left": item.TimeLeft+ " day left";
 
                 if(item.TimeLeft == 0)
                 {

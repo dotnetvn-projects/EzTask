@@ -24,7 +24,7 @@ namespace EzTask.Modules.Dashboard.ViewComponents
         /// <param name="currentPage"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public async Task<IViewComponentResult> InvokeAsync(int currentPage = 1, int pageSize = 10)
+        public async Task<IViewComponentResult> InvokeAsync(int currentPage = 1, int pageSize = 7)
         {
             int accountId = Context.CurrentAccount.AccountId;
             var model = await _ezTask.ToDoList.GetToDoList(accountId, currentPage, pageSize);
