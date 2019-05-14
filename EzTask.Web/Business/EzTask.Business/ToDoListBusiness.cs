@@ -36,6 +36,7 @@ namespace EzTask.Business
                 foreach(var item in model)
                 {
                     item.TimeLeft = Convert.ToInt32((item.CompleteOn - DateTime.Now.Date).TotalDays);
+
                 }
 
                 return PagingModel<ToDoItemModel>.CreatePager(model,
