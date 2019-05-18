@@ -50,9 +50,8 @@
                 </span>
                 <input class="todo-check" data-itemid="@item.Id" type="checkbox" value="">
                 <span class="text">@item.Title</span>
-
-
                 <small class="label @timeCss"><i class="fa fa-clock-o"></i> @time</small>
+                <small class="label bg-green"><i class="fa fa-calendar-check-o"></i>Updated Date: @item.UpdatedDate.ToDateString()</small>
                 <div class="tools">
                     <a data-itemid="@item.Id" class="edit-todo"><i class="fa  fa-edit"></i></a>
                     <a data-itemid="@item.Id" class="remove-todoitem"><i class="fa fa-trash-o"></i></a>

@@ -10,6 +10,7 @@ namespace EzTask.Model
         public ToDoItemPriority Priority { get; set; }
         public ToDoItemStatus Status { get; set; }
         public DateTime CompleteOn { get; set; }
+        public DateTime UpdatedDate { get; set; }
         public AccountModel Account { get; set; }
 
         public bool IsWarning
@@ -28,6 +29,7 @@ namespace EzTask.Model
         {
             Priority = ToDoItemPriority.Medium;
             Status = ToDoItemStatus.Waiting;
+            UpdatedDate = DateTime.Now;
         }
     }
 }

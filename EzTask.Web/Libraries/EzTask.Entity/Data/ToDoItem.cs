@@ -12,6 +12,8 @@ namespace EzTask.Entity.Data
         public short Status { get; set; }
         public DateTime CompleteOn { get; set; }
         public int Owner { get; set; }
+        [Column(TypeName = "datetime")]
+        public DateTime UpdatedDate { get; set; }
 
         [ForeignKey("Owner")]
         public Account Account { get; set; }

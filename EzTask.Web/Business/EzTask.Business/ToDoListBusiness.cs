@@ -27,8 +27,8 @@ namespace EzTask.Business
                                    .CountAsync(c => c.Owner == accountId);
 
             var data = UnitOfWork.TodoItemRepository
-                      .GetPaging(c => c.Owner == accountId, c => c.CompleteOn, 
-                                OrderType.ASC, currentPage, pageSize, false);
+                      .GetPaging(c => c.Owner == accountId, c => c.UpdatedDate, 
+                                OrderType.DESC, currentPage, pageSize, false);
 
             if (data.Any())
             {
