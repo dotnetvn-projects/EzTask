@@ -1,7 +1,7 @@
 @model IList<TaskItemModel>
 <div class="box task-table">
     <div class="box-header">
-        <h3 class="box-title">Your Task List</h3>
+        <h3 class="box-title">@Html.GetStringResource("YourTaskList", StringResourceType.DashboardPage)</h3>
         <div class="box-tools pull-right">
             <button type="button" class="btn btn-box-tool" data-widget="collapse">
                 <i class="fa fa-minus"></i>
@@ -12,12 +12,12 @@
         <table class="table table-bordered table-hover dataTable no-footer">
             <thead>
                 <tr>
-                    <th>Task</th>
-                    <th width="120">Project</th>
-                    <th>Phase</th>
-                    <th>Assign by</th>
-                    <th>Process</th>
-                    <th>Label</th>
+                    <th>@Html.GetStringResource("Task", StringResourceType.DashboardPage)</th>
+                    <th width="120">@Html.GetStringResource("Project", StringResourceType.DashboardPage)</th>
+                    <th>@Html.GetStringResource("Phase", StringResourceType.DashboardPage)</th>
+                    <th>@Html.GetStringResource("AssignBy", StringResourceType.DashboardPage)</th>
+                    <th>@Html.GetStringResource("Process", StringResourceType.DashboardPage)</th>
+                    <th>@Html.GetStringResource("Label", StringResourceType.DashboardPage)</th>
                 </tr>
             </thead>
             <tbody>

@@ -200,7 +200,7 @@
       <Content>Go To Homepage</Content>
     </Language>
     <!--For users who don't login to system-->
-    
+
     <Language>
       <Key>PageNotFoundTitle</Key>
       <Content>Page not found</Content>
@@ -300,12 +300,136 @@
       <Content>Home</Content>
     </Language>
     <Language>
-      <Key>DeleteTodoListWarning</Key>
+      <Key>MainTitle</Key>
+      <Content>EZTASK - SIMPLE TASK MANAGEMENT SYSTEM</Content>
+    </Language>
+    <Language>
+      <Key>ToDoList</Key>
+      <Content>To Do List</Content>
+    </Language>
+    <Language>
+      <Key>Delete</Key>
+      <Content>Delete</Content>
+    </Language>
+    <Language>
+      <Key>AddItem</Key>
+      <Content>Add item</Content>
+    </Language>
+    <Language>
+      <Key>ItemNotExist</Key>
+      <Content>Item doesn't exist!</Content>
+    </Language>
+    <Language>
+      <Key>NoTodoItemSelectedWarning</Key>
       <Content>No item seleted, please select at least 1 item!</Content>
+    </Language>
+    <Language>
+      <Key>DeleteTodoItemWarning</Key>
+      <Content>Are you sure you wanna delete?</Content>
     </Language>
     <Language>
       <Key>CompleteOnError</Key>
       <Content>"Complete on" must be greater than or equal now time!</Content>
+    </Language>
+    <Language>
+      <Key>UpdatedOn</Key>
+      <Content>Updated On</Content>
+    </Language>
+    <Language>
+      <Key>DaysLeft</Key>
+      <Content>days left</Content>
+    </Language>
+    <Language>
+      <Key>DayLeft</Key>
+      <Content>day left</Content>
+    </Language>
+    <Language>
+      <Key>NoData</Key>
+      <Content>No data to display</Content>
+    </Language>
+    <Language>
+      <Key>TaskOutOfEstimate</Key>
+      <Content>>Out of estimate date, please take a look on this task</Content>
+    </Language>
+    <Language>
+      <Key>YourTaskList</Key>
+      <Content>Your Task List</Content>
+    </Language>
+    <Language>
+      <Key>Task</Key>
+      <Content>Task</Content>
+    </Language>
+    <Language>
+      <Key>Tasks</Key>
+      <Content>Tasks</Content>
+    </Language>
+    <Language>
+      <Key>Project</Key>
+      <Content>Project</Content>
+    </Language>
+    <Language>
+      <Key>Phase</Key>
+      <Content>Phase</Content>
+    </Language>
+    <Language>
+      <Key>AssignBy</Key>
+      <Content>Assign by</Content>
+    </Language>
+    <Language>
+      <Key>Process</Key>
+      <Content>Process</Content>
+    </Language>
+    <Language>
+      <Key>Label</Key>
+      <Content>Label</Content>
+    </Language>
+  <Language>
+      <Key>Label</Key>
+      <Content>Label</Content>
+    </Language>
+    <Language>
+      <Key>LiveProjects</Key>
+      <Content>Live Projects</Content>
+    </Language>
+    <Language>
+      <Key>MoreInfo</Key>
+      <Content>More info</Content>
+    </Language>
+    <Language>
+      <Key>Members</Key>
+      <Content>Members</Content>
+    </Language>
+    <Language>
+      <Key>Notifications</Key>
+      <Content>Notifications</Content>
+    </Language>
+    <Language>
+      <Key>AddNewTodoItem</Key>
+      <Content>Add new todo item</Content>
+    </Language>
+    <Language>
+      <Key>Edit</Key>
+      <Content>Edit</Content>
+    </Language>
+    <Language>
+      <Key>Title</Key>
+      <Content>Title</Content>
+    </Language>
+    <Language>
+      <Key>Priority</Key>
+      <Content>Priority</Content>
+    </Language>
+    <Language>
+      <Key>Status</Key>
+      <Content>Status</Content>
+    </Language>
+    <Language>
+      <Key>CompletedOn</Key>
+      <Content>Completed On</Content>
+    </Language>
+    <Language>
+      <Key>Submit</Key>
+      <Content>Submit</Content>
     </Language>
   </DashboardPage>
 
@@ -558,7 +682,7 @@
       <Content>completed</Content>
     </Language>
     <Language>
-      <Key>Complete2</Key>
+      <Key>Completed2</Key>
       <Content>Completed</Content>
     </Language>
     <Language>

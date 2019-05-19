@@ -101,26 +101,34 @@ $.fn.removeTodoList = function () {
         }
 
         if (todoItem.length > 0) {
-            $.ajax({
-                url: 'dashboard/remove-todo-list.html',
-                data: { items: todoItem },
-                type: "POST",
-                success: function (reponse) {
-                    if (reponse.data === true) {
-                        $(".pagination > li.active > a").trigger('click');
-                    }                
-                },
-                error: function (xhr, ajaxOptions, thrownError) {
-                    $.alertDialog({
-                        title: $('#error-title').val(),
-                        content: xhr.responseText
+            $.confirmDialog({
+                title: $('#warning-title').val(),
+                content: $('#delete-todoitem-warning').val(),
+                action: function () {
+                    $.ajax({
+                        url: 'dashboard/remove-todo-list.html',
+                        data: { items: todoItem },
+                        type: "POST",
+                        success: function (reponse) {
+                            if (reponse.data === true) {
+                                $(".pagination > li.active > a").trigger('click');
+                            }
+                        },
+                        error: function (xhr, ajaxOptions, thrownError) {
+                            $.alertDialog({
+                                title: $('#error-title').val(),
+                                content: xhr.responseText
+                            });
+                        }
                     });
                 }
             });
+
+            
         } else {
             $.alertDialog({
                 title: $('#warning-title').val(),
-                content: $("#delete-todolist-warning").val()
+                content: $("#no-todoitem-seleted-warning").val()
             });
         }
     });

@@ -22,7 +22,7 @@
         <div class="box box-solid">
             <div class="box-body">
                 <h4 style="font-size: 18px; text-align: center;">
-                    EZTASK - SIMPLE TASK MANAGEMENT SYSTEM
+                    @Html.GetStringResource("MainTitle", StringResourceType.DashboardPage)
                 </h4>
             </div>
         </div>
@@ -59,6 +59,7 @@
     </div>
 </div>
 <div class="view-template"></div>
+
 @section Scripts{
     <script src="~/dashboard/js/dashboard.js"></script>
     <partial name="_ValidationScriptsPartial" />

@@ -8,11 +8,11 @@
                 </button>
                 @if (Model.Id <= 0)
                 {
-                    <h4 class="modal-title">Add new todo item</h4>
+                    <h4 class="modal-title">@Html.GetStringResource("AddNewTodoItem", StringResourceType.DashboardPage)</h4>
                 }
                 else
                 {
-                    <h4 class="modal-title">Edit '@Model.Title'</h4>
+                    <h4 class="modal-title">@Html.GetStringResource("Edit",StringResourceType.DashboardPage) '@Model.Title'</h4>
                 }
 
             </div>
@@ -20,26 +20,26 @@
                 <input asp-for="Id" type="hidden" />
                 <div class="modal-body">
                     <div class="form-group">
-                        <label for="inputPhaseName" class="col-sm-3 control-label">Title</label>
+                        <label for="inputPhaseName" class="col-sm-3 control-label">@Html.GetStringResource("Title", StringResourceType.DashboardPage)</label>
                         <div class="col-sm-9">
-                            <input asp-for="Title" class="form-control" id="todo-title" placeholder="Title">
+                            <input asp-for="Title" class="form-control" id="todo-title" placeholder="@Html.GetStringResource("Title", StringResourceType.DashboardPage)">
                             <p><span asp-validation-for="Title" class="text-danger"></span></p>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="selectStatusList" class="col-sm-3 control-label">Priority</label>
+                        <label for="selectStatusList" class="col-sm-3 control-label">@Html.GetStringResource("Priority", StringResourceType.DashboardPage)</label>
                         <div class="col-sm-9">
                             <select asp-for="Priority" asp-items="@Model.PriorityList" id="selectStatusList" class="form-control select2"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="selectStatusList" class="col-sm-3 control-label">Status</label>
+                        <label for="selectStatusList" class="col-sm-3 control-label">@Html.GetStringResource("Status", StringResourceType.DashboardPage)</label>
                         <div class="col-sm-9">
                             <select asp-for="Status" asp-items="@Model.StatusList" id="selectStatusList" class="form-control select2"></select>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="inputCompleteOn" class="col-sm-3 control-label">Completed On</label>
+                        <label for="inputCompleteOn" class="col-sm-3 control-label">@Html.GetStringResource("CompletedOn", StringResourceType.DashboardPage)</label>
                         <div class="col-sm-9">
                             <div class="input-group date">
                                 <div class="input-group-addon">
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-confirm">Submit</button>
+                    <button class="btn btn-primary btn-confirm">@Html.GetStringResource("Submit", StringResourceType.DashboardPage)</button>
                 </div>
             </form>
         </div>

@@ -4,13 +4,13 @@
     <div class="small-box bg-aqua">
         <div class="inner">
             <h3>@Model.TotalProject</h3>
-            <p>Live Projects</p>
+            <p>@Html.GetStringResource("LiveProjects", StringResourceType.DashboardPage)</p>
         </div>
         <div class="icon">
             <i class="fa fa-cube"></i>
         </div>
         <a asp-controller="Project" asp-action="Index" class="small-box-footer">
-            More info <i class="fa fa-arrow-circle-right"></i>
+            @Html.GetStringResource("MoreInfo", StringResourceType.DashboardPage) <i class="fa fa-arrow-circle-right"></i>
         </a>
     </div>
 </div>
@@ -20,13 +20,13 @@
         <div class="inner">
             <h3>@Model.TotalTask</h3>
 
-            <p>Tasks</p>
+            <p>@Html.GetStringResource("Tasks", StringResourceType.DashboardPage)</p>
         </div>
         <div class="icon">
             <i class="fa fa-tasks"></i>
         </div>
         <a asp-controller="Task" asp-action="Index" class="small-box-footer">
-            More info <i class="fa fa-arrow-circle-right"></i>
+            @Html.GetStringResource("MoreInfo", StringResourceType.DashboardPage) <i class="fa fa-arrow-circle-right"></i>
         </a>
     </div>
 </div>
@@ -37,13 +37,13 @@
         <div class="inner">
             <h3>@Model.TotalMember</h3>
 
-            <p>Members</p>
+            <p>@Html.GetStringResource("Members", StringResourceType.DashboardPage)</p>
         </div>
         <div class="icon">
             <i class="ion ion-person-add"></i>
         </div>
         <a href="#" class="small-box-footer">
-            More info <i class="fa fa-arrow-circle-right"></i>
+            @Html.GetStringResource("MoreInfo", StringResourceType.DashboardPage) <i class="fa fa-arrow-circle-right"></i>
         </a>
     </div>
 </div>
@@ -53,13 +53,13 @@
         <div class="inner">
             <h3>@Model.TotalNotification</h3>
 
-            <p>Notifications</p>
+            <p> @Html.GetStringResource("Notifications", StringResourceType.DashboardPage)</p>
         </div>
         <div class="icon">
             <i class="fa fa-bell-o"></i>
         </div>
         <a asp-controller="Notification" asp-action="NotificationList" class="small-box-footer">
-            More info <i class="fa fa-arrow-circle-right"></i>
+            @Html.GetStringResource("MoreInfo", StringResourceType.DashboardPage) <i class="fa fa-arrow-circle-right"></i>
         </a>
     </div>
 </div>

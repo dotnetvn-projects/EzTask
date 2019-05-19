@@ -9,7 +9,6 @@ using EzTask.Web.Framework.Data;
 using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EzTask.Modules.Dashboard.Controllers
@@ -56,7 +55,7 @@ namespace EzTask.Modules.Dashboard.Controllers
                 }
                 else
                 {
-                    return NotFound("Item doesn't exist!");
+                    return NotFound(Context.GetStringResource("ItemNotExist", StringResourceType.DashboardPage));
                 }
             }
 

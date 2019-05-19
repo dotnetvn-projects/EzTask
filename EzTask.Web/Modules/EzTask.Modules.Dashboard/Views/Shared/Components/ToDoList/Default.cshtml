@@ -1,6 +1,6 @@
 @model PagingModel<ToDoItemModel>
-@{ 
-    if(Model.PageList != null)
+@{
+    if (Model.PageList != null)
     {
         Model.PageList.Css = "pagination-sm inline";
     }
@@ -10,7 +10,7 @@
     <div class="box-header">
         <i class="ion ion-clipboard"></i>
 
-        <h3 class="box-title">To Do List</h3>
+        <h3 class="box-title">@Html.GetStringResource("ToDoList", StringResourceType.DashboardPage)</h3>
 
         <div class="box-tools pull-right todolist-pager">
             <partial name="~/Modules/EzTask.Modules.Core/Views/Shared/_PageList.cshtml"
@@ -25,55 +25,55 @@
     <div class="box-body">
         @if (Model.Data != null && Model.Data.Any())
         {
-        <ul class="todo-list ui-sortable">
-            @foreach (var item in Model.Data)
-            {
-                string timeCss = "label-danger";
-                string time = Math.Abs(item.TimeLeft) > 1? item.TimeLeft+ " days left": item.TimeLeft+ " day left";
+            <ul class="todo-list ui-sortable">
+                @foreach (var item in Model.Data)
+                {
+                    string timeCss = "label-danger";
+                    string time = Math.Abs(item.TimeLeft) > 1 ? item.TimeLeft + " " + Html.GetStringResource("DaysLeft", StringResourceType.DashboardPage) : item.TimeLeft + " " + Html.GetStringResource("DayLeft", StringResourceType.DashboardPage);
 
-                if(item.TimeLeft == 0)
-                {
-                    timeCss = "label-warning";
-                }
-                else if(item.TimeLeft < 0)
-                {
-                    timeCss = "label-danger";
-                }
-                else
-                {
-                    timeCss = "label-primary";
-                }
-            <li>
-                <span>
-                    <i class="fa fa-ellipsis-v"></i>
-                    <i class="fa fa-ellipsis-v"></i>
-                </span>
-                <input class="todo-check" data-itemid="@item.Id" type="checkbox" value="">
-                <span class="text">@item.Title</span>
-                <small class="label @timeCss"><i class="fa fa-clock-o"></i> @time</small>
-                <small class="label bg-green"><i class="fa fa-calendar-check-o"></i> Updated On: @item.UpdatedDate.ToDateString()</small>
-                <div class="tools">
-                    <a data-itemid="@item.Id" class="edit-todo"><i class="fa  fa-edit"></i></a>
-                    <a data-itemid="@item.Id" class="remove-todoitem"><i class="fa fa-trash-o"></i></a>
-                </div>
-                <div>
-                    @if (item.TimeLeft < 0)
+                    if (item.TimeLeft == 0)
                     {
-                        <span class="users-list-date text-danger">Out of estimate date, please take a look on this task</span>
+                        timeCss = "label-warning";
                     }
-                </div>
-            </li>
-            }
-        </ul>
+                    else if (item.TimeLeft < 0)
+                    {
+                        timeCss = "label-danger";
+                    }
+                    else
+                    {
+                        timeCss = "label-primary";
+                    }
+                    <li>
+                        <span>
+                            <i class="fa fa-ellipsis-v"></i>
+                            <i class="fa fa-ellipsis-v"></i>
+                        </span>
+                        <input class="todo-check" data-itemid="@item.Id" type="checkbox" value="">
+                        <span class="text">@item.Title</span>
+                        <small class="label @timeCss"><i class="fa fa-clock-o"></i> @time</small>
+                        <small class="label bg-green"><i class="fa fa-calendar-check-o"></i> @Html.GetStringResource("UpdatedOn", StringResourceType.DashboardPage): @item.UpdatedDate.ToDateString()</small>
+                        <div class="tools">
+                            <a data-itemid="@item.Id" class="edit-todo"><i class="fa  fa-edit"></i></a>
+                            <a data-itemid="@item.Id" class="remove-todoitem"><i class="fa fa-trash-o"></i></a>
+                        </div>
+                        <div>
+                            @if (item.TimeLeft < 0)
+                            {
+                            <span class="users-list-date text-danger">@Html.GetStringResource("TaskOutOfEstimate", StringResourceType.DashboardPage)</span>
+                            }
+                        </div>
+                    </li>
+                }
+            </ul>
         }
         else
         {
-            <span>No data to display</span>
+            <span>@Html.GetStringResource("NoData", StringResourceType.DashboardPage)</span>
         }
     </div>
     <!-- /.box-body -->
     <div class="box-footer clearfix no-border">
-        <button type="button" class="btn btn-default remove-todoitems pull-left bg-red"><i class="fa fa-remove"></i> Delete</button>
-        <button type="button" data-itemid = "" class="btn btn-default pull-right add-todo-item"><i class="fa fa-plus"></i> Add item</button>
+        <button type="button" class="btn btn-default remove-todoitems pull-left bg-red"><i class="fa fa-remove"></i> @Html.GetStringResource("Delete", StringResourceType.DashboardPage)</button>
+        <button type="button" data-itemid="" class="btn btn-default pull-right add-todo-item"><i class="fa fa-plus"></i> @Html.GetStringResource("AddItem", StringResourceType.DashboardPage)</button>
     </div>
 </div>
