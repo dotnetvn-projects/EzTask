@@ -59,7 +59,7 @@
                         <div>
                             @if (item.TimeLeft < 0)
                             {
-                            <span class="users-list-date text-danger">@Html.GetStringResource("TaskOutOfEstimate", StringResourceType.DashboardPage)</span>
+                             <span class="users-list-date text-danger"><i class="fa text-danger fa-warning"></i> @Html.GetStringResource("TaskOutOfEstimate", StringResourceType.DashboardPage)</span>
                             }
                         </div>
                     </li>
