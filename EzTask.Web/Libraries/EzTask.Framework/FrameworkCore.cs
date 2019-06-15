@@ -1,7 +1,5 @@
-﻿using AutoMapper;
-using EzTask.DataAccess;
+﻿using EzTask.DataAccess;
 using EzTask.Framework.ImageHandler;
-using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,13 +20,6 @@ public static class FrameworkCore
         services.AddDbContext<EzTaskDbContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("EzTask")),
                 ServiceLifetime.Scoped);
-
-        services.AddAutoMapper();
-
-        var serviceProvider = services.BuildServiceProvider();
-        Mapper = serviceProvider.GetService<IMapper>();
-
-        RepositoryInitializer.Register(services);
     }
 
     /// <summary>
@@ -57,9 +48,4 @@ public static class FrameworkCore
     /// Global service 
     /// </summary>
     public static IServiceProvider ServiceProvider { get; set; }
-
-    /// <summary>
-    /// Mapper
-    /// </summary>
-    internal static IMapper Mapper { get; private set; }
 }

@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.1.1" />
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\EzTask.Framework\EzTask.Framework.csproj" />
     <ProjectReference Include="..\EzTask.Interface\EzTask.Interface.csproj" />
   </ItemGroup>
 

@@ -5,7 +5,7 @@ using EzTask.Model;
 using EzTask.Model.Enum;
 using System.Linq;
 
-namespace EzTask.Framework.Infrastructures
+namespace EzTask.Model
 {
     public class DataMaperProfile : Profile
     {

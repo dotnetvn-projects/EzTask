@@ -518,6 +518,22 @@
       <Key>AlreadyHaveAccount</Key>
       <Content>I already have a membership</Content>
     </Language>
+    <Language>
+      <Key>AccountValidate</Key>
+      <Content>Email must be a string between 6 and 20 characters</Content>
+    </Language>
+   <Language>
+      <Key>EmailValidate</Key>
+      <Content>Email is wrong format</Content>
+    </Language>
+   <Language>
+      <Key>PasswordValidate</Key>
+      <Content>Password must be a string between 6 and 50 characters</Content>
+    </Language>
+  <Language>
+      <Key>PasswordTempValidate</Key>
+      <Content>Confirm Password must be a string between 6 and 50 characters</Content>
+    </Language>
   </AuthenticationPage>
 
   <ProjectPage>

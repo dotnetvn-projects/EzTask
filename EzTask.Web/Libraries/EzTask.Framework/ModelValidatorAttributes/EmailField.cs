@@ -5,7 +5,7 @@ using System.Text.RegularExpressions;
 
 namespace EzTask.Framework.ModelValidatorAttributes
 {
-    public class EmailField: DataTypeAttribute
+    public class EmailField : DataTypeAttribute
     {
         private ILanguageLocalization _languageLocalization;
 
@@ -16,17 +16,20 @@ namespace EzTask.Framework.ModelValidatorAttributes
         // and therefore shares the same regular expression.  See unit tests for examples.
         private static Regex _regex = CreateRegEx();
 
-        public EmailField(ILanguageLocalization languageLocalization)
+        public EmailField()
             : base(DataType.EmailAddress)
         {
-            _languageLocalization = languageLocalization;
+           
         }
 
-        public override bool IsValid(object value)
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
         {
+            _languageLocalization = (ILanguageLocalization)validationContext
+                          .GetService(typeof(ILanguageLocalization));
+
             if (value == null)
             {
-                return true;
+                return ValidationResult.Success;
             }
 
             string valueAsString = value as string;
@@ -34,7 +37,13 @@ namespace EzTask.Framework.ModelValidatorAttributes
             // Use RegEx implementation if it has been created, otherwise use a non RegEx version.
             if (_regex != null)
             {
-                return valueAsString != null && _regex.Match(valueAsString).Length > 0;
+                var isMatch = valueAsString != null && _regex.Match(valueAsString).Length > 0;
+                if (isMatch)
+                {
+                    return ValidationResult.Success;
+                }
+                return new ValidationResult(
+                    FormatErrorMessage(validationContext.DisplayName));
             }
             else
             {
@@ -48,12 +57,20 @@ namespace EzTask.Framework.ModelValidatorAttributes
                     }
                 }
 
-                return (valueAsString != null
+                var isMatch = (valueAsString != null
                 && atCount == 1
                 && valueAsString[0] != '@'
                 && valueAsString[valueAsString.Length - 1] != '@');
+
+                if (isMatch)
+                {
+                    return ValidationResult.Success;
+                }
+                return new ValidationResult(
+                    FormatErrorMessage(validationContext.DisplayName));
             }
         }
+
 
         private static Regex CreateRegEx()
         {

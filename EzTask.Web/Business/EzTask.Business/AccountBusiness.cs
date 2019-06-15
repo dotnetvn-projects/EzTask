@@ -29,7 +29,7 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="account"></param>
         /// <returns></returns>
-        public async Task<ResultModel<AccountModel>> RegisterNew(RegisterModel model)
+        public async Task<ResultModel<AccountModel>> RegisterNew(AccountModel model)
         {
             ResultModel<AccountModel> result = new ResultModel<AccountModel>
             {
@@ -161,7 +161,7 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<AccountInfoModel> Login(LoginModel model)
+        public async Task<AccountInfoModel> Login(AccountModel model)
         {
             string hash = Cryptography.GetHashString(model.AccountName);
             model.Password = Encrypt.Do(model.Password, hash);

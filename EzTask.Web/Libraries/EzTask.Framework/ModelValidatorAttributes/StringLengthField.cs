@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Framework.ModelValidatorAttributes
 {
-    public class StringLengthField: StringLengthAttribute
+    public class StringLengthField : StringLengthAttribute
     {
         private ILanguageLocalization _languageLocalization;
 
@@ -12,7 +12,34 @@ namespace EzTask.Framework.ModelValidatorAttributes
 
         public StringLengthField(int maximumLength) : base(maximumLength)
         {
-            _languageLocalization = FrameworkCore.ServiceProvider.InvokeComponents<ILanguageLocalization>();
+
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            _languageLocalization = (ILanguageLocalization)validationContext
+                          .GetService(typeof(ILanguageLocalization));
+            string valueAsString = value as string;
+
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(valueAsString))
+            {
+                isValid = false;
+            }
+
+            if (isValid && (valueAsString.Length < MinimumLength || valueAsString.Length > MaximumLength))
+            {
+                isValid = false;
+            }
+
+            if (isValid)
+            {
+                return ValidationResult.Success;
+            }
+
+            return new ValidationResult(
+                   FormatErrorMessage(validationContext.DisplayName));
         }
 
         public override string FormatErrorMessage(string name)

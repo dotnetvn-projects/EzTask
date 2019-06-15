@@ -1,14 +1,18 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EzTask.Repository;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Business
 {
-    public static class BusinessInitializer
+    public static class BusinessRegister
     {
         private static IServiceCollection _services;
 
         public static void Register(IServiceCollection services)
         {
             _services = services;
+
+            RepositoryInitializer.Register(services);
+
             _services.AddScoped<EzTaskBusiness>();
             _services.AddScoped<AccountBusiness>();
             _services.AddScoped<ProjectBusiness>();
@@ -17,6 +21,7 @@ namespace EzTask.Business
             _services.AddScoped<TaskBusiness>();
             _services.AddScoped<NotificationBusiness>();
             _services.AddScoped<ToDoListBusiness>();
+            
         }
 
         public static ServiceProvider ServiceProvider

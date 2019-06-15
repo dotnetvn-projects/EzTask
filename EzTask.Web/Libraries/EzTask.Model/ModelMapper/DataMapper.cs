@@ -3,53 +3,54 @@ using EzTask.Model;
 using EzTask.Model.Enum;
 using System.Collections.Generic;
 
-namespace EzTask.Framework.Infrastructures
+namespace EzTask.Model
 {
     public static class DataMapper
     {
         #region Account Mapper
 
-        public static Account ToEntity(this RegisterModel model)
+        public static Account ToEntity(this AccountModel model)
         {
-            return FrameworkCore.Mapper.Map<Account>(model);
+            return ModelRegister.Mapper.Map<Account>(model);
         }
 
         public static AccountModel ToModel(this Account entity)
         {
-            return FrameworkCore.Mapper.Map<AccountModel>(entity);
+            return ModelRegister.Mapper.Map<AccountModel>(entity);
         }
 
         public static IEnumerable<AccountModel> ToModels(this IEnumerable<Account> entity)
         {
-            return FrameworkCore.Mapper.Map<IEnumerable<AccountModel>>(entity);
+            return ModelRegister.Mapper.Map<IEnumerable<AccountModel>>(entity);
         }
 
         public static AccountInfoModel ToModel(this AccountInfo entity)
         {
-            return FrameworkCore.Mapper.Map<AccountInfoModel>(entity);
+            return ModelRegister.Mapper.Map<AccountInfoModel>(entity);
         }
 
         public static AccountInfo ToEntity(this AccountInfoModel model)
         {
-            return FrameworkCore.Mapper.Map<AccountInfo>(model);
+            return ModelRegister.Mapper.Map<AccountInfo>(model);
         }
+
         #endregion
 
         #region Project
 
         public static ProjectModel ToModel(this Project entity)
         {
-            return FrameworkCore.Mapper.Map<ProjectModel>(entity);
+            return ModelRegister.Mapper.Map<ProjectModel>(entity);
         }
 
         public static Project ToEntity(this ProjectModel model)
         {
-            return FrameworkCore.Mapper.Map<Project>(model);
+            return ModelRegister.Mapper.Map<Project>(model);
         }
 
         public static IEnumerable<ProjectModel> ToModels(this IEnumerable<Project> entity)
         {
-            var data = FrameworkCore.Mapper.Map<IEnumerable<ProjectModel>>(entity);
+            var data = ModelRegister.Mapper.Map<IEnumerable<ProjectModel>>(entity);
             if (data == null)
                 return data;
 
@@ -87,98 +88,98 @@ namespace EzTask.Framework.Infrastructures
         #region Phase Mapper
         public static PhaseModel ToModel(this Phase entity)
         {
-            return FrameworkCore.Mapper.Map<PhaseModel>(entity);
+            return ModelRegister.Mapper.Map<PhaseModel>(entity);
         }
 
         public static Phase ToEntity(this PhaseModel model)
         {
-            return FrameworkCore.Mapper.Map<Phase>(model);
+            return ModelRegister.Mapper.Map<Phase>(model);
         }
 
         public static IEnumerable<PhaseModel> ToModels(this IEnumerable<Phase> entity)
         {
-            return FrameworkCore.Mapper.Map<IEnumerable<PhaseModel>>(entity);
+            return ModelRegister.Mapper.Map<IEnumerable<PhaseModel>>(entity);
         }
         #endregion
 
         #region Task Mapper
         public static TaskItemModel ToModel(this TaskItem entity)
         {
-            return FrameworkCore.Mapper.Map<TaskItemModel>(entity);
+            return ModelRegister.Mapper.Map<TaskItemModel>(entity);
         }
 
         public static TaskItem ToEntity(this TaskItemModel model)
         {
-            return FrameworkCore.Mapper.Map<TaskItem>(model);
+            return ModelRegister.Mapper.Map<TaskItem>(model);
         }
 
         public static IEnumerable<TaskItemModel> ToModels(this IEnumerable<TaskItem> entity)
         {
-            return FrameworkCore.Mapper.Map<IEnumerable<TaskItemModel>>(entity);
+            return ModelRegister.Mapper.Map<IEnumerable<TaskItemModel>>(entity);
         }
 
         public static Attachment ToEntity(this AttachmentModel model)
         {
-            return FrameworkCore.Mapper.Map<Attachment>(model);
+            return ModelRegister.Mapper.Map<Attachment>(model);
         }
 
         public static AttachmentModel ToModel(this Attachment entity)
         {
-            return FrameworkCore.Mapper.Map<AttachmentModel>(entity);
+            return ModelRegister.Mapper.Map<AttachmentModel>(entity);
         }
 
         public static IEnumerable<AttachmentModel> ToModels(this IEnumerable<Attachment> entity)
         {
-            return FrameworkCore.Mapper.Map<IEnumerable<AttachmentModel>>(entity);
+            return ModelRegister.Mapper.Map<IEnumerable<AttachmentModel>>(entity);
         }
 
         public static TaskHistory ToEntity(this TaskHistoryModel model)
         {
-            return FrameworkCore.Mapper.Map<TaskHistory>(model);
+            return ModelRegister.Mapper.Map<TaskHistory>(model);
         }
 
         public static TaskHistoryModel ToModel(this TaskHistory entity)
         {
-            return FrameworkCore.Mapper.Map<TaskHistoryModel>(entity);
+            return ModelRegister.Mapper.Map<TaskHistoryModel>(entity);
         }
 
         public static IEnumerable<TaskHistoryModel> ToModels(this IEnumerable<TaskHistory> entity)
         {
-            return FrameworkCore.Mapper.Map<IEnumerable<TaskHistoryModel>>(entity);
+            return ModelRegister.Mapper.Map<IEnumerable<TaskHistoryModel>>(entity);
         }
         #endregion
 
         #region Notification Mapper
         public static Notification ToEntity(this NotificationModel model)
         {
-            return FrameworkCore.Mapper.Map<Notification>(model);
+            return ModelRegister.Mapper.Map<Notification>(model);
         }
 
         public static NotificationModel ToModel(this Notification entity)
         {
-            return FrameworkCore.Mapper.Map<NotificationModel>(entity);
+            return ModelRegister.Mapper.Map<NotificationModel>(entity);
         }
 
         public static IEnumerable<NotificationModel> ToModels(this IEnumerable<Notification> entity)
         {
-            return FrameworkCore.Mapper.Map<IEnumerable<NotificationModel>>(entity);
+            return ModelRegister.Mapper.Map<IEnumerable<NotificationModel>>(entity);
         }
         #endregion
 
         #region To Do List Mapper
         public static ToDoItem ToEntity(this ToDoItemModel model)
         {
-            return FrameworkCore.Mapper.Map<ToDoItem>(model);
+            return ModelRegister.Mapper.Map<ToDoItem>(model);
         }
 
         public static ToDoItemModel ToModel(this ToDoItem entity)
         {
-            return FrameworkCore.Mapper.Map<ToDoItemModel>(entity);
+            return ModelRegister.Mapper.Map<ToDoItemModel>(entity);
         }
 
         public static IEnumerable<ToDoItemModel> ToModels(this IEnumerable<ToDoItem> entity)
         {
-            return FrameworkCore.Mapper.Map<IEnumerable<ToDoItemModel>>(entity);
+            return ModelRegister.Mapper.Map<IEnumerable<ToDoItemModel>>(entity);
         }
         #endregion
     }

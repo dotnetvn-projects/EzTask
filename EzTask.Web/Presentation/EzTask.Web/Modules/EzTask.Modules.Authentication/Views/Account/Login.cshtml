@@ -5,7 +5,7 @@
 @section styles{
     <link rel="stylesheet" href="~/authen/css/authen.css">
 }
-@model LoginModel
+@model LoginViewModel
 <p class="login-box-msg">@Html.GetStringResource("SignInTitle", StringResourceType.AuthenticationPage)</p>
 
 <form asp-action="Login" method="post">

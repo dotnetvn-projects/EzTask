@@ -1,8 +1,4 @@
-﻿using EzTask.DataAccess;
-using EzTask.Interface;
-using EzTask.Repository;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
+﻿using EzTask.Repository;
 
 namespace EzTask.Business
 {
@@ -19,11 +15,11 @@ namespace EzTask.Business
         {
             if (id < 100 && id > 9)
             {
-                return prefix +"0" + id;
+                return prefix + "0" + id;
             }
             else if (id < 10)
             {
-                return prefix+ "00" + id;
+                return prefix + "00" + id;
             }
 
             return prefix + id;

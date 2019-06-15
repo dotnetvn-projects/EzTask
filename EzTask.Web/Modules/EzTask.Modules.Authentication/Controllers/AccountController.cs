@@ -6,6 +6,7 @@ using EzTask.Modules.Core.Controllers;
 using Microsoft.AspNetCore.Mvc;
 using EzTask.Model.Enum;
 using EzTask.Web.Framework.WebContext;
+using EzTask.Modules.Authentication.ViewModels;
 
 namespace EzTask.Modules.Authentication.Controllers
 {
@@ -25,7 +26,7 @@ namespace EzTask.Modules.Authentication.Controllers
         [Route("login.html")]
         public IActionResult Login(string redirect)
         {
-            return View(new LoginModel { RedirectUrl = redirect });
+            return View(new LoginViewModel { RedirectUrl = redirect });
         }
 
         /// <summary>
@@ -35,14 +36,17 @@ namespace EzTask.Modules.Authentication.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("login.html")]
-        public async Task<IActionResult> Login(LoginModel model)
+        public async Task<IActionResult> Login(LoginViewModel model)
         {
             try
             {
                 if (!ModelState.IsValid)
                     return View();
 
-                var account = await EzTask.Account.Login(model);
+                var account = await EzTask.Account.Login(new AccountModel {
+                    AccountName = model.AccountName,
+                    Password = model.Password
+                });
 
                 if (account != null)
                 {
@@ -54,7 +58,10 @@ namespace EzTask.Modules.Authentication.Controllers
 
                         Context.CurrentAccount.Set(currentAccount);
 
-                        Context.RememberLogin(currentAccount);
+                        if (model.RememberMe)
+                        {
+                            Context.RememberLogin(currentAccount);
+                        }
 
                         Context.SetLanguageLocalization(account.LangDisplay);
 
@@ -77,7 +84,7 @@ namespace EzTask.Modules.Authentication.Controllers
                     ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.AuthenticationPage);
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.AuthenticationPage);
             }
@@ -96,7 +103,7 @@ namespace EzTask.Modules.Authentication.Controllers
         [Route("register.html")]
         public IActionResult Register()
         {
-            return View(new RegisterModel());
+            return View(new RegisterViewModel());
         }
 
         /// <summary>
@@ -106,7 +113,7 @@ namespace EzTask.Modules.Authentication.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("register.html")]
-        public async Task<IActionResult> Register(RegisterModel model)
+        public async Task<IActionResult> Register(RegisterViewModel model)
         {
             try
             {
@@ -122,7 +129,12 @@ namespace EzTask.Modules.Authentication.Controllers
                         if (existAccount == null)
                         {
                             model.DisplayName = model.FullName;
-                            var account = await EzTask.Account.RegisterNew(model);
+                            var account = await EzTask.Account.RegisterNew(new AccountModel {
+                                AccountName = model.AccountName,
+                                Password = model.Password,
+                                FullName = model.FullName,
+                                DisplayName = model.DisplayName
+                            });
 
                             if (account != null)
                             {
@@ -138,7 +150,7 @@ namespace EzTask.Modules.Authentication.Controllers
                     }
                 }
             }
-            catch (Exception ex)
+            catch
             {
                 ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.AuthenticationPage);
             }

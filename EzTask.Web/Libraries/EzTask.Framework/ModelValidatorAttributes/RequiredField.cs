@@ -12,7 +12,34 @@ namespace EzTask.Framework.ModelValidatorAttributes
 
         public RequiredField()
         {
-            _languageLocalization = FrameworkCore.ServiceProvider.InvokeComponents<ILanguageLocalization>();
+           
+        }
+
+        protected override ValidationResult IsValid(object value, ValidationContext validationContext)
+        {
+            _languageLocalization = (ILanguageLocalization)validationContext
+                          .GetService(typeof(ILanguageLocalization));
+            string valueAsString = value as string;
+
+            bool isValid = true;
+
+            if (string.IsNullOrWhiteSpace(valueAsString))
+            {
+                isValid = false;
+            }
+
+            if(isValid && valueAsString.Length <= 0)
+            {
+                isValid = false;
+            }
+
+            if (isValid)
+            {
+                return ValidationResult.Success;
+            }
+
+            return new ValidationResult(
+                   FormatErrorMessage(validationContext.DisplayName));
         }
 
         public override string FormatErrorMessage(string name)
