@@ -46,6 +46,7 @@ namespace EzTask.Business
                 {
                     Project project = model.ToEntity();
                     project.UpdatedDate = DateTime.Now;
+                    project.MaximumUser = 9999;
 
                     if (project.Id < 1)
                     {

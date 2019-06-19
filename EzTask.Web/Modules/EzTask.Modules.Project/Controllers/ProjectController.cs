@@ -9,7 +9,6 @@ using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Net;
 using System.Threading.Tasks;
 
 namespace EzTask.Modules.Project.Controllers
@@ -38,10 +37,9 @@ namespace EzTask.Modules.Project.Controllers
         [Route("project/create-project.html")]
         public IActionResult CreateNew()
         {
-            return View(new ProjectModel
+            return View(new ProjectItemViewModel
             {
-                ActionType = ActionType.CreateNew,
-                Owner = new AccountModel()
+                ActionType = ActionType.CreateNew
             });
         }
 
@@ -65,13 +63,13 @@ namespace EzTask.Modules.Project.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("project/create-project.html")]
-        public async Task<IActionResult> CreateNew(ProjectModel model)
+        public async Task<IActionResult> CreateNew(ProjectItemViewModel viewModel)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    bool isDupplicated = await EzTask.Project.IsDupplicated(model.ProjectName, model.ProjectId);
+                    bool isDupplicated = await EzTask.Project.IsDupplicated(viewModel.ProjectName, viewModel.ProjectId);
 
                     if (isDupplicated)
                     {
@@ -79,18 +77,23 @@ namespace EzTask.Modules.Project.Controllers
                     }
                     else
                     {
-                        model.ProjectCode = string.Empty;
-                        model.Status = ProjectStatus.Pending;
-                        model.Owner = new AccountModel
+                        ProjectModel model = new ProjectModel
                         {
-                            AccountId = Context.CurrentAccount.AccountId
+                            ProjectName = viewModel.ProjectName,
+                            Description = viewModel.Description,
+                            ProjectCode = string.Empty,
+                            Status = ProjectStatus.Pending,
+                            Owner = new AccountModel
+                            {
+                                AccountId = Context.CurrentAccount.AccountId
+                            }
                         };
 
                         ProjectModel project = await EzTask.Project.Save(model);
                         if (project == null)
                         {
                             ErrorMessage = Context.GetStringResource("CreateProjectError", StringResourceType.ProjectPage);
-                            model.HasError = true;
+                            viewModel.HasError = true;
                         }
                         else
                         {
@@ -103,10 +106,10 @@ namespace EzTask.Modules.Project.Controllers
             }
             catch (Exception)
             {
-                model.HasError = true;
+                viewModel.HasError = true;
                 ErrorMessage = Context.GetStringResource("CreateProjectError", StringResourceType.ProjectPage);
             }
-            return View(model);
+            return View(viewModel);
 
         }
         #endregion
@@ -121,16 +124,26 @@ namespace EzTask.Modules.Project.Controllers
         [Route("project/update-project.html")]
         public async Task<IActionResult> Update(string code)
         {
-            ViewBag.ProjectCode = code;
+            var viewModel = new ProjectItemViewModel
+            {
+                ActionType = ActionType.Update
+            };
 
             ProjectModel project = await EzTask.Project.GetProject(code);
             if (project == null)
             {
                 return RedirectToAction("PageNotFound", "Common");
             }
+            else
+            {
+                viewModel.Status = project.Status;
+                viewModel.ProjectName = project.ProjectName;
+                viewModel.Description = project.Description;
+                viewModel.ProjectCode = project.ProjectCode;
+                viewModel.ProjectId = project.ProjectId;
+            }
 
-            project.ActionType = ActionType.Update;
-            return View(project);
+            return View(viewModel);
         }
 
         /// <summary>
@@ -148,25 +161,25 @@ namespace EzTask.Modules.Project.Controllers
         /// <summary>
         /// Update project action
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("project/update-project.html")]
-        public async Task<IActionResult> Update(ProjectModel model)
+        public async Task<IActionResult> Update(ProjectItemViewModel viewModel)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    ProjectModel data = await EzTask.Project.GetProject(model.ProjectCode);
-                    if (data == null)
+                    ProjectModel model = await EzTask.Project.GetProject(viewModel.ProjectCode);
+                    if (model == null)
                     {
                         ErrorMessage = Context.GetStringResource("ErrorUpdateProject", StringResourceType.ProjectPage);
-                        model.HasError = true;
+                        viewModel.HasError = true;
                     }
                     else
                     {
-                        bool isDupplicated = await EzTask.Project.IsDupplicated(model.ProjectName, model.ProjectId);
+                        bool isDupplicated = await EzTask.Project.IsDupplicated(viewModel.ProjectName, model.ProjectId);
 
                         if (isDupplicated)
                         {
@@ -174,7 +187,9 @@ namespace EzTask.Modules.Project.Controllers
                         }
                         else
                         {
-                            model.Owner = new AccountModel { AccountId = data.Owner.AccountId };
+                            model.ProjectName = viewModel.ProjectName;
+                            model.Status = viewModel.Status;
+                            model.Description = viewModel.Description;
 
                             ProjectModel project = await EzTask.Project.Save(model);
                             if (project == null)
@@ -194,10 +209,10 @@ namespace EzTask.Modules.Project.Controllers
             }
             catch (Exception)
             {
-                model.HasError = true;
+                viewModel.HasError = true;
                 ErrorMessage = Context.GetStringResource("ProjectIsDupplicated", StringResourceType.ProjectPage);
             }
-            return View(model);
+            return View(viewModel);
 
         }
 
@@ -246,7 +261,7 @@ namespace EzTask.Modules.Project.Controllers
             if (account == null)
             {
                 isNewMember = true;
-                ResultModel<AccountModel> registerResult = await EzTask.Account.RegisterNew(new RegisterModel
+                ResultModel<AccountModel> registerResult = await EzTask.Account.RegisterNew(new AccountModel
                 {
                     AccountName = accountName,
                     Password = Guid.NewGuid().ToString().Substring(0, 6),

@@ -21,23 +21,16 @@ namespace EzTask.Model
 
         private void AccountMaper()
         {
-            //Map RegisterModel to Account Entity
-            CreateMap<RegisterModel, Account>()
-                .ForMember(c => c.Id, t => t.MapFrom(z => z.AccountId))
-                .ForPath(c => c.AccountInfo.AccountId, t => t.MapFrom(z => z.AccountId))
-                .ForPath(c => c.AccountInfo.Email, t => t.MapFrom(z => z.AccountName))
-                .ForPath(c => c.AccountInfo.FullName, t => t.MapFrom(z => z.FullName))
-                .ForPath(c => c.AccountInfo.DisplayName, t => t.MapFrom(z => z.DisplayName));
-
             ///Map Account entity to Account Model
             CreateMap<Account, AccountModel>()
                 .ForMember(c => c.AccountId, t => t.MapFrom(z => z.Id))
-                .ForMember(c => c.AccountStatus, t => t.MapFrom(z => z.AccountStatus.ToEnum<ProjectStatus>()))
+                .ForMember(c => c.AccountStatus, t => t.MapFrom(z => z.AccountStatus.ToEnum<AccountStatus>()))
                 .ForMember(c => c.DisplayName, t => t.MapFrom(z => z.AccountInfo.DisplayName));
 
             ///Map Account model to Account entity
             CreateMap<AccountModel, Account>()
                 .ForMember(c => c.Id, t => t.MapFrom(z => z.AccountId))
+                .ForMember(c => c.AccountStatus, t => t.MapFrom(z => z.AccountStatus.ToInt16<AccountStatus>()))
                 .ForPath(c => c.AccountInfo.AccountId, t => t.MapFrom(z => z.AccountId))
                 .ForPath(c => c.AccountInfo.Email, t => t.MapFrom(z => z.AccountName))
                 .ForPath(c => c.AccountInfo.FullName, t => t.MapFrom(z => z.FullName))

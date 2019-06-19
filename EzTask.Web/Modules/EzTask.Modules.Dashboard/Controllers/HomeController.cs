@@ -86,14 +86,13 @@ namespace EzTask.Modules.Dashboard.Controllers
 
             if (string.IsNullOrWhiteSpace(model.Title))
             {
-                return BadRequest("Title cannot empty!");
+                return BadRequest(Context.GetStringResource("TitleCannotEmpty", StringResourceType.DashboardPage));
             }
 
            
             if (model.CompleteOn < DateTime.Now)
             {
-                return BadRequest(Context.GetStringResource("CompleteOnError",
-                    StringResourceType.DashboardPage));
+                return BadRequest(Context.GetStringResource("CompleteOnError", StringResourceType.DashboardPage));
             }
 
             var result = await EzTask.ToDoList.Save(model);

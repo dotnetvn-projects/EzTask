@@ -320,6 +320,10 @@
       <Content>Item doesn't exist!</Content>
     </Language>
     <Language>
+      <Key>TitleCannotEmpty</Key>
+      <Content>Title cannot empty!</Content>
+    </Language>
+    <Language>
       <Key>NoTodoItemSelectedWarning</Key>
       <Content>No item seleted, please select at least 1 item!</Content>
     </Language>
@@ -483,6 +487,10 @@
       <Content>Register a new membership</Content>
     </Language>
     <Language>
+      <Key>RegisterButton</Key>
+      <Content>Register</Content>
+    </Language>
+    <Language>
       <Key>LoginPageTitle</Key>
       <Content>Login</Content>
     </Language>
@@ -520,7 +528,7 @@
     </Language>
     <Language>
       <Key>AccountValidate</Key>
-      <Content>Email must be a string between 6 and 20 characters</Content>
+      <Content>Email must be a string between 6 and 50 characters</Content>
     </Language>
    <Language>
       <Key>EmailValidate</Key>
@@ -864,6 +872,14 @@
     <Language>
       <Key>Delete</Key>
       <Content>Delete</Content>
+    </Language>
+   <Language>
+      <Key>ProjectNameValidate</Key>
+      <Content>Project Name cannot be empty!</Content>
+    </Language>
+    <Language>
+      <Key>ProjectNameLengthValidate</Key>
+    <Content>Project Name must be from 6 to 250 characters!</Content>
     </Language>
   </ProjectPage>
 

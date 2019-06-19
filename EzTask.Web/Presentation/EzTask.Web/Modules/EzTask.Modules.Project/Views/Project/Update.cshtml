@@ -1,7 +1,7 @@
 ﻿
-@model ProjectModel
+@model ProjectItemViewModel
 @{ 
-    ViewBag.Title = string.Format("EzTask - " + Html.GetStringResource("UpdateProjectPageTitle", StringResourceType.ProjectPage).ToString(), ViewBag.ProjectCode);
+    ViewBag.Title = string.Format("EzTask - " + Html.GetStringResource("UpdateProjectPageTitle", StringResourceType.ProjectPage).ToString(), Model.ProjectCode);
 }
 @section header{
     <h1>

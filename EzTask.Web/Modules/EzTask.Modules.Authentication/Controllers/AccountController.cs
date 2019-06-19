@@ -150,7 +150,7 @@ namespace EzTask.Modules.Authentication.Controllers
                     }
                 }
             }
-            catch
+            catch (Exception ex)
             {
                 ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.AuthenticationPage);
             }
@@ -167,6 +167,8 @@ namespace EzTask.Modules.Authentication.Controllers
         public IActionResult LogOff()
         {
             Context.SuspendSession(SessionKey.Account);
+            Context.SuspendCookie(SessionKey.EzTaskAuthen);
+
             return RedirectToAction("Login", "Account");
         }
     }
