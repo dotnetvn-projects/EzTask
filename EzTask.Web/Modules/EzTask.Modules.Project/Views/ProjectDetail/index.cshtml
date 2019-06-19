@@ -1,6 +1,6 @@
 ﻿@model ProjectViewModel
 @{ 
-    ViewBag.Title = "EzTask - " + string.Format(Html.GetStringResource("ProjectPageDetailTitle", StringResourceType.ProjectPage).ToString(), ViewBag.ProjectCode);
+    ViewBag.Title = "EzTask - " + string.Format(Html.GetStringResource("ProjectPageDetailTitle", StringResourceType.ProjectPage).ToString(), Model.Project.ProjectCode);
 }
 
 @section styles{

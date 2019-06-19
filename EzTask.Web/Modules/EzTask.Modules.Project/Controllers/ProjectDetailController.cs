@@ -20,8 +20,6 @@ namespace EzTask.Modules.Project.Controllers
         [Route("project/{code}.html")]
         public async Task<IActionResult> Index(string code)
         {
-            ViewBag.ProjectCode = code;
-
             var model = await EzTask.Project.GetProjectDetail(code);
             var vm = new ProjectViewModel();
             vm.Project = model;
