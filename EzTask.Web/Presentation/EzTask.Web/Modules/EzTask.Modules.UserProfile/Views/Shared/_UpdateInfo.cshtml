@@ -1,10 +1,8 @@
-﻿@model AccountInfoModel
+﻿@model AccountInfoViewModel
 
 <form asp-action="UpdateInfo" asp-controller="UserProfile" class="form-horizontal">
     <input asp-for="AccountInfoId" type="hidden" />
     <input asp-for="AccountId" type="hidden" />
-    <input asp-for="AccountName" type="hidden" />
-    <input asp-for="Password" type="hidden" />
 
     <div class="form-group">
         <label for="inputName" class="col-sm-2 control-label">@Html.GetStringResource("Name", StringResourceType.UserProfilePage)</label>

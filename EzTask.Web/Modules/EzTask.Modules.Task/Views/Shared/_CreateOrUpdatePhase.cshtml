@@ -16,7 +16,7 @@
                 }
 
             </div>
-            <form id="phase-form" class="form-horizontal">
+            <form asp-action="CreateOrUpdatePhase" method="post" id="phase-form" class="form-horizontal">
                 <input asp-for="ProjectId" class="project-id" type="hidden" />
                 <input asp-for="PhaseId" class="phase-id" type="hidden" />
                 <input asp-for="IsDefault" class="phase-default" type="hidden" />

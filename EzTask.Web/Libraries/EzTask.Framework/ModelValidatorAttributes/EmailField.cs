@@ -1,25 +1,26 @@
 ﻿using EzTask.Interface;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using System;
 using System.ComponentModel.DataAnnotations;
 using System.Text.RegularExpressions;
 
 namespace EzTask.Framework.ModelValidatorAttributes
 {
-    public class EmailField : DataTypeAttribute
+    public class EmailField : ValidationAttribute, IClientModelValidator
     {
         private ILanguageLocalization _languageLocalization;
 
-        public string ErrorLanguageKey { get; set; }
-        public string LanguagePageSetting { get; set; }
+        private string _errorLanguageKey { get; set; }
+        private string _languagePageSetting { get; set; }
 
         // This attribute provides server-side email validation equivalent to jquery validate,
         // and therefore shares the same regular expression.  See unit tests for examples.
         private static Regex _regex = CreateRegEx();
 
-        public EmailField()
-            : base(DataType.EmailAddress)
+        public EmailField(string errorLanguageKey, string languagePageSetting)
         {
-           
+            _errorLanguageKey = errorLanguageKey;
+            _languagePageSetting = languagePageSetting;
         }
 
         protected override ValidationResult IsValid(object value, ValidationContext validationContext)
@@ -100,7 +101,21 @@ namespace EzTask.Framework.ModelValidatorAttributes
 
         public override string FormatErrorMessage(string name)
         {
-            return _languageLocalization.GetLocalization(ErrorLanguageKey, LanguagePageSetting);
+            return _languageLocalization.GetLocalization(_errorLanguageKey, _languagePageSetting);
+        }
+
+        public void AddValidation(ClientModelValidationContext context)
+        {
+            if (context == null)
+            {
+                throw new ArgumentNullException(nameof(context));
+            }
+
+            _languageLocalization = context.ActionContext.
+                                HttpContext.RequestServices.InvokeComponents<ILanguageLocalization>();
+
+            ValidatorUtils.MergeAttribute(context.Attributes, "data-val", "true");
+            ValidatorUtils.MergeAttribute(context.Attributes, "data-val-emailfield", FormatErrorMessage(context.ModelMetadata.GetDisplayName()));
         }
     }
 }

@@ -25,8 +25,14 @@ namespace EzTask.Entity.Data
         public override void Update(AccountInfo entity)
         {
             var displayImage = DisplayImage;
+            var lanDisplay = LangDisplay;
+            var document = Document;
+
             base.Update(entity);
+
             DisplayImage = displayImage;
+            LangDisplay = lanDisplay;
+            Document = document;
         }
     }
 }

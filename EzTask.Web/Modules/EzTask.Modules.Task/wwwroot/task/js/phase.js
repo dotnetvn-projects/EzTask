@@ -20,8 +20,12 @@ $.fn.showModal = function () {
             success: function (data) {
                 $(".phase-template").html(data);
 
+                var form = $("#phase-form");
                 $.initCommonLib();
+                $.validator.unobtrusive.parse(form);
+
                 $("#phase-modal .btn-confirm").phaseModalAction();
+
                 $.hideLoading();
 
                 $.showDialog({
@@ -37,11 +41,12 @@ $.fn.showModal = function () {
 $.fn.phaseModalAction = function () {
     $(this).click(function (e) {
         e.preventDefault();
-        var form = $("#phase-form");
-        $.showLoading();
+        var form = $("#phase-form");       
         if (form.valid()) {
+            $.showLoading();
             $.ajax({
                 type: 'post',
+                dataType: 'json',
                 url: "phase/phase-modal-action.html",
                 data: form.serialize(),
                 success: function (response) {                  
@@ -50,6 +55,8 @@ $.fn.phaseModalAction = function () {
                     phasePanel.html(response);
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
+                    $.hideLoading();
+
                     $.alertDialog({
                         title: $('#error-title').val(),
                         content: xhr.responseText

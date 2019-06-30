@@ -4,13 +4,13 @@ namespace EzTask.Modules.Authentication.ViewModels
 {
     public class AuthViewModel
     {
-        [RequiredField, StringLengthField(maximumLength:50, MinimumLength = 6,
-            ErrorLanguageKey = "AccountValidate", LanguagePageSetting = "AuthenticationPage")]
-        [EmailField(ErrorLanguageKey = "EmailValidate", LanguagePageSetting = "AuthenticationPage")]
+        [RequiredField(errorLanguageKey: "AccountValidate", languagePageSetting: "AuthenticationPage"),
+         StringLengthField(minimumLength: 6, maximumLength: 50, errorLanguageKey: "AccountValidate", languagePageSetting: "AuthenticationPage"),
+         EmailField(errorLanguageKey: "EmailValidate", languagePageSetting: "AuthenticationPage")]
         public string AccountName { get; set; }
 
-        [RequiredField, StringLengthField(maximumLength: 50, MinimumLength = 6,
-            ErrorLanguageKey = "PasswordValidate", LanguagePageSetting = "AuthenticationPage")]
+        [RequiredField(errorLanguageKey: "PasswordValidate", languagePageSetting: "AuthenticationPage"),
+         StringLengthField(minimumLength: 6, maximumLength: 50, errorLanguageKey: "PasswordValidate", languagePageSetting: "AuthenticationPage")]
         public string Password { get; set; }
     }
 }

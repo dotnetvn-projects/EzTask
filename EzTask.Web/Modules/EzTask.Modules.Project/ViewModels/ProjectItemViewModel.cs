@@ -14,8 +14,8 @@ namespace EzTask.Modules.Project.ViewModels
 
         public string ProjectCode { get; set; }
 
-        [RequiredField(ErrorLanguageKey = "ProjectNameValidate", LanguagePageSetting = "ProjectPage")]
-        [StringLengthField(maximumLength: 250, MinimumLength = 6, ErrorLanguageKey = "ProjectNameLengthValidate", LanguagePageSetting = "ProjectPage")]
+        [RequiredField(errorLanguageKey: "ProjectNameValidate", languagePageSetting: "ProjectPage")]
+        [StringLengthField(minimumLength: 6, maximumLength: 250, errorLanguageKey : "ProjectNameLengthValidate", languagePageSetting : "ProjectPage")]
         public string ProjectName { get; set; }
 
         public string Description { get; set; }

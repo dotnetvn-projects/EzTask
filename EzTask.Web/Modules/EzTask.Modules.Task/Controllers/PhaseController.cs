@@ -65,7 +65,7 @@ namespace EzTask.Modules.Task.Controllers
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest();
+                return BadRequest(Context.GetStringResource("CreatePhaseError", StringResourceType.TaskPage));
             }
 
             PhaseModel model = new PhaseModel()

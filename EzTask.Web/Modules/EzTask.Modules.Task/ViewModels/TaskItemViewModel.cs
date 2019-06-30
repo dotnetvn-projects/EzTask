@@ -1,4 +1,5 @@
-﻿using EzTask.Model;
+﻿using EzTask.Framework.ModelValidatorAttributes;
+using EzTask.Model;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
@@ -12,8 +13,8 @@ namespace EzTask.Modules.Task.ViewModels
 
         public string TaskCode { get; set; }
 
-        [Required(ErrorMessage = "The Task Title field is required."), StringLength(maximumLength: 255, MinimumLength = 5,
-            ErrorMessage = "The Task Title must be a string have length between 5 and 50 characters")]
+        [RequiredField(errorLanguageKey: "TaskTitleValidate", languagePageSetting: "TaskPage"),
+         StringLengthField(minimumLength: 5, maximumLength: 50, errorLanguageKey: "TaskTitleLengthValidate", languagePageSetting: "TaskPage")]
         public string TaskTitle { get; set; }
 
         public string TaskDetail { get; set; }

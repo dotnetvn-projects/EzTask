@@ -14,9 +14,6 @@ namespace EzTask.Model
         public string Address2 { get; set; }
         public string PhoneNumber { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:MM/dd/yyyy}",
-            ApplyFormatInEditMode = true)]
         public DateTime? BirthDay { get; set; }
 
         public string Comment { get; set; }

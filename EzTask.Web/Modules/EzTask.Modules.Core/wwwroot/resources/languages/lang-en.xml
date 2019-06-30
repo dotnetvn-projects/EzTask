@@ -798,8 +798,8 @@
       <Content>Completed</Content>
     </Language>
     <Language>
-      <Key>Cancel</Key>
-      <Content>Cancel</Content>
+      <Key>Canceled</Key>
+      <Content>Canceled</Content>
     </Language>
     <Language>
       <Key>Failed</Key>
@@ -889,6 +889,14 @@
       <Content>Task List</Content>
     </Language>
     <Language>
+      <Key>TaskTitleValidate</Key>
+      <Content>The Task Title field is required.</Content>
+    </Language>
+    <Language>
+      <Key>TaskTitleLengthValidate</Key>
+      <Content>The Task Title must be a string have length between 5 and 50 characters.</Content>
+    </Language>
+    <Language>
       <Key>RemovePhaseWarning</Key>
       <Content>All tasks which related to this phase will be removed. Are you sure to continue?</Content>
     </Language>
@@ -911,6 +919,10 @@
     <Language>
       <Key>CreatePhaseError</Key>
       <Content>Cannot create phase, please try again!</Content>
+    </Language>
+    <Language>
+      <Key>PhaseNameValidate</Key>
+      <Content>Phase Name must be a string has from 5 to 250 characters</Content>
     </Language>
     <Language>
       <Key>UpdatePhaseError</Key>
@@ -1246,6 +1258,18 @@
     <Language>
       <Key>Submit</Key>
       <Content>Submit</Content>
+    </Language>
+    <Language>
+      <Key>FullNameValidate</Key>
+      <Content>Name can not be empty!</Content>
+    </Language>
+    <Language>
+      <Key>DisplayNameValidate</Key>
+      <Content>Nick Name can not be empty!</Content>
+    </Language>
+    <Language>
+      <Key>EmailValidate</Key>
+      <Content>Email is wrong format!</Content>
     </Language>
   </UserProfilePage>
 

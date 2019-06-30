@@ -11,14 +11,14 @@ namespace EzTask.Modules.Dashboard.ViewModels
     {
         public int Id { get; set; }
 
-        [RequiredField(ErrorLanguageKey = "TodoItemTitleRequired", 
-            LanguagePageSetting = "DashboardPage")]
+        [RequiredField(errorLanguageKey: "TodoItemTitleRequired", 
+            languagePageSetting: "DashboardPage")]
         public string Title { get; set; }
 
         public int AccountId { get; set; }
 
-        [RequiredField(ErrorLanguageKey = "TodoItemCompleteOnRequied",
-            LanguagePageSetting = "DashboardPage")]
+        [RequiredField(errorLanguageKey: "TodoItemCompleteOnRequied",
+            languagePageSetting: "DashboardPage")]
         public string CompleteOn { get; set; }
 
         public short Priority { get; set; }

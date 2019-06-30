@@ -73,18 +73,48 @@ namespace EzTask.Business
                 Status = ActionStatus.NotFound
             };
 
+            var entity = model.ToEntity();
+
             var accountInfo = await UnitOfWork.AccountInfoRepository
                 .GetAsync(c => c.Id == model.AccountInfoId);
 
             if (accountInfo != null)
             {
-                accountInfo.Update(accountInfo);
+                accountInfo.Update(entity);
 
                 int updateRecord = await UnitOfWork.CommitAsync();
                 if (updateRecord > 0)
                 {
                     result.Status = ActionStatus.Ok;
                     result.Data = accountInfo.ToModel();
+                }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// Update password
+        /// </summary>
+        /// <returns></returns>
+        public async Task<ResultModel<AccountModel>> UpdatePassword(string accountName, string password, string newPassword)
+        {
+            ResultModel<AccountModel> result = new ResultModel<AccountModel>
+            {
+                Status = ActionStatus.NotFound
+            };
+
+            var account = await UnitOfWork.AccountRepository.GetAsync(c => c.AccountName == accountName && c.Password == password);
+
+            if (account != null)
+            {
+                account.Password = Encrypt.Do(newPassword, account.PasswordHash);
+                UnitOfWork.AccountRepository.Update(account);
+
+                int updateRecord = await UnitOfWork.CommitAsync();
+                if (updateRecord > 0)
+                {
+                    result.Status = ActionStatus.Ok;
+                    result.Data = account.ToModel();
                 }
             }
             return result;

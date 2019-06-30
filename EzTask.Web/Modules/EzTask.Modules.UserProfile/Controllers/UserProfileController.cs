@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Threading.Tasks;
+using EzTask.Framework.Common;
 using EzTask.Framework.Data;
 using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
+using EzTask.Modules.UserProfile.ViewModels;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Http;
@@ -26,9 +28,9 @@ namespace EzTask.Modules.UserProfile.Controllers
         [Route("public-profile.html")]
         public async Task<IActionResult> PublicProfile(string account)
         {
-            ViewBag.Account = account;
             var profileData = await GetAccountInfo();
-            return View(profileData);
+            AccountInfoViewModel viewModel = ConvertToViewModel(profileData);
+            return View(viewModel);
         }
 
         /// <summary>
@@ -39,24 +41,25 @@ namespace EzTask.Modules.UserProfile.Controllers
         public async Task<IActionResult> Profile()
         {
             var profileData = await GetAccountInfo();
-            return View(profileData);
+            AccountInfoViewModel viewModel = ConvertToViewModel(profileData);
+            return View(viewModel);
         }
 
         /// <summary>
         /// Update account info for current logined user
         /// </summary>
-        /// <param name="model"></param>
+        /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
         [Route("profile.html")]
-        public async Task<IActionResult> UpdateInfo(AccountInfoModel model)
+        public async Task<IActionResult> UpdateInfo(AccountInfoViewModel viewModel)
         {
             if (ModelState.IsValid)
             {
-                await EzTask.Account.UpdateAccount(model);
-                await EzTask.Skill.SaveAccountSkill(model.Skills, Context.CurrentAccount.AccountId);
+                await EzTask.Account.UpdateAccount(ConvertToModel(viewModel));
+                await EzTask.Skill.SaveAccountSkill(viewModel.Skills, Context.CurrentAccount.AccountId);
             }
-            return View("Profile", model);
+            return View("Profile", viewModel);
         }
 
         /// <summary>
@@ -90,6 +93,60 @@ namespace EzTask.Modules.UserProfile.Controllers
                 data.Skills = await EzTask.Skill.GetSkill(Context.CurrentAccount.AccountId);
             }
             return data;
+        }
+
+        /// <summary>
+        /// Convert model to viewmodel
+        /// </summary>
+        /// <param name="profileData"></param>
+        /// <returns></returns>
+        private static AccountInfoViewModel ConvertToViewModel(AccountInfoModel profileData)
+        {
+            return new AccountInfoViewModel
+            {
+                AccountInfoId = profileData.AccountInfoId,
+                Address1 = profileData.Address1,
+                Address2 = profileData.Address2,
+                BirthDay = profileData.BirthDay.HasValue? profileData.BirthDay.Value.ToDateString() : string.Empty,
+                Comment = profileData.Comment,
+                Education = profileData.Education,
+                Email = profileData.Email,
+                Introduce = profileData.Introduce,
+                IsPublished = profileData.AccountInfoId == 0 ? true : profileData.IsPublished,
+                JobTitle = profileData.JobTitle,
+                PhoneNumber = profileData.PhoneNumber,
+                Skills = profileData.Skills,
+                AccountId = profileData.AccountId,
+                DisplayName = profileData.DisplayName,
+                FullName = profileData.FullName
+            };
+        }
+
+        /// <summary>
+        /// Convert viewmodel to model
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        private static AccountInfoModel ConvertToModel(AccountInfoViewModel viewModel)
+        {
+            return new AccountInfoModel
+            {
+                AccountInfoId = viewModel.AccountInfoId,
+                Address1 = viewModel.Address1,
+                Address2 = viewModel.Address2,
+                BirthDay = DateTimeUtilities.ParseFromString(viewModel.BirthDay),
+                Comment = viewModel.Comment,
+                Education = viewModel.Education,
+                Email = viewModel.Email,
+                Introduce = viewModel.Introduce,
+                IsPublished = viewModel.IsPublished,
+                JobTitle = viewModel.JobTitle,
+                PhoneNumber = viewModel.PhoneNumber,
+                Skills = viewModel.Skills,
+                AccountId = viewModel.AccountId,
+                DisplayName = viewModel.DisplayName,
+                FullName = viewModel.FullName
+            };
         }
         #endregion
     }

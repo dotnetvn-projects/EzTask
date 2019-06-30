@@ -76,6 +76,7 @@ $.fn.Submit = function () {
                 data: $(form).serialize(),
                 success: submitSuccess,
                 error: function (xhr, textStatus, errorThrown) {
+                    $.hideLoading();
                     $.alertDialog({
                         title: $('#error-title').val(),
                         content: xhr.responseText

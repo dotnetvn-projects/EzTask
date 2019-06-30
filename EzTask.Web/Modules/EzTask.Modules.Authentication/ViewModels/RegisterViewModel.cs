@@ -8,8 +8,8 @@ namespace EzTask.Modules.Authentication.ViewModels
 {
     public class RegisterViewModel: AuthViewModel
     {
-        [RequiredField, StringLengthField(maximumLength: 50, MinimumLength = 6,
-            ErrorLanguageKey = "PasswordTempValidate", LanguagePageSetting = "AuthenticationPage")]
+        [RequiredField(errorLanguageKey: "PasswordTempValidate", languagePageSetting: "AuthenticationPage"),
+         StringLengthField(minimumLength: 6, maximumLength: 50, errorLanguageKey : "PasswordTempValidate", languagePageSetting : "AuthenticationPage")]
         public string PasswordTemp { get; set; }
 
         public string FullName { get; set; }
