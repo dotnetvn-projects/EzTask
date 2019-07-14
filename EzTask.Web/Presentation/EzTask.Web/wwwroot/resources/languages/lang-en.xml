@@ -387,7 +387,7 @@
       <Key>Label</Key>
       <Content>Label</Content>
     </Language>
-  <Language>
+    <Language>
       <Key>Label</Key>
       <Content>Label</Content>
     </Language>
@@ -530,17 +530,29 @@
       <Key>AccountValidate</Key>
       <Content>Email must be a string between 6 and 50 characters</Content>
     </Language>
-   <Language>
+    <Language>
       <Key>EmailValidate</Key>
       <Content>Email is wrong format</Content>
     </Language>
-   <Language>
+    <Language>
       <Key>PasswordValidate</Key>
       <Content>Password must be a string between 6 and 50 characters</Content>
     </Language>
-  <Language>
+    <Language>
       <Key>PasswordTempValidate</Key>
       <Content>Confirm Password must be a string between 6 and 50 characters</Content>
+    </Language>
+    <Language>
+      <Key>RecoverPasswordPageTitle</Key>
+      <Content>Recover password</Content>
+    </Language>
+    <Language>
+      <Key>RecoverPasswordTitle</Key>
+      <Content>Enter you email to recover password</Content>
+    </Language>
+    <Language>
+      <Key>Submit</Key>
+      <Content>Submit</Content>
     </Language>
   </AuthenticationPage>
 
@@ -873,13 +885,13 @@
       <Key>Delete</Key>
       <Content>Delete</Content>
     </Language>
-   <Language>
+    <Language>
       <Key>ProjectNameValidate</Key>
       <Content>Project Name cannot be empty!</Content>
     </Language>
     <Language>
       <Key>ProjectNameLengthValidate</Key>
-    <Content>Project Name must be from 6 to 250 characters!</Content>
+      <Content>Project Name must be from 6 to 250 characters!</Content>
     </Language>
   </ProjectPage>
 
@@ -1270,6 +1282,46 @@
     <Language>
       <Key>EmailValidate</Key>
       <Content>Email is wrong format!</Content>
+    </Language>
+    <Language>
+      <Key>ChangePassword</Key>
+      <Content>Change Password</Content>
+    </Language>
+    <Language>
+      <Key>CurrentPassword</Key>
+      <Content>Current password</Content>
+    </Language>
+    <Language>
+      <Key>InputCurrentPassword</Key>
+      <Content>Input current password</Content>
+    </Language>
+    <Language>
+      <Key>NewPassword</Key>
+      <Content>New password</Content>
+    </Language>
+    <Language>
+      <Key>InputNewPassword</Key>
+      <Content>Input new password</Content>
+    </Language>
+    <Language>
+      <Key>ConfirmNewPassword</Key>
+      <Content>Confirm new password</Content>
+    </Language>
+    <Language>
+      <Key>InputConfirmNewPassword</Key>
+      <Content>Input new password</Content>
+    </Language>
+    <Language>
+      <Key>ConfirmPasswordNotMatch</Key>
+      <Content>Please confirm your password.!</Content>
+    </Language>
+    <Language>
+      <Key>PasswordNotMatch</Key>
+      <Content>Your current password does not match!.</Content>
+    </Language>
+    <Language>
+      <Key>UpdatePassSuccess</Key>
+      <Content>Your password has been updated successfully!.</Content>
     </Language>
   </UserProfilePage>
 

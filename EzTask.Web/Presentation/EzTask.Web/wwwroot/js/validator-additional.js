@@ -16,7 +16,7 @@ $.validator.addMethod("stringlengthfield",
         var min = params.minLength;
         var max = params.maxLength;
         var valueLength = value.length;
-        if (valueLength < min || _maximumLength > max)
+        if (valueLength < min || valueLength > max)
             return false;
         return true;
     });

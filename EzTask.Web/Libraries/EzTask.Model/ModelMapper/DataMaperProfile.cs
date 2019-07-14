@@ -21,13 +21,13 @@ namespace EzTask.Model
 
         private void AccountMaper()
         {
-            ///Map Account entity to Account Model
+            //Map Account entity to Account Model
             CreateMap<Account, AccountModel>()
                 .ForMember(c => c.AccountId, t => t.MapFrom(z => z.Id))
                 .ForMember(c => c.AccountStatus, t => t.MapFrom(z => z.AccountStatus.ToEnum<AccountStatus>()))
                 .ForMember(c => c.DisplayName, t => t.MapFrom(z => z.AccountInfo.DisplayName));
 
-            ///Map Account model to Account entity
+            //Map Account model to Account entity
             CreateMap<AccountModel, Account>()
                 .ForMember(c => c.Id, t => t.MapFrom(z => z.AccountId))
                 .ForMember(c => c.AccountStatus, t => t.MapFrom(z => z.AccountStatus.ToInt16<AccountStatus>()))
@@ -36,7 +36,7 @@ namespace EzTask.Model
                 .ForPath(c => c.AccountInfo.FullName, t => t.MapFrom(z => z.FullName))
                 .ForPath(c => c.AccountInfo.DisplayName, t => t.MapFrom(z => z.DisplayName));
 
-            ///Map AccountInfo entity to AccountInfoModel
+            //Map AccountInfo entity to AccountInfoModel
             CreateMap<AccountInfo, AccountInfoModel>()
                 .ForMember(c => c.AccountInfoId, t => t.MapFrom(z => z.Id))
                 .ForMember(c => c.CreatedDate, t => t.MapFrom(z => z.Account.CreatedDate))
@@ -45,9 +45,15 @@ namespace EzTask.Model
                 .ForMember(c => c.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo != null?
                                                                 z.Account.AccountInfo.DisplayName : string.Empty));
 
-            ///Map AccountInfoModel to AccountInfo entity
+            //Map AccountInfoModel to AccountInfo entity
             CreateMap<AccountInfoModel, AccountInfo>()
                 .ForMember(c => c.Id, t => t.MapFrom(z => z.AccountInfoId));
+
+            //Map RecoverSession Model to Entity
+            CreateMap<RecoverSessionModel, RecoverSession>();
+
+            //Map Entitu  to RecoverSession Model
+            CreateMap<RecoverSession, RecoverSessionModel>();
         }
 
         private void ProjectMapper()

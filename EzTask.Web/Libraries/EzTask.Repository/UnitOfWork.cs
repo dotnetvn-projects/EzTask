@@ -22,6 +22,7 @@ namespace EzTask.Repository
         public IRepository<TaskHistory> TaskHistoryRepository { get; }
         public IRepository<Notification> NotifyRepository { get; }
         public IRepository<ToDoItem> TodoItemRepository { get; }
+        public IRepository<RecoverSession> RecoverSessionRepository { get; }
 
         public UnitOfWork(EzTaskDbContext context,
              IRepository<Account> account,
@@ -35,7 +36,8 @@ namespace EzTask.Repository
              IRepository<Attachment> attach,
              IRepository<TaskHistory> taskHistory,
              IRepository<Notification> notifyRepository,
-             IRepository<ToDoItem> todoItemRepository)
+             IRepository<ToDoItem> todoItemRepository,
+             IRepository<RecoverSession> recoverSessionRepository)
         {
             Context = context;
 
@@ -74,6 +76,9 @@ namespace EzTask.Repository
 
             TodoItemRepository = todoItemRepository;
             TodoItemRepository.Context = context;
+
+            RecoverSessionRepository = recoverSessionRepository;
+            RecoverSessionRepository.Context = context;
         }
 
         public int Commit()

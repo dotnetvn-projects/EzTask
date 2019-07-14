@@ -171,5 +171,33 @@ namespace EzTask.Modules.Authentication.Controllers
 
             return RedirectToAction("Login", "Account");
         }
+
+        #region Recover password
+        [Route("recover-password.html")]
+        public IActionResult RecoverPassword()
+        {
+            return View(new RecoverPasswordViewModel());
+        }
+
+        [Route("recover-password.html")]
+        [HttpPost]
+        public IActionResult RecoverPassword(RecoverPasswordViewModel viewModel)
+        {
+            return View(viewModel);
+        }
+
+        [Route("auth/recover-password.html")]
+        public IActionResult RecoverPasswordAction(string code)
+        {
+            return View(new RecoverPasswordViewModel());
+        }
+
+        [Route("auth/recover-password.html")]
+        [HttpPost]
+        public IActionResult RecoverPasswordAction(RecoverPasswordViewModel viewModel)
+        {
+            return View(viewModel);
+        }
+        #endregion
     }
 }

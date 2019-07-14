@@ -59,10 +59,14 @@
         <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
                 <li class="active"><a href="#Information" data-toggle="tab">@Html.GetStringResource("PersonalInformation", StringResourceType.UserProfilePage)</a></li>
+                <li><a href="#ChangePassword" data-toggle="tab">@Html.GetStringResource("ChangePassword", StringResourceType.UserProfilePage)</a></li>
             </ul>
             <div class="tab-content">
-                <div class="active actab-pane" id="Information">
+                <div class="active tab-pane" id="Information">
                     <partial name="_UpdateInfo" />
+                </div>
+                <div class="tab-pane" id="ChangePassword">
+                    <partial name="_ChangePassword" model="new ChangePasswordViewModel()" />
                 </div>
             </div>
         </div>

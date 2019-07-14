@@ -3,6 +3,8 @@ using System.Threading.Tasks;
 using EzTask.Framework.Common;
 using EzTask.Framework.Data;
 using EzTask.Model;
+using EzTask.Model.Enum;
+using EzTask.Model.Message;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.UserProfile.ViewModels;
 using EzTask.Web.Framework.Attributes;
@@ -51,7 +53,7 @@ namespace EzTask.Modules.UserProfile.Controllers
         /// <param name="viewModel"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("profile.html")]
+        [Route("update-info.html")]
         public async Task<IActionResult> UpdateInfo(AccountInfoViewModel viewModel)
         {
             if (ModelState.IsValid)
@@ -60,6 +62,45 @@ namespace EzTask.Modules.UserProfile.Controllers
                 await EzTask.Skill.SaveAccountSkill(viewModel.Skills, Context.CurrentAccount.AccountId);
             }
             return View("Profile", viewModel);
+        }
+
+        /// <summary>
+        /// Update account info for current logined user
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("update-password.html")]
+        public async Task<IActionResult> UpdatePassword(ChangePasswordViewModel viewModel)
+        {
+            ResponseMessage response = new ResponseMessage();
+
+            if (ModelState.IsValid)
+            {
+                if (viewModel.NewPassword != viewModel.ConfirmNewPassword)
+                {
+                    response.Message = Context.GetStringResource("ConfirmPasswordNotMatch", StringResourceType.UserProfilePage);
+                    return BadRequest(response);
+                }
+
+                var result = await EzTask.Account.UpdatePassword(Context.CurrentAccount.AccountName, 
+                    viewModel.CurrentPassword, viewModel.NewPassword);                    
+
+                if(result.Status == ActionStatus.NotFound)
+                {
+                    response.Message = Context.GetStringResource("PasswordNotMatch", StringResourceType.UserProfilePage);
+                    return BadRequest(response);
+                }
+                else
+                {
+
+                    response.Message = Context.GetStringResource("UpdatePassSuccess", StringResourceType.UserProfilePage);
+                    return Ok(response);
+                }
+            }
+
+            response.Message = Context.GetStringResource("RequestFailed", StringResourceType.Error);
+            return BadRequest(response);
         }
 
         /// <summary>

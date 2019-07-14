@@ -34,6 +34,16 @@ namespace EzTask.Model
             return ModelRegister.Mapper.Map<AccountInfo>(model);
         }
 
+        public static RecoverSession ToEntity(this RecoverSessionModel model)
+        {
+            return ModelRegister.Mapper.Map<RecoverSession>(model);
+        }
+
+        public static RecoverSessionModel ToModel(this RecoverSession entity)
+        {
+            return ModelRegister.Mapper.Map<RecoverSessionModel>(entity);
+        }
+
         #endregion
 
         #region Project

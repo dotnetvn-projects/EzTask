@@ -1,9 +1,13 @@
-﻿using EzTask.Framework.ImageHandler;
+﻿using EzTask.Entity.Data;
+using EzTask.Framework.ImageHandler;
 using EzTask.Framework.Infrastructures;
 using EzTask.Framework.IO;
 using EzTask.Framework.Security;
+using EzTask.Interface;
 using EzTask.Model;
 using EzTask.Model.Enum;
+using EzTask.Model.Message;
+using EzTask.Plugin.MessageService.Data.Email;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -17,11 +21,15 @@ namespace EzTask.Business
     public class AccountBusiness : BusinessCore
     {
         private readonly ImageProcessor _imageProcessor;
+        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IMessageCenter _mesageCenter;
 
         public AccountBusiness(ImageProcessor imageProcessor,
-           UnitOfWork unitOfWork) : base(unitOfWork)
+           UnitOfWork unitOfWork, IMessageCenter mesageCenter, IWebHostEnvironment hostEnvironment) : base(unitOfWork)
         {
             _imageProcessor = imageProcessor;
+            _hostEnvironment = hostEnvironment;
+            _mesageCenter = mesageCenter;
         }
 
         /// <summary>
@@ -103,18 +111,23 @@ namespace EzTask.Business
                 Status = ActionStatus.NotFound
             };
 
-            var account = await UnitOfWork.AccountRepository.GetAsync(c => c.AccountName == accountName && c.Password == password);
+            var account = await UnitOfWork.AccountRepository.GetAsync(c => c.AccountName == accountName);
 
             if (account != null)
             {
-                account.Password = Encrypt.Do(newPassword, account.PasswordHash);
-                UnitOfWork.AccountRepository.Update(account);
+                var oldPassword = Encrypt.Do(password, account.PasswordHash);
 
-                int updateRecord = await UnitOfWork.CommitAsync();
-                if (updateRecord > 0)
+                if (oldPassword == account.Password)
                 {
-                    result.Status = ActionStatus.Ok;
-                    result.Data = account.ToModel();
+                    account.Password = Encrypt.Do(newPassword, account.PasswordHash);
+                    UnitOfWork.AccountRepository.Update(account);
+
+                    int updateRecord = await UnitOfWork.CommitAsync();
+                    if (updateRecord > 0)
+                    {
+                        result.Status = ActionStatus.Ok;
+                        result.Data = account.ToModel();
+                    }
                 }
             }
             return result;
@@ -182,6 +195,20 @@ namespace EzTask.Business
                 .Entity.Include(c => c.Account)
                 .FirstOrDefaultAsync(c => c.Account.AccountName == accountName
                              && c.Account.Password == password);
+
+            return accountInfo.ToModel();
+        }
+
+        /// <summary>
+        /// Get account by email
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public async Task<AccountInfoModel> GetAccountByEmail(string email)
+        {
+            var accountInfo = await UnitOfWork.AccountInfoRepository
+                .Entity.Include(c => c.Account)
+                .FirstOrDefaultAsync(c => c.Email == email);
 
             return accountInfo.ToModel();
         }
@@ -257,6 +284,65 @@ namespace EzTask.Business
                 .Take(pageSize)
                 .ToListAsync();
             return data.ToModels();
+        }
+
+        /// <summary>
+        /// Send recover password email
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <param name="title"></param>
+        /// <returns></returns>
+        public void SendRecoverLink(string email, string name, string title, string activeCode)
+        {
+            string emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
+                      + "/resources/templates/password_recover.html";
+
+
+            string emailContent = StreamIO.ReadFile(emailTemplateUrl);
+            emailContent = emailContent.Replace("{UserName}", name);
+            emailContent = emailContent.Replace("{Url}", "http://eztask.dotnetvn.com/auth/recover-password?code=" + activeCode);
+
+            _mesageCenter.Push(new EmailMessage
+            {
+                Content = emailContent,
+                Title = title,
+                To = email
+            });
+        }
+
+        /// <summary>
+        /// Create new recover account session
+        /// </summary>
+        /// <param name="email"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<RecoverSessionModel>> CreateRecoverSession(string email)
+        {
+            ResultModel<RecoverSessionModel> result = new ResultModel<RecoverSessionModel>();
+            var account = await GetAccountByEmail(email);
+            if(account == null)
+            {
+                result.Status = ActionStatus.NotFound;
+            }
+            else
+            {
+                var newCode = Guid.NewGuid();
+                var session = new RecoverSession
+                {
+                    AccountId = account.AccountId,
+                    ExpiredTime = DateTime.Now.AddMinutes(15),
+                    Id = newCode
+                };
+
+                UnitOfWork.RecoverSessionRepository.Add(session);
+
+                var iResult = await UnitOfWork.CommitAsync();
+                if(iResult > 0)
+                {
+                    result.Status = ActionStatus.Ok;
+                    result.Data = session.ToModel();
+                }
+            }
+            return result;
         }
     }
 }

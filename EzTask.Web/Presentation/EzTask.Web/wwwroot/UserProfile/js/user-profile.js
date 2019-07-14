@@ -31,7 +31,38 @@ $.fn.uploadAvatar = function () {
     });
 };
 
+$.fn.uploadPassword = function () {
+    $(this).click(function (e) {
+        e.preventDefault();
+        var form = $(".frm-update-pass");
+        if (form.valid()) {
+            $.ajax({
+                url: form.attr('action'),
+                type: form.attr('method'),
+                dataType: 'json',
+                data: $(form).serialize(),
+                success: function (xhr) {
+                    $.alertDialog({
+                        title: $('#success-title').val(),
+                        content: xhr.responseText
+                    });
+
+                    $(".frm-update-pass input").val('');
+                },
+                error: function (xhr, textStatus, errorThrown) {
+                    $.alertDialog({
+                        title: $('#error-title').val(),
+                        content: xhr.responseText
+                    });
+                }
+            });
+        }     
+    });
+};
+
+
 $(function () {
     $("#image-upload").change(readURL);
     $(".btn-upload-avatar").uploadAvatar();
+    $(".frm-update-pass button").uploadPassword();
 });
