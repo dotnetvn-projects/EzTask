@@ -181,8 +181,21 @@ namespace EzTask.Modules.Authentication.Controllers
 
         [Route("recover-password.html")]
         [HttpPost]
-        public IActionResult RecoverPassword(RecoverPasswordViewModel viewModel)
+        public async Task<IActionResult> RecoverPassword(RecoverPasswordViewModel viewModel)
         {
+            var result = await EzTask.Account.CreateRecoverSession(viewModel.Email);
+            if(result.Status == ActionStatus.Ok)
+            {
+                var emailTitle = Context.GetStringResource("RecoverTitleEmail", StringResourceType.AuthenticationPage);
+                EzTask.Account.SendRecoverLink(viewModel.Email, result.Data.Account.DisplayName, emailTitle, result.Data.Id.ToString());
+
+                SuccessMessage = string.Format(Context.GetStringResource("SendRecoverSuccess", StringResourceType.AuthenticationPage), viewModel.Email);
+            }
+            else
+            {
+                ErrorMessage = string.Format(Context.GetStringResource("SendRecoverFailed", StringResourceType.AuthenticationPage), viewModel.Email);
+            }
+
             return View(viewModel);
         }
 

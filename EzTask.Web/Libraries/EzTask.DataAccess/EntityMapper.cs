@@ -30,6 +30,7 @@ namespace EzTask.DataAccess
             _modelBuilder.Entity<TaskHistory>().ToTable(TableName.TaskHistory.ToString());
             _modelBuilder.Entity<Notification>().ToTable(TableName.Notification.ToString());
             _modelBuilder.Entity<ToDoItem>().ToTable(TableName.ToDoItem.ToString());
+            _modelBuilder.Entity<RecoverSession>().ToTable(TableName.RecoverSession.ToString());
         }
     }
 }

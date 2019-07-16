@@ -51,7 +51,7 @@ namespace EzTask.Plugin.MessageService.Service
                     IsBodyHtml = true,
                     Subject = subject,
                     Priority = MailPriority.High,
-                    BodyEncoding = System.Text.Encoding.UTF8,
+                    BodyEncoding = System.Text.Encoding.GetEncoding("utf-8"),
                     SubjectEncoding = System.Text.Encoding.Default,
                     Body = body,
                  })

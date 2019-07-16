@@ -14,6 +14,7 @@ namespace EzTask.DataAccess
         Attachment,
         TaskHistory,
         Notification,
-        ToDoItem
+        ToDoItem,
+        RecoverSession
     }
 }

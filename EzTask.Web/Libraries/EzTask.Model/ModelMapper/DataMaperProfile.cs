@@ -50,10 +50,14 @@ namespace EzTask.Model
                 .ForMember(c => c.Id, t => t.MapFrom(z => z.AccountInfoId));
 
             //Map RecoverSession Model to Entity
-            CreateMap<RecoverSessionModel, RecoverSession>();
+            CreateMap<RecoverSessionModel, RecoverSession>()
+                .ForMember(c=>c.AccountId , t => t.MapFrom(z=>z.Account.AccountId));
 
             //Map Entitu  to RecoverSession Model
-            CreateMap<RecoverSession, RecoverSessionModel>();
+            CreateMap<RecoverSession, RecoverSessionModel>()
+                .ForPath(c => c.Account.AccountId, t => t.MapFrom(z => z.Account.Id))
+                .ForPath(c => c.Account.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo.DisplayName))
+                .ForPath(c => c.Account.AccountName, t => t.MapFrom(z => z.Account.AccountName));
         }
 
         private void ProjectMapper()

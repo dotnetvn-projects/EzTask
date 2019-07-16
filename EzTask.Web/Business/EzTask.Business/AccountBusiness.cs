@@ -208,7 +208,13 @@ namespace EzTask.Business
         {
             var accountInfo = await UnitOfWork.AccountInfoRepository
                 .Entity.Include(c => c.Account)
-                .FirstOrDefaultAsync(c => c.Email == email);
+                .Where(c => c.Email == email)
+                .Select(x => new AccountInfo
+                {
+                    DisplayName = x.DisplayName,
+                    AccountId = x.AccountId,
+                    Account = new Account { AccountName = x.Account.AccountName }
+                }).FirstOrDefaultAsync();
 
             return accountInfo.ToModel();
         }
@@ -297,7 +303,6 @@ namespace EzTask.Business
             string emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
                       + "/resources/templates/password_recover.html";
 
-
             string emailContent = StreamIO.ReadFile(emailTemplateUrl);
             emailContent = emailContent.Replace("{UserName}", name);
             emailContent = emailContent.Replace("{Url}", "http://eztask.dotnetvn.com/auth/recover-password?code=" + activeCode);
@@ -319,7 +324,7 @@ namespace EzTask.Business
         {
             ResultModel<RecoverSessionModel> result = new ResultModel<RecoverSessionModel>();
             var account = await GetAccountByEmail(email);
-            if(account == null)
+            if (account == null)
             {
                 result.Status = ActionStatus.NotFound;
             }
@@ -333,11 +338,26 @@ namespace EzTask.Business
                     Id = newCode
                 };
 
+                var existItems = await UnitOfWork.RecoverSessionRepository
+                    .GetManyAsync(c => c.AccountId == account.AccountId);
+
+                if(existItems.Any())
+                {
+                    UnitOfWork.RecoverSessionRepository.DeleteRange(existItems);
+                }
+
                 UnitOfWork.RecoverSessionRepository.Add(session);
 
                 var iResult = await UnitOfWork.CommitAsync();
-                if(iResult > 0)
+                if (iResult > 0)
                 {
+                    session.Account = new Account
+                    {
+                        Id = account.AccountId,
+                        AccountName = account.AccountName,
+                        AccountInfo = new AccountInfo { DisplayName = account.DisplayName }
+                    };
+
                     result.Status = ActionStatus.Ok;
                     result.Data = session.ToModel();
                 }

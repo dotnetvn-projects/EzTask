@@ -8,6 +8,7 @@ namespace EzTask.Model
     {
         public Guid Id { get; set; }
         public DateTime ExpiredTime { get; set; }
-        public int AccountId { get; set; }
+
+        public AccountModel Account {get;set;}
     }
 }

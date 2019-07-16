@@ -554,6 +554,18 @@
       <Key>Submit</Key>
       <Content>Submit</Content>
     </Language>
+  <Language>
+      <Key>RecoverTitleEmail</Key>
+      <Content>EzTask - Recover password</Content>
+    </Language>
+    <Language>
+      <Key>SendRecoverSuccess</Key>
+      <Content>We have emailed the link to recover password to {0}. Check spam box too if you can't find the email in your inbox.</Content>
+    </Language>
+    <Language>
+      <Key>SendRecoverFailed</Key>
+      <Content>Error, the email {0} does not exist in our system. Please make sure that you input a valid email.</Content>
+    </Language>
   </AuthenticationPage>
 
   <ProjectPage>
