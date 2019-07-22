@@ -42,8 +42,7 @@ namespace EzTask.Model
                 .ForMember(c => c.CreatedDate, t => t.MapFrom(z => z.Account.CreatedDate))
                 .ForMember(c => c.AccountName, t => t.MapFrom(z => z.Account.AccountName))
                 .ForMember(c => c.Password, t => t.MapFrom(z => z.Account.Password))
-                .ForMember(c => c.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo != null?
-                                                                z.Account.AccountInfo.DisplayName : string.Empty));
+                .ForMember(c => c.DisplayName, t => t.MapFrom(z => z.DisplayName));
 
             //Map AccountInfoModel to AccountInfo entity
             CreateMap<AccountInfoModel, AccountInfo>()

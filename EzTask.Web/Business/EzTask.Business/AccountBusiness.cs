@@ -330,6 +330,7 @@ namespace EzTask.Business
             }
             else
             {
+
                 var newCode = Guid.NewGuid();
                 var session = new RecoverSession
                 {
@@ -361,6 +362,28 @@ namespace EzTask.Business
                     result.Status = ActionStatus.Ok;
                     result.Data = session.ToModel();
                 }
+            }
+            return result;
+        }
+
+        /// <summary>
+        /// get recover session by code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<RecoverSessionModel>> GetRecoverSession(string code)
+        {
+            ResultModel<RecoverSessionModel> result = new ResultModel<RecoverSessionModel>();
+
+            var data = await UnitOfWork.RecoverSessionRepository.GetAsync(c => c.Id == new Guid(code));
+            if(data == null)
+            {
+                result.Status = ActionStatus.NotFound;
+            }
+            else
+            {
+                result.Status = ActionStatus.Ok;
+                result.Data = data.ToModel();
             }
             return result;
         }
