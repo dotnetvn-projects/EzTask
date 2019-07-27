@@ -551,10 +551,38 @@
       <Content>Enter you email to recover password</Content>
     </Language>
     <Language>
+      <Key>RenewPasswordTitle</Key>
+      <Content>Create new password</Content>
+    </Language>
+    <Language>
+      <Key>NewPassword</Key>
+      <Content>Enter your new password</Content>
+    </Language>
+    <Language>
+      <Key>ConfirmNewPassword</Key>
+      <Content>Retype your new password</Content>
+    </Language>
+    <Language>
+      <Key>RecoverPasswordFailed</Key>
+      <Content>Error, cannot recover your password. Try again please!</Content>
+    </Language>
+    <Language>
+      <Key>RecoverSessionExpired</Key>
+      <Content>Your recovery link is expired now, please click on the below link to make a new session!</Content>
+    </Language>
+    <Language>
+      <Key>RecoverSuccess</Key>
+      <Content>Your passowrd has been changed sucessfully, please click the below link to login!</Content>
+    </Language>
+    <Language>
+      <Key>GoToLogin</Key>
+      <Content>Back To Login</Content>
+    </Language>
+    <Language>
       <Key>Submit</Key>
       <Content>Submit</Content>
     </Language>
-  <Language>
+    <Language>
       <Key>RecoverTitleEmail</Key>
       <Content>EzTask - Recover password</Content>
     </Language>
@@ -566,6 +594,7 @@
       <Key>SendRecoverFailed</Key>
       <Content>Error, the email {0} does not exist in our system. Please make sure that you input a valid email.</Content>
     </Language>
+
   </AuthenticationPage>
 
   <ProjectPage>
