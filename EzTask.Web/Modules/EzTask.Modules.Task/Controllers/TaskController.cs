@@ -14,7 +14,8 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Task.Controllers
 {
-    [TypeFilter(typeof(AuthenAttribute))]
+    [TypeFilter(typeof(ApplyLanguageAttribute))]
+    [TypeFilter(typeof(AuthenticationAttribute))]
     public class TaskController : BaseController
     {
         public TaskController(IServiceProvider serviceProvider) :

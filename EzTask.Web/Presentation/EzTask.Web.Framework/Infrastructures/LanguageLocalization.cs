@@ -10,6 +10,8 @@ namespace EzTask.Web.Framework.Infrastructures
     {
         private static IWebHostEnvironment _webHostEnvironment;
         private static SessionManager _sessionManager;
+
+
         public LanguageLocalization(IWebHostEnvironment webHostEnvironment, SessionManager sessionManager)
         {
             _webHostEnvironment = webHostEnvironment;
@@ -123,6 +125,17 @@ namespace EzTask.Web.Framework.Infrastructures
         {
             var setting = _sessionManager.GetObject<LocalizationMapper>(SessionKey.LanguageSetting);
             return setting;
+        }
+
+        /// <summary>
+        /// Language setting is available or not
+        /// </summary>
+        public bool IsAvailable
+        {
+            get
+            {
+                return GetLanguageLocalization() != null;
+            }
         }
     }
 }

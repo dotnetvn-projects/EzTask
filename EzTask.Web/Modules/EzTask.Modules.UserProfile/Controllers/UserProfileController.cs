@@ -14,7 +14,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.UserProfile.Controllers
 {
-    [TypeFilter(typeof(AuthenAttribute))]
+    [TypeFilter(typeof(ApplyLanguageAttribute))]
+    [TypeFilter(typeof(AuthenticationAttribute))]
     public class UserProfileController : BaseController
     {
         public UserProfileController(IServiceProvider serviceProvider) :

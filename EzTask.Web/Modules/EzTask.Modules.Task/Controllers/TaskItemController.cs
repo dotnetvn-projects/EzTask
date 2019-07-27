@@ -17,7 +17,8 @@ using EzTask.Web.Framework.WebContext;
 
 namespace EzTask.Modules.Task.Controllers
 {
-    [TypeFilter(typeof(AuthenAttribute))]
+    [TypeFilter(typeof(ApplyLanguageAttribute))]
+    [TypeFilter(typeof(AuthenticationAttribute))]
     public class TaskItemController : BaseController
     {
         public TaskItemController(IServiceProvider serviceProvider) :

@@ -9,14 +9,12 @@ using EzTask.Web.Framework.WebContext;
 namespace EzTask.Web.Framework.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class AuthenAttribute :  Attribute, IAsyncAuthorizationFilter
+    public class AuthenticationAttribute :  Attribute, IAsyncAuthorizationFilter
     {
         CookiesManager _cookiesManager;
-        public string ControllerName { get; set; }
 
-        public AuthenAttribute(CookiesManager cookies)
+        public AuthenticationAttribute(CookiesManager cookies)
         {
-            ControllerName = string.Empty;
             _cookiesManager = cookies;
         }
 
@@ -30,13 +28,11 @@ namespace EzTask.Web.Framework.Attributes
                     if (cookieUser != null)
                     {
                         Context.CurrentAccount.Set(cookieUser);
-                        Context.SetLanguageLocalization(cookieUser.Language);
                     }
                 }
                 
                 if (Context.CurrentAccount.AccountId <= 0)
                 {
-                    Context.SetLanguageLocalization("");
                     var returnUrl = context.HttpContext.Request.GetEncodedUrl();
                     context.Result = new RedirectToActionResult("Login", "Account", new { redirect = returnUrl });
                 }

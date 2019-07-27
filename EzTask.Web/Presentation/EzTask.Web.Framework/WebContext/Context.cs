@@ -56,6 +56,14 @@ namespace EzTask.Web.Framework.WebContext
 
         public static AccountContext CurrentAccount { get; private set; }
 
+        public static bool IsLanguageAvailable
+        {
+            get
+            {
+               return _languageLocalization.IsAvailable;
+            }
+        }
+
         /// <summary>
         /// Set language
         /// </summary>

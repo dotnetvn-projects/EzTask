@@ -6,7 +6,7 @@ namespace EzTask.Entity.Data
 {
     public class RecoverSession : Entity<RecoverSession>
     {
-        public Guid Id { get; set; }
+        public Guid Code { get; set; }
         public DateTime ExpiredTime { get; set; }
         public int AccountId { get; set; }
         public bool IsUsed { get; set; }

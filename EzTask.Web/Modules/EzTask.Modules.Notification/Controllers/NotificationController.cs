@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Notification.Controllers
 {
-    [TypeFilter(typeof(AuthenAttribute))]
+    [TypeFilter(typeof(ApplyLanguageAttribute))]
+    [TypeFilter(typeof(AuthenticationAttribute))]
     public class NotificationController : BaseController
     {
         public NotificationController(IServiceProvider serviceProvider)

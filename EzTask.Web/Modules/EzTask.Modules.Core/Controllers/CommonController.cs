@@ -12,7 +12,8 @@ using IO = EzTask.Framework.IO.FileIO;
 
 namespace EzTask.Modules.Core.Controllers
 {
-    [TypeFilter(typeof(AuthenAttribute))]
+    [TypeFilter(typeof(ApplyLanguageAttribute))]
+    [TypeFilter(typeof(AuthenticationAttribute))]
     public class CommonController : BaseController
     {
         private readonly IHostingEnvironment hostingEnvironment;

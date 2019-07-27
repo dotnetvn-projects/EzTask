@@ -104,7 +104,7 @@ namespace EzTask.Business
         /// Update password
         /// </summary>
         /// <returns></returns>
-        public async Task<ResultModel<AccountModel>> UpdatePassword(string accountName, string password, string newPassword)
+        public async Task<ResultModel<AccountModel>> UpdatePassword(string accountName, string password, string newPassword, bool isRecoverMode = false)
         {
             ResultModel<AccountModel> result = new ResultModel<AccountModel>
             {
@@ -116,6 +116,11 @@ namespace EzTask.Business
             if (account != null)
             {
                 var oldPassword = Encrypt.Do(password, account.PasswordHash);
+
+                if(isRecoverMode)
+                {
+                    oldPassword = account.Password;
+                }
 
                 if (oldPassword == account.Password)
                 {
@@ -298,14 +303,14 @@ namespace EzTask.Business
         /// <param name="accountId"></param>
         /// <param name="title"></param>
         /// <returns></returns>
-        public void SendRecoverLink(string email, string name, string title, string activeCode)
+        public void SendRecoverLink(string email, string name, string title, Guid activeCode)
         {
             string emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
                       + "/resources/templates/password_recover.html";
 
             string emailContent = StreamIO.ReadFile(emailTemplateUrl);
             emailContent = emailContent.Replace("{UserName}", name);
-            emailContent = emailContent.Replace("{Url}", "http://eztask.dotnetvn.com/auth/recover-password?code=" + activeCode);
+            emailContent = emailContent.Replace("{Url}", "http://localhost:52767/change-password.html?code=" + activeCode).ToString();
 
             _mesageCenter.Push(new EmailMessage
             {
@@ -336,7 +341,7 @@ namespace EzTask.Business
                 {
                     AccountId = account.AccountId,
                     ExpiredTime = DateTime.Now.AddMinutes(15),
-                    Id = newCode
+                    Code = newCode
                 };
 
                 var existItems = await UnitOfWork.RecoverSessionRepository
@@ -375,7 +380,14 @@ namespace EzTask.Business
         {
             ResultModel<RecoverSessionModel> result = new ResultModel<RecoverSessionModel>();
 
-            var data = await UnitOfWork.RecoverSessionRepository.GetAsync(c => c.Id == new Guid(code));
+            if (string.IsNullOrEmpty(code))
+                return result;
+
+            var data = await UnitOfWork.RecoverSessionRepository
+                .Entity.Include(c => c.Account)
+                .Where(c => c.Code == new Guid(code))
+                .FirstOrDefaultAsync();
+
             if(data == null)
             {
                 result.Status = ActionStatus.NotFound;
@@ -385,6 +397,35 @@ namespace EzTask.Business
                 result.Status = ActionStatus.Ok;
                 result.Data = data.ToModel();
             }
+
+            return result;
+        }
+
+        /// <summary>
+        /// delete recover session by code
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public async Task<ResultModel<bool>> DeleteRecoverSession(string code)
+        {
+            ResultModel<bool> result = new ResultModel<bool>();
+
+            if (string.IsNullOrEmpty(code))
+                return result;
+
+            var data = await UnitOfWork.RecoverSessionRepository.GetAsync(c => c.Code == new Guid(code));
+
+            if (data == null)
+            {
+                result.Status = ActionStatus.NotFound;
+            }
+            else
+            {
+                result.Status = ActionStatus.Ok;
+                UnitOfWork.RecoverSessionRepository.Delete(data);
+                await UnitOfWork.CommitAsync();
+            }
+
             return result;
         }
     }

@@ -9,5 +9,6 @@ namespace EzTask.Interface
         void SetLocalization(string languageSetting);
         string GetLocalization(string key, object resourceType);
         string GetLocalization(string key, string resourceType);
+        bool IsAvailable { get; }
     }
 }

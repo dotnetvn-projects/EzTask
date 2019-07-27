@@ -13,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Dashboard.Controllers
 {
-    [TypeFilter(typeof(AuthenAttribute))]
+    [TypeFilter(typeof(ApplyLanguageAttribute))]
+    [TypeFilter(typeof(AuthenticationAttribute))]
     public class HomeController : BaseController
     {
         public HomeController(IServiceProvider serviceProvider) : 

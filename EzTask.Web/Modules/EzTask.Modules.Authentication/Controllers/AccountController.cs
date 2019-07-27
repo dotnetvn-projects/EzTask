@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using EzTask.Model.Enum;
 using EzTask.Web.Framework.WebContext;
 using EzTask.Modules.Authentication.ViewModels;
+using EzTask.Web.Framework.Attributes;
 
 namespace EzTask.Modules.Authentication.Controllers
 {
+    [TypeFilter(typeof(ApplyLanguageAttribute))]
     public class AccountController : BaseController
     {
         public AccountController(IServiceProvider serviceProvider) :
@@ -36,60 +38,52 @@ namespace EzTask.Modules.Authentication.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("login.html")]
-        public async Task<IActionResult> Login(LoginViewModel model)
+        public async Task<IActionResult> Login(LoginViewModel viewModel)
         {
-            try
+            if (!ModelState.IsValid)
+                return View();
+
+            var account = await EzTask.Account.Login(new AccountModel
             {
-                if (!ModelState.IsValid)
-                    return View();
+                AccountName = viewModel.AccountName,
+                Password = viewModel.Password
+            });
 
-                var account = await EzTask.Account.Login(new AccountModel {
-                    AccountName = model.AccountName,
-                    Password = model.Password
-                });
+            ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.AuthenticationPage);
 
-                if (account != null)
+            if (account != null)
+            {
+                if (account.AccountStatus != AccountStatus.Block)
                 {
-                    if (account.AccountStatus != AccountStatus.Block)
+                    var currentAccount = CurrentAccount.Create(account.AccountId,
+                        account.AccountName, account.DisplayName,
+                        account.JobTitle, account.LangDisplay, account.CreatedDate);
+
+                    Context.CurrentAccount.Set(currentAccount);
+
+                    if (viewModel.RememberMe)
                     {
-                        var currentAccount = CurrentAccount.Create(account.AccountId,
-                            account.AccountName, account.DisplayName,
-                            account.JobTitle, account.LangDisplay, account.CreatedDate);
+                        Context.RememberLogin(currentAccount);
+                    }
 
-                        Context.CurrentAccount.Set(currentAccount);
+                    Context.SetLanguageLocalization(account.LangDisplay);
 
-                        if (model.RememberMe)
-                        {
-                            Context.RememberLogin(currentAccount);
-                        }
-
-                        Context.SetLanguageLocalization(account.LangDisplay);
-
-                        if (string.IsNullOrEmpty(model.RedirectUrl))
-                        {
-                            return RedirectToAction("Index", "Home");
-                        }
-                        else
-                        {
-                            return Redirect(model.RedirectUrl);
-                        }
+                    if (string.IsNullOrEmpty(viewModel.RedirectUrl))
+                    {
+                        return RedirectToAction("Index", "Home");
                     }
                     else
                     {
-                        ErrorMessage = Context.GetStringResource("AccountBlocked", StringResourceType.AuthenticationPage);
+                        return Redirect(viewModel.RedirectUrl);
                     }
                 }
                 else
                 {
-                    ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.AuthenticationPage);
+                    ErrorMessage = Context.GetStringResource("AccountBlocked", StringResourceType.AuthenticationPage);
                 }
             }
-            catch
-            {
-                ErrorMessage = Context.GetStringResource("LoginFailed", StringResourceType.AuthenticationPage);
-            }
 
-            return View();
+            return View(viewModel);
         }
 
         #endregion
@@ -113,49 +107,43 @@ namespace EzTask.Modules.Authentication.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("register.html")]
-        public async Task<IActionResult> Register(RegisterViewModel model)
+        public async Task<IActionResult> Register(RegisterViewModel viewModel)
         {
-            try
+            ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.AuthenticationPage);
+
+            if (viewModel.Password != viewModel.PasswordTemp)
             {
-                if (model.Password != model.PasswordTemp)
+                ErrorMessage = Context.GetStringResource("ConfirmPasswordNotMatch", StringResourceType.AuthenticationPage);
+            }
+            else
+            {
+                if (ModelState.IsValid)
                 {
-                    ErrorMessage = Context.GetStringResource("ConfirmPasswordNotMatch", StringResourceType.AuthenticationPage);
-                }
-                else
-                {
-                    if (ModelState.IsValid)
+                    var existAccount = await EzTask.Account.GetAccount(viewModel.AccountName);
+                    if (existAccount == null)
                     {
-                        var existAccount = await EzTask.Account.GetAccount(model.AccountName);
-                        if (existAccount == null)
+                        viewModel.DisplayName = viewModel.FullName;
+                        var account = await EzTask.Account.RegisterNew(new AccountModel
                         {
-                            model.DisplayName = model.FullName;
-                            var account = await EzTask.Account.RegisterNew(new AccountModel {
-                                AccountName = model.AccountName,
-                                Password = model.Password,
-                                FullName = model.FullName,
-                                DisplayName = model.DisplayName
-                            });
+                            AccountName = viewModel.AccountName,
+                            Password = viewModel.Password,
+                            FullName = viewModel.FullName,
+                            DisplayName = viewModel.DisplayName
+                        });
 
-                            if (account != null)
-                            {
-                                return RedirectToAction("Login", "Account");
-                            }
-
-                            ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.AuthenticationPage);
-                        }
-                        else
+                        if (account != null)
                         {
-                            ErrorMessage = Context.GetStringResource("AccountExisted", StringResourceType.AuthenticationPage);;
+                            return RedirectToAction("Login", "Account");
                         }
+                    }
+                    else
+                    {
+                        ErrorMessage = Context.GetStringResource("AccountExisted", StringResourceType.AuthenticationPage); ;
                     }
                 }
             }
-            catch (Exception ex)
-            {
-                ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.AuthenticationPage);
-            }
 
-            return View();
+            return View(viewModel);
         }
 
         #endregion

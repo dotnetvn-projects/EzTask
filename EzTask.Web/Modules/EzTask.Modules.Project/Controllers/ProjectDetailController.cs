@@ -9,7 +9,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace EzTask.Modules.Project.Controllers
 {
-    [TypeFilter(typeof(AuthenAttribute))]
+    [TypeFilter(typeof(ApplyLanguageAttribute))]
+    [TypeFilter(typeof(AuthenticationAttribute))]
     public class ProjectDetailController : BaseController
     {
         public ProjectDetailController(IServiceProvider serviceProvider) :

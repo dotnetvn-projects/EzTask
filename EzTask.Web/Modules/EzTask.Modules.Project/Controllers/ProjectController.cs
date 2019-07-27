@@ -13,7 +13,8 @@ using System.Threading.Tasks;
 
 namespace EzTask.Modules.Project.Controllers
 {
-    [TypeFilter(typeof(AuthenAttribute))]
+    [TypeFilter(typeof(ApplyLanguageAttribute))]
+    [TypeFilter(typeof(AuthenticationAttribute))]
     public class ProjectController : BaseController
     {
         public ProjectController(IServiceProvider serviceProvider) :
@@ -227,7 +228,6 @@ namespace EzTask.Modules.Project.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("project/remove.html")]
-        [TokenAttribute]
         public async Task<IActionResult> RemoveProject(string code)
         {
             ResultModel<bool> iResult = await EzTask.Project.Delete(code);
