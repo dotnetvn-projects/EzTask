@@ -11,7 +11,7 @@ namespace EzTask.Web.Framework.Filters
 
         public Task OnExceptionAsync(ExceptionContext context)
         {
-            throw new NotImplementedException();
+             throw new NotImplementedException();
         }
     }
 }

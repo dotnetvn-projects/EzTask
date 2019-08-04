@@ -36,18 +36,17 @@ namespace EzTask.Web
             if (env.IsDevelopment())
             {
                 app.UseBrowserLink();
-                app.UseDeveloperExceptionPage();
-                //app.UseExceptionMiddleware();
+                app.UseDeveloperExceptionPage();        
             }
             else
             {
-                //app.UseExceptionMiddleware();
                 app.UseExceptionHandler("/Home/Error");
             }
 
             app.UseSession();
             app.UseStaticFiles();
             app.ConfigureFramework();
+            app.UseExceptionMiddleware();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

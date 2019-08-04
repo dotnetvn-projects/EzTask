@@ -197,7 +197,7 @@ namespace EzTask.Business
         public async Task<AccountInfoModel> GetAccount(string accountName, string password)
         {
             var accountInfo = await UnitOfWork.AccountInfoRepository
-                .Entity.Include(c => c.Account)
+                .Entity.Include(c => c.Account).AsNoTracking()
                 .FirstOrDefaultAsync(c => c.Account.AccountName == accountName
                              && c.Account.Password == password);
 

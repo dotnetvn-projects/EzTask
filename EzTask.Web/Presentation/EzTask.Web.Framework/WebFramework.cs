@@ -51,7 +51,7 @@ namespace EzTask.Web.Framework
             var mvcBuilder = services.AddMvc(options =>
             {
                 options.Filters.Add(typeof(GlobalFilter));
-                options.Filters.Add(typeof(ExceptionFilter));
+              //  options.Filters.Add(typeof(ExceptionFilter));
             }).SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
 
             mvcBuilder.AddSessionStateTempDataProvider();

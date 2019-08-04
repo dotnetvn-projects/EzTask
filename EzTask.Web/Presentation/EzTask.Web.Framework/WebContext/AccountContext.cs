@@ -30,6 +30,14 @@ namespace EzTask.Web.Framework.WebContext
             }
         }
 
+        public bool IsLogined
+        {
+            get
+            {
+                return AccountId != 0;
+            }
+        }
+
         /// <summary>
         /// Account Id
         /// </summary>

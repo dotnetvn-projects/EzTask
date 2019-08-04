@@ -28,6 +28,10 @@ namespace EzTask.Modules.Authentication.Controllers
         [Route("login.html")]
         public IActionResult Login(string redirect)
         {
+            if(Context.CurrentAccount.IsLogined)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             return View(new LoginViewModel { RedirectUrl = redirect });
         }
 

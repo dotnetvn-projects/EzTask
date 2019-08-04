@@ -5,6 +5,9 @@ using Microsoft.AspNetCore.Http.Extensions;
 using System;
 using System.Threading.Tasks;
 using EzTask.Web.Framework.WebContext;
+using Microsoft.AspNetCore.Authorization;
+using System.Diagnostics.Contracts;
+using Microsoft.AspNetCore.Mvc.Controllers;
 
 namespace EzTask.Web.Framework.Attributes
 {
@@ -20,6 +23,9 @@ namespace EzTask.Web.Framework.Attributes
 
         public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
         {
+
+            if (SkipAuthorization(context)) return;
+
             await Task.Factory.StartNew(() =>
             {
                 if (Context.CurrentAccount.AccountId <= 0)
@@ -28,6 +34,7 @@ namespace EzTask.Web.Framework.Attributes
                     if (cookieUser != null)
                     {
                         Context.CurrentAccount.Set(cookieUser);
+                        Context.SetLanguageLocalization(cookieUser.Language);
                     }
                 }
                 
@@ -37,6 +44,17 @@ namespace EzTask.Web.Framework.Attributes
                     context.Result = new RedirectToActionResult("Login", "Account", new { redirect = returnUrl });
                 }
             });
+        }
+
+        private static bool SkipAuthorization(AuthorizationFilterContext context)
+        {
+            var controllerActionDescriptor = context.ActionDescriptor as ControllerActionDescriptor;
+
+            if (controllerActionDescriptor != null)
+            {
+                return controllerActionDescriptor.MethodInfo.IsDefined(typeof(AllowAnonymousAttribute), true);
+            }
+            return false;
         }
     }
 }
