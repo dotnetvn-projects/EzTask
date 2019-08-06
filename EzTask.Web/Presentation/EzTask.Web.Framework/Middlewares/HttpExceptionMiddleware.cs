@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace EzTask.Web.Framework.Middlewares
 {
-    public class ExceptionMiddleware
+    public class HttpExceptionMiddleware
     {
         private readonly RequestDelegate next;
 
-        public ExceptionMiddleware(RequestDelegate next)
+        public HttpExceptionMiddleware(RequestDelegate next)
         {
             this.next = next;
         }
@@ -47,7 +47,6 @@ namespace EzTask.Web.Framework.Middlewares
 
         private async Task HandleHttpRequestAsync(HttpContext context)
         {
-            //TODO add log
             string originalPath = context.Request.Path.Value;
 
             if (context.Response.StatusCode == 404)

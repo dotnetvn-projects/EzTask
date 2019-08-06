@@ -4,8 +4,10 @@ using System.Text;
 
 namespace EzTask.Interface
 {
-    public interface ILogger
+    public interface ILogger<T>
     {
-        void Write(object logData);
+        void WriteInfo(T logData);
+        void WriteDebug(T logData);
+        void WriteError(T logData);
     }
 }
