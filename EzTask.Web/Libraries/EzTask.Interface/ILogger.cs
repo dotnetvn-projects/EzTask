@@ -1,13 +1,14 @@
-﻿using System;
+﻿using EzTask.Interface.SharedData;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EzTask.Interface
 {
-    public interface ILogger<T>
+    public interface ILogger
     {
-        void WriteInfo(T logData);
-        void WriteDebug(T logData);
-        void WriteError(T logData);
+        void WriteInfo(ILogEntity logData);
+        void WriteDebug(ILogEntity logData);
+        void WriteError(ILogEntity logData);
     }
 }

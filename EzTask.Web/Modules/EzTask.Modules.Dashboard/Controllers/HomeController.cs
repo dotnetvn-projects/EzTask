@@ -1,5 +1,7 @@
 ﻿using EzTask.Framework.Common;
 using EzTask.Framework.Data;
+using EzTask.Interface;
+using EzTask.Log;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
@@ -17,13 +19,16 @@ namespace EzTask.Modules.Dashboard.Controllers
     [TypeFilter(typeof(AuthenticationAttribute))]
     public class HomeController : BaseController
     {
-        public HomeController(IServiceProvider serviceProvider) : 
+        ILogger _logger;
+        public HomeController(IServiceProvider serviceProvider, ILogger logger) : 
             base(serviceProvider)
         {
+            _logger = logger;
         }
     
         public IActionResult Index()
         {
+            _logger.WriteInfo(new LogEntity { Message = "ewfrwefrwefew" });
             return View();
         }
 

@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.2</TargetFramework>
@@ -11,6 +11,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Business\EzTask.Business\EzTask.Business.csproj" />
     <ProjectReference Include="..\..\Libraries\EzTask.Framework\EzTask.Framework.csproj" />
+    <ProjectReference Include="..\..\Libraries\EzTask.Log\EzTask.Log.csproj" />
     <ProjectReference Include="..\..\Plugins\EzTask.Plugin.MessageService\EzTask.Plugin.MessageService.csproj" />
   </ItemGroup>
 

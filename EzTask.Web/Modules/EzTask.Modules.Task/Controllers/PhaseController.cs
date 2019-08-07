@@ -135,6 +135,7 @@ namespace EzTask.Modules.Task.Controllers
                 {
                     return BadRequest(Context.GetStringResource("DeleteOpenFeatureWarning", StringResourceType.TaskPage));
                 }
+
                 ResultModel<bool> deleteTaskResult = await EzTask.Task.DeleteTask(phase.ProjectId, phaseId);
 
                 if (deleteTaskResult.Data)

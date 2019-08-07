@@ -9,6 +9,7 @@ using System.Diagnostics;
 using System.IO;
 using EzTask.Web.Framework;
 using EzTask.Web.Framework.Middlewares;
+using Microsoft.Extensions.Logging;
 
 namespace EzTask.Web
 {

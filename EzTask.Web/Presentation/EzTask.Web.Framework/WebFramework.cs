@@ -15,6 +15,7 @@ using EzTask.Web.Framework.Filters;
 using EzTask.Interface;
 using EzTask.Plugin.MessageService;
 using EzTask.Model;
+using EzTask.Log;
 
 namespace EzTask.Web.Framework
 {
@@ -27,6 +28,7 @@ namespace EzTask.Web.Framework
             ModelRegister.Register(services);
             BusinessRegister.Register(services);
             MessageServiceRegister.Register(services, configuration);
+            LoggerRegister.Register(services);
 
             env.RunWebBuilder();
            
