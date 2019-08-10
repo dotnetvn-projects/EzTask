@@ -19,16 +19,13 @@ namespace EzTask.Modules.Dashboard.Controllers
     [TypeFilter(typeof(AuthenticationAttribute))]
     public class HomeController : BaseController
     {
-        ILogger _logger;
-        public HomeController(IServiceProvider serviceProvider, ILogger logger) : 
+        public HomeController(IServiceProvider serviceProvider) : 
             base(serviceProvider)
         {
-            _logger = logger;
         }
     
         public IActionResult Index()
         {
-            _logger.WriteInfo(new LogEntity { Message = "ewfrwefrwefew" });
             return View();
         }
 

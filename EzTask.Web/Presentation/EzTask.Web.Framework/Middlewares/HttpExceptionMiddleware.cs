@@ -1,4 +1,6 @@
 ﻿using EzTask.Framework.Data;
+using EzTask.Interface;
+using EzTask.Log;
 using EzTask.Web.Framework.Infrastructures;
 using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Http;
@@ -9,18 +11,22 @@ namespace EzTask.Web.Framework.Middlewares
 {
     public class HttpExceptionMiddleware
     {
-        private readonly RequestDelegate next;
+        private readonly RequestDelegate _next;
+        private readonly ILogger _logger;
 
-        public HttpExceptionMiddleware(RequestDelegate next)
+        public HttpExceptionMiddleware(RequestDelegate next, ILogger logger)
         {
-            this.next = next;
+            _next = next;
+            _logger = logger;
         }
 
         public async Task Invoke(HttpContext context)
         {
             try
             {
-                await next(context);
+                LogRequest(context);
+
+                await _next(context);
 
                 if (context.Response.StatusCode == StatusCodes.Status404NotFound)
                 {
@@ -39,15 +45,18 @@ namespace EzTask.Web.Framework.Middlewares
 
         private async Task HandleExceptionAsync(HttpContext context, Exception ex)
         {
-            //TODO add log
+            LogError(ex);
+
             context.Items["originalPath"] = context.Request.Path.Value;
             context.Request.Path = "/error.html";
-            await next(context);
+            await _next(context);
         }
 
         private async Task HandleHttpRequestAsync(HttpContext context)
         {
             string originalPath = context.Request.Path.Value;
+
+            LogPageNotFound(context);
 
             if (context.Response.StatusCode == 404)
             {
@@ -62,7 +71,31 @@ namespace EzTask.Web.Framework.Middlewares
                 }
             }       
 
-            await next(context);
+            await _next(context);
+        }
+
+        private void LogRequest(HttpContext context)
+        {
+            _logger.LogEntity = LogEntity.Create(Context.CurrentAccount.AccountName,
+                      "Open Url: " + context.Request.Path.Value, "App");
+
+            _logger.WriteInfo();
+        }
+
+        private void LogError(Exception ex)
+        {
+            _logger.LogEntity = LogEntity.Create(Context.CurrentAccount.AccountName,
+                    ex.Message, ex.TargetSite.Name, ex);
+
+            _logger.WriteError();
+        }
+
+        private void LogPageNotFound(HttpContext context)
+        {
+            _logger.LogEntity = LogEntity.Create(Context.CurrentAccount.AccountName,
+                    "Page not found: " + context.Request.Path.Value, "App");
+
+            _logger.WriteError();
         }
     }
 }

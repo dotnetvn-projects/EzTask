@@ -7,8 +7,9 @@ namespace EzTask.Interface
 {
     public interface ILogger
     {
-        void WriteInfo(ILogEntity logData);
-        void WriteDebug(ILogEntity logData);
-        void WriteError(ILogEntity logData);
+        ILogEntity LogEntity { get; set; }
+        void WriteInfo();
+        void WriteDebug();
+        void WriteError();
     }
 }
