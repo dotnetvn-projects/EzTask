@@ -9,7 +9,7 @@ namespace EzTask.Web.Framework.Middlewares
     {
         public static void UseExceptionMiddleware(this IApplicationBuilder applicationBuilder)
         {
-            applicationBuilder.UseMiddleware<HttpExceptionMiddleware>();
+            applicationBuilder.UseMiddleware<HttpRequestMiddleware>();
         }
     }
 }

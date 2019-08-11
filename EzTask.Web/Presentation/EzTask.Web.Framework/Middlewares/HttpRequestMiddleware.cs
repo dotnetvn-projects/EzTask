@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace EzTask.Web.Framework.Middlewares
 {
-    public class HttpExceptionMiddleware
+    public class HttpRequestMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger _logger;
 
-        public HttpExceptionMiddleware(RequestDelegate next, ILogger logger)
+        public HttpRequestMiddleware(RequestDelegate next, ILogger logger)
         {
             _next = next;
             _logger = logger;
@@ -76,8 +76,17 @@ namespace EzTask.Web.Framework.Middlewares
 
         private void LogRequest(HttpContext context)
         {
-            _logger.LogEntity = LogEntity.Create(Context.CurrentAccount.AccountName,
-                      "Open Url: " + context.Request.Path.Value, "App");
+            if(context.Request.IsAjaxRequest())
+            {
+                _logger.LogEntity = LogEntity.Create(Context.CurrentAccount.AccountName,
+                     "Request Ajax Url: " + context.Request.Path.Value, "App");
+            }
+            else
+            {
+                _logger.LogEntity = LogEntity.Create(Context.CurrentAccount.AccountName,
+                     "Request Url: " + context.Request.Path.Value, "App");
+            }
+           
 
             _logger.WriteInfo();
         }
