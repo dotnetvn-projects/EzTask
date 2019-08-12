@@ -1,5 +1,6 @@
 ﻿using EzTask.Entity.Data;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
 namespace EzTask.DataAccess
 {
@@ -31,6 +32,11 @@ namespace EzTask.DataAccess
             _modelBuilder.Entity<Notification>().ToTable(TableName.Notification.ToString());
             _modelBuilder.Entity<ToDoItem>().ToTable(TableName.ToDoItem.ToString());
             _modelBuilder.Entity<RecoverSession>().ToTable(TableName.RecoverSession.ToString());
+
+            foreach (var relationship in _modelBuilder.Model.GetEntityTypes().SelectMany(e => e.GetForeignKeys()))
+            {
+                relationship.DeleteBehavior = DeleteBehavior.Restrict;
+            }
         }
     }
 }
