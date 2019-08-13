@@ -22,15 +22,18 @@ namespace EzTask.Business
         private readonly AccountBusiness _accountBusiness;
         private readonly IWebHostEnvironment _hostEnvironment;
         private readonly IMessageCenter _mesageCenter;
+        private readonly IAccountContext _accountContext;
 
         public ProjectBusiness(UnitOfWork unitOfWork,
             TaskBusiness task, IWebHostEnvironment hostEnvironment,
-            IMessageCenter mesageCenter, AccountBusiness accountBusiness) : base(unitOfWork)
+            IMessageCenter mesageCenter, AccountBusiness accountBusiness,
+            IAccountContext accountContext) : base(unitOfWork)
         {
             _task = task;
             _hostEnvironment = hostEnvironment;
             _mesageCenter = mesageCenter;
             _accountBusiness = accountBusiness;
+            _accountContext = accountContext;
         }
 
         /// <summary>
@@ -38,69 +41,81 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ProjectModel> Save(ProjectModel model)
+        public async Task<ResultModel<ProjectModel>> Save(ProjectModel model)
         {
-            using (IDbContextTransaction transaction = UnitOfWork.Context.Database.BeginTransaction())
+            ResultModel<ProjectModel> result = new ResultModel<ProjectModel>();
+
+            if (model.Owner.AccountId != _accountContext.AccountId)
             {
-                try
+                result.Status = ActionStatus.UnAuthorized;
+            }
+            else
+            {
+                using (IDbContextTransaction transaction = UnitOfWork.Context.Database.BeginTransaction())
                 {
-                    Project project = model.ToEntity();
-                    project.UpdatedDate = DateTime.Now;
-                    project.MaximumUser = 9999;
-
-                    if (project.Id < 1)
+                    try
                     {
-                        project.CreatedDate = DateTime.Now;
-                        UnitOfWork.ProjectRepository.Add(project);
-                    }
-                    else
-                    {
-                        UnitOfWork.ProjectRepository.Update(project);
-                    }
+                        Project project = model.ToEntity();
+                        project.UpdatedDate = DateTime.Now;
+                        project.MaximumUser = 9999;
 
-                    int iResult = await UnitOfWork.CommitAsync();
-
-                    if (iResult > 0)
-                    {
-                        if (string.IsNullOrEmpty(project.ProjectCode))
+                        if (project.Id < 1)
                         {
-                            project.ProjectCode = CreateCode("EzT", project.Id);
+                            project.CreatedDate = DateTime.Now;
+                            UnitOfWork.ProjectRepository.Add(project);
+                        }
+                        else
+                        {
+                            UnitOfWork.ProjectRepository.Update(project);
+                        }
 
-                            iResult = await UnitOfWork.CommitAsync();
-                            if (iResult > 0)
+                        int iResult = await UnitOfWork.CommitAsync();
+
+                        if (iResult > 0)
+                        {
+                            if (string.IsNullOrEmpty(project.ProjectCode))
                             {
-                                //create feature in Phase table as default
-                                Phase feature = new Phase
-                                {
-                                    PhaseName = "Open Features",
-                                    ProjectId = project.Id,
-                                    IsDefault = true,
-                                    Status = (int)PhaseStatus.Open
-                                };
-                                UnitOfWork.PhaseRepository.Add(feature);
+                                project.ProjectCode = CreateCode("EzT", project.Id);
 
-                                //add project member
-                                ProjectMember member = new ProjectMember
+                                iResult = await UnitOfWork.CommitAsync();
+                                if (iResult > 0)
                                 {
-                                    MemberId = project.Owner,
-                                    ProjectId = project.Id,
-                                    AddDate = DateTime.Now,
-                                    IsPending = false
-                                };
-                                UnitOfWork.ProjectMemberRepository.Add(member);
-                                await UnitOfWork.CommitAsync();
+                                    //create feature in Phase table as default
+                                    Phase feature = new Phase
+                                    {
+                                        PhaseName = "Open Features",
+                                        ProjectId = project.Id,
+                                        IsDefault = true,
+                                        Status = (int)PhaseStatus.Open
+                                    };
+                                    UnitOfWork.PhaseRepository.Add(feature);
+
+                                    //add project member
+                                    ProjectMember member = new ProjectMember
+                                    {
+                                        MemberId = project.Owner,
+                                        ProjectId = project.Id,
+                                        AddDate = DateTime.Now,
+                                        IsPending = false
+                                    };
+                                    UnitOfWork.ProjectMemberRepository.Add(member);
+                                    await UnitOfWork.CommitAsync();
+                                }
                             }
                         }
+                        transaction.Commit();
+                        result.Status = ActionStatus.Ok;
+                        result.Data = project.ToModel();
                     }
-                    transaction.Commit();
-                    return project.ToModel();
-                }
-                catch
-                {
-                    transaction.Rollback();
-                    return null;
+                    catch
+                    {
+                        result.Status = ActionStatus.Failed;
+                        transaction.Rollback();
+                    }
                 }
             }
+
+            return result;
         }
 
         /// <summary>
@@ -111,29 +126,36 @@ namespace EzTask.Business
         public async Task<ResultModel<ProjectMemberModel>> AddMember(ProjectMemberModel model)
         {
             ResultModel<ProjectMemberModel> result = new ResultModel<ProjectMemberModel>();
-            //add project member
-            ProjectMember member = new ProjectMember
+            if (!IsOwner(model.ProjectId))
             {
-                MemberId = model.AccountId,
-                ProjectId = model.ProjectId,
-                AddDate = DateTime.Now,
-                IsPending = true
-            };
-
-            UnitOfWork.ProjectMemberRepository.Add(member);
-            int iresult = await UnitOfWork.CommitAsync();
-
-            if (iresult > 0)
+                result.Status = ActionStatus.UnAuthorized;
+            }
+            else
             {
-                AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c =>
-                                                c.AccountId == model.AccountId);
+                //add project member
+                ProjectMember member = new ProjectMember
+                {
+                    MemberId = model.AccountId,
+                    ProjectId = model.ProjectId,
+                    AddDate = DateTime.Now,
+                    IsPending = true
+                };
 
-                model.AddDate = member.AddDate;
-                model.DisplayName = accountInfo.DisplayName;
-                model.IsPending = member.IsPending;
+                UnitOfWork.ProjectMemberRepository.Add(member);
+                int iresult = await UnitOfWork.CommitAsync();
 
-                result.Data = model;
-                result.Status = ActionStatus.Ok;
+                if (iresult > 0)
+                {
+                    AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c =>
+                                                    c.AccountId == model.AccountId);
+
+                    model.AddDate = member.AddDate;
+                    model.DisplayName = accountInfo.DisplayName;
+                    model.IsPending = member.IsPending;
+
+                    result.Data = model;
+                    result.Status = ActionStatus.Ok;
+                }
             }
 
             return result;
@@ -174,29 +196,37 @@ namespace EzTask.Business
                 try
                 {
                     ProjectModel project = await GetProject(projectCode);
-                    if (project != null)
+
+                    if (project.Owner.AccountId != _accountContext.AccountId)
                     {
-                        //Remove member
-                        IEnumerable<ProjectMember> memberList = await UnitOfWork.ProjectMemberRepository.GetManyAsync(c =>
-                                c.ProjectId == project.ProjectId);
-                        UnitOfWork.ProjectMemberRepository.DeleteRange(memberList);
-
-                        //remove phase
-                        IEnumerable<Phase> phases = await UnitOfWork.PhaseRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
-                        UnitOfWork.PhaseRepository.DeleteRange(phases);
-
-                        //remove task
-                        await _task.DeleteTask(project.ProjectId);
-
-                        //remove project
-                        UnitOfWork.ProjectRepository.Delete(project.ToEntity());
-
-                        await UnitOfWork.CommitAsync();
+                        result.Status = ActionStatus.UnAuthorized;
                     }
+                    else
+                    {
+                        if (project != null)
+                        {
+                            //Remove member
+                            IEnumerable<ProjectMember> memberList = await UnitOfWork.ProjectMemberRepository.GetManyAsync(c =>
+                                    c.ProjectId == project.ProjectId);
+                            UnitOfWork.ProjectMemberRepository.DeleteRange(memberList);
 
-                    transaction.Commit();
-                    result.Status = ActionStatus.Ok;
-                    result.Data = true;
+                            //remove phase
+                            IEnumerable<Phase> phases = await UnitOfWork.PhaseRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
+                            UnitOfWork.PhaseRepository.DeleteRange(phases);
+
+                            //remove task
+                            await _task.DeleteTask(project.ProjectId);
+
+                            //remove project
+                            UnitOfWork.ProjectRepository.Delete(project.ToEntity());
+
+                            await UnitOfWork.CommitAsync();
+                        }
+
+                        transaction.Commit();
+                        result.Status = ActionStatus.Ok;
+                        result.Data = true;
+                    }
                 }
                 catch (Exception)
                 {
@@ -256,7 +286,7 @@ namespace EzTask.Business
                 .Include(c => c.Project)
                 .AsNoTracking()
                 .Where(c => c.MemberId == accountId && c.IsPending == false)
-                .Select(x=>x.ProjectId)
+                .Select(x => x.ProjectId)
                 .ToListAsync();
 
             return data;
@@ -490,7 +520,7 @@ namespace EzTask.Business
                         DisplayName = t.Project.Account.AccountInfo.DisplayName
                     },
                     ProjectName = t.Project.ProjectName
-                   
+
                 }).FirstOrDefaultAsync();
 
             if (project != null)
@@ -539,6 +569,13 @@ namespace EzTask.Business
                 Title = title + " " + project.ProjectName.ToUpper(),
                 To = member.AccountName
             });
+        }
+
+        private bool IsOwner(int projectId)
+        {
+            var project = UnitOfWork.ProjectRepository.GetById(projectId, allowTracking: false);
+
+            return project.Owner == _accountContext.AccountId;
         }
     }
 }

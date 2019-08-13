@@ -1,5 +1,6 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Framework.Infrastructures;
+using EzTask.Interface;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Repository;
@@ -11,8 +12,11 @@ namespace EzTask.Business
 {
     public class PhaseBusiness : BusinessCore
     {
-        public PhaseBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly IAccountContext _accountContext;
+
+        public PhaseBusiness(UnitOfWork unitOfWork, IAccountContext accountContext) : base(unitOfWork)
         {
+            _accountContext = accountContext;
         }
 
         /// <summary>
@@ -24,27 +28,35 @@ namespace EzTask.Business
         {
             ResultModel<PhaseModel> result = new ResultModel<PhaseModel>();
 
-            Phase phase = model.ToEntity();
-            if (phase.Id < 1)
+            if (!IsOwner(model.ProjectId))
             {
-                phase.Status = (short)PhaseStatus.Open;
-                UnitOfWork.PhaseRepository.Add(phase);
+                result.Status = ActionStatus.UnAuthorized;
             }
             else
             {
-                bool isDefault = IsDefault(model.Id);
-                phase.IsDefault = isDefault;
+                Phase phase = model.ToEntity();
+                if (phase.Id < 1)
+                {
+                    phase.Status = (short)PhaseStatus.Open;
+                    UnitOfWork.PhaseRepository.Add(phase);
+                }
+                else
+                {
+                    bool isDefault = IsDefault(model.Id);
+                    phase.IsDefault = isDefault;
 
-                UnitOfWork.PhaseRepository.Update(phase);
+                    UnitOfWork.PhaseRepository.Update(phase);
+                }
+
+                int iResult = await UnitOfWork.CommitAsync();
+
+                if (iResult > 0)
+                {
+                    result.Status = ActionStatus.Ok;
+                    result.Data = phase.ToModel();
+                }
             }
 
-            int iResult = await UnitOfWork.CommitAsync();
-
-            if (iResult > 0)
-            {
-                result.Status = ActionStatus.Ok;
-                result.Data = phase.ToModel();
-            }
             return result;
         }
 
@@ -119,15 +131,29 @@ namespace EzTask.Business
         {
             ResultModel<PhaseModel> result = new ResultModel<PhaseModel>();
 
-            UnitOfWork.PhaseRepository.Delete(model.Id);
-            int iResult = await UnitOfWork.CommitAsync();
-
-            if (iResult > 0)
+            if (!IsOwner(model.ProjectId))
             {
-                result.Status = ActionStatus.Ok;
+                result.Status = ActionStatus.UnAuthorized;
+            }
+            else
+            {
+                UnitOfWork.PhaseRepository.Delete(model.Id);
+                int iResult = await UnitOfWork.CommitAsync();
+
+                if (iResult > 0)
+                {
+                    result.Status = ActionStatus.Ok;
+                }
             }
 
             return result;
+        }
+
+        private bool IsOwner(int projectId)
+        {
+            var project = UnitOfWork.ProjectRepository.GetById(projectId, allowTracking: false);
+
+            return project.Owner == _accountContext.AccountId;
         }
     }
 }

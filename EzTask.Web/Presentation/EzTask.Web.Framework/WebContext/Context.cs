@@ -19,10 +19,10 @@ namespace EzTask.Web.Framework.WebContext
         public static void Configure(this IApplicationBuilder applicationBuilder,
             IHttpContextAccessor httpContextAccessor, IWebHostEnvironment webHostEnvironment,
             SessionManager sessionManager, CookiesManager cookiesManager,
-            ILanguageLocalization languageLocalization)
+            ILanguageLocalization languageLocalization, IAccountContext accountContext)
         {
             _httpContextAccessor = httpContextAccessor;
-            CurrentAccount = new AccountContext(sessionManager);
+            CurrentAccount = accountContext;
             _cookiesManager = cookiesManager;
             _sessionManager = sessionManager;
             _webHostEnvironment = webHostEnvironment;
@@ -54,7 +54,7 @@ namespace EzTask.Web.Framework.WebContext
             get => _httpContextAccessor.HttpContext;
         }
 
-        public static AccountContext CurrentAccount { get; private set; }
+        public static IAccountContext CurrentAccount { get; private set; }
 
         public static bool IsLanguageAvailable
         {

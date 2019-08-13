@@ -39,6 +39,7 @@ namespace EzTask.Web.Framework
             services.AddSingleton<IWebHostEnvironment, WebHost>();
             services.AddTransient<ILanguageLocalization, LanguageLocalization>();
             services.AddTransient<ViewRender>();
+            services.AddSingleton<IAccountContext, AccountContext>();
             services.AddDistributedMemoryCache();
             services.AddSession();
             services.AddMemoryCache();           
@@ -88,7 +89,8 @@ namespace EzTask.Web.Framework
                 app.ApplicationServices.GetRequiredService<IWebHostEnvironment>(),
                 app.ApplicationServices.GetRequiredService<SessionManager>(),
                 app.ApplicationServices.GetRequiredService<CookiesManager>(),
-                app.ApplicationServices.GetRequiredService<ILanguageLocalization>());
+                app.ApplicationServices.GetRequiredService<ILanguageLocalization>(),
+                app.ApplicationServices.GetRequiredService<IAccountContext>());
         }
     }
 }

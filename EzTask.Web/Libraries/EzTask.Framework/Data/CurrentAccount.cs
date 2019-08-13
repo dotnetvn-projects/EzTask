@@ -1,8 +1,9 @@
-﻿using System;
+﻿using EzTask.Interface.SharedData;
+using System;
 
 namespace EzTask.Framework.Data
 {
-    public class CurrentAccount
+    public class CurrentAccount : IAccountInfo
     {
         public int AccountId { get; set; }
 

@@ -90,7 +90,9 @@ namespace EzTask.Modules.Project.Controllers
                             }
                         };
 
-                        ProjectModel project = await EzTask.Project.Save(model);
+                        var result = await EzTask.Project.Save(model);
+                        ProjectModel project = result.Data;
+
                         if (project == null)
                         {
                             ErrorMessage = Context.GetStringResource("CreateProjectError", StringResourceType.ProjectPage);
@@ -192,7 +194,9 @@ namespace EzTask.Modules.Project.Controllers
                             model.Status = viewModel.Status;
                             model.Description = viewModel.Description;
 
-                            ProjectModel project = await EzTask.Project.Save(model);
+                            var result = await EzTask.Project.Save(model);
+                            ProjectModel project = result.Data;
+
                             if (project == null)
                             {
                                 ErrorMessage = Context.GetStringResource("ErrorUpdateProject", StringResourceType.ProjectPage);

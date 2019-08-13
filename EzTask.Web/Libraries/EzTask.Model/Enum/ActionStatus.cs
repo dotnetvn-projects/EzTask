@@ -9,6 +9,7 @@ namespace EzTask.Model.Enum
         Ok,
         Failed,
         NotFound,
-        Dupplicate
+        Dupplicate,
+        UnAuthorized
     }
 }

@@ -1,11 +1,13 @@
 ﻿using EzTask.Framework.Data;
+using EzTask.Interface;
+using EzTask.Interface.SharedData;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace EzTask.Web.Framework.WebContext
 {
-    public class AccountContext
+    public class AccountContext : IAccountContext
     {
         private SessionManager _sessionManager;
 
@@ -14,7 +16,7 @@ namespace EzTask.Web.Framework.WebContext
             _sessionManager = sessionManager;
         }
 
-        public void Set(CurrentAccount currentAccount)
+        public void Set(IAccountInfo currentAccount)
         {
             _sessionManager.SetObject(SessionKey.Account, currentAccount);
         }

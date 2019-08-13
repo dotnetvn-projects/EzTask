@@ -1,5 +1,6 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Framework.Infrastructures;
+using EzTask.Interface;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Repository;
@@ -15,11 +16,15 @@ namespace EzTask.Business
     {
         private readonly PhaseBusiness _phase;
         private readonly AccountBusiness _account;
+        private readonly IAccountContext _accountContext;
+
         public TaskBusiness(UnitOfWork unitOfWork,
-            PhaseBusiness phase, AccountBusiness account) : base(unitOfWork)
+            PhaseBusiness phase, AccountBusiness account,
+            IAccountContext accountContext) : base(unitOfWork)
         {
             _phase = phase;
             _account = account;
+            _accountContext = accountContext;
         }
 
         #region Task
@@ -60,8 +65,8 @@ namespace EzTask.Business
             TaskItem data = await UnitOfWork
                 .TaskRepository
                 .Entity
-                .Include(x=>x.Project)
-                .Include(x=>x.Phase)
+                .Include(x => x.Project)
+                .Include(x => x.Phase)
                 .FirstOrDefaultAsync(c => c.TaskCode == code);
 
             if (data != null)
@@ -118,7 +123,6 @@ namespace EzTask.Business
                 result.Status = ActionStatus.Ok;
                 result.Data = task.ToModel();
             }
-
             return result;
         }
 
@@ -183,9 +187,11 @@ namespace EzTask.Business
                 Data = true
             };
 
-            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c => ids.Contains(c.Id));
-            await DeleteTasks(result, data);
+            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository
+                .GetManyAsync(c => ids.Contains(c.Id) && c.MemberId == _accountContext.AccountId);
 
+            await DeleteTasks(result, data);
+            
             return result;
         }
 
@@ -201,7 +207,9 @@ namespace EzTask.Business
                 Data = true
             };
 
-            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c => c.ProjectId == projectId);
+            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository
+                .GetManyAsync(c => c.ProjectId == projectId && c.MemberId == _accountContext.AccountId);
+
             await DeleteTasks(result, data);
             return result;
         }
@@ -218,8 +226,10 @@ namespace EzTask.Business
                 Data = true
             };
 
-            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository.GetManyAsync(c =>
-                                        c.ProjectId == projectId && c.PhaseId == phaseId);
+            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository
+                 .GetManyAsync(c => c.ProjectId == projectId && c.PhaseId == phaseId 
+                                        && c.MemberId == _accountContext.AccountId);
+
             await DeleteTasks(result, data);
             return result;
         }
