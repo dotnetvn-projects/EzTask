@@ -30,7 +30,7 @@ namespace EzTask.Web.Framework
             MessageServiceRegister.Register(services, configuration);
             LoggerRegister.Register(services);
 
-            env.RunWebBuilder();
+           // env.RunWebBuilder();
            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<StaticResources>();
