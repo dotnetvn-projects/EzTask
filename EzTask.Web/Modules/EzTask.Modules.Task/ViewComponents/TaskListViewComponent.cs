@@ -1,4 +1,5 @@
 ﻿using EzTask.Business;
+using EzTask.Model;
 using EzTask.Modules.Task.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -31,6 +32,7 @@ namespace EzTask.Modules.Task.ViewComponents
                 viewModel.Phase = await EzTask.Phase.GetPhaseById(phaseId);
             }
             viewModel.Project = await EzTask.Project.GetProject(projectId);
+
             return View(viewModel);
         }
     }

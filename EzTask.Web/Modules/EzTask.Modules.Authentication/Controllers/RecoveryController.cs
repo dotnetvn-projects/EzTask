@@ -22,6 +22,11 @@ namespace EzTask.Modules.Authentication.Controllers
         }
 
         #region Recover password
+
+        /// <summary>
+        /// Recovery password view
+        /// </summary>
+        /// <returns></returns>
         [Route("recover-password.html")]
         public IActionResult RecoverPassword()
         {
@@ -32,6 +37,11 @@ namespace EzTask.Modules.Authentication.Controllers
             });
         }
 
+        /// <summary>
+        /// Recovery password action
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [Route("recover-password.html")]
         [HttpPost]
         public async Task<IActionResult> RecoverPassword(RecoverPasswordViewModel viewModel)
@@ -55,6 +65,11 @@ namespace EzTask.Modules.Authentication.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Change password view
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         [Route("change-password.html")]
         public async Task<IActionResult> RecoverPasswordAction(string code)
         {
@@ -78,6 +93,11 @@ namespace EzTask.Modules.Authentication.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Change password action
+        /// </summary>
+        /// <param name="viewModel"></param>
+        /// <returns></returns>
         [Route("change-password.html")]
         [HttpPost]
         public async Task<IActionResult> RecoverPasswordAction(RecoverPasswordViewModel viewModel)
@@ -105,6 +125,11 @@ namespace EzTask.Modules.Authentication.Controllers
             return View(viewModel);
         }
 
+        /// <summary>
+        /// Recovery sucess view
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
         [Route("recover-success.html")]
         public IActionResult RecoverPasswordSuccess(string code)
         {

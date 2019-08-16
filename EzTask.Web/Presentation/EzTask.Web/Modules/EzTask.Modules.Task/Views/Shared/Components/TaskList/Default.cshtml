@@ -1,11 +1,22 @@
 ﻿@model TaskViewModel
 @{
     var taskCount = Model.TaskList.Count();
+    int owner = 0;
+
+    if( Model.Project != null)
+    {
+        owner = Model.Project.Owner.AccountId;
+    }
+
+    if(Model.Phase == null)
+    {
+        Model.Phase = new PhaseModel();
+    }
 }
 <div class="box box-primary">
     <div class="box-header with-border">
         <div class="phase-tool">
-            @if (User.Identity.AccountId() == Model.Project.Owner.AccountId)
+            @if (User.Identity.AccountId() == owner)
             {
                 if (!Model.Phase.IsDefault)
                 {

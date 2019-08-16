@@ -16,19 +16,28 @@ $.fn.showAddNewModal = function () {
     $(this).click(function () {
         var projectId = $('.project-list').val();
         var phaseId = $("#phase-id").val();
-        $.showLoading();
-        $.ajax({
-            url: 'taskitem/generate-view.html',
-            type: 'POST',
-            data: { projectId: projectId, phaseId: phaseId },
-            success: function (data) {
-                $(this).buildForm(data);
-                $.hideLoading();
-                $.showDialog({
-                    dialogId: 'task-modal'
-                });
-            }
-        });
+        if (projectId > 0 && phaseId > 0) {
+            $.showLoading();
+            $.ajax({
+                url: 'taskitem/generate-view.html',
+                type: 'POST',
+                data: { projectId: projectId, phaseId: phaseId },
+                success: function (data) {
+                    $(this).buildForm(data);
+                    $.hideLoading();
+                    $.showDialog({
+                        dialogId: 'task-modal'
+                    });
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    $.hideLoading();
+                    $.alertDialog({
+                        title: $('#error-title').val(),
+                        content: xhr.responseText
+                    });
+                }
+            });
+        }
     });
 };
 

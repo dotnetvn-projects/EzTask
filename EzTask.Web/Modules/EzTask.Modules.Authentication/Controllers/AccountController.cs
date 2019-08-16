@@ -32,6 +32,7 @@ namespace EzTask.Modules.Authentication.Controllers
             {
                 return RedirectToAction("Index", "Home");
             }
+
             return View(new LoginViewModel { RedirectUrl = redirect });
         }
 
@@ -127,6 +128,7 @@ namespace EzTask.Modules.Authentication.Controllers
                     if (existAccount == null)
                     {
                         viewModel.DisplayName = viewModel.FullName;
+
                         var account = await EzTask.Account.RegisterNew(new AccountModel
                         {
                             AccountName = viewModel.AccountName,
@@ -142,7 +144,7 @@ namespace EzTask.Modules.Authentication.Controllers
                     }
                     else
                     {
-                        ErrorMessage = Context.GetStringResource("AccountExisted", StringResourceType.AuthenticationPage); ;
+                        ErrorMessage = Context.GetStringResource("AccountExisted", StringResourceType.AuthenticationPage);
                     }
                 }
             }

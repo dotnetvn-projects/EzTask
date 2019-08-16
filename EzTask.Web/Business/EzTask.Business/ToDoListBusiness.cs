@@ -33,6 +33,7 @@ namespace EzTask.Business
             if (data.Any())
             {
                 var model = data.ToModels();
+
                 foreach(var item in model)
                 {
                     item.TimeLeft = Convert.ToInt32((item.CompleteOn - DateTime.Now.Date).TotalDays);
@@ -53,12 +54,15 @@ namespace EzTask.Business
         public async Task<ResultModel<ToDoItemModel>> GetTodoItem(int id)
         {
             ResultModel<ToDoItemModel> result = new ResultModel<ToDoItemModel>();
+
             var data = await UnitOfWork.TodoItemRepository.GetByIdAsync(id, false);
+
             if(data != null)
             {
                 result.Data = data.ToModel();
                 result.Status = ActionStatus.Ok;
             }
+
             return result;
         }
 
@@ -70,6 +74,7 @@ namespace EzTask.Business
         public async Task<ResultModel<ToDoItemModel>> Save(ToDoItemModel model)
         {
             ResultModel<ToDoItemModel> iResult = new ResultModel<ToDoItemModel>();
+
             var entity = model.ToEntity();
             entity.Account = null;
 

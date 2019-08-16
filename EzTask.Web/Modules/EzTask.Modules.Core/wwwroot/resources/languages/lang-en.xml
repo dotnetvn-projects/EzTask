@@ -173,7 +173,7 @@
     </Language>
     <Language>
       <Key>RequestFailed</Key>
-      <Content>Server is busy, cannot proceed your request!</Content>
+      <Content>Something is wrong, cannot process your request!.</Content>
     </Language>
     <Language>
       <Key>EmailWrongFormat</Key>

@@ -420,9 +420,9 @@ namespace EzTask.Business
         public async Task<IEnumerable<AttachmentModel>> GetAttachments(int taskId)
         {
             List<Attachment> iResult = await UnitOfWork.AttachRepository.Entity.Include(c => c.Task).
-                Include(c => c.User).ThenInclude(c => c.AccountInfo).AsNoTracking()
+                Include(c => c.User).ThenInclude(c => c.AccountInfo)
                 .Where(c => c.TaskId == taskId)
-                .OrderByDescending(c => c.AddedDate).ToListAsync();
+                .OrderByDescending(c => c.AddedDate).AsNoTracking().ToListAsync();
 
             return iResult.ToModels();
         }
@@ -434,7 +434,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AttachmentModel> GetAttachment(int id)
         {
-            Attachment iResult = await UnitOfWork.AttachRepository.GetByIdAsync(id);
+            Attachment iResult = await UnitOfWork.AttachRepository.GetByIdAsync(id, allowTracking: false);
 
             return iResult.ToModel();
         }
@@ -493,9 +493,13 @@ namespace EzTask.Business
         public async Task<ResultModel<TaskHistoryModel>> LoadHistoryDetail(int historyId)
         {
             ResultModel<TaskHistoryModel> result = new ResultModel<TaskHistoryModel>();
-            TaskHistory data = await UnitOfWork.TaskHistoryRepository.Entity.AsNoTracking()
-                                .Include(c => c.Task).FirstOrDefaultAsync(c => c.Id == historyId);
+
+            TaskHistory data = await UnitOfWork.TaskHistoryRepository.Entity
+                                .Include(c => c.Task).AsNoTracking()
+                                .FirstOrDefaultAsync(c => c.Id == historyId);
+
             result.Data = data.ToModel();
+
             return result;
         }
 
@@ -506,6 +510,7 @@ namespace EzTask.Business
         public async Task<ResultModel<TaskHistoryModel>> SaveHistory(int taskId, string title, string updateInfo, int accountId)
         {
             ResultModel<TaskHistoryModel> result = new ResultModel<TaskHistoryModel>();
+
             TaskHistoryModel model = new TaskHistoryModel
             {
                 Content = updateInfo,
@@ -521,10 +526,12 @@ namespace EzTask.Business
             {
                 entity.UpdatedDate = DateTime.Now;
             }
+
             entity.Task = null;
             entity.User = null;
 
             UnitOfWork.TaskHistoryRepository.Add(entity);
+
             int iResult = await UnitOfWork.CommitAsync();
 
             if (iResult > 0)
@@ -544,10 +551,11 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<IEnumerable<TaskHistoryModel>> GetHistoryList(int taskId, int accountId)
         {
-            List<TaskHistory> iResult = await UnitOfWork.TaskHistoryRepository.Entity.Include(c => c.Task).
-                Include(c => c.User).ThenInclude(c => c.AccountInfo).AsNoTracking()
+            List<TaskHistory> iResult = await UnitOfWork.TaskHistoryRepository.Entity
+                .Include(c => c.Task).Include(c => c.User).ThenInclude(c => c.AccountInfo)
                 .Where(c => c.TaskId == taskId)
-                .OrderByDescending(c => c.UpdatedDate).ToListAsync();
+                .OrderByDescending(c => c.UpdatedDate)
+                .AsNoTracking().ToListAsync();
 
             return iResult.ToModels();
         }
@@ -570,10 +578,12 @@ namespace EzTask.Business
             {
                 content += FormartHistoryContent("Title", oldData.TaskTitle, newData.TaskTitle);
             }
+
             if (newData.TaskDetail != oldData.TaskDetail)
             {
                 content += FormartHistoryContent("Detail", oldData.TaskDetail, newData.TaskDetail);
             }
+
             if (newData.Phase.Id != oldData.Phase.Id)
             {
                 string oldItem = "Open Features";
@@ -590,6 +600,7 @@ namespace EzTask.Business
                 }
                 content += FormartHistoryContent("Phase", oldItem, newItem);
             }
+
             if (newData.Assignee.AccountId != oldData.Assignee.AccountId)
             {
                 string oldItem = "Non-Assigned";
@@ -606,18 +617,21 @@ namespace EzTask.Business
                 }
                 content += FormartHistoryContent("Assignee", oldItem, newItem);
             }
+
             if (newData.Priority != oldData.Priority)
             {
                 string oldItem = oldData.Priority.ToString();
                 string newItem = newData.Priority.ToString();
                 content += FormartHistoryContent("Priority", oldItem, newItem);
             }
+
             if (newData.Status != oldData.Status)
             {
                 string oldItem = oldData.Status.ToString();
                 string newItem = newData.Status.ToString();
                 content += FormartHistoryContent("Status", oldItem, newItem);
             }
+
             if (newData.PercentCompleted != oldData.PercentCompleted)
             {
                 string oldItem = oldData.PercentCompleted.ToString();
@@ -631,6 +645,12 @@ namespace EzTask.Business
 
         #region Private
 
+        /// <summary>
+        /// Delete tasks
+        /// </summary>
+        /// <param name="result"></param>
+        /// <param name="data"></param>
+        /// <returns></returns>
         private async Task DeleteTasks(ResultModel<bool> result, IEnumerable<TaskItem> data)
         {
             if (!data.Any())
@@ -656,6 +676,7 @@ namespace EzTask.Business
 
                 UnitOfWork.TaskRepository.DeleteRange(data);
                 int iResult = await UnitOfWork.CommitAsync();
+
                 if (iResult > 0)
                 {
                     result.Status = ActionStatus.Ok;
@@ -663,6 +684,13 @@ namespace EzTask.Business
             }
         }
 
+        /// <summary>
+        /// Format history content
+        /// </summary>
+        /// <param name="field"></param>
+        /// <param name="oldData"></param>
+        /// <param name="newData"></param>
+        /// <returns></returns>
         private string FormartHistoryContent(string field, string oldData, string newData)
         {
             if (field == "Detail")

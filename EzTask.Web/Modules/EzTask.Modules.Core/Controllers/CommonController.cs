@@ -23,6 +23,11 @@ namespace EzTask.Modules.Core.Controllers
             hostingEnvironment = environment;
         }
 
+        /// <summary>
+        /// Load avatar
+        /// </summary>
+        /// <param name="accountId"></param>
+        /// <returns></returns>
         [Route("profile-avatar.html")]
         public async Task<IActionResult> LoadAvatar(int accountId = 0)
         {

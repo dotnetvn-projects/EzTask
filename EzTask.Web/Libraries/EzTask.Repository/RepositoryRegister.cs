@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Repository
 {
-    public static class RepositoryInitializer
+    public static class RepositoryRegister
     {
         public static void Register(IServiceCollection services)
         {            

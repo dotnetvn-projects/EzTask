@@ -16,5 +16,17 @@
     "inputFiles": [
       "wwwroot/css/404.css"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/js/common.min.js",
+    "inputFiles": [
+      "wwwroot/js/common.js"
+    ]
+  },
+  {
+    "outputFileName": "wwwroot/js/validator-additional.min.js",
+    "inputFiles": [
+      "wwwroot/js/validator-additional.js"
+    ]
   }
 ]

@@ -124,7 +124,6 @@
             day = date.getDate(),
             hour = date.getHours(),
             minute = date.getMinutes(),
-            second = date.getSeconds(),
             hourFormatted = hour % 12 || 12, // hour returned in 24 hour format
             minuteFormatted = minute < 10 ? "0" + minute : minute,
             morning = hour < 12 ? " AM" : " PM";

@@ -55,10 +55,11 @@ $.fn.loadPhase = function () {
                 var phase = $(".phase-list > li > a").first();
                 var phaseId = phase.attr('data-id');
 
-                if (phaseId !== 0) {
+                if (phaseId !== 0 ) {
                     $(this).handleLoadTask(id, phaseId, null, false);
-
-                    $(".phase-list > li > a").loadTask();
+                    if (phase.length > 0) {
+                        $(".phase-list > li > a").loadTask();
+                    }
                 }
                 var authorizeAdd = request.getResponseHeader("authorized-add-phase");
 
@@ -108,107 +109,124 @@ $.fn.refreshTask = function () {
 //delete task event
 $.fn.deleteTask = function () {
     $(this).click(function () {
-        var isChecked = $(".task-table input:checkbox:checked").length > 0;
-        if (isChecked) {
-            //get ids
-            var ids = [];
-            $(".task-table input[type='checkbox']").each(function () {
-                var chk = $(this);
-                if (chk.prop('checked')) {
-                    var id = chk.attr("data-id");
-                    ids.push(id);
-                }
-            });
+        var projectId = $('.project-list').val();
+        var phaseId = $("#phase-id").val();
 
-            $.confirmDialog({
-                title: $('#warning-title').val(),
-                content: $('#delete-task-warning').val(),
-                action: function () {
-                    $.showLoading();
-                    $.ajax({
-                        type: 'post',
-                        url: 'task/delete-task.html',
-                        data: {
-                            taskIds: ids,
-                            projectId: $('.project-list').val()
-                        },
-                        success: function (response) {
-                            var phaseId = $("#phase-id").val();
-                            var projectId = $('.project-list').val();
-                            $(this).handleLoadTask(projectId, phaseId);
-                            $.hideLoading();
-                        },
-                        error: function (xhr, ajaxOptions, thrownError) {
+        if (projectId > 0 && phaseId > 0) {
+            var isChecked = $(".task-table input:checkbox:checked").length > 0;
+            if (isChecked) {
+                //get ids
+                var ids = [];
+                $(".task-table input[type='checkbox']").each(function () {
+                    var chk = $(this);
+                    if (chk.prop('checked')) {
+                        var id = chk.attr("data-id");
+                        ids.push(id);
+                    }
+                });
 
-                        }
-                    });
-                }
-            });
-        }
-        else {
-            //warning when don't have any items
-            $.alertDialog({
-                title: $('#alert-title').val(),
-                content: $('#no-task-selected-delete-warning').val()
-            });
+                $.confirmDialog({
+                    title: $('#warning-title').val(),
+                    content: $('#delete-task-warning').val(),
+                    action: function () {
+                        $.showLoading();
+                        $.ajax({
+                            type: 'post',
+                            url: 'task/delete-task.html',
+                            data: {
+                                taskIds: ids,
+                                projectId: projectId
+                            },
+                            success: function (response) {
+                                $(this).handleLoadTask(projectId, phaseId);
+                                $.hideLoading();
+                            },
+                            error: function (xhr, ajaxOptions, thrownError) {
+                                $.hideLoading();
+                                $.alertDialog({
+                                    title: $('#error-title').val(),
+                                    content: xhr.responseText
+                                });
+                            }
+                        });
+                    }
+                });
+            }
+            else {
+                //warning when don't have any items
+                $.alertDialog({
+                    title: $('#alert-title').val(),
+                    content: $('#no-task-selected-delete-warning').val()
+                });
+            }
         }
     });
 };
 
 $.fn.assignTask = function () {
     $(this).click(function () {
-        var isChecked = $(".task-table input:checkbox:checked").length > 0;
-        if (isChecked) {
+        var projectId = $('.project-list').val();
+        var phaseId = $("#phase-id").val();
 
-            //get ids
-            var ids = [];
-            $(".task-table input[type='checkbox']").each(function () {
-                var chk = $(this);
-                if (chk.prop('checked')) {
-                    var id = chk.attr("data-id");
-                    ids.push(id);
-                }
-            });
+        if (projectId > 0 && phaseId > 0) {
+            var isChecked = $(".task-table input:checkbox:checked").length > 0;
+            if (isChecked) {
 
-            var projectId = $('.project-list').val();
-            $.showLoading();
-            $.ajax({
-                url: 'task/generate-assign-view.html',
-                type: 'POST',
-                data: { projectId: projectId },
-                success: function (data) {
-                    $(".task-template").html('');
-                    $(".task-template").append(data);
-                    $.initCommonLib();
-                    $.hideLoading();
-                    $.showDialog({
-                        dialogId: 'assign-task-modal',
-                        confirmAction: function () {
-                            var accountid = $("#selectAssignList").val();
-                            $.ajax({
-                                url: 'task/assign-task.html',
-                                type: 'POST',
-                                data: { taskids: ids, accountId: accountid },
-                                success: function (data) {
-                                    var phaseId = $("#phase-id").val();
-                                    var projectId = $('.project-list').val();
-                                    $(this).handleLoadTask(projectId, phaseId);
+                //get ids
+                var ids = [];
+                $(".task-table input[type='checkbox']").each(function () {
+                    var chk = $(this);
+                    if (chk.prop('checked')) {
+                        var id = chk.attr("data-id");
+                        ids.push(id);
+                    }
+                });
+
+                $.showLoading();
+                $.ajax({
+                    url: 'task/generate-assign-view.html',
+                    type: 'POST',
+                    data: { projectId: projectId },
+                    success: function (data) {
+                        if (data !== "") {
+                            $(".task-template").html('');
+                            $(".task-template").append(data);
+                            $.initCommonLib();
+                            $.hideLoading();
+                            $.showDialog({
+                                dialogId: 'assign-task-modal',
+                                confirmAction: function () {
+                                    var accountid = $("#selectAssignList").val();
+                                    $.ajax({
+                                        url: 'task/assign-task.html',
+                                        type: 'POST',
+                                        data: { taskids: ids, accountId: accountid },
+                                        success: function (data) {
+                                            $(this).handleLoadTask(projectId, phaseId);
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            $.alertDialog({
+                                                title: $('#error-title').val(),
+                                                content: xhr.responseText
+                                            });
+                                        }
+                                    }).promise().done(function () {
+                                        $.closeDialog('assign-task-modal');
+                                        $.hideLoading();
+                                    });
                                 }
-                            }).promise().done(function () {
-                                $.closeDialog('assign-task-modal');
-                                $.hideLoading();
                             });
                         }
-                    });
-                }
-            });
-        }
-        else {
-            //warning when don't have any items
-            $.alertDialog({
-                title: $('#alert-title').val(),
-                content: $('#no-task-selected-warning').val()
-            });
+                    }
+                });
+            }
+            else {
+                //warning when don't have any items
+                $.alertDialog({
+                    title: $('#alert-title').val(),
+                    content: $('#no-task-selected-warning').val()
+                });
+            }
         }
     });
 };

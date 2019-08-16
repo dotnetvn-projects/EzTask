@@ -479,6 +479,7 @@ namespace EzTask.Business
         public async Task<ResultModel<AccountInfoModel>> AcceptInvitation(string activeCode)
         {
             ResultModel<AccountInfoModel> iResult = new ResultModel<AccountInfoModel>();
+
             ProjectMember inviteItem = await UnitOfWork.ProjectMemberRepository.GetAsync(c => c.ActiveCode == activeCode);
 
             if (inviteItem == null)
@@ -543,8 +544,11 @@ namespace EzTask.Business
         {
             string emailTemplateUrl = _hostEnvironment.GetRootContentUrl()
                        + "/resources/templates/invite_email.html";
+
             AccountInfoModel member = await _accountBusiness.GetAccountInfo(memberId);
+
             ProjectModel project = await GetProject(projectId);
+
             string password = string.Empty;
 
             if (isNewMember)

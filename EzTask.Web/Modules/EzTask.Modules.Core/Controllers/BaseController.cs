@@ -39,21 +39,6 @@ namespace EzTask.Modules.Core.Controllers
             set { TempData["success"] = value; }
         }
 
-        /// <summary>
-        /// Create response message
-        /// </summary>
-        /// <param name="title"></param>
-        /// <param name="message"></param>
-        /// <returns></returns>
-        protected ResponseMessage CreateResponseMessage(string title, string message)
-        {
-            return new ResponseMessage
-            {
-                Title = title,
-                Message = message
-            };
-        }
-
         #region Private
         private void InvokeComponents(IServiceProvider serviceProvider)
         {

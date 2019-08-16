@@ -11,7 +11,7 @@ namespace EzTask.Business
         {
             _services = services;
 
-            RepositoryInitializer.Register(services);
+            RepositoryRegister.Register(services);
 
             _services.AddScoped<EzTaskBusiness>();
             _services.AddScoped<AccountBusiness>();

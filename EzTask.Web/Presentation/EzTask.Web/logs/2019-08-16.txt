@@ -1,0 +1,409 @@
+2019-08-16 13:31:52,495 [7]INFO [App][] Request Url: /
+2019-08-16 13:31:52,781 [6]INFO [App][] Request Url: /login.html
+2019-08-16 13:32:23,002 [11]INFO [App][] Request Url: /login.html
+2019-08-16 13:32:27,592 [15]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-08-16 13:32:33,788 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:34,210 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:32:34,213 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:32:53,897 [16]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-08-16 13:32:56,253 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,253 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,352 [16]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,352 [14]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,353 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,355 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,355 [7]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,420 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,529 [30]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,533 [30]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,533 [35]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,533 [23]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:32:56,592 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:32:56,592 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:32:59,836 [28]INFO [App][duylinh191@gmail.com] Request Url: /project/EzT019.html
+2019-08-16 13:33:01,048 [23]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:01,209 [17]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:33:01,209 [14]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:33:04,333 [14]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-08-16 13:33:04,633 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,636 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,688 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,688 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,689 [15]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,689 [6]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,689 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,695 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,715 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,715 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,715 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,715 [6]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:04,817 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:33:04,818 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:33:06,321 [15]INFO [App][duylinh191@gmail.com] Request Url: /project/create-project.html
+2019-08-16 13:33:07,533 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:07,665 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:33:07,665 [20]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:33:13,489 [18]INFO [App][duylinh191@gmail.com] Request Url: /project/create-project.html
+2019-08-16 13:33:14,147 [18]INFO [App][duylinh191@gmail.com] Request Url: /project/create-success.html
+2019-08-16 13:33:15,158 [7]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:15,285 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:33:15,285 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:33:19,429 [20]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-08-16 13:33:19,800 [6]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,800 [7]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,861 [5]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,862 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,870 [6]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,870 [5]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,870 [7]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,870 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,877 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,894 [23]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,904 [28]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:19,907 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:33:20,034 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:33:20,035 [20]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:39:53,023 [53]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-08-16 13:39:55,238 [59]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:39:55,589 [55]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:39:55,591 [57]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:41:24,499 [69]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 13:41:27,938 [70]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:41:28,345 [66]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:41:28,345 [72]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:42:02,326 [72]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-08-16 13:42:02,780 [80]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,780 [74]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,841 [78]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,854 [80]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,855 [81]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,856 [79]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,858 [82]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,861 [76]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,892 [76]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,892 [81]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,892 [78]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:02,910 [77]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:03,097 [79]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:42:03,097 [77]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:42:05,759 [77]INFO [App][duylinh191@gmail.com] Request Url: /project/EzT001.html
+2019-08-16 13:42:05,988 [89]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:06,170 [77]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:42:06,170 [82]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:42:08,530 [77]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-08-16 13:42:08,898 [78]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,900 [81]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,929 [78]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,929 [64]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,937 [81]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,937 [78]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,940 [76]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,944 [89]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,965 [76]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,973 [78]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,973 [89]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:08,973 [76]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:09,094 [64]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:42:09,094 [76]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:42:10,570 [89]INFO [App][duylinh191@gmail.com] Request Url: /project/EzT025.html
+2019-08-16 13:42:10,694 [76]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:10,831 [76]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:42:10,832 [72]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:42:12,905 [72]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-08-16 13:42:13,311 [64]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,311 [89]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,404 [76]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,404 [64]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,413 [76]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,415 [87]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,421 [64]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,423 [80]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,450 [78]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,450 [82]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,450 [64]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,450 [80]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:13,544 [74]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:42:13,544 [81]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:42:15,495 [81]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 13:42:15,878 [82]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:16,118 [82]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:42:16,118 [90]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:42:16,656 [87]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-08-16 13:42:16,822 [90]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:42:17,013 [90]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:42:17,014 [82]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:43:20,248 [70]INFO [App][duylinh191@gmail.com] Request Url: /logout.html
+2019-08-16 13:43:20,270 [59]INFO [App][] Request Url: /login.html
+2019-08-16 13:43:24,569 [59]INFO [App][] Request Url: /login.html
+2019-08-16 13:43:24,597 [59]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-08-16 13:43:24,875 [74]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:25,041 [70]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:43:25,042 [59]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:43:30,832 [59]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-08-16 13:43:31,195 [74]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,195 [60]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,272 [70]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,291 [67]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,293 [74]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,293 [60]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,293 [57]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,295 [62]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,304 [50]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,312 [67]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,321 [60]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,328 [51]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:43:31,467 [48]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:43:31,467 [49]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:44:38,548 [55]INFO [App][duylinh191@gmail.com] Request Url: /project/update-project.html
+2019-08-16 13:44:39,124 [40]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:39,316 [55]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:44:39,320 [40]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:44:42,458 [55]INFO [App][duylinh191@gmail.com] Request Url: /project/update-project.html
+2019-08-16 13:44:42,580 [42]INFO [App][duylinh191@gmail.com] Request Url: /project/update-success.html
+2019-08-16 13:44:43,085 [55]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:43,206 [42]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:44:43,210 [55]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:44:47,361 [47]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-08-16 13:44:47,737 [47]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,737 [52]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,773 [46]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,780 [46]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,780 [44]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,782 [52]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,783 [61]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,785 [55]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,793 [61]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,793 [35]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,804 [35]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,804 [44]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:44:47,923 [39]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:44:47,923 [34]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:45:06,610 [34]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 13:45:06,812 [36]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:45:07,047 [36]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:45:07,048 [37]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:45:08,528 [40]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-08-16 13:45:10,781 [47]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:45:16,050 [47]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-08-16 13:45:19,708 [40]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 13:45:19,923 [52]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:45:20,136 [52]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:45:20,138 [55]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:45:22,376 [52]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 13:45:22,541 [40]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:45:22,683 [55]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:45:22,683 [40]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:45:26,787 [40]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 13:45:26,835 [40]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 13:45:27,074 [46]ERROR[MoveNext][duylinh191@gmail.com] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AspNetCore.Modules_EzTask_Modules_Task_Views_Shared_Components_TaskList_Default.ExecuteAsync() in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web\Modules\EzTask.Modules.Task\Views\Shared\Components\TaskList\Default.cshtml:line 8
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ExecuteAsync(ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker.InvokeAsync(ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentHelper.InvokeCoreAsync(ViewComponentDescriptor descriptor, Object arguments)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewComponentResultExecutor.ExecuteAsync(ActionContext context, ViewComponentResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-08-16 13:45:28,512 [36]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:45:28,513 [46]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:45:44,678 [36]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 13:45:44,877 [35]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:45:45,072 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:45:45,072 [40]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:45:48,667 [55]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 13:45:48,785 [40]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 13:45:54,077 [36]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-08-16 13:45:54,294 [40]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:45:54,524 [36]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:45:54,524 [47]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:45:55,849 [36]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 13:45:56,048 [35]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:45:56,197 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:45:56,197 [55]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 13:46:08,204 [55]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 13:46:08,291 [47]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 13:48:39,628 [6]INFO [App][] Request Url: /
+2019-08-16 13:48:52,329 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 13:48:53,062 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 13:48:53,062 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 14:26:02,932 [6]INFO [App][] Request Url: /task.html
+2019-08-16 14:26:14,094 [6]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 14:26:14,363 [50]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 14:26:14,376 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 14:26:17,335 [46]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 14:26:17,432 [51]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 14:40:25,721 [11]INFO [App][] Request Url: /
+2019-08-16 14:40:35,860 [9]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 14:40:37,183 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 14:40:37,185 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 14:41:28,792 [12]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 14:41:32,625 [34]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 14:41:32,853 [37]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 14:41:32,854 [34]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 14:41:34,980 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 14:41:35,049 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 14:41:35,192 [37]ERROR[MoveNext][duylinh191@gmail.com] Object reference not set to an instance of an object.
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AspNetCore.Modules_EzTask_Modules_Task_Views_Shared_Components_TaskList_Default.ExecuteAsync() in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web\Modules\EzTask.Modules.Task\Views\Shared\Components\TaskList\Default.cshtml:line 8
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ExecuteAsync(ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker.InvokeAsync(ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentHelper.InvokeCoreAsync(ViewComponentDescriptor descriptor, Object arguments)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewComponentResultExecutor.ExecuteAsync(ActionContext context, ViewComponentResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultAsync(IActionResult result)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResultFilterAsync[TFilter,TFilterAsync]()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeResultFilters()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-08-16 14:41:36,563 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 14:41:36,564 [37]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 14:48:24,683 [13]INFO [App][] Request Url: /
+2019-08-16 14:48:34,314 [9]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 14:48:35,183 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 14:48:35,183 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 14:50:54,965 [35]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 14:50:58,780 [37]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 14:50:59,070 [34]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 14:50:59,071 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 14:51:35,874 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 14:52:02,666 [37]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 14:58:42,381 [6]INFO [App][] Request Url: /task.html
+2019-08-16 14:58:52,598 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 14:58:53,128 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 14:58:53,128 [17]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 14:58:59,157 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 14:59:36,245 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 14:59:36,328 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 14:59:36,460 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-addbutton.html
+2019-08-16 14:59:39,001 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 15:05:10,488 [7]INFO [App][] Request Url: /task.html
+2019-08-16 15:05:20,877 [17]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 15:05:21,275 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 15:05:21,275 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 15:36:11,842 [13]INFO [App][] Request Url: /task.html
+2019-08-16 15:36:21,973 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 15:36:22,234 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 15:36:22,234 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 15:37:48,177 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 15:37:48,233 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 15:37:59,546 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 15:37:59,593 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 15:37:59,669 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-addbutton.html
+2019-08-16 15:38:03,057 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 15:38:03,095 [33]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 15:38:13,962 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-08-16 15:38:14,234 [42]ERROR[ThrowArgumentOutOfRange_IndexException][duylinh191@gmail.com] Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at EzTask.Web.Framework.Data.StaticResources.BuildPhaseSelectList(IEnumerable`1 phases, Int32 selectedId) in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Data\StaticResources.cs:line 119
+   at EzTask.Modules.Task.Controllers.TaskItemController.GenerateTaskView(TaskFormDataModel model)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-08-16 15:38:15,680 [33]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 15:38:15,681 [42]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 15:38:22,971 [42]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 15:38:23,214 [42]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 15:38:23,431 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 15:38:23,432 [42]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 16:08:44,108 [4]INFO [App][] Request Url: /
+2019-08-16 16:09:10,657 [7]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 16:09:11,562 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 16:09:11,562 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 16:09:29,450 [4]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 16:09:34,696 [9]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 16:09:35,208 [5]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 16:09:35,208 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 16:09:37,383 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-08-16 16:09:41,760 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 16:09:41,860 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 16:09:43,612 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-08-16 16:09:50,226 [5]ERROR[ThrowArgumentOutOfRange_IndexException][duylinh191@gmail.com] Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at EzTask.Web.Framework.Data.StaticResources.BuildPhaseSelectList(IEnumerable`1 phases, Int32 selectedId) in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Data\StaticResources.cs:line 119
+   at EzTask.Modules.Task.Controllers.TaskItemController.GenerateTaskView(TaskFormDataModel model)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-08-16 16:10:30,504 [9]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-08-16 16:10:31,608 [5]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-08-16 16:10:32,410 [38]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-08-16 16:10:32,421 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-08-16 16:10:40,058 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-08-16 16:10:40,159 [5]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-08-16 16:10:41,879 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-08-16 16:10:47,265 [5]ERROR[ThrowArgumentOutOfRange_IndexException][duylinh191@gmail.com] Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+System.ArgumentOutOfRangeException: Index was out of range. Must be non-negative and less than the size of the collection.
+Parameter name: index
+   at System.Collections.Generic.List`1.get_Item(Int32 index)
+   at EzTask.Web.Framework.Data.StaticResources.BuildPhaseSelectList(IEnumerable`1 phases, Int32 selectedId) in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Data\StaticResources.cs:line 119
+   at EzTask.Modules.Task.Controllers.TaskItemController.GenerateTaskView(TaskFormDataModel model)
+   at Microsoft.AspNetCore.Mvc.Internal.ActionMethodExecutor.TaskOfIActionResultExecutor.Execute(IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at System.Threading.Tasks.ValueTask`1.get_Result()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeActionMethodAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeNextActionFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.InvokeInnerFilterAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeNextResourceFilter()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeFilterPipelineAsync()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.InvokeAsync()
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Routing.EndpointRoutingMiddleware.Invoke(HttpContext httpContext)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in E:\PersonalProject\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29

@@ -47,9 +47,17 @@ namespace EzTask.Web.Framework.Middlewares
         {
             LogError(ex);
 
-            context.Items["originalPath"] = context.Request.Path.Value;
-            context.Request.Path = "/error.html";
-            await _next(context);
+            if (context.Request.IsAjaxRequest())
+            {
+                context.Response.StatusCode = StatusCodes.Status400BadRequest;
+                await context.Response.WriteAsync(Context.GetStringResource("RequestFailed", StringResourceType.Error));
+            }
+            else
+            {
+                context.Items["originalPath"] = context.Request.Path.Value;
+                context.Request.Path = "/error.html";
+                await _next(context);
+            }
         }
 
         private async Task HandleHttpRequestAsync(HttpContext context)

@@ -45,6 +45,7 @@ namespace EzTask.Business
             };
 
             var account = model.ToEntity();
+
             if (account.Id < 1)
             {
                 account.CreatedDate = DateTime.Now;
@@ -104,7 +105,8 @@ namespace EzTask.Business
         /// Update password
         /// </summary>
         /// <returns></returns>
-        public async Task<ResultModel<AccountModel>> UpdatePassword(string accountName, string password, string newPassword, bool isRecoverMode = false)
+        public async Task<ResultModel<AccountModel>> UpdatePassword(string accountName, string password, 
+            string newPassword, bool isRecoverMode = false)
         {
             ResultModel<AccountModel> result = new ResultModel<AccountModel>
             {
@@ -125,6 +127,7 @@ namespace EzTask.Business
                 if (oldPassword == account.Password)
                 {
                     account.Password = Encrypt.Do(newPassword, account.PasswordHash);
+
                     UnitOfWork.AccountRepository.Update(account);
 
                     int updateRecord = await UnitOfWork.CommitAsync();
@@ -198,8 +201,7 @@ namespace EzTask.Business
         {
             var accountInfo = await UnitOfWork.AccountInfoRepository
                 .Entity.Include(c => c.Account).AsNoTracking()
-                .FirstOrDefaultAsync(c => c.Account.AccountName == accountName
-                             && c.Account.Password == password);
+                .FirstOrDefaultAsync(c => c.Account.AccountName == accountName && c.Account.Password == password);
 
             return accountInfo.ToModel();
         }
@@ -294,6 +296,7 @@ namespace EzTask.Business
                 .Skip(pageSize * page - pageSize)
                 .Take(pageSize)
                 .ToListAsync();
+
             return data.ToModels();
         }
 
