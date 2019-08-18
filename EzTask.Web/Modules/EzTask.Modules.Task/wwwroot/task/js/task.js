@@ -55,11 +55,14 @@ $.fn.loadPhase = function () {
                 var phase = $(".phase-list > li > a").first();
                 var phaseId = phase.attr('data-id');
 
-                if (phaseId !== 0 ) {
+                if (phaseId !== 0 && phaseId !== undefined) {
                     $(this).handleLoadTask(id, phaseId, null, false);
                     if (phase.length > 0) {
                         $(".phase-list > li > a").loadTask();
                     }
+                }
+                else {
+                    $(this).handleLoadTask(id, 0, null, false);
                 }
                 var authorizeAdd = request.getResponseHeader("authorized-add-phase");
 

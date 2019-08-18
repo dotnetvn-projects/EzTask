@@ -16,7 +16,7 @@ $.fn.showAddNewModal = function () {
     $(this).click(function () {
         var projectId = $('.project-list').val();
         var phaseId = $("#phase-id").val();
-       /* if (projectId > 0 && phaseId > 0)*/ {
+        if (projectId > 0 && phaseId > 0) {
             $.showLoading();
             $.ajax({
                 url: 'taskitem/generate-view.html',

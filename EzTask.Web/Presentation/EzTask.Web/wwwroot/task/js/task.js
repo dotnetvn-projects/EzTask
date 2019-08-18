@@ -55,11 +55,14 @@ $.fn.loadPhase = function () {
                 var phase = $(".phase-list > li > a").first();
                 var phaseId = phase.attr('data-id');
 
-                if (phaseId !== 0 ) {
+                if (phaseId !== 0 && phaseId !== undefined) {
                     $(this).handleLoadTask(id, phaseId, null, false);
                     if (phase.length > 0) {
                         $(".phase-list > li > a").loadTask();
                     }
+                }
+                else {
+                    $(this).handleLoadTask(id, 0, null, false);
                 }
                 var authorizeAdd = request.getResponseHeader("authorized-add-phase");
 
@@ -203,6 +206,12 @@ $.fn.assignTask = function () {
                                         data: { taskids: ids, accountId: accountid },
                                         success: function (data) {
                                             $(this).handleLoadTask(projectId, phaseId);
+                                        },
+                                        error: function (xhr, ajaxOptions, thrownError) {
+                                            $.alertDialog({
+                                                title: $('#error-title').val(),
+                                                content: xhr.responseText
+                                            });
                                         }
                                     }).promise().done(function () {
                                         $.closeDialog('assign-task-modal');
