@@ -460,7 +460,6 @@ namespace EzTask.Business
             ResultModel<AttachmentModel> result = new ResultModel<AttachmentModel>();
 
             Attachment entity = model.ToEntity();
-            byte[] file = model.FileData;
 
             if (entity.Id <= 0)
             {
