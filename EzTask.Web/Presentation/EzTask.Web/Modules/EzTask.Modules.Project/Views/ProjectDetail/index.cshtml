@@ -142,7 +142,9 @@
                                     var percent = task.PercentCompleted + "%";
                                 <tr role="row" class="@seperateClass">
                                     <td class="text-center">@(index + 1)</td>
-                                    <td style="word-break: break-word;">@task.TaskTitle</td>
+                                    <td style="word-break: break-word;">
+                                        <a target="_blank" href="/task.html?code=@task.TaskCode">@task.TaskTitle</a> 
+                                    </td>
 
                                     <td class="text-center">@task.Assignee.DisplayName</td>
                                     <td class="text-center">

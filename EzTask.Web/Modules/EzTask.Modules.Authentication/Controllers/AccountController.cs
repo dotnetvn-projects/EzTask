@@ -113,9 +113,7 @@ namespace EzTask.Modules.Authentication.Controllers
         [HttpPost]
         [Route("register.html")]
         public async Task<IActionResult> Register(RegisterViewModel viewModel)
-        {
-            ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.AuthenticationPage);
-
+        {           
             if (viewModel.Password != viewModel.PasswordTemp)
             {
                 ErrorMessage = Context.GetStringResource("ConfirmPasswordNotMatch", StringResourceType.AuthenticationPage);
@@ -140,6 +138,10 @@ namespace EzTask.Modules.Authentication.Controllers
                         if (account != null)
                         {
                             return RedirectToAction("Login", "Account");
+                        }
+                        else
+                        {
+                            ErrorMessage = Context.GetStringResource("CreateAccountFailed", StringResourceType.AuthenticationPage);
                         }
                     }
                     else

@@ -13,14 +13,12 @@ namespace EzTask.Business
     public class NotificationBusiness : BusinessCore
     {
         private readonly ProjectBusiness _project;
-        private readonly AccountBusiness _account;
         private readonly TaskBusiness _task;
 
         public NotificationBusiness(UnitOfWork unitOfWork,
-            ProjectBusiness project, AccountBusiness account, TaskBusiness task) : base(unitOfWork)
+            ProjectBusiness project, TaskBusiness task) : base(unitOfWork)
         {
             _project = project;
-            _account = account;
             _task = task;
         }
 

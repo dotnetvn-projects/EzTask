@@ -1,6 +1,6 @@
 ﻿@model PageListModel
 
-@if (Model.Pages != null && Model.Pages.Any())
+@if (Model != null && Model.Pages !=null && Model.Pages.Any())
 {
 <ul class="pagination @Model.Css">
     @if (Model.CurrentPage != 1)

@@ -28,7 +28,7 @@
                 <div class="box-body no-padding">
                     <div class="project-box">
                         <select asp-items="@Model.ProjectItems" class="form-control select2 project-list"></select>
-                        @if (Model.Project.Owner.AccountId == User.Identity.AccountId())
+                        @if (Model.Project != null && Model.Project.Owner != null && Model.Project.Owner.AccountId == User.Identity.AccountId())
                         {
                             <a data-toggle="modal" class="btn btn-block btn-addnew-phase">
                                 <i class="fa fa-plus"></i> @Html.GetStringResource("AddNewPhase", StringResourceType.TaskPage)
@@ -39,14 +39,14 @@
             </div>
         </div>
         <div class="box box-solid phase-list-panel">
-            @await Component.InvokeAsync("PhaseList", new { projectId = Model.Project.ProjectId })
+            @await Component.InvokeAsync("PhaseList", new { projectId = Model.Project?.ProjectId })
         </div>
         <div class="box box-solid collapsed-box">
             <partial name="_TaskLabels" />
         </div>
     </div>
     <div class="col-md-9 task-list-panel">
-        @await Component.InvokeAsync("TaskList", new { projectId = Model.Project.ProjectId, phaseId = Model.Phase.Id })
+        @await Component.InvokeAsync("TaskList", new { projectId = Model.Project?.ProjectId, phaseId = Model.Phase?.Id })
     </div>
 </div>
 
