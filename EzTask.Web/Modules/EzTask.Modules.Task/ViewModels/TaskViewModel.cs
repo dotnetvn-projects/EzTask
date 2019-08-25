@@ -9,7 +9,7 @@ namespace EzTask.Modules.Task.ViewModels
     {
         public ProjectModel Project { get; set; }
         public List<SelectListItem> ProjectItems { get; set; }
-        public IEnumerable<TaskItemModel> TaskList { get; set; }
+        public IList<TaskItemModel> TaskList { get; set; }
         public PhaseModel Phase { get; set; }
 
         public TaskViewModel()

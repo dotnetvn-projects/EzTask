@@ -156,9 +156,6 @@ namespace EzTask.Modules.Authentication.Controllers
 
         #endregion
 
-        #region Login use social network
-        #endregion
-
         [Route("logout.html")]
         public IActionResult LogOff()
         {

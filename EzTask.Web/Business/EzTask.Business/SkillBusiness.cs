@@ -105,6 +105,7 @@ namespace EzTask.Business
                 .Include(c => c.Skill)
                 .Where(c => c.AccountId == accountId)
                 .Select(c=>c.Skill.SkillName)
+                .AsNoTracking()
                 .ToListAsync();
 
             if(data.Any())
@@ -117,7 +118,9 @@ namespace EzTask.Business
         #region Private
         private async Task DeleteAccountSkill(int accountId)
         {
-            var skills = await UnitOfWork.AccountSkillRepository.GetManyAsync(c => c.AccountId == accountId);
+            var skills = await UnitOfWork
+                .AccountSkillRepository
+                .GetManyAsync(c => c.AccountId == accountId, allowTracking: false);
 
             if(skills.Any())
             {

@@ -19,9 +19,9 @@ namespace EzTask.Model
             return ModelRegister.Mapper.Map<AccountModel>(entity);
         }
 
-        public static IEnumerable<AccountModel> ToModels(this IEnumerable<Account> entity)
+        public static IList<AccountModel> ToModels(this IList<Account> entity)
         {
-            return ModelRegister.Mapper.Map<IEnumerable<AccountModel>>(entity);
+            return ModelRegister.Mapper.Map<IList<AccountModel>>(entity);
         }
 
         public static AccountInfoModel ToModel(this AccountInfo entity)
@@ -58,9 +58,9 @@ namespace EzTask.Model
             return ModelRegister.Mapper.Map<Project>(model);
         }
 
-        public static IEnumerable<ProjectModel> ToModels(this IEnumerable<Project> entity)
+        public static IList<ProjectModel> ToModels(this IList<Project> entity)
         {
-            var data = ModelRegister.Mapper.Map<IEnumerable<ProjectModel>>(entity);
+            var data = ModelRegister.Mapper.Map<IList<ProjectModel>>(entity);
             if (data == null)
                 return data;
 
@@ -106,9 +106,9 @@ namespace EzTask.Model
             return ModelRegister.Mapper.Map<Phase>(model);
         }
 
-        public static IEnumerable<PhaseModel> ToModels(this IEnumerable<Phase> entity)
+        public static IList<PhaseModel> ToModels(this IList<Phase> entity)
         {
-            return ModelRegister.Mapper.Map<IEnumerable<PhaseModel>>(entity);
+            return ModelRegister.Mapper.Map<IList<PhaseModel>>(entity);
         }
         #endregion
 
@@ -123,9 +123,9 @@ namespace EzTask.Model
             return ModelRegister.Mapper.Map<TaskItem>(model);
         }
 
-        public static IEnumerable<TaskItemModel> ToModels(this IEnumerable<TaskItem> entity)
+        public static IList<TaskItemModel> ToModels(this IList<TaskItem> entity)
         {
-            return ModelRegister.Mapper.Map<IEnumerable<TaskItemModel>>(entity);
+            return ModelRegister.Mapper.Map<IList<TaskItemModel>>(entity);
         }
 
         public static Attachment ToEntity(this AttachmentModel model)
@@ -138,9 +138,9 @@ namespace EzTask.Model
             return ModelRegister.Mapper.Map<AttachmentModel>(entity);
         }
 
-        public static IEnumerable<AttachmentModel> ToModels(this IEnumerable<Attachment> entity)
+        public static IList<AttachmentModel> ToModels(this IList<Attachment> entity)
         {
-            return ModelRegister.Mapper.Map<IEnumerable<AttachmentModel>>(entity);
+            return ModelRegister.Mapper.Map<IList<AttachmentModel>>(entity);
         }
 
         public static TaskHistory ToEntity(this TaskHistoryModel model)
@@ -153,9 +153,9 @@ namespace EzTask.Model
             return ModelRegister.Mapper.Map<TaskHistoryModel>(entity);
         }
 
-        public static IEnumerable<TaskHistoryModel> ToModels(this IEnumerable<TaskHistory> entity)
+        public static IList<TaskHistoryModel> ToModels(this IList<TaskHistory> entity)
         {
-            return ModelRegister.Mapper.Map<IEnumerable<TaskHistoryModel>>(entity);
+            return ModelRegister.Mapper.Map<IList<TaskHistoryModel>>(entity);
         }
         #endregion
 
@@ -170,9 +170,9 @@ namespace EzTask.Model
             return ModelRegister.Mapper.Map<NotificationModel>(entity);
         }
 
-        public static IEnumerable<NotificationModel> ToModels(this IEnumerable<Notification> entity)
+        public static IList<NotificationModel> ToModels(this IList<Notification> entity)
         {
-            return ModelRegister.Mapper.Map<IEnumerable<NotificationModel>>(entity);
+            return ModelRegister.Mapper.Map<IList<NotificationModel>>(entity);
         }
         #endregion
 
@@ -187,9 +187,9 @@ namespace EzTask.Model
             return ModelRegister.Mapper.Map<ToDoItemModel>(entity);
         }
 
-        public static IEnumerable<ToDoItemModel> ToModels(this IEnumerable<ToDoItem> entity)
+        public static IList<ToDoItemModel> ToModels(this IList<ToDoItem> entity)
         {
-            return ModelRegister.Mapper.Map<IEnumerable<ToDoItemModel>>(entity);
+            return ModelRegister.Mapper.Map<IList<ToDoItemModel>>(entity);
         }
         #endregion
     }

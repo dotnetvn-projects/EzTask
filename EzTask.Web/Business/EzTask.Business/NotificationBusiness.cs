@@ -155,6 +155,7 @@ namespace EzTask.Business
             var entity = model.ToEntity();
             entity.CreatedDate = model.CreatedDate = DateTime.Now;
             entity.Account = null;
+
             UnitOfWork.NotifyRepository.Add(entity);
 
             var iresult = await UnitOfWork.CommitAsync();
@@ -214,18 +215,22 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ResultModel<IEnumerable<NotificationModel>>> NewNotificationList(int accountId)
+        public async Task<ResultModel<IList<NotificationModel>>> NewNotificationList(int accountId)
         {
-            ResultModel<IEnumerable<NotificationModel>> result = new ResultModel<IEnumerable<NotificationModel>>
+            ResultModel<IList<NotificationModel>> result = new ResultModel<IList<NotificationModel>>
             {
                 Data = new List<NotificationModel>()
             };
 
-            var data = await UnitOfWork.NotifyRepository.Entity.Include(c => c.Account)
+            var data = await UnitOfWork
+                .NotifyRepository
+                .Entity
+                .Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
                 .Where(c => c.AccountId == accountId 
                          && c.HasViewed == false)
                 .OrderByDescending(c => c.CreatedDate)
+                .AsNoTracking()
                 .ToListAsync();
 
             if (data.Any())
@@ -241,10 +246,10 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        public async Task<ResultModel<IEnumerable<IGrouping<DateTime, NotificationModel>>>> GetNotificationList(int accountId)
+        public async Task<ResultModel<IList<IGrouping<DateTime, NotificationModel>>>> GetNotificationList(int accountId)
         {
-            ResultModel<IEnumerable<IGrouping<DateTime, NotificationModel>>> result =
-                                new ResultModel<IEnumerable<IGrouping<DateTime, NotificationModel>>> {
+            ResultModel<IList<IGrouping<DateTime, NotificationModel>>> result =
+                                new ResultModel<IList<IGrouping<DateTime, NotificationModel>>> {
                     Data = new List<IGrouping<DateTime, NotificationModel>>()
              };
 
@@ -252,11 +257,12 @@ namespace EzTask.Business
                 .ThenInclude(c => c.AccountInfo)
                 .Where(c => c.AccountId == accountId)
                 .OrderByDescending(c=>c.CreatedDate)
+                .AsNoTracking()
                 .ToListAsync();
 
             if (data.Any())
             {
-                result.Data = data.ToModels().GroupBy(t=>t.CreatedDate.Date);
+                result.Data = data.ToModels().GroupBy(t=>t.CreatedDate.Date).ToList();
                 result.Status = ActionStatus.Ok;
             }
             return result;

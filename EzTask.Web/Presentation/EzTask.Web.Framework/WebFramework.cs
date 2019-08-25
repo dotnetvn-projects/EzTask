@@ -29,8 +29,6 @@ namespace EzTask.Web.Framework
             BusinessRegister.Register(services);
             MessageServiceRegister.Register(services, configuration);
             LoggerRegister.Register(services);
-
-           // env.RunWebBuilder();
            
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<StaticResources>();

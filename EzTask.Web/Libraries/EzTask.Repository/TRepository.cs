@@ -88,16 +88,30 @@ namespace EzTask.Repository
         /// <returns></returns>
         public T Get(Expression<Func<T, bool>> predicate, bool allowTracking = true)
         {
-            return Entity.FirstOrDefault(predicate);
+            if (allowTracking)
+            {
+                return Entity.FirstOrDefault(predicate);
+            }
+            else
+            {
+                return Entity.AsNoTracking().FirstOrDefault(predicate);
+            }
         }
 
         /// <summary>
         /// Get list of entities
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<T> GetAll(bool allowTracking = true)
+        public IList<T> GetAll(bool allowTracking = true)
         {
-            return Entity.AsEnumerable();
+            if (allowTracking)
+            {
+                return Entity.ToList();
+            }
+            else
+            {
+                return Entity.AsNoTracking().ToList();
+            }
         }
 
         /// <summary>
@@ -105,9 +119,16 @@ namespace EzTask.Repository
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public IEnumerable<T> GetMany(Expression<Func<T, bool>> predicate, bool allowTracking = true)
+        public IList<T> GetMany(Expression<Func<T, bool>> predicate, bool allowTracking = true)
         {
-            return Entity.Where(predicate).AsEnumerable();
+            if (allowTracking)
+            {
+                return Entity.Where(predicate).ToList();
+            }
+            else
+            {
+                return Entity.Where(predicate).AsNoTracking().ToList();
+            }
         }
 
         /// <summary>
@@ -118,24 +139,27 @@ namespace EzTask.Repository
         /// <param name="pageSize"></param>
         /// <param name="allowTracking"></param>
         /// <returns></returns>
-        public IEnumerable<T> GetPaging(Expression<Func<T, bool>> predicate,
+        public IList<T> GetPaging(Expression<Func<T, bool>> predicate,
            Func<T, Object> orderBy, OrderType orderType, int page, int pageSize, bool allowTracking = true)
         {
             if (allowTracking)
             {
                 if (orderType == OrderType.ASC)
                 {
-                    return Entity.Where(predicate).OrderBy(orderBy).Skip((page - 1) * pageSize).Take(pageSize).AsEnumerable();
+                    return Entity.Where(predicate).OrderBy(orderBy).Skip((page - 1) * pageSize).Take(pageSize).ToList();
                 }
 
-                return Entity.Where(predicate).OrderByDescending(orderBy).Skip((page - 1) * pageSize).Take(pageSize).AsEnumerable();
+                return Entity.Where(predicate).OrderByDescending(orderBy).Skip((page - 1) * pageSize).Take(pageSize).ToList();
             }
-            if (orderType == OrderType.ASC)
+            else
             {
-                return Entity.AsNoTracking().Where(predicate).OrderBy(orderBy).Skip((page - 1) * pageSize).Take(pageSize).AsEnumerable();
-            }
+                if (orderType == OrderType.ASC)
+                {
+                    return Entity.Where(predicate).AsNoTracking().OrderBy(orderBy).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+                }
 
-            return Entity.AsNoTracking().Where(predicate).OrderByDescending(orderBy).Skip((page - 1) * pageSize).Take(pageSize).AsEnumerable();
+                return Entity.Where(predicate).AsNoTracking().OrderByDescending(orderBy).Skip((page - 1) * pageSize).Take(pageSize).ToList();
+            }
         }
 
         /// <summary>
@@ -143,11 +167,9 @@ namespace EzTask.Repository
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public int Count(Expression<Func<T, bool>> predicate,
-            bool allowTracking = true)
+        public int Count(Expression<Func<T, bool>> predicate)
         {
-            var data = Entity.Count(predicate);
-            return data;
+            return Entity.Count(predicate);
         }
 
         /// <summary>
@@ -165,24 +187,28 @@ namespace EzTask.Repository
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public IEnumerable<T> FromSqlQuery(string sql, bool allowTracking = true)
+        public IList<T> FromSqlQuery(string sql, bool allowTracking = true)
         {
             if (allowTracking)
             {
-                return Entity.FromSql(sql).AsEnumerable();
+                return Entity.FromSql(sql).ToList();
             }
 
-            return Entity.AsNoTracking().FromSql(sql).AsEnumerable();
+            return Entity.AsNoTracking().FromSql(sql).ToList();
         }
 
         /// <summary>
         /// Get all entities async
         /// </summary>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> GetAllAsync(bool allowTracking = true)
+        public async Task<IList<T>> GetAllAsync(bool allowTracking = true)
         {
-            var data = await Entity.ToListAsync();
-            return data;
+            if (allowTracking)
+            {
+                return await Entity.ToListAsync();
+            }
+
+            return await Entity.AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -190,11 +216,14 @@ namespace EzTask.Repository
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> predicate,
+        public async Task<IList<T>> GetManyAsync(Expression<Func<T, bool>> predicate,
             bool allowTracking = true)
         {
-            var data = await Entity.Where(predicate).ToListAsync();
-            return data;
+            if(allowTracking)
+            {
+                return await Entity.Where(predicate).ToListAsync();
+            }
+            return await Entity.Where(predicate).AsNoTracking().ToListAsync();
         }
 
         /// <summary>
@@ -202,11 +231,9 @@ namespace EzTask.Repository
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        public async Task<int> CountAsync(Expression<Func<T, bool>> predicate,
-            bool allowTracking = true)
+        public async Task<int> CountAsync(Expression<Func<T, bool>> predicate)
         {
-            var data = await Entity.CountAsync(predicate);
-            return data;
+            return await Entity.CountAsync(predicate);
         }
 
         /// <summary>
@@ -216,10 +243,16 @@ namespace EzTask.Repository
         /// <returns></returns>
         public async Task<T> GetByIdAsync(int id, bool allowTracking = true)
         {
-            var data = await Entity.FirstOrDefaultAsync(c =>
-            ((int)c.GetType().GetProperty("Id").GetValue(c) == id));
-
-            return data;
+            if (allowTracking)
+            {
+                return await Entity.FirstOrDefaultAsync(c =>
+                 ((int)c.GetType().GetProperty("Id").GetValue(c) == id));
+            }
+            else
+            {
+                return await Entity.AsNoTracking().FirstOrDefaultAsync(c =>
+                 ((int)c.GetType().GetProperty("Id").GetValue(c) == id));
+            }
         }
 
         /// <summary>
@@ -247,9 +280,9 @@ namespace EzTask.Repository
         /// </summary>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<T>> FromSqlQueryAsync(string sql, bool allowTracking = true)
+        public async Task<IList<T>> FromSqlQueryAsync(string sql, bool allowTracking = true)
         {
-            IEnumerable<T> data;
+            IList<T> data;
 
             if (allowTracking)
             {

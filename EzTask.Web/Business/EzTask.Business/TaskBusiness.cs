@@ -48,7 +48,9 @@ namespace EzTask.Business
             ResultModel<string> result = new ResultModel<string>();
             string code = await UnitOfWork.TaskRepository.Entity
                          .AsNoTracking().Where(c => c.Id == id)
-                         .Select(c => c.TaskCode).FirstOrDefaultAsync();
+                         .Select(c => c.TaskCode)
+                         .AsNoTracking()
+                         .FirstOrDefaultAsync();
 
             result.Data = code;
             return result;
@@ -67,6 +69,7 @@ namespace EzTask.Business
                 .Entity
                 .Include(x => x.Project)
                 .Include(x => x.Phase)
+                .AsNoTracking()
                 .FirstOrDefaultAsync(c => c.TaskCode == code);
 
             if (data != null)
@@ -158,8 +161,10 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountTaskByProjectIdList(List<int> projectIds)
         {
-            int totalTask = await UnitOfWork.TaskRepository.Entity
-                                  .CountAsync(c => projectIds.Contains(c.ProjectId));
+            int totalTask = await UnitOfWork
+                .TaskRepository
+                .Entity
+                .CountAsync(c => projectIds.Contains(c.ProjectId));
             return totalTask;
         }
 
@@ -170,8 +175,10 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountTaskByMember(int memberId, int projectId)
         {
-            int totalTask = await UnitOfWork.TaskRepository.Entity
-                                 .CountAsync(c => c.MemberId == memberId && c.ProjectId == projectId);
+            int totalTask = await UnitOfWork
+                .TaskRepository
+                .Entity
+                .CountAsync(c => c.MemberId == memberId && c.ProjectId == projectId);
             return totalTask;
         }
 
@@ -188,7 +195,8 @@ namespace EzTask.Business
             };
 
             IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository
-                .GetManyAsync(c => ids.Contains(c.Id) && c.MemberId == _accountContext.AccountId);
+                .GetManyAsync(c => ids.Contains(c.Id) 
+                    && c.MemberId == _accountContext.AccountId, allowTracking: false);
 
             await DeleteTasks(result, data);
             
@@ -208,9 +216,11 @@ namespace EzTask.Business
             };
 
             IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository
-                .GetManyAsync(c => c.ProjectId == projectId && c.MemberId == _accountContext.AccountId);
+                .GetManyAsync(c => c.ProjectId == projectId 
+                                && c.MemberId == _accountContext.AccountId, allowTracking: false);
 
             await DeleteTasks(result, data);
+
             return result;
         }
 
@@ -228,7 +238,7 @@ namespace EzTask.Business
 
             IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository
                  .GetManyAsync(c => c.ProjectId == projectId && c.PhaseId == phaseId 
-                                        && c.MemberId == _accountContext.AccountId);
+                                        && c.MemberId == _accountContext.AccountId, allowTracking: false);
 
             await DeleteTasks(result, data);
             return result;
@@ -240,12 +250,11 @@ namespace EzTask.Business
         /// <param name="userId"></param>
         /// <param name="top"></param>
         /// <returns></returns>
-        public async Task<ResultModel<IEnumerable<TaskItemModel>>> GetTasksByAssigneeId(int assigneeId, int top = 10)
+        public async Task<ResultModel<IList<TaskItemModel>>> GetTasksByAssigneeId(int assigneeId, int top = 10)
         {
-            ResultModel<IEnumerable<TaskItemModel>> iResult = new ResultModel<IEnumerable<TaskItemModel>>();
+            ResultModel<IList<TaskItemModel>> iResult = new ResultModel<IList<TaskItemModel>>();
             List<TaskItem> data = await UnitOfWork.TaskRepository.Entity
                        .Include(c => c.Assignee)
-                       .AsNoTracking()
                        .Where(c => c.AssigneeId == assigneeId
                                 && c.Status != (short)TaskItemStatus.Closed
                                 && c.Status != (short)TaskItemStatus.Failed)
@@ -268,7 +277,7 @@ namespace EzTask.Business
                                        x.Assignee.AccountInfo.DisplayName : "Non Assigned"
                                }
                            }
-                       }).ToListAsync();
+                       }).AsNoTracking().ToListAsync();
 
             iResult.Data = data.ToModels();
 
@@ -281,14 +290,13 @@ namespace EzTask.Business
         /// <param name="userId"></param>
         /// <param name="top"></param>
         /// <returns></returns>
-        public async Task<ResultModel<IEnumerable<TaskItemModel>>> GetTasksByMemberId(int menberId)
+        public async Task<ResultModel<IList<TaskItemModel>>> GetTasksByMemberId(int menberId)
         {
-            ResultModel<IEnumerable<TaskItemModel>> iResult = new ResultModel<IEnumerable<TaskItemModel>>();
+            ResultModel<IList<TaskItemModel>> iResult = new ResultModel<IList<TaskItemModel>>();
             List<TaskItem> data = await UnitOfWork.TaskRepository.Entity
                        .Include(c => c.Member)
                             .ThenInclude(c => c.AccountInfo)
                        .Include(c => c.Project)
-                       .AsNoTracking()
                        .Where(c => c.AssigneeId == menberId)
                        .OrderByDescending(c => c.UpdatedDate)
                        .OrderBy(c => c.PercentCompleted)
@@ -316,7 +324,7 @@ namespace EzTask.Business
                            {
                                PhaseName = x.Phase.PhaseName
                            }
-                       }).ToListAsync();
+                       }).AsNoTracking().ToListAsync();
 
             iResult.Data = data.ToModels();
 
@@ -329,7 +337,7 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TaskItemModel>> GetTasks(int projectId,
+        public async Task<IList<TaskItemModel>> GetTasks(int projectId,
             int phaseId,
             int page = 1,
             int pageSize = 9999)
@@ -340,7 +348,6 @@ namespace EzTask.Business
                         .Include(c => c.Member)
                         .Include(c => c.Assignee)
                         .Include(c => c.Phase)
-                        .AsNoTracking()
                         .Where(c => c.ProjectId == projectId && c.PhaseId == phaseId)
                         .Skip(pageSize * page - pageSize).Take(pageSize)
                         .Select(x => new TaskItem
@@ -384,9 +391,9 @@ namespace EzTask.Business
                                         x.Assignee.AccountInfo.DisplayName : "Non Assigned"
                                 }
                             }
-                        }).ToListAsync();
+                        }).AsNoTracking().ToListAsync();
 
-            IEnumerable<TaskItemModel> model = data.ToModels();
+            IList<TaskItemModel> model = data.ToModels();
 
             return model;
         }
@@ -398,7 +405,9 @@ namespace EzTask.Business
         /// <param name="accountId"></param>
         public async Task AssignTask(int[] taskids, int accountId)
         {
-            IEnumerable<TaskItem> tasks = await UnitOfWork.TaskRepository.GetManyAsync(c => taskids.Contains(c.Id), false);
+            IList<TaskItem> tasks = await UnitOfWork.TaskRepository
+                .GetManyAsync(c => taskids.Contains(c.Id), false);
+
             foreach (TaskItem task in tasks)
             {
                 task.AssigneeId = accountId == 0 ? null : (int?)accountId;
@@ -417,10 +426,13 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<AttachmentModel>> GetAttachments(int taskId)
+        public async Task<IList<AttachmentModel>> GetAttachments(int taskId)
         {
-            List<Attachment> iResult = await UnitOfWork.AttachRepository.Entity.Include(c => c.Task).
-                Include(c => c.User).ThenInclude(c => c.AccountInfo)
+            List<Attachment> iResult = await UnitOfWork
+                .AttachRepository
+                .Entity
+                .Include(c => c.Task)
+                .Include(c => c.User).ThenInclude(c => c.AccountInfo)
                 .Where(c => c.TaskId == taskId)
                 .OrderByDescending(c => c.AddedDate).AsNoTracking().ToListAsync();
 
@@ -434,7 +446,8 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<AttachmentModel> GetAttachment(int id)
         {
-            Attachment iResult = await UnitOfWork.AttachRepository.GetByIdAsync(id, allowTracking: false);
+            Attachment iResult = await UnitOfWork
+                .AttachRepository.GetByIdAsync(id, allowTracking: false);
 
             return iResult.ToModel();
         }
@@ -446,6 +459,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task DeleteAttachment(int id)
         {
+            //TOdo check authen userId
             UnitOfWork.AttachRepository.Delete(id);
             await UnitOfWork.CommitAsync();
         }
@@ -548,7 +562,7 @@ namespace EzTask.Business
         /// <param name="taskId"></param>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<TaskHistoryModel>> GetHistoryList(int taskId, int accountId)
+        public async Task<IList<TaskHistoryModel>> GetHistoryList(int taskId, int accountId)
         {
             List<TaskHistory> iResult = await UnitOfWork.TaskHistoryRepository.Entity
                 .Include(c => c.Task).Include(c => c.User).ThenInclude(c => c.AccountInfo)
@@ -660,13 +674,17 @@ namespace EzTask.Business
             {
                 foreach (TaskItem task in data)
                 {
-                    IEnumerable<TaskHistory> history = UnitOfWork.TaskHistoryRepository.GetMany(c => c.TaskId == task.Id);
+                    IList<TaskHistory> history = UnitOfWork
+                        .TaskHistoryRepository.GetMany(c => c.TaskId == task.Id, allowTracking: false);
+
                     if (history.Any())
                     {
                         UnitOfWork.TaskHistoryRepository.DeleteRange(history);
                     }
 
-                    IEnumerable<Attachment> attachment = UnitOfWork.AttachRepository.GetMany(c => c.TaskId == task.Id);
+                    IList<Attachment> attachment = UnitOfWork
+                        .AttachRepository.GetMany(c => c.TaskId == task.Id, allowTracking: false);
+
                     if (attachment.Any())
                     {
                         UnitOfWork.AttachRepository.DeleteRange(attachment);
@@ -674,6 +692,7 @@ namespace EzTask.Business
                 }
 
                 UnitOfWork.TaskRepository.DeleteRange(data);
+
                 int iResult = await UnitOfWork.CommitAsync();
 
                 if (iResult > 0)

@@ -88,11 +88,12 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<PhaseModel>> GetPhases(int projectId)
+        public async Task<IList<PhaseModel>> GetPhases(int projectId)
         {
-            IEnumerable<Phase> data = await UnitOfWork.
+            IList<Phase> data = await UnitOfWork.
                 PhaseRepository.GetManyAsync(c => c.ProjectId == projectId, allowTracking: false);
-            IEnumerable<PhaseModel> model = data.ToModels();
+
+            IList<PhaseModel> model = data.ToModels();
 
             return model;
         }
@@ -117,7 +118,9 @@ namespace EzTask.Business
         /// <returns></returns>
         public bool IsDefault(int phaseId)
         {
-            Phase data = UnitOfWork.PhaseRepository.Get(c => c.Id == phaseId && c.IsDefault);
+            Phase data = UnitOfWork
+                .PhaseRepository
+                .Get(c => c.Id == phaseId && c.IsDefault, allowTracking: false);
 
             return data != null;
         }

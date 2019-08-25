@@ -93,7 +93,7 @@ namespace EzTask.Web.Framework.Data
         /// </summary>
         /// <param name="phases"></param>
         /// <returns></returns>
-        public static List<SelectListItem> BuildPhaseSelectList(IEnumerable<PhaseModel> phases,
+        public static List<SelectListItem> BuildPhaseSelectList(IList<PhaseModel> phases,
             int selectedId = 0)
         {
             List<SelectListItem> phaseItems = new List<SelectListItem>();
@@ -126,7 +126,7 @@ namespace EzTask.Web.Framework.Data
         /// </summary>
         /// <param name="assignees"></param>
         /// <returns></returns>
-        public static List<SelectListItem> BuildAssigneeSelectList(IEnumerable<ProjectMemberModel> assignees,
+        public static List<SelectListItem> BuildAssigneeSelectList(IList<ProjectMemberModel> assignees,
             int selectedId = 0)
         {
             List<SelectListItem> assigneeItems = new List<SelectListItem>

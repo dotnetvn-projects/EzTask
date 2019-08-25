@@ -108,7 +108,8 @@ namespace EzTask.Business
         {
             ResultModel<bool> result = new ResultModel<bool>();
 
-            var dataRange = await UnitOfWork.TodoItemRepository.GetManyAsync(c => ids.Contains(c.Id));
+            var dataRange = await UnitOfWork
+                .TodoItemRepository.GetManyAsync(c => ids.Contains(c.Id), false);
 
             if (dataRange.Any())
             {

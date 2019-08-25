@@ -18,21 +18,21 @@ namespace EzTask.Interface
         /// Get all entities
         /// </summary>
         /// <returns></returns>
-        IEnumerable<T> GetAll(bool allowTracking = true);
+        IList<T> GetAll(bool allowTracking = true);
 
         /// <summary>
         /// Get entities by lambda expression
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        IEnumerable<T> GetMany(Expression<Func<T, bool>> predicate, bool allowTracking = true);
+        IList<T> GetMany(Expression<Func<T, bool>> predicate, bool allowTracking = true);
 
         /// <summary>
         /// Get entities lambda expression
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        IEnumerable<T> GetPaging(Expression<Func<T, bool>> predicate,
+        IList<T> GetPaging(Expression<Func<T, bool>> predicate,
           Func<T, Object> orderBy, OrderType orderType, int page, int pageSize, bool allowTracking = true);
 
         /// <summary>
@@ -40,7 +40,7 @@ namespace EzTask.Interface
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        int Count(Expression<Func<T, bool>> predicate, bool allowTracking = true);
+        int Count(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Get entity by id
@@ -61,7 +61,7 @@ namespace EzTask.Interface
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        IEnumerable<T> FromSqlQuery(string sql, bool allowTracking = true);
+        IList<T> FromSqlQuery(string sql, bool allowTracking = true);
 
         /// <summary>
         /// Add new antity
@@ -100,21 +100,21 @@ namespace EzTask.Interface
         /// Get all entities async
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<T>> GetAllAsync(bool allowTracking = true);
+        Task<IList<T>> GetAllAsync(bool allowTracking = true);
 
         /// <summary>
         /// Get entities lambda expression async
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        Task<IEnumerable<T>> GetManyAsync(Expression<Func<T, bool>> predicate, bool allowTracking = true);
+        Task<IList<T>> GetManyAsync(Expression<Func<T, bool>> predicate, bool allowTracking = true);
 
         /// <summary>
         /// Count entities by lambda expression async
         /// </summary>
         /// <param name="predicate"></param>
         /// <returns></returns>
-        Task<int> CountAsync(Expression<Func<T, bool>> predicate, bool allowTracking = true);
+        Task<int> CountAsync(Expression<Func<T, bool>> predicate);
 
         /// <summary>
         /// Get entity by id async
@@ -135,7 +135,7 @@ namespace EzTask.Interface
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>
-        Task<IEnumerable<T>> FromSqlQueryAsync(string sql, bool allowTracking = true);
+        Task<IList<T>> FromSqlQueryAsync(string sql, bool allowTracking = true);
 
         #endregion
 

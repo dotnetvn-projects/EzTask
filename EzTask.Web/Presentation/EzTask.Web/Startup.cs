@@ -47,7 +47,7 @@ namespace EzTask.Web
             app.UseSession();
             app.UseStaticFiles();
             app.ConfigureFramework();
-            app.UseExceptionMiddleware();
+            app.UseHttpProcessMiddleware();
             app.UseMvc(routes =>
             {
                 routes.MapRoute(

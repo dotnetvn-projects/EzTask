@@ -25,9 +25,9 @@ namespace EzTask.Modules.Project.ViewComponents
             return View(data);
         }
 
-        private async Task<IEnumerable<List<ProjectViewModel>>> GetProjectList()
+        private async Task<IList<List<ProjectViewModel>>> GetProjectList()
         {
-            IEnumerable<List<ProjectViewModel>> models = new List<List<ProjectViewModel>>();
+            IList<List<ProjectViewModel>> models = new List<List<ProjectViewModel>>();
             var data = await _ezTask.Project.GetProjects(Context.CurrentAccount.AccountId);
             if (data == null)
             {
@@ -52,7 +52,7 @@ namespace EzTask.Modules.Project.ViewComponents
                 viewModels.Add(vm);
             }
 
-            models = viewModels.ToList().SplitList(3);
+            models = viewModels.SplitList(3).ToList();
 
             return models;
         }

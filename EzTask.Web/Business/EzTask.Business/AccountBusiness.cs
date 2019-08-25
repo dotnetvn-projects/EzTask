@@ -84,7 +84,8 @@ namespace EzTask.Business
 
             var entity = model.ToEntity();
 
-            var accountInfo = await UnitOfWork.AccountInfoRepository
+            var accountInfo = await UnitOfWork
+                .AccountInfoRepository
                 .GetAsync(c => c.Id == model.AccountInfoId);
 
             if (accountInfo != null)
@@ -113,7 +114,9 @@ namespace EzTask.Business
                 Status = ActionStatus.NotFound
             };
 
-            var account = await UnitOfWork.AccountRepository.GetAsync(c => c.AccountName == accountName);
+            var account = await UnitOfWork
+                .AccountRepository
+                .GetAsync(c => c.AccountName == accountName);
 
             if (account != null)
             {
@@ -153,7 +156,10 @@ namespace EzTask.Business
                 Status = ActionStatus.Failed
             };
 
-            var accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c => c.AccountId == accountId);
+            var accountInfo = await UnitOfWork
+                .AccountInfoRepository
+                .GetAsync(c => c.AccountId == accountId);
+
             if (accountInfo != null)
             {
                 byte[] bytes = await stream.ConvertStreamToBytes();
@@ -389,6 +395,7 @@ namespace EzTask.Business
             var data = await UnitOfWork.RecoverSessionRepository
                 .Entity.Include(c => c.Account)
                 .Where(c => c.Code == new Guid(code))
+                .AsNoTracking()
                 .FirstOrDefaultAsync();
 
             if(data == null)
@@ -416,7 +423,9 @@ namespace EzTask.Business
             if (string.IsNullOrEmpty(code))
                 return result;
 
-            var data = await UnitOfWork.RecoverSessionRepository.GetAsync(c => c.Code == new Guid(code));
+            var data = await UnitOfWork
+                .RecoverSessionRepository
+                .GetAsync(c => c.Code == new Guid(code), allowTracking: false);
 
             if (data == null)
             {

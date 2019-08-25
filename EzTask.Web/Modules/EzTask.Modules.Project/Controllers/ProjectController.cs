@@ -26,6 +26,7 @@ namespace EzTask.Modules.Project.Controllers
         public async Task<IActionResult> Index()
         {
             ViewBag.TotalProject = await EzTask.Project.CountProjectByUser(Context.CurrentAccount.AccountId);
+
             return View();
         }
 

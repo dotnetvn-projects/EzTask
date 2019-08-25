@@ -74,7 +74,7 @@ namespace EzTask.Modules.Task.Controllers
         {
             TaskItemViewModel task = new TaskItemViewModel();
 
-            IEnumerable<ProjectMemberModel> assignees = await EzTask.Project.GetAccountList(model.ProjectId);
+            IList<ProjectMemberModel> assignees = await EzTask.Project.GetAccountList(model.ProjectId);
             task.AssigneeList = StaticResources.BuildAssigneeSelectList(assignees);
 
             return PartialView("_AssignTask", task);
@@ -138,7 +138,7 @@ namespace EzTask.Modules.Task.Controllers
         private async Task<TaskViewModel> PrepareData()
         {
             TaskViewModel viewModel = new TaskViewModel();
-            IEnumerable<ProjectModel> projects = await EzTask.Project.GetProjects(Context.CurrentAccount.AccountId);
+            IList<ProjectModel> projects = await EzTask.Project.GetProjects(Context.CurrentAccount.AccountId);
 
             if (projects.Any())
             {
@@ -158,7 +158,7 @@ namespace EzTask.Modules.Task.Controllers
         /// <param name="projects"></param>
         /// <returns></returns>
         private static List<SelectListItem> BuildProjectSelectList(
-            IEnumerable<ProjectModel> projects)
+            IList<ProjectModel> projects)
         {
             List<SelectListItem> projectItems = new List<SelectListItem>
             {

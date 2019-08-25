@@ -146,11 +146,15 @@ namespace EzTask.Business
 
                 if (iresult > 0)
                 {
-                    AccountInfo accountInfo = await UnitOfWork.AccountInfoRepository.GetAsync(c =>
-                                                    c.AccountId == model.AccountId);
+                    var displayName = await UnitOfWork.
+                        AccountInfoRepository
+                        .Entity
+                        .Select(c => c.DisplayName)
+                        .AsNoTracking()
+                        .FirstOrDefaultAsync();
 
                     model.AddDate = member.AddDate;
-                    model.DisplayName = accountInfo.DisplayName;
+                    model.DisplayName = displayName;
                     model.IsPending = member.IsPending;
 
                     result.Data = model;
@@ -170,8 +174,10 @@ namespace EzTask.Business
         {
             ResultModel<bool> result = new ResultModel<bool>();
 
-            ProjectMember data = await UnitOfWork.ProjectMemberRepository.GetAsync(c => c.MemberId == model.AccountId
-                                 && c.ProjectId == model.ProjectId);
+            ProjectMember data = await UnitOfWork
+                .ProjectMemberRepository
+                .GetAsync(c => c.MemberId == model.AccountId 
+                          && c.ProjectId == model.ProjectId, allowTracking: false);
 
             if (data != null)
             {
@@ -243,12 +249,12 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<ProjectModel>> GetProjects(int accountId)
+        public async Task<IList<ProjectModel>> GetProjects(int accountId)
         {
             List<Project> data = await UnitOfWork.ProjectMemberRepository.Entity
                 .Include(c => c.Member)
-                .Include(c => c.Project).ThenInclude(c => c.Account).ThenInclude(c => c.AccountInfo)
-                .AsNoTracking()
+                .Include(c => c.Project)
+                    .ThenInclude(c => c.Account).ThenInclude(c => c.AccountInfo)
                 .Where(c => c.MemberId == accountId && c.IsPending == false)
                 .OrderBy(c => c.Project.Status)
                 .Select(x => new Project
@@ -269,7 +275,7 @@ namespace EzTask.Business
                     Status = x.Project.Status,
                     UpdatedDate = x.Project.UpdatedDate
                 })
-                .ToListAsync();
+                 .AsNoTracking().ToListAsync();
 
             return data.ToModels();
         }
@@ -283,9 +289,9 @@ namespace EzTask.Business
         {
             List<int> data = await UnitOfWork.ProjectMemberRepository.Entity
                 .Include(c => c.Member)
-                .Include(c => c.Project)
-                .AsNoTracking()
+                .Include(c => c.Project)         
                 .Where(c => c.MemberId == accountId && c.IsPending == false)
+                .AsNoTracking()
                 .Select(x => x.ProjectId)
                 .ToListAsync();
 
@@ -434,7 +440,7 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<ProjectMemberModel>> GetAccountList(int projectId)
+        public async Task<IList<ProjectMemberModel>> GetAccountList(int projectId)
         {
             List<ProjectMemberModel> data = await UnitOfWork.ProjectMemberRepository
                 .Entity
@@ -460,11 +466,12 @@ namespace EzTask.Business
         /// </summary>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task<IEnumerable<int>> GetAccountIdList(int projectId)
+        public async Task<IList<int>> GetAccountIdList(int projectId)
         {
             List<int> data = await UnitOfWork.ProjectMemberRepository
-                .Entity.AsNoTracking()
+                .Entity
                 .Where(c => c.ProjectId == projectId)
+                .AsNoTracking()
                 .Select(t => t.MemberId)
                 .ToListAsync();
 
@@ -480,7 +487,9 @@ namespace EzTask.Business
         {
             ResultModel<AccountInfoModel> iResult = new ResultModel<AccountInfoModel>();
 
-            ProjectMember inviteItem = await UnitOfWork.ProjectMemberRepository.GetAsync(c => c.ActiveCode == activeCode);
+            ProjectMember inviteItem = await UnitOfWork
+                .ProjectMemberRepository
+                .GetAsync(c => c.ActiveCode == activeCode);
 
             if (inviteItem == null)
             {
@@ -522,7 +531,7 @@ namespace EzTask.Business
                     },
                     ProjectName = t.Project.ProjectName
 
-                }).FirstOrDefaultAsync();
+                }).AsNoTracking().FirstOrDefaultAsync();
 
             if (project != null)
             {

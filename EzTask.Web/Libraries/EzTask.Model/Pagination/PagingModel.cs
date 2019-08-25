@@ -5,12 +5,12 @@ namespace EzTask.Model
 {
     public class PagingModel<T>
     {
-        public IEnumerable<T> Data { get; private set; }
+        public IList<T> Data { get; private set; }
         public int TotalRecord { get; private set; }
         public int ItemPerpage { get; private set; }
         public PageListModel PageList { get; private set; }
 
-        public static PagingModel<T> CreatePager(IEnumerable<T> data, int totalRecord,
+        public static PagingModel<T> CreatePager(IList<T> data, int totalRecord,
                 int itemPerPage = 10, int currentPage = 1)
         {
             var pageModel = new PagingModel<T>
