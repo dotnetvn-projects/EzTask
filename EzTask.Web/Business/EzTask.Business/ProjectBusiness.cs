@@ -212,12 +212,12 @@ namespace EzTask.Business
                         if (project != null)
                         {
                             //Remove member
-                            IEnumerable<ProjectMember> memberList = await UnitOfWork.ProjectMemberRepository.GetManyAsync(c =>
+                            IList<ProjectMember> memberList = await UnitOfWork.ProjectMemberRepository.GetManyAsync(c =>
                                     c.ProjectId == project.ProjectId);
                             UnitOfWork.ProjectMemberRepository.DeleteRange(memberList);
 
                             //remove phase
-                            IEnumerable<Phase> phases = await UnitOfWork.PhaseRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
+                            IList<Phase> phases = await UnitOfWork.PhaseRepository.GetManyAsync(c => c.ProjectId == project.ProjectId);
                             UnitOfWork.PhaseRepository.DeleteRange(phases);
 
                             //remove task

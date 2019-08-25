@@ -85,7 +85,7 @@ namespace EzTask.Interface
         /// Delete the entities
         /// </summary>
         /// <param name="entities"></param>
-        void DeleteRange(IEnumerable<T> entities);
+        void DeleteRange(IList<T> entities);
 
         /// <summary>
         /// Update an entity

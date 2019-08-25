@@ -65,7 +65,7 @@ namespace EzTask.Repository
         /// Delete entities
         /// </summary>
         /// <param name="entities"></param>
-        public void DeleteRange(IEnumerable<T> entities)
+        public void DeleteRange(IList<T> entities)
         {
             Entity.RemoveRange(entities);
         }

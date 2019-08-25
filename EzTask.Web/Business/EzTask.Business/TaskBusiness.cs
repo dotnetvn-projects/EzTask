@@ -194,7 +194,7 @@ namespace EzTask.Business
                 Data = true
             };
 
-            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository
+            IList<TaskItem> data = await UnitOfWork.TaskRepository
                 .GetManyAsync(c => ids.Contains(c.Id) 
                     && c.MemberId == _accountContext.AccountId, allowTracking: false);
 
@@ -215,7 +215,7 @@ namespace EzTask.Business
                 Data = true
             };
 
-            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository
+            IList<TaskItem> data = await UnitOfWork.TaskRepository
                 .GetManyAsync(c => c.ProjectId == projectId 
                                 && c.MemberId == _accountContext.AccountId, allowTracking: false);
 
@@ -236,7 +236,7 @@ namespace EzTask.Business
                 Data = true
             };
 
-            IEnumerable<TaskItem> data = await UnitOfWork.TaskRepository
+            IList<TaskItem> data = await UnitOfWork.TaskRepository
                  .GetManyAsync(c => c.ProjectId == projectId && c.PhaseId == phaseId 
                                         && c.MemberId == _accountContext.AccountId, allowTracking: false);
 
@@ -664,7 +664,7 @@ namespace EzTask.Business
         /// <param name="result"></param>
         /// <param name="data"></param>
         /// <returns></returns>
-        private async Task DeleteTasks(ResultModel<bool> result, IEnumerable<TaskItem> data)
+        private async Task DeleteTasks(ResultModel<bool> result, IList<TaskItem> data)
         {
             if (!data.Any())
             {
