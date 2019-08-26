@@ -40,7 +40,8 @@ namespace EzTask.Web.Framework
             services.AddSingleton<IAccountContext, AccountContext>();
             services.AddDistributedMemoryCache();
             services.AddSession();
-            services.AddMemoryCache();           
+            services.AddMemoryCache();
+            services.AddResponseCompression();
 
             services.Configure<CookiePolicyOptions>(options =>
             {

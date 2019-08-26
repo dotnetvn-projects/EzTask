@@ -44,6 +44,7 @@ namespace EzTask.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseResponseCompression();
             app.UseSession();
             app.UseStaticFiles();
             app.ConfigureFramework();

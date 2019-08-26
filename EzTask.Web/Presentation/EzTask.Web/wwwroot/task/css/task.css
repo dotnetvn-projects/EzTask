@@ -72,6 +72,10 @@ input[type="file"] {
             vertical-align: middle !important;
         }
 
+        .task-table > .table td.task-name a {
+            cursor:pointer;
+        }
+
 .task-controls {
     padding: 5px;
 }

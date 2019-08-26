@@ -523,6 +523,7 @@ namespace EzTask.Business
                 .Include(c => c.Project)
                 .ThenInclude(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
+                .Where(c=>c.ActiveCode == activeCode)
                 .Select(t => new ProjectModel
                 {
                     Owner = new AccountModel
