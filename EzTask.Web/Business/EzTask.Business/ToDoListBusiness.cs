@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.Framework.Infrastructures;
+using EzTask.Interface;
 using EzTask.Interface.SharedData;
 using EzTask.Model;
 using EzTask.Model.Enum;
@@ -12,8 +13,11 @@ namespace EzTask.Business
 {
     public class ToDoListBusiness : BusinessCore
     {
-        public ToDoListBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
+        private readonly IAccountContext _accountContext;
+
+        public ToDoListBusiness(UnitOfWork unitOfWork, IAccountContext accountContext) : base(unitOfWork)
         {
+            _accountContext = accountContext;
         }
 
         /// <summary>
@@ -113,14 +117,23 @@ namespace EzTask.Business
 
             if (dataRange.Any())
             {
-                UnitOfWork.TodoItemRepository.DeleteRange(dataRange);
+                var firstItem = dataRange.FirstOrDefault();
 
-                int iResult = await UnitOfWork.CommitAsync();
-
-                if (iResult > 0)
+                if (_accountContext.AccountId == firstItem.Owner)
                 {
-                    result.Data = true;
-                    result.Status = ActionStatus.Ok;
+                    UnitOfWork.TodoItemRepository.DeleteRange(dataRange);
+
+                    int iResult = await UnitOfWork.CommitAsync();
+
+                    if (iResult > 0)
+                    {
+                        result.Data = true;
+                        result.Status = ActionStatus.Ok;
+                    }
+                }
+                else
+                {
+                    result.Status = ActionStatus.UnAuthorized;
                 }
             }
             else

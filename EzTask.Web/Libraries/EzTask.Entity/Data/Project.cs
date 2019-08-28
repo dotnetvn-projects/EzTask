@@ -6,6 +6,7 @@ namespace EzTask.Entity.Data
 {
     public class Project : Entity<Project>
     {
+        [Column(TypeName = "varchar(10)")]
         public string ProjectCode { get; set; }
         public string ProjectName { get; set; }
         public string Description { get; set; }

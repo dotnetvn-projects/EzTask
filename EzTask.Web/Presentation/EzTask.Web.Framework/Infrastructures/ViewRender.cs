@@ -19,17 +19,12 @@ namespace EzTask.Web.Framework.Infrastructures
     {
         private readonly IRazorViewEngine _razorViewEngine;
         private readonly ITempDataProvider _tempDataProvider;
-        private readonly IServiceProvider _serviceProvider;
-        private readonly IHostingEnvironment _env;
 
         public ViewRender(IRazorViewEngine razorViewEngine, 
-            ITempDataProvider tempDataProvider, IServiceProvider serviceProvider,
-            IHostingEnvironment env)
+            ITempDataProvider tempDataProvider)
         {
             _razorViewEngine = razorViewEngine;
             _tempDataProvider = tempDataProvider;
-            _serviceProvider = serviceProvider;
-            _env = env;
         }
 
         public async Task<string> RenderToStringAsync(string viewName, ControllerContext context, object model)

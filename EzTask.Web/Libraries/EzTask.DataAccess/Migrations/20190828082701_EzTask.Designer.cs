@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EzTask.DataAccess.Migrations
 {
     [DbContext(typeof(EzTaskDbContext))]
-    [Migration("20190812074545_EzTask")]
+    [Migration("20190828082701_EzTask")]
     partial class EzTask
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -208,7 +208,8 @@ namespace EzTask.DataAccess.Migrations
 
                     b.Property<int>("Owner");
 
-                    b.Property<string>("ProjectCode");
+                    b.Property<string>("ProjectCode")
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("ProjectName");
 
@@ -334,7 +335,8 @@ namespace EzTask.DataAccess.Migrations
 
                     b.Property<short>("Status");
 
-                    b.Property<string>("TaskCode");
+                    b.Property<string>("TaskCode")
+                        .HasColumnType("varchar(10)");
 
                     b.Property<string>("TaskDetail");
 
@@ -451,12 +453,12 @@ namespace EzTask.DataAccess.Migrations
             modelBuilder.Entity("EzTask.Entity.Data.ProjectMember", b =>
                 {
                     b.HasOne("EzTask.Entity.Data.Account", "Member")
-                        .WithMany("ProjectMembers")
+                        .WithMany()
                         .HasForeignKey("MemberId")
                         .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("EzTask.Entity.Data.Project", "Project")
-                        .WithMany("ProjectMembers")
+                        .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Restrict);
                 });

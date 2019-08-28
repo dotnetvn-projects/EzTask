@@ -195,11 +195,11 @@ namespace EzTask.Business
             };
 
             IList<TaskItem> data = await UnitOfWork.TaskRepository
-                .GetManyAsync(c => ids.Contains(c.Id) 
+                .GetManyAsync(c => ids.Contains(c.Id)
                     && c.MemberId == _accountContext.AccountId, allowTracking: false);
 
             await DeleteTasks(result, data);
-            
+
             return result;
         }
 
@@ -216,7 +216,7 @@ namespace EzTask.Business
             };
 
             IList<TaskItem> data = await UnitOfWork.TaskRepository
-                .GetManyAsync(c => c.ProjectId == projectId 
+                .GetManyAsync(c => c.ProjectId == projectId
                                 && c.MemberId == _accountContext.AccountId, allowTracking: false);
 
             await DeleteTasks(result, data);
@@ -237,7 +237,7 @@ namespace EzTask.Business
             };
 
             IList<TaskItem> data = await UnitOfWork.TaskRepository
-                 .GetManyAsync(c => c.ProjectId == projectId && c.PhaseId == phaseId 
+                 .GetManyAsync(c => c.ProjectId == projectId && c.PhaseId == phaseId
                                         && c.MemberId == _accountContext.AccountId, allowTracking: false);
 
             await DeleteTasks(result, data);
@@ -410,9 +410,12 @@ namespace EzTask.Business
 
             foreach (TaskItem task in tasks)
             {
-                task.AssigneeId = accountId == 0 ? null : (int?)accountId;
+                if (IsProjectOwner(task.ProjectId))
+                {
+                    task.AssigneeId = accountId == 0 ? null : (int?)accountId;
 
-                UnitOfWork.TaskRepository.Update(task);
+                    UnitOfWork.TaskRepository.Update(task);
+                }
             }
             int iResult = await UnitOfWork.CommitAsync();
         }
@@ -459,8 +462,11 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task DeleteAttachment(int id)
         {
-            //TOdo check authen userId
-            UnitOfWork.AttachRepository.Delete(id);
+            var attachItem = UnitOfWork.AttachRepository.Get(c => c.Id == id);
+            if (_accountContext.AccountId == attachItem.AddedUser)
+            {
+                UnitOfWork.AttachRepository.Delete(id);
+            }
             await UnitOfWork.CommitAsync();
         }
 
@@ -674,30 +680,34 @@ namespace EzTask.Business
             {
                 foreach (TaskItem task in data)
                 {
-                    IList<TaskHistory> history = UnitOfWork
+                    if (IsProjectOwner(task.ProjectId))
+                    {
+                        IList<TaskHistory> history = UnitOfWork
                         .TaskHistoryRepository.GetMany(c => c.TaskId == task.Id, allowTracking: false);
 
-                    if (history.Any())
-                    {
-                        UnitOfWork.TaskHistoryRepository.DeleteRange(history);
+                        if (history.Any())
+                        {
+                            UnitOfWork.TaskHistoryRepository.DeleteRange(history);
+                        }
+
+                        IList<Attachment> attachment = UnitOfWork
+                            .AttachRepository.GetMany(c => c.TaskId == task.Id, allowTracking: false);
+
+                        if (attachment.Any())
+                        {
+                            UnitOfWork.AttachRepository.DeleteRange(attachment);
+                        }
+
+
+                        UnitOfWork.TaskRepository.DeleteRange(data);
+
+                        int iResult = await UnitOfWork.CommitAsync();
+
+                        if (iResult > 0)
+                        {
+                            result.Status = ActionStatus.Ok;
+                        }
                     }
-
-                    IList<Attachment> attachment = UnitOfWork
-                        .AttachRepository.GetMany(c => c.TaskId == task.Id, allowTracking: false);
-
-                    if (attachment.Any())
-                    {
-                        UnitOfWork.AttachRepository.DeleteRange(attachment);
-                    }
-                }
-
-                UnitOfWork.TaskRepository.DeleteRange(data);
-
-                int iResult = await UnitOfWork.CommitAsync();
-
-                if (iResult > 0)
-                {
-                    result.Status = ActionStatus.Ok;
                 }
             }
         }
@@ -719,6 +729,17 @@ namespace EzTask.Business
                 return content;
             }
             return $"<p><b>{field}</b>:<br/><small>{oldData} => <span style=\"color:red;\">{newData}</span></small></p>";
+        }
+
+        /// <summary>
+        /// Check the current user is project owner or not
+        /// </summary>
+        /// <param name="projectId"></param>
+        /// <returns></returns>
+        private bool IsProjectOwner(int projectId)
+        {
+            var project = UnitOfWork.ProjectRepository.Get(c => c.Id == projectId);
+            return _accountContext.AccountId == project.Owner;
         }
 
         #endregion

@@ -111,7 +111,7 @@ namespace EzTask.DataAccess.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    ProjectCode = table.Column<string>(nullable: true),
+                    ProjectCode = table.Column<string>(type: "varchar(10)", nullable: true),
                     ProjectName = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     Owner = table.Column<int>(nullable: false),
@@ -263,7 +263,7 @@ namespace EzTask.DataAccess.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    TaskCode = table.Column<string>(nullable: true),
+                    TaskCode = table.Column<string>(type: "varchar(10)", nullable: true),
                     TaskTitle = table.Column<string>(nullable: true),
                     TaskDetail = table.Column<string>(nullable: true),
                     AssigneeId = table.Column<int>(nullable: true),
