@@ -1,0 +1,419 @@
+2019-10-13 14:41:54,918 [4]INFO [App][] Request Url: /
+2019-10-13 14:41:55,492 [4]INFO [App][] Request Url: /login.html
+2019-10-13 14:42:22,300 [4]ERROR[EnsureSuccessful][] The view 'Login' was not found. The following locations were searched:
+/Modules/EzTask.Modules.Authentication/Views/Account/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Components/Login.cshtml
+/Modules/EzTask.Modules.Core/Views/Shared/Login.cshtml
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+System.InvalidOperationException: The view 'Login' was not found. The following locations were searched:
+/Modules/EzTask.Modules.Authentication/Views/Account/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Components/Login.cshtml
+/Modules/EzTask.Modules.Core/Views/Shared/Login.cshtml
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-10-13 14:48:00,610 [4]INFO [App][] Request Url: /
+2019-10-13 14:48:00,875 [4]INFO [App][] Request Url: /login.html
+2019-10-13 14:48:24,045 [4]ERROR[EnsureSuccessful][] The view 'Login' was not found. The following locations were searched:
+/Modules/EzTask.Modules.Authentication/Views/Account/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Components/Login.cshtml
+/Modules/EzTask.Modules.Core/Views/Shared/Login.cshtml
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+System.InvalidOperationException: The view 'Login' was not found. The following locations were searched:
+/Modules/EzTask.Modules.Authentication/Views/Account/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Components/Login.cshtml
+/Modules/EzTask.Modules.Core/Views/Shared/Login.cshtml
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-10-13 15:16:10,308 [8]INFO [App][] Request Url: /
+2019-10-13 15:16:10,641 [8]INFO [App][] Request Url: /login.html
+2019-10-13 15:18:00,711 [4]INFO [App][] Request Url: /
+2019-10-13 15:18:00,958 [8]INFO [App][] Request Url: /login.html
+2019-10-13 15:18:15,824 [8]ERROR[TryResolveAssemblyPaths][] Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+System.InvalidOperationException: Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+   at Microsoft.Extensions.DependencyModel.Resolution.ReferenceAssemblyPathResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.Resolution.CompositeCompilationAssemblyResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths(ICompilationAssemblyResolver resolver, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths()
+   at Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPartExtensions.<>c.<GetReferencePaths>b__0_0(CompilationLibrary library)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Collections.Generic.List`1.InsertRange(Int32 index, IEnumerable`1 collection)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetReferencePaths()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetCompilationReferences()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at System.Threading.LazyInitializer.EnsureInitialized[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.get_CompilationReferences()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.LazyMetadataReferenceFeature.get_References()
+   at Microsoft.CodeAnalysis.Razor.CompilationTagHelperFeature.GetDescriptors()
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorTagHelperBinderPhase.ExecuteCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorEnginePhaseBase.Execute(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorEngine.Process(RazorCodeDocument document)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorProjectEngine.ProcessCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorProjectEngine.Process(RazorProjectItem projectItem)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-10-13 15:20:38,899 [4]INFO [App][] Request Url: /
+2019-10-13 15:20:39,213 [4]INFO [App][] Request Url: /login.html
+2019-10-13 15:21:06,537 [4]ERROR[TryResolveAssemblyPaths][] Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+System.InvalidOperationException: Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+   at Microsoft.Extensions.DependencyModel.Resolution.ReferenceAssemblyPathResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.Resolution.CompositeCompilationAssemblyResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths(ICompilationAssemblyResolver resolver, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths()
+   at Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPartExtensions.<>c.<GetReferencePaths>b__0_0(CompilationLibrary library)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Collections.Generic.List`1.InsertRange(Int32 index, IEnumerable`1 collection)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetReferencePaths()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetCompilationReferences()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at System.Threading.LazyInitializer.EnsureInitialized[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.get_CompilationReferences()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.LazyMetadataReferenceFeature.get_References()
+   at Microsoft.CodeAnalysis.Razor.CompilationTagHelperFeature.GetDescriptors()
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorTagHelperBinderPhase.ExecuteCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorEnginePhaseBase.Execute(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorEngine.Process(RazorCodeDocument document)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorProjectEngine.ProcessCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorProjectEngine.Process(RazorProjectItem projectItem)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-10-13 15:21:18,149 [4]INFO [App][] Request Url: /login.html
+2019-10-13 15:21:43,153 [4]ERROR[TryResolveAssemblyPaths][] Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+System.InvalidOperationException: Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+   at Microsoft.Extensions.DependencyModel.Resolution.ReferenceAssemblyPathResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.Resolution.CompositeCompilationAssemblyResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths(ICompilationAssemblyResolver resolver, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths()
+   at Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPartExtensions.<>c.<GetReferencePaths>b__0_0(CompilationLibrary library)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Collections.Generic.List`1.InsertRange(Int32 index, IEnumerable`1 collection)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetReferencePaths()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetCompilationReferences()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at System.Threading.LazyInitializer.EnsureInitialized[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.get_CompilationReferences()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.LazyMetadataReferenceFeature.get_References()
+   at Microsoft.CodeAnalysis.Razor.CompilationTagHelperFeature.GetDescriptors()
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorTagHelperBinderPhase.ExecuteCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorEnginePhaseBase.Execute(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorEngine.Process(RazorCodeDocument document)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorProjectEngine.ProcessCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorProjectEngine.Process(RazorProjectItem projectItem)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-10-13 15:23:54,468 [4]INFO [App][] Request Url: /
+2019-10-13 15:23:54,700 [4]INFO [App][] Request Url: /login.html
+2019-10-13 15:24:05,828 [4]ERROR[TryResolveAssemblyPaths][] Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+System.InvalidOperationException: Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+   at Microsoft.Extensions.DependencyModel.Resolution.ReferenceAssemblyPathResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.Resolution.CompositeCompilationAssemblyResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths(ICompilationAssemblyResolver resolver, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths()
+   at Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPartExtensions.<>c.<GetReferencePaths>b__0_0(CompilationLibrary library)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Collections.Generic.List`1.InsertRange(Int32 index, IEnumerable`1 collection)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetReferencePaths()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetCompilationReferences()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at System.Threading.LazyInitializer.EnsureInitialized[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.get_CompilationReferences()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.LazyMetadataReferenceFeature.get_References()
+   at Microsoft.CodeAnalysis.Razor.CompilationTagHelperFeature.GetDescriptors()
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorTagHelperBinderPhase.ExecuteCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorEnginePhaseBase.Execute(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorEngine.Process(RazorCodeDocument document)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorProjectEngine.ProcessCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorProjectEngine.Process(RazorProjectItem projectItem)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-10-13 15:26:34,761 [8]INFO [App][] Request Url: /
+2019-10-13 15:26:34,956 [5]INFO [App][] Request Url: /login.html
+2019-10-13 15:36:30,655 [11]INFO [App][] Request Url: /
+2019-10-13 15:36:31,060 [8]INFO [App][] Request Url: /login.html
+2019-10-13 15:37:53,231 [10]INFO [App][] Request Url: /
+2019-10-13 15:37:53,698 [12]INFO [App][] Request Url: /login.html
+2019-10-13 15:38:31,478 [12]ERROR[TryResolveAssemblyPaths][] Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+System.InvalidOperationException: Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+   at Microsoft.Extensions.DependencyModel.Resolution.ReferenceAssemblyPathResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.Resolution.CompositeCompilationAssemblyResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths(ICompilationAssemblyResolver resolver, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths()
+   at Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPartExtensions.<>c.<GetReferencePaths>b__0_0(CompilationLibrary library)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Collections.Generic.List`1.InsertRange(Int32 index, IEnumerable`1 collection)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetReferencePaths()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetCompilationReferences()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at System.Threading.LazyInitializer.EnsureInitialized[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.get_CompilationReferences()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.LazyMetadataReferenceFeature.get_References()
+   at Microsoft.CodeAnalysis.Razor.CompilationTagHelperFeature.GetDescriptors()
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorTagHelperBinderPhase.ExecuteCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorEnginePhaseBase.Execute(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorEngine.Process(RazorCodeDocument document)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorProjectEngine.ProcessCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorProjectEngine.Process(RazorProjectItem projectItem)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-10-13 15:51:46,972 [11]INFO [App][] Request Url: /
+2019-10-13 15:51:47,342 [10]INFO [App][] Request Url: /login.html
+2019-10-13 15:51:50,781 [10]ERROR[TryResolveAssemblyPaths][] Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+System.InvalidOperationException: Cannot find reference assembly 'Microsoft.AspNetCore.Antiforgery.dll' file for package Microsoft.AspNetCore.Antiforgery
+   at Microsoft.Extensions.DependencyModel.Resolution.ReferenceAssemblyPathResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.Resolution.CompositeCompilationAssemblyResolver.TryResolveAssemblyPaths(CompilationLibrary library, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths(ICompilationAssemblyResolver resolver, List`1 assemblies)
+   at Microsoft.Extensions.DependencyModel.CompilationLibrary.ResolveReferencePaths()
+   at Microsoft.AspNetCore.Mvc.ApplicationParts.AssemblyPartExtensions.<>c.<GetReferencePaths>b__0_0(CompilationLibrary library)
+   at System.Linq.Enumerable.SelectManySingleSelectorIterator`2.MoveNext()
+   at System.Collections.Generic.List`1.InsertRange(Int32 index, IEnumerable`1 collection)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetReferencePaths()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.GetCompilationReferences()
+   at System.Threading.LazyInitializer.EnsureInitializedCore[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at System.Threading.LazyInitializer.EnsureInitialized[T](T& target, Boolean& initialized, Object& syncLock, Func`1 valueFactory)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RazorReferenceManager.get_CompilationReferences()
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.LazyMetadataReferenceFeature.get_References()
+   at Microsoft.CodeAnalysis.Razor.CompilationTagHelperFeature.GetDescriptors()
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorTagHelperBinderPhase.ExecuteCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorEnginePhaseBase.Execute(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorEngine.Process(RazorCodeDocument document)
+   at Microsoft.AspNetCore.Razor.Language.DefaultRazorProjectEngine.ProcessCore(RazorCodeDocument codeDocument)
+   at Microsoft.AspNetCore.Razor.Language.RazorProjectEngine.Process(RazorProjectItem projectItem)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.CompileAndEmit(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation.RuntimeViewCompiler.OnCacheMiss(String normalizedPath)
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Razor.Compilation.DefaultRazorPageFactoryProvider.CreateFactory(String relativePath)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.CreateCacheResult(HashSet`1 expirationTokens, String relativePath, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.OnCacheMiss(ViewLocationExpanderContext expanderContext, ViewLocationCacheKey cacheKey)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.LocatePageFromViewLocations(ActionContext actionContext, String pageName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewEngines.CompositeViewEngine.FindView(ActionContext context, String viewName, Boolean isMainPage)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.FindView(ActionContext actionContext, ViewResult viewResult)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-10-13 15:59:43,545 [8]INFO [App][] Request Url: /
+2019-10-13 15:59:43,713 [7]INFO [App][] Request Url: /login.html
+2019-10-13 16:00:07,566 [4]INFO [App][] Request Url: /login.html
+2019-10-13 16:02:31,277 [4]INFO [App][] Request Url: /
+2019-10-13 16:02:31,537 [4]INFO [App][] Request Url: /login.html
+2019-10-13 16:02:42,229 [4]INFO [App][] Request Url: /login.html
+2019-10-13 16:02:45,275 [4]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-10-13 16:02:50,481 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:02:51,447 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-10-13 16:02:51,447 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-10-13 16:03:19,762 [25]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-10-13 16:03:23,260 [7]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:03:23,877 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-10-13 16:03:23,908 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-10-13 16:03:23,919 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/validate-code.html
+2019-10-13 16:03:24,304 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-10-13 16:03:24,626 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-10-13 16:03:26,528 [27]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:03:26,553 [35]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:03:30,168 [7]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-10-13 16:03:30,930 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:03:31,083 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-10-13 16:03:31,090 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-10-13 16:03:43,355 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-10-13 16:03:44,460 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-10-13 16:03:45,683 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-10-13 16:03:51,032 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-10-13 16:03:51,577 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-10-13 16:03:53,069 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-10-13 16:03:54,207 [35]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:03:57,954 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-10-13 16:04:02,106 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-10-13 16:05:10,659 [4]INFO [App][] Request Url: /
+2019-10-13 16:05:10,767 [7]INFO [App][] Request Url: /login.html
+2019-10-13 16:13:50,117 [17]INFO [App][] Request Url: /login.html
+2019-10-13 16:13:52,039 [23]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-10-13 16:13:55,250 [30]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:13:55,428 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-10-13 16:13:55,433 [17]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-10-13 16:14:00,951 [30]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-10-13 16:14:03,880 [28]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:03,883 [26]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:03,885 [32]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:03,891 [23]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:03,901 [28]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:04,048 [17]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:04,052 [22]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:04,197 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-10-13 16:14:04,228 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-10-13 16:14:04,231 [26]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:04,304 [28]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:04,329 [17]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:04,402 [28]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:04,460 [17]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:06,490 [23]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-10-13 16:14:08,381 [26]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-10-13 16:14:08,684 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-10-13 16:14:08,697 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-10-13 16:14:12,201 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-10-13 16:14:12,880 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-10-13 16:14:14,463 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-10-13 16:14:16,096 [29]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html

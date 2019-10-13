@@ -21,11 +21,11 @@ namespace EzTask.Business
     public class AccountBusiness : BusinessCore
     {
         private readonly ImageProcessor _imageProcessor;
-        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IWebEnvironment _hostEnvironment;
         private readonly IMessageCenter _mesageCenter;
 
         public AccountBusiness(ImageProcessor imageProcessor,
-           UnitOfWork unitOfWork, IMessageCenter mesageCenter, IWebHostEnvironment hostEnvironment) : base(unitOfWork)
+           UnitOfWork unitOfWork, IMessageCenter mesageCenter, IWebEnvironment hostEnvironment) : base(unitOfWork)
         {
             _imageProcessor = imageProcessor;
             _hostEnvironment = hostEnvironment;

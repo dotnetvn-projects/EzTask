@@ -1,27 +1,22 @@
-﻿using AutoMapper;
-using EzTask.Framework;
+﻿using EzTask.Web.Framework;
+using EzTask.Web.Framework.Middlewares;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using EzTask.Business;
-using System.Diagnostics;
-using System.IO;
-using EzTask.Web.Framework;
-using EzTask.Web.Framework.Middlewares;
-using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Hosting;
 
 namespace EzTask.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration, IHostingEnvironment environment)
+        public Startup(IConfiguration configuration, IWebHostEnvironment environment)
         {
             Configuration = configuration;
             Environment = environment;
         }
 
-        public IHostingEnvironment Environment { get; }
+        public IWebHostEnvironment Environment { get; }
 
         public IConfiguration Configuration { get; }
 
@@ -32,11 +27,11 @@ namespace EzTask.Web
         }
         
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
-                app.UseBrowserLink();
+                //app.UseBrowserLink();
                 app.UseDeveloperExceptionPage();        
             }
             else
@@ -44,16 +39,17 @@ namespace EzTask.Web
                 app.UseExceptionHandler("/Home/Error");
             }
 
+            app.UseRouting();
             app.UseResponseCompression();
             app.UseSession();
             app.UseStaticFiles();
             app.ConfigureFramework();
             app.UseHttpProcessMiddleware();
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
     }

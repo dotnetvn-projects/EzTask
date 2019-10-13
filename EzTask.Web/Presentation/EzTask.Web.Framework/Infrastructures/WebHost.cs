@@ -3,10 +3,10 @@ using Microsoft.AspNetCore.Hosting;
 
 namespace EzTask.Web.Framework.Infrastructures
 {
-    public class WebHost : IWebHostEnvironment
+    public class WebHost : IWebEnvironment
     {
-        private readonly IHostingEnvironment _hosting;
-        public WebHost(IHostingEnvironment host)
+        private readonly IWebHostEnvironment _hosting;
+        public WebHost(IWebHostEnvironment host)
         {
             _hosting = host;
         }

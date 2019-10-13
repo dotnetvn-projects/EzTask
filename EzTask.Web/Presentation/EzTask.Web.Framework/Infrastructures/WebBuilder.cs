@@ -1,11 +1,12 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using System.IO;
+using System.Linq;
 
 namespace EzTask.Web.Framework.Infrastructures
 {
     public static class WebBuilder
     {
-        public static void RunWebBuilder(this IHostingEnvironment env, bool onlyContent = false)
+        public static void RunWebBuilder(this IWebHostEnvironment env, bool onlyContent = false)
         {
             CopyModules(new string[] { "../../../EzTask.Web/" }, onlyContent);
         }
@@ -55,7 +56,8 @@ namespace EzTask.Web.Framework.Infrastructures
                     switch (copyPath.ToLower())
                     {
                         case "bin":
-                            string[] files = Directory.GetFiles(sourcePath, moduleName + ".dll", SearchOption.AllDirectories);
+                            var files = Directory.GetFiles(sourcePath, moduleName + ".dll", SearchOption.AllDirectories).ToList();
+                            files.AddRange(Directory.GetFiles(sourcePath, moduleName + ".Views.dll", SearchOption.AllDirectories).ToList());
                             string binPath = Path.Combine(modulePath, "bin");
                             Directory.CreateDirectory(binPath);
 

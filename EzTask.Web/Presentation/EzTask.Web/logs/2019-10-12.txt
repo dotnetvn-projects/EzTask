@@ -1,0 +1,32 @@
+2019-10-12 17:40:30,884 [4]INFO [App][] Request Url: /
+2019-10-12 17:40:31,671 [7]INFO [App][] Request Url: /login.html
+2019-10-12 17:40:36,136 [7]ERROR[EnsureSuccessful][] The view 'Login' was not found. The following locations were searched:
+/Modules/EzTask.Modules.Authentication/Views/Account/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Components/Login.cshtml
+/Modules/EzTask.Modules.Core/Views/Shared/Login.cshtml
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+System.InvalidOperationException: The view 'Login' was not found. The following locations were searched:
+/Modules/EzTask.Modules.Authentication/Views/Account/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Login.cshtml
+/Modules/EzTask.Modules.Authentication/Views/Shared/Components/Login.cshtml
+/Modules/EzTask.Modules.Core/Views/Shared/Login.cshtml
+/Views/Account/Login.cshtml
+/Views/Shared/Login.cshtml
+   at Microsoft.AspNetCore.Mvc.ViewEngines.ViewEngineResult.EnsureSuccessful(IEnumerable`1 originalLocations)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeResultFilters()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.InvokeFilterPipelineAsync()
+--- End of stack trace from previous location where exception was thrown ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29

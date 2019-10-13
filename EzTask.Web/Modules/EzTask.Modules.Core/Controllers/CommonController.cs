@@ -16,9 +16,9 @@ namespace EzTask.Modules.Core.Controllers
     [TypeFilter(typeof(AuthenticationAttribute))]
     public class CommonController : BaseController
     {
-        private readonly IHostingEnvironment hostingEnvironment;
+        private readonly IWebHostEnvironment hostingEnvironment;
         public CommonController(IServiceProvider serviceProvider,
-            IHostingEnvironment environment) : base(serviceProvider)
+            IWebHostEnvironment environment) : base(serviceProvider)
         {
             hostingEnvironment = environment;
         }

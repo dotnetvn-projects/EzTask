@@ -9,8 +9,8 @@ namespace EzTask.Web.Framework.Filters
     /// </summary>
     public class GlobalFilter : IActionFilter
     {
-        private readonly IHostingEnvironment _env;
-        public GlobalFilter(IHostingEnvironment env)
+        private readonly IWebHostEnvironment _env;
+        public GlobalFilter(IWebHostEnvironment env)
         {
             _env = env;
         }
@@ -23,7 +23,7 @@ namespace EzTask.Web.Framework.Filters
         {
             #if DEBUG
             //copy content file during developmen time
-             // _env.RunWebBuilder(true);
+            // _env.RunWebBuilder(true);
             #endif
         }
     }

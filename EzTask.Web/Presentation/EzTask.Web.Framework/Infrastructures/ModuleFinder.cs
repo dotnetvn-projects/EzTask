@@ -9,8 +9,8 @@ namespace EzTask.Web.Framework.Infrastructures
 {
     public class ModuleFinder
     {
-        public IHostingEnvironment _environment;
-        public ModuleFinder(IHostingEnvironment env)
+        public IWebHostEnvironment _environment;
+        public ModuleFinder(IWebHostEnvironment env)
         {
             _environment = env;
         }

@@ -20,12 +20,12 @@ namespace EzTask.Business
     {
         private readonly TaskBusiness _task;
         private readonly AccountBusiness _accountBusiness;
-        private readonly IWebHostEnvironment _hostEnvironment;
+        private readonly IWebEnvironment _hostEnvironment;
         private readonly IMessageCenter _mesageCenter;
         private readonly IAccountContext _accountContext;
 
         public ProjectBusiness(UnitOfWork unitOfWork,
-            TaskBusiness task, IWebHostEnvironment hostEnvironment,
+            TaskBusiness task, IWebEnvironment hostEnvironment,
             IMessageCenter mesageCenter, AccountBusiness accountBusiness,
             IAccountContext accountContext) : base(unitOfWork)
         {

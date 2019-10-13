@@ -13,11 +13,11 @@ namespace EzTask.Web.Framework.WebContext
         private static IHttpContextAccessor _httpContextAccessor;
         private static SessionManager _sessionManager;
         private static CookiesManager _cookiesManager;
-        private static IWebHostEnvironment _webHostEnvironment;
+        private static IWebEnvironment _webHostEnvironment;
         private static ILanguageLocalization _languageLocalization;
 
         public static void Configure(this IApplicationBuilder applicationBuilder,
-            IHttpContextAccessor httpContextAccessor, IWebHostEnvironment webHostEnvironment,
+            IHttpContextAccessor httpContextAccessor, IWebEnvironment webHostEnvironment,
             SessionManager sessionManager, CookiesManager cookiesManager,
             ILanguageLocalization languageLocalization, IAccountContext accountContext)
         {

@@ -8,11 +8,11 @@ namespace EzTask.Web.Framework.Infrastructures
 {
     public class LanguageLocalization : ILanguageLocalization
     {
-        private static IWebHostEnvironment _webHostEnvironment;
+        private static IWebEnvironment _webHostEnvironment;
         private static SessionManager _sessionManager;
 
 
-        public LanguageLocalization(IWebHostEnvironment webHostEnvironment, SessionManager sessionManager)
+        public LanguageLocalization(IWebEnvironment webHostEnvironment, SessionManager sessionManager)
         {
             _webHostEnvironment = webHostEnvironment;
             _sessionManager = sessionManager;

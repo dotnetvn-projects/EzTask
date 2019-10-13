@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EzTask.Interface
 {
-    public interface IWebHostEnvironment
+    public interface IWebEnvironment
     {
         /// <summary>
         /// Root path of application

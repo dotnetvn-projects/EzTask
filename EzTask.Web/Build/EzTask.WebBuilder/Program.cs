@@ -51,7 +51,8 @@ namespace EzTask.WebBuilder
                     switch (copyPath.ToLower())
                     {
                         case "bin":
-                            var files = Directory.GetFiles(sourcePath, moduleName + ".dll", SearchOption.AllDirectories);
+                            var files = Directory.GetFiles(sourcePath, moduleName + ".dll", SearchOption.AllDirectories).ToList();
+                            files.AddRange(Directory.GetFiles(sourcePath, moduleName + ".Views.dll", SearchOption.AllDirectories).ToList());
                             var binPath = Path.Combine(modulePath, "bin");
                             Directory.CreateDirectory(binPath);
 

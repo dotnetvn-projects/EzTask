@@ -1,28 +1,26 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using EzTask.Business;
+using EzTask.Interface;
+using EzTask.Log;
+using EzTask.Model;
+using EzTask.Plugin.MessageService;
+using EzTask.Web.Framework.Data;
+using EzTask.Web.Framework.Filters;
+using EzTask.Web.Framework.Infrastructures;
+using EzTask.Web.Framework.WebContext;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.CodeAnalysis;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
-using EzTask.Web.Framework.Infrastructures;
-using EzTask.Web.Framework.WebContext;
-using EzTask.Business;
-using Microsoft.AspNetCore.Mvc;
-using EzTask.Web.Framework.Data;
-using EzTask.Web.Framework.Filters;
-using EzTask.Interface;
-using EzTask.Plugin.MessageService;
-using EzTask.Model;
-using EzTask.Log;
 
 namespace EzTask.Web.Framework
 {
     public static class WebFramework
     {
         public static void Register(this IServiceCollection services,
-           IConfiguration configuration, IHostingEnvironment env)
+           IConfiguration configuration, IWebHostEnvironment env)
         {         
             FrameworkCore.Register(services, configuration);
             ModelRegister.Register(services);
@@ -34,7 +32,7 @@ namespace EzTask.Web.Framework
             services.AddSingleton<StaticResources>();
             services.AddSingleton<SessionManager>();
             services.AddSingleton<CookiesManager>();
-            services.AddSingleton<IWebHostEnvironment, WebHost>();
+            services.AddSingleton<IWebEnvironment, WebHost>();
             services.AddTransient<ILanguageLocalization, LanguageLocalization>();
             services.AddTransient<ViewRender>();
             services.AddSingleton<IAccountContext, AccountContext>();
@@ -50,11 +48,12 @@ namespace EzTask.Web.Framework
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            var mvcBuilder = services.AddMvc(options =>
+            var mvcBuilder = services.AddControllersWithViews(options =>
             {
                 options.Filters.Add(typeof(GlobalFilter));
                 // options.Filters.Add(typeof(ExceptionFilter));
-            }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+            }).AddRazorRuntimeCompilation();
+
 
             mvcBuilder.AddSessionStateTempDataProvider();
 
@@ -67,10 +66,6 @@ namespace EzTask.Web.Framework
                 {
                     // Register controller from modules
                     mvcBuilder.AddApplicationPart(module.Assembly);
-                    mvcBuilder.AddRazorOptions(o =>
-                    {
-                        o.AdditionalCompilationReferences.Add(MetadataReference.CreateFromFile(module.Assembly.Location));
-                    });
                 }
 
                 //Register module view location
@@ -85,7 +80,7 @@ namespace EzTask.Web.Framework
         public static void ConfigureFramework(this IApplicationBuilder app)
         {
             app.Configure(app.ApplicationServices.GetRequiredService<IHttpContextAccessor>(),
-                app.ApplicationServices.GetRequiredService<IWebHostEnvironment>(),
+                app.ApplicationServices.GetRequiredService<IWebEnvironment>(),
                 app.ApplicationServices.GetRequiredService<SessionManager>(),
                 app.ApplicationServices.GetRequiredService<CookiesManager>(),
                 app.ApplicationServices.GetRequiredService<ILanguageLocalization>(),
