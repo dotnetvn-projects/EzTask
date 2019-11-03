@@ -587,7 +587,7 @@ namespace EzTask.Business
 
         private bool IsOwner(int projectId)
         {
-            var project = UnitOfWork.ProjectRepository.GetById(projectId, allowTracking: false);
+            var project = UnitOfWork.ProjectRepository.Get(c=>c.Id == projectId, allowTracking: false);
 
             return project.Owner == _accountContext.AccountId;
         }

@@ -1,2 +1,2 @@
 ﻿Name: EzTask.Modules.Task
-BuildFolder: Views, Bin, wwwroot
+BuildFolder: Bin, wwwroot

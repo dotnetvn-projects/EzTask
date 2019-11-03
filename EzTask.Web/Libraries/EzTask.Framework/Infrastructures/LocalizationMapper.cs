@@ -1,5 +1,5 @@
 ﻿using EzTask.Framework.Common;
-using EzTask.Framework.Data;
+using EzTask.Framework.GlobalData;
 using System.Linq;
 
 namespace EzTask.Framework.Infrastructures

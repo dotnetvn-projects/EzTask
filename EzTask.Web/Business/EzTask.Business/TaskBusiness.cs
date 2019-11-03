@@ -450,7 +450,7 @@ namespace EzTask.Business
         public async Task<AttachmentModel> GetAttachment(int id)
         {
             Attachment iResult = await UnitOfWork
-                .AttachRepository.GetByIdAsync(id, allowTracking: false);
+                .AttachRepository.GetAsync(c=>c.Id == id, allowTracking: false);
 
             return iResult.ToModel();
         }

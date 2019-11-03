@@ -75,10 +75,10 @@ namespace EzTask.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Obsolete("EF 3.0 is not support client evaluation ")]
         public T GetById(int id, bool allowTracking = true)
         {
-            return Entity.FirstOrDefault(c => 
-            ((int)c.GetType().GetProperty("Id").GetValue(c) == id));
+            return Entity.FirstOrDefault(c => (int)c.GetType().GetProperty("Id").GetValue(c) == id);
         }
 
         /// <summary>
@@ -191,10 +191,10 @@ namespace EzTask.Repository
         {
             if (allowTracking)
             {
-                return Entity.FromSql(sql).ToList();
+                return Entity.FromSqlRaw(sql).ToList();
             }
 
-            return Entity.AsNoTracking().FromSql(sql).ToList();
+            return Entity.FromSqlRaw(sql).AsNoTracking().ToList();
         }
 
         /// <summary>
@@ -241,19 +241,21 @@ namespace EzTask.Repository
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [Obsolete("EF 3.0 is not support client evaluation ")]
         public async Task<T> GetByIdAsync(int id, bool allowTracking = true)
         {
             if (allowTracking)
             {
                 return await Entity.FirstOrDefaultAsync(c =>
-                 ((int)c.GetType().GetProperty("Id").GetValue(c) == id));
+                 (int)c.GetType().GetProperty("Id").GetValue(c) == id);
             }
             else
             {
                 return await Entity.AsNoTracking().FirstOrDefaultAsync(c =>
-                 ((int)c.GetType().GetProperty("Id").GetValue(c) == id));
+                 (int)c.GetType().GetProperty("Id").GetValue(c) == id);
             }
         }
+
 
         /// <summary>
         /// Get entities by lambda expression
@@ -286,11 +288,11 @@ namespace EzTask.Repository
 
             if (allowTracking)
             {
-                data = await Entity.FromSql(sql).ToListAsync();
+                data = await Entity.FromSqlRaw(sql).ToListAsync();
             }
             else
             {
-                data = await Entity.AsNoTracking().FromSql(sql).ToListAsync();
+                data = await Entity.FromSqlRaw(sql).AsNoTracking().ToListAsync();
             }
             return data;
         }

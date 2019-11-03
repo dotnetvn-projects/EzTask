@@ -1,5 +1,4 @@
 ﻿using EzTask.Business;
-using EzTask.Model;
 using EzTask.Modules.Task.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;

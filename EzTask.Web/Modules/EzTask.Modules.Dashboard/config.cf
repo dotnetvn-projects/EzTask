@@ -1,2 +1,2 @@
 ﻿Name: EzTask.Modules.Dashboard
-BuildFolder: Views, Bin, wwwroot
+BuildFolder: Bin, wwwroot

@@ -1,12 +1,10 @@
 ﻿using EzTask.Entity.Data;
 using EzTask.Framework.ImageHandler;
-using EzTask.Framework.Infrastructures;
 using EzTask.Framework.IO;
 using EzTask.Framework.Security;
 using EzTask.Interface;
 using EzTask.Model;
 using EzTask.Model.Enum;
-using EzTask.Model.Message;
 using EzTask.Plugin.MessageService.Data.Email;
 using EzTask.Repository;
 using Microsoft.EntityFrameworkCore;

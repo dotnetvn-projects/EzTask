@@ -7,13 +7,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Remove="Modules\**" />
-    <Content Remove="Modules\**" />
-    <EmbeddedResource Remove="Modules\**" />
-    <None Remove="Modules\**" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Remove="log4net.config" />
   </ItemGroup>
 
@@ -1976,6 +1969,67 @@
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Include="Modules\EzTask.Modules.Authentication\Views\Account\Login.cshtml" />
+    <None Include="Modules\EzTask.Modules.Authentication\Views\Account\Register.cshtml" />
+    <None Include="Modules\EzTask.Modules.Authentication\Views\Recovery\RecoverPassword.cshtml" />
+    <None Include="Modules\EzTask.Modules.Authentication\Views\Recovery\RecoverPasswordAction.cshtml" />
+    <None Include="Modules\EzTask.Modules.Authentication\Views\Recovery\RecoverPasswordSuccess.cshtml" />
+    <None Include="Modules\EzTask.Modules.Authentication\Views\_ViewImports.cshtml" />
+    <None Include="Modules\EzTask.Modules.Authentication\Views\_ViewStart.cshtml" />
+    <None Include="Modules\EzTask.Modules.Core\Views\Common\Error.cshtml" />
+    <None Include="Modules\EzTask.Modules.Core\Views\Common\PageNotFound.cshtml" />
+    <None Include="Modules\EzTask.Modules.Core\Views\Common\PageNotFoundAnonymous.cshtml" />
+    <None Include="Modules\EzTask.Modules.Core\Views\Shared\Components\NewNotificationList\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Core\Views\Shared\Components\TaskNotificationList\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Core\Views\Shared\_CommonMessage.cshtml" />
+    <None Include="Modules\EzTask.Modules.Core\Views\Shared\_PageList.cshtml" />
+    <None Include="Modules\EzTask.Modules.Core\Views\_ViewImports.cshtml" />
+    <None Include="Modules\EzTask.Modules.Core\Views\_ViewStart.cshtml" />
+    <None Include="Modules\EzTask.Modules.Dashboard\Views\Home\Index.cshtml" />
+    <None Include="Modules\EzTask.Modules.Dashboard\Views\Shared\Components\CurrentTaskList\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Dashboard\Views\Shared\Components\Summary\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Dashboard\Views\Shared\Components\ToDoList\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Dashboard\Views\Shared\_CreateOrEditTotoItem.cshtml" />
+    <None Include="Modules\EzTask.Modules.Dashboard\Views\_ViewImports.cshtml" />
+    <None Include="Modules\EzTask.Modules.Dashboard\Views\_ViewStart.cshtml" />
+    <None Include="Modules\EzTask.Modules.Notification\Views\Notification\NotificationList.cshtml" />
+    <None Include="Modules\EzTask.Modules.Notification\Views\Shared\Components\NotificationList\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Notification\Views\_ViewImports.cshtml" />
+    <None Include="Modules\EzTask.Modules.Notification\Views\_ViewStart.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\ProjectDetail\index.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Project\AcceptInvite.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Project\CreateNew.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Project\CreateSuccess.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Project\Index.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Project\Update.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Project\UpdateSuccess.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Project\_CreateOrUpdate.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Project\_CreateOrUpdateSuccess.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Shared\Components\ProjectList\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\Shared\_AddNewMemberItemTemplate.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\_ViewImports.cshtml" />
+    <None Include="Modules\EzTask.Modules.Project\Views\_ViewStart.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\Components\Attachments\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\Components\HistoryList\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\Components\PhaseList\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\Components\TaskList\Default.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\_AssignTask.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\_ButtonAddNewPhase.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\_CreateOrUpdatePhase.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\_CreateOrUpdateTask.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\_HistoryDetail.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Shared\_TaskLabels.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\Task\Index.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\_ViewImports.cshtml" />
+    <None Include="Modules\EzTask.Modules.Task\Views\_ViewStart.cshtml" />
+    <None Include="Modules\EzTask.Modules.UserProfile\Views\Shared\_ChangePassword.cshtml" />
+    <None Include="Modules\EzTask.Modules.UserProfile\Views\Shared\_SkillInfo.cshtml" />
+    <None Include="Modules\EzTask.Modules.UserProfile\Views\Shared\_UpdateInfo.cshtml" />
+    <None Include="Modules\EzTask.Modules.UserProfile\Views\Shared\_UploadAvatarModal.cshtml" />
+    <None Include="Modules\EzTask.Modules.UserProfile\Views\UserProfile\Profile.cshtml" />
+    <None Include="Modules\EzTask.Modules.UserProfile\Views\UserProfile\PublicProfile.cshtml" />
+    <None Include="Modules\EzTask.Modules.UserProfile\Views\_ViewImports.cshtml" />
+    <None Include="Modules\EzTask.Modules.UserProfile\Views\_ViewStart.cshtml" />
     <None Include="wwwroot\themes\bower_components\bootstrap-colorpicker\CONTRIBUTING.md" />
     <None Include="wwwroot\themes\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.css.map" />
     <None Include="wwwroot\themes\bower_components\bootstrap-colorpicker\dist\css\bootstrap-colorpicker.min.css.map" />

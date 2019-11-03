@@ -16,11 +16,10 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Abstractions" Version="2.2.0" />
-    <PackageReference Include="System.Drawing.Common" Version="4.5.1" />
+    <PackageReference Include="System.Drawing.Common" Version="4.6.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EzTask.DataAccess\EzTask.DataAccess.csproj" />
     <ProjectReference Include="..\EzTask.Repository\EzTask.Repository.csproj" />
   </ItemGroup>
 

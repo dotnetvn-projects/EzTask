@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\EzTask.DataAccess\EzTask.DataAccess.csproj" />
+    <ProjectReference Include="..\EzTask.Database\EzTask.Database.csproj" />
     <ProjectReference Include="..\EzTask.Interface\EzTask.Interface.csproj" />
   </ItemGroup>
 

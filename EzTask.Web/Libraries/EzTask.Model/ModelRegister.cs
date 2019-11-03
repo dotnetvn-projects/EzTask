@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using EzTask.Framework.Common;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace EzTask.Model
@@ -7,7 +8,7 @@ namespace EzTask.Model
     {
         public static void Register(IServiceCollection services)
         {
-            services.AddAutoMapper();
+            services.AddAutoMapper(AssemblyUtilities.GetAssemblies());
 
             var serviceProvider = services.BuildServiceProvider();
             Mapper = serviceProvider.GetService<IMapper>();

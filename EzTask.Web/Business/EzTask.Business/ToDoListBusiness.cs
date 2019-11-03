@@ -59,7 +59,7 @@ namespace EzTask.Business
         {
             ResultModel<ToDoItemModel> result = new ResultModel<ToDoItemModel>();
 
-            var data = await UnitOfWork.TodoItemRepository.GetByIdAsync(id, false);
+            var data = await UnitOfWork.TodoItemRepository.GetAsync(c=>c.Id == id, false);
 
             if(data != null)
             {
