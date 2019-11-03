@@ -1,4 +1,4 @@
-﻿using EzTask.DataAccess;
+﻿using EzTask.Database;
 using EzTask.Framework.ImageHandler;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -17,7 +17,7 @@ public static class FrameworkCore
     {
         services.AddScoped<ImageProcessor>();
 
-        services.AddDbContext<EzTaskDbContext>(options =>
+        services.AddDbContext<DataContext>(options =>
                 options.UseSqlServer(configuration.GetConnectionString("EzTask")),
                 ServiceLifetime.Scoped);
     }

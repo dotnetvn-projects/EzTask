@@ -1,5 +1,5 @@
 ﻿using EzTask.Framework.Common;
-using EzTask.Framework.Data;
+using EzTask.Framework.GlobalData;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;

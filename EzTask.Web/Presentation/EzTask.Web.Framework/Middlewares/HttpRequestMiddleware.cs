@@ -1,4 +1,4 @@
-﻿using EzTask.Framework.Data;
+﻿using EzTask.Framework.GlobalData;
 using EzTask.Interface;
 using EzTask.Log;
 using EzTask.Web.Framework.Infrastructures;

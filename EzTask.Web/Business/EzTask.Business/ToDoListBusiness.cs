@@ -1,13 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EzTask.Framework.Infrastructures;
-using EzTask.Interface;
+﻿using EzTask.Interface;
 using EzTask.Interface.SharedData;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Repository;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EzTask.Business
 {

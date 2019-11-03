@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using EzTask.Web.Framework.WebContext;
-using EzTask.Framework.Data;
+using EzTask.Framework.GlobalData;
 
 namespace EzTask.Web.Framework.Attributes
 {

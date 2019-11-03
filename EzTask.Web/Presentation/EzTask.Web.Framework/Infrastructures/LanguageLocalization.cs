@@ -1,5 +1,5 @@
 ﻿using EzTask.Framework.Common;
-using EzTask.Framework.Data;
+using EzTask.Framework.GlobalData;
 using EzTask.Framework.Infrastructures;
 using EzTask.Interface;
 using EzTask.Web.Framework.WebContext;

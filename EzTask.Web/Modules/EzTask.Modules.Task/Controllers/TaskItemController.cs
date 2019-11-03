@@ -11,7 +11,7 @@ using EzTask.Framework.Common;
 using System.Threading.Tasks;
 using EzTask.Framework.IO;
 using Microsoft.AspNetCore.Http;
-using EzTask.Framework.Data;
+using EzTask.Framework.GlobalData;
 using EzTask.Web.Framework.Data;
 using EzTask.Web.Framework.WebContext;
 

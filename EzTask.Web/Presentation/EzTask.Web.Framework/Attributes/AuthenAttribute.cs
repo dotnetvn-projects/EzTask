@@ -1,4 +1,4 @@
-﻿using EzTask.Framework.Data;
+﻿using EzTask.Framework.GlobalData;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.AspNetCore.Http.Extensions;

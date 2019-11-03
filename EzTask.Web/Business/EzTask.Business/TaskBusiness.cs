@@ -120,7 +120,7 @@ namespace EzTask.Business
                 if (string.IsNullOrEmpty(task.TaskCode))
                 {
                     task.TaskCode = CreateCode("T", task.Id);
-                    int updatedRecord = await UnitOfWork.CommitAsync();
+                    await UnitOfWork.CommitAsync();
                 }
 
                 result.Status = ActionStatus.Ok;
@@ -136,9 +136,11 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountByPhase(int phaseId, int projectId)
         {
-            int totalTask = await UnitOfWork.TaskRepository.Entity
-                                  .CountAsync(c => c.PhaseId == phaseId
-            && c.ProjectId == projectId);
+            int totalTask = await UnitOfWork
+                .TaskRepository
+                .Entity
+                .CountAsync(c => c.PhaseId == phaseId && c.ProjectId == projectId);
+
             return totalTask;
         }
 
@@ -149,8 +151,11 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<int> CountTaskByProjectId(int projectId)
         {
-            int totalTask = await UnitOfWork.TaskRepository.Entity
-                                  .CountAsync(c => c.ProjectId == projectId);
+            int totalTask = await UnitOfWork
+                .TaskRepository
+                .Entity
+                .CountAsync(c => c.ProjectId == projectId);
+
             return totalTask;
         }
 
@@ -165,6 +170,7 @@ namespace EzTask.Business
                 .TaskRepository
                 .Entity
                 .CountAsync(c => projectIds.Contains(c.ProjectId));
+
             return totalTask;
         }
 
@@ -179,6 +185,7 @@ namespace EzTask.Business
                 .TaskRepository
                 .Entity
                 .CountAsync(c => c.MemberId == memberId && c.ProjectId == projectId);
+
             return totalTask;
         }
 

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using EzTask.Framework.Common;
-using EzTask.Framework.Data;
+using EzTask.Framework.GlobalData;
 using EzTask.Model.Enum;
 using EzTask.Modules.Authentication.ViewModels;
 using EzTask.Modules.Core.Controllers;

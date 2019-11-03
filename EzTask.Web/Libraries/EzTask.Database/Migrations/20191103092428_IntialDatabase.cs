@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EzTask.Database.Migrations
 {
-    public partial class EzTask : Migration
+    public partial class IntialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,7 +12,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ManageAccountId = table.Column<int>(nullable: true),
                     AccountName = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
@@ -39,7 +38,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     SkillName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
@@ -52,7 +51,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AccountId = table.Column<int>(nullable: false),
                     JobTitle = table.Column<string>(nullable: true),
                     Education = table.Column<string>(nullable: true),
@@ -86,7 +85,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AccountId = table.Column<int>(nullable: false),
                     Content = table.Column<string>(nullable: true),
                     CreatedDate = table.Column<DateTime>(nullable: false),
@@ -110,7 +109,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectCode = table.Column<string>(type: "varchar(10)", nullable: true),
                     ProjectName = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
@@ -137,7 +136,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Code = table.Column<Guid>(nullable: false),
                     ExpiredTime = table.Column<DateTime>(nullable: false),
                     AccountId = table.Column<int>(nullable: false),
@@ -159,7 +158,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     Title = table.Column<string>(nullable: true),
                     Priority = table.Column<short>(nullable: false),
                     Status = table.Column<short>(nullable: false),
@@ -183,7 +182,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     AccountId = table.Column<int>(nullable: false),
                     SkillId = table.Column<int>(nullable: false)
                 },
@@ -209,7 +208,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectId = table.Column<int>(nullable: false),
                     PhaseName = table.Column<string>(nullable: true),
                     StartDate = table.Column<DateTime>(nullable: true),
@@ -233,7 +232,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     MemberId = table.Column<int>(nullable: false),
                     ProjectId = table.Column<int>(nullable: false),
                     AddDate = table.Column<DateTime>(nullable: false),
@@ -262,7 +261,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TaskCode = table.Column<string>(type: "varchar(10)", nullable: true),
                     TaskTitle = table.Column<string>(nullable: true),
                     TaskDetail = table.Column<string>(nullable: true),
@@ -312,7 +311,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TaskId = table.Column<int>(nullable: false),
                     FileName = table.Column<string>(nullable: true),
                     FileType = table.Column<string>(nullable: true),
@@ -342,7 +341,7 @@ namespace EzTask.Database.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     TaskId = table.Column<int>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     UpdatedUser = table.Column<int>(nullable: false),

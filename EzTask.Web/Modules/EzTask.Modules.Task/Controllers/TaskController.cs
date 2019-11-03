@@ -1,4 +1,4 @@
-﻿using EzTask.Framework.Data;
+﻿using EzTask.Framework.GlobalData;
 using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Task.ViewModels;

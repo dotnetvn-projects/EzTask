@@ -1,4 +1,4 @@
-﻿using EzTask.Framework.Data;
+﻿using EzTask.Framework.GlobalData;
 using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Html;
 using Microsoft.AspNetCore.Mvc.Rendering;

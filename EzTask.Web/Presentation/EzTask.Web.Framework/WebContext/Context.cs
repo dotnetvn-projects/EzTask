@@ -1,4 +1,4 @@
-﻿using EzTask.Framework.Data;
+﻿using EzTask.Framework.GlobalData;
 using EzTask.Interface;
 using EzTask.Web.Framework.Infrastructures;
 using Microsoft.AspNetCore.Builder;

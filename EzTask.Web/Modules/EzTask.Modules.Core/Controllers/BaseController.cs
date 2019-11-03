@@ -1,5 +1,5 @@
 ﻿using EzTask.Business;
-using EzTask.Framework.Data;
+using EzTask.Framework.GlobalData;
 using EzTask.Model;
 using EzTask.Model.Message;
 using EzTask.Web.Framework.WebContext;

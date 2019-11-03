@@ -1,4 +1,4 @@
-﻿using EzTask.Framework.Data;
+﻿using EzTask.Framework.GlobalData;
 using Microsoft.AspNetCore.Http;
 
 namespace EzTask.Web.Framework.WebContext

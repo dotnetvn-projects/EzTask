@@ -72,3 +72,160 @@
 2019-11-03 14:57:54,167 [49]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
 2019-11-03 14:57:54,348 [54]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
 2019-11-03 14:58:02,783 [54]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-11-03 16:26:07,306 [7]INFO [App][] Request Url: /
+2019-11-03 16:26:11,961 [12]ERROR[MoveNext][duylinh191@gmail.com] The partial view '~/Modules/EzTask.Modules.Core/Views/Shared/_PageList.cshtml' was not found. The following locations were searched:
+~/Modules/EzTask.Modules.Core/Views/Shared/_PageList.cshtml
+System.InvalidOperationException: The partial view '~/Modules/EzTask.Modules.Core/Views/Shared/_PageList.cshtml' was not found. The following locations were searched:
+~/Modules/EzTask.Modules.Core/Views/Shared/_PageList.cshtml
+   at Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.<RunAsync>g__Awaited|0_0(Task task, TagHelperExecutionContext executionContext, Int32 i, Int32 count)
+   at AspNetCore.Views_Shared_Components_ToDoList_Default.ExecuteAsync()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.ViewViewComponentResult.ExecuteAsync(ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker.InvokeAsync(ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentHelper.InvokeCoreAsync(ViewComponentDescriptor descriptor, Object arguments)
+   at AspNetCore.Views_Home_Index.ExecuteAsync()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultFilters>g__Awaited|27_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-11-03 16:30:04,460 [7]INFO [App][] Request Url: /
+2019-11-03 16:30:08,953 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:09,349 [5]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:30:09,349 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:30:15,607 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile.html
+2019-11-03 16:30:16,220 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:16,394 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:30:16,394 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:30:20,836 [11]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-11-03 16:30:23,190 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,190 [5]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,190 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,190 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,223 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,224 [5]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,321 [5]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,354 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:30:23,429 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-03 16:30:23,509 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,539 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,583 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,584 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:30:23,610 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:37:02,133 [7]INFO [App][] Request Url: /
+2019-11-03 16:41:37,358 [7]INFO [App][] Request Url: /
+2019-11-03 16:41:41,971 [4]ERROR[MoveNext][duylinh191@gmail.com] The partial view '~/Modules/EzTask.Modules.Core/Views/Shared/_CommonMessage.cshtml' was not found. The following locations were searched:
+~/Modules/EzTask.Modules.Core/Views/Shared/_CommonMessage.cshtml
+System.InvalidOperationException: The partial view '~/Modules/EzTask.Modules.Core/Views/Shared/_CommonMessage.cshtml' was not found. The following locations were searched:
+~/Modules/EzTask.Modules.Core/Views/Shared/_CommonMessage.cshtml
+   at Microsoft.AspNetCore.Mvc.TagHelpers.PartialTagHelper.ProcessAsync(TagHelperContext context, TagHelperOutput output)
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperRunner.<RunAsync>g__Awaited|0_0(Task task, TagHelperExecutionContext executionContext, Int32 i, Int32 count)
+   at AspNetCore.Views_Shared__Layout.<ExecuteAsync>b__52_1() in D:\EzTask\EzTask.Web\Presentation\EzTask.Web\Views\Shared\_Layout.cshtml:line 236
+   at Microsoft.AspNetCore.Razor.Runtime.TagHelpers.TagHelperExecutionContext.SetOutputContentAsync()
+   at AspNetCore.Views_Shared__Layout.ExecuteAsync()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderLayoutAsync(ViewContext context, ViewBufferTextWriter bodyWriter)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultFilters>g__Awaited|27_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-11-03 16:43:58,210 [4]INFO [App][] Request Url: /
+2019-11-03 16:44:04,244 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:04,809 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:44:04,814 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-03 16:44:38,576 [10]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-11-03 16:44:41,004 [24]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,008 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,009 [23]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,009 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,009 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,011 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,099 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,148 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:44:41,196 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-03 16:44:41,271 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,285 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,360 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,393 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:41,393 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:43,581 [19]INFO [App][duylinh191@gmail.com] Request Url: /project/update-project.html
+2019-11-03 16:44:43,912 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:43,992 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:44:43,992 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-03 16:44:45,901 [19]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-11-03 16:44:47,909 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:47,912 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:47,914 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:47,915 [24]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:47,919 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:47,923 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:48,054 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:44:48,084 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-03 16:44:48,091 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:48,092 [24]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:48,181 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:48,197 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:48,239 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:48,239 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:50,141 [23]INFO [App][duylinh191@gmail.com] Request Url: /project/update-project.html
+2019-11-03 16:44:50,300 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:50,353 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:44:50,354 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-03 16:44:51,726 [13]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-11-03 16:44:53,050 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:53,145 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:44:53,146 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-03 16:44:55,475 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-11-03 16:44:56,553 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:44:59,646 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-11-03 16:45:12,286 [20]INFO [App][duylinh191@gmail.com] Request Url: /taskitem/upload-attach-file.html
+2019-11-03 16:45:13,432 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-11-03 16:45:13,534 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-11-03 16:46:13,212 [33]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-11-03 16:46:17,315 [33]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/generate-assign-view.html
+2019-11-03 16:47:12,823 [38]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-11-03 16:47:14,815 [44]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,816 [43]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,818 [38]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,819 [40]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,819 [39]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,822 [45]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,905 [45]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,935 [39]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,937 [40]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,937 [38]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:14,966 [45]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-03 16:47:14,992 [38]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-03 16:47:15,004 [40]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:15,062 [40]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-03 16:47:33,619 [47]INFO [App][duylinh191@gmail.com] Request Ajax Url: /project/invite-new-member.html
+2019-11-03 16:47:36,322 [47]INFO [App][duylinh191@gmail.com] Request Ajax Url: /project/invite-new-member.html

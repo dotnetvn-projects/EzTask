@@ -1,5 +1,5 @@
 ﻿using EzTask.Framework.Common;
-using EzTask.Framework.Data;
+using EzTask.Framework.GlobalData;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Web.Framework.WebContext;
@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EzTask.Web.Framework.Data
 {
