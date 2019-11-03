@@ -2,10 +2,10 @@
 
 namespace EzTask.Database
 {
-    public class EzTaskDbContext:DbContext
+    public class DbContext: Microsoft.EntityFrameworkCore.DbContext
     {
         private EntityMapper _entityMapper;
-        public EzTaskDbContext(DbContextOptions<EzTaskDbContext> options)
+        public DbContext(DbContextOptions<DbContext> options)
         : base(options)
         {
 

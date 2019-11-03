@@ -1,4 +1,5 @@
 ﻿using EzTask.DataAccess;
+using EzTask.Database;
 using EzTask.Entity.Data;
 using EzTask.Interface;
 using System;
@@ -8,7 +9,7 @@ namespace EzTask.Repository
 {
     public class UnitOfWork : IDisposable
     {
-        public EzTaskDbContext Context { get; }
+        public DbContext Context { get; }
 
         public IRepository<Account> AccountRepository { get; }
         public IRepository<AccountInfo> AccountInfoRepository { get; }
@@ -24,7 +25,7 @@ namespace EzTask.Repository
         public IRepository<ToDoItem> TodoItemRepository { get; }
         public IRepository<RecoverSession> RecoverSessionRepository { get; }
 
-        public UnitOfWork(EzTaskDbContext context,
+        public UnitOfWork(DbContext context,
              IRepository<Account> account,
              IRepository<AccountInfo> accountInfo,
              IRepository<Project> project,

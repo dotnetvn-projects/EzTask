@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace EzTask.Database.Migrations
 {
-    [DbContext(typeof(EzTaskDbContext))]
+    [DbContext(typeof(DbContext))]
     partial class EzTaskDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
