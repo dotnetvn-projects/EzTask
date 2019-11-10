@@ -7,6 +7,7 @@ namespace EzTask.Entity.Data
 {
     public class ToDoItem: Entity<ToDoItem>
     {
+        public Guid ManagedCode { get; set; }
         public string Title { get; set; }
         public short Priority { get; set; }
         public short Status { get; set; }

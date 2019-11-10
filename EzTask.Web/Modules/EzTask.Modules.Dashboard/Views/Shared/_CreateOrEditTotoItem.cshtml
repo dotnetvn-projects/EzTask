@@ -18,6 +18,7 @@
             </div>
             <form id="todoItem-form" class="form-horizontal">
                 <input asp-for="Id" type="hidden" />
+                <input asp-for="ManagedCode" type="hidden" />
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="inputPhaseName" class="col-sm-3 control-label">@Html.GetStringResource("Title", StringResourceType.DashboardPage)</label>

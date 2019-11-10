@@ -111,27 +111,19 @@ namespace EzTask.Business
             ResultModel<bool> result = new ResultModel<bool>();
 
             var dataRange = await UnitOfWork
-                .TodoItemRepository.GetManyAsync(c => ids.Contains(c.Id), false);
+                .TodoItemRepository
+                .GetManyAsync(c => ids.Contains(c.Id) && c.Owner == _accountContext.AccountId, false);
 
             if (dataRange.Any())
             {
-                var firstItem = dataRange.FirstOrDefault();
+                UnitOfWork.TodoItemRepository.DeleteRange(dataRange);
 
-                if (_accountContext.AccountId == firstItem.Owner)
+                int iResult = await UnitOfWork.CommitAsync();
+
+                if (iResult > 0)
                 {
-                    UnitOfWork.TodoItemRepository.DeleteRange(dataRange);
-
-                    int iResult = await UnitOfWork.CommitAsync();
-
-                    if (iResult > 0)
-                    {
-                        result.Data = true;
-                        result.Status = ActionStatus.Ok;
-                    }
-                }
-                else
-                {
-                    result.Status = ActionStatus.UnAuthorized;
+                    result.Data = true;
+                    result.Status = ActionStatus.Ok;
                 }
             }
             else

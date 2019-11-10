@@ -79,6 +79,7 @@ namespace EzTask.Modules.Dashboard.Controllers
         {
             var model = new ToDoItemModel
             {
+                ManagedCode = viewModel.ManagedCode,
                 Title = viewModel.Title,
                 Id = viewModel.Id,
                 Account = new AccountModel { AccountId = Context.CurrentAccount.AccountId },

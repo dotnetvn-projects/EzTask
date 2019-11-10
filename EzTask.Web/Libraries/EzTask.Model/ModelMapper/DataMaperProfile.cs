@@ -3,6 +3,7 @@ using EzTask.Entity.Data;
 using EzTask.Framework.Common;
 using EzTask.Model;
 using EzTask.Model.Enum;
+using System;
 using System.Linq;
 
 namespace EzTask.Model
@@ -158,13 +159,15 @@ namespace EzTask.Model
                 .ForPath(c => c.Account.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo.DisplayName))
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToEnum<ToDoItemStatus>()))
                 .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToEnum<ToDoItemPriority>()))
+                .ForMember(c => c.ManagedCode, t => t.MapFrom(z => z.ManagedCode.ToString()))
                 .ReverseMap();
 
             //Map ToDoItem model to ToDoItem entity
             CreateMap<ToDoItemModel, ToDoItem>()
                 .ForMember(c => c.Owner, t => t.MapFrom(z => z.Account.AccountId))
                 .ForMember(c => c.Status, t => t.MapFrom(z => z.Status.ToInt16<ToDoItemStatus>()))
-                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToInt16<ToDoItemPriority>()));
+                .ForMember(c => c.Priority, t => t.MapFrom(z => z.Priority.ToInt16<ToDoItemPriority>()))
+                .ForMember(c => c.ManagedCode, t => t.MapFrom(z => Guid.Parse(z.ManagedCode)));
         }
     }
 }

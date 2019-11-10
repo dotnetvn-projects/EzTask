@@ -26,5 +26,11 @@
     "inputFiles": [
       "wwwroot/task/js/task-action.js"
     ]
+  },
+  {
+    "outputFileName": "wwwroot/task/css/task.min.css",
+    "inputFiles": [
+      "wwwroot/task/css/task.css"
+    ]
   }
 ]

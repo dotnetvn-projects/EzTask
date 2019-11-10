@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-
-namespace EzTask.Business
+﻿namespace EzTask.Business
 {
     public class EzTaskBusiness 
     {
@@ -25,14 +23,6 @@ namespace EzTask.Business
             Task = task;
             Notification = notification;
             ToDoList = toDoList;
-        }
-
-        /// <summary>
-        /// Track message
-        /// </summary>
-        public void TrackMe()
-        {
-            Debug.Print("I am EzTask and I am good to work now :)");
         }
     }
 }
