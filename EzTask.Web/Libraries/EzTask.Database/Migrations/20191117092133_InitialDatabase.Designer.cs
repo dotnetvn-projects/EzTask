@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EzTask.Database.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20191103092428_IntialDatabase")]
-    partial class IntialDatabase
+    [Migration("20191117092133_InitialDatabase")]
+    partial class InitialDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -29,7 +29,7 @@ namespace EzTask.Database.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("AccountName")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<short>("AccountStatus")
                         .HasColumnType("smallint");
@@ -44,10 +44,10 @@ namespace EzTask.Database.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("UpdatedDate")
                         .HasColumnType("datetime2");
@@ -55,6 +55,8 @@ namespace EzTask.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ManageAccountId");
+
+                    b.HasIndex("AccountName", "PasswordHash", "ManageAccountId", "Password");
 
                     b.ToTable("Account");
                 });
@@ -94,7 +96,7 @@ namespace EzTask.Database.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("FullName")
                         .HasColumnType("nvarchar(max)");
@@ -119,6 +121,8 @@ namespace EzTask.Database.Migrations
                     b.HasIndex("AccountId")
                         .IsUnique();
 
+                    b.HasIndex("AccountId", "IsPublished", "Email");
+
                     b.ToTable("AccountInfo");
                 });
 
@@ -137,9 +141,9 @@ namespace EzTask.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
-
                     b.HasIndex("SkillId");
+
+                    b.HasIndex("AccountId", "SkillId");
 
                     b.ToTable("Account_Skill");
                 });
@@ -171,9 +175,9 @@ namespace EzTask.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AddedUser");
-
                     b.HasIndex("TaskId");
+
+                    b.HasIndex("AddedUser", "TaskId");
 
                     b.ToTable("Attachment");
                 });
@@ -205,7 +209,7 @@ namespace EzTask.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("AccountId", "CreatedDate");
 
                     b.ToTable("Notification");
                 });
@@ -238,6 +242,8 @@ namespace EzTask.Database.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("IsDefault", "ProjectId");
 
                     b.ToTable("Phase");
                 });
@@ -280,6 +286,8 @@ namespace EzTask.Database.Migrations
 
                     b.HasIndex("Owner");
 
+                    b.HasIndex("ProjectCode", "Owner", "Status");
+
                     b.ToTable("Project");
                 });
 
@@ -291,7 +299,7 @@ namespace EzTask.Database.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<string>("ActiveCode")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("AddDate")
                         .HasColumnType("datetime2");
@@ -310,6 +318,8 @@ namespace EzTask.Database.Migrations
                     b.HasIndex("MemberId");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("ActiveCode", "IsPending", "MemberId", "ProjectId");
 
                     b.ToTable("Project_Member");
                 });
@@ -335,7 +345,7 @@ namespace EzTask.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AccountId");
+                    b.HasIndex("AccountId", "Code", "IsUsed");
 
                     b.ToTable("RecoverSession");
                 });
@@ -379,9 +389,9 @@ namespace EzTask.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TaskId");
-
                     b.HasIndex("UpdatedUser");
+
+                    b.HasIndex("TaskId", "UpdatedUser", "UpdatedDate");
 
                     b.ToTable("TaskHistory");
                 });
@@ -437,13 +447,13 @@ namespace EzTask.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AssigneeId");
-
                     b.HasIndex("MemberId");
 
                     b.HasIndex("PhaseId");
 
                     b.HasIndex("ProjectId");
+
+                    b.HasIndex("AssigneeId", "MemberId", "PhaseId", "ProjectId");
 
                     b.ToTable("TaskItem");
                 });
@@ -457,6 +467,9 @@ namespace EzTask.Database.Migrations
 
                     b.Property<DateTime>("CompleteOn")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid>("ManagedCode")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("Owner")
                         .HasColumnType("int");
@@ -475,7 +488,7 @@ namespace EzTask.Database.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Owner");
+                    b.HasIndex("Owner", "Status", "UpdatedDate", "ManagedCode");
 
                     b.ToTable("ToDoItem");
                 });

@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EzTask.Database.Migrations
 {
-    public partial class IntialDatabase : Migration
+    public partial class InitialDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -159,6 +159,7 @@ namespace EzTask.Database.Migrations
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    ManagedCode = table.Column<Guid>(nullable: false),
                     Title = table.Column<string>(nullable: true),
                     Priority = table.Column<short>(nullable: false),
                     Status = table.Column<short>(nullable: false),
@@ -371,14 +372,19 @@ namespace EzTask.Database.Migrations
                 column: "ManageAccountId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Account_Skill_AccountId",
-                table: "Account_Skill",
-                column: "AccountId");
+                name: "IX_Account_AccountName_PasswordHash_ManageAccountId_Password",
+                table: "Account",
+                columns: new[] { "AccountName", "PasswordHash", "ManageAccountId", "Password" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Account_Skill_SkillId",
                 table: "Account_Skill",
                 column: "SkillId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Account_Skill_AccountId_SkillId",
+                table: "Account_Skill",
+                columns: new[] { "AccountId", "SkillId" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_AccountInfo_AccountId",
@@ -387,9 +393,9 @@ namespace EzTask.Database.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Attachment_AddedUser",
-                table: "Attachment",
-                column: "AddedUser");
+                name: "IX_AccountInfo_AccountId_IsPublished_Email",
+                table: "AccountInfo",
+                columns: new[] { "AccountId", "IsPublished", "Email" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Attachment_TaskId",
@@ -397,9 +403,14 @@ namespace EzTask.Database.Migrations
                 column: "TaskId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Notification_AccountId",
+                name: "IX_Attachment_AddedUser_TaskId",
+                table: "Attachment",
+                columns: new[] { "AddedUser", "TaskId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Notification_AccountId_CreatedDate",
                 table: "Notification",
-                column: "AccountId");
+                columns: new[] { "AccountId", "CreatedDate" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Phase_ProjectId",
@@ -407,9 +418,19 @@ namespace EzTask.Database.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Phase_IsDefault_ProjectId",
+                table: "Phase",
+                columns: new[] { "IsDefault", "ProjectId" });
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Project_Owner",
                 table: "Project",
                 column: "Owner");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Project_ProjectCode_Owner_Status",
+                table: "Project",
+                columns: new[] { "ProjectCode", "Owner", "Status" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Project_Member_MemberId",
@@ -422,14 +443,14 @@ namespace EzTask.Database.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_RecoverSession_AccountId",
-                table: "RecoverSession",
-                column: "AccountId");
+                name: "IX_Project_Member_ActiveCode_IsPending_MemberId_ProjectId",
+                table: "Project_Member",
+                columns: new[] { "ActiveCode", "IsPending", "MemberId", "ProjectId" });
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskHistory_TaskId",
-                table: "TaskHistory",
-                column: "TaskId");
+                name: "IX_RecoverSession_AccountId_Code_IsUsed",
+                table: "RecoverSession",
+                columns: new[] { "AccountId", "Code", "IsUsed" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaskHistory_UpdatedUser",
@@ -437,9 +458,9 @@ namespace EzTask.Database.Migrations
                 column: "UpdatedUser");
 
             migrationBuilder.CreateIndex(
-                name: "IX_TaskItem_AssigneeId",
-                table: "TaskItem",
-                column: "AssigneeId");
+                name: "IX_TaskHistory_TaskId_UpdatedUser_UpdatedDate",
+                table: "TaskHistory",
+                columns: new[] { "TaskId", "UpdatedUser", "UpdatedDate" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_TaskItem_MemberId",
@@ -457,9 +478,14 @@ namespace EzTask.Database.Migrations
                 column: "ProjectId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_ToDoItem_Owner",
+                name: "IX_TaskItem_AssigneeId_MemberId_PhaseId_ProjectId",
+                table: "TaskItem",
+                columns: new[] { "AssigneeId", "MemberId", "PhaseId", "ProjectId" });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ToDoItem_Owner_Status_UpdatedDate_ManagedCode",
                 table: "ToDoItem",
-                column: "Owner");
+                columns: new[] { "Owner", "Status", "UpdatedDate", "ManagedCode" });
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

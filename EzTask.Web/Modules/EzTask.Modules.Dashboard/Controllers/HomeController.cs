@@ -55,6 +55,7 @@ namespace EzTask.Modules.Dashboard.Controllers
                     model.Priority = result.Data.Priority.ToInt16<ToDoItemPriority>();
                     model.Id = result.Data.Id;
                     model.Title = result.Data.Title;
+                    model.ManagedCode = result.Data.ManagedCode;
                 }
                 else
                 {

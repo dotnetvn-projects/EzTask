@@ -1,0 +1,53 @@
+2019-11-17 15:22:59,829 [11]INFO [App][] Request Url: /
+2019-11-17 15:23:00,705 [11]INFO [App][] Request Url: /login.html
+2019-11-17 15:23:43,130 [6]INFO [App][] Request Url: /login.html
+2019-11-17 15:23:46,250 [19]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-11-17 15:23:47,722 [19]ERROR[ThrowIfNull][duylinh191@gmail.com] Data is Null. This method or property cannot be called on Null values.
+System.Data.SqlTypes.SqlNullValueException: Data is Null. This method or property cannot be called on Null values.
+   at Microsoft.Data.SqlClient.SqlBuffer.ThrowIfNull()
+   at Microsoft.Data.SqlClient.SqlBuffer.get_Guid()
+   at Microsoft.Data.SqlClient.SqlDataReader.GetGuid(Int32 i)
+   at lambda_method(Closure , QueryContext , DbDataReader , ResultContext , Int32[] , ResultCoordinator )
+   at Microsoft.EntityFrameworkCore.Query.RelationalShapedQueryCompilingExpressionVisitor.QueryingEnumerable`1.Enumerator.MoveNext()
+   at System.Collections.Generic.EnumerableHelpers.ToArray[T](IEnumerable`1 source, Int32& length)
+   at System.Linq.Buffer`1..ctor(IEnumerable`1 source)
+   at System.Linq.OrderedEnumerable`1.ToList(Int32 minIdx, Int32 maxIdx)
+   at System.Linq.OrderedPartition`1.ToList()
+   at System.Linq.Enumerable.ToList[TSource](IEnumerable`1 source)
+   at EzTask.Repository.TRepository`1.GetPaging(Expression`1 predicate, Func`2 orderBy, OrderType orderType, Int32 page, Int32 pageSize, Boolean allowTracking) in D:\EzTask\EzTask.Web\Libraries\EzTask.Repository\TRepository.cs:line 161
+   at EzTask.Business.ToDoListBusiness.GetToDoList(Int32 accountId, Int32 currentPage, Int32 pageSize) in D:\EzTask\EzTask.Web\Business\EzTask.Business\ToDoListBusiness.cs:line 31
+   at EzTask.Modules.Dashboard.ViewComponents.TodoListViewComponent.InvokeAsync(Int32 currentPage, Int32 pageSize)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker.InvokeAsyncCore(ObjectMethodExecutor executor, ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentInvoker.InvokeAsync(ViewComponentContext context)
+   at Microsoft.AspNetCore.Mvc.ViewComponents.DefaultViewComponentHelper.InvokeCoreAsync(ViewComponentDescriptor descriptor, Object arguments)
+   at AspNetCore.Views_Home_Index.ExecuteAsync()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageCoreAsync(IRazorPage page, ViewContext context)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderPageAsync(IRazorPage page, ViewContext context, Boolean invokeViewStarts)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.RenderAsync(ViewContext context)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ViewContext viewContext, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.ExecuteAsync(ActionContext actionContext, IView view, ViewDataDictionary viewData, ITempDataDictionary tempData, String contentType, Nullable`1 statusCode)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewResultExecutor.ExecuteAsync(ActionContext context, ViewResult result)
+   at Microsoft.AspNetCore.Mvc.ViewResult.ExecuteResultAsync(ActionContext context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResultFilterAsync>g__Awaited|29_0[TFilter,TFilterAsync](ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResultExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.ResultNext[TFilter,TFilterAsync](State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeResultFilters>g__Awaited|27_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeNextResourceFilter>g__Awaited|24_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Rethrow(ResourceExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|19_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Logged|17_1(ResourceInvoker invoker)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|6_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at EzTask.Web.Framework.Middlewares.HttpRequestMiddleware.Invoke(HttpContext context) in D:\EzTask\EzTask.Web\Presentation\EzTask.Web.Framework\Middlewares\HttpRequestMiddleware.cs:line 29
+2019-11-17 15:25:23,808 [4]INFO [App][] Request Url: /
+2019-11-17 15:25:24,262 [8]INFO [App][] Request Url: /login.html
+2019-11-17 15:26:10,612 [17]INFO [App][] Request Url: /login.html
+2019-11-17 15:26:12,959 [19]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-11-17 15:29:33,752 [4]INFO [App][] Request Url: /
+2019-11-17 15:36:19,590 [4]INFO [App][] Request Url: /
+2019-11-17 15:40:52,761 [5]INFO [App][] Request Url: /
+2019-11-17 16:00:32,478 [7]INFO [App][] Request Url: /
+2019-11-17 16:01:38,899 [4]INFO [App][] Request Url: /
+2019-11-17 16:03:17,701 [26]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-17 16:03:19,169 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-17 16:03:19,169 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html

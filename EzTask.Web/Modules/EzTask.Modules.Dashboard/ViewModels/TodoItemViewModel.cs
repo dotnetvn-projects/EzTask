@@ -11,7 +11,7 @@ namespace EzTask.Modules.Dashboard.ViewModels
     {
         public int Id { get; set; }
 
-        public string ManagedCode { get; set; }
+        public Guid ManagedCode { get; set; }
 
         [RequiredField(errorLanguageKey: "TodoItemTitleRequired", 
             languagePageSetting: "DashboardPage")]
@@ -35,7 +35,7 @@ namespace EzTask.Modules.Dashboard.ViewModels
             CompleteOn = DateTime.Now.AddDays(1).ToDateString();
             Status = ToDoItemStatus.Waiting.ToInt16<ToDoItemStatus>();
             Priority = ToDoItemPriority.Medium.ToInt16<ToDoItemPriority>();
-            ManagedCode = Guid.NewGuid().ToString();
+            ManagedCode = Guid.NewGuid();
         }
     }
 }
