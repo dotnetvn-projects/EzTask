@@ -7,6 +7,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Modules\EzTask.Modules.Authentication\Views\**" />
+    <Compile Remove="Modules\EzTask.Modules.Core\Views\**" />
+    <Compile Remove="Modules\EzTask.Modules.Dashboard\Views\**" />
+    <Content Remove="Modules\EzTask.Modules.Authentication\Views\**" />
+    <Content Remove="Modules\EzTask.Modules.Core\Views\**" />
+    <Content Remove="Modules\EzTask.Modules.Dashboard\Views\**" />
+    <EmbeddedResource Remove="Modules\EzTask.Modules.Authentication\Views\**" />
+    <EmbeddedResource Remove="Modules\EzTask.Modules.Core\Views\**" />
+    <EmbeddedResource Remove="Modules\EzTask.Modules.Dashboard\Views\**" />
+    <None Remove="Modules\EzTask.Modules.Authentication\Views\**" />
+    <None Remove="Modules\EzTask.Modules.Core\Views\**" />
+    <None Remove="Modules\EzTask.Modules.Dashboard\Views\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Remove="log4net.config" />
   </ItemGroup>
 
@@ -1969,29 +1984,6 @@
     <None Include="log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Include="Modules\EzTask.Modules.Authentication\Views\Account\Login.cshtml" />
-    <None Include="Modules\EzTask.Modules.Authentication\Views\Account\Register.cshtml" />
-    <None Include="Modules\EzTask.Modules.Authentication\Views\Recovery\RecoverPassword.cshtml" />
-    <None Include="Modules\EzTask.Modules.Authentication\Views\Recovery\RecoverPasswordAction.cshtml" />
-    <None Include="Modules\EzTask.Modules.Authentication\Views\Recovery\RecoverPasswordSuccess.cshtml" />
-    <None Include="Modules\EzTask.Modules.Authentication\Views\_ViewImports.cshtml" />
-    <None Include="Modules\EzTask.Modules.Authentication\Views\_ViewStart.cshtml" />
-    <None Include="Modules\EzTask.Modules.Core\Views\Common\Error.cshtml" />
-    <None Include="Modules\EzTask.Modules.Core\Views\Common\PageNotFound.cshtml" />
-    <None Include="Modules\EzTask.Modules.Core\Views\Common\PageNotFoundAnonymous.cshtml" />
-    <None Include="Modules\EzTask.Modules.Core\Views\Shared\Components\NewNotificationList\Default.cshtml" />
-    <None Include="Modules\EzTask.Modules.Core\Views\Shared\Components\TaskNotificationList\Default.cshtml" />
-    <None Include="Modules\EzTask.Modules.Core\Views\Shared\_CommonMessage.cshtml" />
-    <None Include="Modules\EzTask.Modules.Core\Views\Shared\_PageList.cshtml" />
-    <None Include="Modules\EzTask.Modules.Core\Views\_ViewImports.cshtml" />
-    <None Include="Modules\EzTask.Modules.Core\Views\_ViewStart.cshtml" />
-    <None Include="Modules\EzTask.Modules.Dashboard\Views\Home\Index.cshtml" />
-    <None Include="Modules\EzTask.Modules.Dashboard\Views\Shared\Components\CurrentTaskList\Default.cshtml" />
-    <None Include="Modules\EzTask.Modules.Dashboard\Views\Shared\Components\Summary\Default.cshtml" />
-    <None Include="Modules\EzTask.Modules.Dashboard\Views\Shared\Components\ToDoList\Default.cshtml" />
-    <None Include="Modules\EzTask.Modules.Dashboard\Views\Shared\_CreateOrEditTotoItem.cshtml" />
-    <None Include="Modules\EzTask.Modules.Dashboard\Views\_ViewImports.cshtml" />
-    <None Include="Modules\EzTask.Modules.Dashboard\Views\_ViewStart.cshtml" />
     <None Include="Modules\EzTask.Modules.Notification\Views\Notification\NotificationList.cshtml" />
     <None Include="Modules\EzTask.Modules.Notification\Views\Shared\Components\NotificationList\Default.cshtml" />
     <None Include="Modules\EzTask.Modules.Notification\Views\_ViewImports.cshtml" />
@@ -6862,6 +6854,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="logs\" />
     <Folder Include="wwwroot\css\" />
     <Folder Include="wwwroot\images\" />
     <Folder Include="wwwroot\js\" />
@@ -6877,6 +6870,45 @@
 
   <ItemGroup>
     <ProjectReference Include="..\EzTask.Web.Framework\EzTask.Web.Framework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Modules\EzTask.Modules.Core\bin\EzTask.Modules.Core.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.Core\bin\EzTask.Modules.Core.Views.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.Dashboard\bin\EzTask.Modules.Dashboard.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.Dashboard\bin\EzTask.Modules.Dashboard.Views.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.Notification\bin\EzTask.Modules.Notification.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.Notification\bin\EzTask.Modules.Notification.Views.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.Project\bin\EzTask.Modules.Project.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.Project\bin\EzTask.Modules.Project.Views.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.Task\bin\EzTask.Modules.Task.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.Task\bin\EzTask.Modules.Task.Views.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.UserProfile\bin\EzTask.Modules.UserProfile.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Modules\EzTask.Modules.UserProfile\bin\EzTask.Modules.UserProfile.Views.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">

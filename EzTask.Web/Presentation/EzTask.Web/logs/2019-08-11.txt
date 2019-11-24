@@ -1,4 +1,0 @@
-2019-08-11 22:39:12,623 [6]INFO [App][] Request Url: /
-2019-08-11 22:39:35,136 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
-2019-08-11 22:39:35,660 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
-2019-08-11 22:39:35,660 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html

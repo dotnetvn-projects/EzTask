@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace EzTask.Entity.Data
 {
@@ -18,5 +17,10 @@ namespace EzTask.Entity.Data
         public AccountInfo AccountInfo { get; set; }
         public Account ManageAccount { get; set; }
 
+        public override void ResetNavigate()
+        {
+            AccountInfo = null;
+            ManageAccount = null;
+        }
     }
 }
