@@ -1,1 +1,1 @@
-dotnet WebBuilder\EzTask.WebBuilder.dll ../../../EzTask.Web/
+dotnet WebBuilder\netcoreapp3.0\EzTask.WebBuilder.dll ../../../EzTask.Web/

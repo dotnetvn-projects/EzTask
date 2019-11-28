@@ -978,6 +978,14 @@
       <Content>Phase Name must be a string has from 5 to 250 characters</Content>
     </Language>
     <Language>
+      <Key>TaskEstimateTimeValidate</Key>
+      <Content>The Estimate Time field is not valid</Content>
+    </Language>
+    <Language>
+      <Key>TaskSpentTimeValidate</Key>
+      <Content>The Spent Time field is not valid</Content>
+    </Language>
+    <Language>
       <Key>UpdatePhaseError</Key>
       <Content>Cannot updaye phase, please try again!</Content>
     </Language>
@@ -1080,6 +1088,14 @@
     <Language>
       <Key>PercentComplete</Key>
       <Content>Percent complete</Content>
+    </Language>
+    <Language>
+      <Key>EstimateTime</Key>
+      <Content>Estimate Time</Content>
+    </Language>
+    <Language>
+      <Key>SpentTime</Key>
+      <Content>Spent Time</Content>
     </Language>
     <Language>
       <Key>Detail</Key>

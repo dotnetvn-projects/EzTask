@@ -43,7 +43,12 @@ namespace EzTask.WebBuilder
                 foreach (var folder in folderCopy)
                 {
                     var copyPath = folder.Trim();
-                    var sourcePath = Path.Combine(devFolder, copyPath);
+
+                    var sourcePath = Path.Combine(Path.Combine(devFolder, copyPath), "Release");
+#if DEBUG
+                    sourcePath = Path.Combine(Path.Combine(devFolder, copyPath), "Debug");
+#endif
+
                     if (!Directory.Exists(sourcePath))
                         continue;
                     var desPath = string.Empty;

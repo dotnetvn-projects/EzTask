@@ -42,7 +42,6 @@
                                 <div class="col-sm-3">
                                     <select asp-for="Priority" asp-items="@Model.PriorityList" id="selectPriority" class="form-control select2"></select>
                                 </div>
-
                             </div>
                         </div>
                     </div>
@@ -58,10 +57,25 @@
                             <select asp-for="Assignee" asp-items="@Model.AssigneeList" id="selectAssignList" class="form-control select2"></select>
                         </div>
                     </div>
-                    @{ 
+                    @{
                         var display = Model.TaskId <= 0 ? "none-display" : "";
                     }
-                   
+
+                    <div class="form-group">
+                        <label for="inputEstimateTime" class="col-sm-2 control-label">@Html.GetStringResource("EstimateTime", StringResourceType.TaskPage)  </label>
+                        <div class="col-sm-3">
+                            <input asp-for="EstimateTime" id="inputEstimateTime" class="form-control" /><span>(Hour)</span>
+                            <p><span asp-validation-for="EstimateTime" class="text-danger"></span></p>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="inputSpendTime" class="col-sm-2 control-label">@Html.GetStringResource("SpentTime", StringResourceType.TaskPage)  </label>
+                        <div class="col-sm-3">
+                            <input asp-for="SpentTime" id="inputSpendTime" class="form-control" /><span>(Hour)</span>
+                            <p><span asp-validation-for="SpentTime" class="text-danger"></span></p>
+                        </div>
+                    </div>
+
                     <div class="form-group percentComplete @display">
                         <label for="percentComplete" class="col-sm-2 control-label">@Html.GetStringResource("PercentComplete", StringResourceType.TaskPage)</label>
                         <div class="col-sm-9">
@@ -70,8 +84,8 @@
                                 <p><span class="slider-value pull-right badge bg-green"></span></p>
                             </div>
                         </div>
-                    </div>      
-                    
+                    </div>
+
                     <div class="form-group">
                         <div class="nav-tabs-custom">
                             <ul class="nav nav-tabs">

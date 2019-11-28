@@ -73,13 +73,12 @@ namespace EzTask.Modules.Task.Controllers
                 model.CreatedDate = iResult.Data.CreatedDate;
                 model.UpdatedDate = iResult.Data.UpdatedDate;
                 model.TaskId = iResult.Data.TaskId;
-
-                string title = string.Empty;
                 string diff = string.Empty;
 
+                string title;
                 if (viewModel.TaskId <= 0)
                 {
-                    title = Context.GetStringResource("CreatedTask", StringResourceType.TaskPage) + " \"" + iResult.Data.TaskTitle + "\" <small>("+ Context.GetStringResource("Code", StringResourceType.TaskPage) + ": " + model.TaskCode + ")</small>";                   
+                    title = Context.GetStringResource("CreatedTask", StringResourceType.TaskPage) + " \"" + iResult.Data.TaskTitle + "\" <small>(" + Context.GetStringResource("Code", StringResourceType.TaskPage) + ": " + model.TaskCode + ")</small>";
                     SetTaskDataToSession(model);
 
                     //add notify
@@ -188,6 +187,7 @@ namespace EzTask.Modules.Task.Controllers
         private TaskItemModel CreateTaskItemModel(TaskItemViewModel viewModel)
         {
             var data = new TaskItemModel();
+
             data.Assignee.AccountId = viewModel.Assignee;
             data.Member.AccountId = Context.CurrentAccount.AccountId;
             data.Phase.Id = viewModel.PhaseId;
@@ -200,6 +200,8 @@ namespace EzTask.Modules.Task.Controllers
             data.TaskTitle = viewModel.TaskTitle;
             data.CreatedDate = viewModel.CreatedDate;
             data.PercentCompleted = viewModel.PercentCompleted;
+            data.EstimateTime = viewModel.EstimateTime;
+            data.SpentTime = viewModel.SpentTime;
 
             return data;
         }
@@ -223,6 +225,8 @@ namespace EzTask.Modules.Task.Controllers
             task.AccountId = iResult.Data.Member.AccountId;
             task.PercentCompleted = iResult.Data.PercentCompleted;
             task.CreatedDate = iResult.Data.CreatedDate;
+            task.EstimateTime = iResult.Data.EstimateTime;
+            task.SpentTime = iResult.Data.SpentTime;
 
             if (task.TaskId > 0)
             {

@@ -40,7 +40,12 @@ namespace EzTask.Web.Framework.Infrastructures
                 foreach (string folder in folderCopy)
                 {
                     string copyPath = folder.Trim();
-                    string sourcePath = Path.Combine(devFolder, copyPath);
+
+                    var sourcePath = Path.Combine(Path.Combine(devFolder, copyPath), "Release");
+#if DEBUG
+                    sourcePath = Path.Combine(Path.Combine(devFolder, copyPath), "Debug");
+#endif
+
                     if (!Directory.Exists(sourcePath))
                     {
                         continue;

@@ -23,6 +23,8 @@ namespace EzTask.Entity.Data
         [Column(TypeName = "datetime")]
         public DateTime UpdatedDate { get; set; }
         public int PercentCompleted { get; set; }
+        public int EstimateTime { get; set; }
+        public int SpentTime { get; set; }
 
         public Account Assignee { get; set; }
 

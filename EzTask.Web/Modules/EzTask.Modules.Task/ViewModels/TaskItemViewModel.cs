@@ -32,6 +32,12 @@ namespace EzTask.Modules.Task.ViewModels
         public DateTime CreatedDate { get; set; }
         public int PercentCompleted { get; set; }
 
+        [RangeField( 0, int.MaxValue, errorLanguageKey: "TaskEstimateTimeValidate", languagePageSetting: "TaskPage")]
+        public int EstimateTime { get; set; }
+
+        [RangeField(0, int.MaxValue, errorLanguageKey: "TaskSpentTimeValidate", languagePageSetting: "TaskPage")]
+        public int SpentTime { get; set; }
+
         public List<SelectListItem> PhaseList { get; set; }
         public List<SelectListItem> StatusList { get; set; }
         public List<SelectListItem> AssigneeList { get; set; }
