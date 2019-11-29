@@ -2,14 +2,12 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
-    <PreserveCompilationReferences>true</PreserveCompilationReferences>
-    <!--<MvcRazorExcludeRefAssembliesFromPublish>false</MvcRazorExcludeRefAssembliesFromPublish>-->
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="wwwroot\*" />
-    <Content Include="Modules\*" >
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <None Include="wwwroot\**" />
+    <Content Include="Modules\**">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
   
