@@ -137,6 +137,7 @@ namespace EzTask.Business
                     MemberId = model.AccountId,
                     ProjectId = model.ProjectId,
                     AddDate = DateTime.Now,
+                    ActiveCode = model.ActiveCode,
                     IsPending = true
                 };
 
@@ -147,7 +148,7 @@ namespace EzTask.Business
                 {
                     var displayName = await UnitOfWork.
                         AccountInfoRepository
-                        .Entity
+                        .Entity.Where(c=>c.AccountId == member.MemberId)
                         .Select(c => c.DisplayName)
                         .AsNoTracking()
                         .FirstOrDefaultAsync();
@@ -488,7 +489,7 @@ namespace EzTask.Business
 
             ProjectMember inviteItem = await UnitOfWork
                 .ProjectMemberRepository
-                .GetAsync(c => c.ActiveCode == activeCode);
+                .GetAsync(c => c.IsPending && c.ActiveCode == activeCode);
 
             if (inviteItem == null)
             {
@@ -496,12 +497,13 @@ namespace EzTask.Business
             }
             else
             {
-                inviteItem.ActiveCode = string.Empty;
                 inviteItem.IsPending = false;
 
                 UnitOfWork.ProjectMemberRepository.Update(inviteItem);
 
-                if (await UnitOfWork.CommitAsync() > 0)
+                var result = await UnitOfWork.CommitAsync();
+
+                if (result > 0)
                 {
                     iResult.Data = await _accountBusiness.GetAccountInfo(inviteItem.MemberId);
                     iResult.Status = ActionStatus.Ok;

@@ -159,8 +159,7 @@ namespace EzTask.Modules.Authentication.Controllers
         [Route("logout.html")]
         public IActionResult LogOff()
         {
-            Context.SuspendSession(SessionKey.Account);
-            Context.SuspendCookie(SessionKey.EzTaskAuthen);
+            ResetAuthInfo();
 
             return RedirectToAction("Login", "Account");
         }

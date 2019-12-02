@@ -266,12 +266,13 @@ namespace EzTask.Modules.Project.Controllers
             if (account == null)
             {
                 isNewMember = true;
+                string name = accountName.Split('@')[0];
                 ResultModel<AccountModel> registerResult = await EzTask.Account.RegisterNew(new AccountModel
                 {
                     AccountName = accountName,
                     Password = Guid.NewGuid().ToString().Substring(0, 6),
-                    FullName = accountName,
-                    DisplayName = accountName
+                    FullName = name,
+                    DisplayName = name
                 });
 
                 if (registerResult.Status == ActionStatus.Ok)
@@ -324,7 +325,7 @@ namespace EzTask.Modules.Project.Controllers
                 return NotFound();
             }
 
-            InviteResultViewModel model = null;
+            InviteResultViewModel model;
 
             var result = await EzTask.Project.AcceptInvitation(activeCode);
 
@@ -343,6 +344,8 @@ namespace EzTask.Modules.Project.Controllers
             {
                 return RedirectToAction("Error", "Common");
             }
+
+            ResetAuthInfo();
 
             return View(model);
         }

@@ -110,18 +110,6 @@
       <Content>Create new</Content>
     </Language>
     <Language>
-      <Key>AcceptProjectPageTitle</Key>
-      <Key>Accept the project invitation</Key>
-    </Language>
-    <Language>
-      <Key>AcceptProject</Key>
-      <Key>Accept to join project</Key>
-    </Language>
-    <Language>
-      <Key>AcceptInviteSuccess</Key>
-      <Content>Congratulations {0}! Yow that you are a member of Project {0}. Manager of this project is {2}, please contact this person for more info!.</Content>
-    </Language>
-    <Language>
       <Key>Notification</Key>
       <Content>Notification</Content>
     </Language>
@@ -657,6 +645,14 @@
     <Language>
       <Key>InvitePending</Key>
       <Content>Pending for accepting</Content>
+    </Language>
+    <Language>
+      <Key>AcceptInviteSuccess</Key>
+      <Content>Congratulations {0}! Yow that you are a member of Project {1}. Manager of this project is {2}, please contact this person for more info!.</Content>
+    </Language>
+    <Language>
+      <Key>AcceptProjectPageTitle</Key>
+      <Key>Accept the project invitation</Key>
     </Language>
     <Language>
       <Key>MemberList</Key>

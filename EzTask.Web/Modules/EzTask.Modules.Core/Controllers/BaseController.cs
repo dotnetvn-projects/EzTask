@@ -39,6 +39,14 @@ namespace EzTask.Modules.Core.Controllers
             set { TempData["success"] = value; }
         }
 
+        protected void ResetAuthInfo()
+        {
+            Context.SuspendSession(SessionKey.Account);
+            Context.SuspendCookie(SessionKey.EzTaskAuthen);
+            ErrorMessage = string.Empty;
+            SuccessMessage = string.Empty;
+        }
+
         #region Private
         private void InvokeComponents(IServiceProvider serviceProvider)
         {
