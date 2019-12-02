@@ -64,14 +64,14 @@
                     <div class="form-group">
                         <label for="inputEstimateTime" class="col-sm-2 control-label">@Html.GetStringResource("EstimateTime", StringResourceType.TaskPage)  </label>
                         <div class="col-sm-3">
-                            <input asp-for="EstimateTime" id="inputEstimateTime" class="form-control" /><span>(Hour)</span>
+                            <input asp-for="EstimateTime" placeholder="@Html.GetStringResource("HourDisplay", StringResourceType.ProjectPage)" id="inputEstimateTime" class="form-control" />
                             <p><span asp-validation-for="EstimateTime" class="text-danger"></span></p>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="inputSpendTime" class="col-sm-2 control-label">@Html.GetStringResource("SpentTime", StringResourceType.TaskPage)  </label>
                         <div class="col-sm-3">
-                            <input asp-for="SpentTime" id="inputSpendTime" class="form-control" /><span>(Hour)</span>
+                            <input asp-for="SpentTime" id="inputSpendTime" placeholder="@Html.GetStringResource("HourDisplay", StringResourceType.ProjectPage)" class="form-control" />
                             <p><span asp-validation-for="SpentTime" class="text-danger"></span></p>
                         </div>
                     </div>

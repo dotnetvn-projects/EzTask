@@ -6,7 +6,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>D:\EzTask\EzTask.Web\Presentation\EzTask.Web\WebBuilder\</OutputPath>
+    <OutputPath></OutputPath>
   </PropertyGroup>
 
 </Project>

@@ -1098,6 +1098,10 @@
       <Content>Spent Time</Content>
     </Language>
     <Language>
+      <Key>HourDisplay</Key>
+      <Content>input amout of hour</Content>
+    </Language>
+    <Language>
       <Key>Detail</Key>
       <Content>Details</Content>
     </Language>

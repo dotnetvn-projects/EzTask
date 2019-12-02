@@ -44,9 +44,11 @@ namespace EzTask.WebBuilder
                 {
                     var copyPath = folder.Trim();
 
-                    var sourcePath = Path.Combine(Path.Combine(devFolder, copyPath), "Release");
+                    var sourcePath = copyPath != "wwwroot" ?
+                        Path.Combine(Path.Combine(devFolder, copyPath), "Release") : Path.Combine(devFolder, copyPath);
 #if DEBUG
-                    sourcePath = Path.Combine(Path.Combine(devFolder, copyPath), "Debug");
+                    sourcePath = copyPath != "wwwroot" ?
+                        Path.Combine(Path.Combine(devFolder, copyPath), "Debug") : Path.Combine(devFolder, copyPath);
 #endif
 
                     if (!Directory.Exists(sourcePath))
