@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EzTask.Interface
+﻿namespace EzTask.Interface
 {
     public interface IWebEnvironment
     {
@@ -10,12 +6,12 @@ namespace EzTask.Interface
         /// Root path of application
         /// </summary>
         /// <returns></returns>
-       string GetRootUrl();
+        string GetRootUrl();
 
         /// <summary>
         /// www folder of application
         /// </summary>
         /// <returns></returns>
-       string GetRootContentUrl();
+        string GetRootContentUrl();
     }
 }

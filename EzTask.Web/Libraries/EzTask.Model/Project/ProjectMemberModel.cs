@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Model
 {
-    public class ProjectMemberModel: BaseModel
+    public class ProjectMemberModel : BaseModel
     {
         public int ProjectId { get; set; }
         public int AccountId { get; set; }

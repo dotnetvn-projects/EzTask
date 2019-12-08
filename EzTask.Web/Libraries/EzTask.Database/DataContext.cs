@@ -2,7 +2,7 @@
 
 namespace EzTask.Database
 {
-    public class DataContext: DbContext
+    public class DataContext : DbContext
     {
         private EntityMapper _entityMapper;
         public DataContext(DbContextOptions<DataContext> options)

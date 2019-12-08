@@ -1,5 +1,4 @@
 ﻿using EzTask.Business;
-using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
@@ -17,7 +16,7 @@ namespace EzTask.Modules.Task.ViewComponents
         public async Task<IViewComponentResult> InvokeAsync(int projectId)
         {
             var data = await EzTask.Phase.GetPhases(projectId);
-            foreach(var item in data)
+            foreach (var item in data)
             {
                 var countTask = await EzTask.Task.CountByPhase(item.Id, projectId);
                 item.TotalTask = countTask;

@@ -1,6 +1,6 @@
 ﻿namespace EzTask.Entity.Data
 {
-    public class AccountSkill: Entity<AccountSkill>
+    public class AccountSkill : Entity<AccountSkill>
     {
         public int AccountId { get; set; }
         public int SkillId { get; set; }

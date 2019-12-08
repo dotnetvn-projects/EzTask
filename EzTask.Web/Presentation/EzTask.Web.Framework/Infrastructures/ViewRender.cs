@@ -1,16 +1,12 @@
 ﻿using EzTask.Web.Framework.WebContext;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Routing;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace EzTask.Web.Framework.Infrastructures
@@ -20,7 +16,7 @@ namespace EzTask.Web.Framework.Infrastructures
         private readonly IRazorViewEngine _razorViewEngine;
         private readonly ITempDataProvider _tempDataProvider;
 
-        public ViewRender(IRazorViewEngine razorViewEngine, 
+        public ViewRender(IRazorViewEngine razorViewEngine,
             ITempDataProvider tempDataProvider)
         {
             _razorViewEngine = razorViewEngine;
@@ -28,7 +24,7 @@ namespace EzTask.Web.Framework.Infrastructures
         }
 
         public async Task<string> RenderToStringAsync(string viewName, ControllerContext context, object model)
-        {            
+        {
             using (var sw = new StringWriter())
             {
                 var viewResult = _razorViewEngine.FindView(context, viewName, false);

@@ -1122,6 +1122,10 @@
       <Content>Phase Name</Content>
     </Language>
     <Language>
+      <Key>PhaseGoal</Key>
+      <Content>Phase Goal</Content>
+    </Language>
+    <Language>
       <Key>StartDate</Key>
       <Content>Start date</Content>
     </Language>

@@ -1,13 +1,13 @@
-﻿using System;
-using System.Threading.Tasks;
-using EzTask.Framework.GlobalData;
+﻿using EzTask.Framework.GlobalData;
 using EzTask.Model;
-using EzTask.Modules.Core.Controllers;
-using Microsoft.AspNetCore.Mvc;
 using EzTask.Model.Enum;
-using EzTask.Web.Framework.WebContext;
 using EzTask.Modules.Authentication.ViewModels;
+using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
+using EzTask.Web.Framework.WebContext;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace EzTask.Modules.Authentication.Controllers
 {
@@ -28,7 +28,7 @@ namespace EzTask.Modules.Authentication.Controllers
         [Route("login.html")]
         public IActionResult Login(string redirect)
         {
-            if(Context.CurrentAccount.IsLogined)
+            if (Context.CurrentAccount.IsLogined)
             {
                 return RedirectToAction("Index", "Home");
             }
@@ -113,7 +113,7 @@ namespace EzTask.Modules.Authentication.Controllers
         [HttpPost]
         [Route("register.html")]
         public async Task<IActionResult> Register(RegisterViewModel viewModel)
-        {           
+        {
             if (viewModel.Password != viewModel.PasswordTemp)
             {
                 ErrorMessage = Context.GetStringResource("ConfirmPasswordNotMatch", StringResourceType.AuthenticationPage);

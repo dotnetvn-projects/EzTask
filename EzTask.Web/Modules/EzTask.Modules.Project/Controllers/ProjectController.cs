@@ -319,7 +319,7 @@ namespace EzTask.Modules.Project.Controllers
         [Route("project/accept-invite.html")]
         [AllowAnonymous]
         public async Task<IActionResult> AcceptInvite([FromQuery(Name = "ref")] string activeCode)
-        {     
+        {
             if (string.IsNullOrWhiteSpace(activeCode))
             {
                 return NotFound();
@@ -329,7 +329,7 @@ namespace EzTask.Modules.Project.Controllers
 
             var result = await EzTask.Project.AcceptInvitation(activeCode);
 
-            if(result.Status == ActionStatus.Ok)
+            if (result.Status == ActionStatus.Ok)
             {
                 model = new InviteResultViewModel
                 {

@@ -1,13 +1,9 @@
 ﻿using EzTask.Framework.ModelValidatorAttributes;
 using EzTask.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace EzTask.Modules.Authentication.ViewModels
 {
-    public class RecoverPasswordViewModel: BaseModel
+    public class RecoverPasswordViewModel : BaseModel
     {
         [RequiredField(errorLanguageKey: "AccountValidate", languagePageSetting: "AuthenticationPage"),
            StringLengthField(minimumLength: 6, maximumLength: 50, errorLanguageKey: "AccountValidate", languagePageSetting: "AuthenticationPage"),

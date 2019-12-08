@@ -21,13 +21,13 @@ namespace EzTask.Web.Framework
     {
         public static void Register(this IServiceCollection services,
            IConfiguration configuration, IWebHostEnvironment env)
-        {         
+        {
             FrameworkCore.Register(services, configuration);
             ModelRegister.Register(services);
             BusinessRegister.Register(services);
             MessageServiceRegister.Register(services, configuration);
             LoggerRegister.Register(services);
-           
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.AddSingleton<StaticResources>();
             services.AddSingleton<SessionManager>();

@@ -9,7 +9,7 @@ namespace EzTask.Modules.Dashboard.ViewComponents
     /// <summary>
     /// TodoList ViewComponent
     /// </summary>
-    public class TodoListViewComponent: ViewComponent
+    public class TodoListViewComponent : ViewComponent
     {
         private readonly EzTaskBusiness _ezTask;
 

@@ -41,11 +41,11 @@ namespace EzTask.Web.Framework.Infrastructures
                 {
                     string copyPath = folder.Trim();
 
-                    var sourcePath = copyPath != "wwwroot"? 
-                        Path.Combine(Path.Combine(devFolder, copyPath), "Release"): Path.Combine(devFolder, copyPath);
+                    var sourcePath = copyPath != "wwwroot" ?
+                        Path.Combine(Path.Combine(devFolder, copyPath), "Release") : Path.Combine(devFolder, copyPath);
 #if DEBUG
                     sourcePath = copyPath != "wwwroot" ?
-                        Path.Combine(Path.Combine(devFolder, copyPath), "Debug"): Path.Combine(devFolder, copyPath);
+                        Path.Combine(Path.Combine(devFolder, copyPath), "Debug") : Path.Combine(devFolder, copyPath);
 #endif
 
                     if (!Directory.Exists(sourcePath))

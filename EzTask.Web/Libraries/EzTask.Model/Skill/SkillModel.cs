@@ -1,9 +1,4 @@
-﻿using EzTask.Model;
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EzTask.Model
+﻿namespace EzTask.Model
 {
     public class SkillModel : BaseModel
     {

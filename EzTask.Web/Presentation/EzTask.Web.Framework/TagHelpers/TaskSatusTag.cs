@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using EzTask.Framework.Common;
+using EzTask.Model.Enum;
+using EzTask.Web.Framework.Data;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using System;
-using EzTask.Web.Framework.Data;
-using EzTask.Model.Enum;
-using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using EzTask.Framework.Common;
 
 namespace EzTask.Web.Framework.TagHelpers
 {
     [HtmlTargetElement("task-status")]
-    public class TaskSatusTag: TagHelper
+    public class TaskSatusTag : TagHelper
     {
         private StaticResources _resources;
         public TaskSatusTag(StaticResources resources)
@@ -31,7 +30,7 @@ namespace EzTask.Web.Framework.TagHelpers
             {
                 throw new ArgumentNullException(nameof(output));
             }
-         
+
 
             var dataValue = Data.ModelExplorer.GetSimpleDisplayText();
             var status = dataValue.ToEnum<TaskItemStatus>();

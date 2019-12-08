@@ -1,5 +1,4 @@
 ﻿using EzTask.Entity.Data;
-using EzTask.Model;
 using EzTask.Model.Enum;
 using System.Collections.Generic;
 

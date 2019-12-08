@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 using System.Xml.Serialization;
 
 namespace EzTask.Framework.Common
@@ -21,7 +19,7 @@ namespace EzTask.Framework.Common
             }
             catch (Exception ex)
             {
-               //ignored   
+                //ignored   
             }
 
             return returnObject;

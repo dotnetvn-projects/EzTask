@@ -1,5 +1,4 @@
 ﻿using EzTask.Entity.Data;
-using EzTask.Framework.Infrastructures;
 using EzTask.Interface;
 using EzTask.Model;
 using EzTask.Model.Enum;
@@ -184,7 +183,7 @@ namespace EzTask.Business
             int totalTask = await UnitOfWork
                 .TaskRepository
                 .Entity
-                .CountAsync(c => c.MemberId == memberId && c.ProjectId == projectId);
+                .CountAsync(c => c.AssigneeId == memberId && c.ProjectId == projectId);
 
             return totalTask;
         }
@@ -359,7 +358,13 @@ namespace EzTask.Business
                         .Skip(pageSize * page - pageSize).Take(pageSize)
                         .Select(x => new TaskItem
                         {
-                            Phase = new Phase { PhaseName = x.Phase.PhaseName, Id = x.Phase.Id, IsDefault = x.Phase.IsDefault },
+                            Phase = new Phase
+                            {
+                                PhaseName = x.Phase.PhaseName,
+                                Id = x.Phase.Id,
+                                IsDefault = x.Phase.IsDefault,
+                                PhaseGoal = x.Phase.PhaseGoal
+                            },
                             Attachments = x.Attachments.Any() ?
                                 new List<Attachment>
                                 {
@@ -457,7 +462,7 @@ namespace EzTask.Business
         public async Task<AttachmentModel> GetAttachment(int id)
         {
             Attachment iResult = await UnitOfWork
-                .AttachRepository.GetAsync(c=>c.Id == id, allowTracking: false);
+                .AttachRepository.GetAsync(c => c.Id == id, allowTracking: false);
 
             return iResult.ToModel();
         }

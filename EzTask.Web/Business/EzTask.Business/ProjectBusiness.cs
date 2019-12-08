@@ -148,7 +148,7 @@ namespace EzTask.Business
                 {
                     var displayName = await UnitOfWork.
                         AccountInfoRepository
-                        .Entity.Where(c=>c.AccountId == member.MemberId)
+                        .Entity.Where(c => c.AccountId == member.MemberId)
                         .Select(c => c.DisplayName)
                         .AsNoTracking()
                         .FirstOrDefaultAsync();
@@ -176,7 +176,7 @@ namespace EzTask.Business
 
             ProjectMember data = await UnitOfWork
                 .ProjectMemberRepository
-                .GetAsync(c => c.MemberId == model.AccountId 
+                .GetAsync(c => c.MemberId == model.AccountId
                           && c.ProjectId == model.ProjectId, allowTracking: false);
 
             if (data != null)
@@ -289,7 +289,7 @@ namespace EzTask.Business
         {
             List<int> data = await UnitOfWork.ProjectMemberRepository.Entity
                 .Include(c => c.Member)
-                .Include(c => c.Project)         
+                .Include(c => c.Project)
                 .Where(c => c.MemberId == accountId && c.IsPending == false)
                 .AsNoTracking()
                 .Select(x => x.ProjectId)
@@ -524,7 +524,7 @@ namespace EzTask.Business
                 .Include(c => c.Project)
                 .ThenInclude(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
-                .Where(c=>c.ActiveCode == activeCode)
+                .Where(c => c.ActiveCode == activeCode)
                 .Select(t => new ProjectModel
                 {
                     Owner = new AccountModel
@@ -588,7 +588,7 @@ namespace EzTask.Business
 
         private bool IsOwner(int projectId)
         {
-            var project = UnitOfWork.ProjectRepository.Get(c=>c.Id == projectId, allowTracking: false);
+            var project = UnitOfWork.ProjectRepository.Get(c => c.Id == projectId, allowTracking: false);
 
             return project.Owner == _accountContext.AccountId;
         }

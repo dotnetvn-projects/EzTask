@@ -30,13 +30,13 @@ namespace EzTask.Business
         /// <param name="taskCode"></param>
         /// <param name="projectId"></param>
         /// <returns></returns>
-        public async Task AddNewTaskNotify(string accountName,int accountId,
+        public async Task AddNewTaskNotify(string accountName, int accountId,
             string taskCode, int projectId, string contentTemplate)
         {
             var memberIds = await _project.GetAccountIdList(projectId);
             if (memberIds.Any())
             {
-                foreach(var id in memberIds)
+                foreach (var id in memberIds)
                 {
                     if (id == accountId)
                         continue;
@@ -50,7 +50,7 @@ namespace EzTask.Business
                         RefData = taskCode
                     });
                 }
-            }         
+            }
         }
 
         /// <summary>
@@ -93,7 +93,7 @@ namespace EzTask.Business
         public async Task AssignTaskNotify(string accountName,
             int[] taskids, int assignee, string contentTemplate)
         {
-            foreach(var id in taskids)
+            foreach (var id in taskids)
             {
                 var taskCode = await _task.GetTaskCode(id);
                 await AddNotification(new NotificationModel
@@ -104,7 +104,7 @@ namespace EzTask.Business
                     HasViewed = false,
                     RefData = taskCode.Data
                 });
-            }                   
+            }
         }
 
         /// <summary>
@@ -114,7 +114,7 @@ namespace EzTask.Business
         /// <param name="taskids"></param>
         /// <param name="accountId"></param>
         /// <returns></returns>
-        public async Task DeleteTaskNotify(string accountName,int accountId,
+        public async Task DeleteTaskNotify(string accountName, int accountId,
             int[] taskids, int projectId, string contentTemplate)
         {
             var memberIds = await _project.GetAccountIdList(projectId);
@@ -158,7 +158,7 @@ namespace EzTask.Business
             UnitOfWork.NotifyRepository.Add(entity);
 
             var iresult = await UnitOfWork.CommitAsync();
-            if(iresult > 0)
+            if (iresult > 0)
             {
                 result.Status = ActionStatus.Ok;
                 result.Data = model;
@@ -174,7 +174,7 @@ namespace EzTask.Business
         public async Task<ResultModel<bool>> UpdateNotifyStatus(int accountId)
         {
             ResultModel<bool> result = new ResultModel<bool>();
-            var data = await UnitOfWork.NotifyRepository.GetManyAsync(c => c.AccountId == accountId 
+            var data = await UnitOfWork.NotifyRepository.GetManyAsync(c => c.AccountId == accountId
                 && c.HasViewed == false);
 
             if (data.Any())
@@ -201,7 +201,7 @@ namespace EzTask.Business
             ResultModel<bool> result = new ResultModel<bool>();
             UnitOfWork.NotifyRepository.Delete(id);
             var iresult = await UnitOfWork.CommitAsync();
-            if(iresult > 0)
+            if (iresult > 0)
             {
                 result.Data = true;
                 result.Status = ActionStatus.Ok;
@@ -226,7 +226,7 @@ namespace EzTask.Business
                 .Entity
                 .Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
-                .Where(c => c.AccountId == accountId 
+                .Where(c => c.AccountId == accountId
                          && c.HasViewed == false)
                 .OrderByDescending(c => c.CreatedDate)
                 .AsNoTracking()
@@ -248,20 +248,21 @@ namespace EzTask.Business
         public async Task<ResultModel<IList<IGrouping<DateTime, NotificationModel>>>> GetNotificationList(int accountId)
         {
             ResultModel<IList<IGrouping<DateTime, NotificationModel>>> result =
-                                new ResultModel<IList<IGrouping<DateTime, NotificationModel>>> {
-                    Data = new List<IGrouping<DateTime, NotificationModel>>()
-             };
+                                new ResultModel<IList<IGrouping<DateTime, NotificationModel>>>
+                                {
+                                    Data = new List<IGrouping<DateTime, NotificationModel>>()
+                                };
 
             var data = await UnitOfWork.NotifyRepository.Entity.Include(c => c.Account)
                 .ThenInclude(c => c.AccountInfo)
                 .Where(c => c.AccountId == accountId)
-                .OrderByDescending(c=>c.CreatedDate)
+                .OrderByDescending(c => c.CreatedDate)
                 .AsNoTracking()
                 .ToListAsync();
 
             if (data.Any())
             {
-                result.Data = data.ToModels().GroupBy(t=>t.CreatedDate.Date).ToList();
+                result.Data = data.ToModels().GroupBy(t => t.CreatedDate.Date).ToList();
                 result.Status = ActionStatus.Ok;
             }
             return result;
@@ -276,7 +277,7 @@ namespace EzTask.Business
         {
             var data = await UnitOfWork.NotifyRepository.Entity
                 .CountAsync(c => c.AccountId == accountId);
-      
+
             return data;
         }
     }

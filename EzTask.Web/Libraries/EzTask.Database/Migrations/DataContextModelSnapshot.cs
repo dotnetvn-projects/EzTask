@@ -225,6 +225,9 @@ namespace EzTask.Database.Migrations
                     b.Property<bool>("IsDefault")
                         .HasColumnType("bit");
 
+                    b.Property<string>("PhaseGoal")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("PhaseName")
                         .HasColumnType("nvarchar(max)");
 
@@ -410,6 +413,9 @@ namespace EzTask.Database.Migrations
                     b.Property<DateTime?>("EndDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("EstimateTime")
+                        .HasColumnType("int");
+
                     b.Property<int>("MemberId")
                         .HasColumnType("int");
 
@@ -423,6 +429,9 @@ namespace EzTask.Database.Migrations
                         .HasColumnType("smallint");
 
                     b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SpentTime")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("StartDate")

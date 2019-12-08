@@ -14,7 +14,7 @@ namespace EzTask.Repository
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class TRepository<T> : IRepository<T> where T : class
-    {   
+    {
         public TRepository()
         {
         }
@@ -179,7 +179,7 @@ namespace EzTask.Repository
         public void Update(T entity)
         {
             Entity.Attach(entity);
-            Context.Entry(entity).State = EntityState.Modified;         
+            Context.Entry(entity).State = EntityState.Modified;
         }
 
         /// <summary>
@@ -219,7 +219,7 @@ namespace EzTask.Repository
         public async Task<IList<T>> GetManyAsync(Expression<Func<T, bool>> predicate,
             bool allowTracking = true)
         {
-            if(allowTracking)
+            if (allowTracking)
             {
                 return await Entity.Where(predicate).ToListAsync();
             }

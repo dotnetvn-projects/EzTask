@@ -18,7 +18,7 @@ namespace EzTask.Modules.UserProfile.ViewModels
         [RequiredField(errorLanguageKey: "DisplayNameValidate", languagePageSetting: "UserProfilePage")]
         public string DisplayName { get; set; }
 
-        [EmailField(errorLanguageKey : "EmailValidate", languagePageSetting : "UserProfilePage")]
+        [EmailField(errorLanguageKey: "EmailValidate", languagePageSetting: "UserProfilePage")]
         public string Email { get; set; }
 
         public string Address1 { get; set; }
@@ -37,7 +37,7 @@ namespace EzTask.Modules.UserProfile.ViewModels
 
         public bool IsPublished { get; set; }
 
-        public AccountInfoViewModel ()
+        public AccountInfoViewModel()
         {
             this.IsPublished = true;
         }

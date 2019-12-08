@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EzTask.Plugin.MessageService.Data.Email
+﻿namespace EzTask.Plugin.MessageService.Data.Email
 {
     public class MailServerSettings
     {

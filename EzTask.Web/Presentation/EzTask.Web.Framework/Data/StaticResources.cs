@@ -14,7 +14,7 @@ namespace EzTask.Web.Framework.Data
     {
         private Dictionary<TaskItemStatus, string> _taskStatusUIElement;
 
-        public StaticResources ()
+        public StaticResources()
         {
             Init();
         }
@@ -44,7 +44,7 @@ namespace EzTask.Web.Framework.Data
                 { TaskItemStatus.Working, string.Format("<i class=\"fa fa-plane text-yellow\"></i><span class=\"space-left\">{0}</span>",
                                                             Context.GetStringResource("Working", StringResourceType.TaskPage))}
             };
-        }            
+        }
 
         public string GetTaskStatusUIElement(TaskItemStatus taskStatus)
         {

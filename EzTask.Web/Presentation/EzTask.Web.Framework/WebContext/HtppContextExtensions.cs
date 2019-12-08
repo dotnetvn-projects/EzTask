@@ -20,7 +20,7 @@ namespace EzTask.Web.Framework.WebContext
 
         public static void SetObjectAsJson(this HttpResponse response, string key, object value, CookieOptions options)
         {
-            response.Cookies.Append(key,JsonConvert.SerializeObject(value), options);
+            response.Cookies.Append(key, JsonConvert.SerializeObject(value), options);
         }
 
         public static T GetObjectFromJson<T>(this HttpRequest request, string key)

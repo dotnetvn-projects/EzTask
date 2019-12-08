@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EzTask.Interface.SharedData
+﻿namespace EzTask.Interface.SharedData
 {
     public interface IMessage
     {

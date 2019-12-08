@@ -104,7 +104,7 @@ namespace EzTask.Business
         /// Update password
         /// </summary>
         /// <returns></returns>
-        public async Task<ResultModel<AccountModel>> UpdatePassword(string accountName, string password, 
+        public async Task<ResultModel<AccountModel>> UpdatePassword(string accountName, string password,
             string newPassword, bool isRecoverMode = false)
         {
             ResultModel<AccountModel> result = new ResultModel<AccountModel>
@@ -120,7 +120,7 @@ namespace EzTask.Business
             {
                 var oldPassword = Encrypt.Do(password, account.PasswordHash);
 
-                if(isRecoverMode)
+                if (isRecoverMode)
                 {
                     oldPassword = account.Password;
                 }
@@ -354,7 +354,7 @@ namespace EzTask.Business
                 var existItems = await UnitOfWork.RecoverSessionRepository
                     .GetManyAsync(c => c.AccountId == account.AccountId);
 
-                if(existItems.Any())
+                if (existItems.Any())
                 {
                     UnitOfWork.RecoverSessionRepository.DeleteRange(existItems);
                 }
@@ -396,7 +396,7 @@ namespace EzTask.Business
                 .AsNoTracking()
                 .FirstOrDefaultAsync();
 
-            if(data == null)
+            if (data == null)
             {
                 result.Status = ActionStatus.NotFound;
             }

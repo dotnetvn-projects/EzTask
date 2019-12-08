@@ -1,5 +1,4 @@
-﻿using EzTask.Web.Framework.Infrastructures;
-using Microsoft.AspNetCore.Hosting;
+﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace EzTask.Web.Framework.Filters
@@ -21,10 +20,10 @@ namespace EzTask.Web.Framework.Filters
 
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            #if DEBUG
+#if DEBUG
             //copy content file during developmen time
-           //  _env.RunWebBuilder(true);
-            #endif
+            //  _env.RunWebBuilder(true);
+#endif
         }
     }
 }

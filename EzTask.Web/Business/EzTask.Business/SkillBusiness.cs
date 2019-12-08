@@ -1,16 +1,16 @@
-﻿using System;
+﻿using EzTask.Entity.Data;
+using EzTask.Repository;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using EzTask.Entity.Data;
-using EzTask.Repository;
-using Microsoft.EntityFrameworkCore;
 
 namespace EzTask.Business
 {
     public class SkillBusiness : BusinessCore
     {
-        public SkillBusiness(UnitOfWork unitOfWork):base(unitOfWork)
+        public SkillBusiness(UnitOfWork unitOfWork) : base(unitOfWork)
         {
 
         }
@@ -55,7 +55,7 @@ namespace EzTask.Business
                                 SkillName = skillName
                             };
 
-                            UnitOfWork.SkillRepository.Add(newSkill);                         
+                            UnitOfWork.SkillRepository.Add(newSkill);
                             await UnitOfWork.CommitAsync();
 
                             skills.Add(newSkill);
@@ -80,7 +80,7 @@ namespace EzTask.Business
                     transaction.Rollback();
                     return null;
                 }
-            }               
+            }
         }
 
         /// <summary>
@@ -90,7 +90,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<Skill> GetSkill(string skill)
         {
-            return await UnitOfWork.SkillRepository.GetAsync(c => 
+            return await UnitOfWork.SkillRepository.GetAsync(c =>
                     c.SkillName.ToLower() == skill.ToLower(), allowTracking: false);
         }
 
@@ -104,11 +104,11 @@ namespace EzTask.Business
             var data = await UnitOfWork.AccountSkillRepository.Entity.AsNoTracking()
                 .Include(c => c.Skill)
                 .Where(c => c.AccountId == accountId)
-                .Select(c=>c.Skill.SkillName)
+                .Select(c => c.Skill.SkillName)
                 .AsNoTracking()
                 .ToListAsync();
 
-            if(data.Any())
+            if (data.Any())
             {
                 return String.Join(", ", data);
             }
@@ -122,7 +122,7 @@ namespace EzTask.Business
                 .AccountSkillRepository
                 .GetManyAsync(c => c.AccountId == accountId, allowTracking: false);
 
-            if(skills.Any())
+            if (skills.Any())
             {
                 UnitOfWork.AccountSkillRepository.DeleteRange(skills);
                 await UnitOfWork.CommitAsync();

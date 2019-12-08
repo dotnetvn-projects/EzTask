@@ -7,7 +7,7 @@ namespace EzTask.Repository
     public static class RepositoryRegister
     {
         public static void Register(IServiceCollection services)
-        {            
+        {
             services.AddScoped<IRepository<Account>, TRepository<Account>>();
             services.AddScoped<IRepository<AccountInfo>, TRepository<AccountInfo>>();
             services.AddScoped<IRepository<Project>, TRepository<Project>>();

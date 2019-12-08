@@ -1,11 +1,9 @@
 ﻿using EzTask.Model.Enum;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Model
 {
-    public class NotificationModel: BaseModel
+    public class NotificationModel : BaseModel
     {
         public int Id { get; set; }
         public string Content { get; set; }

@@ -2,11 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace EzTask.Web.Framework.Infrastructures
 {
-    public class ModuleViewLocationExpander  :  IViewLocationExpander
+    public class ModuleViewLocationExpander : IViewLocationExpander
     {
         private const string _moduleKey = "module";
 

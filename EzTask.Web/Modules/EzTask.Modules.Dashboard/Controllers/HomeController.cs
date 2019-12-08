@@ -1,7 +1,5 @@
 ﻿using EzTask.Framework.Common;
 using EzTask.Framework.GlobalData;
-using EzTask.Interface;
-using EzTask.Log;
 using EzTask.Model;
 using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
@@ -19,11 +17,11 @@ namespace EzTask.Modules.Dashboard.Controllers
     [TypeFilter(typeof(AuthenticationAttribute))]
     public class HomeController : BaseController
     {
-        public HomeController(IServiceProvider serviceProvider) : 
+        public HomeController(IServiceProvider serviceProvider) :
             base(serviceProvider)
         {
         }
-    
+
         public IActionResult Index()
         {
             return View();
@@ -94,7 +92,7 @@ namespace EzTask.Modules.Dashboard.Controllers
                 return BadRequest(Context.GetStringResource("TitleCannotEmpty", StringResourceType.DashboardPage));
             }
 
-           
+
             if (model.CompleteOn < DateTime.Now)
             {
                 return BadRequest(Context.GetStringResource("CompleteOnError", StringResourceType.DashboardPage));
@@ -125,7 +123,7 @@ namespace EzTask.Modules.Dashboard.Controllers
         public async Task<IActionResult> RemoveTodoList(int[] items)
         {
             var result = await EzTask.ToDoList.Deletes(items);
-            return Json(result);           
+            return Json(result);
         }
 
         #endregion

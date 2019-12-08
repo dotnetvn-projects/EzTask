@@ -1,9 +1,7 @@
 ﻿using AutoMapper;
 using EzTask.Entity.Data;
 using EzTask.Framework.Common;
-using EzTask.Model;
 using EzTask.Model.Enum;
-using System;
 using System.Linq;
 
 namespace EzTask.Model
@@ -51,7 +49,7 @@ namespace EzTask.Model
 
             //Map RecoverSession Model to Entity
             CreateMap<RecoverSessionModel, RecoverSession>()
-                .ForMember(c=>c.AccountId , t => t.MapFrom(z=>z.Account.AccountId));
+                .ForMember(c => c.AccountId, t => t.MapFrom(z => z.Account.AccountId));
 
             //Map Entitu  to RecoverSession Model
             CreateMap<RecoverSession, RecoverSessionModel>()
@@ -110,7 +108,7 @@ namespace EzTask.Model
 
             //Map history to history model
             CreateMap<TaskHistory, TaskHistoryModel>()
-                .ForMember(c => c.HistoryId, t => t.MapFrom(z => z.Id));               
+                .ForMember(c => c.HistoryId, t => t.MapFrom(z => z.Id));
 
             //Map history model to history entity
             CreateMap<TaskHistoryModel, TaskHistory>()
@@ -142,7 +140,7 @@ namespace EzTask.Model
             CreateMap<Notification, NotificationModel>()
                 .ForPath(c => c.Account.AccountId, t => t.MapFrom(z => z.Account.Id))
                 .ForPath(c => c.Account.DisplayName, t => t.MapFrom(z => z.Account.AccountInfo.DisplayName))
-                .ForMember(c => c.Context, t => t.MapFrom( z => z.Context.ToEnum<NotifyContext>()))
+                .ForMember(c => c.Context, t => t.MapFrom(z => z.Context.ToEnum<NotifyContext>()))
                 .ReverseMap();
 
             //Map Notification model to Notification entity

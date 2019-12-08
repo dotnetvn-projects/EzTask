@@ -1,5 +1,4 @@
 ﻿using EzTask.Framework.GlobalData;
-using EzTask.Model;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Mvc;
@@ -29,7 +28,7 @@ namespace EzTask.Modules.Task.Controllers
                 return Content(Context.GetStringResource("InvalidRequest", StringResourceType.Error));
             }
 
-            if(attachment.FileType.ToLower().Contains("image") || attachment.FileType.ToLower().Contains("pdf"))
+            if (attachment.FileType.ToLower().Contains("image") || attachment.FileType.ToLower().Contains("pdf"))
             {
                 return File(attachment.FileData, attachment.FileType);
             }

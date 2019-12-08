@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace EzTask.Framework.GlobalData
+﻿namespace EzTask.Framework.GlobalData
 {
     public class Language
     {

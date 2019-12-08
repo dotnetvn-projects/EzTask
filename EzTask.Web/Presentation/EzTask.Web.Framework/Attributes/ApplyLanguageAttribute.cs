@@ -1,9 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc.Filters;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using EzTask.Framework.GlobalData;
 using EzTask.Web.Framework.WebContext;
-using EzTask.Framework.GlobalData;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System;
 
 namespace EzTask.Web.Framework.Attributes
 {
@@ -30,7 +28,7 @@ namespace EzTask.Web.Framework.Attributes
 
             if (Context.CurrentAccount.AccountId <= 0)
             {
-                Context.SetLanguageLocalization("");            
+                Context.SetLanguageLocalization("");
             }
 
             base.OnActionExecuting(actionContext);

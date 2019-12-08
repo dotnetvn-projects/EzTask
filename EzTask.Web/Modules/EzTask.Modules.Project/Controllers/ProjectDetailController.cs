@@ -1,11 +1,11 @@
-﻿using System;
-using System.Linq;
-using System.Threading.Tasks;
-using EzTask.Model.Enum;
+﻿using EzTask.Model.Enum;
 using EzTask.Modules.Core.Controllers;
 using EzTask.Modules.Project.ViewModels;
 using EzTask.Web.Framework.Attributes;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace EzTask.Modules.Project.Controllers
 {

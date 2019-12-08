@@ -9,8 +9,8 @@ $.fn.handleLoadTask = function (projectId, phaseid, doneAction, allowAsync = tru
             taskListPanel.html('');
             taskListPanel.html(response);
             $(this).handleEvent();
-           if(doneAction !==null)
-            doneAction();
+            if (doneAction !== null)
+                doneAction();
         }
     });
 };
@@ -40,11 +40,12 @@ $.fn.searchTask = function () {
     });
 };
 
+var currentPhaseId = 0;
 //load phase and task list when project list changed
 $.fn.loadPhase = function () {
     $(this).change(function () {
-        var id = $(this).val();
         $.showLoading();
+        var id = $(this).val();
         $.ajax({
             url: "phase/phase-list.html",
             data: { projectId: id },
@@ -54,6 +55,9 @@ $.fn.loadPhase = function () {
                 phasePanel.html(response);
                 var phase = $(".phase-list > li > a").first();
                 var phaseId = phase.attr('data-id');
+                if (currentPhaseId !== null && currentPhaseId > 0) {
+                    phaseId = currentPhaseId;
+                }
 
                 if (phaseId !== 0 && phaseId !== undefined) {
                     $(this).handleLoadTask(id, phaseId, null, false);
@@ -82,6 +86,7 @@ $.fn.loadPhase = function () {
                     $(".btn-addnew-phase").remove();
                     $.hideLoading();
                 }
+                currentPhaseId = 0;
             }
         });
     });
@@ -91,12 +96,15 @@ $.fn.loadPhase = function () {
 $.fn.loadTask = function () {
     $(this).click(function (e) {
         e.preventDefault();
-        $.showLoading();
+
         var phaseid = $(this).attr('data-id');
         var projectId = $('.project-list').val();
+
+        $.showLoading();
+        
         $(this).handleLoadTask(projectId, phaseid, function () {
             $.hideLoading();
-        });       
+        });
     });
 };
 
@@ -278,7 +286,7 @@ $.fn.showDetailFromCode = function () {
                     $('.project-list').val(response.projectId);
                     $.hideLoading();
                     $('.task-list > tbody > tr[data-code="' + taskCode + '"]').trigger("click");
-                });              
+                });
             },
             error: function (xhr, ajaxOptions, thrownError) {
                 window.location.href = '/';

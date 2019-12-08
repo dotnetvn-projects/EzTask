@@ -239,10 +239,9 @@ function submitSuccess(response) {
 
     $("#task-modal .modal-title").html($("#task-title").val()+ " '<b>" + response.data.taskTitle + "</b>'");
 
-    var phaseId = $("#phase-id").val();
-    var projectId = $('.project-list').val();
+    currentPhaseId = $("#phase-id").val();
 
-    $(this).handleLoadTask(projectId, phaseId, null);
+    $('.project-list').change();
 
     $.hideLoading();
 }

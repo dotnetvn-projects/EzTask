@@ -3,11 +3,10 @@ using EzTask.Model;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Modules.Task.ViewModels
 {
-    public class TaskItemViewModel: BaseModel
+    public class TaskItemViewModel : BaseModel
     {
         public int TaskId { get; set; }
 
@@ -32,7 +31,7 @@ namespace EzTask.Modules.Task.ViewModels
         public DateTime CreatedDate { get; set; }
         public int PercentCompleted { get; set; }
 
-        [RangeField( 0, int.MaxValue, errorLanguageKey: "TaskEstimateTimeValidate", languagePageSetting: "TaskPage")]
+        [RangeField(0, int.MaxValue, errorLanguageKey: "TaskEstimateTimeValidate", languagePageSetting: "TaskPage")]
         public int EstimateTime { get; set; }
 
         [RangeField(0, int.MaxValue, errorLanguageKey: "TaskSpentTimeValidate", languagePageSetting: "TaskPage")]

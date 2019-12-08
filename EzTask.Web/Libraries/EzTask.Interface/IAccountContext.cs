@@ -1,7 +1,5 @@
 ﻿using EzTask.Interface.SharedData;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Interface
 {
@@ -9,12 +7,12 @@ namespace EzTask.Interface
     {
         void Set(IAccountInfo accountInfo);
 
-        bool IsLogined { get;}
+        bool IsLogined { get; }
 
         /// <summary>
         /// Account Id
         /// </summary>
-        int AccountId { get;}
+        int AccountId { get; }
 
         /// <summary>
         /// DisplayName

@@ -21,7 +21,7 @@ namespace EzTask.Business
             _services.AddScoped<TaskBusiness>();
             _services.AddScoped<NotificationBusiness>();
             _services.AddScoped<ToDoListBusiness>();
-            
+
         }
 
         public static ServiceProvider ServiceProvider

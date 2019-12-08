@@ -2,8 +2,6 @@
 using EzTask.Interface;
 using EzTask.Interface.SharedData;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Web.Framework.WebContext
 {

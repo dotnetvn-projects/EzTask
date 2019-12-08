@@ -1,8 +1,5 @@
-﻿using EzTask.Interface;
-using EzTask.Interface.SharedData;
-using EzTask.Plugin.MessageService.Data;
+﻿using EzTask.Interface.SharedData;
 using EzTask.Plugin.MessageService.Data.Email;
-using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using System.Net;
 using System.Net.Mail;
@@ -24,7 +21,7 @@ namespace EzTask.Plugin.MessageService.Service
             Task.Factory.StartNew(() =>
             {
                 Do(email as EmailMessage);
-            });  
+            });
         }
 
         private void Do(EmailMessage email)
@@ -54,16 +51,16 @@ namespace EzTask.Plugin.MessageService.Service
                     BodyEncoding = System.Text.Encoding.GetEncoding("utf-8"),
                     SubjectEncoding = System.Text.Encoding.Default,
                     Body = body,
-                 })
+                })
                 {
-                  message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(body, new System.Net.Mime.ContentType("text/html")));
-                  smtp.Send(message);
+                    message.AlternateViews.Add(AlternateView.CreateAlternateViewFromString(body, new System.Net.Mime.ContentType("text/html")));
+                    smtp.Send(message);
                 }
             }
             catch
             {
                 //Just ignore because sometime there is fake email
-            }          
+            }
         }
     }
 }

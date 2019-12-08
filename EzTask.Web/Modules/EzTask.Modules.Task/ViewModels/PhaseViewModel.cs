@@ -11,8 +11,10 @@ namespace EzTask.Modules.Task.ViewModels
         public int ProjectId { get; set; }
 
         [RequiredField(errorLanguageKey: "PhaseNameValidate", languagePageSetting: "TaskPage"),
-         StringLengthField(minimumLength:5, maximumLength: 250, errorLanguageKey : "PhaseNameValidate", languagePageSetting : "TaskPage")]
+         StringLengthField(minimumLength: 5, maximumLength: 250, errorLanguageKey: "PhaseNameValidate", languagePageSetting: "TaskPage")]
         public string PhaseName { get; set; }
+
+        public string PhaseGoal { get; set; }
 
         public string StartDate { get; set; }
 

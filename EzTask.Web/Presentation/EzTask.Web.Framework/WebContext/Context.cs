@@ -60,7 +60,7 @@ namespace EzTask.Web.Framework.WebContext
         {
             get
             {
-               return _languageLocalization.IsAvailable;
+                return _languageLocalization.IsAvailable;
             }
         }
 
@@ -125,7 +125,7 @@ namespace EzTask.Web.Framework.WebContext
         /// <param name="controllerContext"></param>
         /// <param name="model"></param>
         /// <returns></returns>
-        public static async Task<string> RenderViewToStringAsync(string viewname, ControllerContext controllerContext, 
+        public static async Task<string> RenderViewToStringAsync(string viewname, ControllerContext controllerContext,
             object model = null)
         {
             var viewRender = Current.RequestServices.InvokeComponents<ViewRender>();

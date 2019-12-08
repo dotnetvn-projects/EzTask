@@ -49,12 +49,12 @@ namespace EzTask.Framework.ImageHandler
                 maxHeight = image.Height;
             }
 
-            var ratioX = (double) maxWidth/image.Width;
-            var ratioY = (double) maxHeight/image.Height;
+            var ratioX = (double)maxWidth / image.Width;
+            var ratioY = (double)maxHeight / image.Height;
             var ratio = Math.Min(ratioX, ratioY);
 
-            var newWidth = (int) (image.Width*ratio);
-            var newHeight = (int) (image.Height*ratio);
+            var newWidth = (int)(image.Width * ratio);
+            var newHeight = (int)(image.Height * ratio);
 
             using (var stream = new MemoryStream())
             {
@@ -76,7 +76,7 @@ namespace EzTask.Framework.ImageHandler
 
                 var encParams = new EncoderParameters(1)
                 {
-                    Param = {[0] = new EncoderParameter(Encoder.Quality, quality)}
+                    Param = { [0] = new EncoderParameter(Encoder.Quality, quality) }
                 };
 
                 bmp.Save(stream, encoder, encParams);

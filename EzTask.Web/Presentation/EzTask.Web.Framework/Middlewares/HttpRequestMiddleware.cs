@@ -69,7 +69,7 @@ namespace EzTask.Web.Framework.Middlewares
             if (context.Response.StatusCode == 404)
             {
                 context.Items["originalPath"] = originalPath;
-                if(Context.CurrentAccount.AccountId == 0)
+                if (Context.CurrentAccount.AccountId == 0)
                 {
                     context.Request.Path = "/error/not-found.html";
                 }
@@ -77,14 +77,14 @@ namespace EzTask.Web.Framework.Middlewares
                 {
                     context.Request.Path = "/not-found.html";
                 }
-            }       
+            }
 
             await _next(context);
         }
 
         private void LogRequest(HttpContext context)
         {
-            if(context.Request.IsAjaxRequest())
+            if (context.Request.IsAjaxRequest())
             {
                 _logger.LogEntity = LogEntity.Create(Context.CurrentAccount.AccountName,
                      "Request Ajax Url: " + context.Request.Path.Value, "App");
@@ -94,7 +94,7 @@ namespace EzTask.Web.Framework.Middlewares
                 _logger.LogEntity = LogEntity.Create(Context.CurrentAccount.AccountName,
                      "Request Url: " + context.Request.Path.Value, "App");
             }
-           
+
 
             _logger.WriteInfo();
         }

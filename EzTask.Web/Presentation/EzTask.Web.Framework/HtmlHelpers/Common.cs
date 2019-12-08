@@ -9,7 +9,7 @@ namespace EzTask.Web.Framework.HtmlHelpers
     public static class Common
     {
         public static IHtmlContent PageTitle(this IHtmlHelper htmlHelper)
-        {          
+        {
             return new HtmlString(htmlHelper.ViewData["Title"]?.ToString());
         }
 
@@ -26,7 +26,7 @@ namespace EzTask.Web.Framework.HtmlHelpers
         public static IHtmlContent PrintNumberWithText(this IHtmlHelper htmlHelper,
             string text, int number)
         {
-            if(number > 1)
+            if (number > 1)
             {
                 text += "s";
             }

@@ -1,7 +1,5 @@
-﻿using EzTask.Interface;
-using EzTask.Web.Framework.Infrastructures;
+﻿using EzTask.Web.Framework.Infrastructures;
 using Microsoft.AspNetCore.Mvc.Filters;
-using System;
 using System.Threading.Tasks;
 
 namespace EzTask.Web.Framework.Filters

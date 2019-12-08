@@ -1,0 +1,483 @@
+2019-12-08 15:43:36,246 [12]INFO [App][] Request Url: /
+2019-12-08 15:43:36,860 [12]INFO [App][] Request Url: /login.html
+2019-12-08 15:44:02,516 [9]INFO [App][] Request Url: /login.html
+2019-12-08 15:44:05,088 [9]INFO [App][duylinh191@gmail.com] Request Url: /
+2019-12-08 15:44:06,625 [24]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 15:44:07,046 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 15:44:07,051 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 15:44:09,859 [23]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 15:44:11,105 [27]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 15:44:11,371 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 15:44:11,372 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 15:44:19,359 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 15:44:22,252 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 15:47:48,155 [31]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 15:48:02,571 [32]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 15:48:03,104 [34]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 15:48:03,200 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 15:48:03,201 [34]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 15:48:04,732 [34]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 15:53:17,614 [7]INFO [App][] Request Url: /
+2019-12-08 15:53:21,733 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 15:53:22,372 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 15:53:22,372 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 15:55:56,275 [5]INFO [App][] Request Url: /
+2019-12-08 15:56:03,346 [4]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 15:56:04,955 [8]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 15:56:04,955 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 15:56:50,821 [29]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 15:56:52,557 [30]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 15:56:53,405 [33]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 15:56:53,407 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 15:56:55,207 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 15:56:59,709 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 15:58:03,621 [35]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 15:58:07,405 [37]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 15:58:08,916 [44]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 15:58:08,962 [36]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 15:58:10,577 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 15:58:15,772 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 15:59:06,163 [38]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 16:00:53,258 [10]INFO [App][] Request Url: /
+2019-12-08 16:00:57,318 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:00:57,617 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:00:57,617 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:01:18,247 [5]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:01:19,044 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:01:19,175 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:01:19,175 [5]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:01:23,798 [17]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 16:01:27,025 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 16:02:09,735 [23]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:02:10,902 [26]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:02:11,419 [31]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:02:11,433 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:05:30,257 [7]INFO [App][] Request Url: /task.html
+2019-12-08 16:05:35,180 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:05:35,531 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:05:35,543 [14]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:05:41,849 [14]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 16:05:45,516 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 16:05:50,470 [14]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:05:53,927 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/delete-phase.html
+2019-12-08 16:05:54,294 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 16:05:54,674 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:05:56,584 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:06:00,126 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/delete-phase.html
+2019-12-08 16:06:00,409 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 16:06:00,729 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:06:02,990 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:06:06,245 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/delete-phase.html
+2019-12-08 16:06:06,516 [20]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 16:06:06,781 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:06:09,028 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:06:11,557 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/delete-phase.html
+2019-12-08 16:06:11,826 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 16:06:12,056 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:06:13,221 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:06:15,380 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/delete-phase.html
+2019-12-08 16:06:15,659 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 16:06:15,860 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:06:16,829 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:06:20,292 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 16:06:24,900 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 16:06:39,533 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 16:06:48,505 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 16:06:59,270 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 16:07:41,940 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 16:07:45,856 [33]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:07:46,465 [34]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:07:46,762 [40]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:07:46,762 [39]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:07:48,550 [39]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:10,061 [38]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:12,573 [38]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 16:08:13,190 [42]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:08:20,808 [45]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 16:08:22,300 [48]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 16:08:22,389 [46]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 16:08:22,473 [45]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:28,045 [42]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:29,477 [48]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:30,525 [42]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:32,652 [42]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:08:33,110 [48]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:08:33,283 [48]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:08:33,287 [46]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:08:34,830 [48]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:35,477 [51]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:49,093 [46]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:51,245 [51]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:52,029 [46]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:54,545 [45]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:08:55,853 [50]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:09:12,090 [38]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-12-08 16:09:12,796 [38]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:09:12,796 [39]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:09:12,796 [37]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:09:12,796 [45]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:09:12,797 [50]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:09:12,840 [34]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:09:12,948 [34]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:09:12,948 [37]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:13:02,182 [7]INFO [App][] Request Url: /
+2019-12-08 16:13:08,927 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:13:09,816 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:13:09,857 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:13:50,578 [29]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-12-08 16:13:52,007 [43]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:13:52,217 [29]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:13:52,234 [30]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:13:52,504 [42]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:13:52,522 [20]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:13:52,629 [42]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:13:52,706 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:13:52,722 [42]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:13:53,224 [42]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:14:00,192 [41]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:14:01,995 [46]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:14:02,017 [45]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:14:04,177 [20]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:14:19,684 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 16:14:24,456 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 16:15:30,132 [50]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 16:15:31,549 [50]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 16:17:33,000 [7]INFO [App][] Request Url: /
+2019-12-08 16:17:37,544 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:17:38,380 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:17:38,388 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:24:26,467 [11]INFO [App][] Request Url: /
+2019-12-08 16:24:31,823 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:24:32,383 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:24:32,383 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:24:52,470 [7]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:24:53,262 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:24:53,372 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:24:53,372 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:24:53,997 [9]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:24:54,807 [29]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:24:55,006 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:24:55,006 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:25:04,945 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:25:09,592 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 16:25:10,231 [29]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:25:14,118 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 16:25:15,776 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 16:25:15,856 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 16:25:29,928 [29]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:25:30,389 [21]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:25:30,579 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:25:30,581 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:26:14,352 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 16:26:14,725 [25]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:26:21,050 [36]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 16:26:22,057 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 16:26:22,123 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 16:26:27,998 [18]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:26:28,520 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:26:28,653 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:26:28,653 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:26:53,739 [37]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 16:26:54,194 [37]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:26:59,094 [40]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 16:27:00,124 [37]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 16:27:00,203 [45]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 16:27:31,773 [47]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 16:27:32,681 [48]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 16:27:32,756 [46]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 16:28:48,301 [44]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 16:28:49,109 [45]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 16:28:49,177 [45]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 16:33:05,351 [4]INFO [App][] Request Url: /profile.html
+2019-12-08 16:33:08,547 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:33:08,949 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:33:08,949 [17]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:33:18,206 [15]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:33:18,914 [17]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:33:19,078 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:33:19,079 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:33:19,707 [7]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-12-08 16:33:20,403 [17]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:33:20,403 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:33:20,405 [7]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:33:20,405 [4]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:33:20,429 [17]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:33:20,436 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:33:20,532 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:33:20,534 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:36:07,902 [4]INFO [App][] Request Url: /
+2019-12-08 16:36:11,569 [4]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:36:12,098 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:36:12,109 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:36:17,689 [11]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:36:18,434 [4]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:36:18,593 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:36:18,593 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:36:19,987 [7]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:36:20,740 [15]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:36:21,047 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:36:21,059 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:37:23,809 [4]INFO [App][] Request Url: /task.html
+2019-12-08 16:37:27,676 [7]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:37:28,132 [17]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:37:28,144 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:37:36,307 [17]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 16:37:38,426 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 16:37:43,730 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 16:43:54,948 [7]INFO [App][] Request Url: /task.html
+2019-12-08 16:44:02,172 [15]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:44:02,505 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:44:02,506 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:44:04,233 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 16:49:32,616 [4]INFO [App][] Request Url: /
+2019-12-08 16:49:42,526 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:49:44,083 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:49:44,084 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:49:46,860 [4]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:50:01,992 [21]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:50:03,744 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:50:03,780 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:50:07,092 [5]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 16:57:44,363 [4]INFO [App][] Request Url: /
+2019-12-08 16:57:52,368 [12]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:57:52,818 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:57:52,818 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:57:59,770 [12]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 16:58:00,525 [18]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 16:58:00,818 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 16:58:00,818 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 16:58:03,044 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:00:12,599 [10]INFO [App][] Request Url: /task.html
+2019-12-08 17:00:23,454 [11]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:00:26,122 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:00:26,126 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:00:27,731 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:03:15,525 [9]INFO [App][] Request Url: /task.html
+2019-12-08 17:03:20,328 [4]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:03:20,935 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:03:20,939 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:03:25,055 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:04:51,978 [10]INFO [App][] Request Url: /task.html
+2019-12-08 17:04:59,084 [9]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:05:00,217 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:05:00,218 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:05:03,051 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:10:48,768 [7]INFO [App][] Request Url: /task.html
+2019-12-08 17:10:52,569 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:10:53,404 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:10:53,404 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:11:14,524 [6]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 17:11:15,146 [21]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:11:15,387 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:11:15,387 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:11:16,972 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:11:54,840 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:11:55,844 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:11:58,056 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:11:59,135 [27]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:12:03,675 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:12:05,922 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:12:06,047 [30]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:12:06,445 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:12:06,445 [36]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:13:39,451 [4]INFO [App][] Request Url: /
+2019-12-08 17:13:43,265 [7]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:13:44,194 [9]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:13:44,196 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:13:45,442 [13]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 17:13:46,183 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:13:46,328 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:13:46,328 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:13:48,095 [13]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 17:13:49,006 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:13:49,389 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:13:49,389 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:13:53,475 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:13:55,555 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:13:57,451 [19]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:14:03,105 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:14:05,121 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:14:05,199 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:14:05,569 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:14:05,569 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:14:08,978 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:14:10,314 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:14:11,074 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:14:12,299 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:14:13,211 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:14:14,835 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:14:16,137 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:14:17,470 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 17:14:20,335 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 17:14:51,325 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 17:14:54,578 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 17:26:54,145 [4]INFO [App][] Request Url: /task.html
+2019-12-08 17:26:57,370 [15]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:26:57,662 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:26:57,663 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:27:51,069 [5]INFO [App][] Request Url: /task.html
+2019-12-08 17:27:54,288 [5]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:27:54,674 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:27:54,674 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:27:56,859 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:28:00,113 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:01,174 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:03,394 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:28:04,194 [15]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:28:08,221 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:28:09,778 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:28:09,864 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:28:10,142 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:28:10,357 [5]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:18,342 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:19,173 [11]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:22,481 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 17:28:27,633 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 17:28:28,127 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:31,076 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:32,228 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:34,587 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:35,907 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:28:42,404 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 17:29:55,209 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 17:29:55,658 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:29:58,844 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:03,499 [33]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:30:08,007 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:30:08,984 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:30:09,056 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:30:09,379 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:30:09,586 [33]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:12,267 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:15,204 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:22,756 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:25,796 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:26,579 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:27,283 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:28,364 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:30,980 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:31,466 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:35,348 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 17:30:40,642 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 17:30:41,388 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:48,771 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:49,595 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:50,115 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:57,948 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:30:58,635 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:02,898 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 17:31:14,903 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 17:31:15,306 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:18,315 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:19,026 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:20,138 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:21,523 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 17:31:35,592 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 17:31:36,034 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:38,883 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:43,468 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:47,794 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:31:52,121 [35]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:31:53,103 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:31:53,167 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:31:53,237 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:31:53,479 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:56,683 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:31:58,051 [29]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/generate-phase.html
+2019-12-08 17:32:43,465 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-modal-action.html
+2019-12-08 17:32:43,896 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:32:46,556 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:32:47,851 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:32:50,211 [31]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:32:52,891 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:32:54,044 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:32:59,117 [31]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:33:00,166 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:33:00,237 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:33:00,308 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:33:00,540 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:33:04,507 [12]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:33:05,191 [31]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:33:50,259 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:33:52,539 [39]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:37:11,352 [6]INFO [App][duylinh191@gmail.com] Request Url: /project.html
+2019-12-08 17:37:11,937 [45]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:37:11,937 [6]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:37:12,021 [6]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:37:12,080 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:37:12,080 [45]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:40:31,797 [10]INFO [App][] Request Url: /project.html
+2019-12-08 17:40:36,690 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:40:36,693 [4]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:40:36,725 [9]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:40:36,972 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:40:36,984 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:40:41,075 [13]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-12-08 17:40:42,214 [4]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:40:42,423 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:40:42,423 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:40:45,670 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:40:49,630 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:40:50,682 [13]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:41:00,489 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:41:01,515 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:41:01,581 [20]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:41:01,981 [20]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:41:02,225 [20]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:41:11,280 [20]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:41:11,752 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:41:11,819 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:41:12,198 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:41:12,432 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:41:16,117 [21]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-detail.html
+2019-12-08 17:41:23,847 [13]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:42:12,797 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:42:13,932 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:42:18,653 [28]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:42:25,151 [31]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:42:25,621 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:42:25,692 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:42:25,795 [26]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:42:26,034 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:42:28,925 [32]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:47:55,323 [6]INFO [App][] Request Url: /task.html
+2019-12-08 17:47:58,393 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:47:58,742 [6]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:47:58,750 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:48:00,399 [20]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:48:24,082 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:48:24,991 [27]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:48:30,806 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:48:31,738 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:48:31,812 [27]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:53:30,769 [5]INFO [App][] Request Url: /task.html
+2019-12-08 17:53:34,433 [14]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:53:34,740 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:53:34,747 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:53:37,699 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:53:52,769 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-12-08 17:53:54,643 [5]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:54:00,638 [19]INFO [App][duylinh191@gmail.com] Request Ajax Url: /TaskItem/CreateOrUpdate
+2019-12-08 17:54:02,254 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/attachment-list.html
+2019-12-08 17:54:02,354 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/history-list.html
+2019-12-08 17:54:09,011 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /phase/phase-list.html
+2019-12-08 17:54:20,577 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:54:32,992 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:54:34,166 [7]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:54:34,965 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:54:36,613 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:54:37,509 [25]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:55:58,163 [9]INFO [App][] Request Url: /task.html
+2019-12-08 17:56:02,068 [10]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-12-08 17:56:02,531 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-12-08 17:56:02,533 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-12-08 17:56:03,703 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:56:05,195 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:56:06,174 [10]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:56:21,066 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:56:22,470 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:56:23,085 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:56:23,766 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:56:24,512 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:56:25,157 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-12-08 17:56:26,366 [4]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html

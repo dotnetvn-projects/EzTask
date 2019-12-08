@@ -15,7 +15,7 @@ namespace EzTask.Framework.ModelValidatorAttributes
         private int _minimumLength;
         private int _maximumLength;
 
-        public StringLengthField(int minimumLength, int maximumLength, 
+        public StringLengthField(int minimumLength, int maximumLength,
             string errorLanguageKey, string languagePageSetting)
         {
             _minimumLength = minimumLength;

@@ -1,10 +1,10 @@
 ﻿namespace EzTask.Business
 {
-    public class EzTaskBusiness 
+    public class EzTaskBusiness
     {
         public AccountBusiness Account { get; }
         public ProjectBusiness Project { get; }
-        public SkillBusiness Skill { get;  }
+        public SkillBusiness Skill { get; }
         public PhaseBusiness Phase { get; }
         public TaskBusiness Task { get; }
         public NotificationBusiness Notification { get; }

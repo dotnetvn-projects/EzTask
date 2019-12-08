@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace EzTask.Modules.Project.ViewModels
+﻿namespace EzTask.Modules.Project.ViewModels
 {
     public class InviteResultViewModel
     {

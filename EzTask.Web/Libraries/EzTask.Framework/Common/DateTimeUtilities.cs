@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Framework.Common
 {
@@ -13,12 +11,12 @@ namespace EzTask.Framework.Common
         /// <returns></returns>
         public static DateTime? ParseFromString(string data)
         {
-            if(string.IsNullOrEmpty(data))
+            if (string.IsNullOrEmpty(data))
             {
-                return null; 
+                return null;
             }
             var date = data.Split('/');
-            return new DateTime(int.Parse(date[2]), int.Parse(date[1]),int.Parse(date[0]));
+            return new DateTime(int.Parse(date[2]), int.Parse(date[1]), int.Parse(date[0]));
         }
 
         /// <summary>

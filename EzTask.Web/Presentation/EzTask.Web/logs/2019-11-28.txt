@@ -1,0 +1,12 @@
+2019-11-28 00:15:37,200 [4]INFO [App][] Request Url: /
+2019-11-28 00:15:47,591 [16]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-28 00:15:48,623 [15]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-28 00:15:48,625 [5]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-28 00:16:30,810 [18]INFO [App][duylinh191@gmail.com] Request Url: /task.html
+2019-11-28 00:16:32,034 [24]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html
+2019-11-28 00:16:32,159 [24]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/task-list.html
+2019-11-28 00:16:32,160 [22]INFO [App][duylinh191@gmail.com] Request Ajax Url: /notify/new-list.html
+2019-11-28 00:16:32,207 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/validate-code.html
+2019-11-28 00:16:32,679 [23]INFO [App][duylinh191@gmail.com] Request Ajax Url: /task/task-list.html
+2019-11-28 00:16:33,003 [18]INFO [App][duylinh191@gmail.com] Request Ajax Url: /taskitem/generate-view.html
+2019-11-28 00:16:33,906 [23]INFO [App][duylinh191@gmail.com] Request Url: /profile-avatar.html

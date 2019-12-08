@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace EzTask.Entity.Data
 {
-    public class ToDoItem: Entity<ToDoItem>
+    public class ToDoItem : Entity<ToDoItem>
     {
         public Guid ManagedCode { get; set; }
         public string Title { get; set; }

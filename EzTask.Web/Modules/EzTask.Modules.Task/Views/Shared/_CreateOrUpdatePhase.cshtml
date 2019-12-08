@@ -28,6 +28,12 @@
                             <p><span asp-validation-for="PhaseName" class="text-danger"></span></p>
                         </div>
                     </div>
+                    <div class ="form-group">
+                        <label for="inputGoal" class="col-sm-3 control-label">@Html.GetStringResource("PhaseGoal", StringResourceType.TaskPage)</label>
+                        <div class="col-sm-9">
+                            <textarea asp-for="PhaseGoal" style="height:100px; width:100%;"></textarea>
+                        </div>
+                    </div>
                     @if (Model.PhaseId > 0)
                     {
                         <div class="form-group">

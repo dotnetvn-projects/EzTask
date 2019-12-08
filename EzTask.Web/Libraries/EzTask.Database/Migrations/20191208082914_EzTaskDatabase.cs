@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace EzTask.Database.Migrations
 {
-    public partial class InitialDatabase : Migration
+    public partial class EzTaskDatabase : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -212,6 +212,7 @@ namespace EzTask.Database.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     ProjectId = table.Column<int>(nullable: false),
                     PhaseName = table.Column<string>(nullable: true),
+                    PhaseGoal = table.Column<string>(nullable: true),
                     StartDate = table.Column<DateTime>(nullable: true),
                     EndDate = table.Column<DateTime>(nullable: true),
                     Status = table.Column<short>(nullable: false),
@@ -276,7 +277,9 @@ namespace EzTask.Database.Migrations
                     EndDate = table.Column<DateTime>(nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime", nullable: false),
-                    PercentCompleted = table.Column<int>(nullable: false)
+                    PercentCompleted = table.Column<int>(nullable: false),
+                    EstimateTime = table.Column<int>(nullable: false),
+                    SpentTime = table.Column<int>(nullable: false)
                 },
                 constraints: table =>
                 {

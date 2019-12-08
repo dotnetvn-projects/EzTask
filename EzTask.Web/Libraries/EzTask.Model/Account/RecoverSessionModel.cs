@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Model
 {
@@ -9,6 +7,6 @@ namespace EzTask.Model
         public Guid Code { get; set; }
         public DateTime ExpiredTime { get; set; }
 
-        public AccountModel Account {get;set;}
+        public AccountModel Account { get; set; }
     }
 }

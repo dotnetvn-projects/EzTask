@@ -1,7 +1,5 @@
 ﻿using EzTask.Interface.SharedData;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Log
 {
@@ -18,7 +16,7 @@ namespace EzTask.Log
             return new LogEntity
             {
                 AccountName = accountName,
-                Exception = exception, 
+                Exception = exception,
                 Function = function,
                 Message = message
             };

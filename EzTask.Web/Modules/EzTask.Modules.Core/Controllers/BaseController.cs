@@ -1,16 +1,12 @@
 ﻿using EzTask.Business;
 using EzTask.Framework.GlobalData;
-using EzTask.Model;
-using EzTask.Model.Message;
 using EzTask.Web.Framework.WebContext;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Threading.Tasks;
 
 namespace EzTask.Modules.Core.Controllers
 {
-    public class BaseController: Controller
+    public class BaseController : Controller
     {
         protected SessionManager SessionManager;
         protected EzTaskBusiness EzTask;

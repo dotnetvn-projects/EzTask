@@ -1,6 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
-using EzTask.Framework.Common;
+﻿using EzTask.Framework.Common;
 using EzTask.Framework.GlobalData;
 using EzTask.Model;
 using EzTask.Model.Enum;
@@ -11,6 +9,8 @@ using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace EzTask.Modules.UserProfile.Controllers
 {
@@ -84,10 +84,10 @@ namespace EzTask.Modules.UserProfile.Controllers
                     return BadRequest(response);
                 }
 
-                var result = await EzTask.Account.UpdatePassword(Context.CurrentAccount.AccountName, 
-                    viewModel.CurrentPassword, viewModel.NewPassword);                    
+                var result = await EzTask.Account.UpdatePassword(Context.CurrentAccount.AccountName,
+                    viewModel.CurrentPassword, viewModel.NewPassword);
 
-                if(result.Status == ActionStatus.NotFound)
+                if (result.Status == ActionStatus.NotFound)
                 {
                     response.Message = Context.GetStringResource("PasswordNotMatch", StringResourceType.UserProfilePage);
                     return BadRequest(response);
@@ -129,8 +129,8 @@ namespace EzTask.Modules.UserProfile.Controllers
         /// <returns></returns>
         private async Task<AccountInfoModel> GetAccountInfo()
         {
-            var data = await EzTask.Account.GetAccountInfo(Context.CurrentAccount.AccountId);            
-            if(data != null)
+            var data = await EzTask.Account.GetAccountInfo(Context.CurrentAccount.AccountId);
+            if (data != null)
             {
                 data.Skills = await EzTask.Skill.GetSkill(Context.CurrentAccount.AccountId);
             }
@@ -149,7 +149,7 @@ namespace EzTask.Modules.UserProfile.Controllers
                 AccountInfoId = profileData.AccountInfoId,
                 Address1 = profileData.Address1,
                 Address2 = profileData.Address2,
-                BirthDay = profileData.BirthDay.HasValue? profileData.BirthDay.Value.ToDateString() : string.Empty,
+                BirthDay = profileData.BirthDay.HasValue ? profileData.BirthDay.Value.ToDateString() : string.Empty,
                 Comment = profileData.Comment,
                 Education = profileData.Education,
                 Email = profileData.Email,

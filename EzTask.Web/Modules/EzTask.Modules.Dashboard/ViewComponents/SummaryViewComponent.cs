@@ -26,7 +26,7 @@ namespace EzTask.Modules.Dashboard.ViewComponents
                 TotalNotification = await EzTask.Notification.CountNotification(Context.CurrentAccount.AccountId),
                 TotalMember = await EzTask.Project.CountMemberByProductIdList(projectIds)
             };
-            
+
             model.TotalTask = await EzTask.Task.CountTaskByProjectIdList(projectIds);
 
             return View(model);

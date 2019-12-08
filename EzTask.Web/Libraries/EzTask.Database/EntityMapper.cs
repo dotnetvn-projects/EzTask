@@ -33,8 +33,8 @@ namespace EzTask.Database
             _modelBuilder.Entity<ToDoItem>().ToTable(TableName.ToDoItem.ToString());
             _modelBuilder.Entity<RecoverSession>().ToTable(TableName.RecoverSession.ToString());
 
-            _modelBuilder.Entity<Account>().HasIndex(x => new 
-            { 
+            _modelBuilder.Entity<Account>().HasIndex(x => new
+            {
                 x.AccountName,
                 x.PasswordHash,
                 x.ManageAccountId,
@@ -42,7 +42,7 @@ namespace EzTask.Database
             });
 
             _modelBuilder.Entity<AccountInfo>().HasIndex(x => new
-            { 
+            {
                 x.AccountId,
                 x.IsPublished,
                 x.Email

@@ -45,6 +45,9 @@ input[type="file"] {
         color: white;
         cursor: pointer;
     }
+.phase-goal {
+    padding: 10px;
+}
 
 .task-tool {
     padding-top: 10px;
@@ -172,6 +175,13 @@ input[type="file"] {
 #task-modal .nav-tabs-custom {
     margin-bottom: 0px !important;
 }
+
+#task-modal .task-hour {
+    padding-left: 0;
+    text-align: left;
+    font-weight: normal;
+}
+
 /*tab history*/
 #tab_history,
 #tab_attachment {

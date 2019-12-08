@@ -13,7 +13,7 @@ namespace EzTask.Modules.Dashboard.ViewModels
 
         public Guid ManagedCode { get; set; }
 
-        [RequiredField(errorLanguageKey: "TodoItemTitleRequired", 
+        [RequiredField(errorLanguageKey: "TodoItemTitleRequired",
             languagePageSetting: "DashboardPage")]
         public string Title { get; set; }
 

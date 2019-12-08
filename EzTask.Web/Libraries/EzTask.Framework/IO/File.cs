@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Text;
+﻿using System.IO;
 using System.Threading.Tasks;
 using SysIO = System.IO;
 namespace EzTask.Framework.IO
@@ -26,7 +23,7 @@ namespace EzTask.Framework.IO
             if (SysIO.File.Exists(filePath))
             {
                 SysIO.File.AppendAllText(filePath, text + "\r\n");
-            }                
+            }
         }
 
         public static string GenerateUniqueName(string folder, string fileName)

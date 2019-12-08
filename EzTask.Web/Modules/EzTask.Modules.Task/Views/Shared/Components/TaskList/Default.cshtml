@@ -36,6 +36,10 @@
                 </div>
             </div>
         </div>
+        @if(!string.IsNullOrEmpty(Model.Phase.PhaseGoal))
+        {
+            <div class="phase-goal"><b>Phase Goal</b>: @Html.Raw(Model.Phase.PhaseGoal)</div>
+        }
     </div>
     <div class="box-body no-padding">
         <div class="task-controls">

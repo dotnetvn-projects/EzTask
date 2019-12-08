@@ -1,18 +1,17 @@
 ﻿using EzTask.Framework.GlobalData;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Filters;
-using Microsoft.AspNetCore.Http.Extensions;
-using System;
-using System.Threading.Tasks;
 using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Authorization;
-using System.Diagnostics.Contracts;
+using Microsoft.AspNetCore.Http.Extensions;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Controllers;
+using Microsoft.AspNetCore.Mvc.Filters;
+using System;
+using System.Threading.Tasks;
 
 namespace EzTask.Web.Framework.Attributes
 {
     [AttributeUsage(AttributeTargets.Class | AttributeTargets.Method)]
-    public class AuthenticationAttribute :  Attribute, IAsyncAuthorizationFilter
+    public class AuthenticationAttribute : Attribute, IAsyncAuthorizationFilter
     {
         CookiesManager _cookiesManager;
 
@@ -37,7 +36,7 @@ namespace EzTask.Web.Framework.Attributes
                         Context.SetLanguageLocalization(cookieUser.Language);
                     }
                 }
-                
+
                 if (Context.CurrentAccount.AccountId <= 0)
                 {
                     var returnUrl = context.HttpContext.Request.GetEncodedUrl();

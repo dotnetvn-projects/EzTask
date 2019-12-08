@@ -44,12 +44,14 @@ namespace EzTask.Modules.Task.Controllers
             viewModel.ProjectId = projectId;
             viewModel.IsDefault = phase.IsDefault;
             viewModel.PhaseName = phase.PhaseName;
+            viewModel.PhaseGoal = phase.PhaseGoal;
+
             if (!viewModel.IsDefault)
             {
                 viewModel.StartDate = phase.StartDate.Value.ToString("dd/MM/yyyy");
                 viewModel.EndDate = phase.EndDate.Value.ToString("dd/MM/yyyy");
-            }                
-            
+            }
+
             viewModel.StatusList = StaticResources.BuildPhaseStatusSelectList(viewModel.Status);
 
             return PartialView("_CreateOrUpdatePhase", viewModel);
@@ -77,6 +79,7 @@ namespace EzTask.Modules.Task.Controllers
                 PhaseName = viewmodel.PhaseName,
                 ProjectId = viewmodel.ProjectId,
                 IsDefault = viewmodel.IsDefault,
+                PhaseGoal = viewmodel.PhaseGoal,
                 Status = viewmodel.Status.ToEnum<PhaseStatus>()
             };
 
@@ -91,7 +94,7 @@ namespace EzTask.Modules.Task.Controllers
                 return await LoadPhaseListAsync(model.ProjectId);
             }
 
-            if(model.Id > 0)
+            if (model.Id > 0)
             {
                 return BadRequest(Context.GetStringResource("UpdatePhaseError", StringResourceType.TaskPage));
             }
@@ -106,12 +109,12 @@ namespace EzTask.Modules.Task.Controllers
         [HttpGet]
         [Route("phase/phase-list.html")]
         public async Task<IActionResult> LoadPhaseListAsync(int projectId)
-        {       
+        {
             var project = await EzTask.Project.GetProject(projectId);
 
-            if (project!=null 
+            if (project != null
                 && project.Owner.AccountId == Context.CurrentAccount.AccountId)
-            {              
+            {
                 Context.AddResponseHeader("authorized-add-phase", "authorized");
             }
 
@@ -150,7 +153,7 @@ namespace EzTask.Modules.Task.Controllers
             }
             else
             {
-                return BadRequest(Context.GetStringResource("PhaseNotExist",  StringResourceType.TaskPage));
+                return BadRequest(Context.GetStringResource("PhaseNotExist", StringResourceType.TaskPage));
             }
 
             return BadRequest(Context.GetStringResource("RequestFailed", StringResourceType.Error));

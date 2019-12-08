@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace EzTask.Entity.Data
 {
@@ -8,6 +6,7 @@ namespace EzTask.Entity.Data
     {
         public int ProjectId { get; set; }
         public string PhaseName { get; set; }
+        public string PhaseGoal { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? EndDate { get; set; }
         public short Status { get; set; }

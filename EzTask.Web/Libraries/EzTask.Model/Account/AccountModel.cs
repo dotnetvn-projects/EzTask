@@ -1,13 +1,12 @@
 ﻿using EzTask.Model.Enum;
-using EzTask.Framework.ModelValidatorAttributes;
 using System;
 
 namespace EzTask.Model
 {
-    public class AccountModel: BaseModel 
-    { 
+    public class AccountModel : BaseModel
+    {
         public int AccountId { get; set; }
-        
+
         public string AccountName { get; set; }
 
         public string Password { get; set; }

@@ -3,7 +3,7 @@ using EzTask.Model;
 
 namespace EzTask.Modules.UserProfile.ViewModels
 {
-    public class ChangePasswordViewModel: BaseModel
+    public class ChangePasswordViewModel : BaseModel
     {
         [RequiredField(errorLanguageKey: "PasswordValidate", languagePageSetting: "AuthenticationPage"),
          StringLengthField(minimumLength: 6, maximumLength: 50, errorLanguageKey: "PasswordValidate", languagePageSetting: "AuthenticationPage")]

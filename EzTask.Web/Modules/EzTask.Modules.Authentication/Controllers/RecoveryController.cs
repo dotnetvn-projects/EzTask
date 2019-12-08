@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using EzTask.Framework.Common;
+﻿using EzTask.Framework.Common;
 using EzTask.Framework.GlobalData;
 using EzTask.Model.Enum;
 using EzTask.Modules.Authentication.ViewModels;
@@ -10,6 +6,8 @@ using EzTask.Modules.Core.Controllers;
 using EzTask.Web.Framework.Attributes;
 using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 
 namespace EzTask.Modules.Authentication.Controllers
 {
@@ -83,7 +81,7 @@ namespace EzTask.Modules.Authentication.Controllers
                 viewModel.IsExpired = true;
             }
 
-           
+
             if (sessionData.Status == ActionStatus.Ok)
             {
                 viewModel.AccountName = sessionData.Data.Account.AccountName;

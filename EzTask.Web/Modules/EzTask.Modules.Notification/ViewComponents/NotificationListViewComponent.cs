@@ -1,9 +1,6 @@
 ﻿using EzTask.Business;
 using EzTask.Web.Framework.WebContext;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EzTask.Modules.Notification.ViewComponents

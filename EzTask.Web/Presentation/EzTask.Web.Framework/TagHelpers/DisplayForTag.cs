@@ -36,7 +36,7 @@ namespace EzTask.Web.Framework.TagHelpers
                 else
                 {
                     text = date.ToString("MM/dd/yyyy");
-                }            
+                }
             }
 
             var tag = new TagBuilder("span");

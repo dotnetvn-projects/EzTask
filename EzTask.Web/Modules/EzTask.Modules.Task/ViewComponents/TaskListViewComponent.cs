@@ -22,7 +22,7 @@ namespace EzTask.Modules.Task.ViewComponents
             var data = await EzTask.Task.GetTasks(projectId, phaseId);
             viewModel.TaskList = data;
 
-            if(viewModel.TaskList.Any())
+            if (viewModel.TaskList.Any())
             {
                 viewModel.Phase = viewModel.TaskList.First().Phase;
             }

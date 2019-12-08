@@ -36,7 +36,7 @@ namespace EzTask.Entity.Data
 
         public virtual ICollection<Attachment> Attachments { get; set; }
 
-        public TaskItem ()
+        public TaskItem()
         {
         }
     }

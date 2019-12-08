@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
-using System.Text;
 
 namespace EzTask.Entity
 {
@@ -28,7 +26,7 @@ namespace EzTask.Entity
             {
                 if (!p.CanRead || !p.CanWrite) continue;
                 object val = entity.GetType().GetProperty(p.Name).GetValue(entity);
-                p.SetValue(this, val , null);             
+                p.SetValue(this, val, null);
             }
         }
 

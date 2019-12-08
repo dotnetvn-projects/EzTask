@@ -1,8 +1,5 @@
 ﻿using EzTask.Interface;
 using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Collections.Generic;
-using EzTask.Log;
 
 namespace EzTask.Log
 {

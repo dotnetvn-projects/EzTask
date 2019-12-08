@@ -1,17 +1,16 @@
 ﻿using EzTask.Model.Enum;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Model
 {
-    public class PhaseModel:BaseModel
+    public class PhaseModel : BaseModel
     {
         public int Id { get; set; }
 
         public int ProjectId { get; set; }
-  
+
         public string PhaseName { get; set; }
+        public string PhaseGoal { get; set; }
 
         public DateTime? StartDate { get; set; }
 

@@ -1,5 +1,4 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
 
 namespace EzTask.Model
 {
@@ -21,11 +20,11 @@ namespace EzTask.Model
         public byte[] Document { get; set; }
         public string LangDisplay { get; set; }
         public string Skills { get; set; }
-        public bool IsPublished { get; set; }      
+        public bool IsPublished { get; set; }
 
         public AccountInfoModel()
         {
             IsPublished = true;
-        }   
+        }
     }
 }

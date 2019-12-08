@@ -46,7 +46,6 @@ $.fn.phaseModalAction = function () {
             $.showLoading();
             $.ajax({
                 type: 'post',
-                dataType: 'json',
                 url: "phase/phase-modal-action.html",
                 data: form.serialize(),
                 success: function (response) {                  
@@ -56,7 +55,6 @@ $.fn.phaseModalAction = function () {
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     $.hideLoading();
-
                     $.alertDialog({
                         title: $('#error-title').val(),
                         content: xhr.responseText
@@ -65,6 +63,10 @@ $.fn.phaseModalAction = function () {
             }).promise().done(function () {
                 $.closeDialog('phase-modal');
                 $(".phase-list > li > a").loadTask();
+                var phaseid = $("#phase-id").val();
+                if (phaseid > 0) {
+                    $(".phase-list > li > a[data-id=" + phaseid + "]").click();
+                }
                 $.hideLoading();
             });
         }

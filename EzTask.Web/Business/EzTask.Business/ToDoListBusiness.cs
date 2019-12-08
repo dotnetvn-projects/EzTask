@@ -29,14 +29,14 @@ namespace EzTask.Business
                                    .CountAsync(c => c.Owner == accountId);
 
             var data = UnitOfWork.TodoItemRepository
-                      .GetPaging(c => c.Owner == accountId, c => c.UpdatedDate, 
+                      .GetPaging(c => c.Owner == accountId, c => c.UpdatedDate,
                                 OrderType.DESC, currentPage, pageSize, false);
 
             if (data.Any())
             {
                 var model = data.ToModels();
 
-                foreach(var item in model)
+                foreach (var item in model)
                 {
                     item.TimeLeft = Convert.ToInt32((item.CompleteOn - DateTime.Now.Date).TotalDays);
 
@@ -57,9 +57,9 @@ namespace EzTask.Business
         {
             ResultModel<ToDoItemModel> result = new ResultModel<ToDoItemModel>();
 
-            var data = await UnitOfWork.TodoItemRepository.GetAsync(c=>c.Id == id, false);
+            var data = await UnitOfWork.TodoItemRepository.GetAsync(c => c.Id == id, false);
 
-            if(data != null)
+            if (data != null)
             {
                 result.Data = data.ToModel();
                 result.Status = ActionStatus.Ok;
@@ -80,7 +80,7 @@ namespace EzTask.Business
             var entity = model.ToEntity();
             entity.Account = null;
 
-            if(entity.Id > 0)
+            if (entity.Id > 0)
             {
                 UnitOfWork.TodoItemRepository.Update(entity);
             }
@@ -91,7 +91,7 @@ namespace EzTask.Business
 
             var result = await UnitOfWork.CommitAsync();
 
-            if(result > 0)
+            if (result > 0)
             {
                 iResult.Status = ActionStatus.Ok;
                 iResult.Data = entity.ToModel();

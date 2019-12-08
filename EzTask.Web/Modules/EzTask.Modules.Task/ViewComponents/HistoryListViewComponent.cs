@@ -1,13 +1,10 @@
 ﻿using EzTask.Business;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace EzTask.Modules.Task.ViewComponents
 {
-    public class HistoryListViewComponent :ViewComponent
+    public class HistoryListViewComponent : ViewComponent
     {
         protected EzTaskBusiness EzTask;
 

@@ -66,7 +66,7 @@ namespace EzTask.Business
         /// <returns></returns>
         public async Task<PhaseModel> GetPhaseById(int phaseId)
         {
-            Phase data = await UnitOfWork.PhaseRepository.GetAsync(c=>c.Id == phaseId);
+            Phase data = await UnitOfWork.PhaseRepository.GetAsync(c => c.Id == phaseId);
             return data.ToModel();
         }
 
@@ -153,7 +153,7 @@ namespace EzTask.Business
 
         private bool IsOwner(int projectId)
         {
-            var project = UnitOfWork.ProjectRepository.Get(c=>c.Id == projectId, allowTracking: false);
+            var project = UnitOfWork.ProjectRepository.Get(c => c.Id == projectId, allowTracking: false);
 
             return project.Owner == _accountContext.AccountId;
         }
