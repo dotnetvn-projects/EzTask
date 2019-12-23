@@ -1,2 +1,2 @@
-﻿1. add-migrations
+﻿1. add-migration
 2 update-database -verbose
