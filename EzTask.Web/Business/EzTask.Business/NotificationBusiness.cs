@@ -195,17 +195,21 @@ namespace EzTask.Business
         /// Delete notify item
         /// </summary>
         /// <param name="id"></param>
-        /// <returns></returns>
+        /// <returns>ResultModel<bool></returns>
         public async Task<ResultModel<bool>> DeleteNotify(int id)
         {
             ResultModel<bool> result = new ResultModel<bool>();
+
             UnitOfWork.NotifyRepository.Delete(id);
+
             var iresult = await UnitOfWork.CommitAsync();
+
             if (iresult > 0)
             {
                 result.Data = true;
                 result.Status = ActionStatus.Ok;
             }
+
             return result;
         }
 
